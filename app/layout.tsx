@@ -1,50 +1,77 @@
-import type { Metadata } from 'next';
 import './globals.css';
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
+import type { Metadata } from 'next';
+import SiteNav from '@/components/SiteNav';
 
 export const metadata: Metadata = {
-  title: 'Drop Down Logistics — Chaos → Structured → Automated',
-  description: 'A one-person operations studio building governed systems, dimensional architectures, and automation frameworks. Every tool documented. Every standard enforced. Every decision traceable.',
-  icons: {
-    icon: [
-      { url: '/favicon.ico', sizes: 'any' },
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-    ],
-    apple: '/apple-touch-icon.png',
-  },
-  openGraph: {
-    title: 'Drop Down Logistics',
-    description: 'Chaos → Structured → Automated. 44 governed systems. 65 enforced standards. Built to institutional grade.',
-    type: 'website',
-    url: 'https://dropdownlogistics.com',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Drop Down Logistics',
-    description: 'Chaos → Structured → Automated',
-  },
+  title: 'Dropdown Logistics',
+  description: 'Chaos → Structured → Automated. One-person ops studio.',
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="font-body antialiased">
-        {/* Grain overlay for texture */}
+      <head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,500;8..60,600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body style={{
+        margin: 0,
+        padding: 0,
+        minHeight: '100vh',
+        background: '#0F1A2E',
+        color: '#F5F1EB',
+        fontFamily: "'Source Serif 4', serif",
+      }}>
+        {/* Grain texture overlay */}
         <div
-          className="fixed inset-0 pointer-events-none z-[9999] opacity-[0.03]"
+          aria-hidden
           style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+            position: 'fixed',
+            inset: 0,
+            zIndex: 9999,
+            pointerEvents: 'none',
+            opacity: 0.035,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+            backgroundRepeat: 'repeat',
+            backgroundSize: '128px 128px',
           }}
         />
-        <Navigation />
-        <main>{children}</main>
-        <Footer />
+
+        <div style={{ position: 'relative', zIndex: 1, minHeight: '100vh' }}>
+          <SiteNav />
+          <main>{children}</main>
+          <footer style={{
+            maxWidth: 1200,
+            margin: '0 auto',
+            padding: '60px 24px 32px',
+          }}>
+            <div style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+              gap: 12,
+            }}>
+              <span style={{
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: 11,
+                color: 'rgba(245,241,235,0.25)',
+              }}>
+                © {new Date().getFullYear()} Dropdown Logistics
+              </span>
+              <span style={{
+                fontFamily: "'Source Serif 4', serif",
+                fontSize: 12,
+                fontStyle: 'italic',
+                color: 'rgba(245,241,235,0.15)',
+              }}>
+                CottageHumble surface. Cathedral underneath.
+              </span>
+            </div>
+          </footer>
+        </div>
       </body>
     </html>
   );
