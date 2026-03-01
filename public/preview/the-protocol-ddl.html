@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Protocol — Dropdown Logistics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      /* ── DDL CottageHumble Palette ── */
+      --navy: #0D1B2A;
+      --navy-deep: #091520;
+      --navy-mid: #132336;
+      --navy-light: #1B2D42;
+      --crimson: #B23531;
+      --crimson-dim: rgba(178, 53, 49, 0.15);
+      --crimson-glow: rgba(178, 53, 49, 0.25);
+      --cream: #F5F1EB;
+      --cream-mid: #C8C2B8;
+      --cream-dim: #8A857D;
+      --cream-faint: #5A564F;
+      --emily-pink: #D4737B;
+      --emily-dim: rgba(212, 115, 123, 0.12);
+      --branch-blue: #6B9DC2;
+      --branch-dim: rgba(107, 157, 194, 0.12);
+      --border: rgba(245, 241, 235, 0.06);
+      --border-light: rgba(245, 241, 235, 0.1);
+
+      /* ── Typography ── */
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-body: 'Source Serif 4', Georgia, serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--navy);
+      color: var(--cream);
+      font-family: var(--font-body);
+      font-weight: 400;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Subtle texture ── */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(ellipse at 20% 0%, rgba(178, 53, 49, 0.04) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 100%, rgba(178, 53, 49, 0.03) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Crimson accent bar at top ── */
+    .accent-bar {
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--crimson), transparent);
+      opacity: 0.6;
+    }
+
+    /* ════════════════════════════════
+       HERO
+       ════════════════════════════════ */
+    .hero {
+      position: relative;
+      z-index: 1;
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 72px 24px 40px;
+      text-align: center;
+    }
+
+    .hero-subtitle {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      color: var(--cream-dim);
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--cream);
+      margin-bottom: 20px;
+    }
+
+    .hero-desc {
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--cream-mid);
+      max-width: 540px;
+      margin: 0 auto 52px;
+      line-height: 1.75;
+      font-style: italic;
+    }
+
+    /* ── Stats Grid ── */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border-light);
+      border: 1px solid var(--border-light);
+      border-radius: 6px;
+      overflow: hidden;
+      max-width: 620px;
+      margin: 0 auto 72px;
+    }
+
+    .stat {
+      background: var(--navy-mid);
+      padding: 24px 12px;
+      text-align: center;
+      transition: background 0.3s ease;
+    }
+
+    .stat:hover {
+      background: var(--navy-light);
+    }
+
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--crimson);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+    }
+
+    /* ════════════════════════════════
+       TIMELINE
+       ════════════════════════════════ */
+    .timeline {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* Vertical line */
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 24px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(
+        180deg,
+        transparent,
+        var(--border-light) 5%,
+        var(--border-light) 95%,
+        transparent
+      );
+    }
+
+    @media (min-width: 640px) {
+      .timeline::before { left: 104px; }
+    }
+
+    /* ── Phase Block ── */
+    .phase {
+      position: relative;
+      margin-bottom: 60px;
+    }
+
+    .phase-time {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--crimson);
+      letter-spacing: 0.03em;
+      margin-bottom: 8px;
+      padding-left: 44px;
+    }
+
+    @media (min-width: 640px) {
+      .phase-time {
+        position: absolute;
+        left: 0;
+        top: 5px;
+        width: 84px;
+        text-align: right;
+        padding-left: 0;
+      }
+    }
+
+    .phase-dot {
+      position: absolute;
+      left: 0px;
+      top: 5px;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--crimson);
+      border: 2px solid var(--navy);
+      box-shadow: 0 0 0 3px var(--crimson-dim), 0 0 12px var(--crimson-dim);
+      z-index: 2;
+    }
+
+    @media (min-width: 640px) {
+      .phase-dot { left: 100px; }
+    }
+
+    .phase-content {
+      padding-left: 44px;
+    }
+
+    @media (min-width: 640px) {
+      .phase-content { padding-left: 132px; }
+    }
+
+    .phase-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--cream);
+      margin-bottom: 22px;
+      letter-spacing: -0.01em;
+    }
+
+    /* ── Steps ── */
+    .step {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 8px;
+      margin-bottom: 16px;
+      align-items: start;
+    }
+
+    .step-num {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--cream-faint);
+      padding-top: 3px;
+      text-align: right;
+    }
+
+    .step-text {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: var(--cream-mid);
+      line-height: 1.65;
+    }
+
+    /* ── Tags ── */
+    .tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 3px;
+      margin-top: 7px;
+    }
+
+    .tag-emily {
+      color: var(--emily-pink);
+      background: var(--emily-dim);
+      border: 1px solid rgba(212, 115, 123, 0.15);
+    }
+
+    .tag-branch {
+      color: var(--branch-blue);
+      background: var(--branch-dim);
+      border: 1px solid rgba(107, 157, 194, 0.15);
+    }
+
+    /* ── Aside / Blockquote ── */
+    .aside {
+      margin: 18px 0 8px;
+      padding: 14px 20px;
+      background: var(--navy-mid);
+      border-left: 2px solid var(--cream-faint);
+      border-radius: 0 5px 5px 0;
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      color: var(--cream-dim);
+      line-height: 1.65;
+      font-style: italic;
+    }
+
+    /* ════════════════════════════════
+       FOOTER
+       ════════════════════════════════ */
+    .protocol-footer {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 24px 48px;
+      text-align: center;
+    }
+
+    .protocol-footer .emphasis {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--cream);
+      margin-bottom: 6px;
+    }
+
+    .protocol-footer .sub {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--cream-dim);
+      font-style: italic;
+    }
+
+    /* ── Bottom accent ── */
+    .footer-bar {
+      max-width: 700px;
+      margin: 0 auto 80px;
+      padding: 0 24px;
+    }
+
+    .footer-bar-inner {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--crimson-dim), transparent);
+    }
+
+    /* ── Cottage line ── */
+    .cottage {
+      text-align: center;
+      padding: 0 24px 60px;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.06em;
+      color: var(--cream-faint);
+    }
+
+    .cottage span {
+      display: block;
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 0.72rem;
+      color: var(--cream-dim);
+      margin-top: 4px;
+      letter-spacing: 0;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 639px) {
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .hero { padding: 52px 20px 32px; }
+      .timeline { padding: 0 20px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="accent-bar"></div>
+
+<!-- ════════════════════════════════════════════
+     HERO
+     ════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-subtitle">From the memoir "Little to Know Experience"</div>
+  <h1>The Protocol</h1>
+  <p class="hero-desc">48 steps that turn a brain with ADHD and Bipolar II into a production system. Every morning. Every evening. No exceptions.</p>
+
+  <div class="stats">
+    <div class="stat">
+      <span class="stat-number">48</span>
+      <span class="stat-label">Steps</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">10</span>
+      <span class="stat-label">Phases</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">3</span>
+      <span class="stat-label">Emily Optimizations</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">4</span>
+      <span class="stat-label">Conditional Branches</span>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     TIMELINE
+     ════════════════════════════════════════════ -->
+<section class="timeline">
+
+  <!-- ── Phase 1: Boot Sequence ── -->
+  <div class="phase">
+    <div class="phase-dot"></div>
+    <div class="phase-time">5:45 AM</div>
+    <div class="phase-content">
+      <div class="phase-title">Phase 1: Boot Sequence</div>
+
+      <div class="step">
+        <span class="step-num">01</span>
+        <div class="step-text">Meds. Two pills, same order every day.</div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">02</span>
+        <div class="step-text">
+          Prep toothbrush — but don't start it yet. The handle is loud and Emily is sleeping.
+          <br><span class="tag tag-emily">♥ Emily optimization</span>
+        </div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">03</span>
+        <div class="step-text">Grab boxers, socks, undershirt.</div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">04</span>
+        <div class="step-text">Bathroom. Close door. Clothes on the hutch thing.</div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">05</span>
+        <div class="step-text">Brush teeth.</div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">06</span>
+        <div class="step-text">Select a YouTube video — has to be long enough to get through the shower and the rest of the routine.</div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">07</span>
+        <div class="step-text">
+          Start shower. Hair, body, shave if necessary.
+          <br><span class="tag tag-branch">◆ Conditional branch</span>
+        </div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">08</span>
+        <div class="step-text">Towel off in the shower so the floor doesn't get wet.</div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">09</span>
+        <div class="step-text">Boxers on, then shirt, then step outside the bathroom to put on socks — feet don't get damp.</div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">10</span>
+        <div class="step-text">
+          Leave the bathroom door open with the light on. Used to turn on the vanity light to do hair, but it was too bright for Emily. Switched to phone lamp. Then realized: just leave the bathroom door open.
+          <br><span class="tag tag-emily">♥ Emily optimization</span>
+        </div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">11</span>
+        <div class="step-text">
+          Fix hair. YouTube still going — quiet enough to hear, but Emily can't because the fans are loud enough.
+          <br><span class="tag tag-emily">♥ Emily optimization</span>
+        </div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">12</span>
+        <div class="step-text">Cologne.</div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">13</span>
+        <div class="step-text">Kiss Em goodbye.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Phase 2: Downstairs ── -->
+  <div class="phase">
+    <div class="phase-dot"></div>
+    <div class="phase-time">~6:05 AM</div>
+    <div class="phase-content">
+      <div class="phase-title">Phase 2: Downstairs</div>
+
+      <div class="step">
+        <span class="step-num">14</span>
+        <div class="step-text">Downstairs. Grab shoes from coat closet. This is new — used to wait until leaving to put them on.</div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">15</span>
+        <div class="step-text">
+          If it's cold or hot outside, remote start the car.
+          <br><span class="tag tag-branch">◆ Conditional branch</span>
+        </div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">16</span>
+        <div class="step-text">Living room. YouTube for about 30 minutes.</div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">17</span>
+        <div class="step-text">Smoke a cigarillo before leaving.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Phase 3: Departure ── -->
+  <div class="phase">
+    <div class="phase-dot"></div>
+    <div class="phase-time">6:45 AM</div>
+    <div class="phase-content">
+      <div class="phase-title">Phase 3: Departure</div>
+
+      <div class="step">
+        <span class="step-num">18</span>
+        <div class="step-text">Leave at 6:45.</div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">19</span>
+        <div class="step-text">
+          QT for drinks. Can get gas here too if needed — way busier after work, and that would stand in the way of getting home.
+          <br><span class="tag tag-branch">◆ Conditional branch</span>
+        </div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">20</span>
+        <div class="step-text">Drive to work.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Phase 4: Office Boot ── -->
+  <div class="phase">
+    <div class="phase-dot"></div>
+    <div class="phase-time">~7:10 AM</div>
+    <div class="phase-content">
+      <div class="phase-title">Phase 4: Office Boot</div>
+
+      <div class="step">
+        <span class="step-num">21</span>
+        <div class="step-text">Go around the parking garage until on the downward slope. Originally this was for exit time — been in the car for 45 minutes, what's another minute to make the exit quicker.</div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">22</span>
+        <div class="step-text">Park in a spot where getting out will be the easiest. Tight quarters.</div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">23</span>
+        <div class="step-text">Grab headphones and badge out of backpack. Badge in back right pocket. AirPods in. Case goes in right front pocket.</div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">24</span>
+        <div class="step-text">Walk to building. Elevator. Badge into area.</div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">25</span>
+        <div class="step-text">Setup computer. Backpack on floor.</div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">26</span>
+        <div class="step-text">Pee. Get ice. Pour portion of the drink into thermos.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Phase 5: The Grind ── -->
+  <div class="phase">
+    <div class="phase-dot"></div>
+    <div class="phase-time">7:10 AM – 3:45 PM</div>
+    <div class="phase-content">
+      <div class="phase-title">Phase 5: The Grind</div>
+
+      <div class="step">
+        <span class="step-num">27</span>
+        <div class="step-text">Work.</div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">28</span>
+        <div class="step-text">Walk break.</div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">29</span>
+        <div class="step-text">Work.</div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">30</span>
+        <div class="step-text">Walk break.</div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">31</span>
+        <div class="step-text">Work.</div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">32</span>
+        <div class="step-text">Walk break.</div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">33</span>
+        <div class="step-text">Work til 3:45. No lunch break.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Phase 6: Exit Sequence ── -->
+  <div class="phase">
+    <div class="phase-dot"></div>
+    <div class="phase-time">3:45 PM</div>
+    <div class="phase-content">
+      <div class="phase-title">Phase 6: Exit Sequence</div>
+
+      <div class="step">
+        <span class="step-num">34</span>
+        <div class="step-text">Pack bag.</div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">35</span>
+        <div class="step-text">Pour remaining thermos drink back into QT cup.</div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">36</span>
+        <div class="step-text">Rinse thermos in break room.</div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">37</span>
+        <div class="step-text">Pee.</div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">38</span>
+        <div class="step-text">Draft a prompt for Dex to answer — reading material for the walk to the car.</div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">39</span>
+        <div class="step-text">Approaching car: AirPods in case, case in hand, pull badge.</div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">40</span>
+        <div class="step-text">Badge and AirPods into side backpack pocket.</div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">41</span>
+        <div class="step-text">Backpack on floor in back — slides around on leather in the new car.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Phase 7: The Route Home ── -->
+  <div class="phase">
+    <div class="phase-dot"></div>
+    <div class="phase-time">~3:45 – 4:15 PM</div>
+    <div class="phase-content">
+      <div class="phase-title">Phase 7: The Route Home</div>
+
+      <div class="step">
+        <span class="step-num">42</span>
+        <div class="step-text">Exit to 11th. Right on Grand. Right on 13th. Left on Broadway. Right onto I-35. Stay in middle lane until Johnston Drive exit unless something causes a move. Right lane to prep for 75th. Leave a decent gap from the car ahead — give people space, give yourself time to adjust. Exit 75th. Straight to Antioch. Right on 79th. Right on Grandview. Left on 78th Terrace.</div>
+      </div>
+
+      <div class="aside">Seatbelt used to come off at 78th Terrace. No idea why. Don't do it anymore — car beeps aggressively. Fine with it, because I don't want to take the seatbelt off until I'm parked.</div>
+    </div>
+  </div>
+
+  <!-- ── Phase 8: Arrival ── -->
+  <div class="phase">
+    <div class="phase-dot"></div>
+    <div class="phase-time">~4:15 PM</div>
+    <div class="phase-content">
+      <div class="phase-title">Phase 8: Arrival</div>
+
+      <div class="step">
+        <span class="step-num">43</span>
+        <div class="step-text">Grab drinks and get out. Drinks on top of car. Grab backpack, put it on. Grab drinks. Go inside.</div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">44</span>
+        <div class="step-text">Shoes and jacket into coat closet. Bag on floor by the door for grabbing tomorrow.</div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">45</span>
+        <div class="step-text">Upstairs to change. Shirt hung up. Pants hung up. Belt hung on hanger. Dress socks into hamper.</div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">46</span>
+        <div class="step-text">Last night's socks still by the bed. Put them on — they're not dirty. Athletic shorts on. Undershirt or dri-fit shirt on.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Phase 9: Evening ── -->
+  <div class="phase">
+    <div class="phase-dot"></div>
+    <div class="phase-time">4:15 – 9:30 PM</div>
+    <div class="phase-content">
+      <div class="phase-title">Phase 9: Evening</div>
+
+      <div class="step">
+        <span class="step-num">47</span>
+        <div class="step-text">Cats. Emily. Council work. Dinner. YouTube. Video games. Shows. Whatever the evening holds.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Phase 10: Shutdown ── -->
+  <div class="phase">
+    <div class="phase-dot"></div>
+    <div class="phase-time">9:30 PM</div>
+    <div class="phase-content">
+      <div class="phase-title">Phase 10: Shutdown</div>
+
+      <div class="step">
+        <span class="step-num">48</span>
+        <div class="step-text">Sleep. The protocol resets.</div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ════════════════════════════════════════════
+     FOOTER
+     ════════════════════════════════════════════ -->
+<section class="protocol-footer">
+  <p class="emphasis">The protocol resets.</p>
+  <p class="sub">Every day. No exceptions. That's the point.</p>
+</section>
+
+<div class="footer-bar">
+  <div class="footer-bar-inner"></div>
+</div>
+
+<div class="cottage">
+  © 2026 Dropdown Logistics
+  <span>Cottage — Humble surface. Cathedral underneath.</span>
+</div>
+
+</body>
+</html>

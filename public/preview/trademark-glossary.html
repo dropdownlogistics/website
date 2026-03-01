@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trademark Glossary — Dropdown Logistics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #0D1B2A;
+      --navy-deep: #091520;
+      --navy-mid: #132336;
+      --navy-light: #1B2D42;
+      --navy-card: #10202f;
+      --crimson: #B23531;
+      --crimson-dim: rgba(178, 53, 49, 0.15);
+      --crimson-glow: rgba(178, 53, 49, 0.25);
+      --cream: #F5F1EB;
+      --cream-mid: #C8C2B8;
+      --cream-dim: #8A857D;
+      --cream-faint: #5A564F;
+      --green: #4A9E6B;
+      --green-dim: rgba(74, 158, 107, 0.12);
+      --amber: #C49A3C;
+      --amber-dim: rgba(196, 154, 60, 0.12);
+      --blue: #6B9DC2;
+      --blue-dim: rgba(107, 157, 194, 0.12);
+      --border: rgba(245, 241, 235, 0.06);
+      --border-light: rgba(245, 241, 235, 0.1);
+      --border-mid: rgba(245, 241, 235, 0.14);
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-body: 'Source Serif 4', Georgia, serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--navy);
+      color: var(--cream);
+      font-family: var(--font-body);
+      font-weight: 400;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(ellipse at 20% 0%, rgba(178, 53, 49, 0.04) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 100%, rgba(107, 157, 194, 0.03) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .accent-bar {
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--crimson), transparent);
+      opacity: 0.6;
+    }
+
+    /* ════════════════════════════════
+       HERO
+       ════════════════════════════════ */
+    .hero {
+      position: relative;
+      z-index: 1;
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 72px 24px 40px;
+      text-align: center;
+    }
+
+    .hero-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.16em;
+      color: var(--crimson);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--cream);
+      margin-bottom: 16px;
+    }
+
+    .hero-desc {
+      font-family: var(--font-body);
+      font-size: 1.02rem;
+      font-weight: 400;
+      color: var(--cream-mid);
+      max-width: 540px;
+      margin: 0 auto 20px;
+      line-height: 1.75;
+      font-style: italic;
+    }
+
+    .hero-meta {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--cream-faint);
+      letter-spacing: 0.04em;
+      margin-bottom: 48px;
+    }
+
+    .hero-meta span { color: var(--cream-dim); margin: 0 6px; }
+
+    /* ── Stats ── */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border-light);
+      border: 1px solid var(--border-light);
+      border-radius: 6px;
+      overflow: hidden;
+      max-width: 480px;
+      margin: 0 auto 72px;
+    }
+
+    .stat {
+      background: var(--navy-mid);
+      padding: 22px 10px;
+      text-align: center;
+      transition: background 0.3s ease;
+    }
+
+    .stat:hover { background: var(--navy-light); }
+
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--crimson);
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .stat-label {
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+    }
+
+    /* ════════════════════════════════
+       GLOSSARY GRID
+       ════════════════════════════════ */
+    .glossary {
+      position: relative;
+      z-index: 1;
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 0 24px 40px;
+    }
+
+    /* ── Term Card ── */
+    .term-card {
+      background: var(--navy-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 32px 28px;
+      margin-bottom: 20px;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .term-card:hover {
+      border-color: var(--crimson-dim);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.2), 0 0 0 1px var(--crimson-dim);
+    }
+
+    .term-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .term-name {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--cream);
+      letter-spacing: -0.02em;
+    }
+
+    .term-name .tm {
+      font-size: 0.7rem;
+      color: var(--crimson);
+      vertical-align: super;
+      margin-left: 2px;
+    }
+
+    .term-context-tag {
+      font-family: var(--font-mono);
+      font-size: 0.56rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 3px;
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+
+    .ctx-brand { color: var(--crimson); background: var(--crimson-dim); border: 1px solid rgba(178,53,49,0.2); }
+    .ctx-personal { color: var(--blue); background: var(--blue-dim); border: 1px solid rgba(107,157,194,0.15); }
+    .ctx-product { color: var(--green); background: var(--green-dim); border: 1px solid rgba(74,158,107,0.15); }
+    .ctx-governance { color: var(--amber); background: var(--amber-dim); border: 1px solid rgba(196,154,60,0.15); }
+
+    .term-definition {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .term-detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 520px) {
+      .term-detail-grid { grid-template-columns: 1fr; }
+    }
+
+    .term-detail {
+      padding: 12px 14px;
+      background: var(--navy-mid);
+      border-radius: 5px;
+    }
+
+    .term-detail-label {
+      font-family: var(--font-mono);
+      font-size: 0.56rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cream-faint);
+      margin-bottom: 6px;
+    }
+
+    .term-detail-body {
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      color: var(--cream-mid);
+      line-height: 1.6;
+    }
+
+    .term-detail-body .related {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--cream-dim);
+      line-height: 1.8;
+    }
+
+    /* ── Symbol badge ── */
+    .term-symbol {
+      font-size: 1.1rem;
+      margin-left: 8px;
+    }
+
+    /* ════════════════════════════════
+       FOOTER
+       ════════════════════════════════ */
+    .colophon {
+      position: relative;
+      z-index: 1;
+      max-width: 740px;
+      margin: 24px auto 0;
+      padding: 0 24px;
+    }
+
+    .colophon-inner {
+      background: var(--navy-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 20px 24px;
+      text-align: center;
+    }
+
+    .colophon-inner p {
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      color: var(--cream-faint);
+      letter-spacing: 0.03em;
+      margin-bottom: 3px;
+    }
+
+    .colophon-inner p:last-child { margin-bottom: 0; }
+
+    .footer-bar {
+      max-width: 740px;
+      margin: 40px auto 0;
+      padding: 0 24px;
+    }
+
+    .footer-bar-inner {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--crimson-dim), transparent);
+    }
+
+    .cottage {
+      text-align: center;
+      padding: 32px 24px 60px;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.06em;
+      color: var(--cream-faint);
+    }
+
+    .cottage span {
+      display: block;
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 0.72rem;
+      color: var(--cream-dim);
+      margin-top: 4px;
+      letter-spacing: 0;
+    }
+
+    @media (max-width: 639px) {
+      .hero { padding: 52px 20px 32px; }
+      .glossary { padding: 0 20px 40px; }
+      .term-card { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="accent-bar"></div>
+
+<!-- ════════════════════════════════════════════
+     HERO
+     ════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-label">DDL Canon — Brand & Language Layer</div>
+  <h1>Trademark Glossary</h1>
+  <p class="hero-desc">Precise descriptors for real phenomena — cognitive patterns, operational philosophies, product methodologies, and personal frameworks. These are not marketing terms.</p>
+  <p class="hero-meta">v1.0 <span>·</span> Inventory Only <span>·</span> No Invention, No Expansion</p>
+
+  <div class="stats">
+    <div class="stat">
+      <span class="stat-number">12</span>
+      <span class="stat-label">Terms</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">4</span>
+      <span class="stat-label">Domains</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">v1.0</span>
+      <span class="stat-label">Canon</span>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     GLOSSARY
+     ════════════════════════════════════════════ -->
+<section class="glossary">
+
+  <!-- ── CoherentVelocity™️ ── -->
+  <div class="term-card">
+    <div class="term-header">
+      <div class="term-name">CoherentVelocity<span class="tm">™</span></div>
+      <span class="term-context-tag ctx-brand">DDL Brand</span>
+    </div>
+    <div class="term-definition">Governance-grade output at exceptional speed, where structure and momentum operate simultaneously without sacrificing either.</div>
+    <div class="term-detail-grid">
+      <div class="term-detail">
+        <div class="term-detail-label">Origin</div>
+        <div class="term-detail-body">Emerged as descriptor for Dave's cognitive default when friction is removed and conditions are right.</div>
+      </div>
+      <div class="term-detail">
+        <div class="term-detail-label">Related</div>
+        <div class="term-detail-body related">Full Dave™ · PrioritEase™ · Medicated→Calibrated→Defrictionated™</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CottageHumble™️ ── -->
+  <div class="term-card">
+    <div class="term-header">
+      <div class="term-name">CottageHumble<span class="tm">™</span></div>
+      <span class="term-context-tag ctx-brand">DDL Brand</span>
+    </div>
+    <div class="term-definition">Strategic understatement that invites collaboration by presenting the cottage while the cathedral stands behind it.</div>
+    <div class="term-detail-grid">
+      <div class="term-detail">
+        <div class="term-detail-label">Origin</div>
+        <div class="term-detail-body">Dave's natural communication style; canonized when the r/excel post titled "Building an Excel Glossary Tool" hit #1 with 13,000 views while a nine-model council spec existed behind it.</div>
+      </div>
+      <div class="term-detail">
+        <div class="term-detail-label">Related</div>
+        <div class="term-detail-body related">CathedralHumiliating™ · ReasonedHype™ · Full Dave™</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TrustANDVerify™️ ── -->
+  <div class="term-card">
+    <div class="term-header">
+      <div class="term-name">TrustANDVerify<span class="tm">™</span></div>
+      <span class="term-context-tag ctx-governance">Governance</span>
+    </div>
+    <div class="term-definition">Trust AND Verify — both always, simultaneously. Clarity builds trust. Automation verifies.</div>
+    <div class="term-detail-grid">
+      <div class="term-detail">
+        <div class="term-detail-label">Origin</div>
+        <div class="term-detail-body">Traced to age 12 (Super Summer incident). Adult heuristic: don't trust OR verify — do both. Formalized as DDL operating principle.</div>
+      </div>
+      <div class="term-detail">
+        <div class="term-detail-label">Related</div>
+        <div class="term-detail-body related">Occam's Opposite™</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ReasonedHype™️ ── -->
+  <div class="term-card">
+    <div class="term-header">
+      <div class="term-name">ReasonedHype<span class="tm">™</span></div>
+      <span class="term-context-tag ctx-brand">DDL Brand</span>
+    </div>
+    <div class="term-definition">Enthusiasm with receipts — excitement that is fully supported by documented evidence and structural proof.</div>
+    <div class="term-detail-grid">
+      <div class="term-detail">
+        <div class="term-detail-label">Origin</div>
+        <div class="term-detail-body">Counterweight to ungrounded hype; DDL's operating mode for pitches, launches, and council verdicts.</div>
+      </div>
+      <div class="term-detail">
+        <div class="term-detail-label">Related</div>
+        <div class="term-detail-body related">CottageHumble™ · TrustANDVerify™</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PrioritEase™️ ── -->
+  <div class="term-card">
+    <div class="term-header">
+      <div class="term-name">PrioritEase<span class="tm">™</span></div>
+      <span class="term-context-tag ctx-product">Product</span>
+    </div>
+    <div class="term-definition">Priority × Ease — a decision filter that determines the next action given current constraints, not the most important action in abstraction.</div>
+    <div class="term-detail-grid">
+      <div class="term-detail">
+        <div class="term-detail-label">Origin</div>
+        <div class="term-detail-body">Conceptual model refined over time; formalized as Canon Standard STD-02 on 2026-01-03.</div>
+      </div>
+      <div class="term-detail">
+        <div class="term-detail-label">Related</div>
+        <div class="term-detail-body related">CoherentVelocity™ · Full Dave™</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Full Dave™️ ── -->
+  <div class="term-card">
+    <div class="term-header">
+      <div class="term-name">Full Dave<span class="tm">™</span></div>
+      <span class="term-context-tag ctx-personal">Personal</span>
+    </div>
+    <div class="term-definition">Multi-layer architecture with governance awareness — the ceiling tier of build complexity, where dimensional thinking, traceability, and governed structure all operate simultaneously.</div>
+    <div class="term-detail-grid">
+      <div class="term-detail">
+        <div class="term-detail-label">Origin</div>
+        <div class="term-detail-body">Internal DDL label for the Expert tier in Excelligence; the tier above Advanced.</div>
+      </div>
+      <div class="term-detail">
+        <div class="term-detail-label">Related</div>
+        <div class="term-detail-body related">CoherentVelocity™ · Occam's Opposite™</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Occam's Opposite™️ ── -->
+  <div class="term-card">
+    <div class="term-header">
+      <div class="term-name">Occam's Opposite<span class="tm">™</span></div>
+      <span class="term-context-tag ctx-personal">Personal</span>
+    </div>
+    <div class="term-definition">The recurring pattern of finding the most complex elegant solution — when the simplest explanation is available but the most sophisticated governed architecture emerges instead.</div>
+    <div class="term-detail-grid">
+      <div class="term-detail">
+        <div class="term-detail-label">Origin</div>
+        <div class="term-detail-body">Observed as Dave's natural build instinct; named as the inverse of Occam's Razor.</div>
+      </div>
+      <div class="term-detail">
+        <div class="term-detail-label">Related</div>
+        <div class="term-detail-body related">Full Dave™ · EmotionallyRegulatedSpite™ · Involuntary Governance (OBS-20)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Medicated→Calibrated→Defrictionated™️ ── -->
+  <div class="term-card">
+    <div class="term-header">
+      <div class="term-name">Medicated→Calibrated→Defrictionated<span class="tm">™</span></div>
+      <span class="term-context-tag ctx-personal">Personal</span>
+    </div>
+    <div class="term-definition">Dave's personal arc — the sequential states from medication adjustment through cognitive calibration to the removal of internal friction that suppressed full capacity.</div>
+    <div class="term-detail-grid">
+      <div class="term-detail">
+        <div class="term-detail-label">Origin</div>
+        <div class="term-detail-body">February 2026. Recent medication adjustment produced the clearest articulation of the three-stage arc.</div>
+      </div>
+      <div class="term-detail">
+        <div class="term-detail-label">Related</div>
+        <div class="term-detail-body related">CoherentVelocity™ · Full Dave™</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── D&D² (Dex & Dave)™️ ── -->
+  <div class="term-card">
+    <div class="term-header">
+      <div class="term-name">D&D² (Dex & Dave)<span class="tm">™</span></div>
+      <span class="term-context-tag ctx-brand">DDL Brand</span>
+    </div>
+    <div class="term-definition">The human-AI collaboration unit at the core of DDL operations — Dave as architect and governor, Dex as execution and synthesis partner. Squared to denote the multiplicative effect.</div>
+    <div class="term-detail-grid">
+      <div class="term-detail">
+        <div class="term-detail-label">Origin</div>
+        <div class="term-detail-body">Emerged organically from the working relationship; squared to denote the multiplicative effect of the pairing.</div>
+      </div>
+      <div class="term-detail">
+        <div class="term-detail-label">Related</div>
+        <div class="term-detail-body related">CoherentVelocity™ · ClaudELI5™</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── EmotionallyRegulatedSpite™️ ── -->
+  <div class="term-card">
+    <div class="term-header">
+      <div class="term-name">EmotionallyRegulatedSpite<span class="tm">™</span></div>
+      <span class="term-context-tag ctx-personal">Personal</span>
+    </div>
+    <div class="term-definition">The productive channeling of institutional frustration into governance-grade systems that outlast and outperform the provocation that caused them.</div>
+    <div class="term-detail-grid">
+      <div class="term-detail">
+        <div class="term-detail-label">Origin</div>
+        <div class="term-detail-body">February 28, 2026. Named by Opus while documenting the Timesheet System — built in direct response to having Dave's time scrutinized. 1,568 hours tracked. All in balance.</div>
+      </div>
+      <div class="term-detail">
+        <div class="term-detail-label">Related</div>
+        <div class="term-detail-body related">CottageHumble™ · CathedralHumiliating™ · Occam's Opposite™ · Involuntary Governance (OBS-20)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CathedralHumiliating™️ ── -->
+  <div class="term-card">
+    <div class="term-header">
+      <div class="term-name">CathedralHumiliating<span class="tm">™</span></div>
+      <span class="term-context-tag ctx-brand">DDL Brand</span>
+    </div>
+    <div class="term-definition">The art of dismantling a bad take so gently and humbly that the person doesn't realize they've been destroyed until three days later.</div>
+    <div class="term-detail-grid">
+      <div class="term-detail">
+        <div class="term-detail-label">Origin</div>
+        <div class="term-detail-body">February 28, 2026. Coined in response to a commenter on the #1 r/excel post. Mod deleted the comment first. Dave noted they were lucky.</div>
+      </div>
+      <div class="term-detail">
+        <div class="term-detail-label">Related</div>
+        <div class="term-detail-body related">CottageHumble™ · EmotionallyRegulatedSpite™</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ClaudELI5™️ ── -->
+  <div class="term-card">
+    <div class="term-header">
+      <div class="term-name">ClaudELI5<span class="tm">™</span></div>
+      <span class="term-context-tag ctx-personal">Personal</span>
+    </div>
+    <div class="term-definition">Voice-to-text autocorrect artifact meaning "explain this to me like Claude would if I were five" — canonical immediately upon accidental coinage.</div>
+    <div class="term-detail-grid">
+      <div class="term-detail">
+        <div class="term-detail-label">Origin</div>
+        <div class="term-detail-body">Coined while driving. Autocorrect intervened. Canon resulted.</div>
+      </div>
+      <div class="term-detail">
+        <div class="term-detail-label">Related</div>
+        <div class="term-detail-body related">D&D² (Dex & Dave)™</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Graph Holds™️ ── -->
+  <div class="term-card">
+    <div class="term-header">
+      <div class="term-name">Graph Holds<span class="tm">™</span> <span class="term-symbol">📈✋</span></div>
+      <span class="term-context-tag ctx-governance">Governance</span>
+    </div>
+    <div class="term-definition">The commitment to maintain structural integrity under pressure — when scope creep knocks, when someone wants a fourth edge type, when the spec feels constraining — the graph doesn't move.</div>
+    <div class="term-detail-grid">
+      <div class="term-detail">
+        <div class="term-detail-label">Origin</div>
+        <div class="term-detail-body">February 28, 2026. Emerged from the Excelligence vision council session. The one rule that held when all other constraints were suspended: "The graph stays the graph. LEADS_TO / DEPENDS_ON / PAIRS_WITH are the spine. Everything else is open." DDL's diamond hands — for people who build knowledge infrastructure instead of holding crypto.</div>
+      </div>
+      <div class="term-detail">
+        <div class="term-detail-label">Related</div>
+        <div class="term-detail-body related">TrustANDVerify™ · Embedded Guardrail Enforcement (OBS-05) · CottageHumble™</div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ════════════════════════════════════════════
+     COLOPHON
+     ════════════════════════════════════════════ -->
+<div class="colophon">
+  <div class="colophon-inner">
+    <p>DDL Trademark Glossary v1.0 · Canon Inventory</p>
+    <p>12 terms documented · Inventory only · No invention, no expansion</p>
+    <p>February 28, 2026</p>
+  </div>
+</div>
+
+<div class="footer-bar">
+  <div class="footer-bar-inner"></div>
+</div>
+
+<div class="cottage">
+  © 2026 Dropdown Logistics
+  <span>Cottage — Humble surface. Cathedral underneath.</span>
+</div>
+
+</body>
+</html>

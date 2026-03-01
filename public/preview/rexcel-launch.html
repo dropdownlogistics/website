@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>r/excel Launch — Dropdown Logistics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #0D1B2A; --navy-mid: #132336; --navy-light: #1B2D42; --navy-card: #10202f;
+      --crimson: #B23531; --crimson-dim: rgba(178,53,49,0.15);
+      --cream: #F5F1EB; --cream-mid: #C8C2B8; --cream-dim: #8A857D; --cream-faint: #5A564F;
+      --green: #4A9E6B; --green-dim: rgba(74,158,107,0.12);
+      --amber: #C49A3C; --amber-dim: rgba(196,154,60,0.12);
+      --blue: #6B9DC2; --blue-dim: rgba(107,157,194,0.12);
+      --red: #C25B5B; --red-dim: rgba(194,91,91,0.12);
+      --reddit-orange: #FF4500; --reddit-dim: rgba(255,69,0,0.12);
+      --border: rgba(245,241,235,0.06); --border-light: rgba(245,241,235,0.1); --border-mid: rgba(245,241,235,0.14);
+      --font-display: 'Space Grotesk', sans-serif; --font-mono: 'JetBrains Mono', monospace; --font-body: 'Source Serif 4', Georgia, serif;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: var(--navy); color: var(--cream); font-family: var(--font-body); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    body::before { content: ''; position: fixed; inset: 0; background: radial-gradient(ellipse at 20% 0%, rgba(178,53,49,0.04) 0%, transparent 55%), radial-gradient(ellipse at 80% 80%, rgba(107,157,194,0.03) 0%, transparent 50%); pointer-events: none; z-index: 0; }
+    .accent-bar { height: 3px; background: linear-gradient(90deg, transparent, var(--crimson), transparent); opacity: 0.6; }
+
+    .tag { display: inline-block; font-family: var(--font-mono); font-size: 0.56rem; letter-spacing: 0.07em; text-transform: uppercase; padding: 2px 8px; border-radius: 3px; }
+    .tag-crimson { color: var(--crimson); background: var(--crimson-dim); border: 1px solid rgba(178,53,49,0.2); }
+    .tag-green { color: var(--green); background: var(--green-dim); border: 1px solid rgba(74,158,107,0.15); }
+    .tag-amber { color: var(--amber); background: var(--amber-dim); border: 1px solid rgba(196,154,60,0.15); }
+    .tag-blue { color: var(--blue); background: var(--blue-dim); border: 1px solid rgba(107,157,194,0.15); }
+
+    .callout { border-left: 2px solid var(--crimson); padding: 14px 20px; background: var(--navy-card); border-radius: 0 5px 5px 0; margin: 16px 0; }
+    .callout p { font-size: 0.9rem; font-style: italic; color: var(--cream-dim); line-height: 1.65; margin: 0; }
+
+    /* ════ HERO ════ */
+    .hero { position: relative; z-index: 1; max-width: 740px; margin: 0 auto; padding: 80px 24px 40px; text-align: center; }
+    .hero-label { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.16em; color: var(--crimson); text-transform: uppercase; margin-bottom: 24px; }
+    .hero h1 { font-family: var(--font-display); font-size: clamp(1.6rem, 5vw, 2.6rem); font-weight: 700; letter-spacing: -0.03em; color: var(--cream); margin-bottom: 16px; line-height: 1.2; }
+    .hero-desc { font-family: var(--font-body); font-size: 1rem; color: var(--cream-mid); max-width: 540px; margin: 0 auto 16px; line-height: 1.75; font-style: italic; }
+    .hero-meta { font-family: var(--font-mono); font-size: 0.65rem; color: var(--cream-faint); letter-spacing: 0.04em; margin-bottom: 48px; }
+    .hero-meta span { color: var(--cream-dim); margin: 0 6px; }
+
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border-light); border: 1px solid var(--border-light); border-radius: 6px; overflow: hidden; max-width: 640px; margin: 0 auto 24px; }
+    .stat { background: var(--navy-mid); padding: 20px 8px; text-align: center; transition: background 0.3s; }
+    .stat:hover { background: var(--navy-light); }
+    .stat-number { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; color: var(--crimson); display: block; margin-bottom: 2px; }
+    .stat-label { font-family: var(--font-mono); font-size: 0.52rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--cream-dim); }
+
+    .badges { display: flex; gap: 10px; justify-content: center; margin: 0 auto 56px; flex-wrap: wrap; padding: 0 24px; }
+    .badge { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 6px 14px; border-radius: 4px; color: var(--crimson); background: var(--crimson-dim); border: 1px solid rgba(178,53,49,0.2); }
+
+    /* ════ NAV ════ */
+    .section-nav { position: relative; z-index: 1; max-width: 740px; margin: 0 auto 56px; padding: 0 24px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+    .section-nav a { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--cream-dim); text-decoration: none; padding: 6px 12px; border: 1px solid var(--border-light); border-radius: 4px; background: var(--navy-card); transition: all 0.2s; }
+    .section-nav a:hover { color: var(--cream); border-color: var(--crimson-dim); background: var(--crimson-dim); }
+
+    /* ════ CONTENT ════ */
+    .content { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; padding: 0 24px; }
+    .section { margin-bottom: 64px; }
+    .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; scroll-margin-top: 24px; }
+    .section-icon { font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700; color: var(--crimson); width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border: 1.5px solid var(--crimson-dim); border-radius: 5px; flex-shrink: 0; }
+    .section-title { font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; color: var(--cream); flex-shrink: 0; }
+    .section-line { flex: 1; height: 1px; background: var(--border-light); }
+    .section p { font-size: 0.92rem; color: var(--cream-mid); margin-bottom: 14px; line-height: 1.7; }
+
+    /* ── Analytics Progression ── */
+    .analytics-row { display: grid; grid-template-columns: 100px 1fr 1fr 1fr; gap: 0; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; margin-bottom: 16px; }
+    .analytics-header { background: var(--navy-mid); font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--cream-dim); padding: 10px 14px; border-bottom: 1px solid var(--border); }
+    .analytics-cell { background: var(--navy-card); padding: 12px 14px; border-bottom: 1px solid var(--border); font-family: var(--font-mono); font-size: 0.82rem; color: var(--cream-mid); }
+    .analytics-cell.label { font-family: var(--font-display); font-size: 0.82rem; font-weight: 600; color: var(--cream-dim); }
+    .analytics-cell.highlight { color: var(--crimson); font-weight: 600; }
+    .analytics-row:last-child .analytics-cell { border-bottom: none; }
+    @media (max-width: 520px) { .analytics-row { grid-template-columns: 80px 1fr 1fr 1fr; } .analytics-cell { padding: 10px 8px; font-size: 0.72rem; } }
+
+    /* ── Thread Card ── */
+    .thread { background: var(--navy-card); border: 1px solid var(--border); border-radius: 7px; padding: 24px; margin-bottom: 16px; transition: border-color 0.3s; }
+    .thread:hover { border-color: var(--crimson-dim); }
+    .thread-header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+    .thread-user { font-family: var(--font-mono); font-size: 0.78rem; font-weight: 600; color: var(--cream); }
+    .thread-flair { font-family: var(--font-mono); font-size: 0.54rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 8px; border-radius: 3px; }
+    .thread-body { font-size: 0.9rem; color: var(--cream-mid); line-height: 1.7; }
+    .thread-body strong { color: var(--cream); font-weight: 600; }
+
+    .thread-reply { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); }
+    .thread-reply-user { font-family: var(--font-mono); font-size: 0.72rem; font-weight: 600; color: var(--cream-dim); margin-bottom: 6px; }
+    .thread-reply-body { font-size: 0.88rem; color: var(--cream-dim); line-height: 1.65; font-style: italic; }
+
+    .thread-analysis { margin-top: 14px; padding: 12px 16px; background: var(--navy-mid); border-radius: 5px; }
+    .thread-analysis-label { font-family: var(--font-mono); font-size: 0.56rem; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; }
+    .thread-analysis-body { font-size: 0.85rem; color: var(--cream-dim); line-height: 1.6; }
+
+    /* ── Geo ── */
+    .geo-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin: 16px 0; }
+    @media (max-width: 520px) { .geo-grid { grid-template-columns: 1fr; } }
+    .geo-item { background: var(--navy-mid); border-radius: 5px; padding: 14px 16px; text-align: center; }
+    .geo-flag { font-size: 1.4rem; margin-bottom: 4px; }
+    .geo-pct { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--cream); }
+    .geo-label { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cream-dim); }
+
+    /* ── What it proved ── */
+    .proof { background: var(--navy-card); border: 1px solid var(--border); border-radius: 7px; padding: 20px 22px; margin-bottom: 12px; }
+    .proof-title { font-family: var(--font-display); font-size: 0.92rem; font-weight: 600; color: var(--cream); margin-bottom: 6px; }
+    .proof-body { font-size: 0.88rem; color: var(--cream-mid); line-height: 1.65; }
+
+    /* ── Footer ── */
+    .footer-bar { max-width: 740px; margin: 48px auto 0; padding: 0 24px; }
+    .footer-bar-inner { height: 1px; background: linear-gradient(90deg, transparent, var(--crimson-dim), transparent); }
+    .cottage { text-align: center; padding: 32px 24px 60px; font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.06em; color: var(--cream-faint); }
+    .cottage span { display: block; font-family: var(--font-body); font-style: italic; font-size: 0.72rem; color: var(--cream-dim); margin-top: 4px; letter-spacing: 0; }
+
+    @media (max-width: 639px) { .hero { padding: 52px 20px 32px; } .content { padding: 0 20px; } .stats { grid-template-columns: repeat(2, 1fr); } }
+  </style>
+</head>
+<body>
+
+<div class="accent-bar"></div>
+
+<!-- ════ HERO ════ -->
+<section class="hero">
+  <div class="hero-label">Excelligence — Market Validation</div>
+  <h1>"Building an Excel Glossary Tool"</h1>
+  <p class="hero-desc">A CottageHumble™ post on r/excel. Nine-model council spec behind it. 17,000 people showed up. The cottage held. The cathedral was never mentioned.</p>
+  <p class="hero-meta">r/excel <span>·</span> u/chuckdooley <span>·</span> February 27, 2026</p>
+
+  <div class="stats">
+    <div class="stat"><span class="stat-number">17K</span><span class="stat-label">Views</span></div>
+    <div class="stat"><span class="stat-number">89%</span><span class="stat-label">Upvote Ratio</span></div>
+    <div class="stat"><span class="stat-number">39</span><span class="stat-label">Comments</span></div>
+    <div class="stat"><span class="stat-number">34</span><span class="stat-label">Shares</span></div>
+  </div>
+
+  <div class="badges">
+    <div class="badge">#1 Post on r/excel</div>
+    <div class="badge">Top 50 All Time</div>
+    <div class="badge">100% Upvote Ratio (First 6 Hours)</div>
+  </div>
+</section>
+
+<!-- ════ NAV ════ -->
+<nav class="section-nav">
+  <a href="#strategy">Strategy</a>
+  <a href="#analytics">Analytics</a>
+  <a href="#threads">Key Threads</a>
+  <a href="#validated">What It Proved</a>
+</nav>
+
+<!-- ════ CONTENT ════ -->
+<div class="content">
+
+  <!-- ── STRATEGY ── -->
+  <div class="section" id="strategy">
+    <div class="section-header">
+      <div class="section-icon">I</div>
+      <div class="section-title">The CottageHumble™ Strategy</div>
+      <div class="section-line"></div>
+    </div>
+
+    <p>The post title: "Building an Excel Glossary Tool." Not "I built a nine-model AI council to architect a knowledge graph for Excel functions." Not "Excelligence: A Governed Dimensional Schema for Excel Mastery." Just a person building a glossary tool, asking if others would find it useful.</p>
+
+    <p>Flair: <strong>Discussion</strong> (not Pro-Tip). This was intentional. Pro-Tip implies authority. Discussion implies collaboration. The cottage invites. The cathedral waits.</p>
+
+    <p>Behind the post: a v0.1 spec written by Opus, reviewed by nine AI models across two rounds, with 26 locked decisions, 8 authoring guardrails, and a formal council disbandment. The audience saw a spreadsheet. The architecture was invisible.</p>
+
+    <div class="callout"><p>The goal isn't to replace existing resources — it's to internalize through building. "I learn by doing, so having something I made myself tends to stick better than referencing someone else's doc." — Dave (u/chuckdooley), responding to criticism</p></div>
+  </div>
+
+  <!-- ── ANALYTICS ── -->
+  <div class="section" id="analytics">
+    <div class="section-header">
+      <div class="section-icon">II</div>
+      <div class="section-title">Analytics Progression</div>
+      <div class="section-line"></div>
+    </div>
+
+    <div style="overflow-x:auto;">
+      <div class="analytics-row" style="min-width:400px;">
+        <div class="analytics-header">Metric</div>
+        <div class="analytics-header">Hour 6</div>
+        <div class="analytics-header">Hour 23</div>
+        <div class="analytics-header">Day 2+</div>
+      </div>
+      <div class="analytics-row" style="min-width:400px;">
+        <div class="analytics-cell label">Views</div>
+        <div class="analytics-cell">~4,100</div>
+        <div class="analytics-cell">13,000</div>
+        <div class="analytics-cell highlight">17,000+</div>
+      </div>
+      <div class="analytics-row" style="min-width:400px;">
+        <div class="analytics-cell label">Upvote Ratio</div>
+        <div class="analytics-cell highlight">100%</div>
+        <div class="analytics-cell">88%</div>
+        <div class="analytics-cell">89%</div>
+      </div>
+      <div class="analytics-row" style="min-width:400px;">
+        <div class="analytics-cell label">Comments</div>
+        <div class="analytics-cell">~23</div>
+        <div class="analytics-cell">37</div>
+        <div class="analytics-cell highlight">39</div>
+      </div>
+      <div class="analytics-row" style="min-width:400px;">
+        <div class="analytics-cell label">Shares</div>
+        <div class="analytics-cell">—</div>
+        <div class="analytics-cell">25</div>
+        <div class="analytics-cell highlight">34</div>
+      </div>
+      <div class="analytics-row" style="min-width:400px;">
+        <div class="analytics-cell label">Position</div>
+        <div class="analytics-cell">#9</div>
+        <div class="analytics-cell highlight">#1</div>
+        <div class="analytics-cell highlight">Top 50 All Time</div>
+      </div>
+    </div>
+
+    <p style="margin-top:20px;">The upvote ratio is the signal. 100% for the first six hours means every person who saw it during organic discovery upvoted. The drop to 88–89% came from algorithm-pushed audience — people who didn't seek it out. That's expected. The ratio <em>rising</em> from 88% to 89% as it aged means the engaged audience kept growing.</p>
+
+    <p style="font-family:var(--font-mono); font-size:0.72rem; color:var(--cream-faint); margin-top:20px;">GEOGRAPHIC REACH</p>
+
+    <div class="geo-grid">
+      <div class="geo-item">
+        <div class="geo-flag">🇺🇸</div>
+        <div class="geo-pct">47.2%</div>
+        <div class="geo-label">United States</div>
+      </div>
+      <div class="geo-item">
+        <div class="geo-flag">🇬🇧</div>
+        <div class="geo-pct">9.8%</div>
+        <div class="geo-label">United Kingdom</div>
+      </div>
+      <div class="geo-item">
+        <div class="geo-flag">🇨🇦</div>
+        <div class="geo-pct">7.4%</div>
+        <div class="geo-label">Canada</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── KEY THREADS ── -->
+  <div class="section" id="threads">
+    <div class="section-header">
+      <div class="section-icon">III</div>
+      <div class="section-title">Key Threads</div>
+      <div class="section-line"></div>
+    </div>
+
+    <!-- bradland -->
+    <div class="thread">
+      <div class="thread-header">
+        <span class="thread-user">bradland</span>
+        <span class="thread-flair tag-amber">Top 1% Commenter · 229 karma</span>
+      </div>
+      <div class="thread-body">"Honestly, meh. Sorry to be critical, but there are so many good Excel documentation resources out there, I can't see the sense in building a spreadsheet as a reference." Pointed to ExcelJet, Microsoft docs, Google AI mode.</div>
+
+      <div class="thread-reply">
+        <div class="thread-reply-user">u/chuckdooley (Dave)</div>
+        <div class="thread-reply-body">"Fair play, you are right, and I appreciate the feedback. Those are great resources and honestly part of what I use too. That said, the goal isn't necessarily to replace them, more to internalize through building. I learn by doing, so having something I made myself tends to stick better than referencing someone else's doc."</div>
+      </div>
+
+      <div class="thread-reply">
+        <div class="thread-reply-user">bradland (converted)</div>
+        <div class="thread-reply-body">"I definitely feel you on that. Learning Excel is like learning anything. Repetition is a great way to build a function 'vocabulary.' I used to write study guides in college. I'd always transcribe my study guides a second time, literally re-typing them. The boost to recall was phenomenal."</div>
+      </div>
+
+      <div class="thread-analysis">
+        <div class="thread-analysis-label" style="color:var(--green);">CottageHumble™ Analysis</div>
+        <div class="thread-analysis-body">Top 1% commenter opened with criticism. Dave acknowledged the point without defensiveness, reframed around the building-to-learn philosophy, and added the NCAA College Football stats origin story. Critic ended up <strong>agreeing and sharing their own learning-by-building story.</strong> Net result: 17 upvotes on bradland's original comment drove more people to the thread, where they saw the conversion.</div>
+      </div>
+    </div>
+
+    <!-- mattynmax -->
+    <div class="thread">
+      <div class="thread-header">
+        <span class="thread-user">mattynmax</span>
+        <span class="thread-flair" style="color:var(--cream-faint);background:var(--border);border:1px solid var(--border-light);">Dismissal</span>
+      </div>
+      <div class="thread-body">"Wait until you see that Microsoft already did this for you"</div>
+
+      <div class="thread-reply">
+        <div class="thread-reply-user">u/chuckdooley (Dave)</div>
+        <div class="thread-reply-body">"I do know there are similar tools....this is about the build for me, and seeing where I can take it with what I learn. Doesn't invalidate what you said, though"</div>
+      </div>
+
+      <div class="thread-analysis">
+        <div class="thread-analysis-label" style="color:var(--crimson);">CathedralHumiliating™ in the Wild</div>
+        <div class="thread-analysis-body">Classic drive-by dismissal. Dave's response is textbook: acknowledges the point, reframes the intent, and closes with grace — "Doesn't invalidate what you said, though." No defensiveness. No ego. Just a cottage standing in the wind while a cathedral exists behind it.</div>
+      </div>
+    </div>
+
+    <!-- Vector Guy -->
+    <div class="thread">
+      <div class="thread-header">
+        <span class="thread-user">GregHullender</span>
+        <span class="thread-flair tag-green">Top 1% Commenter · 144 karma · Vector Guy</span>
+      </div>
+      <div class="thread-body">"I'm writing one focused on how the functions handle vectors, since much of that seems to be undocumented." Proceeded to lay out six behavioral categories: functions that <strong>map</strong> a range (SIN, COS), <strong>reduce</strong> a range (SUM), <strong>flood</strong> pairs of ranges (ATAN2), are <strong>defective</strong> (only accept addresses or dynamic arrays), have <strong>unexpected</strong> behavior (TEXTSPLIT, GROUPBY, PIVOTBY), or exhibit <strong>undocumented</strong> behavior (MAP passing multiple inputs in parallel to LAMBDA).</div>
+
+      <div class="thread-reply">
+        <div class="thread-reply-user">u/chuckdooley (Dave)</div>
+        <div class="thread-reply-body">"That's fascinating, I didn't even know that was a gap I needed to explore. Every couple months sounds about right for something like that. Genuinely trying not to steal your idea right now.... 🤩"</div>
+      </div>
+
+      <div class="thread-reply">
+        <div class="thread-reply-user">u/chuckdooley (Dave) — after GregHullender's deep-dive</div>
+        <div class="thread-reply-body">"I know some of those words 😊 ...The way you're grouping functions by how they handle arrays feels... more structural than I expected? I don't think I've ever seen it framed that way. Am I understanding that right? Because if so, that is a whole angle I hadn't even thought about."</div>
+      </div>
+
+      <div class="thread-reply">
+        <div class="thread-reply-user">GregHullender</div>
+        <div class="thread-reply-body">"Yeah, I couldn't find anything online that looked at it that way. I'm using what I learned in a parallel-computing class I took some years back."</div>
+      </div>
+
+      <div class="thread-analysis">
+        <div class="thread-analysis-label" style="color:var(--blue);">Signal: v0.2 Schema Candidate</div>
+        <div class="thread-analysis-body">An independent researcher showed up with a taxonomy that maps directly to a potential <strong>vector_behavior</strong> schema field in Excelligence. Six categories. Undocumented in any existing resource. Emerged organically from a CottageHumble™ post that never mentioned schemas, councils, or dimensional modeling. <strong>The market contributed architecture on Day 1.</strong> Dave's closing: "this may be v10.0 for me, but it's on my radar 😊" — cottage to the last word.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── WHAT IT PROVED ── -->
+  <div class="section" id="validated">
+    <div class="section-header">
+      <div class="section-icon">IV</div>
+      <div class="section-title">What It Proved</div>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="proof">
+      <div class="proof-title">Market demand exists</div>
+      <div class="proof-body">17,000 views for a text-heavy structural discussion about building an Excel glossary. No screenshots. No flashy formulas. Just the idea of organized, governed Excel knowledge. People are starving for structure, not just tutorials.</div>
+    </div>
+
+    <div class="proof">
+      <div class="proof-title">CottageHumble™ works at scale</div>
+      <div class="proof-body">The cottage surface invited collaboration. Critics converted. Experts contributed schema-level architecture unprompted. Nobody argued with a person building something for themselves.</div>
+    </div>
+
+    <div class="proof">
+      <div class="proof-title">The collaborative registry concept is viable</div>
+      <div class="proof-body">Multiple commenters engaged with the idea of building a structured reference together. The "demo tool" reframe (from bradland's thread) validated that people want to see a working system, not a reference document.</div>
+    </div>
+
+    <div class="proof">
+      <div class="proof-title">Undiscovered schema signals exist in the wild</div>
+      <div class="proof-body">GregHullender's vector behavior taxonomy — map, reduce, flood, defective, unexpected, undocumented — arrived without any prompt from the Excelligence architecture. Independent convergence on Day 1. That's not coincidence. That's unmet need.</div>
+    </div>
+
+    <div class="proof">
+      <div class="proof-title">The tone calibration is dialed in</div>
+      <div class="proof-body">Every response Dave posted maintained the cottage surface. No overreach. No cathedral reveals. "I know some of those words 😊" is the same person who locked a 26-decision schema with nine AI models that morning. The gap between public surface and private architecture is the competitive moat.</div>
+    </div>
+
+    <div class="callout" style="margin-top:24px;">
+      <p>The irony: Keith's email calling Dave an "Excel wizard" was sent the same day he locked a schema designed to eradicate Excel wizardry. He left the guild of wizards to become the architect of the grid. The cottage surface held the entire time.</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer-bar"><div class="footer-bar-inner"></div></div>
+<div class="cottage">
+  © 2026 Dropdown Logistics
+  <span>Cottage — Humble surface. Cathedral underneath.</span>
+</div>
+
+</body>
+</html>
