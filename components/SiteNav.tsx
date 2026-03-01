@@ -12,7 +12,7 @@ const pillars = [
 
 const explore = [
   { href: '/registry', label: 'Registry' },
-  { href: '/graph', label: 'Graph' },
+  { href: '/excelligence', label: 'Graph' },
   { href: '/forewords', label: 'Forewords' },
   { href: '/council', label: 'Council' },
   { href: '/memoir', label: 'Memoir' },
