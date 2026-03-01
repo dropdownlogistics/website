@@ -209,8 +209,8 @@ const LEGEND_ITEMS = [
 // Peaks — chapters that get the crimson glow treatment
 const PEAK_CHAPTERS = [25, 26, 34, 41, 44, 49];
 
-function useScrollReveal(): React.RefObject<HTMLDivElement | null> {
-  const ref = useRef<HTMLDivElement | null>(null);
+function useScrollReveal(): React.RefObject<HTMLDivElement> {
+  const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
