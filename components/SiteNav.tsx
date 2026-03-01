@@ -16,6 +16,7 @@ const explore = [
   { href: '/forewords', label: 'Forewords' },
   { href: '/council', label: 'Council' },
   { href: '/memoir', label: 'Memoir' },
+  { href: '/blindspot', label: 'BlindSpot' },
   { href: '/methodology', label: 'Methodology' },
   { href: '/projects', label: 'Projects' },
   { href: '/analytics', label: 'Analytics' },
