@@ -1,82 +1,100 @@
-import PageShell from '@/components/PageShell';
+'use client';
 
-const councilMembers = [
-  { name: 'Claude', org: 'Anthropic', role: 'Lead Architect & Primary Build Partner', color: '#B23531' },
-  { name: 'GPT-4o', org: 'OpenAI', role: 'Strategic Analysis & Framework Validation', color: '#74AA9C' },
-  { name: 'Gemini', org: 'Google', role: 'Synthesis & Cross-Domain Integration', color: '#4285F4' },
-  { name: 'Grok', org: 'xAI', role: 'Pattern Disruption & Assumption Testing', color: '#1DA1F2' },
-  { name: 'DeepSeek', org: 'DeepSeek', role: 'Deep Analysis & Technical Rigor', color: '#6366F1' },
-  { name: 'Copilot', org: 'Microsoft', role: 'Enterprise Integration & Accessibility', color: '#00BCF2' },
-  { name: 'Llama', org: 'Meta', role: 'Open Source Perspective & Scalability', color: '#0668E1' },
-  { name: 'Mistral', org: 'Mistral AI', role: 'European Standards & Efficiency', color: '#FF7000' },
-  { name: 'Perplexity', org: 'Perplexity', role: 'Research Synthesis & Source Validation', color: '#20B2AA' },
+import { useEffect, useState, CSSProperties } from 'react';
+import Link from 'next/link';
+
+interface FadeInProps { children: React.ReactNode; delay?: number; style?: CSSProperties; }
+function FadeIn({ children, delay = 0, style = {} }: FadeInProps) {
+  const [v, setV] = useState(false);
+  useEffect(() => { const t = setTimeout(() => setV(true), delay); return () => clearTimeout(t); }, [delay]);
+  return <div style={{ opacity: v ? 1 : 0, transform: v ? 'translateY(0)' : 'translateY(18px)', transition: 'opacity 0.5s ease, transform 0.5s ease', ...style }}>{children}</div>;
+}
+
+interface ModelCard { slug: string; name: string; role: string; color: string; }
+
+const MODELS: ModelCard[] = [
+  { slug: 'claude', name: 'Claude', role: 'Enforcer · Structural Auditor', color: '#D4A27F' },
+  { slug: 'chatgpt', name: 'ChatGPT', role: 'Synthesizer · Executive Voice', color: '#74AA9C' },
+  { slug: 'grok', name: 'Grok', role: 'Red-Team · Pattern Disruptor', color: '#1DA1F2' },
+  { slug: 'perplexity', name: 'Perplexity', role: 'Researcher · Evidence Anchor', color: '#20B2AA' },
+  { slug: 'copilot', name: 'Copilot', role: 'Diplomat · Consensus Builder', color: '#7FBA00' },
+  { slug: 'meta-ai', name: 'Meta AI', role: 'Stabilizer · Pragmatic Filter', color: '#0668E1' },
+  { slug: 'gemini', name: 'Gemini', role: 'Navigator · Systems Mapper', color: '#4285F4' },
+  { slug: 'lechat', name: 'Le Chat', role: 'Validator · Precision Enforcer', color: '#FF7000' },
+  { slug: 'deepseek', name: 'DeepSeek', role: 'Validator · Drift Sentinel', color: '#4A6CF7' },
 ];
 
-export default function CouncilPage() {
-  return (
-    <PageShell
-      label="The DDL Council"
-      title="Nine Models. Convergent Analysis."
-      description="Every major decision, architecture, and deliverable passes through the DDL Council — nine AI models providing independent analysis that converges on actionable consensus."
-    >
-      {/* Stats */}
-      <div className="grid grid-cols-3 gap-6 mb-16">
-        {[
-          { value: '200+', label: 'Council Reviews' },
-          { value: '4.57M', label: 'Words Processed' },
-          { value: '9', label: 'Active Models' },
-        ].map((s) => (
-          <div key={s.label} className="text-center p-6 bg-ddl-navy-light/40 border border-ddl-muted/20 rounded-sm">
-            <div className="font-mono text-3xl font-bold text-ddl-crimson">{s.value}</div>
-            <div className="font-body text-sm text-ddl-muted-light mt-1">{s.label}</div>
-          </div>
-        ))}
-      </div>
+const SECTIONS = [
+  { href: '/council/profiles', label: 'Model Profiles', desc: '9 AI models evaluated through standardized council interviews — archetypes, strengths, operational constraints, and boot prompts.' },
+  { href: '/council/auto-council', label: 'Auto-Council', desc: 'Multi-model convergence methodology — how 9 independent AI systems reach consensus on architecture decisions.' },
+  { href: '/council/scaling', label: 'Scaling', desc: 'From manual relay to orchestrated governance — the roadmap for scaling council operations.' },
+];
 
-      {/* Methodology */}
-      <div className="mb-16">
-        <h2 className="font-heading text-xl font-semibold text-ddl-cream mb-6">How It Works</h2>
-        <div className="space-y-4">
-          {[
-            { step: '01', title: 'Prompt Distribution', desc: 'The same prompt is sent to all nine models independently. No model sees another\'s output.' },
-            { step: '02', title: 'Independent Analysis', desc: 'Each model responds from its own architecture, training, and reasoning style.' },
-            { step: '03', title: 'Convergence Mapping', desc: 'The Operator maps where models agree (signal) and where they diverge (investigation points).' },
-            { step: '04', title: 'Synthesis', desc: 'Convergent themes become decisions. Divergent themes become follow-up prompts or blind spot documentation.' },
-          ].map((s) => (
-            <div key={s.step} className="flex gap-6 items-start p-5 bg-ddl-navy-light/20 border-l-2 border-ddl-crimson/30">
-              <div className="font-mono text-sm font-bold text-ddl-crimson shrink-0">{s.step}</div>
-              <div>
-                <div className="font-heading text-base font-semibold text-ddl-cream mb-1">{s.title}</div>
-                <div className="font-body text-sm text-ddl-muted-light leading-relaxed">{s.desc}</div>
+export default function CouncilHub() {
+  const [hovered, setHovered] = useState<string | null>(null);
+
+  return (
+    <div style={{ padding: '100px 24px 48px', maxWidth: 1060, margin: '0 auto' }}>
+      <FadeIn>
+        <div style={{ marginBottom: 48 }}>
+          <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.65rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#B23531', marginBottom: 12 }}>DDL Governance</div>
+          <h1 style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 700, color: '#F5F1EB', lineHeight: 1.15, marginBottom: 12 }}>The Council</h1>
+          <p style={{ fontFamily: 'Source Serif 4, serif', fontSize: '1.1rem', color: 'rgba(245,241,235,0.5)', lineHeight: 1.6, maxWidth: 600 }}>
+            Nine AI models. Independent evaluation. Convergent analysis. DDL&rsquo;s multi-model governance
+            layer — where architecture decisions get stress-tested across cognitive styles.
+          </p>
+        </div>
+      </FadeIn>
+
+      {/* Section links */}
+      <FadeIn delay={100}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: 14, marginBottom: 56 }}>
+          {SECTIONS.map(s => (
+            <Link key={s.href} href={s.href} style={{ textDecoration: 'none' }}>
+              <div style={{ background: 'rgba(245,241,235,0.04)', border: '1px solid rgba(245,241,235,0.08)', borderRadius: 8, padding: '22px 20px', transition: 'all 0.2s', cursor: 'pointer' }}
+                onMouseEnter={e => { (e.currentTarget).style.background = 'rgba(245,241,235,0.06)'; (e.currentTarget).style.borderColor = 'rgba(178,53,49,0.3)'; }}
+                onMouseLeave={e => { (e.currentTarget).style.background = 'rgba(245,241,235,0.04)'; (e.currentTarget).style.borderColor = 'rgba(245,241,235,0.08)'; }}
+              >
+                <div style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: '1rem', fontWeight: 600, color: '#F5F1EB', marginBottom: 6 }}>{s.label}</div>
+                <p style={{ fontFamily: 'Source Serif 4, serif', fontSize: '0.85rem', color: 'rgba(245,241,235,0.45)', lineHeight: 1.55 }}>{s.desc}</p>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
-      </div>
+      </FadeIn>
 
-      {/* Council Members */}
-      <h2 className="font-heading text-xl font-semibold text-ddl-cream mb-6">Council Members</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {councilMembers.map((m) => (
-          <div key={m.name} className="bg-ddl-navy-light/40 border border-ddl-muted/20 p-6 rounded-sm hover:border-ddl-muted/40 transition-colors">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-3 h-3 rounded-full shrink-0" style={{ background: m.color }} />
-              <div className="font-heading text-lg font-semibold text-ddl-cream">{m.name}</div>
-            </div>
-            <div className="font-mono text-[0.65rem] text-ddl-muted-light uppercase tracking-[0.1em] mb-2">{m.org}</div>
-            <div className="font-body text-sm text-ddl-muted leading-relaxed">{m.role}</div>
-          </div>
-        ))}
-      </div>
-
-      <div className="ddl-dex-insight mt-12">
-        <div className="font-mono text-[0.6rem] tracking-[0.15em] uppercase text-ddl-wine mb-3">
-          DexInsight
+      {/* Model grid */}
+      <FadeIn delay={200}>
+        <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.6rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#B23531', marginBottom: 16 }}>Council Members</div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 12, marginBottom: 56 }}>
+          {MODELS.map((m, i) => (
+            <FadeIn key={m.slug} delay={250 + i * 40}>
+              <Link href={`/council/profiles/${m.slug}`} style={{ textDecoration: 'none' }}
+                onMouseEnter={() => setHovered(m.slug)} onMouseLeave={() => setHovered(null)}>
+                <div style={{
+                  background: hovered === m.slug ? 'rgba(245,241,235,0.06)' : 'rgba(245,241,235,0.03)',
+                  border: `1px solid ${hovered === m.slug ? `${m.color}44` : 'rgba(245,241,235,0.06)'}`,
+                  borderLeft: `3px solid ${m.color}`,
+                  borderRadius: 8, padding: '16px 14px',
+                  transition: 'all 0.2s', cursor: 'pointer',
+                  transform: hovered === m.slug ? 'translateY(-2px)' : 'translateY(0)',
+                }}>
+                  <div style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: '0.95rem', fontWeight: 600, color: '#F5F1EB', marginBottom: 4 }}>{m.name}</div>
+                  <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.55rem', color: 'rgba(245,241,235,0.35)', lineHeight: 1.4 }}>{m.role}</div>
+                </div>
+              </Link>
+            </FadeIn>
+          ))}
         </div>
-        <p className="font-body italic text-base text-ddl-muted-light leading-relaxed">
-          The Council is not a gimmick. It&apos;s a methodology. When nine architecturally distinct models converge on the same conclusion without coordination, that convergence carries more weight than any single model&apos;s confidence. The signal is in the overlap.
-        </p>
-      </div>
-    </PageShell>
+      </FadeIn>
+
+      <FadeIn delay={700}>
+        <div style={{ borderTop: '1px solid rgba(245,241,235,0.06)', paddingTop: 24, textAlign: 'center' }}>
+          <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.6rem', color: 'rgba(245,241,235,0.2)', letterSpacing: '0.08em' }}>
+            The Council · 9 Models · Multi-Agent Governance · Built by DDL · 2026
+          </p>
+        </div>
+      </FadeIn>
+    </div>
   );
 }
