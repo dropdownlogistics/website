@@ -37,7 +37,7 @@ function RenderContent({ text }: { text: string }) {
       // single newlines within paragraphs
       .replace(/\n/g, '<br />');
     // wrap table rows
-    h = h.replace(/(<tr>.*?<\/tr>(\s*<tr>.*?<\/tr>)*)/gs, '<table style="width:100%;border-collapse:collapse;margin:16px 0;font-family:JetBrains Mono,monospace;font-size:12px">$1</table>');
+    h = h.replace(/(<tr>[\s\S]*?<\/tr>(\s*<tr>[\s\S]*?<\/tr>)*)/g, '<table style="width:100%;border-collapse:collapse;margin:16px 0;font-family:JetBrains Mono,monospace;font-size:12px">$1</table>');
     return `<p style="margin:12px 0;line-height:1.65">${h}</p>`;
   }, [text]);
 
