@@ -6,6 +6,14 @@ import Footer from '@/components/Footer';
 export const metadata: Metadata = {
   title: 'Drop Down Logistics — Chaos → Structured → Automated',
   description: 'A one-person operations studio building governed systems, dimensional architectures, and automation frameworks. Every tool documented. Every standard enforced. Every decision traceable.',
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+    ],
+    apple: '/apple-touch-icon.png',
+  },
   openGraph: {
     title: 'Drop Down Logistics',
     description: 'Chaos → Structured → Automated. 44 governed systems. 65 enforced standards. Built to institutional grade.',
