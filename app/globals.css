@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-ddl-navy text-ddl-cream;
+  }
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-ddl-navy;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-ddl-muted rounded-sm;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-ddl-crimson;
+  }
+}
+
+@layer components {
+  .ddl-section-label {
+    @apply font-mono text-[0.65rem] tracking-[0.2em] uppercase text-ddl-crimson mb-4;
+  }
+  .ddl-heading {
+    @apply font-heading text-3xl font-normal text-ddl-cream tracking-tight;
+  }
+  .ddl-body {
+    @apply font-body text-base text-ddl-muted-light leading-relaxed;
+  }
+  .ddl-divider {
+    @apply w-10 h-px bg-ddl-crimson mx-auto;
+  }
+  .ddl-dex-insight {
+    @apply p-6 bg-ddl-navy-light border-l-[3px] border-ddl-wine max-w-3xl mx-auto;
+  }
+}
