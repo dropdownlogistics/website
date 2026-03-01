@@ -49,8 +49,8 @@ const EXCERPTS: ExcerptCard[] = [
   { num: 30, title: "Emily", words: "~730", tone: "emily", threads: ["emily"], arc: "Sushi \u00b7 The truth bomb \u00b7 D&D \u00b7 The olive joke \u00b7 Hope", opening: "She had a flower in her hair. Big smile.", keyLine: "I\u2019m sober. I have two cats. And I live in my parents\u2019 basement.", structural: "Pure Emily. The truth-bomb opening (\u201Csober, two cats, parents\u2019 basement\u201D) is the most vulnerable moment in the manuscript that isn\u2019t about addiction or crisis. Her response (\u201CI love cats\u2026 and I live with my mom\u201D) is the structural mirror that makes the scene work. The D&D reveal and the olive joke are the two moments that confirm compatibility without forcing it. The word \u201Chope\u201D appears for the first time in the manuscript here. It earned its entrance.", tags: [{label:"Emily arc",threadColor:COLORS.pink},{label:"sushi"},{label:"D&D"},{label:"olive joke"},{label:"hope"}], badge: {label:"SPLIT",type:"split"} },
 ];
 
-function useInView(threshold = 0.15): [React.RefObject<HTMLDivElement | null>, boolean] {
-  const ref = useRef<HTMLDivElement | null>(null);
+function useInView(threshold = 0.15): [React.RefObject<HTMLDivElement>, boolean] {
+  const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   useEffect(() => { const el = ref.current; if (!el) return; const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVisible(true); }, { threshold }); obs.observe(el); return () => obs.disconnect(); }, [threshold]);
   return [ref, visible];

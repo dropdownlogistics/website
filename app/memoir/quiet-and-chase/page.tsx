@@ -48,8 +48,8 @@ const EXCERPTS: ExcerptCard[] = [
   { num: 10, title: "21", words: 902, tone: "pattern", threads: ["kitchen","permission","math"], arc: "Quinton\u2019s \u00b7 Prairie Fire \u00b7 Kristen \u00b7 Dragged to bed \u00b7 Smartest Guys in the Room", opening: "I turned twenty-one in Lawrence, which meant the night had a built-in storyline.", keyLine: "Yeah. This is fine.", structural: "The Act II closer. The pregame math begins in the kitchen (\u201Csame as always\u201D), which means the ritual is now load-bearing infrastructure. Prairie Fire shot from Kristen is the comedy beat. Being dragged to bed is the first physical collapse, normalized instantly. The final scene\u2014watching a documentary about Enron in a dark classroom, hungover, thinking \u201Cthis is fine\u201D\u2014is the structural mirror for the entire memoir: watching a disaster while living inside one.", tags: [{label:"kitchen sequence",threadColor:COLORS.amber},{label:"permission",threadColor:COLORS.blue},{label:"the math",threadColor:COLORS.copper},{label:"Quinton\u2019s"},{label:"Kristen"},{label:"Prairie Fire"},{label:"Enron"}] },
 ];
 
-function useInView(threshold = 0.15): [React.RefObject<HTMLDivElement | null>, boolean] {
-  const ref = useRef<HTMLDivElement | null>(null);
+function useInView(threshold = 0.15): [React.RefObject<HTMLDivElement>, boolean] {
+  const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   useEffect(() => {
     const el = ref.current;

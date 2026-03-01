@@ -48,8 +48,8 @@ const EXCERPTS: ExcerptCard[] = [
   { num: 20, title: "The Aftermath", words: 1741, tone: "crack", threads: ["mask","hiding","clock"], arc: "Lawyer \u00b7 Dash-cam DVD \u00b7 Crushed cans \u00b7 DMV prank \u00b7 Diversion \u00b7 Adaptation", opening: "The day after the DUI felt like a glitch.", keyLine: "I got caught, I got scared, I adapted. And then I kept going.", structural: "The Act III closer. The lawyer\u2019s observation (\u201Cshockingly well put together for a .182\u201D) is concern disguised as fact\u2014Dave hears it as a compliment first. The dash-cam DVD he\u2019s never watched is the perfect symbol: evidence of who he was that he refuses to see. The DMV clerk\u2019s prank is the funniest moment in the darkest stretch. The victim panel is the first time consequences have real faces. The final line\u2014\u201CI adapted\u201D\u2014is the most honest sentence in the manuscript.", tags: [{label:"mask",threadColor:COLORS.bronze},{label:"hiding",threadColor:COLORS.crimson},{label:"clock",threadColor:COLORS.rust},{label:"dash-cam DVD"},{label:"diversion"},{label:"victim panel"},{label:"lampshade"},{label:"DMV"}] },
 ];
 
-function useInView(threshold = 0.15): [React.RefObject<HTMLDivElement | null>, boolean] {
-  const ref = useRef<HTMLDivElement | null>(null);
+function useInView(threshold = 0.15): [React.RefObject<HTMLDivElement>, boolean] {
+  const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   useEffect(() => {
     const el = ref.current;

@@ -49,8 +49,8 @@ const VOCAB = [
   { term: "Reasonable Assurance", ex: 49, meaning: "Not certainty. Not perfection. Enough.", use: "The memoir\u2019s final word. The standard Dave can live inside." },
 ];
 
-function useInView(threshold = 0.12): [React.RefObject<HTMLDivElement | null>, boolean] {
-  const ref = useRef<HTMLDivElement | null>(null);
+function useInView(threshold = 0.12): [React.RefObject<HTMLDivElement>, boolean] {
+  const ref = useRef<HTMLDivElement>(null);
   const [v, setV] = useState(false);
   useEffect(() => { const el = ref.current; if (!el) return; const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setV(true); }, { threshold }); obs.observe(el); return () => obs.disconnect(); }, [threshold]);
   return [ref, v];

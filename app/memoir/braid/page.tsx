@@ -163,8 +163,8 @@ function getBraidPositions(total: number): BraidPosition[] {
   return positions;
 }
 
-function useInView(threshold = 0.1): [React.RefObject<HTMLDivElement | null>, boolean] {
-  const ref = useRef<HTMLDivElement | null>(null);
+function useInView(threshold = 0.1): [React.RefObject<HTMLDivElement>, boolean] {
+  const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   useEffect(() => {
     const el = ref.current;

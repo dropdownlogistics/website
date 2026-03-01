@@ -42,8 +42,8 @@ const THREADS: Record<string, ThreadInfo> = {
   acceleration: { label: "Acceleration", color: "#8B5CF6" },
 };
 
-function useInView(threshold = 0.15): [React.RefObject<HTMLDivElement | null>, boolean] {
-  const ref = useRef<HTMLDivElement | null>(null);
+function useInView(threshold = 0.15): [React.RefObject<HTMLDivElement>, boolean] {
+  const ref = useRef<HTMLDivElement>(null);
   const [vis, setVis] = useState(false);
   useEffect(() => {
     const el = ref.current;
