@@ -263,7 +263,7 @@ export default function RegistryPage() {
   }, []);
 
   const domains = useMemo(() => {
-    const d = [...new Set(systems.map(s => s.domain.split(' / ')[0]))].sort();
+    const d = Array.from(new Set(systems.map(s => s.domain.split(' / ')[0]))).sort();
     return ['All', ...d];
   }, []);
 
