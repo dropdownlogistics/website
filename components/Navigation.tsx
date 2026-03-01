@@ -12,6 +12,7 @@ const navItems = [
   { href: '/forewords', label: 'Forewords' },
   { href: '/council', label: 'Council' },
   { href: '/memoir', label: 'Memoir' },
+  { href: '/analytics', label: 'Analytics' },
   { href: '/about', label: 'About' },
 ];
 
@@ -63,13 +64,13 @@ export default function Navigation() {
               key={item.href}
               href={item.href}
               className={`font-mono text-[0.7rem] uppercase tracking-[0.1em] no-underline transition-colors duration-200 relative pb-2 ${
-                pathname === item.href
+                pathname === item.href || pathname.startsWith(item.href + '/')
                   ? 'text-ddl-crimson'
                   : 'text-ddl-muted-light hover:text-ddl-cream'
               }`}
             >
               {item.label}
-              {pathname === item.href && (
+              {(pathname === item.href || pathname.startsWith(item.href + '/')) && (
                 <span className="absolute bottom-0 left-0 right-0 h-px bg-ddl-crimson" />
               )}
             </Link>
@@ -85,7 +86,7 @@ export default function Navigation() {
               key={item.href}
               href={item.href}
               className={`block font-mono text-[0.75rem] uppercase tracking-[0.1em] no-underline py-3 border-b border-ddl-muted/10 ${
-                pathname === item.href
+                pathname === item.href || pathname.startsWith(item.href + '/') 
                   ? 'text-ddl-crimson'
                   : 'text-ddl-muted-light'
               }`}
