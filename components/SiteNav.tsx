@@ -1,180 +1,407 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-const pillars = [
+/* ─── NAV STRUCTURE ─── */
+
+interface NavLink { href: string; label: string; }
+interface NavGroup { label: string; items: NavLink[]; }
+
+const pillars: NavLink[] = [
   { href: '/ddl', label: 'DDL' },
   { href: '/dexos', label: 'DexOS' },
   { href: '/mindframe', label: 'MindFrame' },
 ];
 
-const explore = [
-  { href: '/registry', label: 'Registry' },
-  { href: '/excelligence', label: 'Graph' },
-  { href: '/forewords', label: 'Forewords' },
-  { href: '/council', label: 'Council' },
-  { href: '/memoir', label: 'Memoir' },
-  { href: '/blindspot', label: 'BlindSpot' },
-  { href: '/methodology', label: 'Methodology' },
-  { href: '/projects', label: 'Projects' },
-  { href: '/analytics', label: 'Analytics' },
-  { href: '/about', label: 'About' },
+const groups: NavGroup[] = [
+  {
+    label: 'Work',
+    items: [
+      { href: '/projects', label: 'Projects' },
+      { href: '/blindspot', label: 'BlindSpot' },
+      { href: '/council', label: 'Council' },
+      { href: '/excelligence', label: 'Graph' },
+    ],
+  },
+  {
+    label: 'Knowledge',
+    items: [
+      { href: '/registry', label: 'Registry' },
+      { href: '/standards', label: 'Standards' },
+      { href: '/systems', label: 'Systems' },
+      { href: '/methodology', label: 'Methodology' },
+      { href: '/analytics', label: 'Analytics' },
+    ],
+  },
+  {
+    label: 'Story',
+    items: [
+      { href: '/memoir', label: 'Memoir' },
+      { href: '/forewords', label: 'Forewords' },
+      { href: '/about', label: 'About' },
+    ],
+  },
 ];
+
+const allLinks: NavLink[] = [
+  ...pillars,
+  ...groups.flatMap(g => g.items),
+];
+
+/* ─── DROPDOWN COMPONENT ─── */
+
+function Dropdown({ group, isActive, pathname }: {
+  group: NavGroup;
+  isActive: (href: string) => boolean;
+  pathname: string | null;
+}) {
+  const [open, setOpen] = useState(false);
+  const timeout = useRef<NodeJS.Timeout | null>(null);
+  const ref = useRef<HTMLDivElement>(null);
+
+  const groupIsActive = group.items.some(i => isActive(i.href));
+
+  const handleEnter = () => {
+    if (timeout.current) clearTimeout(timeout.current);
+    setOpen(true);
+  };
+
+  const handleLeave = () => {
+    timeout.current = setTimeout(() => setOpen(false), 150);
+  };
+
+  // Close on route change
+  useEffect(() => { setOpen(false); }, [pathname]);
+
+  return (
+    <div
+      ref={ref}
+      onMouseEnter={handleEnter}
+      onMouseLeave={handleLeave}
+      style={{ position: 'relative' }}
+    >
+      <button
+        onClick={() => setOpen(!open)}
+        style={{
+          fontFamily: "'JetBrains Mono', monospace",
+          fontSize: 11,
+          fontWeight: 500,
+          color: groupIsActive ? 'rgba(245,241,235,0.8)' : 'rgba(245,241,235,0.4)',
+          background: open ? 'rgba(255,255,255,0.04)' : 'transparent',
+          border: 'none',
+          padding: '5px 10px',
+          borderRadius: 5,
+          cursor: 'pointer',
+          display: 'flex',
+          alignItems: 'center',
+          gap: 4,
+          transition: 'all 0.15s',
+          letterSpacing: '0.01em',
+        }}
+      >
+        {group.label}
+        <span style={{
+          fontSize: 8,
+          opacity: 0.5,
+          transform: open ? 'rotate(180deg)' : 'rotate(0)',
+          transition: 'transform 0.2s',
+          display: 'inline-block',
+        }}>▼</span>
+      </button>
+
+      {open && (
+        <div style={{
+          position: 'absolute',
+          top: '100%',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          marginTop: 6,
+          background: 'rgba(12,20,34,0.96)',
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
+          border: '1px solid rgba(255,255,255,0.08)',
+          borderRadius: 8,
+          padding: '6px 4px',
+          minWidth: 150,
+          boxShadow: '0 12px 40px rgba(0,0,0,0.4)',
+          animation: 'dropIn 0.15s ease',
+        }}>
+          {group.items.map(item => (
+            <Link key={item.href} href={item.href} style={{
+              display: 'block',
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: 11,
+              color: isActive(item.href) ? '#F5F1EB' : 'rgba(245,241,235,0.5)',
+              textDecoration: 'none',
+              padding: '7px 14px',
+              borderRadius: 5,
+              background: isActive(item.href) ? 'rgba(178,53,49,0.12)' : 'transparent',
+              transition: 'all 0.12s',
+              whiteSpace: 'nowrap',
+              letterSpacing: '0.01em',
+            }}
+              onMouseEnter={e => {
+                if (!isActive(item.href)) {
+                  (e.target as HTMLElement).style.background = 'rgba(255,255,255,0.04)';
+                  (e.target as HTMLElement).style.color = 'rgba(245,241,235,0.8)';
+                }
+              }}
+              onMouseLeave={e => {
+                if (!isActive(item.href)) {
+                  (e.target as HTMLElement).style.background = 'transparent';
+                  (e.target as HTMLElement).style.color = 'rgba(245,241,235,0.5)';
+                }
+              }}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ─── MAIN NAV ─── */
 
 export default function SiteNav() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  // Close mobile on route change
+  useEffect(() => { setMobileOpen(false); }, [pathname]);
+
+  // Prevent body scroll when mobile menu open
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [mobileOpen]);
+
   const isActive = (href: string) => {
     if (href === '/') return pathname === '/';
-    return pathname?.startsWith(href);
+    return pathname?.startsWith(href) ?? false;
   };
 
   return (
-    <header style={{
-      position: 'sticky',
-      top: 0,
-      zIndex: 50,
-      borderBottom: '1px solid rgba(255,255,255,0.06)',
-      background: 'rgba(7,16,28,0.88)',
-      backdropFilter: 'blur(16px)',
-      WebkitBackdropFilter: 'blur(16px)',
-    }}>
-      <div style={{
-        maxWidth: 1200,
-        margin: '0 auto',
-        padding: '0 24px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        height: 60,
-      }}>
-        {/* Logo */}
-        <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 10 }}>
-          <div style={{
-            width: 28,
-            height: 28,
-            borderRadius: 6,
-            background: 'linear-gradient(135deg, #B23531, #97072F)',
-            boxShadow: '0 2px 8px rgba(178,53,49,0.3)',
-          }} />
-          <div>
-            <div style={{
-              fontFamily: "'Space Grotesk', sans-serif",
-              fontSize: 14,
-              fontWeight: 600,
-              color: '#F5F1EB',
-              lineHeight: 1.2,
-            }}>
-              Dropdown Logistics
-            </div>
-            <div style={{
-              fontFamily: "'JetBrains Mono', monospace",
-              fontSize: 10,
-              color: 'rgba(245,241,235,0.3)',
-              letterSpacing: '0.04em',
-            }}>
-              Chaos → Structured → Automated
-            </div>
-          </div>
-        </Link>
+    <>
+      {/* Keyframe injection */}
+      <style>{`
+        @keyframes dropIn {
+          from { opacity: 0; transform: translateX(-50%) translateY(-4px); }
+          to { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+        @keyframes slideDown {
+          from { opacity: 0; transform: translateY(-8px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @media (max-width: 768px) {
+          .ddl-desktop-nav { display: none !important; }
+          .ddl-mobile-btn { display: flex !important; }
+        }
+        @media (min-width: 769px) {
+          .ddl-mobile-btn { display: none !important; }
+          .ddl-mobile-menu { display: none !important; }
+        }
+      `}</style>
 
-        {/* Desktop nav */}
-        <nav style={{
+      <header style={{
+        position: 'sticky',
+        top: 0,
+        zIndex: 50,
+        borderBottom: '1px solid rgba(255,255,255,0.06)',
+        background: 'rgba(7,16,28,0.88)',
+        backdropFilter: 'blur(16px)',
+        WebkitBackdropFilter: 'blur(16px)',
+      }}>
+        <div style={{
+          maxWidth: 1200,
+          margin: '0 auto',
+          padding: '0 24px',
           display: 'flex',
           alignItems: 'center',
-          gap: 4,
+          justifyContent: 'space-between',
+          height: 60,
         }}>
-          {/* Pillar links */}
-          {pillars.map((l) => (
-            <Link key={l.href} href={l.href} style={{
-              fontFamily: "'Space Grotesk', sans-serif",
-              fontSize: 13,
-              fontWeight: isActive(l.href) ? 600 : 400,
-              color: isActive(l.href) ? '#F5F1EB' : 'rgba(245,241,235,0.5)',
-              textDecoration: 'none',
-              padding: '6px 12px',
+          {/* Logo */}
+          <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
+            <div style={{
+              width: 28,
+              height: 28,
               borderRadius: 6,
-              background: isActive(l.href) ? 'rgba(255,255,255,0.06)' : 'transparent',
-              transition: 'all 0.15s',
-            }}>
-              {l.label}
-            </Link>
-          ))}
+              background: 'linear-gradient(135deg, #B23531, #97072F)',
+              boxShadow: '0 2px 8px rgba(178,53,49,0.3)',
+            }} />
+            <div>
+              <div style={{
+                fontFamily: "'Space Grotesk', sans-serif",
+                fontSize: 14,
+                fontWeight: 600,
+                color: '#F5F1EB',
+                lineHeight: 1.2,
+              }}>
+                Dropdown Logistics
+              </div>
+              <div style={{
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: 10,
+                color: 'rgba(245,241,235,0.3)',
+                letterSpacing: '0.04em',
+              }}>
+                Chaos → Structured → Automated
+              </div>
+            </div>
+          </Link>
 
-          {/* Divider */}
-          <div style={{
-            width: 1,
-            height: 20,
-            background: 'rgba(255,255,255,0.08)',
-            margin: '0 8px',
-          }} />
-
-          {/* Explore links - scrollable on smaller screens */}
-          <div style={{
+          {/* ─── Desktop Nav ─── */}
+          <nav className="ddl-desktop-nav" style={{
             display: 'flex',
             alignItems: 'center',
             gap: 2,
-            overflowX: 'auto',
-            maxWidth: 'calc(100vw - 600px)',
           }}>
-            {explore.map((l) => (
+            {/* Pillar links */}
+            {pillars.map(l => (
               <Link key={l.href} href={l.href} style={{
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: 11,
-                color: isActive(l.href) ? 'rgba(245,241,235,0.7)' : 'rgba(245,241,235,0.3)',
+                fontFamily: "'Space Grotesk', sans-serif",
+                fontSize: 13,
+                fontWeight: isActive(l.href) ? 600 : 400,
+                color: isActive(l.href) ? '#F5F1EB' : 'rgba(245,241,235,0.5)',
                 textDecoration: 'none',
-                padding: '4px 8px',
-                borderRadius: 4,
-                whiteSpace: 'nowrap',
-                transition: 'color 0.15s',
+                padding: '6px 12px',
+                borderRadius: 6,
+                background: isActive(l.href) ? 'rgba(255,255,255,0.06)' : 'transparent',
+                transition: 'all 0.15s',
               }}>
                 {l.label}
               </Link>
             ))}
-          </div>
-        </nav>
 
-        {/* Mobile hamburger */}
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          style={{
-            display: 'none',
-            background: 'none',
-            border: 'none',
-            color: 'rgba(245,241,235,0.6)',
-            fontSize: 20,
-            cursor: 'pointer',
-            padding: 8,
-          }}
-        >
-          ☰
-        </button>
-      </div>
+            {/* Divider */}
+            <div style={{
+              width: 1,
+              height: 20,
+              background: 'rgba(255,255,255,0.08)',
+              margin: '0 8px',
+            }} />
 
-      {/* Mobile menu */}
-      {mobileOpen && (
-        <div style={{
-          padding: '12px 24px 20px',
-          borderTop: '1px solid rgba(255,255,255,0.04)',
-          background: 'rgba(7,16,28,0.95)',
-        }}>
-          {[...pillars, ...explore].map((l) => (
-            <Link key={l.href} href={l.href} onClick={() => setMobileOpen(false)} style={{
-              display: 'block',
-              fontFamily: "'Space Grotesk', sans-serif",
-              fontSize: 14,
-              color: isActive(l.href) ? '#F5F1EB' : 'rgba(245,241,235,0.5)',
-              textDecoration: 'none',
-              padding: '8px 0',
-            }}>
-              {l.label}
-            </Link>
-          ))}
+            {/* Grouped dropdowns */}
+            {groups.map(g => (
+              <Dropdown key={g.label} group={g} isActive={isActive} pathname={pathname} />
+            ))}
+          </nav>
+
+          {/* ─── Mobile Hamburger ─── */}
+          <button
+            className="ddl-mobile-btn"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle menu"
+            style={{
+              display: 'none',
+              alignItems: 'center',
+              justifyContent: 'center',
+              background: 'none',
+              border: 'none',
+              color: 'rgba(245,241,235,0.6)',
+              fontSize: 22,
+              cursor: 'pointer',
+              padding: 8,
+              width: 40,
+              height: 40,
+              borderRadius: 6,
+              transition: 'background 0.15s',
+            }}
+            onMouseEnter={e => (e.target as HTMLElement).style.background = 'rgba(255,255,255,0.04)'}
+            onMouseLeave={e => (e.target as HTMLElement).style.background = 'none'}
+          >
+            {mobileOpen ? '✕' : '☰'}
+          </button>
         </div>
-      )}
-    </header>
+
+        {/* ─── Mobile Menu ─── */}
+        {mobileOpen && (
+          <div className="ddl-mobile-menu" style={{
+            position: 'fixed',
+            top: 60,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'rgba(7,16,28,0.98)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            overflowY: 'auto',
+            padding: '20px 24px 40px',
+            animation: 'slideDown 0.2s ease',
+          }}>
+            {/* Pillars */}
+            <div style={{ marginBottom: 24 }}>
+              <div style={{
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: 9,
+                letterSpacing: '0.14em',
+                textTransform: 'uppercase',
+                color: '#B23531',
+                marginBottom: 10,
+              }}>Pillars</div>
+              {pillars.map(l => (
+                <Link key={l.href} href={l.href} onClick={() => setMobileOpen(false)} style={{
+                  display: 'block',
+                  fontFamily: "'Space Grotesk', sans-serif",
+                  fontSize: 16,
+                  fontWeight: isActive(l.href) ? 600 : 400,
+                  color: isActive(l.href) ? '#F5F1EB' : 'rgba(245,241,235,0.5)',
+                  textDecoration: 'none',
+                  padding: '10px 0',
+                  borderBottom: '1px solid rgba(255,255,255,0.04)',
+                }}>
+                  {l.label}
+                </Link>
+              ))}
+            </div>
+
+            {/* Groups */}
+            {groups.map(g => (
+              <div key={g.label} style={{ marginBottom: 24 }}>
+                <div style={{
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: 9,
+                  letterSpacing: '0.14em',
+                  textTransform: 'uppercase',
+                  color: '#B23531',
+                  marginBottom: 10,
+                }}>{g.label}</div>
+                {g.items.map(item => (
+                  <Link key={item.href} href={item.href} onClick={() => setMobileOpen(false)} style={{
+                    display: 'block',
+                    fontFamily: "'Space Grotesk', sans-serif",
+                    fontSize: 16,
+                    fontWeight: isActive(item.href) ? 600 : 400,
+                    color: isActive(item.href) ? '#F5F1EB' : 'rgba(245,241,235,0.5)',
+                    textDecoration: 'none',
+                    padding: '10px 0',
+                    borderBottom: '1px solid rgba(255,255,255,0.04)',
+                  }}>
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            ))}
+
+            {/* DDL watermark */}
+            <div style={{
+              textAlign: 'center',
+              paddingTop: 20,
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: 9,
+              letterSpacing: '0.3em',
+              color: 'rgba(245,241,235,0.1)',
+              textTransform: 'uppercase',
+            }}>
+              Chaos → Structured → Automated
+            </div>
+          </div>
+        )}
+      </header>
+    </>
   );
 }
