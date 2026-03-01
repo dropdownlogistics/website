@@ -199,6 +199,8 @@ export default function SiteNav() {
         @media (max-width: 768px) {
           .ddl-desktop-nav { display: none !important; }
           .ddl-mobile-btn { display: flex !important; }
+          .ddl-logo-tagline { display: none !important; }
+          .ddl-header-inner { height: 52px !important; padding: 0 16px !important; }
         }
         @media (min-width: 769px) {
           .ddl-mobile-btn { display: none !important; }
@@ -215,7 +217,7 @@ export default function SiteNav() {
         backdropFilter: 'blur(16px)',
         WebkitBackdropFilter: 'blur(16px)',
       }}>
-        <div style={{
+        <div className="ddl-header-inner" style={{
           maxWidth: 1200,
           margin: '0 auto',
           padding: '0 24px',
@@ -243,7 +245,7 @@ export default function SiteNav() {
               }}>
                 Dropdown Logistics
               </div>
-              <div style={{
+              <div className="ddl-logo-tagline" style={{
                 fontFamily: "'JetBrains Mono', monospace",
                 fontSize: 10,
                 color: 'rgba(245,241,235,0.3)',
@@ -322,7 +324,7 @@ export default function SiteNav() {
         {mobileOpen && (
           <div className="ddl-mobile-menu" style={{
             position: 'fixed',
-            top: 60,
+            top: 52,
             left: 0,
             right: 0,
             bottom: 0,
