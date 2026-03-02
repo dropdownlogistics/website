@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BlindSpot · Local LLM Setup — D&amp;A Analytics</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0D2137;--surface:#112A42;--surface-2:#152F4D;--surface-3:#1A3760;--d:#22C55E;--a:#86EFAC;--amp:#E2E8F0;--text:#C8D6E5;--text-mid:#6B8AAB;--text-dim:#4A6A8A;--text-micro:#2A4A6A;--green:#22C55E;--green-dim:rgba(34,197,94,0.12);--red:#DC2626;--amber:#F59E0B;--cyan:#00E5FF;--fire:#FF6B35;--fire-dim:rgba(255,107,53,0.12);--plum:#B388FF;--mono:'JetBrains Mono',monospace;--sans:'DM Sans',sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;font-size:15px}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:14px 28px;border-bottom:1px solid var(--surface-3);background:rgba(17,42,66,0.9);backdrop-filter:blur(12px);position:sticky;top:0;z-index:100}
+.topbar-brand{display:flex;align-items:center;gap:10px}
+.topbar-brand svg{flex-shrink:0}
+.tw{display:flex;align-items:baseline;gap:6px}.tw .wd{font-size:20px;font-weight:700;color:var(--d)}.tw .wamp{font-size:20px;font-weight:300;color:var(--amp)}.tw .wa{font-size:20px;font-weight:700;color:var(--a)}
+.ta{font-family:var(--mono);font-size:12px;color:var(--text-dim);letter-spacing:3px}.tp{color:var(--surface-3);font-weight:300;margin:0 4px}.tm{font-family:var(--mono);font-size:12px;color:var(--d);letter-spacing:1px}
+.container{max-width:760px;margin:0 auto;padding:40px 28px 60px}
+/* Hero block */
+.guide-hero{margin-bottom:40px;padding-bottom:28px;border-bottom:1px solid var(--surface-3)}
+.guide-hero h1{font-family:var(--mono);font-size:1.6rem;font-weight:700;margin-bottom:12px}
+.guide-hero h1 span{color:var(--a)}
+.meta-row{display:flex;flex-wrap:wrap;gap:16px;font-family:var(--mono);font-size:0.72rem;color:var(--text-dim)}
+.meta-row strong{color:var(--text-mid)}
+/* Phase headers */
+.phase{margin-top:48px;margin-bottom:24px}
+.phase-label{font-family:var(--mono);font-size:0.6rem;color:var(--d);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:4px}
+.phase-title{font-family:var(--mono);font-size:1.15rem;font-weight:700}
+/* Steps */
+.step{margin-bottom:28px}
+.step-head{font-family:var(--mono);font-size:0.85rem;font-weight:600;color:var(--text);margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.step-num{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:5px;background:var(--green-dim);color:var(--d);font-size:0.65rem;font-weight:700;flex-shrink:0}
+.step p,.step li{color:var(--text-mid);font-size:0.88rem;line-height:1.7;margin-bottom:6px}
+.step ol,.step ul{margin-left:20px;margin-bottom:10px}
+.step strong{color:var(--text);font-weight:600}
+/* Code blocks */
+pre{background:var(--surface);border:1px solid var(--surface-3);border-radius:6px;padding:14px 16px;font-family:var(--mono);font-size:0.75rem;line-height:1.7;color:var(--a);overflow-x:auto;margin:10px 0 14px;position:relative}
+pre .comment{color:var(--text-dim)}
+code{font-family:var(--mono);font-size:0.8em;background:var(--surface);padding:2px 6px;border-radius:3px;color:var(--a)}
+pre code{background:none;padding:0}
+/* Callout */
+.callout{background:var(--surface);border-left:3px solid var(--d);border-radius:0 6px 6px 0;padding:14px 18px;margin:14px 0;font-size:0.85rem;color:var(--text-mid);line-height:1.6}
+.callout strong{color:var(--text)}
+.callout.warn{border-color:var(--amber)}
+.callout.fire{border-color:var(--fire)}
+/* Troubleshooting */
+.trouble{margin-bottom:16px}
+.trouble-q{font-family:var(--mono);font-size:0.78rem;font-weight:600;color:var(--amber);margin-bottom:4px}
+.trouble-a{font-size:0.85rem;color:var(--text-mid);line-height:1.6;padding-left:12px;border-left:2px solid var(--surface-3)}
+/* Summary list */
+.summary-list{list-style:none;padding:0}
+.summary-list li{padding:8px 0;border-bottom:1px solid rgba(26,55,96,0.3);font-size:0.85rem;color:var(--text-mid);display:flex;align-items:flex-start;gap:8px}
+.summary-list li::before{content:'✓';color:var(--d);font-weight:700;flex-shrink:0}
+.summary-list li:last-child{border-bottom:none}
+/* Divider */
+hr{border:none;height:1px;background:var(--surface-3);margin:32px 0}
+/* Footer */
+.site-footer{text-align:center;padding:32px 24px 40px;border-top:1px solid var(--surface-3)}.site-footer::before{content:'';display:block;height:2px;background:linear-gradient(90deg,var(--d),var(--a));margin-bottom:24px;border-radius:1px}.fp{font-family:var(--mono);font-size:0.7rem;color:var(--text-mid);letter-spacing:0.04em}.fd{font-size:0.65rem;color:var(--text-dim);margin-top:6px;font-style:italic}.fl{font-family:var(--mono);font-size:0.55rem;color:var(--text-micro);margin-top:8px;letter-spacing:0.1em;text-transform:lowercase}
+@media(max-width:500px){.container{padding:24px 16px 40px}.topbar{flex-direction:column;gap:10px;align-items:flex-start}.meta-row{flex-direction:column;gap:6px}}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="topbar-brand"><svg viewBox="0 0 36 36" width="28" height="28"><rect width="36" height="36" rx="8" fill="#0D2137"/><path d="M 15 5 C 15 5, 21 10, 21 14 C 21 18, 15 20, 15 24 C 15 28, 21 29, 21 31" fill="none" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round"/><path d="M 21 5 C 21 5, 15 10, 15 14 C 15 18, 21 20, 21 24 C 21 28, 15 29, 15 31" fill="none" stroke="#86EFAC" stroke-width="2.5" stroke-linecap="round"/></svg><div class="tw"><span class="wd">d</span><span class="wamp">&amp;</span><span class="wa">a</span></div><span class="ta">analytics</span><span class="tp">|</span><span class="tm">blindspot · llm setup</span></div></div>
+
+<div class="container">
+
+<div class="guide-hero">
+  <h1>Local LLM <span>Setup Guide</span></h1>
+  <div class="meta-row">
+    <div><strong>Hardware:</strong> Gaming rig · 32GB RAM · RTX 3070 (8GB VRAM) · Windows</div>
+    <div><strong>Purpose:</strong> Campaign transcript parsing + Intelligence Brief generation</div>
+    <div><strong>Runtime:</strong> Ollama (GPU-accelerated, local, no cloud, no API costs)</div>
+  </div>
+</div>
+
+<!-- PHASE 1 -->
+<div class="phase"><div class="phase-label">Phase 1</div><div class="phase-title">Install Ollama</div></div>
+
+<div class="step">
+  <div class="step-head"><span class="step-num">1</span> Download Ollama</div>
+  <ol>
+    <li>Go to <strong>https://ollama.com/download/windows</strong></li>
+    <li>Click <strong>Download for Windows</strong></li>
+    <li>Run the installer — standard .exe, just click through</li>
+    <li>Ollama installs as a background service and adds itself to your system tray</li>
+  </ol>
+</div>
+
+<div class="step">
+  <div class="step-head"><span class="step-num">2</span> Verify Installation</div>
+  <p>Open <strong>PowerShell</strong> or <strong>Command Prompt</strong> (not as admin — just normal):</p>
+  <pre><code>ollama --version</code></pre>
+  <p>You should see something like <code>ollama version 0.x.x</code>. If you get "not recognized," restart your terminal or reboot.</p>
+</div>
+
+<div class="step">
+  <div class="step-head"><span class="step-num">3</span> Verify GPU Detection</div>
+  <pre><code>ollama list</code></pre>
+  <p>This should return an empty list (no models yet). The important thing is it runs without errors. Ollama auto-detects your 3070 and will use it for inference.</p>
+  <div class="callout">To confirm GPU is being used, after you pull your first model and run it, check <strong>Task Manager → Performance → GPU</strong>. You should see VRAM utilization spike when the model loads.</div>
+</div>
+
+<hr>
+
+<!-- PHASE 2 -->
+<div class="phase"><div class="phase-label">Phase 2</div><div class="phase-title">Pull Your Models</div></div>
+
+<div class="step">
+  <div class="step-head"><span class="step-num">4</span> Pull Llama 3.1 8B (Primary Model)</div>
+  <pre><code>ollama pull llama3.1:8b</code></pre>
+  <p>Downloads ~4.7GB. Q4_0 quantization by default — fits your 8GB VRAM cleanly. Wait for it to finish.</p>
+</div>
+
+<div class="step">
+  <div class="step-head"><span class="step-num">5</span> Pull Mistral 7B (Secondary — for convergent analysis later)</div>
+  <pre><code>ollama pull mistral:7b</code></pre>
+  <p>Downloads ~4.1GB. You don't need this immediately, but having it ready means you can run two-model comparison whenever you want.</p>
+</div>
+
+<div class="step">
+  <div class="step-head"><span class="step-num">6</span> Verify Models Are Installed</div>
+  <pre><code>ollama list</code></pre>
+  <p>You should see both models listed with their sizes.</p>
+</div>
+
+<hr>
+
+<!-- PHASE 3 -->
+<div class="phase"><div class="phase-label">Phase 3</div><div class="phase-title">Test It</div></div>
+
+<div class="step">
+  <div class="step-head"><span class="step-num">7</span> Quick Smoke Test</div>
+  <pre><code>ollama run llama3.1:8b "What is a d20?"</code></pre>
+  <p>You should get a fast, coherent response about twenty-sided dice. If this works, your GPU inference is running. Type <code>/bye</code> to exit the interactive session if it drops you into one.</p>
+</div>
+
+<div class="step">
+  <div class="step-head"><span class="step-num">8</span> Test Structured Output (This Is What Matters)</div>
+  <pre><code>ollama run llama3.1:8b</code></pre>
+  <p>This opens an interactive session. Paste this:</p>
+  <pre><code>Extract the following rolls into CSV format with columns:
+pc, roll_type, die, result, modifier, total, target_ac, hit_flag
+
+Session transcript excerpt:
+Feliciano attacks Enforcer A with his longsword. He rolls a 14,
+plus 4 to hit, total 18 against AC 14. That's a hit. He rolls
+damage: 1d8+2, gets a 6, total 8 slashing damage.
+Hillie fires Eldritch Blast at the Archer. She rolls a 7, plus 4
+to hit, total 11 against AC 12. Miss — the blast scorches the scaffolding.
+Feliciano makes a Constitution saving throw against poison. He rolls
+a 3, plus 2, total 5 against DC 13. Fail.
+
+Output CSV only, no explanation.</code></pre>
+  <p>You should get clean CSV output. If it does, your parsing pipeline works. Type <code>/bye</code> to exit.</p>
+</div>
+
+<hr>
+
+<!-- PHASE 4 -->
+<div class="phase"><div class="phase-label">Phase 4</div><div class="phase-title">Set Up Your Prompts</div></div>
+
+<div class="step">
+  <div class="step-head"><span class="step-num">9</span> Create a Project Folder</div>
+  <pre><code>mkdir C:\BlindSpot
+mkdir C:\BlindSpot\prompts
+mkdir C:\BlindSpot\data
+mkdir C:\BlindSpot\briefs</code></pre>
+</div>
+
+<div class="step">
+  <div class="step-head"><span class="step-num">10</span> Create the Parsing Prompt</div>
+  <p>Create a file at <code>C:\BlindSpot\prompts\parse_rolls.txt</code> with this content:</p>
+  <pre><code>SYSTEM: You are a D&amp;D session transcript parser. Your job is to extract
+structured data from session transcripts. Output ONLY CSV data, no
+explanation, no markdown formatting, no commentary.
+
+SCHEMA — ROLL LOG:
+pc,roll_type,die,result,modifier,total,target,hit_flag,session,scene
+
+FIELD DEFINITIONS:
+- pc: Character name (e.g., Feliciano, Hillie)
+- roll_type: attack, save, check, damage, initiative
+- die: d20, d8, d10, d6, d4, d12, d100
+- result: Natural die result (before modifiers)
+- modifier: Bonus/penalty applied
+- total: result + modifier
+- target: AC or DC the roll was against (0 if unknown)
+- hit_flag: 1 = success/hit, 0 = fail/miss, -1 = unknown
+- session: Session number (e.g., S01)
+- scene: Scene number within session (e.g., 1, 2, 3)
+
+RULES:
+- Extract EVERY roll mentioned in the transcript
+- If a roll result is not explicitly stated, skip it
+- If a modifier is not stated, use 0
+- If a target AC/DC is not stated, use 0
+- Natural 1 is always a miss (hit_flag = 0)
+- Natural 20 is always a hit (hit_flag = 1)
+- Damage rolls: hit_flag = -1 (not applicable)
+- Do not invent or infer rolls that aren't in the text
+- Output the CSV header row first, then data rows
+
+USER: Here is the transcript for session [SESSION_NUMBER]:
+
+[PASTE TRANSCRIPT HERE]</code></pre>
+</div>
+
+<div class="step">
+  <div class="step-head"><span class="step-num">11</span> Create the Intelligence Brief Prompt</div>
+  <p>Create a file at <code>C:\BlindSpot\prompts\campaign_brief.txt</code> with this content:</p>
+  <pre><code>SYSTEM: You are a Campaign Intelligence Analyst for a D&amp;D 5e campaign.
+You read structured campaign metrics and produce a concise pre-session
+briefing for the DM. Your tone is direct, analytical, and actionable —
+like an audit findings report, not a creative writing piece.
+
+OUTPUT FORMAT:
+1. CAMPAIGN HEALTH SCORE (0-100, with 1-line justification)
+2. TOP 3 PREP PRIORITIES (numbered, 2-3 sentences each)
+3. FLAGS (bullet list of active concerns with data citations)
+4. RECOMMENDATIONS (2-3 specific, actionable suggestions)
+
+RULES:
+- Cite specific numbers from the data (don't generalize)
+- If spotlight split exceeds 60/40, flag it
+- If any quest has been active 4+ sessions with no progress, flag it
+- If any PC's d20 average is below 9.0 over 30+ rolls, flag it
+- If any faction clock is at 75%+ capacity, flag it
+- If resource usage (spell slots, abilities) is below 50%, flag it
+- Keep the entire brief under 400 words
+- Do not invent data points not provided in the input
+- End with "Next session focus:" and a single sentence
+
+USER: Here are the campaign metrics for pre-session [SESSION_NUMBER] prep:
+
+CAMPAIGN: [CAMPAIGN NAME]
+SESSIONS PLAYED: [N]
+TOTAL ROLLS: [N]
+
+PC STATS:
+[paste PC performance summary]
+
+QUEST STATUS:
+[paste quest tracker summary]
+
+FACTION STATE:
+[paste faction heat/favor summary]
+
+RESOURCE USAGE:
+[paste resource burn rates]
+
+DICE SUMMARY:
+[paste dice averages and distribution notes]
+
+SPOTLIGHT:
+[paste actions-per-PC breakdown]</code></pre>
+</div>
+
+<hr>
+
+<!-- PHASE 5 -->
+<div class="phase"><div class="phase-label">Phase 5</div><div class="phase-title">Run Your First Parse</div></div>
+
+<div class="step">
+  <div class="step-head"><span class="step-num">12</span> After Your First Session</div>
+  <ol>
+    <li>Copy the session transcript (or the key portions with rolls) into a text file</li>
+    <li>Open PowerShell</li>
+    <li>Run:</li>
+  </ol>
+  <pre><code><span class="comment"># Option A: Interactive (paste the transcript in)</span>
+ollama run llama3.1:8b
+
+<span class="comment"># Then paste your parse_rolls prompt with the transcript</span>
+
+<span class="comment"># Option B: Pipe a file (if you saved the full prompt + transcript)</span>
+Get-Content C:\BlindSpot\data\session01_parse_input.txt | ollama run llama3.1:8b</code></pre>
+  <ol start="4">
+    <li>Copy the CSV output into <code>C:\BlindSpot\data\session01_rolls.csv</code></li>
+    <li>Import that CSV into your Excel engine's fact table</li>
+  </ol>
+</div>
+
+<div class="step">
+  <div class="step-head"><span class="step-num">13</span> Generate Your First Brief</div>
+  <p>Once you have 2-3 sessions of data in the engine and dashboard metrics:</p>
+  <ol>
+    <li>Export the dashboard summary values as text</li>
+    <li>Paste them into the campaign_brief prompt template</li>
+    <li>Run:</li>
+  </ol>
+  <pre><code>ollama run llama3.1:8b &lt; C:\BlindSpot\data\session03_brief_input.txt &gt; C:\BlindSpot\briefs\session04_brief.txt</code></pre>
+  <ol start="4">
+    <li>Open the brief. Read it. Prep your session.</li>
+  </ol>
+</div>
+
+<hr>
+
+<!-- PHASE 6 -->
+<div class="phase"><div class="phase-label">Phase 6</div><div class="phase-title">Convergent Analysis (Optional, Later)</div></div>
+
+<div class="step">
+  <div class="step-head"><span class="step-num">14</span> Run the Same Brief Through Mistral</div>
+  <pre><code>ollama run mistral:7b &lt; C:\BlindSpot\data\session03_brief_input.txt &gt; C:\BlindSpot\briefs\session04_brief_mistral.txt</code></pre>
+</div>
+
+<div class="step">
+  <div class="step-head"><span class="step-num">15</span> Compare</div>
+  <p>Open both briefs side by side. Where they agree = high confidence. Where they diverge = DM judgment call. You don't need automation for this yet — eyeball comparison is fine for the first few sessions.</p>
+</div>
+
+<hr>
+
+<!-- TROUBLESHOOTING -->
+<div class="phase"><div class="phase-label">Reference</div><div class="phase-title">Troubleshooting</div></div>
+
+<div class="trouble">
+  <div class="trouble-q">"ollama not recognized"</div>
+  <div class="trouble-a">Restart your terminal. If still broken, check that <code>C:\Users\[you]\AppData\Local\Programs\Ollama</code> is in your PATH.</div>
+</div>
+<div class="trouble">
+  <div class="trouble-q">Model runs slow (&lt; 5 tokens/sec)</div>
+  <div class="trouble-a">Check Task Manager → GPU. If VRAM isn't being used, Ollama may be falling back to CPU. Run <code>ollama ps</code> while a model is loaded to see where it's running. Restart the Ollama service from the system tray.</div>
+</div>
+<div class="trouble">
+  <div class="trouble-q">Out of memory errors</div>
+  <div class="trouble-a">Close other GPU-intensive apps (games, browser with hardware acceleration). Your 3070 has 8GB — the 8B model needs ~5GB, so you need ~3GB free.</div>
+</div>
+<div class="trouble">
+  <div class="trouble-q">Response seems wrong or hallucinated</div>
+  <div class="trouble-a"><strong>For parsing:</strong> spot-check 10 rolls against the transcript. If accuracy is below 90%, your prompt needs tightening — add more examples to the system prompt.<br><strong>For briefs:</strong> remember the LLM is interpreting, not computing. The numbers come from your Excel engine. If the numbers are right and the interpretation is off, adjust the brief prompt thresholds.</div>
+</div>
+<div class="trouble">
+  <div class="trouble-q">Want to try a different model?</div>
+  <div class="trouble-a">
+    <code>ollama pull phi3:medium</code> — Phi-3 Medium 14B, partially offloads to CPU, slower but more capable<br>
+    <code>ollama pull gemma2:9b</code> — Google's Gemma 2 9B, good at structured tasks<br>
+    <code>ollama pull llama3.2:3b</code> — smaller, faster, less capable, good for simple parsing
+  </div>
+</div>
+
+<hr>
+
+<!-- SUMMARY -->
+<div class="phase"><div class="phase-label">Result</div><div class="phase-title">What You Have When This Is Done</div></div>
+
+<ul class="summary-list">
+  <li>Ollama running on your 3070 with GPU acceleration</li>
+  <li>Llama 3.1 8B for transcript parsing and brief generation</li>
+  <li>Mistral 7B as a second opinion (convergent analysis)</li>
+  <li>Prompt templates for both parsing and interpretation</li>
+  <li>A folder structure ready for session data and briefs</li>
+  <li>Zero cloud dependency, zero API costs, zero internet required</li>
+  <li>Inference speed: ~20-30 tokens/second on your hardware</li>
+</ul>
+
+<div class="callout" style="margin-top:24px;border-color:var(--d)"><strong>Total setup time: ~30 minutes</strong> (mostly waiting for model downloads)</div>
+
+</div>
+
+<div class="site-footer"><div class="fp">d&amp;a analytics · powered by blindspot</div><div class="fd">built by two people who share actual dna</div><div class="fl">dropdown logistics</div></div>
+</body>
+</html>

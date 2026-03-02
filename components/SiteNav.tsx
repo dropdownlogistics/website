@@ -6,45 +6,153 @@ import { usePathname } from 'next/navigation';
 
 interface NavLink { href: string; label: string; }
 interface NavGroup { label: string; items: NavLink[]; }
+interface Wing { id: string; name: string; color: string; home: string; groups: NavGroup[]; }
 
-const pillars: NavLink[] = [
-  { href: '/ddl', label: 'DDL' },
-  { href: '/dexos', label: 'DexOS' },
-  { href: '/mindframe', label: 'MindFrame' },
+// ═══════════════════════════════════════════════════════════
+// Wing Definitions
+// ═══════════════════════════════════════════════════════════
+
+const wingsData: Wing[] = [
+  {
+    id: 'ddl',
+    name: 'DDL',
+    color: '#B23531',
+    home: '/ddl',
+    groups: [
+      {
+        label: 'Governance',
+        items: [
+          { href: '/council', label: 'Council' },
+          { href: '/standards', label: 'Standards' },
+          { href: '/systems', label: 'Systems' },
+          { href: '/registry', label: 'Registry' },
+          { href: '/excelligence', label: 'Graph' },
+        ],
+      },
+      {
+        label: 'Framework',
+        items: [
+          { href: '/methodology', label: 'Methodology' },
+          { href: '/cognitive', label: 'Cognitive' },
+          { href: '/mindframe', label: 'MindFrame' },
+          { href: '/dexos', label: 'DexOS' },
+          { href: '/guides/llm', label: 'LLM Guide' },
+        ],
+      },
+      {
+        label: 'Story',
+        items: [
+          { href: '/memoir', label: 'Memoir' },
+          { href: '/forewords', label: 'Forewords' },
+          { href: '/about', label: 'About' },
+        ],
+      },
+      {
+        label: 'Work',
+        items: [
+          { href: '/projects', label: 'Projects' },
+          { href: '/prioritease', label: 'PrioritEase' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'da',
+    name: 'D&A',
+    color: '#C49A3C',
+    home: '/blindspot',
+    groups: [
+      {
+        label: 'Modules',
+        items: [
+          { href: '/blindspot/trading', label: 'Trading' },
+          { href: '/blindspot/steam', label: 'Steam' },
+          { href: '/blindspot/campaign', label: 'Campaign' },
+          { href: '/blindspot/backtest', label: 'Backtest' },
+          { href: '/blindspot/llm', label: 'LLM Setup' },
+        ],
+      },
+      {
+        label: 'Recaps',
+        items: [
+          { href: '/recaps', label: 'All Recaps' },
+          { href: '/recaps/apple-music', label: 'Apple Music' },
+          { href: '/recaps/annual-signal', label: 'Annual Signal' },
+          { href: '/recaps/predictions', label: 'Predictions' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'dexverse',
+    name: 'DexVerse',
+    color: '#8a6cc9',
+    home: '/dexlore',
+    groups: [
+      {
+        label: 'Lore',
+        items: [
+          { href: '/dexlore', label: 'Hub' },
+          { href: '/dexlore/continuum', label: 'Continuum' },
+          { href: '/dexlore/council', label: 'Companions' },
+          { href: '/other-works', label: 'Other Works' },
+        ],
+      },
+      {
+        label: 'Reference',
+        items: [
+          { href: '/knowledge/glossary', label: 'Glossary' },
+          { href: '/methodology/palette', label: 'Template Palette' },
+          { href: '/methodology/palette/narrative', label: 'Palette Narrative' },
+        ],
+      },
+    ],
+  },
 ];
 
-const groups: NavGroup[] = [
-  {
-    label: 'Work',
-    items: [
-      { href: '/projects', label: 'Projects' },
-      { href: '/blindspot', label: 'BlindSpot' },
-      { href: '/council', label: 'Council' },
-      { href: '/excelligence', label: 'Graph' },
-    ],
-  },
-  {
-    label: 'Knowledge',
-    items: [
-      { href: '/registry', label: 'Registry' },
-      { href: '/standards', label: 'Standards' },
-      { href: '/systems', label: 'Systems' },
-      { href: '/methodology', label: 'Methodology' },
-      { href: '/analytics', label: 'Analytics' },
-    ],
-  },
-  {
-    label: 'Story',
-    items: [
-      { href: '/memoir', label: 'Memoir' },
-      { href: '/forewords', label: 'Forewords' },
-      { href: '/about', label: 'About' },
-    ],
-  },
-];
+// ═══════════════════════════════════════════════════════════
+// Wing Detection
+// ═══════════════════════════════════════════════════════════
 
-/* ─── DROPDOWN ─── */
-function Dropdown({ group, isActive, pathname }: { group: NavGroup; isActive: (h: string) => boolean; pathname: string | null }) {
+// Map route prefixes to wings
+const routeWingMap: Record<string, string> = {
+  // D&A wing
+  '/blindspot': 'da',
+  '/recaps': 'da',
+  // DexVerse wing
+  '/dexlore': 'dexverse',
+  '/other-works': 'dexverse',
+  '/knowledge/glossary': 'dexverse',
+  '/methodology/palette': 'dexverse',
+  // Everything else → DDL
+};
+
+function detectWing(pathname: string | null): Wing {
+  if (!pathname) return wingsData[0];
+
+  // Check specific routes first (longer prefixes take priority)
+  const sortedPrefixes = Object.keys(routeWingMap).sort((a, b) => b.length - a.length);
+  for (const prefix of sortedPrefixes) {
+    if (pathname.startsWith(prefix)) {
+      const wingId = routeWingMap[prefix];
+      return wingsData.find(w => w.id === wingId) || wingsData[0];
+    }
+  }
+
+  // Default to DDL
+  return wingsData[0];
+}
+
+// ═══════════════════════════════════════════════════════════
+// Dropdown Component
+// ═══════════════════════════════════════════════════════════
+
+function Dropdown({ group, isActive, pathname, wingColor }: {
+  group: NavGroup;
+  isActive: (h: string) => boolean;
+  pathname: string | null;
+  wingColor: string;
+}) {
   const [open, setOpen] = useState(false);
   const timer = useRef<NodeJS.Timeout | null>(null);
   const groupActive = group.items.some(i => isActive(i.href));
@@ -80,11 +188,11 @@ function Dropdown({ group, isActive, pathname }: { group: NavGroup; isActive: (h
               display: 'block', fontFamily: "'JetBrains Mono', monospace", fontSize: 11,
               color: isActive(item.href) ? '#F5F1EB' : 'rgba(245,241,235,0.5)',
               textDecoration: 'none', padding: '7px 14px', borderRadius: 5,
-              background: isActive(item.href) ? 'rgba(178,53,49,0.12)' : 'transparent',
+              background: isActive(item.href) ? wingColor + '20' : 'transparent',
               transition: 'all 0.12s', whiteSpace: 'nowrap',
             }}
-              onMouseEnter={e => { if (!isActive(item.href)) { (e.currentTarget).style.background = 'rgba(255,255,255,0.04)'; (e.currentTarget).style.color = 'rgba(245,241,235,0.8)'; }}}
-              onMouseLeave={e => { if (!isActive(item.href)) { (e.currentTarget).style.background = 'transparent'; (e.currentTarget).style.color = 'rgba(245,241,235,0.5)'; }}}
+              onMouseEnter={e => { if (!isActive(item.href)) { (e.currentTarget).style.background = 'rgba(255,255,255,0.04)'; (e.currentTarget).style.color = 'rgba(245,241,235,0.8)'; } }}
+              onMouseLeave={e => { if (!isActive(item.href)) { (e.currentTarget).style.background = 'transparent'; (e.currentTarget).style.color = 'rgba(245,241,235,0.5)'; } }}
             >{item.label}</Link>
           ))}
         </div>
@@ -93,10 +201,38 @@ function Dropdown({ group, isActive, pathname }: { group: NavGroup; isActive: (h
   );
 }
 
-/* ─── MAIN NAV ─── */
+// ═══════════════════════════════════════════════════════════
+// Wing Switcher — the three-door toggle
+// ═══════════════════════════════════════════════════════════
+
+function WingSwitcher({ currentWing, isActive }: { currentWing: Wing; isActive: (h: string) => boolean }) {
+  return (
+    <>
+      {wingsData.map((w, i) => (
+        <Link key={w.id} href={w.home} style={{
+          fontFamily: "'Space Grotesk', sans-serif", fontSize: 13,
+          fontWeight: currentWing.id === w.id ? 600 : 400,
+          color: currentWing.id === w.id ? w.color : 'rgba(245,241,235,0.4)',
+          textDecoration: 'none', padding: '6px 12px', borderRadius: 6,
+          background: currentWing.id === w.id ? w.color + '12' : 'transparent',
+          transition: 'all 0.15s',
+        }}>{w.name}</Link>
+      ))}
+    </>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════
+// Main Nav
+// ═══════════════════════════════════════════════════════════
+
 export default function SiteNav() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const wing = detectWing(pathname);
+
+  // Landing page — no nav, just the landing
+  const isLanding = pathname === '/';
 
   useEffect(() => { setMobileOpen(false); }, [pathname]);
   useEffect(() => {
@@ -109,6 +245,8 @@ export default function SiteNav() {
     return pathname?.startsWith(href) ?? false;
   };
 
+  if (isLanding) return null; // Landing page manages its own chrome
+
   return (
     <>
       <style>{`
@@ -120,7 +258,7 @@ export default function SiteNav() {
 
       <header style={{
         position: 'sticky', top: 0, zIndex: 50,
-        borderBottom: '1px solid rgba(255,255,255,0.06)',
+        borderBottom: `1px solid ${wing.color}15`,
         background: 'rgba(7,16,28,0.88)',
         backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)',
       }}>
@@ -128,29 +266,39 @@ export default function SiteNav() {
           maxWidth: 1200, margin: '0 auto', padding: '0 24px',
           display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 60,
         }}>
-          {/* Logo */}
+          {/* Logo — always goes home */}
           <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
-            <div style={{ width: 28, height: 28, borderRadius: 6, background: 'linear-gradient(135deg, #B23531, #97072F)', boxShadow: '0 2px 8px rgba(178,53,49,0.3)' }} />
+            <div style={{
+              width: 28, height: 28, borderRadius: 6,
+              background: `linear-gradient(135deg, ${wing.color}, ${wing.color}90)`,
+              boxShadow: `0 2px 8px ${wing.color}40`,
+              transition: 'all 0.3s',
+            }} />
             <div>
-              <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 14, fontWeight: 600, color: '#F5F1EB', lineHeight: 1.2 }}>Dropdown Logistics</div>
-              <div className="ddl-tagline" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, color: 'rgba(245,241,235,0.3)', letterSpacing: '0.04em' }}>Chaos → Structured → Automated</div>
+              <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 14, fontWeight: 600, color: '#F5F1EB', lineHeight: 1.2 }}>
+                Dropdown Logistics
+              </div>
+              <div className="ddl-tagline" style={{
+                fontFamily: "'JetBrains Mono', monospace", fontSize: 10,
+                color: wing.color + '80', letterSpacing: '0.04em',
+                transition: 'color 0.3s',
+              }}>
+                {wing.id === 'ddl' ? 'Chaos → Structured → Automated' :
+                  wing.id === 'da' ? 'BlindSpot Analytics' :
+                    'The Lore Layer'}
+              </div>
             </div>
           </Link>
 
-          {/* Desktop */}
+          {/* Desktop nav */}
           <nav className="ddl-desk" style={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-            {pillars.map(l => (
-              <Link key={l.href} href={l.href} style={{
-                fontFamily: "'Space Grotesk', sans-serif", fontSize: 13,
-                fontWeight: isActive(l.href) ? 600 : 400,
-                color: isActive(l.href) ? '#F5F1EB' : 'rgba(245,241,235,0.5)',
-                textDecoration: 'none', padding: '6px 12px', borderRadius: 6,
-                background: isActive(l.href) ? 'rgba(255,255,255,0.06)' : 'transparent',
-                transition: 'all 0.15s',
-              }}>{l.label}</Link>
-            ))}
+            {/* Wing switcher */}
+            <WingSwitcher currentWing={wing} isActive={isActive} />
             <div style={{ width: 1, height: 20, background: 'rgba(255,255,255,0.08)', margin: '0 8px' }} />
-            {groups.map(g => <Dropdown key={g.label} group={g} isActive={isActive} pathname={pathname} />)}
+            {/* Wing-specific groups */}
+            {wing.groups.map(g => (
+              <Dropdown key={g.label} group={g} isActive={isActive} pathname={pathname} wingColor={wing.color} />
+            ))}
           </nav>
 
           {/* Mobile button */}
@@ -168,21 +316,24 @@ export default function SiteNav() {
             WebkitBackdropFilter: 'blur(20px)', overflowY: 'auto',
             padding: '20px 24px 40px', animation: 'ddlSlideDown 0.2s ease',
           }}>
+            {/* Wing switcher — mobile */}
             <div style={{ marginBottom: 24 }}>
-              <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#B23531', marginBottom: 10 }}>Pillars</div>
-              {pillars.map(l => (
-                <Link key={l.href} href={l.href} onClick={() => setMobileOpen(false)} style={{
+              <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: wing.color, marginBottom: 10 }}>Wings</div>
+              {wingsData.map(w => (
+                <Link key={w.id} href={w.home} onClick={() => setMobileOpen(false)} style={{
                   display: 'block', fontFamily: "'Space Grotesk', sans-serif", fontSize: 16,
-                  fontWeight: isActive(l.href) ? 600 : 400,
-                  color: isActive(l.href) ? '#F5F1EB' : 'rgba(245,241,235,0.5)',
+                  fontWeight: wing.id === w.id ? 600 : 400,
+                  color: wing.id === w.id ? w.color : 'rgba(245,241,235,0.5)',
                   textDecoration: 'none', padding: '10px 0',
                   borderBottom: '1px solid rgba(255,255,255,0.04)',
-                }}>{l.label}</Link>
+                }}>{w.name} — {w.id === 'ddl' ? 'Governance' : w.id === 'da' ? 'Analytics' : 'Lore'}</Link>
               ))}
             </div>
-            {groups.map(g => (
+
+            {/* Current wing groups */}
+            {wing.groups.map(g => (
               <div key={g.label} style={{ marginBottom: 24 }}>
-                <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#B23531', marginBottom: 10 }}>{g.label}</div>
+                <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: wing.color, marginBottom: 10 }}>{g.label}</div>
                 {g.items.map(item => (
                   <Link key={item.href} href={item.href} onClick={() => setMobileOpen(false)} style={{
                     display: 'block', fontFamily: "'Space Grotesk', sans-serif", fontSize: 16,
@@ -194,8 +345,9 @@ export default function SiteNav() {
                 ))}
               </div>
             ))}
+
             <div style={{ textAlign: 'center', paddingTop: 20, fontFamily: "'JetBrains Mono', monospace", fontSize: 9, letterSpacing: '0.3em', color: 'rgba(245,241,235,0.1)', textTransform: 'uppercase' }}>
-              Chaos → Structured → Automated
+              Cottage — Humble surface. Cathedral underneath.
             </div>
           </div>
         )}

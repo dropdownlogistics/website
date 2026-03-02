@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BlindSpot · Trading — D&A Analytics</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+
+:root {
+  /* ── D&A Brand Tokens ── */
+  --d: #22C55E;          /* dave · primary green */
+  --a: #86EFAC;          /* alex · secondary green */
+  --amp: #E2E8F0;        /* neutral · text accent */
+  --bg: #0D2137;         /* brand background */
+  --surface: #112A42;    /* card backgrounds */
+  --surface-2: #152F4D;  /* elevated surfaces */
+  --surface-3: #1A3760;  /* borders · separators */
+  --text: #C8D6E5;
+  --text-dim: #4A6A8A;
+  --text-micro: #2A4A6A;
+  /* ── Semantic Data Colors (functional) ── */
+  --win: #22C55E;
+  --loss: #DC2626;
+  --scratch: #F59E0B;
+  --paper: #8B5CF6;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  background: var(--bg);
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ═══════════════════════════════════════ */
+/* AMBIENT BACKGROUND                      */
+/* ═══════════════════════════════════════ */
+
+.ambient {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.ambient::before {
+  content: '';
+  position: absolute;
+  top: -30%;
+  left: -20%;
+  width: 80vw;
+  height: 80vw;
+  background: radial-gradient(ellipse, rgba(34,197,94,0.04) 0%, transparent 70%);
+  animation: drift1 25s ease-in-out infinite;
+}
+
+.ambient::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  right: -20%;
+  width: 70vw;
+  height: 70vw;
+  background: radial-gradient(ellipse, rgba(134,239,172,0.03) 0%, transparent 70%);
+  animation: drift2 30s ease-in-out infinite;
+}
+
+@keyframes drift1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(10vw, 5vh) scale(1.1); }
+}
+
+@keyframes drift2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-8vw, -8vh) scale(1.15); }
+}
+
+/* ═══════════════════════════════════════ */
+/* LAYOUT                                  */
+/* ═══════════════════════════════════════ */
+
+.content {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+section {
+  padding: 80px 0;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 0.8s ease forwards;
+}
+
+section:nth-child(1) { animation-delay: 0.1s; }
+section:nth-child(2) { animation-delay: 0.2s; }
+section:nth-child(3) { animation-delay: 0.3s; }
+section:nth-child(4) { animation-delay: 0.4s; }
+section:nth-child(5) { animation-delay: 0.5s; }
+section:nth-child(6) { animation-delay: 0.6s; }
+section:nth-child(7) { animation-delay: 0.7s; }
+section:nth-child(8) { animation-delay: 0.8s; }
+section:nth-child(9) { animation-delay: 0.9s; }
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ═══════════════════════════════════════ */
+/* DASHBOARD HEADER                        */
+/* ═══════════════════════════════════════ */
+
+.header {
+  padding: 40px 0 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  opacity: 0;
+  animation: fadeUp 0.6s ease 0.05s forwards;
+  border-bottom: 1px solid var(--surface-3);
+  padding-bottom: 20px;
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.header-brand svg { flex-shrink: 0; }
+
+.header-wordmark {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.header-wordmark .wd { color: var(--d); }
+.header-wordmark .wa { color: var(--a); }
+.header-wordmark .wamp { color: var(--amp); font-weight: 300; }
+
+.header-analytics {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--text-dim);
+  letter-spacing: 3px;
+}
+
+.header-module {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--d);
+  letter-spacing: 1px;
+}
+
+.header-pipe {
+  color: var(--surface-3);
+  font-weight: 300;
+  margin: 0 4px;
+}
+
+.header-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-micro);
+}
+
+/* ═══════════════════════════════════════ */
+/* HERO                                    */
+/* ═══════════════════════════════════════ */
+
+.hero {
+  padding-top: 100px;
+  text-align: center;
+}
+
+.hero-helix {
+  margin-bottom: 40px;
+  animation: helixPulse 4s ease-in-out infinite;
+}
+
+@keyframes helixPulse {
+  0%, 100% { filter: drop-shadow(0 0 20px rgba(34,197,94,0.15)); }
+  50% { filter: drop-shadow(0 0 40px rgba(134,239,172,0.25)); }
+}
+
+.hero h1 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: 700;
+  letter-spacing: -1px;
+  margin-bottom: 12px;
+}
+
+.hero h1 .blind { color: var(--amp); }
+.hero h1 .spot { color: var(--a); }
+
+.hero-tagline {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  color: var(--text-dim);
+  letter-spacing: 4px;
+  margin-bottom: 24px;
+}
+
+.hero-desc {
+  font-size: 18px;
+  color: var(--text);
+  max-width: 600px;
+  margin: 0 auto 40px;
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+.hero-stat-row {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+
+.hero-stat {
+  text-align: center;
+}
+
+.hero-stat-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--a);
+}
+
+.hero-stat-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* ═══════════════════════════════════════ */
+/* SECTION TITLES                          */
+/* ═══════════════════════════════════════ */
+
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--d);
+  opacity: 0.6;
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(22px, 3.5vw, 32px);
+  font-weight: 600;
+  color: var(--amp);
+  margin-bottom: 16px;
+}
+
+.section-desc {
+  font-size: 16px;
+  color: var(--text);
+  max-width: 640px;
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+/* ═══════════════════════════════════════ */
+/* STRATEGY CARDS                          */
+/* ═══════════════════════════════════════ */
+
+.strategy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.strategy-card {
+  background: var(--surface);
+  border: 1px solid var(--surface-3);
+  border-radius: 10px;
+  padding: 28px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.strategy-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--d), var(--a));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.strategy-card:hover {
+  border-color: var(--d);
+  transform: translateY(-2px);
+}
+
+.strategy-card:hover::before { opacity: 1; }
+
+.strategy-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--a);
+  margin-bottom: 8px;
+}
+
+.strategy-timeframe {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.strategy-logic {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+/* ═══════════════════════════════════════ */
+/* LIVE TRADES TABLE                       */
+/* ═══════════════════════════════════════ */
+
+.trades-table-wrap {
+  margin-top: 32px;
+  overflow-x: auto;
+  border-radius: 10px;
+  border: 1px solid var(--surface-3);
+}
+
+.trades-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+}
+
+.trades-table thead {
+  background: var(--surface);
+}
+
+.trades-table th {
+  padding: 14px 16px;
+  text-align: left;
+  color: var(--text-dim);
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--surface-3);
+}
+
+.trades-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(26,55,96,0.4);
+  color: var(--text);
+}
+
+.trades-table tbody tr {
+  transition: background 0.2s ease;
+}
+
+.trades-table tbody tr:hover {
+  background: rgba(34,197,94,0.04);
+}
+
+.trades-table .win { color: var(--win); }
+.trades-table .loss { color: var(--loss); }
+.trades-table .scratch { color: var(--scratch); }
+.trades-table .long { color: var(--a); }
+.trades-table .short { color: var(--paper); }
+
+/* ═══════════════════════════════════════ */
+/* FEATURE CARDS                           */
+/* ═══════════════════════════════════════ */
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.feature-card {
+  background: var(--surface);
+  border: 1px solid var(--surface-3);
+  border-radius: 10px;
+  padding: 32px;
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+  border-color: var(--d);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(34,197,94,0.08);
+}
+
+.feature-icon {
+  font-size: 28px;
+  margin-bottom: 16px;
+}
+
+.feature-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--a);
+  margin-bottom: 8px;
+}
+
+.feature-desc {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+.feature-tag {
+  display: inline-block;
+  margin-top: 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  background: rgba(34,197,94,0.1);
+  color: var(--d);
+}
+
+.feature-tag.paper {
+  background: rgba(139,92,246,0.1);
+  color: var(--paper);
+}
+
+.feature-tag.live {
+  background: rgba(34,197,94,0.15);
+  color: var(--a);
+}
+
+/* ═══════════════════════════════════════ */
+/* Q&A SECTION                             */
+/* ═══════════════════════════════════════ */
+
+.qa-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.qa-item {
+  background: var(--surface);
+  border: 1px solid var(--surface-3);
+  border-radius: 10px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: all 0.3s ease;
+}
+
+.qa-item:hover {
+  border-color: var(--surface-3);
+  background: var(--surface-2);
+}
+
+.qa-question {
+  font-size: 14px;
+  color: var(--amp);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.qa-answer {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--a);
+  font-weight: 500;
+}
+
+.qa-domain {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: var(--text-dim);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ═══════════════════════════════════════ */
+/* SCHEMA DIAGRAM                          */
+/* ═══════════════════════════════════════ */
+
+.schema-visual {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.schema-fact {
+  background: var(--surface);
+  border: 2px solid var(--a);
+  border-radius: 10px;
+  padding: 24px 48px;
+  text-align: center;
+  position: relative;
+}
+
+.schema-fact-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--a);
+}
+
+.schema-fact-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-top: 4px;
+}
+
+.schema-dims {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.schema-dim {
+  background: var(--surface);
+  border: 1px solid var(--surface-3);
+  border-radius: 8px;
+  padding: 12px 20px;
+  text-align: center;
+  min-width: 120px;
+  transition: all 0.3s ease;
+}
+
+.schema-dim:hover {
+  border-color: var(--d);
+}
+
+.schema-dim-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--d);
+}
+
+.schema-dim-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+
+.schema-connector {
+  width: 2px;
+  height: 24px;
+  background: linear-gradient(to bottom, var(--a), var(--d));
+  opacity: 0.4;
+}
+
+/* ═══════════════════════════════════════ */
+/* PAPER PORTFOLIO                         */
+/* ═══════════════════════════════════════ */
+
+.paper-hero {
+  background: linear-gradient(135deg, rgba(139,92,246,0.08), rgba(34,197,94,0.04));
+  border: 1px solid rgba(139,92,246,0.2);
+  border-radius: 14px;
+  padding: 48px;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.paper-balance {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 56px;
+  font-weight: 700;
+  color: var(--paper);
+  margin-bottom: 8px;
+}
+
+.paper-unit {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  color: var(--text-dim);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.paper-tagline {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--amp);
+  letter-spacing: 2px;
+}
+
+.paper-desc {
+  font-size: 15px;
+  color: var(--text);
+  max-width: 520px;
+  margin: 24px auto 0;
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+/* ═══════════════════════════════════════ */
+/* ORIGIN                                  */
+/* ═══════════════════════════════════════ */
+
+.origin {
+  text-align: center;
+  padding: 80px 0 40px;
+}
+
+.origin-line {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--text-dim);
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+.origin-highlight {
+  font-size: 18px;
+  color: var(--amp);
+  font-style: italic;
+  margin: 24px 0;
+  line-height: 1.6;
+}
+
+.origin-sig {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-micro);
+  letter-spacing: 3px;
+  margin-top: 32px;
+}
+
+/* ═══════════════════════════════════════ */
+/* FOOTER                                  */
+/* ═══════════════════════════════════════ */
+
+.footer {
+  text-align: center;
+  padding: 48px 0 60px;
+  position: relative;
+}
+
+.footer::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--d) 30%, var(--a) 70%, transparent);
+  margin-bottom: 48px;
+}
+
+.footer-primary {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--text-dim);
+  letter-spacing: 3px;
+  margin-bottom: 8px;
+}
+
+.footer-dna {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: var(--text);
+  font-style: italic;
+  font-weight: 300;
+  margin-bottom: 16px;
+}
+
+.footer-ddl {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: var(--text-micro);
+  letter-spacing: 3px;
+}
+
+/* ═══════════════════════════════════════ */
+/* RESPONSIVE                              */
+/* ═══════════════════════════════════════ */
+
+@media (max-width: 640px) {
+  .header { flex-direction: column; gap: 12px; text-align: center; }
+  .hero-stat-row { gap: 32px; }
+  .qa-grid { grid-template-columns: 1fr; }
+  .schema-dims { flex-direction: column; align-items: center; }
+  .paper-hero { padding: 32px 20px; }
+  .paper-balance { font-size: 42px; }
+  section { padding: 60px 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="ambient"></div>
+
+<div class="content">
+
+<!-- ═══════════════════════════════════════ -->
+<!-- DASHBOARD HEADER                        -->
+<!-- ═══════════════════════════════════════ -->
+
+<div class="header">
+  <div class="header-brand">
+    <svg viewBox="0 0 512 512" width="36" height="36">
+      <rect width="512" height="512" rx="112" ry="112" fill="#0D2137"/>
+      <path d="M 220 100 C 220 100, 292 155, 292 200 C 292 245, 220 275, 220 320 C 220 365, 292 395, 292 420" fill="none" stroke="#22C55E" stroke-width="30" stroke-linecap="round"/>
+      <path d="M 292 100 C 292 100, 220 155, 220 200 C 220 245, 292 275, 292 320 C 292 365, 220 395, 220 420" fill="none" stroke="#86EFAC" stroke-width="30" stroke-linecap="round"/>
+    </svg>
+    <div class="header-wordmark">
+      <span><span class="wd">d</span><span class="wamp">&</span><span class="wa">a</span></span>
+      <span class="header-analytics">analytics</span>
+      <span class="header-pipe">|</span>
+      <span class="header-module">blindspot · trading</span>
+    </div>
+  </div>
+  <div class="header-date">feb 27, 2026</div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- HERO                                    -->
+<!-- ═══════════════════════════════════════ -->
+
+<section class="hero">
+  <div class="hero-helix">
+    <svg viewBox="0 0 512 512" width="120" height="120">
+      <rect width="512" height="512" rx="112" ry="112" fill="#0D2137"/>
+      <path d="M 220 100 C 220 100, 292 155, 292 200 C 292 245, 220 275, 220 320 C 220 365, 292 395, 292 420" fill="none" stroke="#22C55E" stroke-width="28" stroke-linecap="round"/>
+      <path d="M 292 100 C 292 100, 220 155, 220 200 C 220 245, 292 275, 292 320 C 292 365, 220 395, 220 420" fill="none" stroke="#86EFAC" stroke-width="28" stroke-linecap="round"/>
+      <line x1="235" y1="148" x2="277" y2="148" stroke="#E2E8F0" stroke-width="8" stroke-linecap="round" opacity="0.2"/>
+      <line x1="235" y1="252" x2="277" y2="252" stroke="#E2E8F0" stroke-width="8" stroke-linecap="round" opacity="0.2"/>
+      <line x1="235" y1="370" x2="277" y2="370" stroke="#E2E8F0" stroke-width="8" stroke-linecap="round" opacity="0.2"/>
+    </svg>
+  </div>
+  <h1><span class="blind">Blind</span><span class="spot">Spot</span></h1>
+  <div class="hero-tagline">signal → structure → edge</div>
+  <p class="hero-desc">
+    Catches what feel alone can't show. Your trades, structured. Your patterns, visible. Your edge, quantified.
+  </p>
+  <div class="hero-stat-row">
+    <div class="hero-stat">
+      <div class="hero-stat-num">3</div>
+      <div class="hero-stat-label">Strategies</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">3</div>
+      <div class="hero-stat-label">Exit Signals</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">30</div>
+      <div class="hero-stat-label">Governed Variables</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">117<span style="font-size:20px;opacity:0.6;">%</span></div>
+      <div class="hero-stat-label">16.5 Month Return</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- STRATEGIES                              -->
+<!-- ═══════════════════════════════════════ -->
+
+<section>
+  <div class="section-label">Strategies</div>
+  <div class="section-title">Three Ways In</div>
+  <div class="strategy-grid">
+    <div class="strategy-card">
+      <div class="strategy-name">Opening Range Breakout</div>
+      <div class="strategy-timeframe">intraday · 9:30–10:00 window</div>
+      <div class="strategy-logic">
+        Wait for the first 30 minutes to set the range. Enter on a clean break of the high or low. Exit at LOD, HOD, or EOD. No chasing.
+      </div>
+    </div>
+    <div class="strategy-card">
+      <div class="strategy-name">Swing</div>
+      <div class="strategy-timeframe">multi-day · 2–10 day hold</div>
+      <div class="strategy-logic">
+        Daily chart setups only. Enter on a pullback to a moving average or support. Let the trade breathe. Exit signal: break of the trend or target hit.
+      </div>
+    </div>
+    <div class="strategy-card">
+      <div class="strategy-name">MA Bounce</div>
+      <div class="strategy-timeframe">daily · 8/21 EMA zone</div>
+      <div class="strategy-logic">
+        Price pulls back to the 8 or 21 EMA on the daily. Volume confirms. Enter on the bounce. Clean structure. Clean signal. Let the average do the work.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- LIVE TRADES                             -->
+<!-- ═══════════════════════════════════════ -->
+
+<section>
+  <div class="section-label">Live Trades · Day 2</div>
+  <div class="section-title">15 Positions · Feb 25, 2026</div>
+  <div class="trades-table-wrap">
+    <table class="trades-table">
+      <thead>
+        <tr><th>Ticker</th><th>Direction</th><th>Entry</th><th>Current</th><th>P&L</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>LMT</td><td class="long">LONG</td><td>475.81</td><td>487.30</td><td class="win">+11.49</td><td class="win">WIN</td></tr>
+        <tr><td>MRK</td><td class="long">LONG</td><td>84.12</td><td>85.39</td><td class="win">+1.27</td><td class="win">WIN</td></tr>
+        <tr><td>GILD</td><td class="long">LONG</td><td>109.92</td><td>113.52</td><td class="win">+3.60</td><td class="win">WIN</td></tr>
+        <tr><td>WMT</td><td class="long">LONG</td><td>95.33</td><td>95.87</td><td class="win">+0.54</td><td class="win">WIN</td></tr>
+        <tr><td>DE</td><td class="long">LONG</td><td>461.00</td><td>464.38</td><td class="win">+3.38</td><td class="win">WIN</td></tr>
+        <tr><td>PEP</td><td class="long">LONG</td><td>148.34</td><td>147.68</td><td class="loss">-0.66</td><td class="loss">LOSS</td></tr>
+        <tr><td>COST</td><td class="long">LONG</td><td>1001.52</td><td>1001.40</td><td class="scratch">-0.12</td><td class="scratch">SCRATCH</td></tr>
+        <tr><td>AMZN</td><td class="short">SHORT</td><td>216.07</td><td>213.08</td><td class="win">+2.99</td><td class="win">WIN</td></tr>
+        <tr><td>META</td><td class="short">SHORT</td><td>694.39</td><td>688.72</td><td class="win">+5.67</td><td class="win">WIN</td></tr>
+        <tr><td>NVDA</td><td class="short">SHORT</td><td>130.28</td><td>131.28</td><td class="loss">-1.00</td><td class="loss">LOSS</td></tr>
+        <tr><td>MSFT</td><td class="short">SHORT</td><td>409.07</td><td>411.78</td><td class="loss">-2.71</td><td class="loss">LOSS</td></tr>
+        <tr><td>GOOGL</td><td class="short">SHORT</td><td>178.35</td><td>180.48</td><td class="loss">-2.13</td><td class="loss">LOSS</td></tr>
+        <tr><td>AAPL</td><td class="short">SHORT</td><td>245.55</td><td>247.10</td><td class="loss">-1.55</td><td class="loss">LOSS</td></tr>
+        <tr><td>ADP</td><td class="short">SHORT</td><td>209.75</td><td>215.63</td><td class="loss">-5.88</td><td class="loss">LOSS</td></tr>
+        <tr><td>NKE</td><td class="short">SHORT</td><td>61.79</td><td>62.18</td><td class="loss">-0.39</td><td class="loss">LOSS</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="margin-top: 20px; display: flex; gap: 24px; flex-wrap: wrap;">
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">
+      <span style="color: var(--text-dim);">Longs:</span> <span style="color: var(--win);">6W</span> / <span style="color: var(--loss);">1L</span>
+    </div>
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">
+      <span style="color: var(--text-dim);">Shorts:</span> <span style="color: var(--win);">2W</span> / <span style="color: var(--loss);">6L</span>
+    </div>
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">
+      <span style="color: var(--text-dim);">Bias:</span> <span style="color: var(--paper);">BEAR</span>
+    </div>
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">
+      <span style="color: var(--text-dim);">Insight:</span> <span style="color: var(--amp);">Longs won on a bear day. Again.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- NEW FEATURES                            -->
+<!-- ═══════════════════════════════════════ -->
+
+<section>
+  <div class="section-label">What's New</div>
+  <div class="section-title">Built This Week</div>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🧭</div>
+      <div class="feature-name">Market Bias Tracking</div>
+      <div class="feature-desc">
+        Log your directional call at the open — bull, bear, or neutral. One field. Attached to every trade that day. Over time: does your read match your results?
+      </div>
+      <div class="feature-tag live">LIVE — 1 FIELD</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔄</div>
+      <div class="feature-name">Strategy Conversion</div>
+      <div class="feature-desc">
+        When an ORB winner keeps running, it becomes a swing. The engine tracks the conversion — your highest conviction plays are the ones you hold overnight.
+      </div>
+      <div class="feature-tag live">CONFIRMED — DAY 2</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <div class="feature-name">Enrichment Fields</div>
+      <div class="feature-desc">
+        ATR%, average dollar volume, catalyst flag, nearest MA, RSI at entry, forecast category. The context around the trade, not just the trade itself.
+      </div>
+      <div class="feature-tag">SPEC'D — READY TO ADD</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">💧</div>
+      <div class="feature-name">Max Liquidity</div>
+      <div class="feature-desc">
+        Pre-market sizing intelligence. How much can you push through without moving the price against yourself? Logged at night. Available at open.
+      </div>
+      <div class="feature-tag">SPEC'D — WATCHLIST LAYER</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- PAPER PORTFOLIO                         -->
+<!-- ═══════════════════════════════════════ -->
+
+<section>
+  <div class="section-label">Paper Portfolio Mode</div>
+  <div class="section-title">Test the Edge Before You Bet It</div>
+  <div class="paper-hero">
+    <div class="paper-balance">10,000</div>
+    <div class="paper-unit">Tokens</div>
+    <div class="paper-tagline">not dollars · a unit of conviction</div>
+    <p class="paper-desc">
+      Same engine. Same schema. Same exit signals. Zero real money. Track paper trades alongside live trades. One field: <span style="color:var(--a);">LIVE</span> or <span style="color:var(--paper);">PAPER</span>. The engine doesn't care. It tracks both identically.
+    </p>
+    <p class="paper-desc" style="margin-top: 16px; color: var(--text-dim); font-size: 14px;">
+      The setups that never graduate from paper to live tell you something about conviction you didn't know you had.
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- QUESTIONS                               -->
+<!-- ═══════════════════════════════════════ -->
+
+<section>
+  <div class="section-label">Questions · BlindSpot Answers</div>
+  <div class="section-title">Ask Your Data</div>
+  <div class="qa-grid">
+    <div class="qa-item">
+      <div class="qa-domain">Strategy</div>
+      <div class="qa-question">"Am I better at ORBs or swings?"</div>
+      <div class="qa-answer">ORB: 62% · Swing: 71% · MA Bounce: collecting</div>
+    </div>
+    <div class="qa-item">
+      <div class="qa-domain">Direction</div>
+      <div class="qa-question">"When I call bear and go long anyway, do I win?"</div>
+      <div class="qa-answer">2 days tracked · longs held both times</div>
+    </div>
+    <div class="qa-item">
+      <div class="qa-domain">Exit Signal</div>
+      <div class="qa-question">"Which exit signal costs me the most edge?"</div>
+      <div class="qa-answer">accumulating data · 30 trades to unlock</div>
+    </div>
+    <div class="qa-item">
+      <div class="qa-domain">Conversion</div>
+      <div class="qa-question">"Which ORBs do I convert to swings?"</div>
+      <div class="qa-answer">LMT · MRK · GILD · WMT · DE — day 2</div>
+    </div>
+    <div class="qa-item">
+      <div class="qa-domain">Missed Signal</div>
+      <div class="qa-question">"The trades I skipped — was I right to skip them?"</div>
+      <div class="qa-answer">WULF: not above prev day high · dodged</div>
+    </div>
+    <div class="qa-item">
+      <div class="qa-domain">Paper Portfolio</div>
+      <div class="qa-question">"Which setups stay paper and never graduate to live?"</div>
+      <div class="qa-answer">awaiting first paper trades</div>
+    </div>
+    <div class="qa-item">
+      <div class="qa-domain">Market Context</div>
+      <div class="qa-question">"On red QQQ days, does my filter still work?"</div>
+      <div class="qa-answer">day 1: yes · day 2: yes · tracking</div>
+    </div>
+    <div class="qa-item">
+      <div class="qa-domain">The Point</div>
+      <div class="qa-question">"What am I missing?"</div>
+      <div class="qa-answer">that's the whole point</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- SCHEMA                                  -->
+<!-- ═══════════════════════════════════════ -->
+
+<section>
+  <div class="section-label">Architecture</div>
+  <div class="section-title">Star Schema</div>
+  <p class="section-desc">
+    One fact table in the center. Dimensions around it. Everything connects. Nothing is a loose note. Same architecture Dave uses at the bank. Different data. Same engine.
+  </p>
+  <div class="schema-visual">
+    <div class="schema-dims">
+      <div class="schema-dim">
+        <div class="schema-dim-title">Dim_Strategy</div>
+        <div class="schema-dim-sub">ORB · Swing · MA Bounce</div>
+      </div>
+      <div class="schema-dim">
+        <div class="schema-dim-title">Dim_Ticker</div>
+        <div class="schema-dim-sub">28+ stocks seeded</div>
+      </div>
+      <div class="schema-dim">
+        <div class="schema-dim-title">Dim_Direction</div>
+        <div class="schema-dim-sub">Long · Short</div>
+      </div>
+    </div>
+    <div class="schema-connector"></div>
+    <div class="schema-fact">
+      <div class="schema-fact-title">Fact_Trades</div>
+      <div class="schema-fact-sub">22 columns · 30 governed variables · every trade, every signal, every miss</div>
+    </div>
+    <div class="schema-connector"></div>
+    <div class="schema-dims">
+      <div class="schema-dim">
+        <div class="schema-dim-title">Dim_ExitSignal</div>
+        <div class="schema-dim-sub">LOD · HOD · EOD</div>
+      </div>
+      <div class="schema-dim">
+        <div class="schema-dim-title">Dim_TradeType</div>
+        <div class="schema-dim-sub">Live · Paper</div>
+      </div>
+      <div class="schema-dim">
+        <div class="schema-dim-title">Dim_MarketBias</div>
+        <div class="schema-dim-sub">Bull · Bear · Neutral</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- ORIGIN                                  -->
+<!-- ═══════════════════════════════════════ -->
+
+<section class="origin">
+  <div class="origin-line">first blindspot module built with someone, not for someone</div>
+  <div style="margin: 32px auto; display: flex; justify-content: center; align-items: center; gap: 16px;">
+    <svg viewBox="0 0 512 512" width="48" height="48">
+      <rect width="512" height="512" rx="112" ry="112" fill="#0D2137"/>
+      <path d="M 220 100 C 220 100, 292 155, 292 200 C 292 245, 220 275, 220 320 C 220 365, 292 395, 292 420" fill="none" stroke="#22C55E" stroke-width="28" stroke-linecap="round"/>
+      <path d="M 292 100 C 292 100, 220 155, 220 200 C 220 245, 292 275, 292 320 C 292 365, 220 395, 220 420" fill="none" stroke="#86EFAC" stroke-width="28" stroke-linecap="round"/>
+      <line x1="235" y1="148" x2="277" y2="148" stroke="#E2E8F0" stroke-width="8" stroke-linecap="round" opacity="0.2"/>
+      <line x1="235" y1="252" x2="277" y2="252" stroke="#E2E8F0" stroke-width="8" stroke-linecap="round" opacity="0.2"/>
+      <line x1="235" y1="370" x2="277" y2="370" stroke="#E2E8F0" stroke-width="8" stroke-linecap="round" opacity="0.2"/>
+    </svg>
+    <div>
+      <span style="font-family: 'DM Sans', sans-serif; font-size: 32px; font-weight: 700;"><span style="color: var(--d);">d</span><span style="color: var(--amp); font-weight: 300;">&</span><span style="color: var(--a);">a</span></span>
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-dim); letter-spacing: 4px; margin-left: 8px;">analytics</span>
+    </div>
+  </div>
+  <div class="origin-highlight">
+    "I promise you you're not wasting your time on this."<br>
+    <span style="font-size: 13px; color: var(--text-dim); font-style: normal;">— Alex, February 24, 2026</span>
+  </div>
+  <p style="font-size: 15px; color: var(--text); max-width: 500px; margin: 0 auto; line-height: 1.8; font-weight: 300;">
+    He brings the signal. Dave brings the structure. The engine catches what neither can see alone. Built by two people who share actual DNA.
+  </p>
+  <div class="origin-sig">
+    dropdown logistics · same engine · different data
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- FOOTER                                  -->
+<!-- ═══════════════════════════════════════ -->
+
+<div class="footer">
+  <div class="footer-primary">d&a analytics · powered by blindspot</div>
+  <div class="footer-dna">built by two people who share actual dna</div>
+  <div class="footer-ddl">dropdown logistics</div>
+</div>
+
+</div>
+
+</body>
+</html>

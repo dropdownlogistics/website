@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memoir — Release Calendar — Drop Down Logistics</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-primary: #0a0a0f;
+    --bg-card: #12121a;
+    --bg-card-hover: #181824;
+    --bg-surface: #0e0e16;
+    --text-primary: #e8e8ee;
+    --text-secondary: #9999aa;
+    --text-muted: #666680;
+    --accent: #c73e3e;
+    --accent-dim: rgba(199, 62, 62, 0.15);
+    --accent-glow: rgba(199, 62, 62, 0.08);
+    --border: #1e1e2e;
+    --border-subtle: #16161f;
+    --tuesday: #4a7ac7;
+    --friday: var(--accent);
+    --published: #2d7a4f;
+    --published-dim: rgba(45, 122, 79, 0.12);
+    --upcoming: #9999aa;
+    --serif: 'Source Serif 4', Georgia, serif;
+    --sans: 'DM Sans', -apple-system, sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(10, 10, 15, 0.85);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .nav-inner {
+    max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between; height: 60px;
+  }
+  .nav-logo {
+    font-family: var(--mono); font-size: 0.8rem; font-weight: 700;
+    color: var(--text-primary); text-decoration: none;
+    letter-spacing: 0.02em; text-transform: uppercase;
+  }
+  .nav-links { display: flex; gap: 1.75rem; list-style: none; }
+  .nav-links a {
+    font-family: var(--sans); font-size: 0.82rem; color: var(--text-muted);
+    text-decoration: none; transition: color 0.2s; letter-spacing: 0.01em;
+  }
+  .nav-links a:hover { color: var(--text-primary); }
+  .nav-links a.active { color: var(--accent); }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 140px 2rem 60px;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .hero-eyebrow {
+    font-family: var(--mono); font-size: 0.72rem; color: var(--accent);
+    text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 1.25rem;
+    opacity: 0; animation: fadeUp 0.6s ease forwards;
+  }
+  .hero h1 {
+    font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 3.2rem);
+    font-weight: 700; line-height: 1.15; margin-bottom: 0.75rem;
+    max-width: 700px; opacity: 0; animation: fadeUp 0.6s ease 0.1s forwards;
+  }
+  .hero h1 span { color: var(--text-muted); font-weight: 400; }
+  .hero-sub {
+    font-size: 1.05rem; color: var(--text-secondary); max-width: 600px;
+    line-height: 1.7; opacity: 0; animation: fadeUp 0.6s ease 0.15s forwards;
+  }
+  .hero-quote {
+    font-family: var(--serif); font-style: italic; font-size: 1rem;
+    color: var(--text-muted); margin-top: 1.5rem;
+    border-left: 2px solid var(--accent); padding-left: 1rem;
+    opacity: 0; animation: fadeUp 0.6s ease 0.2s forwards;
+  }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+    opacity: 0; animation: fadeUp 0.6s ease 0.25s forwards;
+  }
+  .stats-inner {
+    display: flex; gap: 2.5rem; padding: 1.5rem 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+  .stat-item { display: flex; flex-direction: column; gap: 0.2rem; }
+  .stat-label {
+    font-family: var(--mono); font-size: 0.6rem; color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: 0.12em;
+  }
+  .stat-value {
+    font-family: var(--serif); font-size: 1.15rem; font-weight: 600;
+    color: var(--text-primary);
+  }
+  .stat-value.accent { color: var(--accent); }
+
+  /* ── CADENCE SECTION ── */
+  .cadence-section {
+    max-width: 1200px; margin: 0 auto; padding: 3rem 2rem 0;
+  }
+  .cadence-row {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .cadence-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 1.5rem; position: relative; overflow: hidden;
+  }
+  .cadence-card::before {
+    content: ''; position: absolute; top: 0; left: 0; bottom: 0;
+    width: 3px; border-radius: 3px 0 0 3px;
+  }
+  .cadence-card.c-friday::before { background: var(--accent); }
+  .cadence-card.c-tuesday::before { background: var(--tuesday); }
+  .cadence-card.c-subscribe::before { background: var(--published); }
+
+  .cadence-card-day {
+    font-family: var(--mono); font-size: 0.62rem; text-transform: uppercase;
+    letter-spacing: 0.12em; margin-bottom: 0.4rem;
+  }
+  .c-friday .cadence-card-day { color: var(--accent); }
+  .c-tuesday .cadence-card-day { color: var(--tuesday); }
+  .c-subscribe .cadence-card-day { color: var(--published); }
+
+  .cadence-card-title {
+    font-family: var(--serif); font-size: 1.1rem; font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+  .cadence-card-desc {
+    font-size: 0.82rem; color: var(--text-muted); line-height: 1.5;
+  }
+  .cadence-sub-btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-family: var(--mono); font-size: 0.62rem; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--text-primary); text-decoration: none;
+    padding: 0.55em 1em; background: var(--accent-dim);
+    border: 1px solid rgba(199, 62, 62, 0.25); border-radius: 6px;
+    margin-top: 0.75rem; transition: all 0.25s;
+  }
+  .cadence-sub-btn:hover {
+    background: rgba(199, 62, 62, 0.2); border-color: var(--accent);
+    box-shadow: 0 4px 20px var(--accent-glow);
+  }
+  .cadence-sub-btn svg { width: 12px; height: 12px; fill: currentColor; }
+
+  /* ── SECTION HEADERS ── */
+  .section-header {
+    max-width: 1200px; margin: 0 auto; padding: 3rem 2rem 1rem;
+  }
+  .section-header-inner {
+    display: flex; align-items: baseline; gap: 1rem;
+    padding-bottom: 0.75rem; border-bottom: 1px solid var(--border);
+  }
+  .section-num {
+    font-family: var(--mono); font-size: 0.62rem; color: var(--accent);
+    text-transform: uppercase; letter-spacing: 0.12em; flex-shrink: 0;
+  }
+  .section-title {
+    font-family: var(--serif); font-size: 1.35rem; font-weight: 700;
+  }
+  .section-meta {
+    font-family: var(--mono); font-size: 0.6rem; color: var(--text-muted);
+    letter-spacing: 0.05em; margin-left: auto; flex-shrink: 0;
+  }
+
+  /* ── EPISODE GRID ── */
+  .episode-grid {
+    max-width: 1200px; margin: 0 auto; padding: 1rem 2rem 0;
+  }
+
+  .episode-row {
+    display: grid;
+    grid-template-columns: 48px 1fr 100px 80px;
+    gap: 1rem;
+    align-items: center;
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid var(--border-subtle);
+    transition: all 0.2s;
+    cursor: default;
+    border-radius: 6px;
+  }
+
+  .episode-row:hover {
+    background: var(--bg-card);
+  }
+
+  .episode-row.is-published {
+    cursor: pointer;
+  }
+
+  .episode-row.is-published:hover {
+    background: var(--bg-card-hover);
+    border-color: rgba(199, 62, 62, 0.15);
+  }
+
+  .ep-number {
+    font-family: var(--mono); font-size: 0.72rem; color: var(--text-muted);
+    text-align: center; letter-spacing: 0.05em;
+  }
+
+  .ep-info { min-width: 0; }
+
+  .ep-title {
+    font-family: var(--serif); font-size: 1rem; font-weight: 600;
+    color: var(--text-primary); line-height: 1.3;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+
+  .ep-title-sub {
+    font-family: var(--mono); font-size: 0.6rem; color: var(--text-muted);
+    letter-spacing: 0.05em; margin-top: 0.15rem;
+  }
+
+  .ep-words {
+    font-family: var(--mono); font-size: 0.65rem; color: var(--text-muted);
+    text-align: right; letter-spacing: 0.03em;
+  }
+
+  .ep-status {
+    text-align: right;
+  }
+
+  .status-badge {
+    font-family: var(--mono); font-size: 0.55rem; text-transform: uppercase;
+    letter-spacing: 0.1em; padding: 0.3em 0.65em; border-radius: 3px;
+    display: inline-block;
+  }
+
+  .status-published {
+    color: var(--published); background: var(--published-dim);
+    border: 1px solid rgba(45, 122, 79, 0.25);
+  }
+
+  .status-next {
+    color: var(--accent); background: var(--accent-dim);
+    border: 1px solid rgba(199, 62, 62, 0.25);
+    animation: subtlePulse 3s ease infinite;
+  }
+
+  .status-upcoming {
+    color: var(--text-muted); background: rgba(255,255,255, 0.03);
+    border: 1px solid var(--border);
+  }
+
+  .status-live {
+    color: var(--published); background: var(--published-dim);
+    border: 1px solid rgba(45, 122, 79, 0.25);
+  }
+
+  @keyframes subtlePulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(199, 62, 62, 0); }
+    50% { box-shadow: 0 0 0 4px rgba(199, 62, 62, 0.08); }
+  }
+
+  /* row for published items */
+  .episode-row.is-published .ep-number { color: var(--published); }
+  .episode-row.is-published .ep-title { color: white; }
+  .episode-row.is-next .ep-number { color: var(--accent); }
+  .episode-row.is-next .ep-title { color: var(--text-primary); }
+
+  /* ── PROGRESS BAR ── */
+  .progress-section {
+    max-width: 1200px; margin: 0 auto; padding: 2.5rem 2rem 0;
+  }
+  .progress-bar-outer {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 1.5rem;
+  }
+  .progress-label-row {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 0.75rem;
+  }
+  .progress-label {
+    font-family: var(--mono); font-size: 0.65rem; text-transform: uppercase;
+    letter-spacing: 0.12em; color: var(--text-secondary);
+  }
+  .progress-count {
+    font-family: var(--mono); font-size: 0.72rem; color: var(--accent);
+    letter-spacing: 0.05em;
+  }
+  .progress-track {
+    width: 100%; height: 6px; background: var(--border);
+    border-radius: 3px; overflow: hidden; position: relative;
+  }
+  .progress-fill {
+    height: 100%; border-radius: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--published));
+    transition: width 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .progress-stats {
+    display: flex; gap: 2rem; margin-top: 1rem;
+  }
+  .progress-stat {
+    font-family: var(--mono); font-size: 0.6rem; color: var(--text-muted);
+    letter-spacing: 0.05em;
+  }
+  .progress-stat strong { color: var(--text-secondary); }
+
+  /* ── DEXINSIGHT ── */
+  .dex-insight {
+    max-width: 1200px; margin: 3rem auto 0; padding: 0 2rem;
+  }
+  .dex-box {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 2rem 2.5rem; position: relative;
+  }
+  .dex-box::before {
+    content: ''; position: absolute; top: 0; left: 0; bottom: 0;
+    width: 3px; background: var(--accent); border-radius: 3px 0 0 3px;
+  }
+  .dex-label {
+    font-family: var(--mono); font-size: 0.7rem; color: var(--accent);
+    text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 0.75rem;
+  }
+  .dex-text {
+    font-family: var(--serif); font-size: 1.02rem; line-height: 1.75;
+    color: var(--text-secondary);
+  }
+  .dex-text em { font-style: italic; color: var(--text-primary); }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 3rem 2rem; max-width: 1200px; margin: 4rem auto 0;
+  }
+  .footer-inner {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    flex-wrap: wrap; gap: 2rem;
+  }
+  .footer-brand { max-width: 360px; }
+  .footer-brand-name {
+    font-family: var(--mono); font-size: 0.75rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.05em;
+    color: var(--text-primary); margin-bottom: 0.5rem;
+  }
+  .footer-brand-desc {
+    font-size: 0.82rem; color: var(--text-muted); line-height: 1.6;
+  }
+  .footer-tagline {
+    font-family: var(--mono); font-size: 0.68rem; color: var(--accent);
+    margin-top: 0.75rem; letter-spacing: 0.05em;
+  }
+  .footer-col h4 {
+    font-family: var(--mono); font-size: 0.65rem; text-transform: uppercase;
+    letter-spacing: 0.12em; color: var(--text-muted); margin-bottom: 0.75rem;
+  }
+  .footer-col a {
+    display: block; font-size: 0.82rem; color: var(--text-secondary);
+    text-decoration: none; margin-bottom: 0.4rem; transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--text-primary); }
+  .footer-bottom {
+    margin-top: 2.5rem; padding-top: 1.5rem;
+    border-top: 1px solid var(--border-subtle);
+    display: flex; justify-content: space-between;
+    font-size: 0.72rem; color: var(--text-muted);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hero { padding: 120px 1.5rem 50px; }
+    .stats-inner { gap: 1.5rem; }
+    .cadence-row { grid-template-columns: 1fr; }
+    .episode-row {
+      grid-template-columns: 36px 1fr 60px;
+      gap: 0.5rem; padding: 0.75rem 0.5rem;
+    }
+    .ep-words { display: none; }
+    .section-header-inner { flex-wrap: wrap; }
+    .section-meta { margin-left: 0; }
+    .footer-inner { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Drop Down Logistics</a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/systems">Systems</a></li>
+      <li><a href="/standards">Standards</a></li>
+      <li><a href="/excelligence">Graph</a></li>
+      <li><a href="/forewords">Forewords</a></li>
+      <li><a href="/council">Council</a></li>
+      <li><a href="/memoir" class="active">Memoir</a></li>
+      <li><a href="/other-works">Other Works</a></li>
+      <li><a href="/analytics">Analytics</a></li>
+      <li><a href="/about">About</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">Little to Know Experience</div>
+  <h1>Release Calendar <span>— Season Guide</span></h1>
+  <p class="hero-sub">49 excerpts. One per Friday. Behind-the-scenes every Tuesday. The full architecture of recovery, marriage, systems thinking, and getting your life back — published in sequence on Substack.</p>
+  <div class="hero-quote">"Sometimes love is certified mail."</div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <span class="stat-label">Total Excerpts</span>
+      <span class="stat-value">49</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-label">Total Words</span>
+      <span class="stat-value">52,595</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-label">Published</span>
+      <span class="stat-value accent" id="publishedCount">7 of 49</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-label">Cadence</span>
+      <span class="stat-value">Fri + Tue</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-label">Distribution</span>
+      <span class="stat-value">dkhale.substack.com</span>
+    </div>
+  </div>
+</div>
+
+<!-- CADENCE -->
+<section class="cadence-section">
+  <div class="cadence-row">
+    <div class="cadence-card c-friday">
+      <div class="cadence-card-day">Fridays</div>
+      <div class="cadence-card-title">New Excerpt</div>
+      <div class="cadence-card-desc">A new chapter published in sequence. The backbone of the book, released one piece at a time.</div>
+    </div>
+    <div class="cadence-card c-tuesday">
+      <div class="cadence-card-day">Tuesdays</div>
+      <div class="cadence-card-title">Behind the Scenes</div>
+      <div class="cadence-card-desc">Writing decisions, structural choices, and the architecture behind each excerpt. The making-of layer.</div>
+    </div>
+    <div class="cadence-card c-subscribe">
+      <div class="cadence-card-day">Subscribe</div>
+      <div class="cadence-card-title">D.'s Substack</div>
+      <div class="cadence-card-desc">Free. Every Tuesday and Friday.</div>
+      <a href="https://dkhale.substack.com" target="_blank" class="cadence-sub-btn">
+        <svg viewBox="0 0 24 24"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
+        Subscribe
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRESS BAR -->
+<div class="progress-section">
+  <div class="progress-bar-outer">
+    <div class="progress-label-row">
+      <span class="progress-label">Publication Progress</span>
+      <span class="progress-count">7 / 49 Published</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" style="width: 14.3%"></div>
+    </div>
+    <div class="progress-stats">
+      <span class="progress-stat"><strong>~42 weeks</strong> remaining</span>
+      <span class="progress-stat"><strong>43,487</strong> words to go</span>
+      <span class="progress-stat">Est. completion <strong>Dec 2026</strong></span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     EPISODE GUIDE — ALL 49 EXCERPTS
+     ═══════════════════════════════════════════════ -->
+
+<!-- SECTION: EARLY DAYS (1-7) -->
+<div class="section-header">
+  <div class="section-header-inner">
+    <span class="section-num">Part I</span>
+    <span class="section-title">Early Days</span>
+    <span class="section-meta">Excerpts 01–07 · 7 chapters</span>
+  </div>
+</div>
+<div class="episode-grid" id="episodes">
+
+  <a href="https://dkhale.substack.com" target="_blank" class="episode-row is-published" style="text-decoration:none; color:inherit;">
+    <div class="ep-number">01</div>
+    <div class="ep-info">
+      <div class="ep-title">Perspective</div>
+      <div class="ep-title-sub">1,135 words · Published</div>
+    </div>
+    <div class="ep-words">1,135w</div>
+    <div class="ep-status"><span class="status-badge status-published">Published</span></div>
+  </a>
+
+  <a href="https://dkhale.substack.com" target="_blank" class="episode-row is-published" style="text-decoration:none; color:inherit;">
+    <div class="ep-number">02</div>
+    <div class="ep-info">
+      <div class="ep-title">Lake Night</div>
+      <div class="ep-title-sub">1,407 words · Published</div>
+    </div>
+    <div class="ep-words">1,407w</div>
+    <div class="ep-status"><span class="status-badge status-published">Published</span></div>
+  </a>
+
+  <a href="https://dkhale.substack.com" target="_blank" class="episode-row is-published" style="text-decoration:none; color:inherit;">
+    <div class="ep-number">03</div>
+    <div class="ep-info">
+      <div class="ep-title">The Coming Storm</div>
+      <div class="ep-title-sub">1,874 words · Published</div>
+    </div>
+    <div class="ep-words">1,874w</div>
+    <div class="ep-status"><span class="status-badge status-published">Published</span></div>
+  </a>
+
+  <a href="https://dkhale.substack.com" target="_blank" class="episode-row is-published" style="text-decoration:none; color:inherit;">
+    <div class="ep-number">04</div>
+    <div class="ep-info">
+      <div class="ep-title">3 South</div>
+      <div class="ep-title-sub">1,574 words · Published</div>
+    </div>
+    <div class="ep-words">1,574w</div>
+    <div class="ep-status"><span class="status-badge status-published">Published</span></div>
+  </a>
+
+  <a href="https://dkhale.substack.com" target="_blank" class="episode-row is-published" style="text-decoration:none; color:inherit;">
+    <div class="ep-number">05</div>
+    <div class="ep-info">
+      <div class="ep-title">Drink Drink Drink</div>
+      <div class="ep-title-sub">1,183 words · Published</div>
+    </div>
+    <div class="ep-words">1,183w</div>
+    <div class="ep-status"><span class="status-badge status-published">Published</span></div>
+  </a>
+
+  <a href="https://dkhale.substack.com" target="_blank" class="episode-row is-published" style="text-decoration:none; color:inherit;">
+    <div class="ep-number">06</div>
+    <div class="ep-info">
+      <div class="ep-title">The Dance</div>
+      <div class="ep-title-sub">1,193 words · Published</div>
+    </div>
+    <div class="ep-words">1,193w</div>
+    <div class="ep-status"><span class="status-badge status-published">Published</span></div>
+  </a>
+
+  <a href="https://dkhale.substack.com/p/the-rhythm" target="_blank" class="episode-row is-published" style="text-decoration:none; color:inherit;">
+    <div class="ep-number">07</div>
+    <div class="ep-info">
+      <div class="ep-title">The Rhythm</div>
+      <div class="ep-title-sub">716 words · Published</div>
+    </div>
+    <div class="ep-words">716w</div>
+    <div class="ep-status"><span class="status-badge status-published">Published</span></div>
+  </a>
+
+</div>
+
+<!-- SECTION: FINDING FOOTING (8-13) -->
+<div class="section-header">
+  <div class="section-header-inner">
+    <span class="section-num">Part II</span>
+    <span class="section-title">Finding Footing</span>
+    <span class="section-meta">Excerpts 08–13 · 6 chapters</span>
+  </div>
+</div>
+<div class="episode-grid">
+
+  <div class="episode-row is-next">
+    <div class="ep-number">08</div>
+    <div class="ep-info">
+      <div class="ep-title">Loneliness or Freedom?</div>
+      <div class="ep-title-sub">592 words · Next Friday</div>
+    </div>
+    <div class="ep-words">592w</div>
+    <div class="ep-status"><span class="status-badge status-next">Next Up</span></div>
+  </div>
+
+  <div class="episode-row">
+    <div class="ep-number">09</div>
+    <div class="ep-info">
+      <div class="ep-title">GMAT</div>
+      <div class="ep-title-sub">619 words</div>
+    </div>
+    <div class="ep-words">619w</div>
+    <div class="ep-status"><span class="status-badge status-upcoming">Upcoming</span></div>
+  </div>
+
+  <div class="episode-row">
+    <div class="ep-number">10</div>
+    <div class="ep-info">
+      <div class="ep-title">21</div>
+      <div class="ep-title-sub">679 words</div>
+    </div>
+    <div class="ep-words">679w</div>
+    <div class="ep-status"><span class="status-badge status-upcoming">Upcoming</span></div>
+  </div>
+
+  <div class="episode-row">
+    <div class="ep-number">11</div>
+    <div class="ep-info">
+      <div class="ep-title">The Hill</div>
+      <div class="ep-title-sub">1,106 words</div>
+    </div>
+    <div class="ep-words">1,106w</div>
+    <div class="ep-status"><span class="status-badge status-upcoming">Upcoming</span></div>
+  </div>
+
+  <div class="episode-row">
+    <div class="ep-number">12</div>
+    <div class="ep-info">
+      <div class="ep-title">Tulsa</div>
+      <div class="ep-title-sub">1,284 words</div>
+    </div>
+    <div class="ep-words">1,284w</div>
+    <div class="ep-status"><span class="status-badge status-upcoming">Upcoming</span></div>
+  </div>
+
+  <div class="episode-row">
+    <div class="ep-number">13</div>
+    <div class="ep-info">
+      <div class="ep-title">The First Hiding</div>
+      <div class="ep-title-sub">1,333 words</div>
+    </div>
+    <div class="ep-words">1,333w</div>
+    <div class="ep-status"><span class="status-badge status-upcoming">Upcoming</span></div>
+  </div>
+
+</div>
+
+<!-- SECTION: THE DESCENT (14-20) -->
+<div class="section-header">
+  <div class="section-header-inner">
+    <span class="section-num">Part III</span>
+    <span class="section-title">The Descent</span>
+    <span class="section-meta">Excerpts 14–20 · 7 chapters</span>
+  </div>
+</div>
+<div class="episode-grid">
+
+  <div class="episode-row">
+    <div class="ep-number">14</div>
+    <div class="ep-info"><div class="ep-title">Liberty Tower, 13J</div><div class="ep-title-sub">1,075 words</div></div>
+    <div class="ep-words">1,075w</div>
+    <div class="ep-status"><span class="status-badge status-upcoming">Upcoming</span></div>
+  </div>
+  <div class="episode-row">
+    <div class="ep-number">15</div>
+    <div class="ep-info"><div class="ep-title">Pre-game</div><div class="ep-title-sub">809 words</div></div>
+    <div class="ep-words">809w</div>
+    <div class="ep-status"><span class="status-badge status-upcoming">Upcoming</span></div>
+  </div>
+  <div class="episode-row">
+    <div class="ep-number">16</div>
+    <div class="ep-info"><div class="ep-title">October 2009 (The Train Shot)</div><div class="ep-title-sub">596 words</div></div>
+    <div class="ep-words">596w</div>
+    <div class="ep-status"><span class="status-badge status-upcoming">Upcoming</span></div>
+  </div>
+  <div class="episode-row">
+    <div class="ep-number">17</div>
+    <div class="ep-info"><div class="ep-title">CPA</div><div class="ep-title-sub">1,214 words</div></div>
+    <div class="ep-words">1,214w</div>
+    <div class="ep-status"><span class="status-badge status-upcoming">Upcoming</span></div>
+  </div>
+  <div class="episode-row">
+    <div class="ep-number">18</div>
+    <div class="ep-info"><div class="ep-title">KC / The Drive Back (First Breakup)</div><div class="ep-title-sub">889 words</div></div>
+    <div class="ep-words">889w</div>
+    <div class="ep-status"><span class="status-badge status-upcoming">Upcoming</span></div>
+  </div>
+  <div class="episode-row">
+    <div class="ep-number">19</div>
+    <div class="ep-info"><div class="ep-title">August 2011 (The Dewey)</div><div class="ep-title-sub">1,209 words</div></div>
+    <div class="ep-words">1,209w</div>
+    <div class="ep-status"><span class="status-badge status-upcoming">Upcoming</span></div>
+  </div>
+  <div class="episode-row">
+    <div class="ep-number">20</div>
+    <div class="ep-info"><div class="ep-title">The Aftermath</div><div class="ep-title-sub">1,360 words</div></div>
+    <div class="ep-words">1,360w</div>
+    <div class="ep-status"><span class="status-badge status-upcoming">Upcoming</span></div>
+  </div>
+
+</div>
+
+<!-- SECTION: WORKING, UNTIL IT WASN'T (21-29) -->
+<div class="section-header">
+  <div class="section-header-inner">
+    <span class="section-num">Part IV</span>
+    <span class="section-title">Working, Until It Wasn't</span>
+    <span class="section-meta">Excerpts 21–29 · 9 chapters</span>
+  </div>
+</div>
+<div class="episode-grid">
+
+  <div class="episode-row">
+    <div class="ep-number">21</div>
+    <div class="ep-info"><div class="ep-title">One — Working, Until It Wasn't</div><div class="ep-title-sub">1,642 words</div></div>
+    <div class="ep-words">1,642w</div>
+    <div class="ep-status"><span class="status-badge status-upcoming">Upcoming</span></div>
+  </div>
+  <div class="episode-row">
+    <div class="ep-number">22</div>
+    <div class="ep-info"><div class="ep-title">Two — My Second Job</div><div class="ep-title-sub">1,604 words</div></div>
+    <div class="ep-words">1,604w</div>
+    <div class="ep-status"><span class="status-badge status-upcoming">Upcoming</span></div>
+  </div>
+  <div class="episode-row">
+    <div class="ep-number">23</div>
+    <div class="ep-info"><div class="ep-title">Three — The Second First Drink</div><div class="ep-title-sub">1,668 words</div></div>
+    <div class="ep-words">1,668w</div>
+    <div class="ep-status"><span class="status-badge status-upcoming">Upcoming</span></div>
+  </div>
+  <div class="episode-row">
+    <div class="ep-number">24</div>
+    <div class="ep-info"><div class="ep-title">Four — Basement / Vacation Home</div><div class="ep-title-sub">1,431 words</div></div>
+    <div class="ep-words">1,431w</div>
+    <div class="ep-status"><span class="status-badge status-upcoming">Upcoming</span></div>
+  </div>
+  <div class="episode-row">
+    <div class="ep-number">25</div>
+    <div class="ep-info"><div class="ep-title">Five — The Median</div><div class="ep-title-sub">828 words</div></div>
+    <div class="ep-words">828w</div>
+    <div class="ep-status"><span class="status-badge status-upcoming">Upcoming</span></div>
+  </div>
+  <div class="episode-row">
+    <div class="ep-number">26</div>
+    <div class="ep-info"><div class="ep-title">Six — Here We Go Again</div><div class="ep-title-sub">417 words</div></div>
+    <div class="ep-words">417w</div>
+    <div class="ep-status"><span class="status-badge status-upcoming">Upcoming</span></div>
+  </div>
+  <div class="episode-row">
+    <div class="ep-number">27</div>
+    <div class="ep-info"><div class="ep-title">Seven — The Third First Drink</div><div class="ep-title-sub">513 words</div></div>
+    <div class="ep-words">513w</div>
+    <div class="ep-status"><span class="status-badge status-upcoming">Upcoming</span></div>
+  </div>
+  <div class="episode-row">
+    <div class="ep-number">28</div>
+    <div class="ep-info"><div class="ep-title">Eight — The Walrus</div><div class="ep-title-sub">1,310 words</div></div>
+    <div class="ep-words">1,310w</div>
+    <div class="ep-status"><span class="status-badge status-upcoming">Upcoming</span></div>
+  </div>
+  <div class="episode-row">
+    <div class="ep-number">29</div>
+    <div class="ep-info"><div class="ep-title">Nine — I'm CEO, Bitch</div><div class="ep-title-sub">521 words</div></div>
+    <div class="ep-words">521w</div>
+    <div class="ep-status"><span class="status-badge status-upcoming">Upcoming</span></div>
+  </div>
+
+</div>
+
+<!-- SECTION: EMILY (30) -->
+<div class="section-header">
+  <div class="section-header-inner">
+    <span class="section-num">Part V</span>
+    <span class="section-title">Emily</span>
+    <span class="section-meta">Excerpt 30 · 1 chapter</span>
+  </div>
+</div>
+<div class="episode-grid">
+
+  <div class="episode-row">
+    <div class="ep-number">30</div>
+    <div class="ep-info"><div class="ep-title">Emily</div><div class="ep-title-sub">1,310 words</div></div>
+    <div class="ep-words">1,310w</div>
+    <div class="ep-status"><span class="status-badge status-upcoming">Upcoming</span></div>
+  </div>
+
+</div>
+
+<!-- SECTION: BUILDING (31-39) -->
+<div class="section-header">
+  <div class="section-header-inner">
+    <span class="section-num">Part VI</span>
+    <span class="section-title">Building</span>
+    <span class="section-meta">Excerpts 31–39 · 9 chapters</span>
+  </div>
+</div>
+<div class="episode-grid">
+
+  <div class="episode-row">
+    <div class="ep-number">31</div>
+    <div class="ep-info"><div class="ep-title">One — The Road (and the Month the World Stopped)</div><div class="ep-title-sub">1,092 words</div></div>
+    <div class="ep-words">1,092w</div>
+    <div class="ep-status"><span class="status-badge status-upcoming">Upcoming</span></div>
+  </div>
+  <div class="episode-row">
+    <div class="ep-number">32</div>
+    <div class="ep-info"><div class="ep-title">Two — Quarterly SOX Reporting</div><div class="ep-title-sub">875 words</div></div>
+    <div class="ep-words">875w</div>
+    <div class="ep-status"><span class="status-badge status-upcoming">Upcoming</span></div>
+  </div>
+  <div class="episode-row">
+    <div class="ep-number">33</div>
+    <div class="ep-info"><div class="ep-title">Three — Mondo Condo</div><div class="ep-title-sub">1,262 words</div></div>
+    <div class="ep-words">1,262w</div>
+    <div class="ep-status"><span class="status-badge status-upcoming">Upcoming</span></div>
+  </div>
+  <div class="episode-row">
+    <div class="ep-number">34</div>
+    <div class="ep-info"><div class="ep-title">Four — Loose Ends</div><div class="ep-title-sub">1,907 words</div></div>
+    <div class="ep-words">1,907w</div>
+    <div class="ep-status"><span class="status-badge status-upcoming">Upcoming</span></div>
+  </div>
+  <div class="episode-row">
+    <div class="ep-number">35</div>
+    <div class="ep-info"><div class="ep-title">Five — Benched</div><div class="ep-title-sub">744 words</div></div>
+    <div class="ep-words">744w</div>
+    <div class="ep-status"><span class="status-badge status-upcoming">Upcoming</span></div>
+  </div>
+  <div class="episode-row">
+    <div class="ep-number">36</div>
+    <div class="ep-info"><div class="ep-title">Six — Our People</div><div class="ep-title-sub">1,623 words</div></div>
+    <div class="ep-words">1,623w</div>
+    <div class="ep-status"><span class="status-badge status-upcoming">Upcoming</span></div>
+  </div>
+  <div class="episode-row">
+    <div class="ep-number">37</div>
+    <div class="ep-info"><div class="ep-title">Seven — Material Weakness</div><div class="ep-title-sub">979 words</div></div>
+    <div class="ep-words">979w</div>
+    <div class="ep-status"><span class="status-badge status-upcoming">Upcoming</span></div>
+  </div>
+  <div class="episode-row">
+    <div class="ep-number">38</div>
+    <div class="ep-info"><div class="ep-title">Eight — Going Concern</div><div class="ep-title-sub">537 words</div></div>
+    <div class="ep-words">537w</div>
+    <div class="ep-status"><span class="status-badge status-upcoming">Upcoming</span></div>
+  </div>
+  <div class="episode-row">
+    <div class="ep-number">39</div>
+    <div class="ep-info"><div class="ep-title">Nine — (Title TBD)</div><div class="ep-title-sub">607 words</div></div>
+    <div class="ep-words">607w</div>
+    <div class="ep-status"><span class="status-badge status-upcoming">Upcoming</span></div>
+  </div>
+
+</div>
+
+<!-- SECTION: WHIPLASH (40) -->
+<div class="section-header">
+  <div class="section-header-inner">
+    <span class="section-num">Part VII</span>
+    <span class="section-title">Whiplash</span>
+    <span class="section-meta">Excerpt 40 · 1 chapter</span>
+  </div>
+</div>
+<div class="episode-grid">
+
+  <div class="episode-row">
+    <div class="ep-number">40</div>
+    <div class="ep-info"><div class="ep-title">Whiplash</div><div class="ep-title-sub">1,412 words</div></div>
+    <div class="ep-words">1,412w</div>
+    <div class="ep-status"><span class="status-badge status-upcoming">Upcoming</span></div>
+  </div>
+
+</div>
+
+<!-- SECTION: REASONABLE ASSURANCE (41-49) -->
+<div class="section-header">
+  <div class="section-header-inner">
+    <span class="section-num">Part VIII</span>
+    <span class="section-title">Reasonable Assurance</span>
+    <span class="section-meta">Excerpts 41–49 · 9 chapters</span>
+  </div>
+</div>
+<div class="episode-grid">
+
+  <div class="episode-row">
+    <div class="ep-number">41</div>
+    <div class="ep-info"><div class="ep-title">One — Overclocked</div><div class="ep-title-sub">1,182 words</div></div>
+    <div class="ep-words">1,182w</div>
+    <div class="ep-status"><span class="status-badge status-upcoming">Upcoming</span></div>
+  </div>
+  <div class="episode-row">
+    <div class="ep-number">42</div>
+    <div class="ep-info"><div class="ep-title">Two — The Audit</div><div class="ep-title-sub">1,380 words</div></div>
+    <div class="ep-words">1,380w</div>
+    <div class="ep-status"><span class="status-badge status-upcoming">Upcoming</span></div>
+  </div>
+  <div class="episode-row">
+    <div class="ep-number">43</div>
+    <div class="ep-info"><div class="ep-title">Three — Trendline (The Ramp)</div><div class="ep-title-sub">675 words</div></div>
+    <div class="ep-words">675w</div>
+    <div class="ep-status"><span class="status-badge status-upcoming">Upcoming</span></div>
+  </div>
+  <div class="episode-row">
+    <div class="ep-number">44</div>
+    <div class="ep-info"><div class="ep-title">Four — Catastrophic Failure</div><div class="ep-title-sub">1,323 words</div></div>
+    <div class="ep-words">1,323w</div>
+    <div class="ep-status"><span class="status-badge status-upcoming">Upcoming</span></div>
+  </div>
+  <div class="episode-row">
+    <div class="ep-number">45</div>
+    <div class="ep-info"><div class="ep-title">Five — Dinner for Two</div><div class="ep-title-sub">573 words</div></div>
+    <div class="ep-words">573w</div>
+    <div class="ep-status"><span class="status-badge status-upcoming">Upcoming</span></div>
+  </div>
+  <div class="episode-row">
+    <div class="ep-number">46</div>
+    <div class="ep-info"><div class="ep-title">Six — Return to Office</div><div class="ep-title-sub">727 words</div></div>
+    <div class="ep-words">727w</div>
+    <div class="ep-status"><span class="status-badge status-upcoming">Upcoming</span></div>
+  </div>
+  <div class="episode-row">
+    <div class="ep-number">47</div>
+    <div class="ep-info"><div class="ep-title">Seven — Internal Control</div><div class="ep-title-sub">1,167 words</div></div>
+    <div class="ep-words">1,167w</div>
+    <div class="ep-status"><span class="status-badge status-upcoming">Upcoming</span></div>
+  </div>
+  <div class="episode-row">
+    <div class="ep-number">48</div>
+    <div class="ep-info"><div class="ep-title">Eight — Unqualified Opinion</div><div class="ep-title-sub">533 words</div></div>
+    <div class="ep-words">533w</div>
+    <div class="ep-status"><span class="status-badge status-upcoming">Upcoming</span></div>
+  </div>
+  <div class="episode-row">
+    <div class="ep-number">49</div>
+    <div class="ep-info"><div class="ep-title">Reasonable Assurance</div><div class="ep-title-sub">1,639 words</div></div>
+    <div class="ep-words">1,639w</div>
+    <div class="ep-status"><span class="status-badge status-upcoming">Upcoming</span></div>
+  </div>
+
+</div>
+
+<!-- DEXINSIGHT -->
+<section class="dex-insight">
+  <div class="dex-box">
+    <div class="dex-label">DexInsight</div>
+    <p class="dex-text">The part titles aren't accidental. The book is structured using audit terminology — <em>Material Weakness, Going Concern, Unqualified Opinion, Reasonable Assurance</em> — because recovery and audit follow the same logic: you assess the damage, test the controls, document the evidence, and issue an opinion on whether the system can continue operating. The memoir isn't a metaphor for systems thinking. It <em>is</em> systems thinking, applied to a life.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-brand-name">Drop Down Logistics</div>
+      <div class="footer-brand-desc">One-person operations studio. Governed systems, dimensional architectures, and automation frameworks built to institutional standards.</div>
+      <div class="footer-tagline">Chaos → Structured → Automated</div>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <a href="/systems">Systems</a>
+      <a href="/standards">Standards</a>
+      <a href="/excelligence">Graph Explorer</a>
+      <a href="/forewords">Forewords</a>
+      <a href="/council">Council</a>
+      <a href="/memoir">Memoir</a>
+      <a href="/other-works">Other Works</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <a href="https://dkhale.substack.com">Substack</a>
+      <a href="https://github.com/dropdownlogistics">GitHub</a>
+      <a href="https://reddit.com">Reddit</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Dropdown Logistics. All systems governed.</span>
+    <span>Built with governance-grade standards.</span>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DexVerse · Project Registry</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#06060A;--bg-card:#0C0C12;--bg-terminal:#0A0A10;--bg-code:#080810;
+  --bg-line-hover:rgba(0,255,135,0.02);
+  --green:#00FF87;--green-mid:#00CC6A;--green-dim:#00331A;--green-glow:rgba(0,255,135,0.06);
+  --cyan:#00E5FF;--cyan-dim:#002E33;
+  --gold:#FFD43B;--gold-dim:#332A00;
+  --amber:#FFB300;
+  --coral:#FF6B6B;--coral-dim:#331515;
+  --plum:#B388FF;--plum-dim:#1A0033;
+  --blue:#448AFF;--blue-dim:#001A33;
+  --white:#E8E6E0;--text:#B0AEA6;--text-mid:#6A685F;--text-dim:#3A3830;
+  --border:#1A1A22;--border-light:#222230;
+  --radius:8px;
+}
+body{font-family:'IBM Plex Mono',monospace;background:var(--bg);color:var(--text);overflow-x:hidden}
+
+/* SCANLINE EFFECT */
+body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.03) 2px,rgba(0,0,0,0.03) 4px);pointer-events:none;z-index:9999}
+
+/* HEADER BAR */
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:12px 28px;border-bottom:1px solid var(--border);background:var(--bg-card)}
+.topbar-left{display:flex;align-items:center;gap:14px}
+.topbar-dots{display:flex;gap:6px}
+.topbar-dots span{width:10px;height:10px;border-radius:50%}
+.topbar-dots span:nth-child(1){background:#FF5F57}
+.topbar-dots span:nth-child(2){background:#FFBD2E}
+.topbar-dots span:nth-child(3){background:#28CA41}
+.topbar-title{font-size:0.72rem;color:var(--text-mid);letter-spacing:0.04em}
+.topbar-title strong{color:var(--green)}
+.topbar-right{font-size:0.6rem;color:var(--text-dim);display:flex;gap:16px}
+.topbar-right .live{color:var(--green)}
+
+/* HERO TERMINAL */
+.hero{padding:40px 28px 32px;max-width:1100px;margin:0 auto}
+.term-window{background:var(--bg-terminal);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.term-header{background:var(--bg-card);padding:8px 14px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.term-tab{font-size:0.6rem;color:var(--text-mid);letter-spacing:0.04em}
+.term-tab .active{color:var(--green);border-bottom:1px solid var(--green);padding-bottom:2px}
+.term-body{padding:20px;font-family:'JetBrains Mono',monospace;font-size:0.78rem;line-height:1.8}
+.term-line{display:flex;gap:8px}
+.term-prompt{color:var(--green);flex-shrink:0;user-select:none}
+.term-cmd{color:var(--white)}
+.term-output{color:var(--text-mid);padding-left:20px;margin-bottom:4px}
+.term-comment{color:var(--text-dim);font-style:italic}
+.term-highlight{color:var(--cyan)}
+.term-gold{color:var(--gold)}
+.term-coral{color:var(--coral)}
+.term-plum{color:var(--plum)}
+.term-green{color:var(--green)}
+.term-blue{color:var(--blue)}
+.term-br{height:8px}
+
+/* ASCII ART */
+.ascii{color:var(--green);font-size:0.58rem;line-height:1.3;opacity:0.7;margin-bottom:12px;letter-spacing:0.02em}
+
+/* STATS BAR */
+.stats-bar{max-width:1100px;margin:0 auto;padding:0 28px 24px}
+.stats-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+@media(max-width:800px){.stats-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:500px){.stats-grid{grid-template-columns:repeat(2,1fr)}}
+.stat{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:14px 12px;text-align:center}
+.stat-val{font-family:'JetBrains Mono',monospace;font-size:1.4rem;font-weight:700}
+.stat-label{font-size:0.55rem;color:var(--text-dim);letter-spacing:0.06em;text-transform:uppercase;margin-top:4px}
+
+/* PROJECT CARDS */
+.projects{max-width:1100px;margin:0 auto;padding:0 28px 32px}
+.proj-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px}
+.proj-header h2{font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--white)}
+.proj-header .count{font-size:0.65rem;color:var(--text-dim)}
+
+.proj-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:12px;overflow:hidden;transition:border-color 0.2s}
+.proj-card:hover{border-color:var(--border-light)}
+
+.proj-top{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;cursor:pointer}
+.proj-name{display:flex;align-items:center;gap:10px}
+.proj-dot{width:8px;height:8px;border-radius:50%}
+.proj-title{font-weight:600;font-size:0.85rem;color:var(--white);letter-spacing:0.01em}
+.proj-version{font-size:0.6rem;color:var(--text-dim);margin-left:4px}
+.proj-meta{display:flex;gap:14px;font-size:0.6rem;color:var(--text-dim)}
+.proj-badge{padding:2px 8px;border-radius:3px;font-size:0.55rem;font-weight:600;letter-spacing:0.04em;text-transform:uppercase}
+
+/* DDL CODE BLOCK */
+.ddl-wrap{border-top:1px solid var(--border);background:var(--bg-code);padding:0}
+.ddl-header{display:flex;justify-content:space-between;align-items:center;padding:8px 18px;border-bottom:1px solid rgba(255,255,255,0.02)}
+.ddl-lang{font-size:0.55rem;color:var(--text-dim);letter-spacing:0.06em;text-transform:uppercase}
+.ddl-file{font-size:0.55rem;color:var(--text-dim)}
+.ddl-code{padding:12px 18px;font-family:'JetBrains Mono',monospace;font-size:0.7rem;line-height:1.7;overflow-x:auto}
+.ddl-code .kw{color:var(--cyan);font-weight:600}
+.ddl-code .obj{color:var(--green)}
+.ddl-code .type{color:var(--gold)}
+.ddl-code .str{color:var(--coral)}
+.ddl-code .comment{color:var(--text-dim);font-style:italic}
+.ddl-code .num{color:var(--plum)}
+.ddl-code .constraint{color:var(--amber)}
+.ddl-code .ref{color:var(--blue)}
+.ddl-code .ln{color:var(--text-dim);user-select:none;display:inline-block;width:28px;text-align:right;margin-right:16px;font-size:0.6rem}
+
+/* DELIVERABLES */
+.deliverables{padding:10px 18px 14px;border-top:1px solid rgba(255,255,255,0.02);display:flex;gap:8px;flex-wrap:wrap}
+.deliv{font-size:0.58rem;padding:3px 8px;border-radius:3px;border:1px solid var(--border)}
+.deliv.xlsx{border-color:var(--green-dim);color:var(--green-mid)}
+.deliv.html{border-color:var(--cyan-dim);color:var(--cyan)}
+.deliv.pdf{border-color:var(--coral-dim);color:var(--coral)}
+.deliv.md{border-color:var(--plum-dim);color:var(--plum)}
+.deliv.svg{border-color:var(--gold-dim);color:var(--gold)}
+
+/* ARCHITECTURE FOOTER */
+.arch{max-width:1100px;margin:0 auto;padding:0 28px 40px}
+.arch-card{background:var(--bg-terminal);border:1px solid var(--border);border-radius:var(--radius);padding:20px;position:relative;overflow:hidden}
+.arch-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--green),var(--cyan),var(--gold),var(--coral),var(--plum),var(--green))}
+.arch-title{font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--white);margin-bottom:12px}
+.arch-flow{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--text-mid);line-height:2;text-align:center;padding:8px 0}
+.arch-flow .node{color:var(--white);font-weight:600}
+.arch-flow .arrow{color:var(--green);margin:0 4px}
+.arch-flow .dim-text{color:var(--text-dim)}
+.arch-tagline{text-align:center;margin-top:14px;font-family:'DM Serif Display',serif;font-size:0.95rem;color:var(--text-mid)}
+.arch-tagline em{color:var(--green);font-style:normal}
+
+.footer{text-align:center;padding:8px 28px 24px;font-size:0.55rem;color:var(--text-dim)}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="topbar-dots"><span></span><span></span><span></span></div>
+    <div class="topbar-title"><strong>DexVerse</strong> · Project Registry · v1.0</div>
+  </div>
+  <div class="topbar-right">
+    <span><span class="live">●</span> 6 active projects</span>
+    <span>builder: dave.kitchens</span>
+    <span>last_sync: 2026-02-20T22:41:00Z</span>
+  </div>
+</div>
+
+<!-- HERO TERMINAL -->
+<div class="hero">
+  <div class="term-window">
+    <div class="term-header">
+      <div class="term-tab"><span class="active">registry</span></div>
+      <div style="font-size:0.55rem;color:var(--text-dim)">bash — 80×24</div>
+    </div>
+    <div class="term-body">
+<pre class="ascii">
+ ██████╗ ███████╗██╗  ██╗██╗   ██╗███████╗██████╗ ███████╗███████╗
+ ██╔══██╗██╔════╝╚██╗██╔╝██║   ██║██╔════╝██╔══██╗██╔════╝██╔════╝
+ ██║  ██║█████╗   ╚███╔╝ ██║   ██║█████╗  ██████╔╝███████╗█████╗
+ ██║  ██║██╔══╝   ██╔██╗ ╚██╗ ██╔╝██╔══╝  ██╔══██╗╚════██║██╔══╝
+ ██████╔╝███████╗██╔╝ ██╗ ╚████╔╝ ███████╗██║  ██║███████║███████╗
+ ╚═════╝ ╚══════╝╚═╝  ╚═╝  ╚═══╝  ╚══════╝╚═╝  ╚═╝╚══════╝╚══════╝
+</pre>
+      <div class="term-line"><span class="term-prompt">dex@engine ~$</span><span class="term-cmd"> SELECT * FROM projects WHERE status = <span class="term-highlight">'active'</span> ORDER BY created_at;</span></div>
+      <div class="term-br"></div>
+      <div class="term-output"><span class="term-comment">-- 6 rows returned. 4 domains. 1 architecture. 0 lines of production code.</span></div>
+      <div class="term-output"><span class="term-comment">-- origin: couch. stimulus: seinfeld. elapsed: 7 days.</span></div>
+      <div class="term-br"></div>
+      <div class="term-line"><span class="term-prompt">dex@engine ~$</span><span class="term-cmd"> DESCRIBE engine.thesis;</span></div>
+      <div class="term-br"></div>
+      <div class="term-output"><span class="term-gold">RESULT:</span> Star schema. Fact table. Dimension tables. PivotSource. Dashboard skin.</div>
+      <div class="term-output"><span class="term-gold">CONSTRAINT:</span> The data changes. The engine doesn't care.</div>
+      <div class="term-output"><span class="term-gold">PROOF:</span> Vet clinic → Cocktail bar → Grant tracker → Betting → HR/Payroll → Personal finance.</div>
+      <div class="term-br"></div>
+      <div class="term-line"><span class="term-prompt">dex@engine ~$</span><span class="term-cmd"> SHOW REGISTRATIONS;</span></div>
+      <div class="term-br"></div>
+    </div>
+  </div>
+</div>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-grid">
+    <div class="stat"><div class="stat-val" style="color:var(--green)">6</div><div class="stat-label">Active Projects</div></div>
+    <div class="stat"><div class="stat-val" style="color:var(--cyan)">4</div><div class="stat-label">Domains</div></div>
+    <div class="stat"><div class="stat-val" style="color:var(--gold)">5</div><div class="stat-label">Clients</div></div>
+    <div class="stat"><div class="stat-val" style="color:var(--coral)">16</div><div class="stat-label">Deliverables</div></div>
+    <div class="stat"><div class="stat-val" style="color:var(--plum)">1</div><div class="stat-label">Architecture</div></div>
+    <div class="stat"><div class="stat-val" style="color:var(--green)">7d</div><div class="stat-label">Elapsed</div></div>
+  </div>
+</div>
+
+<!-- PROJECT CARDS -->
+<div class="projects">
+  <div class="proj-header">
+    <h2>Project Registry</h2>
+    <div class="count">6 registered · 0 archived · all schemas active</div>
+  </div>
+
+  <!-- 1. VETSCHEDULE -->
+  <div class="proj-card">
+    <div class="proj-top">
+      <div class="proj-name">
+        <div class="proj-dot" style="background:var(--green)"></div>
+        <span class="proj-title">VetSchedule Engine<span class="proj-version">v1.0</span></span>
+        <span class="proj-badge" style="background:var(--green-dim);color:var(--green)">Delivered</span>
+      </div>
+      <div class="proj-meta">
+        <span>client: Nichole</span>
+        <span>domain: veterinary</span>
+        <span>rows: 7,331</span>
+      </div>
+    </div>
+    <div class="ddl-wrap">
+      <div class="ddl-header"><div class="ddl-lang">SQL · DDL</div><div class="ddl-file">vetschedule_schema.sql</div></div>
+      <div class="ddl-code">
+<span class="ln"> 1</span><span class="kw">CREATE TABLE</span> <span class="obj">Fact_Appointments</span> (<br>
+<span class="ln"> 2</span>    <span class="obj">appointment_id</span>     <span class="type">INT</span> <span class="constraint">PRIMARY KEY</span>,<br>
+<span class="ln"> 3</span>    <span class="obj">provider_id</span>        <span class="type">INT</span> <span class="constraint">REFERENCES</span> <span class="ref">Dim_Provider</span>,<br>
+<span class="ln"> 4</span>    <span class="obj">appt_type_id</span>       <span class="type">INT</span> <span class="constraint">REFERENCES</span> <span class="ref">Dim_ApptType</span>,<br>
+<span class="ln"> 5</span>    <span class="obj">species_id</span>         <span class="type">INT</span> <span class="constraint">REFERENCES</span> <span class="ref">Dim_Species</span>,<br>
+<span class="ln"> 6</span>    <span class="obj">room_id</span>            <span class="type">INT</span> <span class="constraint">REFERENCES</span> <span class="ref">Dim_Room</span>,<br>
+<span class="ln"> 7</span>    <span class="obj">scheduled_dt</span>       <span class="type">DATETIME</span>,<br>
+<span class="ln"> 8</span>    <span class="obj">actual_start_dt</span>    <span class="type">DATETIME</span>,<br>
+<span class="ln"> 9</span>    <span class="obj">duration_min</span>       <span class="type">INT</span>,<br>
+<span class="ln">10</span>    <span class="obj">wait_time_min</span>      <span class="type">INT</span>,<br>
+<span class="ln">11</span>    <span class="obj">revenue</span>            <span class="type">DECIMAL(10,2)</span>,<br>
+<span class="ln">12</span>    <span class="obj">satisfaction</span>       <span class="type">DECIMAL(2,1)</span>,<br>
+<span class="ln">13</span>    <span class="obj">status</span>             <span class="type">VARCHAR(20)</span>  <span class="comment">-- completed | no-show | cancelled</span><br>
+<span class="ln">14</span>);<br>
+<span class="ln">15</span><span class="comment">-- 7,331 rows · 52 weeks · 5 providers · 6 rooms · 10 appt types</span>
+      </div>
+    </div>
+    <div class="deliverables">
+      <span class="deliv xlsx">GrantTracker.xlsx</span>
+      <span class="deliv html">landing_page.html</span>
+    </div>
+  </div>
+
+  <!-- 2. DRINKS-O-SYSTEM -->
+  <div class="proj-card">
+    <div class="proj-top">
+      <div class="proj-name">
+        <div class="proj-dot" style="background:var(--gold)"></div>
+        <span class="proj-title">Drinks-O-System<span class="proj-version">v0.1</span></span>
+        <span class="proj-badge" style="background:var(--gold-dim);color:var(--gold)">Delivered</span>
+      </div>
+      <div class="proj-meta">
+        <span>client: Serge</span>
+        <span>domain: hospitality</span>
+        <span>rows: 127 recipes</span>
+      </div>
+    </div>
+    <div class="ddl-wrap">
+      <div class="ddl-header"><div class="ddl-lang">SQL · DDL</div><div class="ddl-file">drinks_schema.sql</div></div>
+      <div class="ddl-code">
+<span class="ln"> 1</span><span class="kw">CREATE TABLE</span> <span class="obj">Fact_Recipes</span> (<br>
+<span class="ln"> 2</span>    <span class="obj">recipe_id</span>          <span class="type">INT</span> <span class="constraint">PRIMARY KEY</span>,  <span class="comment">-- coded: Drink 1 = Recipe 1</span><br>
+<span class="ln"> 3</span>    <span class="obj">spirit_id</span>          <span class="type">INT</span> <span class="constraint">REFERENCES</span> <span class="ref">Dim_Spirit</span>,<br>
+<span class="ln"> 4</span>    <span class="obj">build_style_id</span>     <span class="type">INT</span> <span class="constraint">REFERENCES</span> <span class="ref">Dim_BuildStyle</span>,<br>
+<span class="ln"> 5</span>    <span class="obj">season_id</span>          <span class="type">INT</span> <span class="constraint">REFERENCES</span> <span class="ref">Dim_Season</span>,<br>
+<span class="ln"> 6</span>    <span class="obj">venue_id</span>           <span class="type">INT</span> <span class="constraint">REFERENCES</span> <span class="ref">Dim_Venue</span>,<br>
+<span class="ln"> 7</span>    <span class="obj">pour_cost</span>          <span class="type">DECIMAL(5,2)</span>,<br>
+<span class="ln"> 8</span>    <span class="obj">menu_price</span>         <span class="type">DECIMAL(5,2)</span>,<br>
+<span class="ln"> 9</span>    <span class="obj">margin</span>             <span class="type">DECIMAL(5,2)</span>,<br>
+<span class="ln">10</span>    <span class="obj">build_time_sec</span>     <span class="type">INT</span>,<br>
+<span class="ln">11</span>    <span class="obj">batch_ready</span>        <span class="type">BOOLEAN</span>,<br>
+<span class="ln">12</span>    <span class="obj">is_original</span>        <span class="type">BOOLEAN</span>,<br>
+<span class="ln">13</span>    <span class="obj">status</span>             <span class="type">VARCHAR(10)</span>  <span class="comment">-- active | archived | seasonal</span><br>
+<span class="ln">14</span>);<br>
+<span class="ln">15</span><span class="comment">-- IP PROTECTED: recipes coded, never stored. engine sees structure, not secrets.</span>
+      </div>
+    </div>
+    <div class="deliverables">
+      <span class="deliv html">dashboard.html</span>
+      <span class="deliv pdf">flyer.pdf</span>
+    </div>
+  </div>
+
+  <!-- 3. GRANTTRACKER -->
+  <div class="proj-card">
+    <div class="proj-top">
+      <div class="proj-name">
+        <div class="proj-dot" style="background:var(--green)"></div>
+        <span class="proj-title">GrantTracker Engine<span class="proj-version">v1.0</span></span>
+        <span class="proj-badge" style="background:var(--green-dim);color:var(--green)">Delivered</span>
+      </div>
+      <div class="proj-meta">
+        <span>client: Nichole</span>
+        <span>domain: nonprofit</span>
+        <span>rows: 407</span>
+      </div>
+    </div>
+    <div class="ddl-wrap">
+      <div class="ddl-header"><div class="ddl-lang">SQL · DDL</div><div class="ddl-file">granttracker_schema.sql</div></div>
+      <div class="ddl-code">
+<span class="ln"> 1</span><span class="kw">CREATE TABLE</span> <span class="obj">Fact_Expenditures</span> (<br>
+<span class="ln"> 2</span>    <span class="obj">expenditure_id</span>     <span class="type">INT</span> <span class="constraint">PRIMARY KEY</span>,<br>
+<span class="ln"> 3</span>    <span class="obj">grant_id</span>           <span class="type">INT</span> <span class="constraint">REFERENCES</span> <span class="ref">Dim_Grant</span>,<br>
+<span class="ln"> 4</span>    <span class="obj">funder_id</span>          <span class="type">INT</span> <span class="constraint">REFERENCES</span> <span class="ref">Dim_FundingSource</span>,<br>
+<span class="ln"> 5</span>    <span class="obj">category_id</span>        <span class="type">INT</span> <span class="constraint">REFERENCES</span> <span class="ref">Dim_ExpenseCategory</span>,<br>
+<span class="ln"> 6</span>    <span class="obj">procedure_id</span>       <span class="type">INT</span> <span class="constraint">REFERENCES</span> <span class="ref">Dim_Procedure</span>,<br>
+<span class="ln"> 7</span>    <span class="obj">spend_date</span>         <span class="type">DATE</span>,<br>
+<span class="ln"> 8</span>    <span class="obj">amount</span>             <span class="type">DECIMAL(10,2)</span>,<br>
+<span class="ln"> 9</span>    <span class="obj">vendor</span>             <span class="type">VARCHAR(100)</span>,<br>
+<span class="ln">10</span>    <span class="obj">documentation</span>      <span class="type">VARCHAR(20)</span>  <span class="comment">-- receipt | invoice | log</span><br>
+<span class="ln">11</span>);<br>
+<span class="ln">12</span><span class="comment">-- 7 grants · 7 funders · $345K awarded · burn rates + compliance calendar</span>
+      </div>
+    </div>
+    <div class="deliverables">
+      <span class="deliv xlsx">GrantTracker_v1.0.xlsx</span>
+      <span class="deliv html">dashboard.html</span>
+      <span class="deliv pdf">flyer.pdf</span>
+      <span class="deliv md">service_model.md</span>
+    </div>
+  </div>
+
+  <!-- 4. BLINDSPOT -->
+  <div class="proj-card">
+    <div class="proj-top">
+      <div class="proj-name">
+        <div class="proj-dot" style="background:var(--cyan)"></div>
+        <span class="proj-title">BlindSpot<span class="proj-version">v0.1</span></span>
+        <span class="proj-badge" style="background:var(--cyan-dim);color:var(--cyan)">Pitch Sent</span>
+      </div>
+      <div class="proj-meta">
+        <span>client: Alex</span>
+        <span>domain: betting / trading</span>
+        <span>launch: Mar 16</span>
+      </div>
+    </div>
+    <div class="ddl-wrap">
+      <div class="ddl-header"><div class="ddl-lang">SQL · DDL</div><div class="ddl-file">blindspot_schema.sql</div></div>
+      <div class="ddl-code">
+<span class="ln"> 1</span><span class="kw">CREATE TABLE</span> <span class="obj">Fact_Picks</span> (<br>
+<span class="ln"> 2</span>    <span class="obj">pick_id</span>            <span class="type">INT</span> <span class="constraint">PRIMARY KEY</span>,<br>
+<span class="ln"> 3</span>    <span class="obj">participant_id</span>     <span class="type">INT</span> <span class="constraint">REFERENCES</span> <span class="ref">Dim_Participant</span>,<br>
+<span class="ln"> 4</span>    <span class="obj">event_id</span>           <span class="type">INT</span> <span class="constraint">REFERENCES</span> <span class="ref">Dim_Event</span>,<br>
+<span class="ln"> 5</span>    <span class="obj">sport_id</span>           <span class="type">INT</span> <span class="constraint">REFERENCES</span> <span class="ref">Dim_Sport</span>,<br>
+<span class="ln"> 6</span>    <span class="obj">bet_type_id</span>        <span class="type">INT</span> <span class="constraint">REFERENCES</span> <span class="ref">Dim_BetType</span>,<br>
+<span class="ln"> 7</span>    <span class="obj">line</span>               <span class="type">DECIMAL(6,1)</span>,<br>
+<span class="ln"> 8</span>    <span class="obj">wager_units</span>        <span class="type">DECIMAL(8,2)</span>,  <span class="comment">-- BlindSpot units (fake economy)</span><br>
+<span class="ln"> 9</span>    <span class="obj">result</span>             <span class="type">VARCHAR(10)</span>,  <span class="comment">-- win | loss | push</span><br>
+<span class="ln">10</span>    <span class="obj">payout_units</span>       <span class="type">DECIMAL(8,2)</span>,<br>
+<span class="ln">11</span>    <span class="obj">pick_confidence</span>    <span class="type">INT</span>           <span class="comment">-- 1-5 self-rated</span><br>
+<span class="ln">12</span>);<br>
+<span class="ln">13</span><span class="comment">-- March Madness launch: 68 teams · 67 games · Selection Sunday Mar 16</span><br>
+<span class="ln">14</span><span class="comment">-- Also supports: Fact_Trades for Alex's passive strategy backtesting</span>
+      </div>
+    </div>
+    <div class="deliverables">
+      <span class="deliv html">pitch_page.html</span>
+      <span class="deliv svg">logo.svg</span>
+    </div>
+  </div>
+
+  <!-- 5. PAYGUARD -->
+  <div class="proj-card">
+    <div class="proj-top">
+      <div class="proj-name">
+        <div class="proj-dot" style="background:var(--plum)"></div>
+        <span class="proj-title">PayGuard<span class="proj-version">v0.1</span></span>
+        <span class="proj-badge" style="background:var(--plum-dim);color:var(--plum)">Concept</span>
+      </div>
+      <div class="proj-meta">
+        <span>client: Sophia</span>
+        <span>domain: HR / payroll</span>
+        <span>exceptions: 14</span>
+      </div>
+    </div>
+    <div class="ddl-wrap">
+      <div class="ddl-header"><div class="ddl-lang">SQL · DDL</div><div class="ddl-file">payguard_schema.sql</div></div>
+      <div class="ddl-code">
+<span class="ln"> 1</span><span class="kw">CREATE TABLE</span> <span class="obj">Fact_Deductions</span> (<br>
+<span class="ln"> 2</span>    <span class="obj">deduction_id</span>       <span class="type">INT</span> <span class="constraint">PRIMARY KEY</span>,<br>
+<span class="ln"> 3</span>    <span class="obj">employee_id</span>        <span class="type">INT</span> <span class="constraint">REFERENCES</span> <span class="ref">Dim_Employee</span>,<br>
+<span class="ln"> 4</span>    <span class="obj">benefit_plan_id</span>    <span class="type">INT</span> <span class="constraint">REFERENCES</span> <span class="ref">Dim_BenefitPlan</span>,<br>
+<span class="ln"> 5</span>    <span class="obj">vendor_id</span>          <span class="type">INT</span> <span class="constraint">REFERENCES</span> <span class="ref">Dim_Vendor</span>,<br>
+<span class="ln"> 6</span>    <span class="obj">pay_period_id</span>      <span class="type">INT</span> <span class="constraint">REFERENCES</span> <span class="ref">Dim_PayPeriod</span>,<br>
+<span class="ln"> 7</span>    <span class="obj">election_id</span>        <span class="type">INT</span> <span class="constraint">REFERENCES</span> <span class="ref">Dim_EnrollmentElection</span>,<br>
+<span class="ln"> 8</span>    <span class="obj">deducted_amount</span>    <span class="type">DECIMAL(10,2)</span>,<br>
+<span class="ln"> 9</span>    <span class="obj">remitted_amount</span>    <span class="type">DECIMAL(10,2)</span>,<br>
+<span class="ln">10</span>    <span class="obj">remit_date</span>         <span class="type">DATE</span>,         <span class="comment">-- NULL = not yet paid to vendor</span><br>
+<span class="ln">11</span>    <span class="obj">exception_flag</span>     <span class="type">VARCHAR(30)</span>  <span class="comment">-- duplicate | mismatch | gap | clean</span><br>
+<span class="ln">12</span>);<br>
+<span class="ln">13</span><span class="comment">-- "Am I thinking too large?" — No. You're thinking like an auditor.</span><br>
+<span class="ln">14</span><span class="comment">-- Every scenario Sophia described maps to a control test in this schema.</span>
+      </div>
+    </div>
+    <div class="deliverables">
+      <span class="deliv html">dashboard.html</span>
+    </div>
+  </div>
+
+  <!-- 6. GETSUM -->
+  <div class="proj-card">
+    <div class="proj-top">
+      <div class="proj-name">
+        <div class="proj-dot" style="background:var(--coral)"></div>
+        <span class="proj-title">GetSum<span class="proj-version">v0.1</span></span>
+        <span class="proj-badge" style="background:var(--coral-dim);color:var(--coral)">Personal</span>
+      </div>
+      <div class="proj-meta">
+        <span>client: Dave</span>
+        <span>domain: personal finance</span>
+        <span>mode: deterministic</span>
+      </div>
+    </div>
+    <div class="ddl-wrap">
+      <div class="ddl-header"><div class="ddl-lang">SQL · DDL</div><div class="ddl-file">getsum_schema.sql</div></div>
+      <div class="ddl-code">
+<span class="ln"> 1</span><span class="kw">CREATE TABLE</span> <span class="obj">Fact_Transactions</span> (<br>
+<span class="ln"> 2</span>    <span class="obj">txn_id</span>             <span class="type">INT</span> <span class="constraint">PRIMARY KEY</span>,<br>
+<span class="ln"> 3</span>    <span class="obj">category_id</span>        <span class="type">INT</span> <span class="constraint">REFERENCES</span> <span class="ref">Dim_Category</span>,<br>
+<span class="ln"> 4</span>    <span class="obj">merchant_id</span>        <span class="type">INT</span> <span class="constraint">REFERENCES</span> <span class="ref">Dim_Merchant</span>,<br>
+<span class="ln"> 5</span>    <span class="obj">period_id</span>          <span class="type">INT</span> <span class="constraint">REFERENCES</span> <span class="ref">Dim_Period</span>,<br>
+<span class="ln"> 6</span>    <span class="obj">allocation_id</span>      <span class="type">INT</span> <span class="constraint">REFERENCES</span> <span class="ref">Dim_AllocationTarget</span>,<br>
+<span class="ln"> 7</span>    <span class="obj">txn_date</span>           <span class="type">DATE</span>,<br>
+<span class="ln"> 8</span>    <span class="obj">amount</span>             <span class="type">DECIMAL(10,2)</span>,<br>
+<span class="ln"> 9</span>    <span class="obj">scope</span>              <span class="type">VARCHAR(15)</span>,  <span class="comment">-- recurring | experimental | fixed</span><br>
+<span class="ln">10</span>    <span class="obj">variance_class</span>     <span class="type">VARCHAR(15)</span>,  <span class="comment">-- environmental | execution | structural</span><br>
+<span class="ln">11</span>    <span class="obj">signal_flag</span>        <span class="type">BOOLEAN</span>       <span class="comment">-- TRUE = statistically meaningful</span><br>
+<span class="ln">12</span>);<br>
+<span class="ln">13</span><span class="comment">-- No motivational tone. No budgeting cheerleader. Deterministic analysis only.</span><br>
+<span class="ln">14</span><span class="comment">-- Variance classified as: Environmental | Execution | Structural Misalignment</span>
+      </div>
+    </div>
+    <div class="deliverables">
+      <span class="deliv html">terminal_dashboard.html</span>
+    </div>
+  </div>
+</div>
+
+<!-- ARCHITECTURE -->
+<div class="arch">
+  <div class="arch-card">
+    <div class="arch-title">The Architecture Is the Product</div>
+    <div class="arch-flow">
+      <span class="dim-text">raw data</span> <span class="arrow">→</span>
+      <span class="node">Fact Table</span> <span class="arrow">→</span>
+      <span class="node">Dimension Tables</span> <span class="arrow">→</span>
+      <span class="node">PivotSource</span> <span class="arrow">→</span>
+      <span class="node">Dashboard Skin</span><br>
+      <span class="dim-text" style="font-size:0.6rem">appointments · recipes · expenditures · picks · deductions · transactions</span><br>
+      <span class="dim-text" style="font-size:0.6rem">↓ same pipeline, different domain, every time ↓</span>
+    </div>
+    <div class="arch-tagline">Walk soft. Cast sharp. <em>The engine doesn't care where the data comes from.</em></div>
+  </div>
+</div>
+
+<div class="footer">DexVerse Project Registry · 6 projects · 4 domains · 1 architecture · built by Dave Kitchens · 2026-02-20</div>
+
+</body>
+</html>

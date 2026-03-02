@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Basement — Same Brain, Different Engine</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0D1B2A;
+    --navy-card: #10202f;
+    --crimson: #B23531;
+    --crimson-dim: rgba(178, 53, 49, 0.12);
+    --cream: #F5F1EB;
+    --cream-dim: rgba(245, 241, 235, 0.5);
+    --cream-muted: rgba(245, 241, 235, 0.3);
+    --green: #4A9E6B;
+    --green-dim: rgba(74, 158, 107, 0.12);
+    --amber: #C49A3C;
+    --amber-dim: rgba(196, 154, 60, 0.12);
+    --blue: #6B9DC2;
+    --blue-dim: rgba(107, 157, 194, 0.12);
+    --border: rgba(245, 241, 235, 0.06);
+    --border-hover: rgba(245, 241, 235, 0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--cream);
+    font-family: 'Source Serif 4', Georgia, serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.8;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 100px 24px 60px;
+    text-align: center;
+  }
+
+  .hero-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--crimson);
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.6s ease 0.2s forwards;
+  }
+
+  .hero h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: fadeUp 0.6s ease 0.35s forwards;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    font-family: 'Source Serif 4', Georgia, serif;
+    color: var(--crimson);
+    font-weight: 600;
+  }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--cream-dim);
+    max-width: 520px;
+    margin: 0 auto;
+    opacity: 0;
+    animation: fadeUp 0.6s ease 0.5s forwards;
+  }
+
+  /* ── ESSAY ── */
+  .essay {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  .essay p {
+    font-size: 1.05rem;
+    color: rgba(245, 241, 235, 0.75);
+    margin-bottom: 1.6rem;
+    line-height: 1.9;
+  }
+
+  .essay p strong {
+    color: var(--cream);
+    font-weight: 600;
+  }
+
+  .essay .drop-cap::first-letter {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 3.4rem;
+    font-weight: 700;
+    float: left;
+    line-height: 0.8;
+    margin: 0.1em 0.15em 0 0;
+    color: var(--crimson);
+  }
+
+  /* ── PULL QUOTE ── */
+  .pull-quote {
+    border-left: 3px solid var(--crimson);
+    padding: 1.2rem 0 1.2rem 1.8rem;
+    margin: 2.5rem 0;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--cream);
+    line-height: 1.7;
+  }
+
+  .pull-quote .attr {
+    display: block;
+    font-style: normal;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--cream-muted);
+    letter-spacing: 0.1em;
+    margin-top: 0.8rem;
+  }
+
+  /* ── MAPPING TABLE ── */
+  .mapping {
+    margin: 3rem 0;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    overflow: hidden;
+    background: var(--navy-card);
+  }
+
+  .mapping-header {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--cream-muted);
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .mapping-header .icon {
+    width: 18px;
+    height: 18px;
+    background: var(--crimson-dim);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.55rem;
+    color: var(--crimson);
+  }
+
+  .mapping-row {
+    display: grid;
+    grid-template-columns: 1fr 20px 1fr;
+    align-items: center;
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--border);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    transition: background 0.2s;
+  }
+
+  .mapping-row:last-child { border-bottom: none; }
+  .mapping-row:hover { background: rgba(245, 241, 235, 0.015); }
+
+  .mapping-game {
+    color: var(--amber);
+  }
+
+  .mapping-arrow {
+    color: var(--cream-muted);
+    text-align: center;
+    font-size: 0.6rem;
+  }
+
+  .mapping-real {
+    color: var(--green);
+  }
+
+  /* ── INCIDENT ── */
+  .incident {
+    background: var(--navy-card);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 24px;
+    margin: 2.5rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .incident::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--amber);
+  }
+
+  .incident-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.55rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 0.8rem;
+  }
+
+  .incident p {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: rgba(245, 241, 235, 0.6);
+    line-height: 1.8;
+    margin-bottom: 0;
+  }
+
+  .incident p strong {
+    color: var(--cream);
+  }
+
+  /* ── KICKER ── */
+  .kicker {
+    text-align: center;
+    padding: 60px 24px 40px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .kicker p {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--cream-dim);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .kicker .sig {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--cream-muted);
+    letter-spacing: 0.1em;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    padding: 40px 24px;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-accent {
+    width: 40px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--crimson), transparent);
+    margin: 0 auto 1.2rem;
+    border-radius: 2px;
+  }
+
+  .footer-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--cream-muted);
+    letter-spacing: 0.15em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 600px) {
+    .hero { padding: 60px 20px 40px; }
+    .essay { padding: 0 20px 60px; }
+    .mapping-row { grid-template-columns: 1fr; gap: 2px; padding: 10px 16px; }
+    .mapping-arrow { display: none; }
+    .mapping-real::before { content: '→ '; color: var(--cream-muted); }
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-label">DDL · Essay</div>
+  <h1>The <em>Basement</em></h1>
+  <p class="hero-sub">Same brain. Different engine. A guided tour of inventory governance in a place where dragons are real and barrels matter more than you think.</p>
+</section>
+
+<article class="essay">
+
+  <p class="drop-cap">There's a house in a video game with a basement, a forge, four safes, and a smelter. The house belongs to a character I've played for hundreds of hours across multiple saves. The basement is where I build things. And if you watch how I organize that basement, you'll understand more about how my brain works than any resume will ever tell you.</p>
+
+  <p>I have a barrel next to the workbench. All building materials go in that barrel. To the left of the smelter, another barrel — that holds leftover ore. The tanning rack has its own barrel for leather. Four safes line the wall: the first holds precious metals and gems. The second is empty. The third holds quest items I've earned and can't drop. The fourth holds rare crafting components I farm from a mountaintop shrine every four in-game days.</p>
+
+  <p>Every container has a purpose. Every station has an input and an output. Nothing goes in the wrong place because the system was designed so the wrong place doesn't exist.</p>
+
+  <div class="pull-quote">
+    "I used to do it willy nilly, and then it got sloppy."
+    <span class="attr">— The origin story of every standard I've ever written</span>
+  </div>
+
+  <p>Upstairs, the enchanting table has a bag above it for potions and a wardrobe to the left for soul gems. I take out <strong>exactly the number of potions as the pieces I'm enchanting</strong>. One potion, one enchantment. Not because I can't do more — because the timer is invisible, and I don't want to waste a resource guessing where I am in a window I can't see. So I designed the uncertainty out of the process.</p>
+
+  <p>The alchemy station follows the same logic. There's a sack on the floor for my current gear. A bag on the shelf for specialized crafting gear. I swap loadouts before each session. The ingredients are pre-sorted: revenue-generating potions in one container, buff potions in another. I know which ingredients make expensive outputs because I've mapped the combinations. I don't brew randomly. I batch.</p>
+
+  <p>And then there's the economic loop. I level speech by selling potions <strong>one at a time</strong> — because the game's experience system rewards transaction count, not transaction value. Ten individual sales generate ten times the skill progression of one bulk sale. I marry an NPC early because spousal vendors share your gold pool. I sell potions to my wife, buy materials back at markup, and the speech skill levels both directions. By level 50, I unlock Merchant, which lets me sell anything to anyone. That opens the entire economy.</p>
+
+  <p><strong>That's not gaming. That's understanding the granularity of the fact table.</strong></p>
+
+  <div class="mapping">
+    <div class="mapping-header">
+      <div class="icon">≡</div>
+      Pattern Mapping
+    </div>
+    <div class="mapping-row">
+      <span class="mapping-game">Ingredient sack on the shelf</span>
+      <span class="mapping-arrow">→</span>
+      <span class="mapping-real">Source data staging area</span>
+    </div>
+    <div class="mapping-row">
+      <span class="mapping-game">Barrel next to the workbench</span>
+      <span class="mapping-arrow">→</span>
+      <span class="mapping-real">Fact table</span>
+    </div>
+    <div class="mapping-row">
+      <span class="mapping-game">Four safes along the wall</span>
+      <span class="mapping-arrow">→</span>
+      <span class="mapping-real">Dimension tables</span>
+    </div>
+    <div class="mapping-row">
+      <span class="mapping-game">Take everything out, craft, put back</span>
+      <span class="mapping-arrow">→</span>
+      <span class="mapping-real">ETL batch processing</span>
+    </div>
+    <div class="mapping-row">
+      <span class="mapping-game">One set of each armor type at a time</span>
+      <span class="mapping-arrow">→</span>
+      <span class="mapping-real">Governed build cycles</span>
+    </div>
+    <div class="mapping-row">
+      <span class="mapping-game">Sell one potion at a time for XP</span>
+      <span class="mapping-arrow">→</span>
+      <span class="mapping-real">Fact table granularity optimization</span>
+    </div>
+    <div class="mapping-row">
+      <span class="mapping-game">Swap gear before each station</span>
+      <span class="mapping-arrow">→</span>
+      <span class="mapping-real">Environment-specific configuration</span>
+    </div>
+    <div class="mapping-row">
+      <span class="mapping-game">Exact potions = exact enchantments</span>
+      <span class="mapping-arrow">→</span>
+      <span class="mapping-real">Input/output reconciliation</span>
+    </div>
+    <div class="mapping-row">
+      <span class="mapping-game">"Willy nilly → sloppy"</span>
+      <span class="mapping-arrow">→</span>
+      <span class="mapping-real">Chaos → Structured → Automated</span>
+    </div>
+  </div>
+
+  <p>I keep 4,101 lock picks on my person at all times. I'm level 100 in the skill. I will never need that many. I could store them. I can't tell you why I don't. But if you've ever met someone who keeps every receipt, documents every conversation, and builds governance systems in their spare time — you already know why. <strong>The cost of not having it when you need it is worse than the weight of carrying it when you don't.</strong></p>
+
+  <p>That sentence explains my entire career.</p>
+
+  <div class="incident">
+    <div class="incident-label">⚠ Production Incident</div>
+    <p>"I thought I was in the barrel and instead I was just dropping stuff and I just dropped about <strong>15,000 carry weight of materials on the ground</strong>. Which is amusing."</p>
+    <p style="margin-top: 12px; color: var(--amber);">Root cause: UI ambiguity between "store in container" and "drop on floor." No confirmation dialog. Belt & Suspenders would have prevented this.</p>
+  </div>
+
+  <p>People talk about the restoration loop — a known exploit that lets you make infinitely powerful gear. I've never done it. Not because I don't know how. Because <strong>it removes the constraint, and the constraint is where the fun lives.</strong> Getting to the point where you can make the stuff? That's the game. Removing the difficulty doesn't make you powerful. It makes the power meaningless.</p>
+
+  <p>I've never been able to explain to people why I find this relaxing. Why I'll spend an evening organizing virtual containers with the same precision I use to build audit workpapers. Why the smelter-to-forge-to-workbench-to-grindstone pipeline feels like meditation.</p>
+
+  <p>But now I can. Because the pattern is the same everywhere. The barrels in the basement are the same barrels in my Apple Notes. The four safes are the same dimension tables in my star schemas. The economic loop is the same methodology I use to build analytics engines for veterinary clinics and trading platforms and cocktail programs.</p>
+
+  <p><strong>The data changes. The engine doesn't care.</strong></p>
+
+</article>
+
+<section class="kicker">
+  <p>I built a governance system inside a fantasy game because my brain doesn't know how to not build governance systems. That's not a quirk. That's the architecture.</p>
+  <div class="sig">Walk soft. Cast sharp.</div>
+</section>
+
+<footer class="footer">
+  <div class="footer-accent"></div>
+  <div class="footer-text">Cottage — Humble surface. Cathedral underneath.</div>
+</footer>
+
+</body>
+</html>

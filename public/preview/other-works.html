@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Other Works — Dropdown Logistics</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-primary: #0D1B2A;
+    --bg-card: #10202f;
+    --bg-card-hover: #162538;
+    --bg-surface: #10202f;
+    --text-primary: #F5F1EB;
+    --text-secondary: rgba(245,241,235,0.55);
+    --text-muted: rgba(245,241,235,0.3);
+    --accent: #B23531;
+    --accent-dim: rgba(178,53,49, 0.15);
+    --accent-glow: rgba(178,53,49, 0.08);
+    --border: rgba(245,241,235,0.06);
+    --border-subtle: #162538;
+    --serif: 'Source Serif 4', Georgia, serif;
+    --display: 'Space Grotesk', system-ui, sans-serif;
+    --body: 'Source Serif 4', Georgia, serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+font-family: var(--body);
+background: var(--bg-primary);
+color: var(--text-primary);
+line-height: 1.6;
+-webkit-font-smoothing: antialiased;
+}
+
+/* ── NAV ── */
+nav {
+position: fixed;
+top: 0;
+width: 100%;
+z-index: 100;
+background: rgba(13, 27, 42, 0.92);
+backdrop-filter: blur(20px);
+-webkit-backdrop-filter: blur(20px);
+border-bottom: 1px solid var(--border-subtle);
+}
+
+.nav-inner {
+max-width: 1200px;
+margin: 0 auto;
+padding: 0 2rem;
+display: flex;
+align-items: center;
+justify-content: space-between;
+height: 60px;
+}
+
+.nav-logo {
+font-family: var(--mono);
+font-size: 0.8rem;
+font-weight: 700;
+color: var(--text-primary);
+text-decoration: none;
+letter-spacing: 0.02em;
+text-transform: uppercase;
+}
+
+.nav-links {
+display: flex;
+gap: 1.75rem;
+list-style: none;
+}
+
+.nav-links a {
+font-family: var(--display);
+font-size: 0.82rem;
+color: var(--text-muted);
+text-decoration: none;
+transition: color 0.2s;
+letter-spacing: 0.01em;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+color: var(--text-primary);
+}
+
+.nav-links a.active {
+color: #B23531;
+}
+
+/* ── HERO ── */
+.hero {
+padding: 140px 2rem 80px;
+max-width: 1200px;
+margin: 0 auto;
+position: relative;
+}
+
+.hero-eyebrow {
+font-family: var(--mono);
+font-size: 0.72rem;
+color: var(--accent);
+text-transform: uppercase;
+letter-spacing: 0.15em;
+margin-bottom: 1.25rem;
+opacity: 0;
+animation: fadeUp 0.6s ease forwards;
+}
+
+.hero h1 {
+font-family: var(--display);
+font-size: clamp(2.2rem, 5vw, 3.5rem);
+font-weight: 700;
+line-height: 1.15;
+margin-bottom: 1.5rem;
+max-width: 700px;
+opacity: 0;
+animation: fadeUp 0.6s ease 0.1s forwards;
+}
+
+.hero-sub {
+font-size: 1.05rem;
+color: var(--text-secondary);
+max-width: 600px;
+line-height: 1.7;
+opacity: 0;
+animation: fadeUp 0.6s ease 0.2s forwards;
+}
+
+.hero-meta {
+display: flex;
+gap: 2.5rem;
+margin-top: 2.5rem;
+padding-top: 2rem;
+border-top: 1px solid var(--border);
+opacity: 0;
+animation: fadeUp 0.6s ease 0.3s forwards;
+}
+
+.meta-item {
+display: flex;
+flex-direction: column;
+gap: 0.25rem;
+}
+
+.meta-label {
+font-family: var(--mono);
+font-size: 0.65rem;
+color: var(--text-muted);
+text-transform: uppercase;
+letter-spacing: 0.12em;
+}
+
+.meta-value {
+font-family: var(--serif);
+font-size: 1.1rem;
+color: var(--text-primary);
+font-weight: 600;
+}
+
+/* ── CARDS GRID ── */
+.works-section {
+max-width: 1200px;
+margin: 0 auto;
+padding: 0 2rem 6rem;
+}
+
+.works-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+gap: 1.5rem;
+}
+
+/* ── CARD ── */
+.work-card {
+background: var(--bg-card);
+border: 1px solid var(--border);
+border-radius: 7px;
+padding: 2rem;
+position: relative;
+cursor: pointer;
+transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+overflow: hidden;
+opacity: 0;
+animation: fadeUp 0.5s ease forwards;
+}
+
+.work-card:nth-child(1) { animation-delay: 0.35s; }
+.work-card:nth-child(2) { animation-delay: 0.42s; }
+.work-card:nth-child(3) { animation-delay: 0.49s; }
+.work-card:nth-child(4) { animation-delay: 0.56s; }
+.work-card:nth-child(5) { animation-delay: 0.63s; }
+.work-card:nth-child(6) { animation-delay: 0.70s; }
+.work-card:nth-child(7) { animation-delay: 0.77s; }
+
+.work-card::before {
+content: ‘’;
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+height: 2px;
+background: linear-gradient(90deg, transparent, var(--accent), transparent);
+opacity: 0;
+transition: opacity 0.35s;
+}
+
+.work-card:hover {
+background: var(--bg-card-hover);
+border-color: rgba(178,53,49,0.2);
+transform: translateY(-4px);
+box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3), 0 0 40px rgba(178,53,49,0.08);
+}
+
+.work-card:hover::before {
+opacity: 1;
+}
+
+.card-number {
+font-family: var(--mono);
+font-size: 0.65rem;
+color: var(--accent);
+letter-spacing: 0.12em;
+text-transform: uppercase;
+margin-bottom: 1rem;
+}
+
+.card-title {
+font-family: var(--display);
+font-size: 1.3rem;
+font-weight: 700;
+line-height: 1.3;
+margin-bottom: 0.75rem;
+color: var(--text-primary);
+transition: color 0.2s;
+}
+
+.work-card:hover .card-title {
+color: white;
+}
+
+.card-tag {
+display: inline-block;
+font-family: var(--mono);
+font-size: 0.62rem;
+color: var(--text-muted);
+text-transform: uppercase;
+letter-spacing: 0.1em;
+padding: 0.3em 0.75em;
+background: rgba(245,241,235,0.08);
+border: 1px solid var(--border);
+border-radius: 4px;
+margin-bottom: 1.25rem;
+}
+
+.card-excerpt {
+font-family: var(--serif);
+font-size: 0.95rem;
+line-height: 1.65;
+color: var(--text-secondary);
+display: -webkit-box;
+-webkit-line-clamp: 4;
+-webkit-box-orient: vertical;
+overflow: hidden;
+}
+
+.card-pull-quote {
+font-family: var(--serif);
+font-style: italic;
+font-size: 0.9rem;
+color: var(--text-muted);
+border-left: 2px solid var(--accent);
+padding-left: 1rem;
+margin-top: 1.25rem;
+line-height: 1.6;
+}
+
+.card-footer {
+margin-top: 1.5rem;
+padding-top: 1rem;
+border-top: 1px solid var(--border-subtle);
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.card-collection {
+font-family: var(--mono);
+font-size: 0.62rem;
+color: var(--text-muted);
+letter-spacing: 0.08em;
+text-transform: uppercase;
+}
+
+.card-read {
+font-family: var(--mono);
+font-size: 0.62rem;
+color: var(--accent);
+letter-spacing: 0.08em;
+text-transform: uppercase;
+opacity: 0;
+transform: translateX(-8px);
+transition: all 0.3s;
+}
+
+.work-card:hover .card-read {
+opacity: 1;
+transform: translateX(0);
+}
+
+/* ── EXPANDED CARD / MODAL ── */
+.modal-overlay {
+position: fixed;
+inset: 0;
+background: rgba(13, 27, 42, 0.92);
+backdrop-filter: blur(8px);
+-webkit-backdrop-filter: blur(8px);
+z-index: 200;
+display: none;
+align-items: flex-start;
+justify-content: center;
+overflow-y: auto;
+padding: 4rem 1.5rem;
+}
+
+.modal-overlay.active {
+display: flex;
+}
+
+.modal-content {
+background: var(--bg-card);
+border: 1px solid var(--border);
+border-radius: 7px;
+max-width: 720px;
+width: 100%;
+padding: 3rem;
+position: relative;
+animation: modalIn 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.modal-close {
+position: absolute;
+top: 1.25rem;
+right: 1.25rem;
+width: 36px;
+height: 36px;
+border-radius: 50%;
+background: rgba(245,241,235,0.08);
+border: 1px solid var(--border);
+color: var(--text-muted);
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.1rem;
+transition: all 0.2s;
+font-family: var(--display);
+}
+
+.modal-close:hover {
+background: var(--accent-dim);
+color: var(--accent);
+border-color: var(--accent);
+}
+
+.modal-number {
+font-family: var(--mono);
+font-size: 0.65rem;
+color: var(--accent);
+letter-spacing: 0.12em;
+text-transform: uppercase;
+margin-bottom: 0.75rem;
+}
+
+.modal-title {
+font-family: var(--display);
+font-size: 1.8rem;
+font-weight: 700;
+line-height: 1.2;
+margin-bottom: 0.5rem;
+}
+
+.modal-tag {
+display: inline-block;
+font-family: var(--mono);
+font-size: 0.62rem;
+color: var(--text-muted);
+text-transform: uppercase;
+letter-spacing: 0.1em;
+padding: 0.3em 0.75em;
+background: rgba(245,241,235,0.08);
+border: 1px solid var(--border);
+border-radius: 4px;
+margin-bottom: 2rem;
+}
+
+.modal-body {
+font-family: var(--serif);
+font-size: 1.02rem;
+line-height: 1.85;
+color: var(--text-secondary);
+}
+
+.modal-body p {
+margin-bottom: 1.2em;
+}
+
+.modal-body p:last-child {
+margin-bottom: 0;
+}
+
+.modal-body hr {
+border: none;
+border-top: 1px solid var(--border);
+margin: 2em 0;
+}
+
+.modal-body em {
+font-style: italic;
+color: var(--text-primary);
+}
+
+.modal-body strong {
+color: var(--text-primary);
+font-weight: 600;
+}
+
+/* ── DEXINSIGHT ── */
+.dex-insight {
+max-width: 1200px;
+margin: 0 auto 5rem;
+padding: 0 2rem;
+}
+
+.dex-box {
+background: var(--bg-card);
+border: 1px solid var(--border);
+border-radius: 7px;
+padding: 2rem 2.5rem;
+position: relative;
+}
+
+.dex-box::before {
+content: ‘’;
+position: absolute;
+top: 0;
+left: 0;
+bottom: 0;
+width: 3px;
+background: var(--accent);
+border-radius: 3px 0 0 3px;
+}
+
+.dex-label {
+font-family: var(--mono);
+font-size: 0.7rem;
+color: var(--accent);
+text-transform: uppercase;
+letter-spacing: 0.15em;
+margin-bottom: 0.75rem;
+}
+
+.dex-text {
+font-family: var(--serif);
+font-size: 1.02rem;
+line-height: 1.75;
+color: var(--text-secondary);
+}
+
+.dex-text em {
+font-style: italic;
+color: var(--text-primary);
+}
+
+/* ── FOOTER ── */
+footer {
+padding: 3rem 2rem 0;
+max-width: 1200px;
+margin: 0 auto;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+from { opacity: 0; transform: translateY(16px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes modalIn {
+from { opacity: 0; transform: translateY(20px) scale(0.98); }
+to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+.nav-links { display: none; }
+.hero { padding: 120px 1.5rem 60px; }
+.hero-meta { flex-wrap: wrap; gap: 1.5rem; }
+.works-grid { grid-template-columns: 1fr; }
+.works-section { padding: 0 1.5rem 4rem; }
+.modal-content { padding: 2rem 1.5rem; }
+.modal-title { font-size: 1.4rem; }
+
+}
+</style>
+
+</head>
+<body>
+
+<!-- NAV -->
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo"><span style="color:#B23531;">DDL</span> <span style="color:rgba(245,241,235,0.3)">·</span> Other Works</a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/systems">Systems</a></li>
+      <li><a href="/standards">Standards</a></li>
+      <li><a href="/excelligence">Graph</a></li>
+      <li><a href="/forewords">Forewords</a></li>
+      <li><a href="/council">Council</a></li>
+      <li><a href="/memoir">Memoir</a></li>
+      <li><a href="/other-works" class="active">Other Works</a></li>
+      <li><a href="/about">About</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+  <div class="hero-eyebrow">The Cleanest Timeline</div>
+  <h1>Other Works</h1>
+  <p class="hero-sub">Essays and reflections written outside the memoir. Different containers, same architecture underneath — humor as governance, memory as data, recovery as protocol.</p>
+  <div class="hero-meta">
+    <div class="meta-item">
+      <span class="meta-label">Pieces</span>
+      <span class="meta-value">7</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Collection</span>
+      <span class="meta-value">The Cleanest Timeline</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Status</span>
+      <span class="meta-value">Publish-ready</span>
+    </div>
+  </div>
+</section>
+
+<!-- WORKS GRID -->
+
+<section class="works-section">
+  <div class="works-grid">
+
+<!-- CARD 01 -->
+<article class="work-card" data-work="absurdity">
+  <div class="card-number">01</div>
+  <div class="card-tag">Humor &amp; Safety</div>
+  <h2 class="card-title">Absurdity as a Safety Signal</h2>
+  <p class="card-excerpt">My wife is a baker. She had basically lived in the kitchen for two days straight, trying to get a cake done for a birthday party. Flour everywhere. Timers going. The whole house smelling like sugar and stress.</p>
+  <div class="card-pull-quote">"If it isn't clear that everyone is in on it, it isn't funny to me. It's just exposure."</div>
+  <div class="card-footer">
+    <span class="card-collection">The Cleanest Timeline</span>
+    <span class="card-read">Read →</span>
+  </div>
+</article>
+
+<!-- CARD 02 -->
+<article class="work-card" data-work="summer">
+  <div class="card-number">02</div>
+  <div class="card-tag">Memory &amp; Formation</div>
+  <h2 class="card-title">Super Summer</h2>
+  <p class="card-excerpt">Circa 1998. Church summer camp. The kind with matching T-shirts and nightly chapel and just enough freedom to feel like independence. I was in seventh grade. Which means I was operating with the confidence of someone who owned exactly one chain wallet.</p>
+  <div class="card-pull-quote">"I learned what it feels like to be the only sincere person in a room. That's a powerful lesson at twelve."</div>
+  <div class="card-footer">
+    <span class="card-collection">The Cleanest Timeline</span>
+    <span class="card-read">Read →</span>
+  </div>
+</article>
+
+<!-- CARD 03 -->
+<article class="work-card" data-work="billable">
+  <div class="card-number">03</div>
+  <div class="card-tag">Professional Identity</div>
+  <h2 class="card-title">The Cost of Billable Hours</h2>
+  <p class="card-excerpt">I once got an email that rewired my relationship with time. We had just returned from Kentucky — a coal inventory audit. Freezing warehouses. Climbing stockpiles. Counting reserves. At one point, we went underground into the mines themselves.</p>
+  <div class="card-pull-quote">"Once effort becomes a percentage, there is no natural stopping point. 100% isn't a finish line. It's a baseline."</div>
+  <div class="card-footer">
+    <span class="card-collection">The Cleanest Timeline</span>
+    <span class="card-read">Read →</span>
+  </div>
+</article>
+
+<!-- CARD 04 -->
+<article class="work-card" data-work="iloveyou">
+  <div class="card-number">04</div>
+  <div class="card-tag">Love &amp; Recognition</div>
+  <h2 class="card-title">I Love You</h2>
+  <p class="card-excerpt">I knew before I was supposed to know. Not in the cinematic way. Not lightning. Not fate. In the quieter way. The way you know when something doesn't require effort to stabilize.</p>
+  <div class="card-pull-quote">"She was saving up for new tires. That told me more than any grand gesture could have."</div>
+  <div class="card-footer">
+    <span class="card-collection">The Cleanest Timeline</span>
+    <span class="card-read">Read →</span>
+  </div>
+</article>
+
+<!-- CARD 05 -->
+<article class="work-card" data-work="cay">
+  <div class="card-number">05</div>
+  <div class="card-tag">Cognition &amp; Adaptation</div>
+  <h2 class="card-title">The Cay Piece</h2>
+  <p class="card-excerpt">I don't remember the plot of The Cay. I remember the cover. I must have been in elementary school. I was reading it in an empty classroom — one of those quiet pockets of the day where everyone else had already filtered out.</p>
+  <div class="card-pull-quote">"I had a tool. It worked. I dropped it because someone laughed."</div>
+  <div class="card-footer">
+    <span class="card-collection">The Cleanest Timeline</span>
+    <span class="card-read">Read →</span>
+  </div>
+</article>
+
+<!-- CARD 06 -->
+<article class="work-card" data-work="keg">
+  <div class="card-number">06</div>
+  <div class="card-tag">Humor &amp; Reflection</div>
+  <h2 class="card-title">I Engineered a Targeted Keg Heist Against a Friend</h2>
+  <p class="card-excerpt">It wasn't even a big party. Small apartment. Ten, maybe twelve people. Music low enough to talk over. Two kegs in separate trash cans on the back patio. One tapped and actively doing its job.</p>
+  <div class="card-pull-quote">"That reflex — the one that lets you dress something up so it feels cleaner than it is — doesn't just live on patio nights."</div>
+  <div class="card-footer">
+    <span class="card-collection">The Cleanest Timeline</span>
+    <span class="card-read">Read →</span>
+  </div>
+</article>
+
+<!-- CARD 07 -->
+<article class="work-card" data-work="grifter">
+  <div class="card-number">07</div>
+  <div class="card-tag">Growth &amp; Code</div>
+  <h2 class="card-title">I Took Advice From a Grifter</h2>
+  <p class="card-excerpt">Chuck, don't be a gooey chocolate chip cookie. Season 5. "Chivalry Is Not Dead, But Someone Is." The one where very serious men are very serious about having a code.</p>
+  <div class="card-pull-quote">"A gentleman turns his ire into insight."</div>
+  <div class="card-footer">
+    <span class="card-collection">The Cleanest Timeline</span>
+    <span class="card-read">Read →</span>
+  </div>
+</article>
+
+<!-- CARD 08 -->
+<article class="work-card" data-work="boundary">
+  <div class="card-number">08</div>
+  <div class="card-tag">Recovery &amp; Boundaries</div>
+  <h2 class="card-title">On the Other Side of the Boundary</h2>
+  <p class="card-excerpt">I've been working on my sobriety for approaching a decade now. That sentence still feels strange to write. It's not a badge. It's just time. Time spent learning what I can and can't control.</p>
+  <div class="card-pull-quote">"I'm not closing the door. I'm just not standing in it anymore."</div>
+  <div class="card-footer">
+    <span class="card-collection">The Cleanest Timeline</span>
+    <span class="card-read">Read →</span>
+  </div>
+</article>
+
+  </div>
+</section>
+
+<!-- DEXINSIGHT -->
+
+<section class="dex-insight">
+  <div class="dex-box">
+    <div class="dex-label">DexInsight</div>
+    <p class="dex-text">These aren't outtakes. They're the pieces that didn't fit inside the memoir's container but came from the same architecture. The memoir documents recovery as a system. These document the <em>signals</em> — the moments where a pattern became visible, a rule got written, or a reflex got traced back to its origin. Different register, same source code.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+  <div style="height: 2px; background: linear-gradient(90deg, #B23531, #C49A3C, #6B9DC2, #4A9E6B, #8a6cc9); border-radius: 1px; margin-bottom: 24px;"></div>
+  <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: rgba(245,241,235,0.3); letter-spacing: 0.08em; text-align: center; padding-bottom: 2rem;">
+    Cottage — Humble surface. Cathedral underneath.
+  </div>
+</footer>
+
+<!-- MODAL -->
+
+<div class="modal-overlay" id="modal">
+  <div class="modal-content">
+    <button class="modal-close" id="modalClose">×</button>
+    <div class="modal-number" id="modalNumber"></div>
+    <h1 class="modal-title" id="modalTitle"></h1>
+    <div class="modal-tag" id="modalTag"></div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+// ── FULL ARTICLE CONTENT ──
+const works = {
+  absurdity: {
+    number: "01 — Absurdity as a Safety Signal",
+    title: "Absurdity as a Safety Signal",
+    tag: "Humor & Safety",
+    body: `<p>My wife is a baker.</p>
+<p>She had basically lived in the kitchen for two days straight, trying to get a cake done for a birthday party. Flour everywhere. Timers going. The whole house smelling like sugar and stress.</p>
+<p>Somewhere in the middle of that, she ordered a construction-hat cake topper and received a surge protector instead. Wrong item. Mild crisis. The kind of crisis that is only dramatic because it's yours.</p>
+<p>She told me her AI said she'd been in the kitchen pacing with her.</p>
+<p>I said, "Well yeah… she knows…"</p>
+<p>And I let it hang just long enough for everyone's brain to complete the wholesome version.</p>
+<p>"…that's where you belong."</p>
+<p>Popcorn bag to the face.</p>
+<p>Laughter.</p>
+<p>The joke only works because she knows I don't mean it. It only works because it's absurd.</p>
+<p>Absurdity is how I try to signal safety.</p>
+<hr>
+<p>I do this with close friends too.</p>
+<p>The jokes are exaggerated. Cartoonish. Slightly over the top. The kind of thing that would be offensive if it were real — but lands because it's clearly not.</p>
+<p>Over time, I realized I operate with a kind of code, even if I never wrote it down.</p>
+<p>I try not to punch first.<br>I try not to punch down.</p>
+<p>Immutable traits are off limits. Anything someone didn't choose — off limits. Anything that took effort or pain to overcome — off limits.</p>
+<p>I still miss sometimes. It happens less now, but when I do, I feel it immediately.</p>
+<p>The joke has to be obviously fake. Obviously mutual. Obviously shared.</p>
+<p>If it isn't clear that everyone is in on it, it isn't funny to me.</p>
+<p>It's just exposure.</p>
+<hr>
+<p>Humor can drift into dominance. It can create hierarchy. It can test who can take a hit.</p>
+<p>That's not what I'm trying to do.</p>
+<p>When I lean into something absurd, I'm saying: this is so ridiculous that it proves we're safe. If someone ever said this seriously, it would collapse under its own weight.</p>
+<p>The exaggeration is the point.</p>
+<p>And if a room shifts — if the tone drifts from play to bad faith — I don't escalate theatrically.</p>
+<p>I just stop playing.</p>
+<p>Because once it's not mutual, it's not funny.</p>
+<hr>
+<p>It took me a long time to understand why context matters so much to me.</p>
+<p>Why I instinctively scan for symmetry.<br>Why I test the waters before I escalate.<br>Why I have a low tolerance for jokes that only work if someone doesn't know they're in one.</p>
+<p>I learned early what it feels like to be the last one to realize you're the joke.</p>
+<p>You're confused first. Then it clicks.</p>
+<p>That kind of confusion sticks with you.</p>
+<p>Not as a wound.</p>
+<p>As a rule.</p>
+<p>So I try not to build rooms like that.</p>
+<p>If we're laughing, we're laughing together.<br>If we're playing, we're playing on purpose.</p>
+<p>Like Omar says in <em>The Wire</em>, a man's got to have a code.</p>
+<p>I try to follow mine. I don't always get it right.</p>
+<p>Absurdity is safer anyway.</p>`
+  },
+  summer: {
+    number: "02 — Super Summer",
+    title: "Super Summer",
+    tag: "Memory & Formation",
+    body: `<p>Circa 1998. Church summer camp. The kind with matching T-shirts and nightly chapel and just enough freedom to feel like independence.</p>
+<p>I was in seventh grade.</p>
+<p>Which means I was operating with the confidence of someone who owned exactly one chain wallet and a bottle of hair gel the size of a fire extinguisher.</p>
+<p>The first night, after chapel, one of the guys in my group handed me a note.</p>
+<p>"Hey, I think you're cute."</p>
+<p>Or something like that. I don't remember the exact wording. I just remember the feeling.</p>
+<p>It was the first time a girl had ever told me she liked me.</p>
+<p>And I had all week.</p>
+<p>Holy shit.</p>
+<p>BMOC. First day.</p>
+<p>I wrote a note back. It got delivered somehow. I didn't question logistics. I didn't map supply chains. I didn't run forensic analysis on handwriting.</p>
+<p>Why would I?</p>
+<p>We were at church camp.</p>
+<p>Adults were there.</p>
+<p>Reality didn't require suspicion.</p>
+<p>The week went on like that.</p>
+<p>Notes back and forth.</p>
+<p>No actual meet-ups.</p>
+<p>Just anticipation.</p>
+<p>And I leaned in.</p>
+<p>Before group events, I'd get gussied up the only way a seventh grader knows how: about a pound of hair gel and a gallon of cologne. The kind that announces you three seconds before you enter a room.</p>
+<p>Because I might see her.</p>
+<p>Karissa.</p>
+<p>She was real to me.</p>
+<p>That's important.</p>
+<p>She was real.</p>
+<hr>
+<p>On the last day, we had one final group meeting. Middle school and high school together. Leaders in the room. The whole youth group.</p>
+<p>It's a little blurry now, but I remember the structure.</p>
+<p>One of the girls said, "Hey, Dave."</p>
+<p>And then, in unison:</p>
+<p>"We're Karissa."</p>
+<p>All of them.</p>
+<p>Including the adults.</p>
+<p>Chorus.</p>
+<p>Laughter.</p>
+<p>And there it was.</p>
+<p>Not a girl.</p>
+<p>Not notes.</p>
+<p>Not possibility.</p>
+<p>Just a room full of people who had been in on something I wasn't.</p>
+<p>I remember being confused first.</p>
+<p>Not devastated.</p>
+<p>Confused.</p>
+<p>I thought maybe they meant they were introducing me to her.</p>
+<p>It didn't compute.</p>
+<p>And then it did.</p>
+<hr>
+<p>I didn't cry.</p>
+<p>I didn't storm out.</p>
+<p>I didn't make a scene.</p>
+<p>I just felt my face get hot.</p>
+<p>That specific kind of heat that happens when you realize you were sincere in a room that wasn't.</p>
+<p>At the time, it was epic humiliation.</p>
+<p>Later in life, it became formative.</p>
+<p>Now?</p>
+<p>It's data.</p>
+<hr>
+<p>Here's the part that matters:</p>
+<p>I don't write this as a victim.</p>
+<p>No one beat me up. No one ruined my life. I wasn't broken by it.</p>
+<p>But it was harm.</p>
+<p>It was a collective decision to let one kid believe something tender for a week and then pull the rug in front of an audience.</p>
+<p>And I learned something that day.</p>
+<p>Not that people are evil.</p>
+<p>Not that girls are cruel.</p>
+<p>Not even that church is fake.</p>
+<p>I learned what it feels like to be the only sincere person in a room.</p>
+<p>That's a powerful lesson at twelve.</p>
+<hr>
+<p>For a long time after that, I didn't fully trust sincerity.</p>
+<p>Not overtly. Not dramatically.</p>
+<p>Just a subtle calibration.</p>
+<p>If someone complimented me, part of me checked for the punchline.</p>
+<p>If someone expressed interest, part of me scanned the room.</p>
+<p>You don't lose trust entirely from something like that.</p>
+<p>You just add conditions.</p>
+<hr>
+<p>But here's the twist.</p>
+<p>It also shaped who I try to be now.</p>
+<p>Because I know exactly what it feels like to be an island in a vulnerable moment.</p>
+<p>To believe something good is happening.</p>
+<p>To invest hope.</p>
+<p>And to find out you were the entertainment.</p>
+<p>So I don't do that to people.</p>
+<p>If I joke, I leave them an exit.</p>
+<p>If I tease, I make sure they know they're safe.</p>
+<p>If I see someone exposed in a room, I try to stand next to them instead of adding volume.</p>
+<p>Not because I'm fragile.</p>
+<p>Because I remember.</p>
+<hr>
+<p>Karissa wasn't real.</p>
+<p>But the week was.</p>
+<p>The hope was.</p>
+<p>The notes were.</p>
+<p>The hair gel was aggressively real.</p>
+<p>And that scar?</p>
+<p>It doesn't hurt anymore.</p>
+<p>It just reminds me to be careful with other people's sincerity.</p>
+<p>One of my favorite quotes comes from John Michael Higgins, playing Clive Prescott in a ridiculous episode of <em>Psych</em>:</p>
+<p>"A gentleman turns his ire into insight."</p>
+<p>That was one of the first times I had to learn how.</p>`
+  },
+  billable: {
+    number: "03 — The Cost of Billable Hours",
+    title: "The Cost of Billable Hours",
+    tag: "Professional Identity",
+    body: `<p>I once got an email that rewired my relationship with time.</p>
+<p>We had just returned from Kentucky — a coal inventory audit. Freezing warehouses. Climbing stockpiles. Counting reserves. At one point, we went underground into the mines themselves.</p>
+<p>For most people, that's a once-in-a-lifetime experience.</p>
+<p>For me, it was my introduction to billable work.</p>
+<p>While we were on site, I charged 40 hours.</p>
+<p>Back at the office, I converted physical counts into defensible audit evidence.</p>
+<p>Total time: about 80 hours.</p>
+<p>The email arrived a few days later.</p>
+<p>"Can you explain why you used 80 hours on a 40-hour task?"</p>
+<p>The work was done.<br>The evidence was solid.<br>The client was served.</p>
+<p>But I had violated something invisible.</p>
+<p>I wasn't being disciplined.<br>I was being calibrated.</p>
+<p>Correction under ambiguity lands differently.<br>It doesn't just teach you a rule.</p>
+<p>It teaches you to watch yourself.</p>
+<p>From that point forward, time wasn't just effort.</p>
+<p>It was exposure.</p>
+<hr>
+<p>Billable hours are not evil.</p>
+<p>On paper, they're clean.<br>Track effort.<br>Compare to budget.<br>Protect margin.<br>Create accountability.</p>
+<p>The math works.</p>
+<p>The psychology is quieter.</p>
+<p>When you live inside a billable system long enough, every task splits into two layers:</p>
+<p>1. The work itself.<br>2. The optics of the time.</p>
+<p>And the second layer never fully turns off.</p>
+<p>Where does that hour go?<br>Client?<br>Admin?<br>Training?</p>
+<p>Do you split it?<br>Defend it?<br>Eat it?</p>
+<p>You don't just do the work.</p>
+<p>You audit yourself while doing it.</p>
+<hr>
+<p>Deadlines are stressful.</p>
+<p>Budgets are interpretive.</p>
+<p>If you miss a deadline, you're late.<br>If you exceed a budget, your judgment is being evaluated.</p>
+<p>Deadlines measure completion.<br>Budgets measure discretion.</p>
+<p>That distinction matters.</p>
+<p>Sometimes you're inefficient.<br>Sometimes the scope was wrong.<br>Sometimes the estimate was fiction.</p>
+<p>You rarely know which one applies.</p>
+<p>The physics said 80.<br>The budget insisted on 40.</p>
+<p>I learned quickly which number carried consequences.</p>
+<hr>
+<p>Here's the distinction that took me years to articulate.</p>
+<p>In consulting, the budget reflects what the client agreed to pay.<br>Exceed it, and there's a financial consequence.</p>
+<p>In internal audit, there is no paying client.<br>The auditor is a fixed cost.<br>The work exists to protect the organization.</p>
+<p>When you impose billable-style constraints on that function, you're not protecting margin.<br>You're measuring a person against an estimate made before anyone fully understood the work.</p>
+<p>In consulting, the budget is a constraint.</p>
+<p>In internal audit, it can become an opinion wearing a constraint's clothes.</p>
+<p>I've worked in both.<br>They are not the same.</p>
+<hr>
+<p>There's a hidden tax no one mentions.</p>
+<p>I built internal Excel tools that automated repetitive audit processes.<br>Better quality.<br>Fewer future hours.<br>Objectively good for the firm.</p>
+<p>Not billable.</p>
+<p>Code it to the client? Budget blown.<br>Code it to admin? Utilization drops.<br>Do it after hours? It doesn't exist.</p>
+<p>The system didn't forbid improvement.</p>
+<p>It just taxed it.</p>
+<p>The safest move was obvious:</p>
+<p>Don't build the tool.<br>Do it manually.<br>Charge the hours.</p>
+<p>Creativity doesn't die in billable environments.</p>
+<p>It learns to bill.</p>
+<hr>
+<p>Over time, something subtle happens.</p>
+<p>There's a constant reconciliation running:<br>Effort vs. optics.<br>Value vs. budget.<br>Reality vs. perception.</p>
+<p>Public monthly utilization reports don't help.</p>
+<p>They're framed as "for info."</p>
+<p>They function as comparison.</p>
+<p>110%.<br>97%.<br>83%.</p>
+<p>You don't ignore numbers.<br>You optimize them.</p>
+<p>So I did.</p>
+<p>I averaged 110% utilization.</p>
+<p>Not because I was forced.<br>Because I wanted to make my managers proud.<br>Because I wanted to contribute.<br>Because I respect the craft.</p>
+<p>But once effort becomes a percentage, there is no natural stopping point.</p>
+<p>100% isn't a finish line.<br>It's a baseline.</p>
+<hr>
+<p>For some professionals, that sharpens focus.</p>
+<p>For builders and systems thinkers, it fragments it.</p>
+<p>Flow becomes dangerous.<br>Six hours of deep work on a four-hour estimate means explaining yourself.</p>
+<p>So instead of flowing, you fragment.<br>Check the clock.<br>Pre-defend the narrative.<br>Constrain the build.</p>
+<p>Creativity survives.</p>
+<p>It just stops volunteering.</p>
+<hr>
+<p>I don't resent the system.</p>
+<p>It taught me discipline.<br>Documentation.<br>How to defend my work.</p>
+<p>It also taught me to associate time with evaluation.</p>
+<p>And that changes you.</p>
+<p>When effort is measured primarily by output instead of incremental optics, something comes back online:</p>
+<p>Curiosity.<br>Calm.<br>Creative risk.</p>
+<p>Time becomes what it was supposed to be:</p>
+<p>A resource to invest.</p>
+<p>Not a performance review divided into quarter hours.</p>
+<p>That's the cost of billable hours.</p>
+<p>Not just margin.</p>
+<p>Bandwidth.</p>
+<p>Flow.</p>
+<p>And the kind of professional you become optimizing for them.</p>`
+  },
+  iloveyou: {
+    number: "04 — I Love You",
+    title: "I Love You",
+    tag: "Love & Recognition",
+    body: `<p>I knew before I was supposed to know.</p>
+<p>Not in the cinematic way. Not lightning. Not fate.</p>
+<p>In the quieter way. The way you know when something doesn't require effort to stabilize.</p>
+<p>I pressure-tested it.</p>
+<p>One friend is a therapist. The other is the kind of person who tells me when I'm off base without softening it. I told them to talk me out of it.</p>
+<p>"Am I missing something?"<br>"Is this cringy?"<br>"Is this love-bombing?"</p>
+<p>I wasn't afraid of being wrong about her.</p>
+<p>I was afraid of being wrong about myself.</p>
+<p>Because I'd spent enough time in volatility that calm felt unfamiliar. And unfamiliar can masquerade as boring if you don't know what you're looking at.</p>
+<p>They couldn't find gaps.</p>
+<p>So I told her.</p>
+<p>One month in.</p>
+<p>I said I love you once. Clearly. No theatrics. No demand for reciprocity. I told her she didn't have to say it back. I wasn't asking for a receipt. I just needed her to know the truth and she could take whatever time she needed.</p>
+<p>It wasn't urgency.</p>
+<p>It was relief.</p>
+<p>Relief that I didn't have to brace.</p>
+<hr>
+<p>The signs weren't dramatic.</p>
+<p>She was saving up for new tires.</p>
+<p>That sounds small until you've watched people perform stability instead of live it. She wasn't saving for something impressive. She was saving for something necessary.</p>
+<p>That told me more than any grand gesture could have.</p>
+<p>The night we made it official, her uncle's flight got delayed. Her mom had gone to bed. So I offered to pick him up.</p>
+<p>Emily was floored.</p>
+<p>To me it was obvious. Someone needs a ride, you go get them.</p>
+<p>On the way out, she went to tell her mom we were heading out. From the back room I heard it:</p>
+<p>"You had the talk?!?"</p>
+<p>I just smiled.</p>
+<p>I didn't tell her I'd heard it until years later.</p>
+<p>I already knew I wasn't going anywhere.</p>
+<hr>
+<p>A few weeks later, maybe a few months, I dropped her off at her dad's. She walked to the door. I was about to pull away.</p>
+<p>She turned around and ran back.</p>
+<p>"I love you."</p>
+<p>And that was that.</p>
+<p>Years later, when life required signatures and timestamps and someone steady enough to argue with systems instead of emotions, none of it surprised me.</p>
+<p>You don't build that kind of steadiness in a crisis.</p>
+<p>You recognize it early.</p>
+<p>And if you're paying attention, you trust yourself enough to stay.</p>`
+  },
+  cay: {
+    number: "05 — The Cay Piece",
+    title: "The Cay Piece",
+    tag: "Cognition & Adaptation",
+    body: `<p>I don't remember the plot of <em>The Cay</em>.</p>
+<p>I remember the cover.</p>
+<p>"It took blindness to make Phillip truly see."</p>
+<p>I must have been in elementary school. I was reading it in an empty classroom — one of those quiet pockets of the day where everyone else had already filtered out. I read out loud back then. Not loudly. Just enough to hear it.</p>
+<p>For some reason, hearing the words anchored me. When I read silently, my brain would sprint ahead. I'd be thinking about where the story was going instead of what was happening. Reading out loud slowed everything down just enough to stay in it.</p>
+<p>So that's what I did.</p>
+<p>Until someone heard me from the hallway.</p>
+<p>I don't remember who it was. I don't remember the exact words. I just remember the tone — amused, confused, maybe a little mocking. Like I was doing something strange.</p>
+<p>It wasn't a big scene.<br>No crowd.<br>No speech.</p>
+<p>Just a moment.</p>
+<p>And I stopped.</p>
+<p>Not defiantly.<br>Not dramatically.<br>Just quietly.</p>
+<p>I don't think I decided, "I will never do this again."<br>I think I just absorbed the signal:<br>That's weird. Don't do that.</p>
+<p>And I didn't.</p>
+<hr>
+<p>Years later, in college, I convinced myself I was bad at reading. I'd stare at textbooks and feel my focus slipping. I'd stress about how long it took me. Eventually I stopped trying to read chapters at all and just studied the PowerPoint slides. It worked. I adapted.</p>
+<p>That's kind of a theme.</p>
+<p>When something doesn't work socially, I try to optimize around it.</p>
+<p>What I didn't realize until much later was that nothing was wrong with my reading in the first place. I had a tool. It worked. I dropped it because someone laughed.</p>
+<p>No trauma.<br>No origin story.<br>Just a small recalibration that compounded over time.</p>
+<p>I could have kept reading out loud.</p>
+<p>I just thought I wasn't supposed to.</p>
+<hr>
+<p>I still don't remember <em>The Cay</em>.</p>
+<p>But I remember how I read it.</p>`
+  },
+  keg: {
+    number: "06 — Robin Kegs",
+    title: "I Engineered a Targeted Keg Heist Against a Friend",
+    tag: "Humor & Reflection",
+    body: `<p>It wasn't even a big party.</p>
+<p>Small apartment. Ten, maybe twelve people. Music low enough to talk over. Two kegs in separate trash cans on the back patio. One tapped and actively doing its job. The other sitting there, full and patient, like it trusted us.</p>
+<p>Later, and this is where it really falls apart, one of the people at the party mentioned the kegs had been bought with money he'd taken from the school cafeteria.</p>
+<p>He didn't go to school there. He just worked there.</p>
+<p>Cafeteria money funded the keg.</p>
+<p>We had all paid to eat in that cafeteria before.</p>
+<p>Which means, technically, that was our beer.</p>
+<p>I remember three of us nodding at each other with that silent understanding that roommates have.</p>
+<p>Then Matt said it. Nothing bold or brazen. Just a quiet, "That's our keg."</p>
+<p>It was clearly a joke.</p>
+<p>Which is why it should have ended there.</p>
+<p>For most people, it would have.</p>
+<p>For me, it became an equation.</p>
+<p>Solve for beer.</p>
+<hr>
+<p>Once something is understood, logistics begin.</p>
+<p>We weren't touching the tapped one. That would be chaos. You don't interrupt flow. You remove redundancy.</p>
+<p>The full one sat in the corner. Backup inventory. No eyes on it. The current supply was still pouring, which meant attention was elsewhere.</p>
+<p>Opportunity doesn't announce itself.</p>
+<p>It waits for someone dumb enough to optimize it.</p>
+<p>I turned into Tom Brady with a Solo cup.</p>
+<p>"You guys fake a QT run.</p>
+<p>Matt, you get the car.</p>
+<p>Jeremy, head downstairs.</p>
+<p>I'll launch the keg."</p>
+<p>And just like that, we had a plan.</p>
+<hr>
+<p>Matt and Jeremy made their exit.</p>
+<p>Before I moved, I did a sweep.</p>
+<p>"Anybody need a refill?"</p>
+<p>Every cup in reach got topped off.</p>
+<p>You don't want traffic during execution.</p>
+<p>Once I was confident no one would wander outside mid-play, I stepped out and grabbed the keg.</p>
+<p>Jeremy was already in position below.</p>
+<p>Matt had the car idling.</p>
+<p>I took a breath.</p>
+<p>"Hike!"</p>
+<p>And launched it over the ledge.</p>
+<p>It certainly wasn't a tight spiral.</p>
+<p>But it landed.</p>
+<p>Literally.</p>
+<p>Grass caught it. No clang. No splash.</p>
+<p>Jeremy secured it. Matt popped the trunk.</p>
+<p>Thirty seconds later it was gone.</p>
+<p>I walked back inside with a full beer.</p>
+<p>Cool as a cucumber.</p>
+<p>Silently proud of our misdeed.</p>
+<p>Fifteen minutes later, Matt and Jeremy returned with taquitos.</p>
+<p>Unbothered. Casual. Like eating had been part of the escape plan.</p>
+<p>We didn't make eye contact.</p>
+<p>We didn't need to.</p>
+<p>We stayed another hour.</p>
+<p>No one noticed.</p>
+<hr>
+<p>We didn't drink it alone.</p>
+<p>The following weekend, KU was in the Final Four.</p>
+<p>North Carolina.</p>
+<p>The kind of game where everyone suddenly owns a Jayhawks shirt and pretends they've been watching all season.</p>
+<p>We threw a party.</p>
+<p>This one was louder. Packed. Living room shoulder-to-shoulder. Volume up. Every possession life or death.</p>
+<p>And sitting in the corner, iced and ready, was the keg.</p>
+<p>The one.</p>
+<p>It wasn't a spectacle.</p>
+<p>We just rolled it in.</p>
+<p>It poured clean.</p>
+<p>It went fast.</p>
+<p>Faster than it ever would have at the first party.</p>
+<p>High-fives. Yelling at the TV. Cups refilling. Foam sliding down plastic rims.</p>
+<p>Nobody in that room thought they were participating in a redistribution event.</p>
+<p>But in our heads, that's exactly what it was.</p>
+<p>We had stolen from the rich — in beer — and given to those with less.</p>
+<p>We solved for beer.</p>
+<p>The math checked out.</p>
+<hr>
+<p>Later that night, one of the guys from the original party showed up.</p>
+<p>They mentioned they needed a keg for another get-together.</p>
+<p>Something about someone stealing theirs.</p>
+<p>We sold it back to them. Without hesitation.</p>
+<p>At cost.</p>
+<p>Or close enough to feel principled.</p>
+<p>We didn't confess.</p>
+<p>We didn't gloat.</p>
+<p>We just handed it over.</p>
+<hr>
+<p>Looking back, it was a crappy thing to do.</p>
+<p>At the time, it felt clever.</p>
+<p>Which is more dangerous.</p>
+<p>I didn't think of it as theft.</p>
+<p>I thought of it as balance.</p>
+<p>If I could frame it as even — if I could convince myself no one was really losing — then I could move.</p>
+<p>That instinct still surfaces sometimes.</p>
+<p>The urge to tidy something up in my head so it feels earned.</p>
+<p>Back then, it bought us beer.</p>
+<p>We even gave it a name later.</p>
+<p>Robin Kegs.</p>
+<p>It sounds harmless.</p>
+<p>And it mostly was.</p>
+<p>But that reflex, the one that lets you dress something up so it feels cleaner than it is, doesn't just live on patio nights.</p>
+<p>It shows up anywhere you let it.</p>`
+  },
+  grifter: {
+    number: "07 — I Took Advice From a Grifter",
+    title: "I Took Advice From a Grifter",
+    tag: "Growth & Code",
+    body: `<p>Chuck, don't be a gooey chocolate chip cookie.</p>
+<p>Season 5. "Chivalry Is Not Dead, But Someone Is."</p>
+<p>The one where very serious men are very serious about having a code. The one where Henry gets "invited to leave."</p>
+<p>At one point, Clive says:</p>
+<p>"A gentleman turns his ire into insight."</p>
+<p>Which is funny coming from that episode.</p>
+<p>But it stuck with me.</p>
+<p>Not the "gentleman" part. The move. Because I've noticed something about myself. When feedback hits a nerve, I feel the flash of anger.</p>
+<p>It just shows up dressed as logic.</p>
+<p>Calm. Reasonable. "Well, actually…"</p>
+<p>My brain immediately starts building a case. And sometimes that case is valid. But sometimes? It's just my ego putting on a blazer.</p>
+<p>The sting isn't the problem. The reflex is.</p>
+<p>A gentleman, or honestly, just anyone trying to get better at things, doesn't pretend the irritation isn't there.</p>
+<p>They just don't let it drive.</p>
+<hr>
+<p>So I tried pausing instead of explaining. Letting the sting sit for a second. Asking a question instead of assembling a defense.</p>
+<p>It's uncomfortable for about thirty seconds.</p>
+<p>But it usually leads somewhere better than winning a tiny argument ever did.</p>
+<p>I'm not trying to uphold some grand code of honor.</p>
+<p>I'm just trying to not default to courtroom mode every time something pokes at my pride.</p>
+<p>Anyway. Not Guru shit, not advice, just something I distilled from years of undirected ire.</p>
+<p>And I think Clive would read this and he wouldn't ask me if I've been tested for idiocy.</p>
+<p>Or I hope.</p>`
+  },
+  boundary: {
+    number: "08 — On the Other Side of the Boundary",
+    title: "On the Other Side of the Boundary",
+    tag: "Recovery & Boundaries",
+    body: `<p>I've been working on my sobriety for approaching a decade now.</p>
+<p>That sentence still feels strange to write. It's not a badge. It's just time. Time spent learning what I can and can't control. Time spent journaling when I didn't know what else to do. Time spent figuring out how not to hurt the people who love me.</p>
+<p>Lately, though, I've found myself in a position I've never quite been in before.</p>
+<p>My brother relapsed. Again.</p>
+<p>And for the first time, I drew a hard boundary.</p>
+<p>I said I couldn't keep engaging unless he was willing to pursue treatment. I didn't say it in anger. I didn't say it to punish him. I said it because I know how easy it is to keep talking about change without structurally changing anything.</p>
+<p>My family didn't love that.</p>
+<p>And I get it.</p>
+<p>This stuff is high-emotion territory. When someone is spiraling, everyone wants to help. Everyone wants to soften the landing. Everyone is afraid that boundaries look like abandonment.</p>
+<hr>
+<p>So I adjusted.</p>
+<p>I unblocked him.</p>
+<p>Not because I changed my mind. Not because I felt guilty. But because I realized I don't actually know the perfect formula for this yet.</p>
+<p>I told him clearly what I could and couldn't do. I told him I'm here for real movement toward recovery. I'm not here for circular conversations about how this time is different.</p>
+<p>It felt like an adjustment, not a retreat.</p>
+<p>Maybe it was the right call. Maybe it wasn't. I'm learning in real time.</p>
+<hr>
+<p>This is new territory for me. I've never been the one holding the line before. I've been the one crossing it.</p>
+<p>What's strange is that when I first started reading here years ago, it was from a very different place. I remember thinking, people like this are part of the reason I got sober. Not because they were harsh. Because they were clear.</p>
+<p>There's something powerful about reading people who have learned to love someone without managing them.</p>
+<p>Back then, I was trying to understand why people were pulling away from me.</p>
+<p>Now I'm trying to understand how to pull away without turning cold.</p>
+<p>That shift has been humbling.</p>
+<hr>
+<p>I understand now, in a way I didn't before, how confusing it can feel to set a boundary and immediately question yourself. To wonder if you're being too rigid. To wonder if you're not being compassionate enough. To worry that you're misreading the situation.</p>
+<p>I also understand something else: hope and boundaries can coexist.</p>
+<p>When I say I can't engage unless there's real movement toward recovery, that's not me giving up. It's me acknowledging that I can't manufacture someone else's readiness.</p>
+<p>I reacted to hope before. I stepped in. I stayed. I tried to stabilize things. It didn't change the outcome.</p>
+<p>That doesn't make him hopeless.</p>
+<p>It just means I can't be the variable that fixes it.</p>
+<hr>
+<p>If he chooses treatment, I'll meet him there. I'm not closing the door. I'm just not standing in it anymore.</p>
+<p>I don't have this figured out. I'm still learning how to do this without swinging between overinvolvement and distance. But I wanted to say something I didn't know how to say years ago:</p>
+<p>I see the work you all do.</p>
+<p>I understand it differently now.</p>
+<p>And for what it's worth, the clarity I absorbed here helped shape the way I'm handling this — imperfectly, but intentionally.</p>
+<p>That feels like hope to me.</p>`
+  }
+};
+
+// ── MODAL LOGIC ──
+const modal = document.getElementById('modal');
+const modalClose = document.getElementById('modalClose');
+const modalNumber = document.getElementById('modalNumber');
+const modalTitle = document.getElementById('modalTitle');
+const modalTag = document.getElementById('modalTag');
+const modalBody = document.getElementById('modalBody');
+
+document.querySelectorAll('.work-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const key = card.dataset.work;
+    const work = works[key];
+    if (!work) return;
+    
+    modalNumber.textContent = work.number;
+    modalTitle.textContent = work.title;
+    modalTag.textContent = work.tag;
+    modalBody.innerHTML = work.body;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  });
+});
+
+modalClose.addEventListener('click', closeModal);
+modal.addEventListener('click', (e) => {
+  if (e.target === modal) closeModal();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeModal();
+});
+
+function closeModal() {
+  modal.classList.remove('active');
+  document.body.style.overflow = '';
+}
+</script>
+
+</body>
+</html>

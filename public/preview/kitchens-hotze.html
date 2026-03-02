@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kitchens × Hotze — Collaboration Architecture</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --navy: #0D1B2A;
+    --navy-mid: #152233;
+    --navy-light: #1E2F44;
+    --navy-lighter: #283D56;
+    --cream: #F5F0E8;
+    --cream-dim: #D8D0C4;
+    --crimson: #9B111E;
+    --crimson-glow: #C41426;
+    --gold: #D4A842;
+    --gold-dim: #A88530;
+    --gold-soft: #EDD9A3;
+    --slate: #7A8A9A;
+    --sage: #4A9B7F;
+    --sage-soft: #6BC4A4;
+    --sky: #5A9FBE;
+    --lavender: #8B7EC4;
+    --coral: #D06A52;
+    --rose: #B85A72;
+    --white-08: rgba(255,255,255,0.08);
+    --white-12: rgba(255,255,255,0.12);
+    --white-50: rgba(255,255,255,0.5);
+    --white-70: rgba(255,255,255,0.7);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--navy);
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    border-radius: 50%;
+    top: -200px;
+    right: -200px;
+    background: radial-gradient(circle, rgba(155,17,30,0.06) 0%, transparent 60%);
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    bottom: -200px;
+    left: -150px;
+    background: radial-gradient(circle, rgba(212,168,66,0.05) 0%, transparent 60%);
+  }
+
+  .hero-content { position: relative; z-index: 1; max-width: 800px; }
+
+  .hero-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+  }
+
+  .hero h1 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+
+  .hero h1 .amp {
+    color: var(--crimson-glow);
+    font-style: italic;
+  }
+
+  .hero .hero-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--slate);
+    letter-spacing: 0.12em;
+    margin-bottom: 48px;
+  }
+
+  .hero .hero-thesis {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--cream-dim);
+    max-width: 620px;
+    margin: 0 auto 60px;
+    line-height: 1.7;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 48px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .h-stat { text-align: center; }
+
+  .h-stat-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: var(--gold);
+    display: block;
+  }
+
+  .h-stat-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--slate);
+  }
+
+  /* SECTIONS */
+  .section {
+    padding: 80px 24px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--crimson-glow);
+    margin-bottom: 14px;
+  }
+
+  .section h2 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.7rem;
+    color: var(--cream);
+    margin-bottom: 18px;
+    line-height: 1.3;
+  }
+
+  .section p {
+    font-size: 0.98rem;
+    color: var(--white-70);
+    margin-bottom: 16px;
+    line-height: 1.8;
+    max-width: 720px;
+  }
+
+  .divider {
+    width: 60px;
+    height: 1px;
+    background: var(--navy-lighter);
+    margin: 80px auto;
+  }
+
+  /* PROFILE CARDS */
+  .profiles {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .profile-card {
+    background: var(--navy-mid);
+    border: 1px solid var(--navy-light);
+    border-radius: 12px;
+    padding: 36px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .profile-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+  }
+
+  .profile-card.dave::before { background: linear-gradient(90deg, var(--crimson), var(--gold)); }
+  .profile-card.clayton::before { background: linear-gradient(90deg, var(--sky), var(--sage)); }
+
+  .profile-card .p-name {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.4rem;
+    color: var(--cream);
+    margin-bottom: 4px;
+  }
+
+  .profile-card .p-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 20px;
+  }
+
+  .profile-card.dave .p-title { color: var(--gold); }
+  .profile-card.clayton .p-title { color: var(--sage-soft); }
+
+  .profile-card .p-body {
+    font-size: 0.9rem;
+    color: var(--white-70);
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+
+  .p-capabilities {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .p-cap {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.85rem;
+    color: var(--cream-dim);
+    line-height: 1.5;
+  }
+
+  .p-cap-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+
+  .profile-card.dave .p-cap-dot { background: var(--gold); }
+  .profile-card.clayton .p-cap-dot { background: var(--sage-soft); }
+
+  /* CONVERGENCE */
+  .convergence-bar {
+    margin: 50px 0;
+    padding: 40px 32px;
+    background: var(--navy-mid);
+    border: 1px solid var(--navy-light);
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .convergence-bar::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: linear-gradient(90deg, var(--crimson), var(--gold), var(--sage), var(--sky));
+  }
+
+  .conv-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .conv-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--navy);
+    background: var(--gold);
+    padding: 4px 12px;
+    border-radius: 4px;
+  }
+
+  .conv-header h3 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.15rem;
+    color: var(--cream);
+  }
+
+  .conv-body {
+    font-size: 0.92rem;
+    color: var(--white-70);
+    line-height: 1.8;
+  }
+
+  /* OVERLAP TABLE */
+  .overlap-grid {
+    display: grid;
+    grid-template-columns: 1fr 80px 1fr;
+    gap: 0;
+    margin: 40px 0;
+    align-items: start;
+    background: var(--navy-mid);
+    border: 1px solid var(--navy-light);
+    border-radius: 12px;
+    padding: 8px;
+  }
+
+  .overlap-col {
+    padding: 20px;
+  }
+
+  .overlap-col h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--navy-lighter);
+  }
+
+  .overlap-col.dave-col h4 { color: var(--gold); }
+  .overlap-col.mid-col h4 { color: var(--cream-dim); text-align: center; }
+  .overlap-col.clayton-col h4 { color: var(--sage-soft); }
+
+  .overlap-item {
+    font-size: 0.85rem;
+    color: var(--cream);
+    padding: 8px 0;
+    border-bottom: 1px solid var(--white-08);
+    line-height: 1.5;
+  }
+
+  .overlap-item:last-child { border-bottom: none; }
+
+  .overlap-col.mid-col .overlap-item {
+    text-align: center;
+    color: var(--gold-soft);
+    font-weight: 500;
+  }
+
+  /* PRODUCT STACK */
+  .stack-section {
+    padding: 80px 24px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .stack-visual {
+    margin-top: 40px;
+    position: relative;
+  }
+
+  .stack-layer {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 20px;
+    align-items: start;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--white-08);
+  }
+
+  .stack-layer:last-child { border-bottom: none; }
+
+  .stack-label-col {
+    text-align: right;
+    padding-top: 4px;
+  }
+
+  .stack-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--slate);
+  }
+
+  .stack-owner {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    margin-top: 4px;
+  }
+
+  .stack-content {
+    background: var(--navy-mid);
+    border: 1px solid var(--navy-light);
+    border-radius: 8px;
+    padding: 20px 24px;
+    position: relative;
+  }
+
+  .stack-content::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0;
+    width: 3px;
+    height: 100%;
+    border-radius: 8px 0 0 8px;
+  }
+
+  .stack-content h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 6px;
+  }
+
+  .stack-content p {
+    font-size: 0.85rem;
+    color: var(--white-50);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .stack-content .stack-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+  }
+
+  .stack-tool-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    padding: 3px 10px;
+    border-radius: 4px;
+    border: 1px solid var(--white-12);
+    color: var(--cream-dim);
+  }
+
+  /* STATUS SECTION */
+  .status-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin-top: 32px;
+  }
+
+  .status-card {
+    background: var(--navy-mid);
+    border: 1px solid var(--navy-light);
+    border-radius: 10px;
+    padding: 24px 20px;
+    position: relative;
+  }
+
+  .status-card .s-status {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 12px;
+  }
+
+  .s-live { background: rgba(74,155,127,0.15); color: var(--sage-soft); }
+  .s-active { background: rgba(212,168,66,0.15); color: var(--gold); }
+  .s-spec { background: rgba(90,159,190,0.15); color: var(--sky); }
+  .s-concept { background: rgba(139,126,196,0.15); color: var(--lavender); }
+
+  .status-card h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 6px;
+  }
+
+  .status-card p {
+    font-size: 0.82rem;
+    color: var(--white-50);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* RISK + SIGNAL */
+  .risk-section {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .risk-card {
+    padding: 28px 24px;
+    border-radius: 10px;
+    border: 1px solid;
+  }
+
+  .risk-card.risk {
+    background: rgba(155,17,30,0.05);
+    border-color: rgba(155,17,30,0.2);
+  }
+
+  .risk-card.signal {
+    background: rgba(74,155,127,0.05);
+    border-color: rgba(74,155,127,0.2);
+  }
+
+  .risk-card h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .risk-card.risk h4 { color: var(--crimson-glow); }
+  .risk-card.signal h4 { color: var(--sage-soft); }
+
+  .risk-card li {
+    font-size: 0.88rem;
+    color: var(--white-70);
+    margin-bottom: 8px;
+    line-height: 1.6;
+    list-style: none;
+    padding-left: 16px;
+    position: relative;
+  }
+
+  .risk-card.risk li::before {
+    content: '△';
+    position: absolute;
+    left: 0;
+    color: var(--crimson-glow);
+    font-size: 0.7rem;
+  }
+
+  .risk-card.signal li::before {
+    content: '◆';
+    position: absolute;
+    left: 0;
+    color: var(--sage-soft);
+    font-size: 0.55rem;
+    top: 4px;
+  }
+
+  /* BOTTOM LINE */
+  .bottom-section {
+    padding: 80px 24px;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .bottom-section .bottom-quote {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    color: var(--cream);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .bottom-section .bottom-attr {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--slate);
+    letter-spacing: 0.1em;
+    margin-bottom: 60px;
+  }
+
+  .bottom-section .bottom-line-text {
+    font-size: 1rem;
+    color: var(--cream-dim);
+    line-height: 1.8;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 60px 24px;
+    border-top: 1px solid var(--navy-light);
+  }
+
+  .footer p {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--slate);
+    letter-spacing: 0.1em;
+  }
+
+  @media (max-width: 700px) {
+    .profiles { grid-template-columns: 1fr; }
+    .overlap-grid { grid-template-columns: 1fr; }
+    .overlap-col.mid-col { display: none; }
+    .risk-section { grid-template-columns: 1fr; }
+    .stack-layer { grid-template-columns: 1fr; }
+    .stack-label-col { text-align: left; }
+    .hero-stats { gap: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Collaboration Architecture · v2.0</div>
+    <h1>Kitchens <span class="amp">&</span> Hotze</h1>
+    <div class="hero-sub">From Sensor to Schema to Decision Trail</div>
+    <p class="hero-thesis">"Dave is the governance architect. Clayton is the data capture architect. Separately, each builds half a platform. Together, they build end to end — from sensor to schema to dashboard to decision trail. That's a complete product, not a prototype."</p>
+    <div class="hero-stats">
+      <div class="h-stat">
+        <span class="h-stat-val">1</span>
+        <span class="h-stat-label">Phone Call</span>
+      </div>
+      <div class="h-stat">
+        <span class="h-stat-val">Same</span>
+        <span class="h-stat-label">Architecture</span>
+      </div>
+      <div class="h-stat">
+        <span class="h-stat-val">0</span>
+        <span class="h-stat-label">Shared Specs</span>
+      </div>
+      <div class="h-stat">
+        <span class="h-stat-val">100%</span>
+        <span class="h-stat-label">Convergence</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROFILES -->
+<section class="section">
+  <div class="section-label">The Builders</div>
+  <h2>Two architects, one phone call, same cathedral</h2>
+  <p>Dave and Clayton have spoken once. They weren't coordinating. They weren't sharing specs. They independently built the same structural architecture from completely different entry points — governance and measurement. The convergence is the proof of concept.</p>
+
+  <div class="profiles">
+    <div class="profile-card dave">
+      <div class="p-name">Dave Kitchens</div>
+      <div class="p-title">Governance Architect · The Downstream</div>
+      <p class="p-body">Operates in structured institutional environments — banking, audit, compliance. Converts messy organizational reality into governed, dimensional, self-auditing data architectures. Builds star schemas, reconciliation engines, and dynamic analytics in Excel at a level that normally requires dedicated BI teams. Solo. In days. With concurrent documentation.</p>
+      <div class="p-capabilities">
+        <div class="p-cap"><div class="p-cap-dot"></div>Dimensional data architecture (star schema, fact tables)</div>
+        <div class="p-cap"><div class="p-cap-dot"></div>Multi-model AI Council — 200+ convergent reviews</div>
+        <div class="p-cap"><div class="p-cap-dot"></div>Strategy Registry of 17+ documented interaction patterns</div>
+        <div class="p-cap"><div class="p-cap-dot"></div>ACE protocol — artifact continuity across platforms</div>
+        <div class="p-cap"><div class="p-cap-dot"></div>MindFrame, DDL, DexOS — complete methodology ecosystem</div>
+        <div class="p-cap"><div class="p-cap-dot"></div>11 products across 9 domains in 24 hours (documented)</div>
+      </div>
+    </div>
+
+    <div class="profile-card clayton">
+      <div class="p-name">Clayton Hotze</div>
+      <div class="p-title">Data Capture Architect · The Upstream</div>
+      <p class="p-body">Operates in physical measurement environments — geospatial data, airborne sensors, calibration laboratories. Captures real-world data with extreme accuracy, processes it, and ensures measurement integrity across complex hardware and software systems. Bridges hardware, data, and client communication.</p>
+      <div class="p-capabilities">
+        <div class="p-cap"><div class="p-cap-dot"></div>Geospatial data capture and precision imaging (Leica, Phase One)</div>
+        <div class="p-cap"><div class="p-cap-dot"></div>Calibration lab management and drift detection</div>
+        <div class="p-cap"><div class="p-cap-dot"></div>Working knowledge platform — document ingestion, 3D clustering, gap detection</div>
+        <div class="p-cap"><div class="p-cap-dot"></div>Question routing with automated escalation protocol</div>
+        <div class="p-cap"><div class="p-cap-dot"></div>Simulation engine — 150+ documents, multi-day organizational modeling</div>
+        <div class="p-cap"><div class="p-cap-dot"></div>Hotze Data — GIS and reporting (entrepreneurship)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONVERGENCE PROOF -->
+<section class="section">
+  <div class="section-label">The Convergence</div>
+  <h2>Independent arrival at identical architecture</h2>
+  <p>Before ever sharing a spec, both builders produced systems with the same structural DNA: ingest data → categorize dimensionally → route by capability → escalate unknowns → create new governed artifacts from resolutions → system learns organically.</p>
+
+  <div class="convergence-bar">
+    <div class="conv-header">
+      <span class="conv-badge">Key Finding</span>
+      <h3>Same Schema, Different Entry Points</h3>
+    </div>
+    <p class="conv-body">Dave built ACE — a labeling and persistence protocol that makes AI collaboration artifacts survive context resets, platform switches, and model changes. Clayton built a knowledge platform that ingests organizational documents, clusters them dimensionally, routes employee questions, and auto-generates new knowledge documents when gaps are detected. Neither saw the other's work. The structural overlap is complete: governed intake → dimensional categorization → retrieval protocol → gap detection → artifact creation → knowledge base grows. The domain changed. The schema never did.</p>
+  </div>
+
+  <div class="overlap-grid">
+    <div class="overlap-col dave-col">
+      <h4>Dave Calls It</h4>
+      <div class="overlap-item">Reconciliation</div>
+      <div class="overlap-item">Artifact</div>
+      <div class="overlap-item">Status lifecycle</div>
+      <div class="overlap-item">Council convergence</div>
+      <div class="overlap-item">ACE retrieval</div>
+      <div class="overlap-item">BlindSpot</div>
+      <div class="overlap-item">Star schema</div>
+      <div class="overlap-item">Governance</div>
+    </div>
+    <div class="overlap-col mid-col">
+      <h4>Same Principle</h4>
+      <div class="overlap-item">Verify integrity</div>
+      <div class="overlap-item">Governed unit of work</div>
+      <div class="overlap-item">Maturity tracking</div>
+      <div class="overlap-item">Multi-source validation</div>
+      <div class="overlap-item">Dimensional search</div>
+      <div class="overlap-item">Gap detection</div>
+      <div class="overlap-item">Dimensional modeling</div>
+      <div class="overlap-item">Quality enforcement</div>
+    </div>
+    <div class="overlap-col clayton-col">
+      <h4>Clayton Calls It</h4>
+      <div class="overlap-item">Calibration</div>
+      <div class="overlap-item">Knowledge document</div>
+      <div class="overlap-item">Question → escalation → resolution</div>
+      <div class="overlap-item">Cluster agreement</div>
+      <div class="overlap-item">3D dimensional reduction</div>
+      <div class="overlap-item">Escalation routing</div>
+      <div class="overlap-item">Dimensional reduction</div>
+      <div class="overlap-item">Measurement integrity</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT STACK -->
+<section class="stack-section">
+  <div class="section-label">The Combined Stack</div>
+  <h2>End-to-end architecture</h2>
+  <p>From first contact to organizational knowledge. Every layer has an owner. Every handoff is defined.</p>
+
+  <div class="stack-visual">
+
+    <div class="stack-layer">
+      <div class="stack-label-col">
+        <div class="stack-label">Layer 1</div>
+        <div class="stack-owner" style="color:var(--lavender);">Dave</div>
+      </div>
+      <div class="stack-content" style="--c:var(--lavender);">
+        <div style="position:absolute;left:0;top:0;width:3px;height:100%;background:var(--lavender);border-radius:8px 0 0 8px;"></div>
+        <h4>Onboarding — MindFrame</h4>
+        <p>New user arrives. 30-step calibration discovers how they think, communicate, and work. Produces persona profile that ACE stores as first artifact. First conversation feels like tenth.</p>
+        <div class="stack-tools"><span class="stack-tool-tag">MindFrame</span><span class="stack-tool-tag">CraniumCartographer</span><span class="stack-tool-tag">ToneprintShaper</span></div>
+      </div>
+    </div>
+
+    <div class="stack-layer">
+      <div class="stack-label-col">
+        <div class="stack-label">Layer 2</div>
+        <div class="stack-owner" style="color:var(--sage-soft);">Dave</div>
+      </div>
+      <div class="stack-content">
+        <div style="position:absolute;left:0;top:0;width:3px;height:100%;background:var(--sage);border-radius:8px 0 0 8px;"></div>
+        <h4>Build Process — DDL</h4>
+        <p>8-step construction flow: define intent → set scope → anchor constraints → build → test → ship → document → govern. Every project follows the same lifecycle.</p>
+        <div class="stack-tools"><span class="stack-tool-tag">DDL</span><span class="stack-tool-tag">Construction Flow</span><span class="stack-tool-tag">Phase Gates</span></div>
+      </div>
+    </div>
+
+    <div class="stack-layer">
+      <div class="stack-label-col">
+        <div class="stack-label">Layer 3</div>
+        <div class="stack-owner" style="color:var(--gold);">Dave + Clayton</div>
+      </div>
+      <div class="stack-content">
+        <div style="position:absolute;left:0;top:0;width:3px;height:100%;background:linear-gradient(180deg,var(--gold),var(--sage));border-radius:8px 0 0 8px;"></div>
+        <h4>Multi-Expert Analysis — Council + Auto-Council</h4>
+        <p>Send work to 8–10 AI models simultaneously. Collect independent analysis. Identify convergence and divergence. Auto-Council (joint project) automates the collection and comparison that Dave currently does manually.</p>
+        <div class="stack-tools"><span class="stack-tool-tag">Council</span><span class="stack-tool-tag">Auto-Council</span><span class="stack-tool-tag">Convergent Analysis</span></div>
+      </div>
+    </div>
+
+    <div class="stack-layer">
+      <div class="stack-label-col">
+        <div class="stack-label">Layer 4</div>
+        <div class="stack-owner" style="color:var(--rose);">Dave + Beth</div>
+      </div>
+      <div class="stack-content">
+        <div style="position:absolute;left:0;top:0;width:3px;height:100%;background:var(--rose);border-radius:8px 0 0 8px;"></div>
+        <h4>Gap Detection — BlindSpot</h4>
+        <p>Proactively identifies what you don't know you're missing. Beth's two-question methodology drives the detection engine — targeted questions that plug holes in existing knowledge.</p>
+        <div class="stack-tools"><span class="stack-tool-tag">BlindSpot</span><span class="stack-tool-tag">Two-Question Method</span><span class="stack-tool-tag">Beth's UX</span></div>
+      </div>
+    </div>
+
+    <div class="stack-layer">
+      <div class="stack-label-col">
+        <div class="stack-label">Layer 5</div>
+        <div class="stack-owner" style="color:var(--coral);">Dave</div>
+      </div>
+      <div class="stack-content">
+        <div style="position:absolute;left:0;top:0;width:3px;height:100%;background:var(--coral);border-radius:8px 0 0 8px;"></div>
+        <h4>Persistence — ACE</h4>
+        <p>Everything worth keeping gets labeled (name, type, version, status), filed, and made retrievable. Artifacts survive context resets, platform switches, and model changes. Simple text files. Works everywhere.</p>
+        <div class="stack-tools"><span class="stack-tool-tag">ACE</span><span class="stack-tool-tag">Artifact Headers</span><span class="stack-tool-tag">Boot Bundles</span></div>
+      </div>
+    </div>
+
+    <div class="stack-layer">
+      <div class="stack-label-col">
+        <div class="stack-label">Layer 6</div>
+        <div class="stack-owner" style="color:var(--sky);">Clayton</div>
+      </div>
+      <div class="stack-content">
+        <div style="position:absolute;left:0;top:0;width:3px;height:100%;background:var(--sky);border-radius:8px 0 0 8px;"></div>
+        <h4>Enterprise Scale — Knowledge Platform</h4>
+        <p>Document ingestion, dimensional clustering, auto-labeling, question routing, escalation protocol, and automatic knowledge base creation from resolved gaps. Working simulation with 150+ documents across multi-day organizational modeling.</p>
+        <div class="stack-tools"><span class="stack-tool-tag">Document Ingestion</span><span class="stack-tool-tag">3D Clustering</span><span class="stack-tool-tag">Escalation Engine</span><span class="stack-tool-tag">Auto-KB Creation</span></div>
+      </div>
+    </div>
+
+    <div class="stack-layer">
+      <div class="stack-label-col">
+        <div class="stack-label">Layer 7</div>
+        <div class="stack-owner" style="color:var(--cream-dim);">Dave</div>
+      </div>
+      <div class="stack-content">
+        <div style="position:absolute;left:0;top:0;width:3px;height:100%;background:var(--cream-dim);border-radius:8px 0 0 8px;"></div>
+        <h4>Governance — DexOS</h4>
+        <p>The operating system underneath everything. Naming conventions, quality standards, cross-platform coordination, contributor profiles, vocabulary governance. The rules that keep all other layers consistent.</p>
+        <div class="stack-tools"><span class="stack-tool-tag">DexOS</span><span class="stack-tool-tag">Dextionary</span><span class="stack-tool-tag">Language Governance</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CURRENT STATUS -->
+<section class="section">
+  <div class="section-label">Current Status</div>
+  <h2>Where everything stands — February 2026</h2>
+
+  <div class="status-grid">
+    <div class="status-card">
+      <span class="s-status s-live">Live</span>
+      <h4>Council Methodology</h4>
+      <p>200+ reviews completed. 17+ documented strategies. 10-model panel operational. Convergent analysis validated across multiple domains.</p>
+    </div>
+    <div class="status-card">
+      <span class="s-status s-live">Live</span>
+      <h4>DDL Construction Flow</h4>
+      <p>8-step build methodology. 11 products shipped across 9 domains in 24 hours using this process. Battle-tested.</p>
+    </div>
+    <div class="status-card">
+      <span class="s-status s-spec">Spec Complete</span>
+      <h4>ACE v1.0</h4>
+      <p>Comprehensive specification delivered. 8-part document covering format, protocol, storage, migration, and MindFrame integration. Ready for first artifact migration.</p>
+    </div>
+    <div class="status-card">
+      <span class="s-status s-active">Active Build</span>
+      <h4>Clayton's Knowledge Platform</h4>
+      <p>Working simulation with 150-200 documents. Dimensional clustering, question routing, and escalation operational. Knowledge base auto-creation functioning.</p>
+    </div>
+    <div class="status-card">
+      <span class="s-status s-active">Active Build</span>
+      <h4>Auto-Council</h4>
+      <p>Joint project. Automating multi-model prompt distribution and response collection. Eliminates manual copy-paste across 10 platforms.</p>
+    </div>
+    <div class="status-card">
+      <span class="s-status s-concept">Design Phase</span>
+      <h4>BlindSpot</h4>
+      <p>Gap detection engine. Beth's two-question methodology driving core UX. Architecture defined, build pending.</p>
+    </div>
+    <div class="status-card">
+      <span class="s-status s-live">Live</span>
+      <h4>MindFrame v3.0</h4>
+      <p>30-step persona calibration producing ACE-ready artifacts. Operational for new user onboarding. Dextionary (162 entries, 16 contributors) provides governed vocabulary.</p>
+    </div>
+    <div class="status-card">
+      <span class="s-status s-live">Live</span>
+      <h4>DexOS v3.0</h4>
+      <p>Governance layer operational. Multi-model coordination protocol, contributor profiles, vocabulary governance all active and versioned.</p>
+    </div>
+  </div>
+</section>
+
+<!-- RISK + SIGNAL -->
+<section class="section">
+  <div class="section-label">Risk Assessment</div>
+  <h2>What could go wrong, what's going right</h2>
+
+  <div class="risk-section">
+    <div class="risk-card risk">
+      <h4>Risks</h4>
+      <ul>
+        <li>Two builders with strong architectural opinions — precision-first vs. governance-first may create friction on schema design</li>
+        <li>One phone call is signal, not proof. Extended collaboration untested under pressure</li>
+        <li>Both build disproportionate to their titles — scope management at scale is unknown</li>
+        <li>Different domains (institutional audit vs. geospatial measurement) may produce vocabulary friction before converging</li>
+      </ul>
+    </div>
+    <div class="risk-card signal">
+      <h4>Signals It's Working</h4>
+      <ul>
+        <li>Independent architectural convergence without shared specs — strongest possible validation</li>
+        <li>Clayton immediately interested in Council methodology — systems thinker, not just sensor specialist</li>
+        <li>Both have entrepreneurial background — understand building without institutional support</li>
+        <li>Complementary blind spots: Dave needs bandwidth on intake layer, Clayton needs governance on analytical layer</li>
+        <li>Beth's UX instinct already driving BlindSpot design — the team self-organizes around capability</li>
+        <li>Clayton has working simulation, not just concepts — execution velocity confirmed</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- BOTTOM LINE -->
+<section class="bottom-section">
+  <div class="section-label">Bottom Line</div>
+
+  <p class="bottom-quote">"Clayton handles capture, calibration, and data quality at the source. Dave handles schema, governance, analytics, and decision reconstruction downstream. The handoff point is the fact table — Clayton makes sure what goes in is accurate, Dave makes sure what comes out is meaningful."</p>
+  <p class="bottom-attr">— Original Collaboration Profile, February 2026</p>
+
+  <p class="bottom-line-text">What changed since v1.0: Clayton built a working simulation. Dave formalized ACE. Beth's two-question methodology became a product feature. The convergence wasn't theoretical — it was independently confirmed by both builders producing the same structural DNA without coordination. The question is no longer whether the architecture works. It's how fast they can build it together.</p>
+</section>
+
+<div class="footer">
+  <p>KITCHENS × HOTZE · COLLABORATION ARCHITECTURE v2.0</p>
+  <p style="margin-top:6px;">Built by Dave Kitchens + Claude (Opus) · February 2026</p>
+</div>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.profile-card, .convergence-bar, .overlap-grid, .stack-layer, .status-card, .risk-card, .bottom-section').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(16px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ACE — Explained Simply</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Nunito:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --warm-white: #FBF8F3;
+    --soft-cream: #F3EDE3;
+    --sand: #E8DFD0;
+    --charcoal: #2C2C2C;
+    --text: #3D3832;
+    --text-light: #7A7168;
+    --coral: #E07A5F;
+    --coral-soft: #F4A68E;
+    --sage: #6B9080;
+    --sage-soft: #A4C3B2;
+    --sky: #6BA3BE;
+    --sky-soft: #A8D0E0;
+    --lavender: #9B8EC4;
+    --lavender-soft: #C4BAE0;
+    --gold: #D4A843;
+    --gold-soft: #EDD9A3;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--warm-white);
+    color: var(--text);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--coral-soft) 0%, transparent 70%);
+    opacity: 0.3;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -150px;
+    left: -100px;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--sage-soft) 0%, transparent 70%);
+    opacity: 0.25;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--coral);
+    background: rgba(224,122,95,0.1);
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+  }
+
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.2rem, 6vw, 3.5rem);
+    color: var(--charcoal);
+    line-height: 1.15;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 em {
+    color: var(--coral);
+    font-style: normal;
+  }
+
+  .hero .intro {
+    font-size: 1.15rem;
+    color: var(--text-light);
+    max-width: 520px;
+    margin: 0 auto 40px;
+    font-weight: 300;
+  }
+
+  .hero .for-beth {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    font-style: italic;
+  }
+
+  /* SECTIONS */
+  .section {
+    padding: 80px 24px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--coral);
+    margin-bottom: 12px;
+  }
+
+  .section h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.8rem;
+    color: var(--charcoal);
+    margin-bottom: 20px;
+    line-height: 1.3;
+  }
+
+  .section p {
+    font-size: 1.05rem;
+    color: var(--text);
+    margin-bottom: 16px;
+    line-height: 1.8;
+  }
+
+  .section p.light {
+    color: var(--text-light);
+  }
+
+  /* ANALOGY CARDS */
+  .analogy-row {
+    display: grid;
+    grid-template-columns: 1fr 60px 1fr;
+    gap: 0;
+    align-items: center;
+    margin: 40px 0;
+  }
+
+  .analogy-card {
+    background: var(--soft-cream);
+    border-radius: 16px;
+    padding: 32px 28px;
+    text-align: center;
+  }
+
+  .analogy-card .emoji {
+    font-size: 2.5rem;
+    margin-bottom: 12px;
+  }
+
+  .analogy-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem;
+    color: var(--charcoal);
+    margin-bottom: 8px;
+  }
+
+  .analogy-card p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .analogy-arrow {
+    text-align: center;
+    font-size: 1.5rem;
+    color: var(--sand);
+  }
+
+  /* VISUAL DIAGRAM */
+  .diagram-container {
+    margin: 50px 0;
+    padding: 40px 24px;
+    background: var(--soft-cream);
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .diagram-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    color: var(--charcoal);
+    text-align: center;
+    margin-bottom: 36px;
+  }
+
+  .flow-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .flow-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px 0;
+    position: relative;
+  }
+
+  .flow-dot-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    width: 40px;
+  }
+
+  .flow-dot {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  .flow-line {
+    width: 2px;
+    height: 40px;
+    background: var(--sand);
+    margin-top: 4px;
+  }
+
+  .flow-step:last-child .flow-line {
+    display: none;
+  }
+
+  .flow-text h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 4px;
+  }
+
+  .flow-text p {
+    font-size: 0.88rem;
+    color: var(--text-light);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* PROBLEM / SOLUTION */
+  .problem-solution {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin: 40px 0;
+  }
+
+  .ps-card {
+    border-radius: 16px;
+    padding: 28px 24px;
+  }
+
+  .ps-card.problem {
+    background: #FDF0ED;
+    border: 1px solid #F4D4CA;
+  }
+
+  .ps-card.solution {
+    background: #EDF5F0;
+    border: 1px solid #C2DCC9;
+  }
+
+  .ps-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+  }
+
+  .ps-card.problem h3 { color: var(--coral); }
+  .ps-card.solution h3 { color: var(--sage); }
+
+  .ps-card ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .ps-card li {
+    font-size: 0.9rem;
+    color: var(--text);
+    padding: 6px 0;
+    padding-left: 20px;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .ps-card.problem li::before {
+    content: '✗';
+    position: absolute;
+    left: 0;
+    color: var(--coral);
+    font-weight: 700;
+  }
+
+  .ps-card.solution li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--sage);
+    font-weight: 700;
+  }
+
+  /* CONVERGENCE */
+  .convergence-visual {
+    margin: 50px 0;
+    padding: 48px 32px;
+    background: var(--charcoal);
+    border-radius: 20px;
+    color: var(--warm-white);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .convergence-visual::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 60%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(212,168,67,0.08) 0%, transparent 60%);
+  }
+
+  .convergence-visual .section-label {
+    color: var(--gold);
+  }
+
+  .convergence-visual h2 {
+    color: var(--warm-white);
+    margin-bottom: 32px;
+  }
+
+  .convergence-grid {
+    display: grid;
+    grid-template-columns: 1fr 80px 1fr;
+    gap: 0;
+    align-items: start;
+    position: relative;
+    z-index: 1;
+  }
+
+  .builder-card {
+    padding: 24px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.04);
+  }
+
+  .builder-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem;
+    margin-bottom: 6px;
+  }
+
+  .builder-card .role {
+    font-size: 0.8rem;
+    color: var(--gold-soft);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    margin-bottom: 16px;
+  }
+
+  .builder-card ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .builder-card li {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.7);
+    padding: 4px 0;
+    padding-left: 16px;
+    position: relative;
+  }
+
+  .builder-card li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 0.8rem;
+  }
+
+  .convergence-middle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 60px;
+  }
+
+  .convergence-plus {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: var(--charcoal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .convergence-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-align: center;
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    height: 80px;
+  }
+
+  /* RESULT ROW */
+  .result-row {
+    margin-top: 32px;
+    padding: 24px;
+    background: rgba(212,168,67,0.1);
+    border: 1px solid rgba(212,168,67,0.3);
+    border-radius: 12px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .result-row h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .result-row p {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.7);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* BETH ROLE */
+  .beth-section {
+    padding: 60px 32px;
+    background: linear-gradient(135deg, #F8F0FF, #FFF0F0, #F0F8F0);
+    border-radius: 20px;
+    margin: 50px 0;
+    text-align: center;
+  }
+
+  .beth-section h2 {
+    margin-bottom: 16px;
+  }
+
+  .beth-section p {
+    max-width: 560px;
+    margin: 0 auto 16px;
+  }
+
+  .beth-qualities {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 24px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .beth-tag {
+    background: white;
+    border: 1px solid var(--sand);
+    border-radius: 24px;
+    padding: 8px 18px;
+    font-size: 0.85rem;
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  /* ELI5 */
+  .eli5-box {
+    background: #FFFBEB;
+    border: 2px dashed var(--gold-soft);
+    border-radius: 16px;
+    padding: 32px;
+    margin: 40px 0;
+  }
+
+  .eli5-box h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem;
+    color: var(--charcoal);
+    margin-bottom: 12px;
+  }
+
+  .eli5-box p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text);
+  }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 60px 24px;
+    color: var(--text-light);
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 640px) {
+    .analogy-row { grid-template-columns: 1fr; gap: 12px; }
+    .analogy-arrow { transform: rotate(90deg); }
+    .problem-solution { grid-template-columns: 1fr; }
+    .convergence-grid { grid-template-columns: 1fr; gap: 24px; }
+    .convergence-middle { 
+      flex-direction: row; 
+      padding-top: 0;
+      gap: 12px;
+    }
+    .convergence-label { 
+      writing-mode: horizontal-tb; 
+      transform: none; 
+      height: auto; 
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">The Simple Version</div>
+    <h1>What is <em>ACE</em> and why does it matter?</h1>
+    <p class="intro">A plain-English explanation of what Dave built, what Clayton built, and how they accidentally built the same thing.</p>
+    <p class="for-beth">Made for Beth 💛</p>
+  </div>
+</section>
+
+<!-- THE PROBLEM -->
+<section class="section">
+  <div class="section-label">Start Here</div>
+  <h2>The problem, in one sentence</h2>
+  <p>Every time you start a new conversation with AI, it forgets everything. Your preferences, your projects, your vocabulary, your history — gone. You start over as a stranger every single time.</p>
+  <p class="light">Imagine if every time you walked into your office, nobody knew your name, what you were working on, or how you like things done. That's what using AI feels like right now.</p>
+
+  <div class="problem-solution">
+    <div class="ps-card problem">
+      <h3>Without ACE</h3>
+      <ul>
+        <li>Every new chat starts from zero</li>
+        <li>You re-explain yourself constantly</li>
+        <li>Good work disappears when the chat ends</li>
+        <li>No way to pick up where you left off</li>
+        <li>Nothing connects across different AI tools</li>
+      </ul>
+    </div>
+    <div class="ps-card solution">
+      <h3>With ACE</h3>
+      <ul>
+        <li>Your work carries forward automatically</li>
+        <li>AI already knows how you work</li>
+        <li>Important stuff is saved in a standard format</li>
+        <li>Pick up any project on any platform</li>
+        <li>Everything connects because it's all labeled the same way</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- THE ANALOGY -->
+<section class="section">
+  <div class="section-label">The Analogy</div>
+  <h2>Think of it like a house</h2>
+
+  <div class="analogy-row">
+    <div class="analogy-card">
+      <div class="emoji">🏠</div>
+      <h3>Your Work</h3>
+      <p>All the things you build, write, decide, and create with AI — like furniture, art, and memories in a home.</p>
+    </div>
+    <div class="analogy-arrow">→</div>
+    <div class="analogy-card">
+      <div class="emoji">📦</div>
+      <h3>ACE</h3>
+      <p>A labeling system for all of it. Every piece gets a name, a date, a category, and a status — so you can always find it again.</p>
+    </div>
+  </div>
+
+  <div class="eli5-box">
+    <h3>🍎 The ELI5 Version</h3>
+    <p>You know how a library puts a sticker on every book with a call number so anyone can find it? ACE is that sticker — but for everything you create with AI. Instead of call numbers, each thing gets a name, a type, a version number, and a status (like "active" or "archived"). That's it. That's the whole idea.</p>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section">
+  <div class="section-label">How It Works</div>
+  <h2>Three simple pieces</h2>
+
+  <div class="diagram-container">
+    <div class="diagram-title">The ACE System</div>
+    <div class="flow-steps">
+
+      <div class="flow-step">
+        <div class="flow-dot-col">
+          <div class="flow-dot" style="background:var(--coral);">1</div>
+          <div class="flow-line"></div>
+        </div>
+        <div class="flow-text">
+          <h4>The Label</h4>
+          <p>Every important thing gets a simple header: a name, what type it is, what version, and whether it's active or archived. Like a name tag for your work.</p>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-dot-col">
+          <div class="flow-dot" style="background:var(--sage);">2</div>
+          <div class="flow-line"></div>
+        </div>
+        <div class="flow-text">
+          <h4>The Save</h4>
+          <p>When you make something worth keeping, you say "save this." It gets the label and goes into a folder. Simple text files that work everywhere — phone, computer, any AI.</p>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-dot-col">
+          <div class="flow-dot" style="background:var(--sky);">3</div>
+          <div class="flow-line"></div>
+        </div>
+        <div class="flow-text">
+          <h4>The Retrieve</h4>
+          <p>When you start a new conversation, you bring your labels with you. The AI reads them and instantly knows your projects, your preferences, and where you left off. No re-explaining.</p>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-dot-col">
+          <div class="flow-dot" style="background:var(--lavender);">✦</div>
+        </div>
+        <div class="flow-text">
+          <h4>That's it.</h4>
+          <p>Label things consistently. Save them in one place. Bring them to new conversations. The AI does the rest.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DAVE + CLAYTON -->
+<section class="section">
+  <div class="section-label">The Convergence</div>
+  <h2>How Dave and Clayton accidentally built the same thing</h2>
+  <p>Dave and Clayton have only spoken once — one phone call. They weren't coordinating. They weren't sharing specs. They just both arrived at the same architecture from completely different directions.</p>
+
+  <div class="convergence-visual">
+    <div class="convergence-grid">
+      <div class="builder-card">
+        <h3>Dave</h3>
+        <div class="role">The Architect</div>
+        <ul>
+          <li>Solves: "How do I keep my AI work organized?"</li>
+          <li>Built: A labeling and filing system (ACE)</li>
+          <li>Focus: Continuity — nothing gets lost</li>
+          <li>Approach: Governance, naming, versioning</li>
+          <li>Strength: Knows what to save and why</li>
+        </ul>
+      </div>
+
+      <div class="convergence-middle">
+        <div class="convergence-plus">+</div>
+        <div class="convergence-label">SAME BONES</div>
+      </div>
+
+      <div class="builder-card">
+        <h3>Clayton</h3>
+        <div class="role">The Engineer</div>
+        <ul>
+          <li>Solves: "How do we find gaps in what we know?"</li>
+          <li>Built: A system that reads documents and finds missing knowledge</li>
+          <li>Focus: Discovery — find what you don't know</li>
+          <li>Approach: Clustering, routing, auto-generating answers</li>
+          <li>Strength: Makes the system learn from its own questions</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="result-row">
+      <h3>Together</h3>
+      <p>Dave's system keeps everything organized and retrievable. Clayton's system finds what's missing and fills the gaps. One preserves knowledge. The other grows it. Same architecture — different superpowers.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BETH'S ROLE -->
+<section class="section">
+  <div class="beth-section">
+    <div class="section-label" style="color:var(--lavender);">Where You Come In</div>
+    <h2>Interior Designer to the Architect</h2>
+    <p>Dave designs the structure — what goes where, why it matters, how it connects. You make it livable. You ask the questions that turn blueprints into something people actually want to use.</p>
+    <p class="light">The architect knows the building needs a kitchen. The interior designer knows where the coffee maker should go.</p>
+    <p>That's not a small thing. It's the difference between a system that works and a system people actually use.</p>
+
+    <div class="beth-qualities">
+      <span class="beth-tag">Asks "but what does the user see?"</span>
+      <span class="beth-tag">Tests with real scenarios</span>
+      <span class="beth-tag">Catches what's confusing</span>
+      <span class="beth-tag">Makes it feel human</span>
+      <span class="beth-tag">The two-question idea ✨</span>
+    </div>
+  </div>
+</section>
+
+<!-- THE BOTTOM LINE -->
+<section class="section">
+  <div class="section-label">The Bottom Line</div>
+  <h2>One paragraph, nothing else</h2>
+  <div class="eli5-box">
+    <p>ACE is a way to label and save the important things you create with AI so they don't disappear when the conversation ends. It's a simple system — just consistent labels and a folder — that lets you carry your work forward to any new conversation on any AI platform. Dave built the organizing system. Clayton built a system that finds what's missing. Together, they cover both sides: keeping what you have and discovering what you need. Your job is to make sure real people can actually use it.</p>
+  </div>
+</section>
+
+<div class="footer">
+  <p>Made with care by Dave + Claude (Opus) · February 2026</p>
+  <p style="margin-top:4px; font-style:italic;">For Beth, who asks the right questions.</p>
+</div>
+
+<script>
+  // Gentle fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.section, .analogy-card, .ps-card, .diagram-container, .convergence-visual, .beth-section, .eli5-box').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>

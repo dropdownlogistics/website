@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>u/chuckdooley — Contributor Dossier — Drop Down Logistics</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-primary: #0a0a0f;
+    --bg-card: #12121a;
+    --bg-card-hover: #181824;
+    --bg-surface: #0e0e16;
+    --text-primary: #e8e8ee;
+    --text-secondary: #9999aa;
+    --text-muted: #666680;
+    --accent: #c73e3e;
+    --accent-dim: rgba(199, 62, 62, 0.15);
+    --accent-glow: rgba(199, 62, 62, 0.08);
+    --border: #1e1e2e;
+    --border-subtle: #16161f;
+    --reddit-orange: #ff4500;
+    --reddit-dim: rgba(255, 69, 0, 0.12);
+    --gold: #d4a843;
+    --gold-dim: rgba(212, 168, 67, 0.12);
+    --recovery-green: #2d7a4f;
+    --recovery-dim: rgba(45, 122, 79, 0.12);
+    --excel-green: #217346;
+    --excel-dim: rgba(33, 115, 70, 0.12);
+    --psych-teal: #3ba8a8;
+    --psych-dim: rgba(59, 168, 168, 0.12);
+    --sports-blue: #4a7ac7;
+    --sports-dim: rgba(74, 122, 199, 0.12);
+    --gaming-purple: #7c5cbf;
+    --gaming-dim: rgba(124, 92, 191, 0.12);
+    --culture-pink: #c75a8a;
+    --culture-dim: rgba(199, 90, 138, 0.12);
+    --serif: 'Source Serif 4', Georgia, serif;
+    --sans: 'DM Sans', -apple-system, sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(10, 10, 15, 0.85);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .nav-inner {
+    max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between; height: 60px;
+  }
+  .nav-logo {
+    font-family: var(--mono); font-size: 0.8rem; font-weight: 700;
+    color: var(--text-primary); text-decoration: none;
+    letter-spacing: 0.02em; text-transform: uppercase;
+  }
+  .nav-links { display: flex; gap: 1.75rem; list-style: none; }
+  .nav-links a {
+    font-family: var(--sans); font-size: 0.82rem; color: var(--text-muted);
+    text-decoration: none; transition: color 0.2s; letter-spacing: 0.01em;
+  }
+  .nav-links a:hover { color: var(--text-primary); }
+  .nav-links a.active { color: var(--accent); }
+
+  /* ── HERO / DOSSIER HEADER ── */
+  .dossier-hero {
+    padding: 120px 2rem 0;
+    max-width: 1200px; margin: 0 auto;
+  }
+
+  .dossier-header {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2.5rem;
+    align-items: start;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--border);
+    opacity: 0; animation: fadeUp 0.6s ease 0.1s forwards;
+  }
+
+  .dossier-avatar {
+    width: 120px; height: 120px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--reddit-orange), #cc3700);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.5rem;
+    box-shadow: 0 8px 32px rgba(255, 69, 0, 0.15);
+    position: relative;
+  }
+  .dossier-avatar::after {
+    content: ''; position: absolute; inset: -3px;
+    border-radius: 18px; border: 1px solid rgba(255, 69, 0, 0.2);
+  }
+  .avatar-text {
+    font-family: var(--mono); font-weight: 700; font-size: 1rem;
+    color: white; text-align: center; line-height: 1.2;
+  }
+
+  .dossier-identity { min-width: 0; }
+
+  .dossier-eyebrow {
+    font-family: var(--mono); font-size: 0.62rem; color: var(--accent);
+    text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 0.5rem;
+  }
+
+  .dossier-name {
+    font-family: var(--serif); font-size: clamp(2rem, 4.5vw, 2.8rem);
+    font-weight: 700; line-height: 1.15; margin-bottom: 0.25rem;
+  }
+  .dossier-name span { color: var(--text-muted); font-weight: 400; font-size: 0.7em; }
+
+  .dossier-bio {
+    font-size: 0.95rem; color: var(--text-secondary); max-width: 550px;
+    line-height: 1.6; margin-bottom: 1rem;
+  }
+
+  .dossier-tags {
+    display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.25rem;
+  }
+  .dossier-tag {
+    font-family: var(--mono); font-size: 0.58rem; text-transform: uppercase;
+    letter-spacing: 0.08em; padding: 0.35em 0.7em; border-radius: 4px;
+    border: 1px solid;
+  }
+  .tag-reddit { color: var(--reddit-orange); background: var(--reddit-dim); border-color: rgba(255, 69, 0, 0.2); }
+  .tag-substack { color: var(--accent); background: var(--accent-dim); border-color: rgba(199, 62, 62, 0.2); }
+  .tag-tiktok { color: var(--text-muted); background: rgba(255,255,255,0.03); border-color: var(--border); }
+
+  .dossier-links {
+    display: flex; gap: 1rem;
+  }
+  .dossier-link {
+    font-family: var(--mono); font-size: 0.65rem; color: var(--text-secondary);
+    text-decoration: none; letter-spacing: 0.05em;
+    padding: 0.4em 0.8em; border-radius: 5px;
+    border: 1px solid var(--border); transition: all 0.25s;
+  }
+  .dossier-link:hover {
+    color: var(--text-primary); border-color: var(--text-muted);
+    background: rgba(255,255,255,0.03);
+  }
+
+  /* ── STAT BLOCK ── */
+  .stat-block {
+    max-width: 1200px; margin: 0 auto; padding: 2rem 2rem 0;
+    opacity: 0; animation: fadeUp 0.6s ease 0.2s forwards;
+  }
+  .stat-grid {
+    display: grid; grid-template-columns: repeat(6, 1fr); gap: 1rem;
+  }
+  .stat-cell {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 1.25rem; text-align: center;
+    transition: all 0.25s;
+  }
+  .stat-cell:hover { border-color: rgba(255,255,255,0.08); transform: translateY(-2px); }
+  .stat-cell-value {
+    font-family: var(--serif); font-size: 1.6rem; font-weight: 700;
+    color: var(--text-primary); line-height: 1;
+  }
+  .stat-cell-value.orange { color: var(--reddit-orange); }
+  .stat-cell-value.gold { color: var(--gold); }
+  .stat-cell-label {
+    font-family: var(--mono); font-size: 0.55rem; color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: 0.12em; margin-top: 0.5rem;
+  }
+
+  /* ── SIGNATURE QUOTE ── */
+  .sig-quote {
+    max-width: 1200px; margin: 0 auto; padding: 2.5rem 2rem 0;
+    opacity: 0; animation: fadeUp 0.6s ease 0.25s forwards;
+  }
+  .sig-quote-inner {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 2rem 2.5rem; position: relative;
+    overflow: hidden;
+  }
+  .sig-quote-inner::before {
+    content: ''; position: absolute; top: 0; left: 0; bottom: 0;
+    width: 3px; background: var(--reddit-orange); border-radius: 3px 0 0 3px;
+  }
+  .sig-quote-text {
+    font-family: var(--serif); font-size: 1.2rem; font-style: italic;
+    line-height: 1.7; color: var(--text-primary); max-width: 700px;
+  }
+  .sig-quote-source {
+    font-family: var(--mono); font-size: 0.62rem; color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: 0.1em; margin-top: 1rem;
+  }
+  .sig-quote-source span { color: var(--reddit-orange); }
+
+  /* ── SECTION HEADERS ── */
+  .section-header {
+    max-width: 1200px; margin: 0 auto; padding: 3rem 2rem 1rem;
+  }
+  .section-header-inner {
+    display: flex; align-items: baseline; gap: 1rem;
+    padding-bottom: 0.75rem; border-bottom: 1px solid var(--border);
+  }
+  .section-num {
+    font-family: var(--mono); font-size: 0.62rem; color: var(--accent);
+    text-transform: uppercase; letter-spacing: 0.12em; flex-shrink: 0;
+  }
+  .section-title {
+    font-family: var(--serif); font-size: 1.35rem; font-weight: 700;
+  }
+  .section-meta {
+    font-family: var(--mono); font-size: 0.6rem; color: var(--text-muted);
+    letter-spacing: 0.05em; margin-left: auto; flex-shrink: 0;
+  }
+
+  /* ── COMMUNITY MAP ── */
+  .community-map {
+    max-width: 1200px; margin: 0 auto; padding: 1rem 2rem 0;
+  }
+  .domain-group { margin-bottom: 1.5rem; }
+  .domain-label {
+    font-family: var(--mono); font-size: 0.6rem; text-transform: uppercase;
+    letter-spacing: 0.12em; margin-bottom: 0.6rem; padding-left: 0.25rem;
+  }
+  .domain-label.recovery { color: var(--recovery-green); }
+  .domain-label.professional { color: var(--excel-green); }
+  .domain-label.culture { color: var(--psych-teal); }
+  .domain-label.sports { color: var(--sports-blue); }
+  .domain-label.gaming { color: var(--gaming-purple); }
+  .domain-label.general { color: var(--culture-pink); }
+
+  .community-row {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+  }
+  .community-chip {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-family: var(--mono); font-size: 0.65rem;
+    padding: 0.4em 0.75em; border-radius: 6px;
+    border: 1px solid; transition: all 0.2s; cursor: default;
+  }
+  .community-chip:hover { transform: translateY(-1px); }
+
+  .chip-recovery { color: var(--recovery-green); background: var(--recovery-dim); border-color: rgba(45,122,79,0.2); }
+  .chip-professional { color: var(--excel-green); background: var(--excel-dim); border-color: rgba(33,115,70,0.2); }
+  .chip-culture { color: var(--psych-teal); background: var(--psych-dim); border-color: rgba(59,168,168,0.2); }
+  .chip-sports { color: var(--sports-blue); background: var(--sports-dim); border-color: rgba(74,122,199,0.2); }
+  .chip-gaming { color: var(--gaming-purple); background: var(--gaming-dim); border-color: rgba(124,92,191,0.2); }
+  .chip-general { color: var(--culture-pink); background: var(--culture-dim); border-color: rgba(199,90,138,0.2); }
+
+  .chip-badge {
+    font-size: 0.5rem; padding: 0.15em 0.35em; border-radius: 3px;
+    background: rgba(255,255,255,0.06); color: var(--text-muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── HIGHLIGHT REEL ── */
+  .highlights {
+    max-width: 1200px; margin: 0 auto; padding: 1rem 2rem 0;
+  }
+
+  .highlight-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.75rem 2rem; margin-bottom: 1rem;
+    transition: all 0.3s; position: relative; overflow: hidden;
+  }
+  .highlight-card:hover {
+    border-color: rgba(255,255,255,0.08);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  }
+  .highlight-card::before {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+    height: 2px; opacity: 0; transition: opacity 0.3s;
+  }
+  .highlight-card:hover::before { opacity: 1; }
+  .highlight-card.hl-viral::before { background: var(--reddit-orange); }
+  .highlight-card.hl-community::before { background: var(--psych-teal); }
+  .highlight-card.hl-technical::before { background: var(--excel-green); }
+  .highlight-card.hl-recovery::before { background: var(--recovery-green); }
+  .highlight-card.hl-humor::before { background: var(--gold); }
+
+  .hl-header {
+    display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+  }
+  .hl-sub {
+    font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.08em;
+    padding: 0.3em 0.6em; border-radius: 4px; border: 1px solid;
+  }
+  .hl-sub.sub-psych { color: var(--psych-teal); background: var(--psych-dim); border-color: rgba(59,168,168,0.2); }
+  .hl-sub.sub-skyrim { color: var(--gaming-purple); background: var(--gaming-dim); border-color: rgba(124,92,191,0.2); }
+  .hl-sub.sub-excel { color: var(--excel-green); background: var(--excel-dim); border-color: rgba(33,115,70,0.2); }
+  .hl-sub.sub-cbb { color: var(--sports-blue); background: var(--sports-dim); border-color: rgba(74,122,199,0.2); }
+  .hl-sub.sub-boxoffice { color: var(--culture-pink); background: var(--culture-dim); border-color: rgba(199,90,138,0.2); }
+  .hl-sub.sub-mildly { color: var(--gold); background: var(--gold-dim); border-color: rgba(212,168,67,0.2); }
+  .hl-sub.sub-recovery { color: var(--recovery-green); background: var(--recovery-dim); border-color: rgba(45,122,79,0.2); }
+  .hl-sub.sub-damn { color: var(--culture-pink); background: var(--culture-dim); border-color: rgba(199,90,138,0.2); }
+
+  .hl-type {
+    font-family: var(--mono); font-size: 0.55rem; color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: 0.1em;
+  }
+
+  .hl-rank {
+    font-family: var(--mono); font-size: 0.55rem; color: var(--gold);
+    text-transform: uppercase; letter-spacing: 0.08em;
+    margin-left: auto;
+  }
+
+  .hl-title {
+    font-family: var(--serif); font-size: 1.15rem; font-weight: 700;
+    line-height: 1.35; margin-bottom: 0.5rem;
+  }
+
+  .hl-quote {
+    font-family: var(--serif); font-style: italic; font-size: 0.95rem;
+    color: var(--text-secondary); line-height: 1.65;
+    border-left: 2px solid var(--border); padding-left: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .hl-context {
+    font-size: 0.82rem; color: var(--text-muted); line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .hl-metrics {
+    display: flex; gap: 1.5rem; flex-wrap: wrap;
+  }
+  .hl-metric {
+    font-family: var(--mono); font-size: 0.6rem; color: var(--text-muted);
+    letter-spacing: 0.05em;
+  }
+  .hl-metric strong {
+    color: var(--text-secondary); font-weight: 600;
+  }
+  .hl-metric.hot strong { color: var(--reddit-orange); }
+
+  /* ── ACHIEVEMENTS ── */
+  .achievements {
+    max-width: 1200px; margin: 0 auto; padding: 1rem 2rem 0;
+  }
+  .achievement-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 0.75rem;
+  }
+  .achievement-cell {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 8px; padding: 1rem; text-align: center;
+    transition: all 0.2s;
+  }
+  .achievement-cell:hover { border-color: var(--gold); transform: translateY(-2px); }
+  .achievement-icon { font-size: 1.5rem; margin-bottom: 0.4rem; }
+  .achievement-name {
+    font-family: var(--mono); font-size: 0.62rem; font-weight: 600;
+    color: var(--gold); text-transform: uppercase; letter-spacing: 0.08em;
+  }
+  .achievement-detail {
+    font-family: var(--mono); font-size: 0.55rem; color: var(--text-muted);
+    margin-top: 0.2rem; letter-spacing: 0.05em;
+  }
+
+  /* ── VOICE PATTERNS ── */
+  .voice-section {
+    max-width: 1200px; margin: 0 auto; padding: 1rem 2rem 0;
+  }
+  .voice-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+  }
+  .voice-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 1.5rem; position: relative;
+  }
+  .voice-card::before {
+    content: ''; position: absolute; top: 0; left: 0; bottom: 0;
+    width: 3px; border-radius: 3px 0 0 3px;
+  }
+  .voice-card.v-humor::before { background: var(--gold); }
+  .voice-card.v-earnest::before { background: var(--recovery-green); }
+  .voice-card.v-analytical::before { background: var(--psych-teal); }
+
+  .voice-label {
+    font-family: var(--mono); font-size: 0.6rem; text-transform: uppercase;
+    letter-spacing: 0.12em; margin-bottom: 0.5rem;
+  }
+  .v-humor .voice-label { color: var(--gold); }
+  .v-earnest .voice-label { color: var(--recovery-green); }
+  .v-analytical .voice-label { color: var(--psych-teal); }
+
+  .voice-title {
+    font-family: var(--serif); font-size: 1.05rem; font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+  .voice-desc {
+    font-size: 0.82rem; color: var(--text-muted); line-height: 1.55;
+  }
+  .voice-example {
+    font-family: var(--serif); font-style: italic; font-size: 0.82rem;
+    color: var(--text-secondary); margin-top: 0.75rem;
+    padding-top: 0.75rem; border-top: 1px solid var(--border-subtle);
+  }
+
+  /* ── DEXINSIGHT ── */
+  .dex-insight {
+    max-width: 1200px; margin: 3rem auto 0; padding: 0 2rem;
+  }
+  .dex-box {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 2rem 2.5rem; position: relative;
+  }
+  .dex-box::before {
+    content: ''; position: absolute; top: 0; left: 0; bottom: 0;
+    width: 3px; background: var(--accent); border-radius: 3px 0 0 3px;
+  }
+  .dex-label {
+    font-family: var(--mono); font-size: 0.7rem; color: var(--accent);
+    text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 0.75rem;
+  }
+  .dex-text {
+    font-family: var(--serif); font-size: 1.02rem; line-height: 1.75;
+    color: var(--text-secondary);
+  }
+  .dex-text em { font-style: italic; color: var(--text-primary); }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 3rem 2rem; max-width: 1200px; margin: 4rem auto 0;
+  }
+  .footer-inner {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    flex-wrap: wrap; gap: 2rem;
+  }
+  .footer-brand { max-width: 360px; }
+  .footer-brand-name {
+    font-family: var(--mono); font-size: 0.75rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.05em;
+    color: var(--text-primary); margin-bottom: 0.5rem;
+  }
+  .footer-brand-desc {
+    font-size: 0.82rem; color: var(--text-muted); line-height: 1.6;
+  }
+  .footer-tagline {
+    font-family: var(--mono); font-size: 0.68rem; color: var(--accent);
+    margin-top: 0.75rem; letter-spacing: 0.05em;
+  }
+  .footer-col h4 {
+    font-family: var(--mono); font-size: 0.65rem; text-transform: uppercase;
+    letter-spacing: 0.12em; color: var(--text-muted); margin-bottom: 0.75rem;
+  }
+  .footer-col a {
+    display: block; font-size: 0.82rem; color: var(--text-secondary);
+    text-decoration: none; margin-bottom: 0.4rem; transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--text-primary); }
+  .footer-bottom {
+    margin-top: 2.5rem; padding-top: 1.5rem;
+    border-top: 1px solid var(--border-subtle);
+    display: flex; justify-content: space-between;
+    font-size: 0.72rem; color: var(--text-muted);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in { opacity: 0; animation: fadeUp 0.5s ease forwards; }
+  .delay-1 { animation-delay: 0.3s; }
+  .delay-2 { animation-delay: 0.35s; }
+  .delay-3 { animation-delay: 0.4s; }
+  .delay-4 { animation-delay: 0.45s; }
+  .delay-5 { animation-delay: 0.5s; }
+  .delay-6 { animation-delay: 0.55s; }
+  .delay-7 { animation-delay: 0.6s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .stat-grid { grid-template-columns: repeat(3, 1fr); }
+    .voice-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .dossier-hero { padding: 110px 1.5rem 0; }
+    .dossier-header { grid-template-columns: 1fr; gap: 1.5rem; }
+    .dossier-avatar { width: 90px; height: 90px; }
+    .stat-grid { grid-template-columns: repeat(2, 1fr); }
+    .achievement-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-inner { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Drop Down Logistics</a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/systems">Systems</a></li>
+      <li><a href="/standards">Standards</a></li>
+      <li><a href="/excelligence">Graph</a></li>
+      <li><a href="/forewords">Forewords</a></li>
+      <li><a href="/council">Council</a></li>
+      <li><a href="/memoir">Memoir</a></li>
+      <li><a href="/other-works">Other Works</a></li>
+      <li><a href="/community" class="active">Community</a></li>
+      <li><a href="/about">About</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- DOSSIER HERO -->
+<section class="dossier-hero">
+  <div class="dossier-header">
+
+    <div class="dossier-avatar">
+      <span class="avatar-text">u/<br>CD</span>
+    </div>
+
+    <div class="dossier-identity">
+      <div class="dossier-eyebrow">Contributor Dossier</div>
+      <h1 class="dossier-name">ChuckDooley <span>u/chuckdooley</span></h1>
+      <p class="dossier-bio">CPA in audit/risk. Sober since 2018. Writing about recovery, mental health, and building a life that fits. Also: searching empty vessels in Skyrim and reinventing cable in real time.</p>
+
+      <div class="dossier-tags">
+        <span class="dossier-tag tag-reddit">Reddit · 9 years</span>
+        <span class="dossier-tag tag-substack">Substack · dkhale</span>
+        <span class="dossier-tag tag-tiktok">TikTok · chuckdooley31</span>
+      </div>
+
+      <div class="dossier-links">
+        <a href="https://reddit.com/u/chuckdooley" target="_blank" class="dossier-link">reddit.com/u/chuckdooley →</a>
+        <a href="https://dkhale.substack.com" target="_blank" class="dossier-link">dkhale.substack.com →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- STAT BLOCK -->
+<div class="stat-block">
+  <div class="stat-grid">
+    <div class="stat-cell">
+      <div class="stat-cell-value orange">195k</div>
+      <div class="stat-cell-label">Karma</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-cell-value">9.3k</div>
+      <div class="stat-cell-label">Contributions</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-cell-value">9</div>
+      <div class="stat-cell-label">Years Active</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-cell-value">80</div>
+      <div class="stat-cell-label">Followers</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-cell-value gold">41</div>
+      <div class="stat-cell-label">Achievements</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-cell-value">17+</div>
+      <div class="stat-cell-label">Active Subs</div>
+    </div>
+  </div>
+</div>
+
+<!-- SIGNATURE QUOTE -->
+<div class="sig-quote">
+  <div class="sig-quote-inner">
+    <div class="sig-quote-text">"They should bundle all the services together and make it one big package with every............. Oh, shit"</div>
+    <div class="sig-quote-source">r/boxoffice · <span>264 upvotes · 18.8k views</span> · Reinvented cable in one comment</div>
+  </div>
+</div>
+
+<!-- COMMUNITY MAP -->
+<div class="section-header">
+  <div class="section-header-inner">
+    <span class="section-num">01</span>
+    <span class="section-title">Community Map</span>
+    <span class="section-meta">Where the signal lives</span>
+  </div>
+</div>
+<div class="community-map">
+
+  <div class="domain-group">
+    <div class="domain-label recovery">Recovery &amp; Writing</div>
+    <div class="community-row">
+      <span class="community-chip chip-recovery">r/dinosaursinrecovery <span class="chip-badge">OC</span></span>
+      <span class="community-chip chip-recovery">r/stopdrinking</span>
+    </div>
+  </div>
+
+  <div class="domain-group">
+    <div class="domain-label professional">Professional &amp; Technical</div>
+    <div class="community-row">
+      <span class="community-chip chip-professional">r/excel <span class="chip-badge">OC</span></span>
+      <span class="community-chip chip-professional">r/Grammarly <span class="chip-badge">Advocate</span></span>
+    </div>
+  </div>
+
+  <div class="domain-group">
+    <div class="domain-label culture">TV &amp; Culture</div>
+    <div class="community-row">
+      <span class="community-chip chip-culture">r/psych <span class="chip-badge">Top 1% · 8x</span></span>
+      <span class="community-chip chip-culture">r/suits</span>
+      <span class="community-chip chip-culture">r/community</span>
+      <span class="community-chip chip-culture">r/HellsKitchen</span>
+      <span class="community-chip chip-culture">r/boxoffice</span>
+      <span class="community-chip chip-culture">r/BrettCooper</span>
+    </div>
+  </div>
+
+  <div class="domain-group">
+    <div class="domain-label sports">Sports</div>
+    <div class="community-row">
+      <span class="community-chip chip-sports">r/CollegeBasketball <span class="chip-badge">🏀 KU</span></span>
+      <span class="community-chip chip-sports">r/CFB</span>
+      <span class="community-chip chip-sports">r/raiders</span>
+    </div>
+  </div>
+
+  <div class="domain-group">
+    <div class="domain-label gaming">Gaming</div>
+    <div class="community-row">
+      <span class="community-chip chip-gaming">r/skyrim <span class="chip-badge">Stealth Archer</span></span>
+      <span class="community-chip chip-gaming">r/MHWilds <span class="chip-badge">Aerial Assassin</span></span>
+      <span class="community-chip chip-gaming">r/diablo4</span>
+      <span class="community-chip chip-gaming">r/starfield</span>
+      <span class="community-chip chip-gaming">r/reddeadredemption</span>
+    </div>
+  </div>
+
+  <div class="domain-group">
+    <div class="domain-label general">General</div>
+    <div class="community-row">
+      <span class="community-chip chip-general">r/Damnthatsinteresting</span>
+      <span class="community-chip chip-general">r/mildlyinteresting</span>
+      <span class="community-chip chip-general">r/Costco</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- HIGHLIGHT REEL -->
+<div class="section-header">
+  <div class="section-header-inner">
+    <span class="section-num">02</span>
+    <span class="section-title">Highlight Reel</span>
+    <span class="section-meta">Posts &amp; comments with verified analytics</span>
+  </div>
+</div>
+<div class="highlights">
+
+  <!-- #1: Skyrim Wife -->
+  <div class="highlight-card hl-viral fade-in delay-1">
+    <div class="hl-header">
+      <span class="hl-sub sub-skyrim">r/skyrim</span>
+      <span class="hl-type">Original Post</span>
+      <span class="hl-rank">★ #1 All-Time Post</span>
+    </div>
+    <div class="hl-title">My wife shamed me yesterday....and it will not stand!</div>
+    <div class="hl-quote">"She, without batting an eye, asks me, 'how often do you search things that say empty?' The audacity, the unmitigated gall to ask such a thing!"</div>
+    <div class="hl-context">Emily catches Dave searching empty vessels. Escalates to emergency couples counseling jokes, a bakery Instagram plug, and Emily joining Reddit for the first time in a year to "watch out for her, she's really mean."</div>
+    <div class="hl-metrics">
+      <span class="hl-metric hot"><strong>2,163</strong> upvotes</span>
+      <span class="hl-metric"><strong>374</strong> comments</span>
+      <span class="hl-metric hot"><strong>215k</strong> views</span>
+      <span class="hl-metric"><strong>97%</strong> ratio</span>
+      <span class="hl-metric"><strong>127</strong> shares</span>
+    </div>
+  </div>
+
+  <!-- #2: Peacock Cable -->
+  <div class="highlight-card hl-humor fade-in delay-2">
+    <div class="hl-header">
+      <span class="hl-sub sub-boxoffice">r/boxoffice</span>
+      <span class="hl-type">Comment</span>
+      <span class="hl-rank">★ Viral Growth Tracked</span>
+    </div>
+    <div class="hl-title">Reinventing cable in real time</div>
+    <div class="hl-quote">"They should bundle all the services together and make it one big package with every............. Oh, shit"</div>
+    <div class="hl-context">On Peacock's $217M loss. Comment captured in four screenshots over 24 hours as it climbed from 123 to 264 upvotes, 7.6k to 18.8k views.</div>
+    <div class="hl-metrics">
+      <span class="hl-metric hot"><strong>264</strong> upvotes</span>
+      <span class="hl-metric hot"><strong>18.8k</strong> views</span>
+      <span class="hl-metric"><strong>4x</strong> screenshots — live viral curve</span>
+    </div>
+  </div>
+
+  <!-- #3: Psych Dinosaur -->
+  <div class="highlight-card hl-community fade-in delay-3">
+    <div class="hl-header">
+      <span class="hl-sub sub-psych">r/psych</span>
+      <span class="hl-type">Original Post</span>
+    </div>
+    <div class="hl-title">Why does Shawn get credit for the Dinosaur?</div>
+    <div class="hl-quote">"Franzen discovered it and did all the work on it...literally reburied it with a bulldozer. Not sure why Shawn is considered to have discovered it."</div>
+    <div class="hl-context">Generated 53 comments and 57k views with an original discussion question about episode continuity. Engaged the thread for days, corrected himself when wrong, and kept the discourse going.</div>
+    <div class="hl-metrics">
+      <span class="hl-metric"><strong>183</strong> upvotes</span>
+      <span class="hl-metric"><strong>53</strong> comments</span>
+      <span class="hl-metric hot"><strong>57k</strong> views</span>
+    </div>
+  </div>
+
+  <!-- #4: Excel Glossary -->
+  <div class="highlight-card hl-technical fade-in delay-4">
+    <div class="hl-header">
+      <span class="hl-sub sub-excel">r/excel</span>
+      <span class="hl-type">Original Post · Discussion</span>
+    </div>
+    <div class="hl-title">Building an Excel Glossary Tool</div>
+    <div class="hl-quote">"Fair play, you are right, and I appreciate the feedback... the goal isn't to replace them, more to internalize through building."</div>
+    <div class="hl-context">Posted structured reference tool with entry IDs and difficulty rankings. Got pushback from Top 1% Commenter, absorbed it gracefully, pivoted the scope in real time when someone suggested making it collaborative. Origin story of CF Utility and Excelligence.</div>
+    <div class="hl-metrics">
+      <span class="hl-metric"><strong>14</strong> upvotes</span>
+      <span class="hl-metric"><strong>38</strong> comments</span>
+      <span class="hl-metric"><strong>5.6k</strong> views</span>
+      <span class="hl-metric"><strong>2x</strong> Top 1% engaged</span>
+    </div>
+  </div>
+
+  <!-- #5: Bailey's -->
+  <div class="highlight-card hl-humor fade-in delay-5">
+    <div class="hl-header">
+      <span class="hl-sub sub-cbb">r/CollegeBasketball</span>
+      <span class="hl-type">Comment</span>
+    </div>
+    <div class="hl-title">BYU basketball player arrested for alleged DUI</div>
+    <div class="hl-quote">"Bailey's is kinda like chocolate milk"</div>
+    <div class="hl-context">Four words. Perfect timing. Kansas Jayhawks flair doing the heavy lifting.</div>
+    <div class="hl-metrics">
+      <span class="hl-metric"><strong>35</strong> upvotes</span>
+      <span class="hl-metric hot"><strong>20k</strong> views</span>
+      <span class="hl-metric"><strong>95%</strong> ratio</span>
+    </div>
+  </div>
+
+  <!-- #6: 3D Printed Eggs -->
+  <div class="highlight-card hl-humor fade-in delay-6">
+    <div class="hl-header">
+      <span class="hl-sub sub-mildly">r/mildlyinteresting</span>
+      <span class="hl-type">Comment Chain</span>
+    </div>
+    <div class="hl-title">I had a white yolk this morning</div>
+    <div class="hl-quote">"They kind of are"</div>
+    <div class="hl-context">Someone said the eggs look 3D printed. Three words, 1,610 upvotes. Followed by "My favorite kind!" at 54. Thread had 14.7k total upvotes.</div>
+    <div class="hl-metrics">
+      <span class="hl-metric hot"><strong>1,610</strong> upvotes</span>
+      <span class="hl-metric"><strong>Thread: 14.7k</strong></span>
+    </div>
+  </div>
+
+  <!-- #7: Documentation Methodology -->
+  <div class="highlight-card hl-technical fade-in delay-7">
+    <div class="hl-header">
+      <span class="hl-sub sub-excel">r/excel</span>
+      <span class="hl-type">Comment</span>
+    </div>
+    <div class="hl-title">DDL methodology described to strangers</div>
+    <div class="hl-quote">"I tell ChatGPT exactly what I'm doing, how I'm doing it, and why and then I keep a 'table of tabs', a readme, procedures, a change log, and a session log...I don't forget things anymore, lol"</div>
+    <div class="hl-context">In a thread about Excel being boring. Someone mentioned automating themselves out of a job. Dave casually described his entire documentation framework — the same one powering 44 systems and 65 standards at DDL.</div>
+    <div class="hl-metrics">
+      <span class="hl-metric"><strong>8</strong> upvotes</span>
+      <span class="hl-metric"><strong>1.8k</strong> views</span>
+      <span class="hl-metric"><strong>100%</strong> ratio</span>
+    </div>
+  </div>
+
+  <!-- #8: Handicapping Horses -->
+  <div class="highlight-card hl-community">
+    <div class="hl-header">
+      <span class="hl-sub sub-psych">r/psych</span>
+      <span class="hl-type">Comment Chain</span>
+    </div>
+    <div class="hl-title">Handicapping horses is so very cruel</div>
+    <div class="hl-quote">"Oil Tycoon: Cut the crap, son. A blind man could see that you two aren't investors / Shawn: Technically, a blind man can't see anything"</div>
+    <div class="hl-context">Dropped a full Shawn Spencer quote chain from memory. 631 upvotes on the thread, your comment at 238 with a follow-up at 45. Deep-cut episode knowledge on display.</div>
+    <div class="hl-metrics">
+      <span class="hl-metric"><strong>238</strong> upvotes</span>
+      <span class="hl-metric"><strong>Thread: 1,387</strong></span>
+    </div>
+  </div>
+
+  <!-- #9: Recovery - Grifter -->
+  <div class="highlight-card hl-recovery">
+    <div class="hl-header">
+      <span class="hl-sub sub-recovery">r/psych</span>
+      <span class="hl-type">Crossover Post</span>
+    </div>
+    <div class="hl-title">I Took Advice From a Grifter: And Why That's a Good Thing</div>
+    <div class="hl-context">One of the "Other Works" essays published on Reddit. 3.6k views, 83% upvote ratio. Part of the writing pipeline that feeds from Reddit engagement → Substack publication → DDL archive.</div>
+    <div class="hl-metrics">
+      <span class="hl-metric"><strong>12</strong> upvotes</span>
+      <span class="hl-metric"><strong>3.6k</strong> views</span>
+      <span class="hl-metric"><strong>83%</strong> ratio</span>
+    </div>
+  </div>
+
+  <!-- #10: Damnthatsinteresting -->
+  <div class="highlight-card hl-humor">
+    <div class="hl-header">
+      <span class="hl-sub sub-damn">r/Damnthatsinteresting</span>
+      <span class="hl-type">Comment</span>
+    </div>
+    <div class="hl-title">Hart Island — NYC public cemetery</div>
+    <div class="hl-quote">"Bodies unclaimed after 30 days will be cremated. No refunds or returns."</div>
+    <div class="hl-context">Dark humor, perfect register for the room. Thread had 5.7k upvotes and a morbid tone. Found the line and held it.</div>
+    <div class="hl-metrics">
+      <span class="hl-metric"><strong>103</strong> upvotes</span>
+      <span class="hl-metric"><strong>Thread: 5,782</strong></span>
+    </div>
+  </div>
+
+</div>
+
+<!-- VOICE PATTERNS -->
+<div class="section-header">
+  <div class="section-header-inner">
+    <span class="section-num">03</span>
+    <span class="section-title">Voice Patterns</span>
+    <span class="section-meta">How the writing changes per room</span>
+  </div>
+</div>
+<div class="voice-section">
+  <div class="voice-grid">
+
+    <div class="voice-card v-humor">
+      <div class="voice-label">Humor</div>
+      <div class="voice-title">Match the Room, Hit the Gap</div>
+      <div class="voice-desc">Short. Dry. Timed to land in the pause between someone else's setup and the crowd's reaction. Never punching down, always punching sideways.</div>
+      <div class="voice-example">"Bailey's is kinda like chocolate milk" · "They kind of are" · "Oh, shit"</div>
+    </div>
+
+    <div class="voice-card v-earnest">
+      <div class="voice-label">Earnest</div>
+      <div class="voice-title">Show the Work, Not the Wound</div>
+      <div class="voice-desc">Takes feedback gracefully. Corrects himself publicly. Shares what he's learned without claiming authority. The r/excel voice is the DDL voice before it had a name.</div>
+      <div class="voice-example">"Fair play, you are right, and I appreciate the feedback... the goal isn't to replace them, more to internalize through building."</div>
+    </div>
+
+    <div class="voice-card v-analytical">
+      <div class="voice-label">Analytical</div>
+      <div class="voice-title">Read the Scene Like a Writer</div>
+      <div class="voice-desc">Breaks down character motivation, narrative structure, and thematic intent. Calls out when writing decisions are character development vs. plot holes. "For me, it's a writer thing."</div>
+      <div class="voice-example">"Shawn cares about Shawn and that's it. Look at how he generally treats Gus. I would absolutely hate Shawn in real life."</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ACHIEVEMENTS -->
+<div class="section-header">
+  <div class="section-header-inner">
+    <span class="section-num">04</span>
+    <span class="section-title">Achievement Block</span>
+    <span class="section-meta">41 total · highlights below</span>
+  </div>
+</div>
+<div class="achievements">
+  <div class="achievement-grid">
+    <div class="achievement-cell">
+      <div class="achievement-icon">🏆</div>
+      <div class="achievement-name">Top 1% Commenter</div>
+      <div class="achievement-detail">Earned 9x across 8+ subs</div>
+    </div>
+    <div class="achievement-cell">
+      <div class="achievement-icon">🔥</div>
+      <div class="achievement-name">Top 5% Commenter</div>
+      <div class="achievement-detail">28x</div>
+    </div>
+    <div class="achievement-cell">
+      <div class="achievement-icon">💬</div>
+      <div class="achievement-name">Top 10% Commenter</div>
+      <div class="achievement-detail">43x</div>
+    </div>
+    <div class="achievement-cell">
+      <div class="achievement-icon">📝</div>
+      <div class="achievement-name">Top 25% Poster</div>
+      <div class="achievement-detail">Since 2/1/25</div>
+    </div>
+    <div class="achievement-cell">
+      <div class="achievement-icon">⭐</div>
+      <div class="achievement-name">Super Contributor</div>
+      <div class="achievement-detail">2x</div>
+    </div>
+    <div class="achievement-cell">
+      <div class="achievement-icon">🔁</div>
+      <div class="achievement-name">Repeat Contributor</div>
+      <div class="achievement-detail">36x</div>
+    </div>
+    <div class="achievement-cell">
+      <div class="achievement-icon">🏛️</div>
+      <div class="achievement-name">Elder</div>
+      <div class="achievement-detail">72x</div>
+    </div>
+    <div class="achievement-cell">
+      <div class="achievement-icon">🌟</div>
+      <div class="achievement-name">Rising Star</div>
+      <div class="achievement-detail">Unlocked</div>
+    </div>
+    <div class="achievement-cell">
+      <div class="achievement-icon">🚩</div>
+      <div class="achievement-name">Flag Planter</div>
+      <div class="achievement-detail">8x</div>
+    </div>
+    <div class="achievement-cell">
+      <div class="achievement-icon">👋</div>
+      <div class="achievement-name">That's Me</div>
+      <div class="achievement-detail">9x</div>
+    </div>
+  </div>
+</div>
+
+<!-- DEXINSIGHT -->
+<section class="dex-insight">
+  <div class="dex-box">
+    <div class="dex-label">DexInsight</div>
+    <p class="dex-text">The Reddit account is older than the memoir, older than DDL, older than sobriety. Nine years of u/chuckdooley is the <em>raw signal</em> — the writing voice before it was governed, the humor before it had a publication schedule, the analytical instinct before it was called systems thinking. The communities map to the chapters: recovery subs parallel the early excerpts, r/excel parallels the professional arc, r/psych is where the writer's eye developed in public. This isn't a social media profile. It's the <em>unedited draft</em> of everything the memoir cleaned up.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-brand-name">Drop Down Logistics</div>
+      <div class="footer-brand-desc">One-person operations studio. Governed systems, dimensional architectures, and automation frameworks built to institutional standards.</div>
+      <div class="footer-tagline">Chaos → Structured → Automated</div>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <a href="/systems">Systems</a>
+      <a href="/standards">Standards</a>
+      <a href="/excelligence">Graph Explorer</a>
+      <a href="/forewords">Forewords</a>
+      <a href="/council">Council</a>
+      <a href="/memoir">Memoir</a>
+      <a href="/other-works">Other Works</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <a href="https://dkhale.substack.com">Substack</a>
+      <a href="https://reddit.com/u/chuckdooley">Reddit</a>
+      <a href="https://github.com/dropdownlogistics">GitHub</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Dropdown Logistics. All systems governed.</span>
+    <span>Built with governance-grade standards.</span>
+  </div>
+</footer>
+
+</body>
+</html>

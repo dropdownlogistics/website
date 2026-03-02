@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Full Picture — How Everything Connects</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Nunito:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --warm-white: #FBF8F3;
+    --soft-cream: #F3EDE3;
+    --sand: #E8DFD0;
+    --charcoal: #2C2C2C;
+    --text: #3D3832;
+    --text-light: #7A7168;
+    --coral: #E07A5F;
+    --coral-soft: #F4A68E;
+    --sage: #6B9080;
+    --sage-soft: #A4C3B2;
+    --sky: #6BA3BE;
+    --sky-soft: #A8D0E0;
+    --lavender: #9B8EC4;
+    --lavender-soft: #C4BAE0;
+    --gold: #D4A843;
+    --gold-soft: #EDD9A3;
+    --navy: #0D1B2A;
+    --navy-mid: #1B2838;
+    --rose: #C2667E;
+    --rose-soft: #E8A8B8;
+    --mint: #5BAD92;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--warm-white);
+    color: var(--text);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  .hero {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    left: -80px;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--lavender-soft) 0%, transparent 70%);
+    opacity: 0.3;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -120px;
+    right: -60px;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--gold-soft) 0%, transparent 70%);
+    opacity: 0.2;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--lavender);
+    background: rgba(155,142,196,0.1);
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+  }
+
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 5.5vw, 3.2rem);
+    color: var(--charcoal);
+    line-height: 1.15;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 em { color: var(--coral); font-style: normal; }
+
+  .hero .intro {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    max-width: 540px;
+    margin: 0 auto;
+    font-weight: 300;
+  }
+
+  /* SECTIONS */
+  .section {
+    padding: 70px 24px;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--coral);
+    margin-bottom: 12px;
+  }
+
+  .section h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.7rem;
+    color: var(--charcoal);
+    margin-bottom: 18px;
+    line-height: 1.3;
+  }
+
+  .section p {
+    font-size: 1.02rem;
+    color: var(--text);
+    margin-bottom: 16px;
+    line-height: 1.8;
+  }
+
+  .section p.light { color: var(--text-light); }
+
+  /* ELI5 */
+  .eli5-box {
+    background: #FFFBEB;
+    border: 2px dashed var(--gold-soft);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin: 32px 0;
+  }
+
+  .eli5-box h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: var(--charcoal);
+    margin-bottom: 10px;
+  }
+
+  .eli5-box p {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--text);
+    margin: 0;
+  }
+
+  /* RESTAURANT ANALOGY */
+  .restaurant {
+    background: var(--soft-cream);
+    border-radius: 20px;
+    padding: 48px 32px;
+    margin: 40px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .restaurant::after {
+    content: '🍽️';
+    position: absolute;
+    top: 20px;
+    right: 28px;
+    font-size: 2rem;
+    opacity: 0.3;
+  }
+
+  .restaurant h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem;
+    color: var(--charcoal);
+    margin-bottom: 24px;
+    text-align: center;
+  }
+
+  .restaurant-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+
+  .role-card {
+    background: white;
+    border-radius: 14px;
+    padding: 24px 20px;
+    border: 1px solid var(--sand);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .role-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  }
+
+  .role-card .role-emoji {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+  }
+
+  .role-card h4 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.05rem;
+    color: var(--charcoal);
+    margin-bottom: 4px;
+  }
+
+  .role-card .role-tool {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 10px;
+  }
+
+  .role-card p {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* TOOL CARDS */
+  .tools-section {
+    padding: 70px 24px;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .tool-row {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 32px;
+  }
+
+  .tool-card {
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    gap: 20px;
+    align-items: start;
+    padding: 28px 24px;
+    border-radius: 16px;
+    border: 1px solid var(--sand);
+    background: white;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .tool-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+  }
+
+  .tool-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    flex-shrink: 0;
+  }
+
+  .tool-info h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem;
+    color: var(--charcoal);
+    margin-bottom: 2px;
+  }
+
+  .tool-info .tool-subtitle {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+  }
+
+  .tool-info p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  .tool-info .tool-analogy {
+    font-size: 0.85rem;
+    color: var(--text);
+    font-style: italic;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid var(--soft-cream);
+  }
+
+  /* FLOW DIAGRAM - THE BIG PICTURE */
+  .bigpicture {
+    margin: 50px 0;
+    padding: 48px 28px;
+    background: var(--charcoal);
+    border-radius: 20px;
+    color: var(--warm-white);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .bigpicture::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    right: -10%;
+    width: 50%;
+    height: 160%;
+    background: radial-gradient(circle, rgba(155,142,196,0.06) 0%, transparent 60%);
+  }
+
+  .bigpicture h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem;
+    color: var(--warm-white);
+    text-align: center;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .bigpicture .bp-sub {
+    text-align: center;
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .flow-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-width: 560px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .flow-v-step {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 16px;
+    align-items: start;
+    padding: 16px 0;
+  }
+
+  .flow-v-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .flow-v-dot {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: white;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .flow-v-line {
+    width: 2px;
+    height: 32px;
+    margin-top: 6px;
+  }
+
+  .flow-v-step:last-child .flow-v-line { display: none; }
+
+  .flow-v-right h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--warm-white);
+    margin-bottom: 2px;
+  }
+
+  .flow-v-right .fv-tool {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    display: inline-block;
+  }
+
+  .flow-v-right p {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.6);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .flow-arrow-down {
+    text-align: center;
+    font-size: 1.2rem;
+    padding: 4px 0;
+    opacity: 0.3;
+  }
+
+  /* BOTTOM LINE */
+  .bottom-line {
+    background: linear-gradient(135deg, #FFF8F0, #F0F4FF, #F0FFF4);
+    border-radius: 20px;
+    padding: 48px 36px;
+    margin: 50px 0;
+    text-align: center;
+  }
+
+  .bottom-line h2 {
+    margin-bottom: 20px;
+  }
+
+  .bottom-line p {
+    max-width: 600px;
+    margin: 0 auto 16px;
+  }
+
+  .three-words {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 32px;
+    flex-wrap: wrap;
+  }
+
+  .three-word {
+    text-align: center;
+  }
+
+  .three-word .tw-emoji {
+    font-size: 2rem;
+    margin-bottom: 6px;
+  }
+
+  .three-word h4 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: var(--charcoal);
+    margin-bottom: 2px;
+  }
+
+  .three-word p {
+    font-size: 0.82rem;
+    color: var(--text-light);
+    margin: 0;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 60px 24px;
+    color: var(--text-light);
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 640px) {
+    .restaurant-grid { grid-template-columns: 1fr; }
+    .tool-card { grid-template-columns: 56px 1fr; }
+    .tool-icon { width: 56px; height: 56px; font-size: 1.4rem; }
+    .flow-v-step { grid-template-columns: 44px 1fr; }
+    .flow-v-dot { width: 44px; height: 44px; font-size: 1rem; border-radius: 12px; }
+    .three-words { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Part 2 · The Full Picture</div>
+    <h1>How <em>all the tools</em> fit together</h1>
+    <p class="intro">ACE is one piece. Here's the whole ecosystem — what each tool does, how they connect, and why it matters that Dave and Clayton are building toward the same thing.</p>
+  </div>
+</section>
+
+<!-- RESTAURANT ANALOGY -->
+<section class="section">
+  <div class="section-label">The Big Analogy</div>
+  <h2>It's like opening a restaurant</h2>
+  <p>Every tool in the system has a role, like every person in a restaurant has a job. None of them work alone. Together, they turn ingredients into a meal.</p>
+
+  <div class="restaurant">
+    <h3>The Restaurant 🍽️</h3>
+    <div class="restaurant-grid">
+
+      <div class="role-card">
+        <div class="role-emoji">📋</div>
+        <h4>The Filing Cabinet</h4>
+        <div class="role-tool" style="color:var(--coral); background:rgba(224,122,95,0.1);">ACE</div>
+        <p>Stores every recipe, every supplier contact, every menu version. Labeled so anyone can find anything. Without this, you lose track of what you've already figured out.</p>
+      </div>
+
+      <div class="role-card">
+        <div class="role-emoji">🤝</div>
+        <h4>The Greeter</h4>
+        <div class="role-tool" style="color:var(--lavender); background:rgba(155,142,196,0.1);">MindFrame</div>
+        <p>Meets new staff on day one. Figures out how they think, what they're good at, how they communicate. Builds their profile so the kitchen doesn't have to guess.</p>
+      </div>
+
+      <div class="role-card">
+        <div class="role-emoji">📐</div>
+        <h4>The Build Process</h4>
+        <div class="role-tool" style="color:var(--sage); background:rgba(107,144,128,0.1);">DDL</div>
+        <p>When you want to add a new dish to the menu, DDL is the step-by-step process: define it, scope it, build it, test it, ship it. No winging it.</p>
+      </div>
+
+      <div class="role-card">
+        <div class="role-emoji">🏗️</div>
+        <h4>The Operations Manual</h4>
+        <div class="role-tool" style="color:var(--sky); background:rgba(107,163,190,0.1);">DexOS</div>
+        <p>The rules for how the whole restaurant runs. Who does what, how things are named, what quality standards look like. The operating system underneath everything.</p>
+      </div>
+
+      <div class="role-card">
+        <div class="role-emoji">👨‍🍳👩‍🍳</div>
+        <h4>The Tasting Panel</h4>
+        <div class="role-tool" style="color:var(--gold); background:rgba(212,168,67,0.1);">Council</div>
+        <p>Multiple expert opinions on every important decision. Not one chef deciding alone — a panel of specialists who each taste the dish and give honest feedback.</p>
+      </div>
+
+      <div class="role-card">
+        <div class="role-emoji">🔍</div>
+        <h4>The Health Inspector</h4>
+        <div class="role-tool" style="color:var(--rose); background:rgba(194,102,126,0.1);">BlindSpot</div>
+        <p>Finds the problems you don't know you have. Checks every corner of the kitchen for things that could go wrong before they do. Fills gaps proactively.</p>
+      </div>
+
+      <div class="role-card">
+        <div class="role-emoji">🤖</div>
+        <h4>The Kitchen Automation</h4>
+        <div class="role-tool" style="color:var(--mint); background:rgba(91,173,146,0.1);">Auto-Council</div>
+        <p>Instead of manually asking each expert one at a time, this sends the dish to all of them at once and collects their feedback automatically. Saves hours.</p>
+      </div>
+
+      <div class="role-card">
+        <div class="role-emoji">📚</div>
+        <h4>The Knowledge System</h4>
+        <div class="role-tool" style="color:var(--sky); background:rgba(107,163,190,0.1);">Clayton's Platform</div>
+        <p>Reads every document in the restaurant — menus, policies, training manuals — clusters them by topic, and when someone asks a question it can't answer, it flags it so a manager can fill the gap.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="eli5-box">
+    <h3>🍎 The ELI5</h3>
+    <p>Dave built the filing system, the hiring process, the build process, the operations manual, the expert panel, and the safety inspector. Clayton built the smart library that reads everything and finds what's missing. Together they make a restaurant where nothing gets lost, nothing gets missed, and new staff can get up to speed on day one.</p>
+  </div>
+</section>
+
+<!-- EACH TOOL EXPLAINED -->
+<section class="tools-section">
+  <div class="section-label">Tool by Tool</div>
+  <h2>What each one actually does</h2>
+  <p class="light">In plain English. No jargon. Promise.</p>
+
+  <div class="tool-row">
+
+    <div class="tool-card">
+      <div class="tool-icon" style="background: rgba(224,122,95,0.1);">📋</div>
+      <div class="tool-info">
+        <h3>ACE</h3>
+        <div class="tool-subtitle" style="color:var(--coral);">Artifact Continuity Engine</div>
+        <p>A labeling system for everything you create with AI. Every important document, decision, or framework gets a name, a type, a version, and a status. Stored as simple text files you can open anywhere.</p>
+        <div class="tool-analogy">📌 Like putting a label on every moving box when you move houses. "Kitchen — Plates — Box 3 of 5."</div>
+      </div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-icon" style="background: rgba(155,142,196,0.1);">🤝</div>
+      <div class="tool-info">
+        <h3>MindFrame</h3>
+        <div class="tool-subtitle" style="color:var(--lavender);">Persona Calibration</div>
+        <p>A 30-step process that helps AI understand how you think, communicate, and work. Instead of starting from scratch, the AI gets a profile of you so it can match your style from the first message.</p>
+        <div class="tool-analogy">📌 Like filling out a detailed intake form at a new doctor's office — but for your thinking style, not your medical history.</div>
+      </div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-icon" style="background: rgba(107,144,128,0.1);">📐</div>
+      <div class="tool-info">
+        <h3>DDL</h3>
+        <div class="tool-subtitle" style="color:var(--sage);">Dropdown Logistics — Build Methodology</div>
+        <p>An 8-step process for building anything: define the intent, set the scope, build it, test it, ship it, document it. Prevents "I had a great idea but it went nowhere" syndrome.</p>
+        <div class="tool-analogy">📌 Like a recipe. You don't just throw ingredients in a pan — you follow steps, in order, and the dish comes out right.</div>
+      </div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-icon" style="background: rgba(107,163,190,0.1);">🏗️</div>
+      <div class="tool-info">
+        <h3>DexOS</h3>
+        <div class="tool-subtitle" style="color:var(--sky);">The Operating System</div>
+        <p>The master rule book. How things are named, how quality is checked, how different AI models are coordinated. Think of it as the governance layer that keeps everything consistent.</p>
+        <div class="tool-analogy">📌 Like a franchise manual. Every location runs differently, but the standards are the same everywhere.</div>
+      </div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-icon" style="background: rgba(212,168,67,0.1);">👨‍🍳</div>
+      <div class="tool-info">
+        <h3>The Council</h3>
+        <div class="tool-subtitle" style="color:var(--gold);">Multi-Model Analysis</div>
+        <p>Instead of asking one AI for an answer, you ask 8–10 different ones the same question. They all respond independently. Where they agree = high confidence. Where they disagree = worth investigating.</p>
+        <div class="tool-analogy">📌 Like getting a second opinion from multiple doctors. If 8 out of 10 say the same thing, you can trust that answer.</div>
+      </div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-icon" style="background: rgba(194,102,126,0.1);">🔍</div>
+      <div class="tool-info">
+        <h3>BlindSpot</h3>
+        <div class="tool-subtitle" style="color:var(--rose);">Gap Detection</div>
+        <p>A system that looks at what you know and finds what you're missing. Instead of waiting for a problem to show up, it actively hunts for gaps in your knowledge or strategy.</p>
+        <div class="tool-analogy">📌 Like a home inspector who finds the crack in the foundation before you buy the house.</div>
+      </div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-icon" style="background: rgba(91,173,146,0.1);">🤖</div>
+      <div class="tool-info">
+        <h3>Auto-Council</h3>
+        <div class="tool-subtitle" style="color:var(--mint);">Dave + Clayton's Joint Project</div>
+        <p>Right now, Dave sends the same question to each AI model one at a time and manually collects responses. Auto-Council automates that — send once, collect from all, compare automatically.</p>
+        <div class="tool-analogy">📌 Like sending one email to 10 people instead of writing 10 separate emails with the same question.</div>
+      </div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-icon" style="background: rgba(107,163,190,0.1);">📚</div>
+      <div class="tool-info">
+        <h3>Clayton's Knowledge Platform</h3>
+        <div class="tool-subtitle" style="color:var(--sky);">Enterprise Knowledge Management</div>
+        <p>Feed it your company's documents — manuals, policies, SOPs. It reads them all, organizes them into clusters, and when employees ask questions, it either answers from existing knowledge or flags the gap for a manager to fill.</p>
+        <div class="tool-analogy">📌 Like a librarian who's read every book in the library and can either answer your question or tell you "we don't have a book on that yet — want me to flag it?"</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- THE BIG PICTURE FLOW -->
+<section class="section">
+  <div class="section-label">How It All Flows</div>
+  <h2>The journey of an idea, start to finish</h2>
+  <p>Here's what happens when someone has an idea and the full system is running:</p>
+
+  <div class="bigpicture">
+    <h2>From Idea → Governed Knowledge</h2>
+    <p class="bp-sub">Every step has a tool. No step is skipped.</p>
+
+    <div class="flow-vertical">
+
+      <div class="flow-v-step">
+        <div class="flow-v-left">
+          <div class="flow-v-dot" style="background:var(--lavender);">1</div>
+          <div class="flow-v-line" style="background:var(--lavender-soft);"></div>
+        </div>
+        <div class="flow-v-right">
+          <h4>Someone shows up</h4>
+          <div class="fv-tool" style="color:var(--lavender-soft);">MindFrame</div>
+          <p>Figures out how they think, what they need, and builds their profile. First conversation feels like tenth conversation.</p>
+        </div>
+      </div>
+
+      <div class="flow-v-step">
+        <div class="flow-v-left">
+          <div class="flow-v-dot" style="background:var(--sage);">2</div>
+          <div class="flow-v-line" style="background:var(--sage-soft);"></div>
+        </div>
+        <div class="flow-v-right">
+          <h4>They want to build something</h4>
+          <div class="fv-tool" style="color:var(--sage-soft);">DDL</div>
+          <p>Define intent → set scope → build → test → ship → document. No ambiguity about what "done" looks like.</p>
+        </div>
+      </div>
+
+      <div class="flow-v-step">
+        <div class="flow-v-left">
+          <div class="flow-v-dot" style="background:var(--gold);">3</div>
+          <div class="flow-v-line" style="background:var(--gold-soft);"></div>
+        </div>
+        <div class="flow-v-right">
+          <h4>They need expert feedback</h4>
+          <div class="fv-tool" style="color:var(--gold-soft);">Council → Auto-Council</div>
+          <p>Send the work to multiple AI models. Get independent analysis. Find where they agree and where they don't. Auto-Council does this automatically.</p>
+        </div>
+      </div>
+
+      <div class="flow-v-step">
+        <div class="flow-v-left">
+          <div class="flow-v-dot" style="background:var(--rose);">4</div>
+          <div class="flow-v-line" style="background:var(--rose-soft);"></div>
+        </div>
+        <div class="flow-v-right">
+          <h4>Check for blind spots</h4>
+          <div class="fv-tool" style="color:var(--rose-soft);">BlindSpot</div>
+          <p>What are we missing? What haven't we considered? What question haven't we asked? Find the gaps before they become problems.</p>
+        </div>
+      </div>
+
+      <div class="flow-v-step">
+        <div class="flow-v-left">
+          <div class="flow-v-dot" style="background:var(--coral);">5</div>
+          <div class="flow-v-line" style="background:var(--coral-soft);"></div>
+        </div>
+        <div class="flow-v-right">
+          <h4>Save everything that matters</h4>
+          <div class="fv-tool" style="color:var(--coral-soft);">ACE</div>
+          <p>Label it. Version it. File it. So the next time anyone works on this — even a different AI, even months later — they can pick up right where you left off.</p>
+        </div>
+      </div>
+
+      <div class="flow-v-step">
+        <div class="flow-v-left">
+          <div class="flow-v-dot" style="background:var(--sky);">6</div>
+          <div class="flow-v-line" style="background:var(--sky-soft);"></div>
+        </div>
+        <div class="flow-v-right">
+          <h4>Scale it to a whole organization</h4>
+          <div class="fv-tool" style="color:var(--sky-soft);">Clayton's Platform + DexOS</div>
+          <p>Everything that was just built for one person now works for a company. Documents get ingested, clustered, searchable. Questions get routed. Gaps get flagged. Knowledge grows automatically.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHERE BETH FITS -->
+<section class="section">
+  <div class="bottom-line">
+    <div class="section-label" style="color:var(--lavender);">The Bottom Line</div>
+    <h2>Three things to remember</h2>
+
+    <div class="three-words">
+      <div class="three-word">
+        <div class="tw-emoji">🗂️</div>
+        <h4>Preserve</h4>
+        <p>ACE keeps what you've built</p>
+      </div>
+      <div class="three-word">
+        <div class="tw-emoji">🔍</div>
+        <h4>Discover</h4>
+        <p>BlindSpot + Clayton find what's missing</p>
+      </div>
+      <div class="three-word">
+        <div class="tw-emoji">🌱</div>
+        <h4>Grow</h4>
+        <p>The system learns from its own gaps</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="eli5-box">
+    <h3>☝️ One last thing</h3>
+    <p>None of this is software you need to download or learn. These are ways of working. Dave built frameworks — consistent methods for organizing, building, and checking work. Clayton is turning some of those methods into actual software. Your job is the same as it's always been: make sure the humans in the room can actually follow what's happening. That's not a small job. That's the whole game.</p>
+  </div>
+</section>
+
+<div class="footer">
+  <p>Made with care by Dave + Claude (Opus) · February 2026</p>
+  <p style="margin-top:4px; font-style:italic;">Part 2 of 2 · For Beth 💛</p>
+</div>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.section, .tool-card, .role-card, .bigpicture, .bottom-line, .eli5-box, .restaurant').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>

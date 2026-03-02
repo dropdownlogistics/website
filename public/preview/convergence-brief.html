@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Convergence Architecture Brief</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700&family=DM+Serif+Display&display=swap');
+
+  :root {
+    --charcoal: #1a1a1a;
+    --slate: #2d2d2d;
+    --warm-gray: #6b6b6b;
+    --light-gray: #e8e5e0;
+    --sand: #f5f2ed;
+    --cream: #faf8f5;
+    --white: #ffffff;
+    --accent: #c4956a;
+    --accent-light: #e8d5c4;
+    --accent-dark: #8a6a4a;
+    --rule: #d4cfc8;
+    --soft-blue: #7a9bb5;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    background: var(--cream);
+    color: var(--slate);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── Cover ─── */
+  .cover {
+    min-height: 100vh;
+    background: var(--charcoal);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 3rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--accent);
+  }
+
+  .cover-convergence {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px; height: 200px;
+    opacity: 0.15;
+  }
+
+  .cover-convergence svg { width: 100%; height: 100%; }
+
+  .cover-title {
+    position: relative; z-index: 1;
+  }
+
+  .cover-title h1 {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: var(--white);
+    line-height: 1.8;
+  }
+
+  .cover-rule {
+    width: 60px; height: 2px;
+    background: var(--accent);
+    margin: 1.2rem 0;
+  }
+
+  .cover-sub {
+    font-size: 0.85rem;
+    color: #999;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  .cover-bottom {
+    position: relative; z-index: 1;
+  }
+
+  .cover-for {
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    color: #666;
+    margin-bottom: 0.5rem;
+  }
+
+  .cover-names {
+    font-size: 0.9rem;
+    color: var(--white);
+    font-weight: 400;
+    margin-bottom: 2rem;
+  }
+
+  .cover-roles {
+    display: flex;
+    gap: 3rem;
+  }
+
+  .cover-role-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .cover-role-name {
+    font-size: 0.7rem;
+    color: #888;
+    margin-top: 0.2rem;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    color: #555;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.8; }
+  }
+
+  /* ─── Main Content ─── */
+  .content {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 4rem 2rem 6rem;
+  }
+
+  /* ─── Navigation ─── */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--cream);
+    border-bottom: 1px solid var(--rule);
+    padding: 0;
+  }
+
+  .nav-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    overflow-x: auto;
+    gap: 0;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .nav-inner::-webkit-scrollbar { display: none; }
+
+  .nav-tab {
+    padding: 0.8rem 1rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    color: var(--warm-gray);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    font-weight: 500;
+  }
+
+  .nav-tab:hover { color: var(--charcoal); }
+  .nav-tab.active {
+    color: var(--accent-dark);
+    border-bottom-color: var(--accent);
+  }
+
+  /* ─── Sections ─── */
+  .section {
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--rule);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.6s ease forwards;
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-num {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem;
+    color: var(--charcoal);
+    margin-bottom: 0.5rem;
+    font-weight: 400;
+  }
+
+  .section-rule {
+    width: 40px; height: 1.5px;
+    background: var(--rule);
+    margin: 1rem 0 1.5rem;
+  }
+
+  p { margin-bottom: 1rem; font-size: 0.9rem; }
+
+  .callout {
+    font-style: italic;
+    color: var(--accent-dark);
+    padding-left: 1rem;
+    border-left: 2px solid var(--accent-light);
+    margin: 1.5rem 0;
+    font-size: 0.88rem;
+    line-height: 1.65;
+  }
+
+  /* ─── Comparison Table ─── */
+  .comparison {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.82rem;
+  }
+
+  .comparison th {
+    text-align: left;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    color: var(--charcoal);
+    font-weight: 700;
+    padding: 0.6rem 0.8rem;
+    background: var(--light-gray);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .comparison td {
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid #eae7e2;
+    vertical-align: top;
+    line-height: 1.5;
+  }
+
+  .comparison tr:nth-child(even) td {
+    background: #faf8f4;
+  }
+
+  .step-num {
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 0.75rem;
+  }
+
+  /* ─── Three Layers ─── */
+  .layers {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin: 1.5rem 0;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .layer-card {
+    background: var(--white);
+    padding: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .layer-card:hover {
+    background: #fdfcfa;
+  }
+
+  .layer-card.active {
+    background: var(--sand);
+    box-shadow: inset 0 -3px 0 var(--accent);
+  }
+
+  .layer-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+
+  .layer-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem;
+    color: var(--charcoal);
+    margin-bottom: 0.5rem;
+  }
+
+  .layer-desc {
+    font-size: 0.78rem;
+    color: var(--warm-gray);
+    line-height: 1.5;
+    display: none;
+  }
+
+  .layer-card.active .layer-desc { display: block; }
+
+  /* ─── Flow Diagram ─── */
+  .flow {
+    margin: 1.5rem 0;
+  }
+
+  .flow-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0.6rem 0;
+    position: relative;
+  }
+
+  .flow-step::before {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 1.8rem;
+    bottom: -0.6rem;
+    width: 1px;
+    background: var(--rule);
+  }
+
+  .flow-step:last-child::before { display: none; }
+
+  .flow-dot {
+    width: 11px; height: 11px;
+    border-radius: 50%;
+    background: var(--light-gray);
+    border: 2px solid var(--rule);
+    flex-shrink: 0;
+    margin-top: 0.3rem;
+  }
+
+  .flow-step.seam .flow-dot {
+    background: var(--accent);
+    border-color: var(--accent);
+    width: 13px; height: 13px;
+  }
+
+  .flow-owner {
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    color: var(--warm-gray);
+    font-weight: 700;
+  }
+
+  .flow-step.seam .flow-owner {
+    color: var(--accent-dark);
+  }
+
+  .flow-text {
+    font-size: 0.82rem;
+    color: var(--slate);
+    line-height: 1.45;
+  }
+
+  .flow-step.seam {
+    background: linear-gradient(90deg, rgba(196,149,106,0.08), transparent);
+    margin: 0.5rem -1rem;
+    padding: 0.8rem 1rem;
+    border-radius: 4px;
+  }
+
+  .flow-step.seam .flow-text {
+    color: var(--accent-dark);
+    font-weight: 500;
+  }
+
+  /* ─── Capability Cards ─── */
+  .capabilities {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  .cap-card {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 1.2rem;
+    transition: all 0.3s ease;
+    cursor: default;
+  }
+
+  .cap-card:hover {
+    border-color: var(--accent-light);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+
+  .cap-title {
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 0.5rem;
+  }
+
+  .cap-desc {
+    font-size: 0.8rem;
+    color: var(--warm-gray);
+    line-height: 1.55;
+  }
+
+  /* ─── Risk Items ─── */
+  .risk {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 1.2rem;
+    margin: 0.8rem 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .risk:hover { border-color: var(--accent-light); }
+
+  .risk-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .risk-title {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--charcoal);
+  }
+
+  .risk-toggle {
+    font-size: 0.75rem;
+    color: var(--accent);
+    transition: transform 0.3s ease;
+  }
+
+  .risk.open .risk-toggle { transform: rotate(45deg); }
+
+  .risk-body {
+    font-size: 0.82rem;
+    color: var(--warm-gray);
+    line-height: 1.6;
+    margin-top: 0.8rem;
+    padding-top: 0.8rem;
+    border-top: 1px solid #eee;
+    display: none;
+  }
+
+  .risk.open .risk-body { display: block; }
+
+  /* ─── Ownership Table ─── */
+  .ownership {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.82rem;
+  }
+
+  .ownership th {
+    text-align: left;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    color: var(--charcoal);
+    padding: 0.6rem 0.8rem;
+    background: var(--light-gray);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .ownership td {
+    padding: 0.7rem 0.8rem;
+    border-bottom: 1px solid #eae7e2;
+    vertical-align: top;
+    line-height: 1.5;
+  }
+
+  .ownership td:first-child {
+    font-weight: 600;
+    color: var(--charcoal);
+    width: 80px;
+  }
+
+  /* ─── Quote Block ─── */
+  .quote-block {
+    margin: 2rem 0;
+    padding: 1.5rem 1.5rem;
+    position: relative;
+  }
+
+  .quote-block::before {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0; left: 0;
+    width: 2px;
+    background: var(--accent);
+  }
+
+  .quote-text {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: var(--charcoal);
+    line-height: 1.6;
+    font-weight: 400;
+  }
+
+  /* ─── Closing ─── */
+  .closing {
+    text-align: center;
+    padding: 3rem 0 2rem;
+  }
+
+  .closing-question {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem;
+    color: var(--charcoal);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+
+  .closing-attr {
+    font-size: 0.7rem;
+    color: var(--warm-gray);
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── Beth Steps ─── */
+  .beth-steps {
+    margin: 1.2rem 0;
+    counter-reset: beth;
+  }
+
+  .beth-step {
+    display: flex;
+    gap: 0.8rem;
+    margin-bottom: 0.8rem;
+    align-items: flex-start;
+  }
+
+  .beth-step-num {
+    font-weight: 700;
+    color: var(--accent);
+    font-size: 0.82rem;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .beth-step-text {
+    font-size: 0.85rem;
+    line-height: 1.55;
+    color: var(--slate);
+  }
+
+  /* ─── Mobile ─── */
+  @media (max-width: 640px) {
+    .cover { padding: 2rem 1.5rem; }
+    .cover-roles { gap: 1.5rem; flex-wrap: wrap; }
+    .content { padding: 2rem 1.5rem 4rem; }
+    .layers { grid-template-columns: 1fr; }
+    .capabilities { grid-template-columns: 1fr; }
+    .nav-tab { padding: 0.7rem 0.7rem; font-size: 0.58rem; }
+    .section-title { font-size: 1.25rem; }
+    .comparison { font-size: 0.75rem; }
+    .comparison th, .comparison td { padding: 0.5rem 0.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ COVER ═══ -->
+<div class="cover">
+  <div class="cover-convergence">
+    <svg viewBox="0 0 200 200">
+      <line x1="40" y1="30" x2="100" y2="120" stroke="#444" stroke-width="0.5"/>
+      <line x1="160" y1="30" x2="100" y2="120" stroke="#444" stroke-width="0.5"/>
+      <line x1="100" y1="10" x2="100" y2="120" stroke="#444" stroke-width="0.5"/>
+      <circle cx="100" cy="120" r="3" fill="#c4956a"/>
+    </svg>
+  </div>
+
+  <div class="cover-title">
+    <h1>CONVERGENCE<br>ARCHITECTURE<br>BRIEF</h1>
+    <div class="cover-rule"></div>
+    <div class="cover-sub">
+      How three independent architectures<br>
+      become one integrated system
+    </div>
+  </div>
+
+  <div class="cover-bottom">
+    <div class="cover-for">PREPARED FOR</div>
+    <div class="cover-names">Clayton Hotze &nbsp;·&nbsp; Beth &nbsp;·&nbsp; Dave Kitchens</div>
+    <div class="cover-roles">
+      <div>
+        <div class="cover-role-label">CAPTURE</div>
+        <div class="cover-role-name">Clayton</div>
+      </div>
+      <div>
+        <div class="cover-role-label">GOVERNANCE</div>
+        <div class="cover-role-name">Dave</div>
+      </div>
+      <div>
+        <div class="cover-role-label">EXPERIENCE</div>
+        <div class="cover-role-name">Beth</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">SCROLL ↓</div>
+</div>
+
+<!-- ═══ NAV ═══ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-tab active" data-section="observation">OBSERVATION</div>
+    <div class="nav-tab" data-section="layers">THREE LAYERS</div>
+    <div class="nav-tab" data-section="seam">THE SEAM</div>
+    <div class="nav-tab" data-section="governance">GOVERNANCE</div>
+    <div class="nav-tab" data-section="possible">WHAT'S POSSIBLE</div>
+    <div class="nav-tab" data-section="beth">BETH'S VISION</div>
+    <div class="nav-tab" data-section="risks">CONSIDERATIONS</div>
+    <div class="nav-tab" data-section="together">TOGETHER</div>
+  </div>
+</nav>
+
+<!-- ═══ CONTENT ═══ -->
+<div class="content">
+
+  <!-- OBSERVATION -->
+  <div class="section" id="observation">
+    <div class="section-num">01</div>
+    <div class="section-title">The Observation</div>
+    <div class="section-rule"></div>
+    <p>Two systems were built independently, by two different people, for two different purposes. When we compared architectures, they followed the same pattern.</p>
+
+    <table class="comparison">
+      <thead>
+        <tr><th>STEP</th><th>CLAYTON'S SYSTEM</th><th>DAVE'S SYSTEM</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="step-num">1</span></td><td>Ingest documents</td><td>Ingest source data</td></tr>
+        <tr><td><span class="step-num">2</span></td><td>Categorize dimensionally</td><td>Model dimensionally</td></tr>
+        <tr><td><span class="step-num">3</span></td><td>Route by capability</td><td>Route by control domain</td></tr>
+        <tr><td><span class="step-num">4</span></td><td>Escalate unknowns</td><td>Flag gaps and exceptions</td></tr>
+        <tr><td><span class="step-num">5</span></td><td>Create new knowledge</td><td>Create governed artifacts</td></tr>
+        <tr><td><span class="step-num">6</span></td><td>System learns organically</td><td>System builds audit trail</td></tr>
+      </tbody>
+    </table>
+
+    <p class="callout">Same bones. Different muscles. Neither system needs to change to work with the other.</p>
+
+    <p>This brief explores what becomes possible when these systems connect — and where Beth's vision for human-centered application fits into the architecture.</p>
+    <p>Nothing here is a directive. It is an observation about structure, an invitation to explore what the seams look like, and a sketch of what the combined system could do that neither system does alone.</p>
+  </div>
+
+  <!-- THREE LAYERS -->
+  <div class="section" id="layers">
+    <div class="section-num">02</div>
+    <div class="section-title">Three Layers, One System</div>
+    <div class="section-rule"></div>
+    <p>Every knowledge system needs three things: a way to capture what people know, a way to make that knowledge trustworthy, and a way to make it useful to humans. These three capabilities already exist — independently.</p>
+
+    <div class="layers">
+      <div class="layer-card active" onclick="toggleLayer(this)">
+        <div class="layer-label">CAPTURE</div>
+        <div class="layer-name">Clayton</div>
+        <div class="layer-desc">Ingests documents into a living knowledge base. Clusters by topic. Visualizes knowledge topology in 3D. Simulates questions against the corpus. Routes answerable questions to resolution. Escalates unknowns to managers. System learns from usage.</div>
+      </div>
+      <div class="layer-card" onclick="toggleLayer(this)">
+        <div class="layer-label">GOVERNANCE</div>
+        <div class="layer-name">Dave</div>
+        <div class="layer-desc">Dimensional modeling (star schema). Canonical artifact IDs with versioning and lineage. Decision reconstruction and audit trails. Executive analytics dashboards. Self-auditing fact tables. Artifact continuity protocol (ACE).</div>
+      </div>
+      <div class="layer-card" onclick="toggleLayer(this)">
+        <div class="layer-label">EXPERIENCE</div>
+        <div class="layer-name">Beth</div>
+        <div class="layer-desc">Identifies the human use case: behavioral and personality data as inputs, so people can learn and grow. Translates architecture into lived experience. Ensures the system serves people, not just processes.</div>
+      </div>
+    </div>
+
+    <p class="callout">Clayton's system captures and learns. Dave's system governs and proves. Beth's vision makes it matter to the people inside it.</p>
+  </div>
+
+  <!-- THE SEAM -->
+  <div class="section" id="seam">
+    <div class="section-num">03</div>
+    <div class="section-title">Where the Systems Meet</div>
+    <div class="section-rule"></div>
+    <p>The cleanest integration point is the <strong>resolution event</strong> — the moment a manager answers an escalated question and a new knowledge document is created.</p>
+    <p>Before that moment, the document belongs to Clayton's system. It is being captured, clustered, and routed. After that moment, it becomes a governed artifact. It gets a canonical ID, a version history, a lineage trail, and a place in the analytics layer.</p>
+
+    <div class="flow">
+      <div class="flow-step">
+        <div class="flow-dot"></div>
+        <div>
+          <div class="flow-owner">CLAYTON'S SYSTEM</div>
+          <div class="flow-text">Document ingested → embedded → clustered → labeled</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-dot"></div>
+        <div>
+          <div class="flow-text">Employee question simulated or received</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-dot"></div>
+        <div>
+          <div class="flow-text">Question routed to nearest cluster</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-dot"></div>
+        <div>
+          <div class="flow-text">If answerable → resolved. If not → escalated to manager.</div>
+        </div>
+      </div>
+      <div class="flow-step seam">
+        <div class="flow-dot"></div>
+        <div>
+          <div class="flow-owner">THE SEAM</div>
+          <div class="flow-text">Manager resolves escalation. New document created.</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-dot"></div>
+        <div>
+          <div class="flow-owner">DAVE'S SYSTEM</div>
+          <div class="flow-text">Resolution event captured as governed artifact</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-dot"></div>
+        <div>
+          <div class="flow-text">Canonical ID assigned · Version 1.0 · Lineage recorded</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-dot"></div>
+        <div>
+          <div class="flow-text">Artifact enters star schema · Dimensions mapped</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-dot"></div>
+        <div>
+          <div class="flow-text">Analytics updated · Dashboard reflects new knowledge</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-dot"></div>
+        <div>
+          <div class="flow-owner">BACK TO CLAYTON</div>
+          <div class="flow-text">New document drifts into cluster gap · System learns</div>
+        </div>
+      </div>
+    </div>
+
+    <p>Neither system needs to be rebuilt. The integration lives at a single, well-defined boundary. Clayton's system emits artifacts. Dave's system governs them. The loop closes naturally.</p>
+  </div>
+
+  <!-- GOVERNANCE -->
+  <div class="section" id="governance">
+    <div class="section-num">04</div>
+    <div class="section-title">What the Governance Layer Adds</div>
+    <div class="section-rule"></div>
+    <p>Clayton's system already captures, clusters, routes, and learns. The governance layer doesn't replace any of that. It adds four capabilities that become important as the system scales.</p>
+
+    <div class="capabilities">
+      <div class="cap-card">
+        <div class="cap-title">PROVENANCE</div>
+        <div class="cap-desc">Every knowledge document gets a canonical ID, a version history, and a record of how it was created. "Why do we do it this way?" becomes traceable — replayed from the record, not reconstructed from memory.</div>
+      </div>
+      <div class="cap-card">
+        <div class="cap-title">LINEAGE</div>
+        <div class="cap-desc">Question asked → gap identified → manager resolved → document created → cluster filled. That chain is an audit trail that builds itself.</div>
+      </div>
+      <div class="cap-card">
+        <div class="cap-title">ANALYTICS</div>
+        <div class="cap-desc">Every resolution event becomes a row in a dimensional model. How many gaps closed this quarter? Which clusters grow fastest? Where do escalations sit longest?</div>
+      </div>
+      <div class="cap-card">
+        <div class="cap-title">CONTINUITY</div>
+        <div class="cap-desc">ACE ensures governed artifacts maintain integrity across time. Documents don't silently mutate. When clusters shift, history is preserved, not overwritten.</div>
+      </div>
+    </div>
+
+    <p class="callout">These capabilities are additive. They layer on top of what already exists. The knowledge graph doesn't need to change — it just needs to emit events at the resolution boundary.</p>
+  </div>
+
+  <!-- WHAT'S POSSIBLE -->
+  <div class="section" id="possible">
+    <div class="section-num">05</div>
+    <div class="section-title">What Becomes Possible</div>
+    <div class="section-rule"></div>
+    <p>When the capture layer and the governance layer connect, certain things that are currently manual become automatic. Not everything. The right things.</p>
+
+    <table class="comparison">
+      <thead>
+        <tr><th>TODAY</th><th>WITH INTEGRATION</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Knowledge gaps discovered through friction</td>
+          <td>Gaps surface automatically through escalation patterns</td>
+        </tr>
+        <tr>
+          <td>Documentation created reactively, often backlogged</td>
+          <td>Created at the moment of resolution, when the answer is freshest</td>
+        </tr>
+        <tr>
+          <td>"Why did we decide that?" requires manual reconstruction</td>
+          <td>Decision lineage builds automatically. Replay, not reconstruction.</td>
+        </tr>
+        <tr>
+          <td>Coverage assessment requires manual audit</td>
+          <td>Cluster topology plus governance metadata shows coverage in real time</td>
+        </tr>
+        <tr>
+          <td>Trend analysis is periodic and labor-intensive</td>
+          <td>Escalation patterns, resolution velocity, cluster growth — all live</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="callout">The shift is from managing knowledge to observing knowledge formation and intervening only at escalation points. The system does the work. Humans do the thinking.</p>
+  </div>
+
+  <!-- BETH'S VISION -->
+  <div class="section" id="beth">
+    <div class="section-num">06</div>
+    <div class="section-title">Beth's Vision</div>
+    <div class="section-rule"></div>
+    <p>Beth identified something neither technical architecture addresses on its own: behavioral and personality data as inputs, so people can learn to not be those things.</p>
+    <p>This fits the combined architecture as a module — a specialized type of knowledge that flows through the same system. The capture layer ingests behavioral patterns. The governance layer ensures sensitivity and consent. The experience layer translates insights into something a person can actually use.</p>
+
+    <div class="beth-steps">
+      <div class="beth-step">
+        <span class="beth-step-num">1</span>
+        <span class="beth-step-text">Behavioral and personality data enters the knowledge graph as a distinct, protected document type.</span>
+      </div>
+      <div class="beth-step">
+        <span class="beth-step-num">2</span>
+        <span class="beth-step-text">Clusters form around behavioral patterns — communication styles, conflict tendencies, cognitive preferences.</span>
+      </div>
+      <div class="beth-step">
+        <span class="beth-step-num">3</span>
+        <span class="beth-step-text">Profiles inform how knowledge is presented — not what exists, but how it's delivered.</span>
+      </div>
+      <div class="beth-step">
+        <span class="beth-step-num">4</span>
+        <span class="beth-step-text">The governance layer tracks patterns at the aggregate level: where do behavioral friction points correlate with knowledge gaps?</span>
+      </div>
+      <div class="beth-step">
+        <span class="beth-step-num">5</span>
+        <span class="beth-step-text">Beth's experience layer translates this into human-facing insights: "Your team's collaboration patterns suggest these three resources would help."</span>
+      </div>
+    </div>
+
+    <p class="callout">This is additive, not foundational. The core architecture works without it. But with it, the system moves from answering questions to helping people grow. That is the difference between a platform and a product.</p>
+
+    <p><strong>Care required.</strong> Behavioral data is sensitive. This module needs explicit consent models, aggregate-only reporting, hard separation between behavioral signal and governance content, and legal review before implementation. The architecture supports it. The ethics need to be designed with the same care.</p>
+  </div>
+
+  <!-- RISKS -->
+  <div class="section" id="risks">
+    <div class="section-num">07</div>
+    <div class="section-title">What We'd Need to Think About</div>
+    <div class="section-rule"></div>
+    <p>No architecture is fragile-proof. These are the places where the combined system would need the most attention.</p>
+
+    <div class="risk" onclick="this.classList.toggle('open')">
+      <div class="risk-header">
+        <div class="risk-title">Cluster drift without governance awareness</div>
+        <div class="risk-toggle">+</div>
+      </div>
+      <div class="risk-body">The knowledge graph clusters shift over time as new documents are added. If the governance layer isn't aware of those shifts, audit trails can break. The solution: snapshot cluster assignments at the time of governance. Treat label changes as version events, not silent updates.</div>
+    </div>
+
+    <div class="risk" onclick="this.classList.toggle('open')">
+      <div class="risk-header">
+        <div class="risk-title">Escalation saturation</div>
+        <div class="risk-toggle">+</div>
+      </div>
+      <div class="risk-body">If the system escalates aggressively, managers become bottlenecks. If managers rush resolutions to clear queues, knowledge quality degrades and the system learns from its own noise. The solution: confidence threshold tuning, resolution quality tracking, and escalation load visibility.</div>
+    </div>
+
+    <div class="risk" onclick="this.classList.toggle('open')">
+      <div class="risk-header">
+        <div class="risk-title">Machine-generated artifacts without human review</div>
+        <div class="risk-toggle">+</div>
+      </div>
+      <div class="risk-body">The system will create documents automatically. Those documents need to be distinguished from human-authored knowledge. The governance layer would track origin type (human, machine, hybrid), require human promotion before machine-generated documents enter decision contexts, and maintain separate confidence scoring.</div>
+    </div>
+
+    <p class="callout">These are solvable. They are also the kinds of problems that get solved well when the people who built the systems are the ones designing the safeguards.</p>
+  </div>
+
+  <!-- TOGETHER -->
+  <div class="section" id="together">
+    <div class="section-num">08</div>
+    <div class="section-title">The Shape of the Conversation</div>
+    <div class="section-rule"></div>
+    <p>This brief is not a proposal. It is an observation about what exists and what could exist if the people who built these things decided to build together.</p>
+
+    <table class="ownership">
+      <thead>
+        <tr><th></th><th>OWNS</th><th>ADDS TO THE COMBINED SYSTEM</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Clayton</td>
+          <td>Capture, ingestion, clustering, routing, visualization, the organic learning loop</td>
+          <td>The system's ability to sense what people know and what they don't</td>
+        </tr>
+        <tr>
+          <td>Dave</td>
+          <td>Governance, dimensional modeling, audit trails, analytics, artifact continuity</td>
+          <td>The system's ability to prove what it learned and reconstruct why</td>
+        </tr>
+        <tr>
+          <td>Beth</td>
+          <td>Use case vision, behavioral framing, human experience, organizational translation</td>
+          <td>The system's ability to make knowledge matter to the people inside it</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="quote-block">
+      <div class="quote-text">Your system captures knowledge like a nervous system. Mine governs it like a skeleton. Beth designs the experience so humans actually use it.</div>
+    </div>
+
+    <div class="quote-block">
+      <div class="quote-text">Together, that is a system that knows what it knows, knows why it knows it, and knows how to help you know it too.</div>
+    </div>
+
+    <div class="closing">
+      <div class="closing-question">If this resonates, the next step is a conversation — not a contract.<br>What does the seam look like from your side?</div>
+      <div class="closing-attr">Prepared by Dave Kitchens · February 2026</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Layer toggle
+  function toggleLayer(el) {
+    document.querySelectorAll('.layer-card').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  // Nav tabs
+  const tabs = document.querySelectorAll('.nav-tab');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = document.getElementById(tab.dataset.section);
+      if (target) {
+        const navHeight = document.querySelector('.nav').offsetHeight;
+        const top = target.getBoundingClientRect().top + window.scrollY - navHeight - 10;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
+
+  // Active tab on scroll
+  const sections = document.querySelectorAll('.section');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        tabs.forEach(t => t.classList.remove('active'));
+        const tab = document.querySelector(`[data-section="${entry.target.id}"]`);
+        if (tab) tab.classList.add('active');
+      }
+    });
+  }, { threshold: 0.3, rootMargin: '-80px 0px -50% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+
+  // Animate sections on scroll
+  const fadeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.animationDelay = '0.1s';
+        entry.target.style.animationPlayState = 'running';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  sections.forEach(s => {
+    s.style.animationPlayState = 'paused';
+    fadeObserver.observe(s);
+  });
+</script>
+
+</body>
+</html>
