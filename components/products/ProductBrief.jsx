@@ -1,8 +1,8 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 
-// ═══════════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 // CottageHumble Tokens
-// ═══════════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 const C = {
   navy: "#0D1B2A",
   card: "#10202f",
@@ -30,9 +30,9 @@ const font = {
   body: "'Source Serif 4', Georgia, serif",
 };
 
-// ═══════════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 // Sections
-// ═══════════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 const sections = [
   { id: "problem", numeral: "I", title: "The Problem", color: C.rose },
   { id: "solution", numeral: "II", title: "The Solution", color: C.green },
@@ -43,9 +43,9 @@ const sections = [
   { id: "founder", numeral: "VII", title: "Founder & Ask", color: C.crimson },
 ];
 
-// ═══════════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 // Primitives
-// ═══════════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 function Tag({ label, color = C.blue }) {
   return (
@@ -105,9 +105,9 @@ function SeeAlso({ items }) {
   );
 }
 
-// ═══════════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 // Main Component
-// ═══════════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 export default function ProductBrief() {
   const [activeSection, setActiveSection] = useState("problem");
 
@@ -127,9 +127,9 @@ export default function ProductBrief() {
 
       <div style={{ position: "relative", zIndex: 1, display: "flex", maxWidth: 1000, margin: "0 auto", padding: "48px 24px 64px", gap: 32 }}>
 
-        {/* ═══════════════════════════════════════════════ */}
+        {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
         {/* SIDEBAR RAIL */}
-        {/* ═══════════════════════════════════════════════ */}
+        {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
         <div style={{
           width: 180,
           flexShrink: 0,
@@ -172,26 +172,26 @@ export default function ProductBrief() {
           </div>
         </div>
 
-        {/* ═══════════════════════════════════════════════ */}
+        {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
         {/* MAIN CONTENT */}
-        {/* ═══════════════════════════════════════════════ */}
+        {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
         <div style={{ flex: 1, minWidth: 0 }}>
 
           {/* Header */}
           <div style={{ marginBottom: 40 }}>
             <div style={{ fontFamily: font.mono, fontSize: 9, color: C.crimson, letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 8 }}>
-              DDL · ATLAS · Product Brief
+              DDL Â· ATLAS Â· Product Brief
             </div>
             <h1 style={{ fontFamily: font.display, fontSize: 30, fontWeight: 700, color: C.cream, lineHeight: 1.2, marginBottom: 8 }}>
               A Conversation That Listens Back
             </h1>
             <div style={{ fontFamily: font.body, fontSize: 16, color: C.creamMid, fontStyle: "italic", marginBottom: 4 }}>
-              Behavioral intelligence through guided conversation — product brief and technical architecture.
+              Behavioral intelligence through guided conversation â€” product brief and technical architecture.
             </div>
             <div style={{ height: 2, width: 48, background: C.crimson, opacity: 0.5, marginTop: 16 }} />
           </div>
 
-          {/* ── I. THE PROBLEM ── */}
+          {/* â”€â”€ I. THE PROBLEM â”€â”€ */}
           <div id="problem" style={{ marginBottom: 48, scrollMarginTop: 48 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 24 }}>
               <div style={{ width: 32, height: 32, borderRadius: 6, background: C.rose + "15", border: `1px solid ${C.rose}30`, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: font.mono, fontSize: 13, fontWeight: 700, color: C.rose }}>I</div>
@@ -206,11 +206,11 @@ export default function ProductBrief() {
             ]} />
 
             <Prose>
-              The personality assessment industry — Myers-Briggs, StrengthsFinder, Big Five, DISC, Enneagram — generates billions annually from a structurally flawed methodology: self-report. Every product asks people to accurately describe their own behavior, preferences, and capabilities. Four problems make this fundamentally unreliable.
+              The personality assessment industry â€” Myers-Briggs, StrengthsFinder, Big Five, DISC, Enneagram â€” generates billions annually from a structurally flawed methodology: self-report. Every product asks people to accurately describe their own behavior, preferences, and capabilities. Four problems make this fundamentally unreliable.
             </Prose>
 
             <ConceptCard title="Self-Perception Bias" color={C.rose}>
-              Dunning-Kruger established that people in the bottom quartile of performance rate themselves at the 60th percentile. This isn't dishonesty — it's the fundamental limitation of conscious self-awareness. Applied to personality: someone who rates themselves "highly organized" may genuinely believe it while their behavioral data shows chronic deadline misses.
+              Dunning-Kruger established that people in the bottom quartile of performance rate themselves at the 60th percentile. This isn't dishonesty â€” it's the fundamental limitation of conscious self-awareness. Applied to personality: someone who rates themselves "highly organized" may genuinely believe it while their behavioral data shows chronic deadline misses.
             </ConceptCard>
 
             <ConceptCard title="Social Desirability" color={C.amber}>
@@ -222,13 +222,13 @@ export default function ProductBrief() {
             </ConceptCard>
 
             <ConceptCard title="Category Collapse" color={C.violet}>
-              Complex behavioral patterns get compressed into type codes — INTJ, Type 3, Red/Blue — that erase nuance. Real human behavior is dimensional, contextual, and longitudinal. Static categories can't represent it.
+              Complex behavioral patterns get compressed into type codes â€” INTJ, Type 3, Red/Blue â€” that erase nuance. Real human behavior is dimensional, contextual, and longitudinal. Static categories can't represent it.
             </ConceptCard>
 
-            <SeeAlso items={["Operator Dossier — Strong Interest scoring Writing at 31", "Prediction Audit — identity ≠ behavior", "Foreword Convergence — structure reveals truth"]} />
+            <SeeAlso items={["Operator Dossier â€” Strong Interest scoring Writing at 31", "Prediction Audit â€” identity â‰  behavior", "Foreword Convergence â€” structure reveals truth"]} />
           </div>
 
-          {/* ── II. THE SOLUTION ── */}
+          {/* â”€â”€ II. THE SOLUTION â”€â”€ */}
           <div id="solution" style={{ marginBottom: 48, scrollMarginTop: 48 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 24 }}>
               <div style={{ width: 32, height: 32, borderRadius: 6, background: C.green + "15", border: `1px solid ${C.green}30`, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: font.mono, fontSize: 13, fontWeight: 700, color: C.green }}>II</div>
@@ -244,12 +244,12 @@ export default function ProductBrief() {
               marginBottom: 24,
             }}>
               <div style={{ fontFamily: font.body, fontSize: 18, color: C.cream, fontStyle: "italic", lineHeight: 1.5 }}>
-                The most honest behavioral data a person produces is when they're focused on performing a task — not when they're answering questions about themselves.
+                The most honest behavioral data a person produces is when they're focused on performing a task â€” not when they're answering questions about themselves.
               </div>
             </div>
 
             <Prose>
-              The product is a measurement instrument disguised as a useful conversation. The surface layer provides genuine value: job interview practice, difficult conversation rehearsal, pitch preparation, negotiation training, self-exploration. The person comes for the practice. Underneath, calibration engines analyze behavioral patterns in real time — not from self-report, but from revealed behavior under simulated conditions.
+              The product is a measurement instrument disguised as a useful conversation. The surface layer provides genuine value: job interview practice, difficult conversation rehearsal, pitch preparation, negotiation training, self-exploration. The person comes for the practice. Underneath, calibration engines analyze behavioral patterns in real time â€” not from self-report, but from revealed behavior under simulated conditions.
             </Prose>
 
             <Prose>
@@ -257,13 +257,13 @@ export default function ProductBrief() {
             </Prose>
 
             <Prose>
-              After each conversation, the transcript is analyzed independently by multiple AI models using a proven convergence methodology. Where models agree, the signal is strong. Where they diverge, there's nuance worth surfacing. Blind spots — patterns the person can't see about themselves — are documented alongside findings. Everything is transparent. No black box. The person sees what every model found.
+              After each conversation, the transcript is analyzed independently by multiple AI models using a proven convergence methodology. Where models agree, the signal is strong. Where they diverge, there's nuance worth surfacing. Blind spots â€” patterns the person can't see about themselves â€” are documented alongside findings. Everything is transparent. No black box. The person sees what every model found.
             </Prose>
 
             <SeeAlso items={["MindFrame Calibration Engines", "Council Convergence Methodology", "Dossier Output Format"]} />
           </div>
 
-          {/* ── III. ARCHITECTURE ── */}
+          {/* â”€â”€ III. ARCHITECTURE â”€â”€ */}
           <div id="architecture" style={{ marginBottom: 48, scrollMarginTop: 48 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 24 }}>
               <div style={{ width: 32, height: 32, borderRadius: 6, background: C.blue + "15", border: `1px solid ${C.blue}30`, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: font.mono, fontSize: 13, fontWeight: 700, color: C.blue }}>III</div>
@@ -275,15 +275,15 @@ export default function ProductBrief() {
               The system operates on three layers that execute simultaneously during every conversation:
             </Prose>
 
-            <ConceptCard title="Layer 1 — Conversation Engine (Surface)" color={C.blue}>
-              Guided conversation flows tailored to the chosen scenario. Job interviews use behavioral question frameworks. Relationship conversations use structured disclosure patterns. Pitch rehearsals use investor objection modeling. Each scenario type has a conversation architecture that produces useful practice AND rich behavioral data. The person never feels "tested" — they feel coached.
+            <ConceptCard title="Layer 1 â€” Conversation Engine (Surface)" color={C.blue}>
+              Guided conversation flows tailored to the chosen scenario. Job interviews use behavioral question frameworks. Relationship conversations use structured disclosure patterns. Pitch rehearsals use investor objection modeling. Each scenario type has a conversation architecture that produces useful practice AND rich behavioral data. The person never feels "tested" â€” they feel coached.
             </ConceptCard>
 
-            <ConceptCard title="Layer 2 — Calibration Stack (Middle)" color={C.amber}>
+            <ConceptCard title="Layer 2 â€” Calibration Stack (Middle)" color={C.amber}>
               Three MindFrame engines analyze the conversation in real time. <strong style={{ color: C.cream }}>ProficiencyStack</strong> reads communication patterns: pacing, detail preference, autonomy needs, vocabulary complexity, explanation density. <strong style={{ color: C.cream }}>ToneprintShaper</strong> maps emotional register: humor patterns, formality gradients, deflection habits, empathy signals, stress responses. <strong style={{ color: C.cream }}>CraniumCartographer</strong> traces cognitive architecture: reasoning structure, decision-making patterns, abstraction comfort, narrative vs. analytical framing, metacognitive awareness. All from behavior, not self-report.
             </ConceptCard>
 
-            <ConceptCard title="Layer 3 — Multi-Model Convergence (Deep)" color={C.violet}>
+            <ConceptCard title="Layer 3 â€” Multi-Model Convergence (Deep)" color={C.violet}>
               The conversation transcript is sent to 9 independent AI models for analysis. Each model produces a behavioral profile without seeing the others' work. A synthesis engine identifies convergence (strong signal), divergence (nuance), and blind spots (what the person can't see). This is the same methodology that found "certified mail" as thesis in 9/9 independent foreword analyses of a memoir. Proven, documented, reproducible.
             </ConceptCard>
 
@@ -292,13 +292,13 @@ export default function ProductBrief() {
             </div>
 
             <Prose>
-              The output is not a type code. It's a dimensional behavioral profile covering communication style, decision-making patterns, conflict architecture, cognitive signature, emotional register, and documented blind spots. Each conversation session adds a layer. Across multiple sessions in different contexts (interview prep, relationship dynamics, creative brainstorming), the profile builds into a dimensional map — the first behavioral assessment that gets more accurate over time rather than expiring at the moment of measurement.
+              The output is not a type code. It's a dimensional behavioral profile covering communication style, decision-making patterns, conflict architecture, cognitive signature, emotional register, and documented blind spots. Each conversation session adds a layer. Across multiple sessions in different contexts (interview prep, relationship dynamics, creative brainstorming), the profile builds into a dimensional map â€” the first behavioral assessment that gets more accurate over time rather than expiring at the moment of measurement.
             </Prose>
 
-            <SeeAlso items={["MindFrame v3.x Documentation", "ProficiencyStack Module Spec", "Council Methodology — 9-Model Architecture"]} />
+            <SeeAlso items={["MindFrame v3.x Documentation", "ProficiencyStack Module Spec", "Council Methodology â€” 9-Model Architecture"]} />
           </div>
 
-          {/* ── IV. PROOF OF CONCEPT ── */}
+          {/* â”€â”€ IV. PROOF OF CONCEPT â”€â”€ */}
           <div id="proof" style={{ marginBottom: 48, scrollMarginTop: 48 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 24 }}>
               <div style={{ width: 32, height: 32, borderRadius: 6, background: C.violet + "15", border: `1px solid ${C.violet}30`, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: font.mono, fontSize: 13, fontWeight: 700, color: C.violet }}>IV</div>
@@ -307,14 +307,14 @@ export default function ProductBrief() {
             </div>
 
             <Prose>
-              Every core component of this product has been built, tested, and documented. The proof of concept isn't a prototype — it's a live, production-quality system with published results.
+              Every core component of this product has been built, tested, and documented. The proof of concept isn't a prototype â€” it's a live, production-quality system with published results.
             </Prose>
 
             <div style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 8, padding: "20px 24px", marginBottom: 16 }}>
               <div style={{ fontFamily: font.display, fontSize: 16, fontWeight: 600, color: C.crimson, marginBottom: 8 }}>Proof 1: Foreword Convergence</div>
               <div style={{ fontFamily: font.mono, fontSize: 10, color: C.creamDim, marginBottom: 12 }}>Validates: Multi-model convergence methodology</div>
               <Prose>
-                Nine AI models were given the structural architecture of a 49-excerpt memoir — thematic clusters, narrative arcs, motifs, character density maps — but zero prose. Each wrote an independent foreword. Results: certified mail as thesis (9/9), double arc structure (8/9), Emily as load-bearing system (8/9), the kitchen as recurring physical anchor (7/9). Blind spots were also documented: the phrase "that's the past" appeared 10+ times but no model flagged it; character density thinning was invisible to all nine. The convergence methodology produces reliable signal AND documents its own limitations. Published and live.
+                Nine AI models were given the structural architecture of a 49-excerpt memoir â€” thematic clusters, narrative arcs, motifs, character density maps â€” but zero prose. Each wrote an independent foreword. Results: certified mail as thesis (9/9), double arc structure (8/9), Emily as load-bearing system (8/9), the kitchen as recurring physical anchor (7/9). Blind spots were also documented: the phrase "that's the past" appeared 10+ times but no model flagged it; character density thinning was invisible to all nine. The convergence methodology produces reliable signal AND documents its own limitations. Published and live.
               </Prose>
             </div>
 
@@ -322,22 +322,22 @@ export default function ProductBrief() {
               <div style={{ fontFamily: font.display, fontSize: 16, fontWeight: 600, color: C.violet, marginBottom: 8 }}>Proof 2: The Operator Dossier</div>
               <div style={{ fontFamily: font.mono, fontSize: 10, color: C.creamDim, marginBottom: 12 }}>Validates: Longitudinal behavioral profiling + throughline analysis</div>
               <Prose>
-                14 documents, 8 psychometric instruments, 24 years of data — from PSAT scores at age 15 through Apple Music listening data at age 38. The Dossier identified 8 throughlines that no individual instrument had seen: the Quant/Verbal Crossover (math peaked at 92nd percentile age 16, fell to 44th by 21 — interest drove aptitude down), the Creativity Misclassification (Strong scored Artistic at 31 while qEEG found high Occipital Alpha creativity 15 years later), the Sensation Avoiding Architecture (documented sensory profile explaining the entire DDL design language), the Auditory Regulation Stack (9,400 minutes of ILLENIUM mapped to documented over-arousal). The format works. The throughline methodology works. The longitudinal picture reveals what snapshots miss.
+                14 documents, 8 psychometric instruments, 24 years of data â€” from PSAT scores at age 15 through Apple Music listening data at age 38. The Dossier identified 8 throughlines that no individual instrument had seen: the Quant/Verbal Crossover (math peaked at 92nd percentile age 16, fell to 44th by 21 â€” interest drove aptitude down), the Creativity Misclassification (Strong scored Artistic at 31 while qEEG found high Occipital Alpha creativity 15 years later), the Sensation Avoiding Architecture (documented sensory profile explaining the entire DDL design language), the Auditory Regulation Stack (9,400 minutes of ILLENIUM mapped to documented over-arousal). The format works. The throughline methodology works. The longitudinal picture reveals what snapshots miss.
               </Prose>
             </div>
 
             <div style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 8, padding: "20px 24px", marginBottom: 16 }}>
               <div style={{ fontFamily: font.display, fontSize: 16, fontWeight: 600, color: C.amber, marginBottom: 8 }}>Proof 3: Apple Music Prediction Audit</div>
-              <div style={{ fontFamily: font.mono, fontSize: 10, color: C.creamDim, marginBottom: 12 }}>Validates: Identity ≠ behavior — the case for revealed preference measurement</div>
+              <div style={{ fontFamily: font.mono, fontSize: 10, color: C.creamDim, marginBottom: 12 }}>Validates: Identity â‰  behavior â€” the case for revealed preference measurement</div>
               <Prose>
-                An AI instance with full access to the subject's identity profile — recovery narrative, Kansas demographics, Reddit history, gaming habits, memoir themes, YouTube data — predicted 25 top artists and 25 top albums. Results: 0/25 artist matches, 0/25 album matches, complete genre inversion. Predicted country-folk-hip-hop based on demographic profiling. Actual data: melodic bass EDM (60%), pop-punk (30%), math rock (5%). The model that knew everything about who the person is knew nothing about what the person actually does. This is the fundamental case for behavioral measurement over self-report and demographic inference.
+                An AI instance with full access to the subject's identity profile â€” recovery narrative, Kansas demographics, Reddit history, gaming habits, memoir themes, YouTube data â€” predicted 25 top artists and 25 top albums. Results: 0/25 artist matches, 0/25 album matches, complete genre inversion. Predicted country-folk-hip-hop based on demographic profiling. Actual data: melodic bass EDM (60%), pop-punk (30%), math rock (5%). The model that knew everything about who the person is knew nothing about what the person actually does. This is the fundamental case for behavioral measurement over self-report and demographic inference.
               </Prose>
             </div>
 
-            <SeeAlso items={["dropdownlogistics.com/forewords", "Operator Dossier — /cognitive/", "Prediction vs Actuals — /analytics/"]} />
+            <SeeAlso items={["dropdownlogistics.com/forewords", "Operator Dossier â€” /cognitive/", "Prediction vs Actuals â€” /analytics/"]} />
           </div>
 
-          {/* ── V. MARKET ── */}
+          {/* â”€â”€ V. MARKET â”€â”€ */}
           <div id="market" style={{ marginBottom: 48, scrollMarginTop: 48 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 24 }}>
               <div style={{ width: 32, height: 32, borderRadius: 6, background: C.amber + "15", border: `1px solid ${C.amber}30`, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: font.mono, fontSize: 13, fontWeight: 700, color: C.amber }}>V</div>
@@ -376,7 +376,7 @@ export default function ProductBrief() {
             </Prose>
           </div>
 
-          {/* ── VI. BUSINESS MODEL ── */}
+          {/* â”€â”€ VI. BUSINESS MODEL â”€â”€ */}
           <div id="model" style={{ marginBottom: 48, scrollMarginTop: 48 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 24 }}>
               <div style={{ width: 32, height: 32, borderRadius: 6, background: C.ember + "15", border: `1px solid ${C.ember}30`, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: font.mono, fontSize: 13, fontWeight: 700, color: C.ember }}>VI</div>
@@ -384,24 +384,24 @@ export default function ProductBrief() {
               <div style={{ flex: 1, height: 1, background: C.border }} />
             </div>
 
-            <ConceptCard title="Consumer (Year 1–2)" color={C.blue}>
-              Free tier: one conversation scenario, basic insight card. Premium ($15–30/month): unlimited scenarios, full behavioral dossier, multi-model convergence analysis, longitudinal tracking. The free tier demonstrates the "aha" moment — seeing behavioral insights you didn't expect from a practice conversation.
+            <ConceptCard title="Consumer (Year 1â€“2)" color={C.blue}>
+              Free tier: one conversation scenario, basic insight card. Premium ($15â€“30/month): unlimited scenarios, full behavioral dossier, multi-model convergence analysis, longitudinal tracking. The free tier demonstrates the "aha" moment â€” seeing behavioral insights you didn't expect from a practice conversation.
             </ConceptCard>
 
-            <ConceptCard title="B2B Partnerships (Year 2–3)" color={C.amber}>
-              Revenue share with dating platforms (behavioral compatibility > self-described interests), therapy networks (therapist receives behavioral profile before first session), and coaching platforms (executive coaching with data, not just conversation). Each partnership channel gets the behavioral intelligence API; the conversation surface is customized to the partner's context.
+            <ConceptCard title="B2B Partnerships (Year 2â€“3)" color={C.amber}>
+              Revenue share with dating platforms (behavioral compatibility &gt; self-described interests), therapy networks (therapist receives behavioral profile before first session), and coaching platforms (executive coaching with data, not just conversation). Each partnership channel gets the behavioral intelligence API; the conversation surface is customized to the partner's context.
             </ConceptCard>
 
             <ConceptCard title="Enterprise (Year 3+)" color={C.green}>
-              Team communication profiling. Hiring assessment that measures actual behavior during structured scenarios rather than resume keywords or survey responses. Onboarding calibration — new hires get behavioral profiles that help teams understand communication preferences from day one. Priced per seat, annual contract.
+              Team communication profiling. Hiring assessment that measures actual behavior during structured scenarios rather than resume keywords or survey responses. Onboarding calibration â€” new hires get behavioral profiles that help teams understand communication preferences from day one. Priced per seat, annual contract.
             </ConceptCard>
 
             <ConceptCard title="Network Effects" color={C.violet}>
-              "Profile sharing" — users share behavioral fingerprints with partners, friends, or teams, enabling compatibility analysis based on actual patterns rather than self-described traits. Each shared profile improves matching accuracy. This is the "algorithm sharing" concept from the original Behavioral Insight whitepaper, now grounded in proven convergence methodology.
+              "Profile sharing" â€” users share behavioral fingerprints with partners, friends, or teams, enabling compatibility analysis based on actual patterns rather than self-described traits. Each shared profile improves matching accuracy. This is the "algorithm sharing" concept from the original Behavioral Insight whitepaper, now grounded in proven convergence methodology.
             </ConceptCard>
           </div>
 
-          {/* ── VII. FOUNDER & ASK ── */}
+          {/* â”€â”€ VII. FOUNDER & ASK â”€â”€ */}
           <div id="founder" style={{ marginBottom: 48, scrollMarginTop: 48 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 24 }}>
               <div style={{ width: 32, height: 32, borderRadius: 6, background: C.crimson + "15", border: `1px solid ${C.crimson}30`, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: font.mono, fontSize: 13, fontWeight: 700, color: C.crimson }}>VII</div>
@@ -417,12 +417,12 @@ export default function ProductBrief() {
               marginBottom: 24,
             }}>
               <div style={{ fontFamily: font.display, fontSize: 18, fontWeight: 600, color: C.cream, marginBottom: 4 }}>D.K. Hale</div>
-              <div style={{ fontFamily: font.mono, fontSize: 10, color: C.crimson, marginBottom: 16 }}>Founder · Dropout Logistics</div>
+              <div style={{ fontFamily: font.mono, fontSize: 10, color: C.crimson, marginBottom: 16 }}>Founder Â· Dropout Logistics</div>
               <Prose>
-                CPA. 10+ years internal audit at enterprise scale. Built the MindFrame cognitive architecture (3 major versions, 8 programs, frozen at v3.x). Designed and operated the nine-model Council methodology across 100+ convergent analyses. Created the DDL governance framework: 44 systems, 65 standards, 26 months. Published memoir author. Developed the CottageHumble design system and six production templates. Built the Operator Dossier — 14 documents, 8 instruments, 24 years — as both the proof of concept and the test subject.
+                CPA. 10+ years internal audit at enterprise scale. Built the MindFrame cognitive architecture (3 major versions, 8 programs, frozen at v3.x). Designed and operated the nine-model Council methodology across 100+ convergent analyses. Created the DDL governance framework: 44 systems, 65 standards, 26 months. Published memoir author. Developed the CottageHumble design system and six production templates. Built the Operator Dossier â€” 14 documents, 8 instruments, 24 years â€” as both the proof of concept and the test subject.
               </Prose>
               <Prose>
-                Every component of this product — the calibration engines, the convergence methodology, the dossier format, the design system, the governance architecture — was designed, built, tested, and documented by one person. The question isn't whether the methodology works. It's how far it scales with a team.
+                Every component of this product â€” the calibration engines, the convergence methodology, the dossier format, the design system, the governance architecture â€” was designed, built, tested, and documented by one person. The question isn't whether the methodology works. It's how far it scales with a team.
               </Prose>
             </div>
 
@@ -437,7 +437,7 @@ export default function ProductBrief() {
                 Current Status
               </div>
               <div style={{ fontFamily: font.display, fontSize: 20, fontWeight: 700, color: C.cream, marginBottom: 12 }}>
-                Concept Stage — Seeking Conversations
+                Concept Stage â€” Seeking Conversations
               </div>
               <div style={{ fontFamily: font.body, fontSize: 14, color: C.creamMid, lineHeight: 1.65, maxWidth: 500, margin: "0 auto" }}>
                 Core methodology proven. Calibration engines built. Multi-model analysis validated across 100+ engagements. Design system and delivery layer production-ready. Looking for the right partners to move from proven concept to product.
@@ -445,7 +445,7 @@ export default function ProductBrief() {
             </div>
           </div>
 
-          {/* ── FOOTER ── */}
+          {/* â”€â”€ FOOTER â”€â”€ */}
           <div style={{ marginTop: 40 }}>
             <div style={{
               height: 2,
@@ -455,10 +455,10 @@ export default function ProductBrief() {
             }} />
             <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 8 }}>
               <div style={{ fontFamily: font.mono, fontSize: 10, color: C.creamDim, letterSpacing: "0.08em" }}>
-                Cottage — Humble surface. Cathedral underneath.
+                Cottage â€” Humble surface. Cathedral underneath.
               </div>
               <div style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim }}>
-                dropdownlogistics.com · 2026 · Confidential
+                dropdownlogistics.com Â· 2026 Â· Confidential
               </div>
             </div>
           </div>
@@ -467,3 +467,4 @@ export default function ProductBrief() {
     </div>
   );
 }
+
