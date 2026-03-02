@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DOSSIER — Merrick | Fort Joy Detention Registry</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0D1B2A;
+    --card: #10202f;
+    --crimson: #B23531;
+    --crimson-dim: rgba(178,53,49,0.2);
+    --crimson-faint: rgba(178,53,49,0.08);
+    --cream: #F5F1EB;
+    --cream-high: rgba(245,241,235,0.85);
+    --cream-mid: rgba(245,241,235,0.55);
+    --cream-dim: rgba(245,241,235,0.3);
+    --cream-ghost: rgba(245,241,235,0.08);
+    --border: rgba(245,241,235,0.06);
+    --green: #4A9E6B;
+    --green-dim: rgba(74,158,107,0.15);
+    --amber: #C49A3C;
+    --amber-dim: rgba(196,154,60,0.15);
+    --blue: #6B9DC2;
+    --blue-dim: rgba(107,157,194,0.15);
+    --violet: #8a6cc9;
+    --violet-dim: rgba(138,108,201,0.15);
+    --ember: #c98a4a;
+    --ember-dim: rgba(201,138,74,0.15);
+    --rose: #c94a6e;
+    --font-display: 'Space Grotesk', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-body: 'Source Serif 4', Georgia, serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--navy);
+    color: var(--cream);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .dossier {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 48px 24px 64px;
+  }
+
+  /* ── Classification Banner ── */
+  .classification {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .classification-tag {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--crimson);
+    background: var(--crimson-faint);
+    border: 1px solid var(--crimson-dim);
+    padding: 6px 16px;
+    border-radius: 3px;
+    margin-bottom: 12px;
+  }
+  .classification-sub {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--cream-dim);
+    letter-spacing: 0.12em;
+  }
+
+  /* ── Hero Name ── */
+  .hero-name {
+    font-family: var(--font-body);
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.1;
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+
+  /* ── Title / Role ── */
+  .hero-role {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--violet);
+    letter-spacing: 0.06em;
+    margin-bottom: 16px;
+  }
+
+  /* ── Status Badge ── */
+  .status-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 28px;
+  }
+  .badge {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    padding: 4px 10px;
+    border-radius: 3px;
+    border: 1px solid;
+  }
+  .badge-crimson { color: var(--crimson); background: var(--crimson-faint); border-color: var(--crimson-dim); }
+  .badge-violet { color: var(--violet); background: var(--violet-dim); border-color: rgba(138,108,201,0.3); }
+  .badge-blue { color: var(--blue); background: var(--blue-dim); border-color: rgba(107,157,194,0.3); }
+  .badge-green { color: var(--green); background: var(--green-dim); border-color: rgba(74,158,107,0.3); }
+  .badge-amber { color: var(--amber); background: var(--amber-dim); border-color: rgba(196,154,60,0.3); }
+  .badge-ember { color: var(--ember); background: var(--ember-dim); border-color: rgba(201,138,74,0.3); }
+
+  /* ── Stat Block ── */
+  .stat-block {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 6px;
+    margin-bottom: 28px;
+  }
+  .stat-cell {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 12px 14px;
+    text-align: center;
+  }
+  .stat-value {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.1;
+  }
+  .stat-label {
+    font-family: var(--font-mono);
+    font-size: 8px;
+    color: var(--cream-dim);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+  .stat-value.accent { color: var(--violet); }
+  .stat-value.crimson { color: var(--crimson); }
+  .stat-value.amber { color: var(--amber); }
+  .stat-value.blue { color: var(--blue); }
+  .stat-value.green { color: var(--green); }
+
+  /* ── Signature Directive (Pull Quote) ── */
+  .directive {
+    border-left: 2px solid var(--crimson);
+    padding: 16px 20px;
+    margin: 28px 0;
+    background: var(--crimson-faint);
+    border-radius: 0 6px 6px 0;
+  }
+  .directive-text {
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-style: italic;
+    color: var(--cream-high);
+    line-height: 1.7;
+  }
+  .directive-source {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--cream-dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+
+  /* ── Narrative Bio ── */
+  .narrative {
+    margin-bottom: 32px;
+  }
+  .narrative p {
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--cream-mid);
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+  .narrative p:last-child { margin-bottom: 0; }
+  .narrative strong { color: var(--cream-high); font-weight: 600; }
+
+  /* ── Section Headers ── */
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 40px 0 20px;
+  }
+  .section-num {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--cream);
+  }
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── Attribute Grid ── */
+  .attr-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin-bottom: 24px;
+  }
+  .attr-cell {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 10px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .attr-key {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--cream-dim);
+    letter-spacing: 0.06em;
+  }
+  .attr-val {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--cream);
+  }
+  .attr-val.warn { color: var(--crimson); }
+  .attr-val.good { color: var(--green); }
+
+  /* ── Equipment Cards ── */
+  .equip-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 14px 18px;
+    margin-bottom: 8px;
+  }
+  .equip-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 6px;
+  }
+  .equip-name {
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--cream);
+  }
+  .equip-rarity {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .equip-stats {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--cream-mid);
+    line-height: 1.6;
+    margin-bottom: 6px;
+  }
+  .equip-flavor {
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--cream-dim);
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  /* ── Collapsible Sections ── */
+  .collapsible {
+    margin-bottom: 8px;
+  }
+  .collapsible-toggle {
+    width: 100%;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 14px 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: border-color 0.2s;
+  }
+  .collapsible-toggle:hover {
+    border-color: rgba(245,241,235,0.12);
+  }
+  .collapsible-label {
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--cream);
+  }
+  .collapsible-chevron {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--cream-dim);
+    transition: transform 0.2s;
+  }
+  .collapsible[open] .collapsible-chevron {
+    transform: rotate(90deg);
+  }
+  .collapsible-content {
+    padding: 16px 18px 8px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--cream-mid);
+    line-height: 1.75;
+  }
+  .collapsible-content p { margin-bottom: 12px; }
+  .collapsible-content strong { color: var(--cream-high); }
+
+  /* ── Talent List ── */
+  .talent-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 12px 14px;
+    margin-bottom: 6px;
+  }
+  .talent-name {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--amber);
+    margin-bottom: 4px;
+  }
+  .talent-desc {
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--cream-dim);
+    line-height: 1.6;
+  }
+
+  /* ── Vulnerability Flags ── */
+  .vuln-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px 16px;
+    background: var(--crimson-faint);
+    border-left: 2px solid var(--crimson);
+    border-radius: 0 5px 5px 0;
+    margin-bottom: 6px;
+  }
+  .vuln-icon {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--crimson);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .vuln-text {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--cream-mid);
+    line-height: 1.6;
+  }
+  .vuln-text strong { color: var(--cream-high); }
+
+  /* ── Role Cards ── */
+  .role-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 16px 18px;
+    margin-bottom: 8px;
+  }
+  .role-type {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .role-name {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 6px;
+  }
+  .role-desc {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--cream-mid);
+    line-height: 1.7;
+  }
+
+  /* ── Resistance Bar ── */
+  .resist-row {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 20px;
+  }
+  .resist-cell {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 8px 6px;
+    text-align: center;
+  }
+  .resist-val {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--crimson);
+  }
+  .resist-label {
+    font-family: var(--font-mono);
+    font-size: 7px;
+    color: var(--cream-dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  /* ── Footer ── */
+  .dossier-footer {
+    margin-top: 56px;
+  }
+  .footer-gradient {
+    height: 2px;
+    background: linear-gradient(90deg, var(--crimson), var(--amber), var(--blue), var(--green), var(--violet), var(--ember));
+    border-radius: 1px;
+    margin-bottom: 14px;
+  }
+  .footer-text {
+    text-align: center;
+  }
+  .footer-motto {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--cream-dim);
+    letter-spacing: 0.08em;
+    margin-bottom: 4px;
+  }
+  .footer-meta {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--cream-dim);
+    opacity: 0.5;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 520px) {
+    .hero-name { font-size: 36px; }
+    .stat-block { grid-template-columns: repeat(3, 1fr); }
+    .attr-grid { grid-template-columns: 1fr; }
+    .resist-row { flex-wrap: wrap; }
+    .resist-cell { flex: 0 0 calc(33.33% - 3px); }
+  }
+</style>
+</head>
+<body>
+<div class="dossier">
+
+  <!-- Classification Banner -->
+  <div class="classification">
+    <div class="classification-tag">Magisters Intelligence — Classified</div>
+    <div class="classification-sub">Fort Joy Detention Registry · Sourcerer Dossier · Party Registry 1 of 4</div>
+  </div>
+
+  <!-- Hero Name -->
+  <h1 class="hero-name">Merrick</h1>
+
+  <!-- Title / Role -->
+  <div class="hero-role">Elf · Mage · Hydrosophist / Aerotheurge · Level 5</div>
+
+  <!-- Status Badges -->
+  <div class="status-row">
+    <span class="badge badge-crimson">SOURCE-MUTED</span>
+    <span class="badge badge-violet">MYSTIC</span>
+    <span class="badge badge-amber">NOBLE</span>
+    <span class="badge badge-blue">COLLAR ACTIVE</span>
+    <span class="badge badge-green">SNEAKING (PERMANENT)</span>
+  </div>
+
+  <!-- Primary Stat Block -->
+  <div class="stat-block">
+    <div class="stat-cell">
+      <div class="stat-value accent">22</div>
+      <div class="stat-label">Intelligence</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-value">13</div>
+      <div class="stat-label">Memory</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-value">11</div>
+      <div class="stat-label">Constitution</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-value">10</div>
+      <div class="stat-label">Strength</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-value">10</div>
+      <div class="stat-label">Finesse</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-value">10</div>
+      <div class="stat-label">Wits</div>
+    </div>
+  </div>
+
+  <!-- Signature Directive -->
+  <div class="directive">
+    <div class="directive-text">"When the collar comes off, this is the most dangerous person in the room."</div>
+    <div class="directive-source">— Field Assessment, Campaign Intelligence Division</div>
+  </div>
+
+  <!-- Narrative Bio -->
+  <div class="narrative">
+    <p>Merrick is a Hydrosophist-primary caster wielding <strong>Destiny of Souls</strong>, a rare water staff that feeds directly into his core damage school. The staff's +1 Intelligence and +1 Two-Handed bonuses compound with his already towering INT 22, making every water spell hit harder than the numbers suggest. Standing in his own water surfaces triggers Elemental Affinity, cutting AP costs — efficiency through positioning.</p>
+    <p>Aerotheurge gives him crowd control and teleport utility. <strong>Huntsman 2</strong> — boosted by the Mentor's Mantle — rewards elevation play with bonus damage from high ground. This is not a mage who stands in the back and casts. This is a mage who reads the terrain and exploits it.</p>
+    <p><strong>Torturer</strong> is the keystone. Status effects that bypass armour mean Merrick controls the field before the frontline even engages. Burning, chilled, poisoned — the debuffs land while enemies still have full shields. By the time Riflen closes distance, the field is already his.</p>
+    <p>Corpse Eater feeds the elf memory lore. In Rivellon, elven flesh consumption is not savagery — it is communion. Every body on the battlefield is a story Merrick carries forward. The Ancestral Knowledge talent deepens this: a racial inheritance of accumulated wisdom.</p>
+    <p>The Mystic tag marks him as someone who perceives cracks in reality — visions of the Void, echoes of the Gods. The Noble tag says he is accustomed to authority and fine manners. These are not contradictions. They are the profile of someone born to lead who now sees too much.</p>
+  </div>
+
+  <!-- ── VITALS ── -->
+  <div class="section-head">
+    <div class="section-num" style="background: rgba(138,108,201,0.2); color: var(--violet);">I</div>
+    <span class="section-title">Vitals & Combat</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="attr-grid">
+    <div class="attr-cell">
+      <span class="attr-key">Vitality</span>
+      <span class="attr-val good">112 / 112</span>
+    </div>
+    <div class="attr-cell">
+      <span class="attr-key">Movement</span>
+      <span class="attr-val">5.5</span>
+    </div>
+    <div class="attr-cell">
+      <span class="attr-key">Action Points</span>
+      <span class="attr-val">6 (+4)</span>
+    </div>
+    <div class="attr-cell">
+      <span class="attr-key">Initiative</span>
+      <span class="attr-val">10</span>
+    </div>
+    <div class="attr-cell">
+      <span class="attr-key">Source Points</span>
+      <span class="attr-val warn">0 / 1</span>
+    </div>
+    <div class="attr-cell">
+      <span class="attr-key">Damage</span>
+      <span class="attr-val">23 – 28</span>
+    </div>
+    <div class="attr-cell">
+      <span class="attr-key">Physical Armour</span>
+      <span class="attr-val warn">18</span>
+    </div>
+    <div class="attr-cell">
+      <span class="attr-key">Magic Armour</span>
+      <span class="attr-val good">53</span>
+    </div>
+    <div class="attr-cell">
+      <span class="attr-key">Critical Chance</span>
+      <span class="attr-val">0%</span>
+    </div>
+    <div class="attr-cell">
+      <span class="attr-key">Accuracy</span>
+      <span class="attr-val">95%</span>
+    </div>
+  </div>
+
+  <!-- Resistances -->
+  <div style="font-family: var(--font-mono); font-size: 9px; color: var(--cream-dim); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px;">Elemental Resistances</div>
+  <div class="resist-row">
+    <div class="resist-cell">
+      <div class="resist-val">0%</div>
+      <div class="resist-label">Fire</div>
+    </div>
+    <div class="resist-cell">
+      <div class="resist-val">0%</div>
+      <div class="resist-label">Water</div>
+    </div>
+    <div class="resist-cell">
+      <div class="resist-val">0%</div>
+      <div class="resist-label">Earth</div>
+    </div>
+    <div class="resist-cell">
+      <div class="resist-val">0%</div>
+      <div class="resist-label">Air</div>
+    </div>
+    <div class="resist-cell">
+      <div class="resist-val">0%</div>
+      <div class="resist-label">Poison</div>
+    </div>
+  </div>
+
+  <!-- ── COMBAT ABILITIES ── -->
+  <div class="section-head">
+    <div class="section-num" style="background: rgba(196,154,60,0.2); color: var(--amber);">II</div>
+    <span class="section-title">Combat Abilities</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="attr-grid">
+    <div class="attr-cell">
+      <span class="attr-key">Hydrosophist</span>
+      <span class="attr-val" style="color: var(--blue);">3</span>
+    </div>
+    <div class="attr-cell">
+      <span class="attr-key">Huntsman</span>
+      <span class="attr-val" style="color: var(--green);">2</span>
+    </div>
+    <div class="attr-cell">
+      <span class="attr-key">Aerotheurge</span>
+      <span class="attr-val" style="color: var(--amber);">1</span>
+    </div>
+    <div class="attr-cell">
+      <span class="attr-key">Two-Handed</span>
+      <span class="attr-val">1</span>
+    </div>
+    <div class="attr-cell">
+      <span class="attr-key">Retribution</span>
+      <span class="attr-val">1</span>
+    </div>
+  </div>
+
+  <!-- ── TALENTS ── -->
+  <div class="section-head">
+    <div class="section-num" style="background: var(--amber-dim); color: var(--amber);">III</div>
+    <span class="section-title">Talents</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="talent-item">
+    <div class="talent-name">Ancestral Knowledge</div>
+    <div class="talent-desc">Elf racial. +1 to Loremaster. The old ways run deep — knowledge is inherited, not learned. Every elder's memory is a library.</div>
+  </div>
+  <div class="talent-item">
+    <div class="talent-name">Corpse Eater</div>
+    <div class="talent-desc">Consume the flesh of the dead. Inherit their final memories. In Rivellon, the dead speak loudest to those willing to eat.</div>
+  </div>
+  <div class="talent-item">
+    <div class="talent-name">Mnemonic</div>
+    <div class="talent-desc">+3 Memory slots for skill memorization. A mind built to hold more than most — spells stack where others must choose.</div>
+  </div>
+  <div class="talent-item">
+    <div class="talent-name">Torturer</div>
+    <div class="talent-desc">Status effects bypass Magic and Physical armour entirely. The keystone talent. Merrick controls the field before armour breaks.</div>
+  </div>
+
+  <!-- ── EQUIPMENT ── -->
+  <div class="section-head">
+    <div class="section-num" style="background: var(--ember-dim); color: var(--ember);">IV</div>
+    <span class="section-title">Equipment Loadout</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="equip-card">
+    <div class="equip-header">
+      <span class="equip-name">Destiny of Souls</span>
+      <span class="equip-rarity" style="color: var(--amber);">RARE · Staff · Main Hand</span>
+    </div>
+    <div class="equip-stats">12–14 Water Damage · 155% Critical Damage · +1 Intelligence · +1 Two-Handed</div>
+    <div class="equip-stats">Grants: Staff of Magus</div>
+    <div class="equip-flavor">Ancient Empire design — holds as much potential as you hold within yourself.</div>
+  </div>
+
+  <div class="equip-card">
+    <div class="equip-header">
+      <span class="equip-name">Mentor's Mantle</span>
+      <span class="equip-rarity" style="color: var(--green);">UNCOMMON · Chest</span>
+    </div>
+    <div class="equip-stats">5 Physical Armour · 21 Magic Armour · +1 Huntsman</div>
+  </div>
+
+  <div class="equip-card">
+    <div class="equip-header">
+      <span class="equip-name">Enchanter's Headdress</span>
+      <span class="equip-rarity" style="color: var(--cream-dim);">COMMON · Helmet</span>
+    </div>
+    <div class="equip-stats">2 Physical Armour · 8 Magic Armour</div>
+  </div>
+
+  <div class="equip-card">
+    <div class="equip-header">
+      <span class="equip-name">Mage Sandals</span>
+      <span class="equip-rarity" style="color: var(--green);">UNCOMMON · Boots</span>
+    </div>
+    <div class="equip-stats">3 Physical Armour · 9 Magic Armour · +0.5 Movement</div>
+  </div>
+
+  <div class="equip-card">
+    <div class="equip-header">
+      <span class="equip-name">Murky Gloves</span>
+      <span class="equip-rarity" style="color: var(--cream-dim);">COMMON · Gloves</span>
+    </div>
+    <div class="equip-stats">4 Physical Armour</div>
+  </div>
+
+  <!-- ── TACTICAL ROLE ── -->
+  <div class="section-head">
+    <div class="section-num" style="background: var(--crimson-dim); color: var(--crimson);">V</div>
+    <span class="section-title">Tactical Assessment</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="role-card">
+    <div class="role-type" style="color: var(--violet);">Primary Role</div>
+    <div class="role-name">Magical Damage Dealer / Healer Hybrid</div>
+    <div class="role-desc">Water damage scales with INT 22 and Hydrosophist 3. Heals and hurts from the same school — every spell slot pulls double duty.</div>
+  </div>
+
+  <div class="role-card">
+    <div class="role-type" style="color: var(--blue);">Secondary Role</div>
+    <div class="role-name">Crowd Control / Field Manipulation</div>
+    <div class="role-desc">Torturer-enhanced status effects lock down enemies before armour breaks. Aerotheurge teleports reposition threats. Terrain is a weapon.</div>
+  </div>
+
+  <!-- ── VULNERABILITIES ── -->
+  <div class="section-head">
+    <div class="section-num" style="background: var(--crimson-dim); color: var(--crimson);">VI</div>
+    <span class="section-title">Identified Vulnerabilities</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="vuln-item">
+    <span class="vuln-icon">■</span>
+    <div class="vuln-text"><strong>Physical Armour: 18</strong> — Paper-thin. One focused physical attacker will shred through it in a single turn. Merrick needs a frontline or he folds.</div>
+  </div>
+  <div class="vuln-item">
+    <span class="vuln-icon">■</span>
+    <div class="vuln-text"><strong>Zero Elemental Resistances</strong> — No fire, water, earth, air, or poison resistance. Any elemental damage hits at full value. Especially dangerous against enemy mages.</div>
+  </div>
+  <div class="vuln-item">
+    <span class="vuln-icon">■</span>
+    <div class="vuln-text"><strong>Source-Muted</strong> — No Source skills available. Source vampirism, Source-tier spells — all locked behind the collar. Significant power ceiling until this is resolved.</div>
+  </div>
+
+  <!-- ── PLAYER CONTEXT ── -->
+  <details class="collapsible">
+    <summary class="collapsible-toggle">
+      <span class="collapsible-label">Operator Context</span>
+      <span class="collapsible-chevron">›</span>
+    </summary>
+    <div class="collapsible-content">
+      <p><strong>Player:</strong> Dave</p>
+      <p><strong>Campaign:</strong> Divinity: Original Sin 2 — Fort Joy through Act 2</p>
+      <p><strong>Party Size:</strong> 4 — Merrick (Mage), Riflen (Fighter), Doc Rickets (Rogue), TBD</p>
+      <p><strong>Current Level:</strong> 5 · XP: 61,350 / Next: 8,650</p>
+      <p><strong>Theater of Operations:</strong> Fort Joy → Hollow Marshes</p>
+    </div>
+  </details>
+
+  <details class="collapsible">
+    <summary class="collapsible-toggle">
+      <span class="collapsible-label">Build Philosophy</span>
+      <span class="collapsible-chevron">›</span>
+    </summary>
+    <div class="collapsible-content">
+      <p>Merrick is built around a single principle: <strong>control the field before the fight begins</strong>. Torturer lets status effects bypass armour, meaning the enemy's first turn is already compromised. Hydrosophist provides both the damage and the healing, making Merrick the party's Swiss army knife. Huntsman rewards smart positioning — elevation isn't just flavor, it's a damage multiplier.</p>
+      <p>The build's weakness is intentional. Low physical armour means Merrick must be protected. This creates a natural party dynamic: Riflen holds the line, Merrick shapes the battlefield behind him. Symbiosis, not independence.</p>
+    </div>
+  </details>
+
+  <!-- ── FOOTER ── -->
+  <div class="dossier-footer">
+    <div class="footer-gradient"></div>
+    <div class="footer-text">
+      <div class="footer-motto">Cottage — Humble surface. Cathedral underneath.</div>
+      <div class="footer-meta">Prepared by Dropdown Logistics · Campaign Intelligence Division · Fort Joy Theater of Operations</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vibe Coding with Governance — DDL Build Methodology</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap');
+
+  :root {
+    --navy: #0D1B2A;
+    --navy-mid: #10202f;
+    --navy-light: #162536;
+    --cream: #F5F1EB;
+    --cream-dim: rgba(245,241,235,0.5);
+    --cream-ghost: rgba(245,241,235,0.08);
+    --crimson: #B23531;
+    --crimson-glow: rgba(178,53,49,0.15);
+    --amber: #D4A843;
+    --violet: #9B8EC4;
+    --sage: #6B9080;
+    --cyan: #67e8f9;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--navy);
+    color: var(--cream);
+    line-height: 1.7;
+  }
+
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 24px 80px;
+  }
+
+  /* --- Header --- */
+  .header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  .header .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--crimson);
+    margin-bottom: 16px;
+  }
+
+  .header h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+
+  .header h1 span { color: var(--crimson); }
+
+  .header .sub {
+    font-size: 16px;
+    color: var(--cream-dim);
+    font-style: italic;
+  }
+
+  /* --- Definition Block --- */
+  .definition {
+    background: var(--navy-mid);
+    border: 1px solid var(--cream-ghost);
+    border-left: 3px solid var(--crimson);
+    border-radius: 8px;
+    padding: 28px 32px;
+    margin-bottom: 56px;
+  }
+
+  .definition .term {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--amber);
+    margin-bottom: 8px;
+  }
+
+  .definition p {
+    font-size: 15px;
+    color: var(--cream);
+    line-height: 1.8;
+  }
+
+  .definition .compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 20px;
+  }
+
+  .definition .compare-col h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .definition .compare-col.standard h3 { color: var(--cream-dim); }
+  .definition .compare-col.ddl h3 { color: var(--crimson); }
+
+  .definition .compare-col ul {
+    list-style: none;
+    font-size: 13px;
+    line-height: 2;
+    color: var(--cream-dim);
+  }
+
+  .definition .compare-col.ddl ul { color: var(--cream); }
+
+  .definition .compare-col ul li::before {
+    content: "—  ";
+    color: rgba(245,241,235,0.2);
+  }
+
+  .definition .compare-col.ddl ul li::before {
+    content: "—  ";
+    color: var(--crimson);
+  }
+
+  /* --- Loop Diagram --- */
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--crimson);
+    margin-bottom: 20px;
+  }
+
+  .section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 32px;
+  }
+
+  .loop-container {
+    margin-bottom: 56px;
+  }
+
+  .loop-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+  }
+
+  .loop-step {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 20px;
+    align-items: start;
+    position: relative;
+  }
+
+  .step-marker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+
+  .step-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 600;
+    position: relative;
+    z-index: 2;
+  }
+
+  .step-line {
+    width: 2px;
+    height: 100%;
+    min-height: 40px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Step colors */
+  .loop-step:nth-child(1) .step-number { background: var(--crimson); color: white; }
+  .loop-step:nth-child(1) .step-line { background: linear-gradient(to bottom, var(--crimson), var(--amber)); }
+  .loop-step:nth-child(2) .step-number { background: var(--amber); color: var(--navy); }
+  .loop-step:nth-child(2) .step-line { background: linear-gradient(to bottom, var(--amber), var(--sage)); }
+  .loop-step:nth-child(3) .step-number { background: var(--sage); color: white; }
+  .loop-step:nth-child(3) .step-line { background: linear-gradient(to bottom, var(--sage), var(--violet)); }
+  .loop-step:nth-child(4) .step-number { background: var(--violet); color: white; }
+  .loop-step:nth-child(4) .step-line { background: linear-gradient(to bottom, var(--violet), #5A9FBE); }
+  .loop-step:nth-child(5) .step-number { background: #5A9FBE; color: white; }
+  .loop-step:nth-child(5) .step-line { background: linear-gradient(to bottom, #5A9FBE, var(--crimson)); }
+  .loop-step:nth-child(6) .step-number { background: var(--crimson); color: white; box-shadow: 0 0 16px rgba(178,53,49,0.4); }
+
+  .step-content {
+    padding: 6px 0 32px;
+  }
+
+  .step-content h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .step-content .role {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--cyan);
+    margin-bottom: 8px;
+  }
+
+  .step-content p {
+    font-size: 14px;
+    color: var(--cream-dim);
+    line-height: 1.7;
+  }
+
+  .step-content .artifact {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    background: var(--cream-ghost);
+    border: 1px solid rgba(245,241,235,0.06);
+    border-radius: 4px;
+    padding: 2px 8px;
+    margin-top: 8px;
+    color: var(--cream-dim);
+  }
+
+  /* --- Return Arrow --- */
+  .return-arrow {
+    text-align: center;
+    padding: 12px 0 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--crimson);
+    letter-spacing: 0.1em;
+  }
+
+  .return-arrow .arrow {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 4px;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  /* --- Governance Layer --- */
+  .governance {
+    background: var(--navy-mid);
+    border: 1px solid var(--cream-ghost);
+    border-radius: 8px;
+    padding: 32px;
+    margin-bottom: 56px;
+  }
+
+  .gov-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 20px;
+  }
+
+  .gov-item {
+    background: var(--navy);
+    border: 1px solid var(--cream-ghost);
+    border-radius: 6px;
+    padding: 16px;
+  }
+
+  .gov-item h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .gov-item p {
+    font-size: 12px;
+    color: var(--cream-dim);
+    line-height: 1.6;
+  }
+
+  .gov-item .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--amber);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  /* --- Session Example --- */
+  .session-example {
+    margin-bottom: 56px;
+  }
+
+  .timeline {
+    position: relative;
+    padding-left: 20px;
+    border-left: 2px solid var(--cream-ghost);
+  }
+
+  .timeline-entry {
+    padding: 0 0 24px 20px;
+    position: relative;
+  }
+
+  .timeline-entry::before {
+    content: "";
+    position: absolute;
+    left: -6px;
+    top: 6px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--crimson);
+  }
+
+  .timeline-entry .time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--cream-dim);
+    margin-bottom: 4px;
+  }
+
+  .timeline-entry .action {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+
+  .timeline-entry .detail {
+    font-size: 13px;
+    color: var(--cream-dim);
+  }
+
+  .timeline-entry .who {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    padding: 1px 6px;
+    border-radius: 3px;
+    margin-right: 6px;
+    display: inline-block;
+  }
+
+  .who.operator { background: rgba(178,53,49,0.2); color: var(--crimson); }
+  .who.claude { background: rgba(155,142,196,0.2); color: var(--violet); }
+  .who.both { background: rgba(212,168,67,0.2); color: var(--amber); }
+
+  /* --- Equation --- */
+  .equation {
+    text-align: center;
+    padding: 40px 0;
+    margin-bottom: 56px;
+    border-top: 1px solid var(--cream-ghost);
+    border-bottom: 1px solid var(--cream-ghost);
+  }
+
+  .equation .formula {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  .equation .formula .op { color: var(--cream-dim); margin: 0 8px; }
+  .equation .formula .vibe { color: var(--violet); }
+  .equation .formula .gov { color: var(--crimson); }
+  .equation .formula .ship { color: var(--amber); }
+
+  .equation .caption {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--cream-dim);
+    margin-top: 12px;
+    letter-spacing: 0.1em;
+  }
+
+  /* --- Footer --- */
+  .footer {
+    text-align: center;
+    padding-top: 40px;
+    border-top: 2px solid var(--crimson);
+  }
+
+  .footer .tagline {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--cream-dim);
+    letter-spacing: 0.05em;
+  }
+
+  .footer .credit {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: rgba(245,241,235,0.3);
+    margin-top: 8px;
+  }
+
+  /* --- Responsive --- */
+  @media (max-width: 640px) {
+    .header h1 { font-size: 26px; }
+    .definition .compare { grid-template-columns: 1fr; gap: 16px; }
+    .gov-grid { grid-template-columns: 1fr; }
+    .equation .formula { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="label">DDL Build Methodology</div>
+    <h1>Vibe Coding <span>with Governance</span></h1>
+    <div class="sub">How a one-person studio ships production sites at 2am</div>
+  </div>
+
+  <!-- Definition -->
+  <div class="definition">
+    <div class="term">What is this?</div>
+    <p>
+      A build methodology where the operator describes intent, an AI partner generates code and architecture, and the two iterate through rapid screenshot-feedback loops until the thing is shipped. The speed of vibe coding, the rigor of an audit practice.
+    </p>
+    <div class="compare">
+      <div class="compare-col standard">
+        <h3>Standard Vibe Coding</h3>
+        <ul>
+          <li>Describe what you want</li>
+          <li>AI generates code</li>
+          <li>Copy-paste and hope</li>
+          <li>No naming convention</li>
+          <li>No version history</li>
+          <li>Ship and forget</li>
+        </ul>
+      </div>
+      <div class="compare-col ddl">
+        <h3>DDL Vibe Coding</h3>
+        <ul>
+          <li>Describe what you want</li>
+          <li>AI generates code + routes + manifests</li>
+          <li>One-line PowerShell deploy</li>
+          <li>Ratified naming standards</li>
+          <li>Git commits + session transcripts</li>
+          <li>Ship, inventory, iterate, document</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- The Loop -->
+  <div class="loop-container">
+    <div class="section-label">The Loop</div>
+    <div class="section-title">Six steps. One cycle. Repeat until shipped.</div>
+
+    <div class="loop-steps">
+
+      <div class="loop-step">
+        <div class="step-marker">
+          <div class="step-number">1</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-content">
+          <h3>Describe</h3>
+          <div class="role">OPERATOR</div>
+          <p>The operator describes intent in plain language. Not a spec — a direction. "Three wings. One cathedral." or "Make it round with a crimson ring." Precision emerges through iteration, not upfront specification.</p>
+          <span class="artifact">voice message / text / screenshot / handoff doc</span>
+        </div>
+      </div>
+
+      <div class="loop-step">
+        <div class="step-marker">
+          <div class="step-number">2</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-content">
+          <h3>Generate</h3>
+          <div class="role">CLAUDE</div>
+          <p>The AI partner generates complete, deployable artifacts: components, routes, deploy scripts, page factories. Not snippets — whole systems. Every file named, every route mapped, every dependency resolved.</p>
+          <span class="artifact">.jsx / .tsx / .html / .ps1 / page.tsx routes</span>
+        </div>
+      </div>
+
+      <div class="loop-step">
+        <div class="step-marker">
+          <div class="step-number">3</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-content">
+          <h3>Deploy</h3>
+          <div class="role">OPERATOR</div>
+          <p>One-line execution. Download, copy to site directory, run the script. The operator doesn't debug code — they execute a deploy command and refresh a browser. PowerShell on Windows, terminal on Mac.</p>
+          <span class="artifact">powershell -ExecutionPolicy Bypass -File deploy.ps1</span>
+        </div>
+      </div>
+
+      <div class="loop-step">
+        <div class="step-marker">
+          <div class="step-number">4</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-content">
+          <h3>Screenshot</h3>
+          <div class="role">OPERATOR</div>
+          <p>The operator sends back what they see. Not a bug report — a photo of reality. The screenshot is the truth. "This is what it looks like." The AI partner reads the pixels, not the code.</p>
+          <span class="artifact">browser screenshot / terminal output / error paste</span>
+        </div>
+      </div>
+
+      <div class="loop-step">
+        <div class="step-marker">
+          <div class="step-number">5</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-content">
+          <h3>Iterate</h3>
+          <div class="role">BOTH</div>
+          <p>One-line surgical edits. No full rebuilds. "Make it bigger." "Add a crimson ring." "Make it round." Each adjustment is a single PowerShell command that targets one property. The loop tightens until it's right.</p>
+          <span class="artifact">$content.Replace('old', 'new') | Set-Content</span>
+        </div>
+      </div>
+
+      <div class="loop-step">
+        <div class="step-marker">
+          <div class="step-number">6</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-content">
+          <h3>Ship + Record</h3>
+          <div class="role">BOTH</div>
+          <p>Git commit. Inventory update. Route manifest amended. Session transcript preserved. The governance layer catches what vibe coding usually drops: what was built, where it lives, and what it connects to.</p>
+          <span class="artifact">git commit -m "feat: description" / manifest update</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="return-arrow">
+      <span class="arrow">&#8635;</span>
+      RETURN TO STEP 1
+    </div>
+  </div>
+
+  <!-- Governance Layer -->
+  <div class="governance">
+    <div class="section-label">The Governance Layer</div>
+    <div class="section-title">What makes it DDL, not just vibes</div>
+    <p style="font-size: 14px; color: var(--cream-dim); margin-bottom: 16px;">
+      Every vibe coding session produces artifacts. DDL sessions also produce structure.
+    </p>
+
+    <div class="gov-grid">
+      <div class="gov-item">
+        <span class="tag">Naming</span>
+        <h4>STD-0066</h4>
+        <p>Route naming convention ratified by nine-model council. Every page gets a predictable path.</p>
+      </div>
+      <div class="gov-item">
+        <span class="tag">Templates</span>
+        <h4>Six Molds</h4>
+        <p>CONSOLE, CHRONICLE, ATLAS, LEDGER, CODEX, DOSSIER. Every page fits a template type.</p>
+      </div>
+      <div class="gov-item">
+        <span class="tag">Inventory</span>
+        <h4>Route Manifest</h4>
+        <p>Every deployed page tracked: file, route, wing, template, status. Nothing ships unaccounted.</p>
+      </div>
+      <div class="gov-item">
+        <span class="tag">Architecture</span>
+        <h4>Wing System</h4>
+        <p>DDL, D&A, DexVerse, Private, CottageHumble. Content organized by domain, not by date.</p>
+      </div>
+      <div class="gov-item">
+        <span class="tag">History</span>
+        <h4>Session Transcripts</h4>
+        <p>Every build session preserved. Context survives compaction. The build story is the documentation.</p>
+      </div>
+      <div class="gov-item">
+        <span class="tag">Versioning</span>
+        <h4>Git + Branches</h4>
+        <p>Feature branches for major changes. Commits with descriptive messages. Push when green.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Session Example -->
+  <div class="session-example">
+    <div class="section-label">Session Example</div>
+    <div class="section-title">The logo loop — 6 iterations, 12 minutes</div>
+
+    <div class="timeline">
+      <div class="timeline-entry">
+        <div class="time">t+0:00</div>
+        <div class="action"><span class="who operator">Operator</span> "Still no logo up top"</div>
+        <div class="detail">Screenshot shows crimson placeholder square</div>
+      </div>
+      <div class="timeline-entry">
+        <div class="time">t+1:30</div>
+        <div class="action"><span class="who claude">Claude</span> Diagnostic: image exists at /ddl-logo.png, component still has old code</div>
+        <div class="detail">One-line Replace command generated</div>
+      </div>
+      <div class="timeline-entry">
+        <div class="time">t+3:00</div>
+        <div class="action"><span class="who operator">Operator</span> "Hell yeah! Should it be on a burgundy background?"</div>
+        <div class="detail">Screenshot confirms logo renders. Design iteration begins.</div>
+      </div>
+      <div class="timeline-entry">
+        <div class="time">t+5:00</div>
+        <div class="action"><span class="who claude">Claude</span> Navy card + border variant shipped</div>
+        <div class="detail">One property change via string replace</div>
+      </div>
+      <div class="timeline-entry">
+        <div class="time">t+7:00</div>
+        <div class="action"><span class="who operator">Operator</span> "Bigger and maybe a burgundy ring?"</div>
+      </div>
+      <div class="timeline-entry">
+        <div class="time">t+8:00</div>
+        <div class="action"><span class="who claude">Claude</span> width: 120, border: 2px solid #B23531</div>
+      </div>
+      <div class="timeline-entry">
+        <div class="time">t+10:00</div>
+        <div class="action"><span class="who operator">Operator</span> "I think round and I'm SOLD"</div>
+      </div>
+      <div class="timeline-entry">
+        <div class="time">t+10:30</div>
+        <div class="action"><span class="who claude">Claude</span> borderRadius: "50%"</div>
+        <div class="detail">One property. Done.</div>
+      </div>
+      <div class="timeline-entry">
+        <div class="time">t+12:00</div>
+        <div class="action"><span class="who operator">Operator</span> "dude....hell yeah. This is so clean. Is this vibe coding?"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Equation -->
+  <div class="equation">
+    <div class="formula">
+      <span class="vibe">Vibes</span>
+      <span class="op">+</span>
+      <span class="gov">Governance</span>
+      <span class="op">=</span>
+      <span class="ship">Shipped</span>
+    </div>
+    <div class="caption">Cottage — Humble surface. Cathedral underneath.</div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="tagline">Vibe Coding with Governance — A DDL Build Methodology</div>
+    <div class="credit">Dropdown Logistics | dropdownlogistics.com</div>
+  </div>
+
+</div>
+</body>
+</html>
