@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 
 const C = {
   navy: "#0D1B2A", card: "#10202f", crimson: "#B23531", crimsonDim: "rgba(178,53,49,0.2)",
@@ -288,15 +288,15 @@ export default function SonicThread() {
                 { moment: "The street-racing sonic palette",
                   track: "\"Act a Fool\" (Ludacris), \"Ride Out,\" franchise-wide",
                   desc: "Bass-heavy, high BPM, hip-hop-EDM hybrid. The racing sequences are scored like ILLENIUM shows -- driving rhythm, building energy, physical sonic impact. The franchise's musical DNA is the same activation-energy architecture as the listening profile, but through a hip-hop lens rather than melodic bass." },
-                { moment: "\"See You Again\" -- the franchise's emotional peak",
+                { moment: "'See You Again' -- the franchise's emotional peak",
                   track: "Wiz Khalifa & Charlie Puth  /  Furious 7",
                   desc: "Piano-driven, vocal-led, building to a chorus that resolves into loss acceptance. Paul Walker's tribute. The franchise that's 'ridiculous on purpose' deploys its most emotionally sincere moment through a song structure identical to ILLENIUM's vocal ballads -- piano build, emotional vocal, harmonic resolution. The absurdity permission structure drops for one song, and the sonic architecture carries the sincerity." },
                 { moment: "T.I. as franchise sonic thread",
                   track: "T.I. appears across multiple films + is the only hip-hop artist in Apple Music top 20",
                   desc: "T.I. is in the Apple Music Replay top 20 -- the only hip-hop artist in a profile dominated by EDM and math rock. T.I. is also in the Fast and Furious franchise. The listening profile and the media preference share an actual artist. The thread is literal." },
               ]}
-              emotionalFunction="F&amp;F's soundtrack is the activation-energy function expressed through hip-hop and EDM -- high BPM, bass-driven, physically stimulating. The racing sequences are scored to provide the same external drive that ILLENIUM provides at 140-174 BPM. And when the franchise needs to land emotional sincerity, it uses the exact same piano-vocal-build structure as the listening profile's catharsis architecture."
-              listeningProfileLink="T.I. appears in both the franchise and the Apple Music top 20 -- the only artist in the media diet who crosses from soundtrack to listening profile. Bass-heavy racing score  ->  ILLENIUM's BPM activation. \"See You Again\" piano build  ->  ILLENIUM vocal ballad structure."
+              emotionalFunction="F and F's soundtrack is the activation-energy function expressed through hip-hop and EDM -- high BPM, bass-driven, physically stimulating. The racing sequences are scored to provide the same external drive that ILLENIUM provides at 140-174 BPM. And when the franchise needs to land emotional sincerity, it uses the exact same piano-vocal-build structure as the listening profile's catharsis architecture."
+              listeningProfileLink="T.I. appears in both the franchise and the Apple Music top 20 -- the only artist in the media diet who crosses from soundtrack to listening profile. Bass-heavy racing score  ->  ILLENIUM's BPM activation. 'See You Again' piano build  ->  ILLENIUM vocal ballad structure."
             />
 
             <SoundtrackCard
@@ -387,7 +387,7 @@ export default function SonicThread() {
                   { title: "LOTR (Shore)", role: "Orchestral build across hours" },
                   { title: "FFVII (One-Winged Angel)", role: "Boss battle as cathartic release" },
                   { title: "SOA montages", role: "Episode-closing build-resolve ritual" },
-                  { title: "\"See You Again\" (F&amp;F)", role: "Piano-vocal build to acceptance" },
+                  { title: "'See You Again' (F and F)", role: "Piano-vocal build to acceptance" },
                   { title: "Scrubs (The Fray)", role: "Acoustic build to emotional ambush" },
                 ],
                 desc: "The most prevalent sonic architecture across the entire media diet. Every category contains at least one build-to-resolve structure. The mechanism is identical regardless of genre -- tension accumulates through dynamic escalation and resolves through harmonic or structural completion. For Bipolar II cycling and clinically significant internalizing, the guarantee of resolution is the therapeutic function.",
@@ -413,7 +413,7 @@ export default function SonicThread() {
                 media: [
                   { title: "ILLENIUM", role: "Wall of sound, total auditory field coverage" },
                   { title: "30 Rock", role: "Joke-per-second as cognitive field saturation" },
-                  { title: "F&amp;F racing sequences", role: "Bass-driven, high BPM, physical impact" },
+                  { title: "F and F racing sequences", role: "Bass-driven, high BPM, physical impact" },
                   { title: "FFVII boss battles", role: "Choral + orchestral maximum density" },
                   { title: "Witcher III combat", role: "Percussion-driven intensity" },
                   { title: "Polyphia", role: "Interlocking complexity fills the pattern channel" },
@@ -514,4 +514,5 @@ export default function SonicThread() {
     </div>
   );
 }
+
 
