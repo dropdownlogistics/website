@@ -1,4 +1,5 @@
 import './globals.css';
+import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from 'next';
 import SiteNav from '@/components/SiteNav';
 
@@ -38,7 +39,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             backgroundSize: '128px 128px',
           }}
         />
-
         <div style={{ position: 'relative', zIndex: 1, minHeight: '100vh' }}>
           <SiteNav />
           <main>{children}</main>
@@ -72,6 +72,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </div>
           </footer>
         </div>
+        <Analytics />
       </body>
     </html>
   );
