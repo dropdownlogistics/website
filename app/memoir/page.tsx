@@ -8,7 +8,6 @@ interface FadeInProps {
   delay?: number;
   style?: CSSProperties;
 }
-
 function FadeIn({ children, delay = 0, style = {} }: FadeInProps) {
   const [v, setV] = useState(false);
   useEffect(() => {
@@ -38,28 +37,78 @@ interface Chapter {
 }
 
 const CHAPTERS: Chapter[] = [
-  { slug: 'dashboard', title: 'Dashboard', desc: 'The analytical control room — metrics, patterns, and structural overview of the full manuscript.', accent: '#2BB5A4' },
-  { slug: 'architecture', title: 'Architecture', desc: 'How the memoir was built — narrative engineering, braid structure, and the systems behind the story.', accent: '#5B8DEF' },
-  { slug: 'braid', title: 'The Braid', desc: 'Time, theme, and tension woven together — the structural logic of how chapters interlock.', accent: '#B388FF' },
-  { slug: 'reading-room', title: 'Reading Room', desc: 'Selected excerpts — the prose itself, presented in its intended reading order.', accent: '#F0C040' },
-  { slug: 'map-of-13j', title: 'Map of 13J', desc: 'The apartment where it all happened — a spatial map of memory, breakdown, and recovery.', accent: '#FF6B8A' },
-  { slug: 'mask-and-cracks', title: 'Mask & Cracks', desc: 'The performance of being fine — and the moments the performance failed.', accent: '#E05A47' },
-  { slug: 'quiet-and-chase', title: 'Quiet & Chase', desc: 'The two engines of the book — the silence alcohol provided and the urgency that replaced it.', accent: '#00D4E5' },
-  { slug: 'false-summit', title: 'False Summit', desc: 'Every time it looked like the top — and wasn’t. The pattern of almost-recovery.', accent: '#FFB300' },
-  { slug: 'reckoning', title: 'Reckoning', desc: 'The moment the math stopped working — when the cost of the counterfeit exceeded the cost of the real.', accent: '#FF6B6B' },
-  { slug: 'spiral-and-turning', title: 'Spiral & Turning', desc: 'The descent and the pivot — where breakdown becomes the beginning of architecture.', accent: '#00D97E' },
+  {
+    slug: 'dashboard',
+    title: 'Dashboard',
+    desc: 'The analytical control room — metrics, patterns, and structural overview of the full manuscript.',
+    accent: '#2BB5A4',
+  },
+  {
+    slug: 'architecture',
+    title: 'Architecture',
+    desc: 'How the memoir was built — narrative engineering, braid structure, and the systems behind the story.',
+    accent: '#5B8DEF',
+  },
+  {
+    slug: 'braid',
+    title: 'The Braid',
+    desc: 'Time, theme, and tension woven together — the structural logic of how chapters interlock.',
+    accent: '#B388FF',
+  },
+  {
+    slug: 'reading-room',
+    title: 'Reading Room',
+    desc: 'Selected excerpts — the prose itself, presented in its intended reading order.',
+    accent: '#F0C040',
+  },
+  {
+    slug: 'map-of-13j',
+    title: 'Map of 13J',
+    desc: 'The apartment where it all happened — a spatial map of memory, breakdown, and recovery.',
+    accent: '#FF6B8A',
+  },
+  {
+    slug: 'mask-and-cracks',
+    title: 'Mask & Cracks',
+    desc: 'The performance of being fine — and the moments the performance failed.',
+    accent: '#E05A47',
+  },
+  {
+    slug: 'quiet-and-chase',
+    title: 'Quiet & Chase',
+    desc: 'The two engines of the book — the silence alcohol provided and the urgency that replaced it.',
+    accent: '#00D4E5',
+  },
+  {
+    slug: 'false-summit',
+    title: 'False Summit',
+    desc: "Every time it looked like the top — and wasn't. The pattern of almost-recovery.",
+    accent: '#FFB300',
+  },
+  {
+    slug: 'reckoning',
+    title: 'Reckoning',
+    desc: 'The moment the math stopped working — when the cost of the counterfeit exceeded the cost of the real.',
+    accent: '#FF6B6B',
+  },
+  {
+    slug: 'spiral-and-turning',
+    title: 'Spiral & Turning',
+    desc: 'The descent and the pivot — where breakdown becomes the beginning of architecture.',
+    accent: '#00D97E',
+  },
 ];
 
 const META_PAGES = [
   {
-    href: '/memoir/release-calendar',
-    label: 'Release Calendar',
-    desc: 'Publishing schedule and episode guide for the full memoir.',
-  },
-  {
     href: '/memoir/the-protocol',
     label: 'The Protocol',
     desc: 'How the memoir was governed — voice specs, risk registers, and publishing operations.',
+  },
+  {
+    href: '/memoir/release-calendar',
+    label: 'Release Calendar',
+    desc: 'Episode guide + publishing schedule (embedded from the generated static HTML snapshot).',
   },
 ];
 
@@ -82,7 +131,6 @@ export default function MemoirHub() {
           >
             DDL Story
           </div>
-
           <h1
             style={{
               fontFamily: 'Space Grotesk, sans-serif',
@@ -95,7 +143,6 @@ export default function MemoirHub() {
           >
             Little to Know <span style={{ color: 'rgba(245,241,235,0.35)' }}>Experience</span>
           </h1>
-
           <p
             style={{
               fontFamily: 'Source Serif 4, serif',
@@ -105,8 +152,8 @@ export default function MemoirHub() {
               maxWidth: 600,
             }}
           >
-            A memoir about the silence alcohol provided, the architecture that replaced it, and the
-            reasonable assurance that life doesn’t require a governor to hold together.
+            A memoir about the silence alcohol provided, the architecture that replaced it, and the reasonable
+            assurance that life doesn&rsquo;t require a governor to hold together.
           </p>
         </div>
       </FadeIn>
@@ -125,6 +172,12 @@ export default function MemoirHub() {
                   transition: 'all 0.2s',
                   cursor: 'pointer',
                   maxWidth: 360,
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(178,53,49,0.3)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(245,241,235,0.08)';
                 }}
               >
                 <div
@@ -170,13 +223,7 @@ export default function MemoirHub() {
         </div>
       </FadeIn>
 
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-          gap: 14,
-        }}
-      >
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 14 }}>
         {CHAPTERS.map((ch, i) => (
           <FadeIn key={ch.slug} delay={250 + i * 50}>
             <Link
@@ -187,20 +234,14 @@ export default function MemoirHub() {
             >
               <div
                 style={{
-                  background:
-                    hovered === ch.slug
-                      ? 'rgba(245,241,235,0.06)'
-                      : 'rgba(245,241,235,0.03)',
-                  border: `1px solid ${
-                    hovered === ch.slug ? `${ch.accent}44` : 'rgba(245,241,235,0.06)'
-                  }`,
+                  background: hovered === ch.slug ? 'rgba(245,241,235,0.06)' : 'rgba(245,241,235,0.03)',
+                  border: `1px solid ${hovered === ch.slug ? `${ch.accent}44` : 'rgba(245,241,235,0.06)'}`,
                   borderLeft: `3px solid ${ch.accent}`,
                   borderRadius: 8,
                   padding: '20px 18px',
                   transition: 'all 0.2s',
                   cursor: 'pointer',
-                  transform:
-                    hovered === ch.slug ? 'translateY(-2px)' : 'translateY(0)',
+                  transform: hovered === ch.slug ? 'translateY(-2px)' : 'translateY(0)',
                   minHeight: 100,
                 }}
               >
@@ -229,10 +270,7 @@ export default function MemoirHub() {
                   style={{
                     fontFamily: 'JetBrains Mono, monospace',
                     fontSize: '0.55rem',
-                    color:
-                      hovered === ch.slug
-                        ? ch.accent
-                        : 'rgba(245,241,235,0.15)',
+                    color: hovered === ch.slug ? ch.accent : 'rgba(245,241,235,0.15)',
                     marginTop: 10,
                     transition: 'color 0.2s',
                   }}
@@ -246,22 +284,8 @@ export default function MemoirHub() {
       </div>
 
       <FadeIn delay={800}>
-        <div
-          style={{
-            borderTop: '1px solid rgba(245,241,235,0.06)',
-            marginTop: 48,
-            paddingTop: 24,
-            textAlign: 'center',
-          }}
-        >
-          <p
-            style={{
-              fontFamily: 'JetBrains Mono, monospace',
-              fontSize: '0.6rem',
-              color: 'rgba(245,241,235,0.2)',
-              letterSpacing: '0.08em',
-            }}
-          >
+        <div style={{ borderTop: '1px solid rgba(245,241,235,0.06)', marginTop: 48, paddingTop: 24, textAlign: 'center' }}>
+          <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.6rem', color: 'rgba(245,241,235,0.2)', letterSpacing: '0.08em' }}>
             Little to Know Experience · 52,595 words · 50 excerpts · Built by DDL · 2026
           </p>
         </div>
