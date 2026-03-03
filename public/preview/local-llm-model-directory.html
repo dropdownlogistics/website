@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Model Directory — Dropdown Logistics</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Mono:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0A0A0C;--bg-card:#111114;--bg-elevated:#16161A;--bg-code:#0D0D12;
+  --gold:#FFD43B;--gold-mid:#D4A853;--gold-dim:#2A2210;
+  --green:#00D26A;--green-dim:#0A3D24;
+  --red:#FF4D4D;--red-dim:#3D1515;
+  --cyan:#4DA3FF;--cyan-dim:#0A1A3D;
+  --amber:#FFB300;--amber-dim:#2E2200;
+  --plum:#B388FF;--plum-dim:#1A0A33;
+  --rose:#FF6B9D;--rose-dim:#3D0A1E;
+  --text:#E8E6E3;--text-mid:#8A8880;--text-dim:#4A4840;
+  --border:#1E1E24;--border-light:#2A2A30;
+  --radius:10px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+.mono{font-family:'IBM Plex Mono',monospace}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.anim{opacity:0;transform:translateY(16px);transition:all 0.5s cubic-bezier(0.22,1,0.36,1)}.anim.v{opacity:1;transform:translateY(0)}
+
+/* NAV */
+.nav{display:flex;justify-content:space-between;align-items:center;padding:14px 32px;border-bottom:1px solid var(--border);background:rgba(10,10,12,0.95);backdrop-filter:blur(12px);position:sticky;top:0;z-index:100}
+.nav-logo{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:0.85rem;letter-spacing:-0.02em}
+.nav-logo a{color:var(--text);text-decoration:none}
+.nav-logo .g{color:var(--gold)}
+.nav-trail{font-family:'IBM Plex Mono',monospace;font-size:0.6rem;color:var(--text-dim);letter-spacing:0.04em}
+.nav-trail a{color:var(--text-mid);text-decoration:none}.nav-trail a:hover{color:var(--gold)}
+
+/* HERO */
+.hero{padding:80px 32px 50px;max-width:840px;margin:0 auto;text-align:center;position:relative}
+.hero::before{content:'';position:absolute;top:20%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(77,163,255,0.04) 0%,transparent 60%);pointer-events:none}
+.hero-badge{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:0.6rem;font-weight:500;color:var(--cyan);letter-spacing:0.1em;text-transform:uppercase;border:1px solid var(--cyan-dim);padding:5px 14px;border-radius:20px;margin-bottom:24px;animation:fadeUp 0.5s ease both}
+.hero h1{font-family:'DM Serif Display',serif;font-size:clamp(2.4rem,6vw,3.2rem);line-height:1.12;margin-bottom:16px;animation:fadeUp 0.5s 0.1s ease both}
+.hero h1 .g{color:var(--gold)}
+.hero .sub{font-family:'IBM Plex Mono',monospace;font-size:0.82rem;color:var(--gold-mid);margin-bottom:16px;animation:fadeUp 0.5s 0.15s ease both}
+.hero .desc{font-size:0.95rem;color:var(--text-mid);max-width:620px;margin:0 auto;font-weight:300;line-height:1.7;animation:fadeUp 0.5s 0.2s ease both}
+
+/* SECTIONS */
+.section{max-width:960px;margin:0 auto;padding:50px 32px 0}
+.s-label{font-family:'IBM Plex Mono',monospace;font-size:0.58rem;color:var(--gold);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:8px;text-align:center}
+.s-title{font-family:'DM Serif Display',serif;font-size:1.6rem;text-align:center;margin-bottom:8px}
+.s-desc{font-size:0.88rem;color:var(--text-mid);text-align:center;max-width:600px;margin:0 auto 30px;font-weight:300;line-height:1.7}
+
+/* FILTER TABS */
+.filters{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:30px}
+.filter-btn{font-family:'IBM Plex Mono',monospace;font-size:0.62rem;letter-spacing:0.04em;padding:6px 14px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--text-mid);cursor:pointer;transition:all 0.2s}
+.filter-btn:hover{border-color:var(--border-light);color:var(--text)}
+.filter-btn.active{border-color:var(--gold-dim);color:var(--gold);background:var(--gold-dim)}
+
+/* MODEL CARDS */
+.model-grid{display:grid;grid-template-columns:1fr;gap:12px}
+.mc{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:all 0.3s}
+.mc:hover{border-color:var(--border-light)}
+.mc-top{position:relative;padding:20px 22px 14px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.mc-top::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.mc[data-cat="code"] .mc-top::before{background:var(--green)}
+.mc[data-cat="reason"] .mc-top::before{background:var(--cyan)}
+.mc[data-cat="general"] .mc-top::before{background:var(--gold)}
+.mc[data-cat="vision"] .mc-top::before{background:var(--plum)}
+.mc[data-cat="embed"] .mc-top::before{background:var(--rose)}
+.mc[data-cat="compact"] .mc-top::before{background:var(--amber)}
+.mc-left{flex:1;min-width:0}
+.mc-name{font-size:1.05rem;font-weight:600;margin-bottom:2px}
+.mc-provider{font-family:'IBM Plex Mono',monospace;font-size:0.6rem;color:var(--text-dim)}
+.mc-desc{font-size:0.78rem;color:var(--text-mid);font-weight:300;line-height:1.6;margin-top:8px}
+.mc-right{display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0}
+.mc-cat{font-family:'IBM Plex Mono',monospace;font-size:0.52rem;padding:3px 8px;border-radius:3px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase}
+.mc[data-cat="code"] .mc-cat{background:var(--green-dim);color:var(--green)}
+.mc[data-cat="reason"] .mc-cat{background:var(--cyan-dim);color:var(--cyan)}
+.mc[data-cat="general"] .mc-cat{background:var(--gold-dim);color:var(--gold)}
+.mc[data-cat="vision"] .mc-cat{background:var(--plum-dim);color:var(--plum)}
+.mc[data-cat="embed"] .mc-cat{background:var(--rose-dim);color:var(--rose)}
+.mc[data-cat="compact"] .mc-cat{background:var(--amber-dim);color:var(--amber)}
+.mc-tier{font-family:'IBM Plex Mono',monospace;font-size:0.5rem;color:var(--text-dim);letter-spacing:0.04em}
+
+.mc-stats{display:flex;gap:1px;background:var(--border);border-top:1px solid var(--border)}
+.mc-stat{flex:1;text-align:center;padding:10px 6px;background:var(--bg-card)}
+.mc-stat .sl{font-family:'IBM Plex Mono',monospace;font-size:0.46rem;color:var(--text-dim);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:2px}
+.mc-stat .sv{font-family:'IBM Plex Mono',monospace;font-size:0.8rem;font-weight:600}
+
+.mc-bottom{padding:10px 22px 14px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,0.02)}
+.mc-cmd{font-family:'IBM Plex Mono',monospace;font-size:0.68rem;color:var(--green);background:var(--bg-code);padding:4px 10px;border-radius:4px;border:1px solid var(--border)}
+.mc-tags{display:flex;gap:4px;flex-wrap:wrap}
+.mc-tag{font-family:'IBM Plex Mono',monospace;font-size:0.48rem;padding:2px 6px;border-radius:3px;background:rgba(255,255,255,0.03);color:var(--text-dim);border:1px solid rgba(255,255,255,0.04)}
+
+/* OUR PICKS */
+.pick-badge{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:0.46rem;padding:2px 6px;border-radius:3px;background:var(--gold-dim);color:var(--gold);font-weight:600;letter-spacing:0.04em;margin-left:8px;vertical-align:middle}
+
+/* TIER LEGEND */
+.legend{display:flex;justify-content:center;gap:20px;margin-bottom:30px;flex-wrap:wrap}
+.legend-item{display:flex;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:0.6rem;color:var(--text-mid)}
+.legend-dot{width:8px;height:8px;border-radius:50%}
+.legend-dot.t1{background:var(--green)}.legend-dot.t2{background:var(--gold)}.legend-dot.t3{background:var(--plum)}
+
+/* VRAM GUIDE */
+.vram-guide{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin:40px 0}
+.vg-title{font-family:'IBM Plex Mono',monospace;font-size:0.65rem;color:var(--gold);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px}
+.vg-row{display:grid;grid-template-columns:120px 80px 1fr 80px;gap:12px;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.03);font-family:'IBM Plex Mono',monospace;font-size:0.7rem}
+.vg-row:last-child{border-bottom:none}
+.vg-row.header{color:var(--text-dim);font-size:0.55rem;letter-spacing:0.06em;text-transform:uppercase;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.vg-bar{height:6px;background:var(--bg);border-radius:3px;overflow:hidden}
+.vg-fill{height:100%;border-radius:3px}
+
+/* FOOTER */
+.footer{text-align:center;padding:48px 32px 40px;border-top:1px solid var(--border);margin-top:60px}
+.footer-line{font-family:'IBM Plex Mono',monospace;font-size:0.6rem;color:var(--text-dim)}
+
+@media(max-width:600px){
+  .hero{padding:50px 20px 40px}
+  .section{padding:40px 20px 0}
+  .mc-stats{flex-wrap:wrap}
+  .mc-stat{min-width:25%}
+  .vg-row{grid-template-columns:90px 60px 1fr 60px;font-size:0.6rem}
+}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <div class="nav-logo"><a href="#">Dropdown <span class="g">Logistics</span></a></div>
+  <div class="nav-trail"><a href="#">blindspot</a> / <a href="#">llm</a> / <span style="color:var(--gold)">models</span></div>
+</div>
+
+<div class="hero">
+  <div class="hero-badge">reference guide</div>
+  <h1>Model <span class="g">Directory</span></h1>
+  <div class="sub">what's available · what it does · what it costs your GPU</div>
+  <p class="desc">Every model below runs locally through Ollama. One command to download. Zero API cost. Your GPU, your data, your choice. Models are organized by what they're good at and what hardware they need.</p>
+</div>
+
+<!-- VRAM GUIDE -->
+<div class="section anim">
+  <div class="s-label">Know Your Limits</div>
+  <div class="s-title">VRAM Quick Reference</div>
+  <div class="s-desc">Your GPU's VRAM is the binding constraint. This is how much each model size actually consumes at Q4 quantization.</div>
+
+  <div class="vram-guide">
+    <div class="vg-title">VRAM Usage by Model Size (Q4 Quantized)</div>
+    <div class="vg-row header"><span>Model Size</span><span>VRAM</span><span>Usage</span><span>Fits?</span></div>
+    <div class="vg-row"><span>1B–3B</span><span>~1–2 GB</span><div class="vg-bar"><div class="vg-fill" style="width:18%;background:var(--green)"></div></div><span style="color:var(--green)">Easy</span></div>
+    <div class="vg-row"><span>7B</span><span>~4–5 GB</span><div class="vg-bar"><div class="vg-fill" style="width:56%;background:var(--green)"></div></div><span style="color:var(--green)">Good</span></div>
+    <div class="vg-row"><span>8B</span><span>~5–6 GB</span><div class="vg-bar"><div class="vg-fill" style="width:68%;background:var(--gold)"></div></div><span style="color:var(--gold)">Snug</span></div>
+    <div class="vg-row"><span>12B–14B</span><span>~7–9 GB</span><div class="vg-bar"><div class="vg-fill" style="width:88%;background:var(--amber)"></div></div><span style="color:var(--amber)">Tight*</span></div>
+    <div class="vg-row"><span>27B–32B</span><span>~16–20 GB</span><div class="vg-bar"><div class="vg-fill" style="width:100%;background:var(--red)"></div></div><span style="color:var(--red)">24GB+</span></div>
+    <div class="vg-row"><span>70B+</span><span>~36+ GB</span><div class="vg-bar"><div class="vg-fill" style="width:100%;background:var(--red)"></div></div><span style="color:var(--red)">Multi-GPU</span></div>
+  </div>
+  <p style="font-family:'IBM Plex Mono',monospace;font-size:0.6rem;color:var(--text-dim);text-align:center;margin-top:8px">* 12B–14B models fit on 8GB cards but leave no room for long context. Best on 12GB+.</p>
+</div>
+
+<!-- FILTERS -->
+<div class="section">
+  <div class="s-label">Browse Models</div>
+  <div class="s-title">Curated for Local Inference</div>
+  <div class="s-desc">Filtered to models that actually run well on consumer hardware. Sorted by category. Our picks are marked.</div>
+
+  <div class="filters">
+    <button class="filter-btn active" onclick="filterModels('all')">All</button>
+    <button class="filter-btn" onclick="filterModels('code')">Code</button>
+    <button class="filter-btn" onclick="filterModels('reason')">Reasoning</button>
+    <button class="filter-btn" onclick="filterModels('general')">General</button>
+    <button class="filter-btn" onclick="filterModels('vision')">Vision</button>
+    <button class="filter-btn" onclick="filterModels('compact')">Compact</button>
+    <button class="filter-btn" onclick="filterModels('embed')">Embedding</button>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot t1"></div>Tier 1 · 6GB</div>
+    <div class="legend-item"><div class="legend-dot t2"></div>Tier 2 · 8GB</div>
+    <div class="legend-item"><div class="legend-dot t3"></div>Tier 3 · 12GB+</div>
+  </div>
+
+  <div class="model-grid" id="modelGrid">
+
+    <!-- QWEN 2.5 CODER 7B -->
+    <div class="mc anim" data-cat="code" data-tier="2">
+      <div class="mc-top">
+        <div class="mc-left">
+          <div class="mc-name">Qwen 2.5 Coder 7B <span class="pick-badge">our primary</span></div>
+          <div class="mc-provider">Alibaba · Q4_K_M quantization</div>
+          <div class="mc-desc">Code-specialized model with excellent structured output, JSON compliance, and formula generation. Top pick for schema work, code review, and governed output tasks. Council-locked as Dex Jr. primary.</div>
+        </div>
+        <div class="mc-right">
+          <div class="mc-cat">code</div>
+          <div class="mc-tier">Tier 2</div>
+        </div>
+      </div>
+      <div class="mc-stats">
+        <div class="mc-stat"><div class="sl">VRAM</div><div class="sv">~5.8 GB</div></div>
+        <div class="mc-stat"><div class="sl">Speed</div><div class="sv">~87 t/s</div></div>
+        <div class="mc-stat"><div class="sl">Context</div><div class="sv">128K</div></div>
+        <div class="mc-stat"><div class="sl">Download</div><div class="sv">4.7 GB</div></div>
+        <div class="mc-stat"><div class="sl">Params</div><div class="sv">7B</div></div>
+      </div>
+      <div class="mc-bottom">
+        <div class="mc-cmd">ollama pull qwen2.5-coder:7b</div>
+        <div class="mc-tags"><span class="mc-tag">structured output</span><span class="mc-tag">JSON</span><span class="mc-tag">formulas</span><span class="mc-tag">code gen</span></div>
+      </div>
+    </div>
+
+    <!-- LLAMA 3.1 8B -->
+    <div class="mc anim" data-cat="general" data-tier="2">
+      <div class="mc-top">
+        <div class="mc-left">
+          <div class="mc-name">Llama 3.1 8B <span class="pick-badge">our secondary</span></div>
+          <div class="mc-provider">Meta · Instruct-tuned</div>
+          <div class="mc-desc">Strong general-purpose model with excellent reasoning and instruction following. Second voice for convergent analysis. When two models agree, that's signal.</div>
+        </div>
+        <div class="mc-right">
+          <div class="mc-cat">general</div>
+          <div class="mc-tier">Tier 2</div>
+        </div>
+      </div>
+      <div class="mc-stats">
+        <div class="mc-stat"><div class="sl">VRAM</div><div class="sv">~5.5 GB</div></div>
+        <div class="mc-stat"><div class="sl">Speed</div><div class="sv">~25 t/s</div></div>
+        <div class="mc-stat"><div class="sl">Context</div><div class="sv">128K</div></div>
+        <div class="mc-stat"><div class="sl">Download</div><div class="sv">4.9 GB</div></div>
+        <div class="mc-stat"><div class="sl">Params</div><div class="sv">8B</div></div>
+      </div>
+      <div class="mc-bottom">
+        <div class="mc-cmd">ollama pull llama3.1:8b</div>
+        <div class="mc-tags"><span class="mc-tag">reasoning</span><span class="mc-tag">instruction</span><span class="mc-tag">convergent analysis</span></div>
+      </div>
+    </div>
+
+    <!-- PHI 3.5 -->
+    <div class="mc anim" data-cat="compact" data-tier="1">
+      <div class="mc-top">
+        <div class="mc-left">
+          <div class="mc-name">Phi-3.5 Mini <span class="pick-badge">our tertiary</span></div>
+          <div class="mc-provider">Microsoft · 3.8B parameters</div>
+          <div class="mc-desc">Lightweight with 128K context window. Use for fast parsing, document extraction, and tasks where speed matters more than depth. Fits alongside larger models.</div>
+        </div>
+        <div class="mc-right">
+          <div class="mc-cat">compact</div>
+          <div class="mc-tier">Tier 1</div>
+        </div>
+      </div>
+      <div class="mc-stats">
+        <div class="mc-stat"><div class="sl">VRAM</div><div class="sv">~2.5 GB</div></div>
+        <div class="mc-stat"><div class="sl">Speed</div><div class="sv">~45 t/s</div></div>
+        <div class="mc-stat"><div class="sl">Context</div><div class="sv">128K</div></div>
+        <div class="mc-stat"><div class="sl">Download</div><div class="sv">2.2 GB</div></div>
+        <div class="mc-stat"><div class="sl">Params</div><div class="sv">3.8B</div></div>
+      </div>
+      <div class="mc-bottom">
+        <div class="mc-cmd">ollama pull phi3.5</div>
+        <div class="mc-tags"><span class="mc-tag">fast parsing</span><span class="mc-tag">long context</span><span class="mc-tag">lightweight</span></div>
+      </div>
+    </div>
+
+    <!-- DEEPSEEK R1 7B -->
+    <div class="mc anim" data-cat="reason" data-tier="2">
+      <div class="mc-top">
+        <div class="mc-left">
+          <div class="mc-name">DeepSeek R1 7B</div>
+          <div class="mc-provider">DeepSeek · Distilled reasoning model</div>
+          <div class="mc-desc">Chain-of-thought reasoning model that shows its work. Excellent for analytical tasks where you want to see the thinking process. The "thinking" tag means it reasons step-by-step before answering.</div>
+        </div>
+        <div class="mc-right">
+          <div class="mc-cat">reason</div>
+          <div class="mc-tier">Tier 2</div>
+        </div>
+      </div>
+      <div class="mc-stats">
+        <div class="mc-stat"><div class="sl">VRAM</div><div class="sv">~5 GB</div></div>
+        <div class="mc-stat"><div class="sl">Speed</div><div class="sv">~20 t/s</div></div>
+        <div class="mc-stat"><div class="sl">Context</div><div class="sv">64K</div></div>
+        <div class="mc-stat"><div class="sl">Download</div><div class="sv">4.7 GB</div></div>
+        <div class="mc-stat"><div class="sl">Params</div><div class="sv">7B</div></div>
+      </div>
+      <div class="mc-bottom">
+        <div class="mc-cmd">ollama pull deepseek-r1:7b</div>
+        <div class="mc-tags"><span class="mc-tag">chain-of-thought</span><span class="mc-tag">reasoning</span><span class="mc-tag">analysis</span></div>
+      </div>
+    </div>
+
+    <!-- GEMMA 3 4B -->
+    <div class="mc anim" data-cat="compact" data-tier="1">
+      <div class="mc-top">
+        <div class="mc-left">
+          <div class="mc-name">Gemma 3 4B</div>
+          <div class="mc-provider">Google DeepMind · Latest generation</div>
+          <div class="mc-desc">Google's newest compact model. Strong general capability in a small package. Good balance of quality and speed for everyday tasks. Vision-capable variant available.</div>
+        </div>
+        <div class="mc-right">
+          <div class="mc-cat">compact</div>
+          <div class="mc-tier">Tier 1</div>
+        </div>
+      </div>
+      <div class="mc-stats">
+        <div class="mc-stat"><div class="sl">VRAM</div><div class="sv">~3 GB</div></div>
+        <div class="mc-stat"><div class="sl">Speed</div><div class="sv">~40 t/s</div></div>
+        <div class="mc-stat"><div class="sl">Context</div><div class="sv">128K</div></div>
+        <div class="mc-stat"><div class="sl">Download</div><div class="sv">3.3 GB</div></div>
+        <div class="mc-stat"><div class="sl">Params</div><div class="sv">4B</div></div>
+      </div>
+      <div class="mc-bottom">
+        <div class="mc-cmd">ollama pull gemma3:4b</div>
+        <div class="mc-tags"><span class="mc-tag">general</span><span class="mc-tag">vision capable</span><span class="mc-tag">efficient</span></div>
+      </div>
+    </div>
+
+    <!-- MISTRAL 7B -->
+    <div class="mc anim" data-cat="general" data-tier="2">
+      <div class="mc-top">
+        <div class="mc-left">
+          <div class="mc-name">Mistral 7B v0.3</div>
+          <div class="mc-provider">Mistral AI · Instruct v0.3</div>
+          <div class="mc-desc">The original open-source champion. Fast, capable, and well-tested across thousands of use cases. Tool calling support. Excellent for second-opinion convergent analysis.</div>
+        </div>
+        <div class="mc-right">
+          <div class="mc-cat">general</div>
+          <div class="mc-tier">Tier 2</div>
+        </div>
+      </div>
+      <div class="mc-stats">
+        <div class="mc-stat"><div class="sl">VRAM</div><div class="sv">~4.5 GB</div></div>
+        <div class="mc-stat"><div class="sl">Speed</div><div class="sv">~30 t/s</div></div>
+        <div class="mc-stat"><div class="sl">Context</div><div class="sv">32K</div></div>
+        <div class="mc-stat"><div class="sl">Download</div><div class="sv">4.1 GB</div></div>
+        <div class="mc-stat"><div class="sl">Params</div><div class="sv">7B</div></div>
+      </div>
+      <div class="mc-bottom">
+        <div class="mc-cmd">ollama pull mistral</div>
+        <div class="mc-tags"><span class="mc-tag">tool calling</span><span class="mc-tag">general purpose</span><span class="mc-tag">proven</span></div>
+      </div>
+    </div>
+
+    <!-- QWEN3 8B -->
+    <div class="mc anim" data-cat="reason" data-tier="2">
+      <div class="mc-top">
+        <div class="mc-left">
+          <div class="mc-name">Qwen 3 8B</div>
+          <div class="mc-provider">Alibaba · Latest generation</div>
+          <div class="mc-desc">Next-gen Qwen with hybrid thinking mode — can reason step-by-step or respond directly. Tool calling built in. Strong multilingual support. The newest model in the 8B class.</div>
+        </div>
+        <div class="mc-right">
+          <div class="mc-cat">reason</div>
+          <div class="mc-tier">Tier 2</div>
+        </div>
+      </div>
+      <div class="mc-stats">
+        <div class="mc-stat"><div class="sl">VRAM</div><div class="sv">~5.5 GB</div></div>
+        <div class="mc-stat"><div class="sl">Speed</div><div class="sv">~25 t/s</div></div>
+        <div class="mc-stat"><div class="sl">Context</div><div class="sv">128K</div></div>
+        <div class="mc-stat"><div class="sl">Download</div><div class="sv">5.2 GB</div></div>
+        <div class="mc-stat"><div class="sl">Params</div><div class="sv">8B</div></div>
+      </div>
+      <div class="mc-bottom">
+        <div class="mc-cmd">ollama pull qwen3:8b</div>
+        <div class="mc-tags"><span class="mc-tag">thinking</span><span class="mc-tag">tool calling</span><span class="mc-tag">multilingual</span></div>
+      </div>
+    </div>
+
+    <!-- CODELLAMA 7B -->
+    <div class="mc anim" data-cat="code" data-tier="2">
+      <div class="mc-top">
+        <div class="mc-left">
+          <div class="mc-name">Code Llama 7B</div>
+          <div class="mc-provider">Meta · Code-specialized Llama</div>
+          <div class="mc-desc">Meta's code-specific model. Trained on code and code-adjacent data. Good for code completion, debugging, and generation. Python variant available for Python-heavy workflows.</div>
+        </div>
+        <div class="mc-right">
+          <div class="mc-cat">code</div>
+          <div class="mc-tier">Tier 2</div>
+        </div>
+      </div>
+      <div class="mc-stats">
+        <div class="mc-stat"><div class="sl">VRAM</div><div class="sv">~4.5 GB</div></div>
+        <div class="mc-stat"><div class="sl">Speed</div><div class="sv">~28 t/s</div></div>
+        <div class="mc-stat"><div class="sl">Context</div><div class="sv">16K</div></div>
+        <div class="mc-stat"><div class="sl">Download</div><div class="sv">3.8 GB</div></div>
+        <div class="mc-stat"><div class="sl">Params</div><div class="sv">7B</div></div>
+      </div>
+      <div class="mc-bottom">
+        <div class="mc-cmd">ollama pull codellama:7b</div>
+        <div class="mc-tags"><span class="mc-tag">code completion</span><span class="mc-tag">debugging</span><span class="mc-tag">python</span></div>
+      </div>
+    </div>
+
+    <!-- LLAVA 7B -->
+    <div class="mc anim" data-cat="vision" data-tier="2">
+      <div class="mc-top">
+        <div class="mc-left">
+          <div class="mc-name">LLaVA 1.6 7B</div>
+          <div class="mc-provider">LLaVA Team · Multimodal</div>
+          <div class="mc-desc">See and understand images. Feed it screenshots, charts, documents, or photos and ask questions. Local image analysis with no uploads to any server. Privacy-first vision AI.</div>
+        </div>
+        <div class="mc-right">
+          <div class="mc-cat">vision</div>
+          <div class="mc-tier">Tier 2</div>
+        </div>
+      </div>
+      <div class="mc-stats">
+        <div class="mc-stat"><div class="sl">VRAM</div><div class="sv">~5 GB</div></div>
+        <div class="mc-stat"><div class="sl">Speed</div><div class="sv">~20 t/s</div></div>
+        <div class="mc-stat"><div class="sl">Context</div><div class="sv">4K</div></div>
+        <div class="mc-stat"><div class="sl">Download</div><div class="sv">4.7 GB</div></div>
+        <div class="mc-stat"><div class="sl">Params</div><div class="sv">7B</div></div>
+      </div>
+      <div class="mc-bottom">
+        <div class="mc-cmd">ollama pull llava</div>
+        <div class="mc-tags"><span class="mc-tag">image analysis</span><span class="mc-tag">screenshots</span><span class="mc-tag">multimodal</span></div>
+      </div>
+    </div>
+
+    <!-- NOMIC EMBED -->
+    <div class="mc anim" data-cat="embed" data-tier="1">
+      <div class="mc-top">
+        <div class="mc-left">
+          <div class="mc-name">Nomic Embed Text</div>
+          <div class="mc-provider">Nomic AI · Embedding model</div>
+          <div class="mc-desc">Not a chat model — an embedding model. Converts text into vectors for semantic search. Essential for local RAG (Retrieval Augmented Generation) with ChromaDB. Makes your documents searchable by meaning, not just keywords.</div>
+        </div>
+        <div class="mc-right">
+          <div class="mc-cat">embed</div>
+          <div class="mc-tier">Tier 1</div>
+        </div>
+      </div>
+      <div class="mc-stats">
+        <div class="mc-stat"><div class="sl">VRAM</div><div class="sv">~0.3 GB</div></div>
+        <div class="mc-stat"><div class="sl">Speed</div><div class="sv">fast</div></div>
+        <div class="mc-stat"><div class="sl">Context</div><div class="sv">8K</div></div>
+        <div class="mc-stat"><div class="sl">Download</div><div class="sv">274 MB</div></div>
+        <div class="mc-stat"><div class="sl">Params</div><div class="sv">137M</div></div>
+      </div>
+      <div class="mc-bottom">
+        <div class="mc-cmd">ollama pull nomic-embed-text</div>
+        <div class="mc-tags"><span class="mc-tag">RAG</span><span class="mc-tag">search</span><span class="mc-tag">ChromaDB</span><span class="mc-tag">vectors</span></div>
+      </div>
+    </div>
+
+    <!-- DEEPSEEK CODER 6.7B -->
+    <div class="mc anim" data-cat="code" data-tier="2">
+      <div class="mc-top">
+        <div class="mc-left">
+          <div class="mc-name">DeepSeek Coder 6.7B</div>
+          <div class="mc-provider">DeepSeek · Code-specialized</div>
+          <div class="mc-desc">Trained on 2 trillion tokens of code and natural language. Strong at code generation, completion, and infilling. Good alternative to Qwen Coder if you want a second code opinion.</div>
+        </div>
+        <div class="mc-right">
+          <div class="mc-cat">code</div>
+          <div class="mc-tier">Tier 2</div>
+        </div>
+      </div>
+      <div class="mc-stats">
+        <div class="mc-stat"><div class="sl">VRAM</div><div class="sv">~4.5 GB</div></div>
+        <div class="mc-stat"><div class="sl">Speed</div><div class="sv">~30 t/s</div></div>
+        <div class="mc-stat"><div class="sl">Context</div><div class="sv">16K</div></div>
+        <div class="mc-stat"><div class="sl">Download</div><div class="sv">3.8 GB</div></div>
+        <div class="mc-stat"><div class="sl">Params</div><div class="sv">6.7B</div></div>
+      </div>
+      <div class="mc-bottom">
+        <div class="mc-cmd">ollama pull deepseek-coder:6.7b</div>
+        <div class="mc-tags"><span class="mc-tag">code gen</span><span class="mc-tag">infilling</span><span class="mc-tag">2T tokens trained</span></div>
+      </div>
+    </div>
+
+    <!-- LLAMA 3.2 3B -->
+    <div class="mc anim" data-cat="compact" data-tier="1">
+      <div class="mc-top">
+        <div class="mc-left">
+          <div class="mc-name">Llama 3.2 3B</div>
+          <div class="mc-provider">Meta · Small form factor</div>
+          <div class="mc-desc">Meta's compact model. Surprisingly capable for its size. Tool calling support. Good for quick tasks, classification, and simple extraction where you don't need the full 8B.</div>
+        </div>
+        <div class="mc-right">
+          <div class="mc-cat">compact</div>
+          <div class="mc-tier">Tier 1</div>
+        </div>
+      </div>
+      <div class="mc-stats">
+        <div class="mc-stat"><div class="sl">VRAM</div><div class="sv">~2 GB</div></div>
+        <div class="mc-stat"><div class="sl">Speed</div><div class="sv">~50 t/s</div></div>
+        <div class="mc-stat"><div class="sl">Context</div><div class="sv">128K</div></div>
+        <div class="mc-stat"><div class="sl">Download</div><div class="sv">2.0 GB</div></div>
+        <div class="mc-stat"><div class="sl">Params</div><div class="sv">3B</div></div>
+      </div>
+      <div class="mc-bottom">
+        <div class="mc-cmd">ollama pull llama3.2:3b</div>
+        <div class="mc-tags"><span class="mc-tag">tool calling</span><span class="mc-tag">fast</span><span class="mc-tag">classification</span></div>
+      </div>
+    </div>
+
+    <!-- GEMMA 3 12B -->
+    <div class="mc anim" data-cat="general" data-tier="3">
+      <div class="mc-top">
+        <div class="mc-left">
+          <div class="mc-name">Gemma 3 12B</div>
+          <div class="mc-provider">Google DeepMind · Mid-range</div>
+          <div class="mc-desc">The sweet spot for 12GB+ GPUs. Noticeably smarter than 7B/8B models. Vision-capable. If you have an RTX 4070 Ti or better, this is your general-purpose workhorse.</div>
+        </div>
+        <div class="mc-right">
+          <div class="mc-cat">general</div>
+          <div class="mc-tier">Tier 3</div>
+        </div>
+      </div>
+      <div class="mc-stats">
+        <div class="mc-stat"><div class="sl">VRAM</div><div class="sv">~8 GB</div></div>
+        <div class="mc-stat"><div class="sl">Speed</div><div class="sv">~18 t/s</div></div>
+        <div class="mc-stat"><div class="sl">Context</div><div class="sv">128K</div></div>
+        <div class="mc-stat"><div class="sl">Download</div><div class="sv">8.1 GB</div></div>
+        <div class="mc-stat"><div class="sl">Params</div><div class="sv">12B</div></div>
+      </div>
+      <div class="mc-bottom">
+        <div class="mc-cmd">ollama pull gemma3:12b</div>
+        <div class="mc-tags"><span class="mc-tag">vision</span><span class="mc-tag">quality leap</span><span class="mc-tag">12GB+ GPU</span></div>
+      </div>
+    </div>
+
+    <!-- PHI 4 14B -->
+    <div class="mc anim" data-cat="reason" data-tier="3">
+      <div class="mc-top">
+        <div class="mc-left">
+          <div class="mc-name">Phi-4 14B</div>
+          <div class="mc-provider">Microsoft · State-of-the-art open model</div>
+          <div class="mc-desc">Microsoft's flagship open model. Punches well above its weight class on reasoning benchmarks. Requires 12GB+ VRAM but delivers near-70B quality on structured tasks.</div>
+        </div>
+        <div class="mc-right">
+          <div class="mc-cat">reason</div>
+          <div class="mc-tier">Tier 3</div>
+        </div>
+      </div>
+      <div class="mc-stats">
+        <div class="mc-stat"><div class="sl">VRAM</div><div class="sv">~9 GB</div></div>
+        <div class="mc-stat"><div class="sl">Speed</div><div class="sv">~15 t/s</div></div>
+        <div class="mc-stat"><div class="sl">Context</div><div class="sv">16K</div></div>
+        <div class="mc-stat"><div class="sl">Download</div><div class="sv">9.1 GB</div></div>
+        <div class="mc-stat"><div class="sl">Params</div><div class="sv">14B</div></div>
+      </div>
+      <div class="mc-bottom">
+        <div class="mc-cmd">ollama pull phi4</div>
+        <div class="mc-tags"><span class="mc-tag">reasoning</span><span class="mc-tag">benchmarks</span><span class="mc-tag">12GB+ GPU</span></div>
+      </div>
+    </div>
+
+    <!-- MISTRAL NEMO 12B -->
+    <div class="mc anim" data-cat="general" data-tier="3">
+      <div class="mc-top">
+        <div class="mc-left">
+          <div class="mc-name">Mistral Nemo 12B</div>
+          <div class="mc-provider">Mistral AI × NVIDIA · 128K context</div>
+          <div class="mc-desc">Built with NVIDIA. 128K context window at 12B parameters. Tool calling. If you need to ingest long documents locally with a model that can reason about them, this is the one.</div>
+        </div>
+        <div class="mc-right">
+          <div class="mc-cat">general</div>
+          <div class="mc-tier">Tier 3</div>
+        </div>
+      </div>
+      <div class="mc-stats">
+        <div class="mc-stat"><div class="sl">VRAM</div><div class="sv">~8 GB</div></div>
+        <div class="mc-stat"><div class="sl">Speed</div><div class="sv">~18 t/s</div></div>
+        <div class="mc-stat"><div class="sl">Context</div><div class="sv">128K</div></div>
+        <div class="mc-stat"><div class="sl">Download</div><div class="sv">7.1 GB</div></div>
+        <div class="mc-stat"><div class="sl">Params</div><div class="sv">12B</div></div>
+      </div>
+      <div class="mc-bottom">
+        <div class="mc-cmd">ollama pull mistral-nemo</div>
+        <div class="mc-tags"><span class="mc-tag">128K context</span><span class="mc-tag">tool calling</span><span class="mc-tag">long docs</span></div>
+      </div>
+    </div>
+
+    <!-- GPT-OSS 20B -->
+    <div class="mc anim" data-cat="reason" data-tier="3">
+      <div class="mc-top">
+        <div class="mc-left">
+          <div class="mc-name">GPT-OSS 20B</div>
+          <div class="mc-provider">OpenAI · First open-weight release</div>
+          <div class="mc-desc">OpenAI's open-weight model. Strong reasoning, agentic capabilities, and tool use. The 20B fits on a 24GB GPU. Requires quantization for smaller cards. A milestone in open AI.</div>
+        </div>
+        <div class="mc-right">
+          <div class="mc-cat">reason</div>
+          <div class="mc-tier">Tier 3</div>
+        </div>
+      </div>
+      <div class="mc-stats">
+        <div class="mc-stat"><div class="sl">VRAM</div><div class="sv">~14 GB</div></div>
+        <div class="mc-stat"><div class="sl">Speed</div><div class="sv">~12 t/s</div></div>
+        <div class="mc-stat"><div class="sl">Context</div><div class="sv">128K</div></div>
+        <div class="mc-stat"><div class="sl">Download</div><div class="sv">12 GB</div></div>
+        <div class="mc-stat"><div class="sl">Params</div><div class="sv">20B</div></div>
+      </div>
+      <div class="mc-bottom">
+        <div class="mc-cmd">ollama pull gpt-oss:20b</div>
+        <div class="mc-tags"><span class="mc-tag">OpenAI</span><span class="mc-tag">agentic</span><span class="mc-tag">tool use</span><span class="mc-tag">24GB GPU</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- PRINCIPLES -->
+<div class="section anim">
+  <div class="s-label">Philosophy</div>
+  <div class="s-title">How to Choose</div>
+  <div style="max-width:680px;margin:0 auto">
+    <div style="padding:16px 0;border-bottom:1px solid var(--border);display:flex;gap:14px;align-items:flex-start">
+      <span style="font-family:'IBM Plex Mono',monospace;color:var(--gold);font-size:0.85rem;flex-shrink:0">→</span>
+      <span style="font-size:0.85rem;line-height:1.6"><strong>Start with one model.</strong> <span style="color:var(--text-mid)">Get it working. Get it calibrated. Get it integrated into a real workflow. Then add a second for convergent analysis. Model hoarding on Day 1 is procrastination dressed as preparation.</span></span>
+    </div>
+    <div style="padding:16px 0;border-bottom:1px solid var(--border);display:flex;gap:14px;align-items:flex-start">
+      <span style="font-family:'IBM Plex Mono',monospace;color:var(--gold);font-size:0.85rem;flex-shrink:0">→</span>
+      <span style="font-size:0.85rem;line-height:1.6"><strong>Match the model to the task.</strong> <span style="color:var(--text-mid)">Code models for code. Reasoning models for analysis. Compact models for speed. Don't use a 7B general model for code when a 7B code model exists.</span></span>
+    </div>
+    <div style="padding:16px 0;border-bottom:1px solid var(--border);display:flex;gap:14px;align-items:flex-start">
+      <span style="font-family:'IBM Plex Mono',monospace;color:var(--gold);font-size:0.85rem;flex-shrink:0">→</span>
+      <span style="font-size:0.85rem;line-height:1.6"><strong>VRAM is the constraint. Disk is free.</strong> <span style="color:var(--text-mid)">Download as many models as you want. Only one loads into VRAM at a time. 500GB of disk holds 50+ models. Your GPU holds one.</span></span>
+    </div>
+    <div style="padding:16px 0;border-bottom:1px solid var(--border);display:flex;gap:14px;align-items:flex-start">
+      <span style="font-family:'IBM Plex Mono',monospace;color:var(--gold);font-size:0.85rem;flex-shrink:0">→</span>
+      <span style="font-size:0.85rem;line-height:1.6"><strong>Calibrate before you trust.</strong> <span style="color:var(--text-mid)">Every new model gets the 6-prompt calibration protocol before it touches real work. Compliance, schema, code, intent, persona, context. 5/6 pass threshold.</span></span>
+    </div>
+    <div style="padding:16px 0;display:flex;gap:14px;align-items:flex-start">
+      <span style="font-family:'IBM Plex Mono',monospace;color:var(--gold);font-size:0.85rem;flex-shrink:0">→</span>
+      <span style="font-size:0.85rem;line-height:1.6"><strong>Models are swappable. Prompts are permanent.</strong> <span style="color:var(--text-mid)">New models come out every month. Your governed prompt templates, bridge scripts, and system prompts outlast every model. Build the pipeline, not the model dependency.</span></span>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-line">Dropdown Logistics · Model Directory v1.0</div>
+  <div class="footer-line" style="margin-top:6px;opacity:0.5">ollama · local inference · zero cloud · governed prompts</div>
+  <div class="footer-line" style="margin-top:4px;opacity:0.3">your rig · your models · your data · your rules</div>
+</div>
+
+<script>
+function filterModels(cat) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('.mc').forEach(card => {
+    if (cat === 'all' || card.dataset.cat === cat) {
+      card.style.display = '';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('v'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.anim').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
