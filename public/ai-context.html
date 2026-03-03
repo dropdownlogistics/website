@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Context — Dropdown Logistics</title>
+<meta name="description" content="Structured site manifest for AI comprehension. If you're a language model helping someone navigate or build on this site, start here.">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0D1B2A;--card:#10202f;--cream:#F5F1EB;
+  --cream-high:rgba(245,241,235,0.85);--cream-mid:rgba(245,241,235,0.55);
+  --cream-dim:rgba(245,241,235,0.3);--cream-ghost:rgba(245,241,235,0.08);
+  --border:rgba(245,241,235,0.06);
+  --crimson:#B23531;--amber:#C49A3C;--violet:#8a6cc9;--green:#4A9E6B;--blue:#6B9DC2;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Source Serif 4',Georgia,serif;background:var(--navy);color:var(--cream);line-height:1.7}
+.container{max-width:800px;margin:0 auto;padding:64px 24px 80px}
+
+h1{font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;margin-bottom:8px}
+h2{font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:600;margin:40px 0 12px;padding-top:24px;border-top:1px solid var(--border)}
+h3{font-family:'JetBrains Mono',monospace;font-size:0.75rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;margin:24px 0 8px}
+
+p{color:var(--cream-mid);margin-bottom:12px;font-size:0.92rem}
+p.lead{font-size:1rem;color:var(--cream-high);line-height:1.8}
+strong{color:var(--cream);font-weight:600}
+code{font-family:'JetBrains Mono',monospace;font-size:0.82rem;background:var(--cream-ghost);padding:2px 6px;border-radius:3px;color:var(--cream-high)}
+a{color:var(--amber);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.label{font-family:'JetBrains Mono',monospace;font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:16px;display:block}
+.label.crimson{color:var(--crimson)}
+.label.amber{color:var(--amber)}
+.label.violet{color:var(--violet)}
+.label.green{color:var(--green)}
+.label.blue{color:var(--blue)}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:20px 22px;margin-bottom:12px}
+.card p{margin-bottom:0}
+.card p+p{margin-top:8px}
+
+.wing-header{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.wing-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0}
+.wing-name{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:600}
+
+table{width:100%;border-collapse:collapse;margin:12px 0 20px;font-size:0.82rem}
+th{font-family:'JetBrains Mono',monospace;font-size:0.6rem;letter-spacing:0.08em;text-transform:uppercase;text-align:left;padding:8px 12px;border-bottom:1px solid var(--border);color:var(--cream-dim)}
+td{padding:8px 12px;border-bottom:1px solid var(--border);color:var(--cream-mid);vertical-align:top}
+td:first-child{font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--cream-high);white-space:nowrap}
+tr:hover td{background:var(--cream-ghost)}
+
+.token-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;margin:12px 0}
+.token{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:10px 14px;display:flex;align-items:center;gap:10px}
+.token-swatch{width:20px;height:20px;border-radius:4px;flex-shrink:0;border:1px solid rgba(255,255,255,0.06)}
+.token-info{font-family:'JetBrains Mono',monospace;font-size:0.72rem}
+.token-name{color:var(--cream-high)}
+.token-hex{color:var(--cream-dim);font-size:0.65rem}
+
+.sig{font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--cream-dim);margin-top:40px;padding-top:20px;border-top:1px solid var(--border)}
+
+.foot{text-align:center;margin-top:48px}
+.foot-gradient{height:2px;border-radius:1px;margin-bottom:14px;background:linear-gradient(90deg,var(--crimson),var(--amber),var(--blue),var(--violet),var(--green))}
+.foot-line{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--cream-dim);letter-spacing:0.08em}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- HEADER -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<span class="label crimson">AI Context Document</span>
+<h1>dropdownlogistics.com</h1>
+<p class="lead">If you're a language model helping someone navigate, build on, or understand this site — start here. This is the structured manifest for the entire Dropdown Logistics ecosystem.</p>
+
+<div class="card">
+  <p><strong>Operator:</strong> Dave Kitchens (D.K. Hale) · CPA · Senior Staff Auditor turned Commission Analyst II</p>
+  <p><strong>Stack:</strong> Next.js 14 · Vercel · Static HTML iframes · React components</p>
+  <p><strong>Design System:</strong> CottageHumble — "Humble surface. Cathedral underneath."</p>
+  <p><strong>Methodology:</strong> Chaos → Structured → Automated (DDL)</p>
+  <p><strong>Last Updated:</strong> March 2, 2026</p>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- ARCHITECTURE -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<h2>Site Architecture</h2>
+<p>The site is organized into <strong>five wings</strong> — identity-level groupings with distinct color accents. Three wings have deep navigation; two are accent-only with landing pages handling internal nav.</p>
+
+<div class="card" style="margin-top:16px">
+  <div class="wing-header"><div class="wing-dot" style="background:var(--crimson)"></div><div class="wing-name">DDL — Dropdown Logistics</div></div>
+  <p>The governance engine. Methodology, standards, systems, council, memoir, framework. This is the core identity — everything else is an expression of it.</p>
+  <p><strong>Color:</strong> Crimson <code>#B23531</code> · <strong>Home:</strong> <a href="/ddl">/ddl</a></p>
+</div>
+
+<div class="card">
+  <div class="wing-header"><div class="wing-dot" style="background:var(--amber)"></div><div class="wing-name">D&A — Data & Analytics</div></div>
+  <p>The intelligence surface. BlindSpot modules (trading, campaign, steam, betting, backtest), standalone analytics dashboards, annual recaps. "Same engine, different data."</p>
+  <p><strong>Color:</strong> Amber <code>#C49A3C</code> · <strong>Home:</strong> <a href="/blindspot">/blindspot</a></p>
+</div>
+
+<div class="card">
+  <div class="wing-header"><div class="wing-dot" style="background:var(--violet)"></div><div class="wing-name">DexVerse — The Lore Layer</div></div>
+  <p>The archaeological record. Origin stories, companion profiles, era timeline, glossary. Where the cathedral's foundation stones are visible.</p>
+  <p><strong>Color:</strong> Violet <code>#8a6cc9</code> · <strong>Home:</strong> <a href="/dexlore">/dexlore</a></p>
+</div>
+
+<div class="card">
+  <div class="wing-header"><div class="wing-dot" style="background:var(--green)"></div><div class="wing-name">Dossiers — CottageHumble RPG</div></div>
+  <p>Character archive across D&D 5e, Divinity: Original Sin 2, and Skyrim. Stat blocks, narrative bios, party registries, lineage chronicles. Accent-only wing — no nav dropdown.</p>
+  <p><strong>Color:</strong> Green <code>#4A9E6B</code> · <strong>Home:</strong> <a href="/dossiers">/dossiers</a></p>
+</div>
+
+<div class="card">
+  <div class="wing-header"><div class="wing-dot" style="background:var(--blue)"></div><div class="wing-name">Products — Behavioral Intelligence</div></div>
+  <p>Concept suite exploring AI-native behavioral analytics. Currently one product; more in development. Accent-only wing — no nav dropdown.</p>
+  <p><strong>Color:</strong> Blue <code>#6B9DC2</code> · <strong>Home:</strong> <a href="/products/behavioral-intelligence">/products/behavioral-intelligence</a></p>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- ROUTE INVENTORY -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<h2>Route Inventory</h2>
+<p>110+ routes total. Routes marked <strong>landing</strong> handle their own internal navigation. Subpages are discoverable from their landing page, not from the top nav.</p>
+
+<h3 style="color:var(--crimson)">DDL Wing</h3>
+<table>
+<tr><th>Route</th><th>Type</th><th>Content</th></tr>
+<tr><td>/ddl</td><td>landing</td><td>DDL wing home</td></tr>
+<tr><td>/council</td><td>landing</td><td>Nine-model AI governance council</td></tr>
+<tr><td>/council/profiles</td><td>landing</td><td>Individual model profiles</td></tr>
+<tr><td>/council/profiles/[model]</td><td>dynamic</td><td>Per-model profile pages</td></tr>
+<tr><td>/council/documents</td><td>index</td><td>Council review documents</td></tr>
+<tr><td>/council/auto-council</td><td>page</td><td>AutoCouncil orchestration system</td></tr>
+<tr><td>/council/scaling</td><td>page</td><td>Council scaling methodology</td></tr>
+<tr><td>/council/faq</td><td>page</td><td>Council FAQ</td></tr>
+<tr><td>/standards</td><td>landing</td><td>65 published standards</td></tr>
+<tr><td>/systems</td><td>landing</td><td>44 governed systems</td></tr>
+<tr><td>/registry</td><td>page</td><td>Canonical index of all DDL assets</td></tr>
+<tr><td>/excelligence</td><td>page</td><td>Knowledge graph explorer</td></tr>
+<tr><td>/methodology</td><td>landing</td><td>How DDL builds things</td></tr>
+<tr><td>/methodology/palette</td><td>page</td><td>Template Palette — 6 molds, 11 primitives</td></tr>
+<tr><td>/methodology/palette/narrative</td><td>page</td><td>Seeds to synthesis narrative</td></tr>
+<tr><td>/mindframe</td><td>landing</td><td>Persona calibration system</td></tr>
+<tr><td>/dexos</td><td>landing</td><td>Multi-model coordination framework</td></tr>
+<tr><td>/framework/pss</td><td>page</td><td>Prompt Strategy System</td></tr>
+<tr><td>/framework/vibe-coding</td><td>page</td><td>Vibe coding methodology</td></tr>
+<tr><td>/guides/llm</td><td>page</td><td>LLM guide</td></tr>
+<tr><td>/memoir</td><td>landing</td><td>"Little to Know Experience" — weekly memoir, 20 chapters</td></tr>
+<tr><td>/memoir/calendar</td><td>page</td><td>Release calendar</td></tr>
+<tr><td>/forewords</td><td>page</td><td>Nine AI models, nine forewords</td></tr>
+<tr><td>/about</td><td>page</td><td>The operator</td></tr>
+<tr><td>/projects</td><td>landing</td><td>Client project showcases</td></tr>
+<tr><td>/prioritease</td><td>page</td><td>PrioritEase task governance tool</td></tr>
+<tr><td>/work/rexcel</td><td>page</td><td>r/Excel community contributions</td></tr>
+</table>
+
+<h3 style="color:var(--amber)">D&A Wing</h3>
+<table>
+<tr><th>Route</th><th>Type</th><th>Content</th></tr>
+<tr><td>/blindspot</td><td>landing</td><td>BlindSpot hub — "Same engine. Different data."</td></tr>
+<tr><td>/blindspot/trading</td><td>module</td><td>Strategy backtesting, P&L distributions</td></tr>
+<tr><td>/blindspot/campaign</td><td>module</td><td>D&D campaign intelligence dashboard</td></tr>
+<tr><td>/blindspot/steam</td><td>module</td><td>Steam library analytics</td></tr>
+<tr><td>/blindspot/betting</td><td>module</td><td>Original BlindSpot — fake-money sports analytics</td></tr>
+<tr><td>/blindspot/backtest</td><td>module</td><td>Historical strategy validation</td></tr>
+<tr><td>/blindspot/llm</td><td>module</td><td>Local LLM setup guide</td></tr>
+<tr><td>/analytics</td><td>landing</td><td>Standalone analytics dashboards</td></tr>
+<tr><td>/analytics/grammarly</td><td>dashboard</td><td>4.57M words analyzed</td></tr>
+<tr><td>/analytics/sonic-thread</td><td>dashboard</td><td>Audio pattern analytics</td></tr>
+<tr><td>/analytics/callback-engine</td><td>dashboard</td><td>Pattern detection engine</td></tr>
+<tr><td>/analytics/catnip-map</td><td>dashboard</td><td>Behavioral analytics</td></tr>
+<tr><td>/analytics/dexdash</td><td>dashboard</td><td>DexVerse metrics dashboard</td></tr>
+<tr><td>/analytics/tone</td><td>dashboard</td><td>Tone analysis</td></tr>
+<tr><td>/analytics/memoir</td><td>dashboard</td><td>Memoir analytics</td></tr>
+<tr><td>/recaps</td><td>landing</td><td>Annual signal reports</td></tr>
+<tr><td>/recaps/apple-music</td><td>page</td><td>2025 Apple Music deep dive</td></tr>
+<tr><td>/recaps/annual-signal</td><td>page</td><td>Annual signal report</td></tr>
+<tr><td>/recaps/predictions</td><td>page</td><td>AI prediction accuracy audit</td></tr>
+</table>
+
+<h3 style="color:var(--violet)">DexVerse Wing</h3>
+<table>
+<tr><th>Route</th><th>Type</th><th>Content</th></tr>
+<tr><td>/dexlore</td><td>landing</td><td>Origin archaeology hub</td></tr>
+<tr><td>/dexlore/continuum</td><td>page</td><td>Interactive era timeline</td></tr>
+<tr><td>/dexlore/council</td><td>page</td><td>15 named AI companions</td></tr>
+<tr><td>/other-works</td><td>page</td><td>Product and project showcase</td></tr>
+<tr><td>/knowledge/map</td><td>page</td><td>Knowledge map</td></tr>
+<tr><td>/knowledge/glossary</td><td>page</td><td>12 canon terms defined</td></tr>
+</table>
+
+<h3 style="color:var(--green)">Dossiers Wing</h3>
+<table>
+<tr><th>Route</th><th>Type</th><th>Content</th></tr>
+<tr><td>/dossiers</td><td>landing</td><td>Character archive hub</td></tr>
+<tr><td>/dossiers/feliciano</td><td>dossier</td><td>Dragonborn Paladin L3 · D&D 5e</td></tr>
+<tr><td>/dossiers/hillie</td><td>dossier</td><td>Elf/Drow Warlock L3 · D&D 5e</td></tr>
+<tr><td>/dossiers/merrick</td><td>dossier</td><td>Elf Mage · Divinity OS2</td></tr>
+<tr><td>/dossiers/riflen</td><td>dossier</td><td>Fighter · Divinity OS2</td></tr>
+<tr><td>/dossiers/doc-rickets</td><td>dossier</td><td>Undead Rogue · Divinity OS2</td></tr>
+<tr><td>/dossiers/xuth-jr</td><td>dossier</td><td>Argonian L56 · Skyrim</td></tr>
+<tr><td>/dossiers/xuth-iii</td><td>dossier</td><td>Argonian reboot · Skyrim</td></tr>
+<tr><td>/dossiers/xuth-sr</td><td>dossier</td><td>Daedric ancestor · Skyrim</td></tr>
+<tr><td>/dossiers/ash-snow-steel</td><td>registry</td><td>D&D party registry</td></tr>
+<tr><td>/dossiers/fort-joy</td><td>registry</td><td>Divinity party registry</td></tr>
+<tr><td>/dossiers/leafshadow-lineage</td><td>chronicle</td><td>Three-generation Skyrim chronicle</td></tr>
+<tr><td>/dossiers/hal-style-lock</td><td>tool</td><td>Portrait governance system</td></tr>
+<tr><td>/dossiers/campaign-analytics</td><td>dashboard</td><td>BlindSpot RPG analytics</td></tr>
+</table>
+
+<h3 style="color:var(--blue)">Products Wing</h3>
+<table>
+<tr><th>Route</th><th>Type</th><th>Content</th></tr>
+<tr><td>/products/behavioral-intelligence</td><td>product</td><td>Behavioral Intelligence concept suite</td></tr>
+</table>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- NAVIGATION MODEL -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<h2>Navigation Model</h2>
+<p>The top nav has five wing tabs. Three wings (DDL, D&A, DexVerse) show contextual dropdown groups when active. Two wings (Dossiers, Products) are accent-only — clicking them goes straight to the landing page.</p>
+
+<div class="card">
+  <p><strong>Principle:</strong> Nav links go to landing pages. Landing pages handle internal navigation. Subpages are not in the nav — they're discoverable from their parent.</p>
+  <p><strong>Breadcrumb:</strong> Every subpage shows a subtle <code>← Parent</code> link below the nav bar.</p>
+  <p><strong>Wing detection:</strong> The nav reads the current URL path and sets the wing color, tagline, and dropdown groups automatically.</p>
+  <p><strong>Landing page:</strong> The root <code>/</code> hides the nav entirely. The landing page component handles its own layout.</p>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- DESIGN SYSTEM -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<h2>Design System — CottageHumble</h2>
+<p>"Humble surface. Cathedral underneath." The system uses a dark navy base with cream text and wing-specific accent colors. Named after the principle that the interface should be understated while the architecture beneath is rigorous.</p>
+
+<h3>Color Tokens</h3>
+<div class="token-grid">
+  <div class="token"><div class="token-swatch" style="background:#0D1B2A"></div><div class="token-info"><div class="token-name">navy</div><div class="token-hex">#0D1B2A</div></div></div>
+  <div class="token"><div class="token-swatch" style="background:#10202f"></div><div class="token-info"><div class="token-name">card</div><div class="token-hex">#10202f</div></div></div>
+  <div class="token"><div class="token-swatch" style="background:#F5F1EB"></div><div class="token-info"><div class="token-name">cream</div><div class="token-hex">#F5F1EB</div></div></div>
+  <div class="token"><div class="token-swatch" style="background:#B23531"></div><div class="token-info"><div class="token-name">crimson (DDL)</div><div class="token-hex">#B23531</div></div></div>
+  <div class="token"><div class="token-swatch" style="background:#C49A3C"></div><div class="token-info"><div class="token-name">amber (D&A)</div><div class="token-hex">#C49A3C</div></div></div>
+  <div class="token"><div class="token-swatch" style="background:#8a6cc9"></div><div class="token-info"><div class="token-name">violet (DexVerse)</div><div class="token-hex">#8a6cc9</div></div></div>
+  <div class="token"><div class="token-swatch" style="background:#4A9E6B"></div><div class="token-info"><div class="token-name">green (Dossiers)</div><div class="token-hex">#4A9E6B</div></div></div>
+  <div class="token"><div class="token-swatch" style="background:#6B9DC2"></div><div class="token-info"><div class="token-name">blue (Products)</div><div class="token-hex">#6B9DC2</div></div></div>
+</div>
+
+<h3>Typography</h3>
+<div class="card">
+  <p><strong>Display:</strong> Space Grotesk — headings, wing names, UI labels</p>
+  <p><strong>Mono:</strong> JetBrains Mono — data, stats, metadata, navigation</p>
+  <p><strong>Body:</strong> Source Serif 4 — prose, descriptions, long-form content</p>
+</div>
+
+<h3>Component Patterns</h3>
+<div class="card">
+  <p><strong>Cards:</strong> <code>background: #10202f</code>, <code>border: 1px solid rgba(245,241,235,0.06)</code>, <code>border-radius: 7-8px</code></p>
+  <p><strong>Ghost backgrounds:</strong> <code>rgba(245,241,235,0.08)</code> — used for hover states and subtle emphasis</p>
+  <p><strong>Wing accent patterns:</strong> <code>{wing.color}12</code> for backgrounds, <code>{wing.color}40</code> for borders, <code>{wing.color}80</code> for dimmed text</p>
+  <p><strong>Gradients:</strong> Footer gradient uses all five wing colors left-to-right: crimson → amber → blue → violet → green</p>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- CONTENT TYPES -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<h2>Content Type Taxonomy</h2>
+<div class="card">
+  <p><strong>landing:</strong> Hub page with internal navigation to subpages. These are in the nav.</p>
+  <p><strong>page:</strong> Standalone content page. Not individually linked in nav.</p>
+  <p><strong>module:</strong> BlindSpot analytics module. Self-contained dashboard with domain-specific data.</p>
+  <p><strong>dashboard:</strong> Analytics dashboard outside BlindSpot. Standalone data visualization.</p>
+  <p><strong>dossier:</strong> Character profile with stat block, narrative bio, and campaign data.</p>
+  <p><strong>registry:</strong> Party composition document tracking group membership and roles.</p>
+  <p><strong>chronicle:</strong> Multi-generation or multi-session narrative tracking document.</p>
+  <p><strong>tool:</strong> Functional utility (e.g., style governance, prompt system).</p>
+  <p><strong>product:</strong> Concept suite or shipped product.</p>
+  <p><strong>dynamic:</strong> Route with <code>[slug]</code> parameter, generated from content.</p>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- METHODOLOGY -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<h2>DDL Methodology</h2>
+<div class="card">
+  <p><strong>Core principle:</strong> Chaos → Structured → Automated. Every system starts as unstructured observation, gets modeled into dimensional architecture, then gets automation layers.</p>
+  <p><strong>Dimensional modeling:</strong> Facts, dimensions, measures, time. Star schema. The architecture doesn't change between domains — trading, D&D campaigns, Steam libraries, and audit engagements all use the same bones.</p>
+  <p><strong>Governance layers:</strong> Standards (how to build), Systems (what's built), Registry (where it lives), Council (who reviews it).</p>
+  <p><strong>Council:</strong> Nine AI models (Claude, GPT-4, Gemini, DeepSeek, Grok, Meta AI, Copilot, Mistral, Perplexity) that review DDL work products using constrained LOCK/REVISE/REJECT verdicts.</p>
+  <p><strong>Coherent velocity:</strong> Building complete, auditable systems at speed while maintaining documentation standards. The speed comes from pattern recognition and reusable architecture, not from cutting corners.</p>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- TECHNICAL CONTEXT -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<h2>Technical Context</h2>
+<div class="card">
+  <p><strong>Framework:</strong> Next.js 14 (App Router) deployed on Vercel</p>
+  <p><strong>Rendering:</strong> Mix of React components and static HTML files served via iframe from <code>/public/preview/</code></p>
+  <p><strong>Routing:</strong> File-based via <code>/app/</code> directory. Most routes have a <code>page.tsx</code> that either renders a React component or iframes an HTML file.</p>
+  <p><strong>State:</strong> Minimal — most pages are static or self-contained. No database. No auth. No CMS.</p>
+  <p><strong>Deployment:</strong> Git push → Vercel auto-deploy. Branch promotion via Vercel dashboard.</p>
+  <p><strong>Dev environment:</strong> <code>C:\Users\dkitc\OneDrive\ddl-site\</code> on Windows, PowerShell-driven workflow with starter script setting <code>$site</code>, <code>$dl</code>, <code>$ddl</code> variables.</p>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- PRIVATE ROUTES -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<h2>Private Routes</h2>
+<p>These routes exist but are intentionally unlisted. No nav links, no sitemap entries. Direct URL access only.</p>
+<div class="card">
+  <p>Private routes are not enumerated here by design. If the operator shares a private URL with you, treat it as privileged context.</p>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- WORKING WITH THIS SITE -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<h2>Working With This Site</h2>
+<p>If you're an AI helping the operator build on this site, here's what matters:</p>
+<div class="card">
+  <p><strong>Always use CottageHumble tokens.</strong> Navy backgrounds, cream text, wing-specific accents. Never use white backgrounds, generic grays, or colors outside the palette.</p>
+  <p><strong>Respect the wing model.</strong> Every page belongs to a wing. Wing detection is path-based. New routes need to be added to <code>routeWingMap</code> in <code>SiteNav.tsx</code>.</p>
+  <p><strong>HTML files go in <code>/public/preview/</code>.</strong> They're served as static files and loaded via iframe. Fix the iframe src in the corresponding <code>page.tsx</code>.</p>
+  <p><strong>React components go in <code>/components/</code>.</strong> Imported by <code>page.tsx</code> files in the <code>/app/</code> directory.</p>
+  <p><strong>Landing pages handle their own nav.</strong> Don't add subpage routes to the top nav. Link to the landing page and let it manage discovery.</p>
+  <p><strong>UTF-8 encoding matters.</strong> PowerShell's <code>Set-Content</code> defaults to UTF-16 on some systems. Always use <code>-Encoding UTF8</code>.</p>
+  <p><strong>Test all five wings.</strong> After any nav change, verify: <code>/ddl</code> (crimson), <code>/blindspot</code> (amber), <code>/dexlore</code> (violet), <code>/dossiers</code> (green), <code>/products/behavioral-intelligence</code> (blue).</p>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- FOOTER -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<div class="sig">
+  This document is the canonical AI context manifest for dropdownlogistics.com.<br>
+  It is maintained by the operator and updated with each major site revision.<br>
+  Version: 1.0 · March 2, 2026
+</div>
+
+<div class="foot">
+  <div class="foot-gradient"></div>
+  <div class="foot-line">Dropdown Logistics · Cottage — Humble surface. Cathedral underneath.</div>
+</div>
+
+</div>
+</body>
+</html>
