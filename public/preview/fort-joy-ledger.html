@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEDGER — Fort Joy Detention Registry</title>
+<title>LEDGER â€” Fort Joy Detention Registry</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
-<style><style>
+<style>
   :root {
     --navy: #0D1B2A;
     --card: #10202f;
@@ -49,7 +49,7 @@
     padding: 48px 24px 64px;
   }
 
-  /* ── Classification Banner ── */
+  /* â”€â”€ Classification Banner â”€â”€ */
   .classification {
     text-align: center;
     margin-bottom: 40px;
@@ -77,7 +77,7 @@
     letter-spacing: 0.12em;
   }
 
-  /* ── Hero Name ── */
+  /* â”€â”€ Hero Name â”€â”€ */
   .hero-name {
     font-family: var(--font-body);
     font-size: 48px;
@@ -88,7 +88,7 @@
     letter-spacing: -0.01em;
   }
 
-  /* ── Title / Role ── */
+  /* â”€â”€ Title / Role â”€â”€ */
   .hero-role {
     font-family: var(--font-mono);
     font-size: 13px;
@@ -98,7 +98,7 @@
     margin-bottom: 16px;
   }
 
-  /* ── Status Badge ── */
+  /* â”€â”€ Status Badge â”€â”€ */
   .status-row {
     display: flex;
     flex-wrap: wrap;
@@ -121,7 +121,7 @@
   .badge-amber { color: var(--amber); background: var(--amber-dim); border-color: rgba(196,154,60,0.3); }
   .badge-ember { color: var(--ember); background: var(--ember-dim); border-color: rgba(201,138,74,0.3); }
 
-  /* ── Stat Block ── */
+  /* â”€â”€ Stat Block â”€â”€ */
   .stat-block {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -156,7 +156,7 @@
   .stat-value.blue { color: var(--blue); }
   .stat-value.green { color: var(--green); }
 
-  /* ── Signature Directive (Pull Quote) ── */
+  /* â”€â”€ Signature Directive (Pull Quote) â”€â”€ */
   .directive {
     border-left: 2px solid var(--crimson);
     padding: 16px 20px;
@@ -180,7 +180,7 @@
     margin-top: 8px;
   }
 
-  /* ── Narrative Bio ── */
+  /* â”€â”€ Narrative Bio â”€â”€ */
   .narrative {
     margin-bottom: 32px;
   }
@@ -194,7 +194,7 @@
   .narrative p:last-child { margin-bottom: 0; }
   .narrative strong { color: var(--cream-high); font-weight: 600; }
 
-  /* ── Section Headers ── */
+  /* â”€â”€ Section Headers â”€â”€ */
   .section-head {
     display: flex;
     align-items: center;
@@ -225,7 +225,7 @@
     background: var(--border);
   }
 
-  /* ── Attribute Grid ── */
+  /* â”€â”€ Attribute Grid â”€â”€ */
   .attr-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -256,7 +256,7 @@
   .attr-val.warn { color: var(--crimson); }
   .attr-val.good { color: var(--green); }
 
-  /* ── Equipment Cards ── */
+  /* â”€â”€ Equipment Cards â”€â”€ */
   .equip-card {
     background: var(--card);
     border: 1px solid var(--border);
@@ -298,7 +298,7 @@
     line-height: 1.5;
   }
 
-  /* ── Collapsible Sections ── */
+  /* â”€â”€ Collapsible Sections â”€â”€ */
   .collapsible {
     margin-bottom: 8px;
   }
@@ -342,7 +342,7 @@
   .collapsible-content p { margin-bottom: 12px; }
   .collapsible-content strong { color: var(--cream-high); }
 
-  /* ── Talent List ── */
+  /* â”€â”€ Talent List â”€â”€ */
   .talent-item {
     background: var(--card);
     border: 1px solid var(--border);
@@ -364,7 +364,7 @@
     line-height: 1.6;
   }
 
-  /* ── Vulnerability Flags ── */
+  /* â”€â”€ Vulnerability Flags â”€â”€ */
   .vuln-item {
     display: flex;
     gap: 12px;
@@ -391,7 +391,7 @@
   }
   .vuln-text strong { color: var(--cream-high); }
 
-  /* ── Role Cards ── */
+  /* â”€â”€ Role Cards â”€â”€ */
   .role-card {
     background: var(--card);
     border: 1px solid var(--border);
@@ -421,7 +421,7 @@
     line-height: 1.7;
   }
 
-  /* ── Resistance Bar ── */
+  /* â”€â”€ Resistance Bar â”€â”€ */
   .resist-row {
     display: flex;
     gap: 4px;
@@ -450,7 +450,7 @@
     margin-top: 2px;
   }
 
-  /* ── Footer ── */
+  /* â”€â”€ Footer â”€â”€ */
   .dossier-footer {
     margin-top: 56px;
   }
@@ -477,7 +477,7 @@
     opacity: 0.5;
   }
 
-  /* ── Responsive ── */
+  /* â”€â”€ Responsive â”€â”€ */
   @media (max-width: 520px) {
     .hero-name { font-size: 36px; }
     .stat-block { grid-template-columns: repeat(3, 1fr); }
@@ -491,33 +491,33 @@
 <body>
 <div class="dossier">
   <div class="classification">
-    <div class="classification-tag" style="color:var(--crimson);background:var(--crimson-faint);border-color:var(--crimson-dim)">Magisters Intelligence — Classified</div>
-    <div class="classification-sub">Fort Joy Detention Registry · Sourcerer Party Roster · Four Detainees</div>
+    <div class="classification-tag" style="color:var(--crimson);background:var(--crimson-faint);border-color:var(--crimson-dim)">Magisters Intelligence â€” Classified</div>
+    <div class="classification-sub">Fort Joy Detention Registry Â· Sourcerer Party Roster Â· Four Detainees</div>
   </div>
   <h1 class="hero-name">Fort Joy Detention Registry</h1>
-  <div class="hero-role" style="color:var(--crimson)">Divinity: Original Sin 2 · Four Sourcerers · Collared and Dangerous</div>
+  <div class="hero-role" style="color:var(--crimson)">Divinity: Original Sin 2 Â· Four Sourcerers Â· Collared and Dangerous</div>
   <div class="directive" style="border-color:var(--crimson);background:var(--crimson-faint)">
     <div class="directive-text">"Four collared Sourcerers. One island. The Magisters think that's a containment strategy. It's not."</div>
-    <div class="directive-source">— Fort Joy Assessment, Internal</div>
+    <div class="directive-source">â€” Fort Joy Assessment, Internal</div>
   </div>
   <div class="card-grid">
     <div class="card-grid-item">
       <h3>Merrick</h3>
-      <div class="card-sub" style="color:var(--blue)">Elf · Mage · L5 · Hydrosophist / Aerotheurge</div>
+      <div class="card-sub" style="color:var(--blue)">Elf Â· Mage Â· L5 Â· Hydrosophist / Aerotheurge</div>
       <p>INT 22. The most dangerous person in the room when the collar comes off. Torturer keystone. Corpse Eater lore engine. Destiny of Souls staff.</p>
     </div>
     <div class="card-grid-item">
       <h3>Riflen</h3>
-      <div class="card-sub" style="color:var(--ember)">Elf · Fighter · Warfare Specialist</div>
+      <div class="card-sub" style="color:var(--ember)">Elf Â· Fighter Â· Warfare Specialist</div>
       <p>Frontline engagement. Holds the line while the casters work. Corpse Eater passive. Scaffold awaiting full stats.</p>
     </div>
     <div class="card-grid-item">
       <h3>Doc Rickets</h3>
-      <div class="card-sub" style="color:var(--violet)">Undead · Rogue · Scoundrel</div>
+      <div class="card-sub" style="color:var(--violet)">Undead Â· Rogue Â· Scoundrel</div>
       <p>Poison heals. Healing kills. Lockpick fingers. Backstab specialist. The walking inversion of every support calculation.</p>
     </div>
     <div class="card-grid-item">
-      <h3>TBD — Slot 4</h3>
+      <h3>TBD â€” Slot 4</h3>
       <div class="card-sub" style="color:var(--cream-dim)">Awaiting Assignment</div>
       <p>Fourth party slot unassigned. Potential: Summoner, Ranger, or second mage to complement Merrick's control suite.</p>
     </div>
@@ -527,7 +527,7 @@
     <p>The Fort Joy party is built around a <strong>control-and-flank architecture</strong>. Merrick freezes, stuns, and debuffs from range. Riflen holds aggro and creates engagement pressure. Doc Rickets flanks from stealth, exploiting the chaos both teammates generate.</p>
     <p>The Undead wrinkle means all healing logistics must account for Doc's inverted biology. No party-wide Restoration spells. Poison flasks become medical supplies. It's the kind of constraint that forces creative play.</p>
   </div>
-  <div class="dossier-footer"><div class="footer-gradient"></div><div class="footer-text"><div class="footer-motto">Cottage — Humble surface. Cathedral underneath.</div><div class="footer-meta">Prepared by Dropdown Logistics · Campaign Intelligence Division · Fort Joy Theater</div></div></div>
+  <div class="dossier-footer"><div class="footer-gradient"></div><div class="footer-text"><div class="footer-motto">Cottage â€” Humble surface. Cathedral underneath.</div><div class="footer-meta">Prepared by Dropdown Logistics Â· Campaign Intelligence Division Â· Fort Joy Theater</div></div></div>
 </div>
 </body>
 </html>

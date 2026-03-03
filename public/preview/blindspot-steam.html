@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BlindSpot · Steam Integration</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#08080C;--bg-card:#0E0E14;--bg-elevated:#141420;--bg-code:#0A0A10;
+  --green:#00D26A;--green-dim:#0A2E18;
+  --red:#FF4D4D;--red-dim:#2E0E0E;
+  --amber:#FFB300;--amber-dim:#2E2200;
+  --gold:#FFD43B;--gold-dim:#2A2210;
+  --cyan:#00E5FF;--cyan-dim:#002E33;
+  --blue:#448AFF;--blue-dim:#0A1A2E;
+  --plum:#B388FF;--plum-dim:#1A0A33;
+  --steam-blue:#1B2838;--steam-accent:#66C0F4;
+  --text:#D4D2CD;--text-mid:#7A786F;--text-dim:#3E3D38;
+  --border:#1A1A22;--border-light:#222230;
+  --radius:8px;
+}
+body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.5;font-size:14px}
+.mono{font-family:'IBM Plex Mono',monospace}
+
+/* NAV */
+.nav{display:flex;justify-content:space-between;align-items:center;padding:12px 28px;border-bottom:1px solid var(--border);background:var(--bg-card)}
+.nav-left{display:flex;align-items:center;gap:12px}
+.nav-logo{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:0.9rem}
+.nav-logo .b1{color:var(--text)}
+.nav-logo .b2{color:var(--gold)}
+.nav-logo .dim{color:var(--text-dim);font-weight:400}
+.nav-badge{font-family:'IBM Plex Mono',monospace;font-size:0.55rem;padding:3px 8px;border-radius:3px;border:1px solid var(--steam-accent);color:var(--steam-accent);letter-spacing:0.04em}
+.nav-right{display:flex;gap:16px;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:0.62rem;color:var(--text-dim)}
+.nav-right .green{color:var(--green)}
+.nav-user{display:flex;align-items:center;gap:6px}
+.nav-avatar{width:20px;height:20px;border-radius:4px;background:var(--steam-blue);border:1px solid var(--steam-accent);display:flex;align-items:center;justify-content:center;font-size:0.5rem;color:var(--steam-accent);font-weight:700}
+
+/* SECTION */
+.section{max-width:1100px;margin:0 auto;padding:28px 28px 0}
+.s-bar{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px}
+.s-label{font-family:'IBM Plex Mono',monospace;font-size:0.58rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim)}
+.s-label .hl{color:var(--gold)}
+.s-right{font-family:'IBM Plex Mono',monospace;font-size:0.58rem;color:var(--text-dim)}
+
+/* KPI */
+.kpi-row{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:24px}
+@media(max-width:900px){.kpi-row{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:500px){.kpi-row{grid-template-columns:repeat(2,1fr)}}
+.kpi{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:16px 14px;position:relative;overflow:hidden}
+.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.kpi-l{font-family:'IBM Plex Mono',monospace;font-size:0.52rem;color:var(--text-dim);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:5px}
+.kpi-v{font-family:'IBM Plex Mono',monospace;font-size:1.4rem;font-weight:700}
+.kpi-s{font-family:'IBM Plex Mono',monospace;font-size:0.55rem;color:var(--text-dim);margin-top:3px}
+.kpi-t{font-family:'IBM Plex Mono',monospace;font-size:0.55rem;margin-top:3px;font-weight:500}
+
+/* TABLE */
+.t-wrap{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:20px}
+.t-title{font-family:'IBM Plex Mono',monospace;font-size:0.58rem;color:var(--text-dim);letter-spacing:0.06em;text-transform:uppercase;padding:10px 14px;border-bottom:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:0.78rem}
+thead th{font-family:'IBM Plex Mono',monospace;color:var(--text-dim);font-size:0.55rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;padding:8px 12px;text-align:left;border-bottom:1px solid var(--border)}
+tbody td{padding:9px 12px;border-bottom:1px solid rgba(255,255,255,0.02);font-family:'IBM Plex Mono',monospace;font-size:0.72rem}
+tbody tr:nth-child(even){background:rgba(255,255,255,0.01)}
+tbody tr:hover{background:rgba(255,212,59,0.02)}
+.pos{color:var(--green)}.neg{color:var(--red)}.warn{color:var(--amber)}.info{color:var(--cyan)}
+
+/* BAR */
+.bar-track{height:6px;background:var(--bg);border-radius:3px;overflow:hidden;display:inline-block;vertical-align:middle}
+.bar-fill{height:100%;border-radius:3px;display:block}
+
+/* BADGE */
+.badge{display:inline-block;padding:2px 7px;border-radius:3px;font-size:0.55rem;font-weight:600;letter-spacing:0.02em}
+.badge.good{background:var(--green-dim);color:var(--green)}
+.badge.mid{background:var(--amber-dim);color:var(--amber)}
+.badge.bad{background:var(--red-dim);color:var(--red)}
+.badge.info{background:var(--cyan-dim);color:var(--cyan)}
+.badge.plum{background:var(--plum-dim);color:var(--plum)}
+
+/* TWO COL */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}
+@media(max-width:700px){.two-col{grid-template-columns:1fr}}
+
+/* BLIND SPOT FLAGS */
+.flag-list{padding:12px 14px}
+.flag-item{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--border)}
+.flag-item:last-child{border-bottom:none}
+.flag-icon{width:24px;height:24px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;flex-shrink:0}
+.flag-text{font-size:0.76rem;color:var(--text-mid);line-height:1.5}
+.flag-text strong{color:var(--text);font-weight:600}
+.flag-text .data{font-family:'IBM Plex Mono',monospace;font-size:0.7rem}
+
+/* PRE-PURCHASE */
+.purchase-card{background:var(--bg-elevated);border:1px solid var(--border-light);border-radius:var(--radius);padding:20px;margin-bottom:20px;position:relative;overflow:hidden}
+.purchase-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.purchase-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px}
+.purchase-game{font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--text)}
+.purchase-price{font-family:'IBM Plex Mono',monospace;font-size:1rem;font-weight:600}
+.purchase-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
+.pm{text-align:center;padding:10px;background:var(--bg-card);border-radius:6px;border:1px solid var(--border)}
+.pm-label{font-family:'IBM Plex Mono',monospace;font-size:0.5rem;color:var(--text-dim);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px}
+.pm-val{font-family:'IBM Plex Mono',monospace;font-size:0.95rem;font-weight:600}
+.purchase-verdict{padding:14px;border-radius:6px;font-family:'IBM Plex Mono',monospace;font-size:0.75rem;line-height:1.7}
+.purchase-rec{margin-top:12px;padding:10px 14px;border-radius:6px;border-left:3px solid;font-size:0.78rem;line-height:1.6}
+
+/* BACKLOG */
+.backlog-item{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.02)}
+.backlog-item:last-child{border-bottom:none}
+.bl-left{display:flex;align-items:center;gap:10px}
+.bl-rank{font-family:'IBM Plex Mono',monospace;font-size:0.6rem;color:var(--text-dim);width:20px}
+.bl-name{font-size:0.8rem;font-weight:500}
+.bl-genre{font-size:0.6rem;color:var(--text-dim)}
+.bl-right{text-align:right}
+.bl-reason{font-family:'IBM Plex Mono',monospace;font-size:0.6rem;color:var(--text-dim)}
+.bl-val{font-family:'IBM Plex Mono',monospace;font-size:0.72rem;font-weight:600}
+
+.footer{text-align:center;padding:20px 28px 28px;font-family:'IBM Plex Mono',monospace;font-size:0.55rem;color:var(--text-dim)}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="nav">
+  <div class="nav-left">
+    <div class="nav-logo"><span class="b1">Blind</span><span class="b2">Spot</span> <span class="dim">· steam</span></div>
+    <div class="nav-badge">🎮 STEAM CONNECTED</div>
+  </div>
+  <div class="nav-right">
+    <span><span class="green">●</span> synced 2h ago</span>
+    <span>library: 247 games</span>
+    <div class="nav-user">
+      <div class="nav-avatar">DK</div>
+      <span>dave_kitchens</span>
+    </div>
+  </div>
+</div>
+
+<!-- LIBRARY OVERVIEW KPIs -->
+<div class="section">
+  <div class="s-bar">
+    <div class="s-label"><span class="hl">Library</span> · Efficiency Overview</div>
+    <div class="s-right">lifetime · all 247 games</div>
+  </div>
+  <div class="kpi-row">
+    <div class="kpi" style="--c:var(--gold)"><div style="position:absolute;top:0;left:0;right:0;height:2px;background:var(--gold)"></div>
+      <div class="kpi-l">Total Spent</div>
+      <div class="kpi-v" style="color:var(--gold)">$3,847</div>
+      <div class="kpi-s">lifetime steam purchases</div>
+    </div>
+    <div class="kpi"><div style="position:absolute;top:0;left:0;right:0;height:2px;background:var(--cyan)"></div>
+      <div class="kpi-l">Total Hours</div>
+      <div class="kpi-v" style="color:var(--cyan)">2,841</div>
+      <div class="kpi-s">across all games</div>
+    </div>
+    <div class="kpi"><div style="position:absolute;top:0;left:0;right:0;height:2px;background:var(--green)"></div>
+      <div class="kpi-l">Blended $/Hour</div>
+      <div class="kpi-v" style="color:var(--green)">$1.35</div>
+      <div class="kpi-s">vs $2.10 industry avg</div>
+      <div class="kpi-t" style="color:var(--green)">▼ better than avg</div>
+    </div>
+    <div class="kpi"><div style="position:absolute;top:0;left:0;right:0;height:2px;background:var(--red)"></div>
+      <div class="kpi-l">Unplayed</div>
+      <div class="kpi-v" style="color:var(--red)">104</div>
+      <div class="kpi-s">42% of library · 0 hours</div>
+    </div>
+    <div class="kpi"><div style="position:absolute;top:0;left:0;right:0;height:2px;background:var(--amber)"></div>
+      <div class="kpi-l">Backlog Value</div>
+      <div class="kpi-v" style="color:var(--amber)">$1,240</div>
+      <div class="kpi-s">unplayed purchase cost</div>
+    </div>
+    <div class="kpi"><div style="position:absolute;top:0;left:0;right:0;height:2px;background:var(--plum)"></div>
+      <div class="kpi-l">Completion Rate</div>
+      <div class="kpi-v" style="color:var(--plum)">31%</div>
+      <div class="kpi-s">played >2hrs · 76 of 247</div>
+    </div>
+  </div>
+</div>
+
+<!-- EFFICIENCY TABLE: TOP PERFORMERS + WORST -->
+<div class="section" style="padding-top:0">
+  <div class="two-col">
+    <!-- TOP VALUE -->
+    <div class="t-wrap">
+      <div class="t-title" style="color:var(--green)">✦ Top Value Extraction — Best $/Hour</div>
+      <table>
+        <thead><tr><th>Game</th><th>Cost</th><th>Hours</th><th>$/Hr</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Stardew Valley</strong></td><td>$14.99</td><td style="color:var(--cyan)">842</td><td class="pos">$0.02</td><td><span class="badge good">Legend</span></td></tr>
+          <tr><td><strong>Terraria</strong></td><td>$9.99</td><td style="color:var(--cyan)">614</td><td class="pos">$0.02</td><td><span class="badge good">Legend</span></td></tr>
+          <tr><td><strong>Rimworld</strong></td><td>$34.99</td><td style="color:var(--cyan)">423</td><td class="pos">$0.08</td><td><span class="badge good">Elite</span></td></tr>
+          <tr><td><strong>Factorio</strong></td><td>$30.00</td><td style="color:var(--cyan)">318</td><td class="pos">$0.09</td><td><span class="badge good">Elite</span></td></tr>
+          <tr><td><strong>Hades</strong></td><td>$24.99</td><td style="color:var(--cyan)">187</td><td class="pos">$0.13</td><td><span class="badge good">Strong</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- WORST VALUE -->
+    <div class="t-wrap">
+      <div class="t-title" style="color:var(--red)">⚠ Allocation Waste — Worst $/Hour</div>
+      <table>
+        <thead><tr><th>Game</th><th>Cost</th><th>Hours</th><th>$/Hr</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Cyberpunk 2077</strong></td><td>$59.99</td><td style="color:var(--text-dim)">0.4</td><td class="neg">$149.98</td><td><span class="badge bad">Waste</span></td></tr>
+          <tr><td><strong>Total War: Warhammer III</strong></td><td>$59.99</td><td style="color:var(--text-dim)">0.8</td><td class="neg">$74.99</td><td><span class="badge bad">Waste</span></td></tr>
+          <tr><td><strong>Elden Ring</strong></td><td>$59.99</td><td style="color:var(--text-dim)">1.2</td><td class="neg">$49.99</td><td><span class="badge bad">Waste</span></td></tr>
+          <tr><td><strong>Baldur's Gate 3</strong></td><td>$59.99</td><td style="color:var(--text-dim)">2.1</td><td class="neg">$28.57</td><td><span class="badge mid">At Risk</span></td></tr>
+          <tr><td><strong>Starfield</strong></td><td>$69.99</td><td style="color:var(--text-dim)">3.4</td><td class="neg">$20.59</td><td><span class="badge mid">At Risk</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- GENRE ANALYSIS -->
+<div class="section" style="padding-top:0">
+  <div class="s-bar">
+    <div class="s-label"><span class="hl">Genre</span> · Allocation vs. Engagement</div>
+  </div>
+  <div class="t-wrap">
+    <table>
+      <thead><tr><th>Genre</th><th>Owned</th><th>Played >2h</th><th>Engage %</th><th>Total Spent</th><th>Total Hours</th><th>$/Hour</th><th>Backlog</th><th>Signal</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Sandbox / Sim</strong></td><td>18</td><td>14</td><td class="pos">78%</td>
+          <td>$342</td><td style="color:var(--cyan)">1,640</td><td class="pos">$0.21</td>
+          <td>4</td><td><span class="badge good">Core Genre</span></td>
+        </tr>
+        <tr>
+          <td><strong>Roguelike</strong></td><td>22</td><td>16</td><td class="pos">73%</td>
+          <td>$318</td><td style="color:var(--cyan)">520</td><td class="pos">$0.61</td>
+          <td>6</td><td><span class="badge good">Core Genre</span></td>
+        </tr>
+        <tr>
+          <td><strong>Action / Platformer</strong></td><td>34</td><td>18</td><td>53%</td>
+          <td>$487</td><td>340</td><td>$1.43</td>
+          <td>16</td><td><span class="badge info">Selective</span></td>
+        </tr>
+        <tr>
+          <td><strong>Indie</strong></td><td>48</td><td>20</td><td>42%</td>
+          <td>$380</td><td>180</td><td>$2.11</td>
+          <td>28</td><td><span class="badge mid">Sale Trap</span></td>
+        </tr>
+        <tr>
+          <td><strong>RPG</strong></td><td>31</td><td>6</td><td class="neg">19%</td>
+          <td>$682</td><td>94</td><td class="neg">$7.26</td>
+          <td>25</td><td><span class="badge bad">Blind Spot</span></td>
+        </tr>
+        <tr>
+          <td><strong>Strategy</strong></td><td>28</td><td>4</td><td class="neg">14%</td>
+          <td>$518</td><td>42</td><td class="neg">$12.33</td>
+          <td>24</td><td><span class="badge bad">Blind Spot</span></td>
+        </tr>
+        <tr>
+          <td><strong>FPS / Shooter</strong></td><td>15</td><td>3</td><td class="neg">20%</td>
+          <td>$340</td><td>25</td><td class="neg">$13.60</td>
+          <td>12</td><td><span class="badge bad">Blind Spot</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- BLIND SPOT FLAGS + SPENDING PATTERNS -->
+<div class="section" style="padding-top:0">
+  <div class="two-col">
+    <!-- BLIND SPOT FLAGS -->
+    <div class="t-wrap">
+      <div class="t-title" style="color:var(--gold)">⚡ Blind Spot Flags — Active</div>
+      <div class="flag-list">
+        <div class="flag-item">
+          <div class="flag-icon" style="background:var(--red-dim);color:var(--red)">!</div>
+          <div class="flag-text"><strong>RPG Mismatch:</strong> You've spent <span class="data neg">$682</span> on 31 RPGs. Only 6 played past 2 hours. <span class="data">19% engagement</span>. You keep buying a genre you don't finish. This is your biggest blind spot.</div>
+        </div>
+        <div class="flag-item">
+          <div class="flag-icon" style="background:var(--red-dim);color:var(--red)">!</div>
+          <div class="flag-text"><strong>Strategy Overbuying:</strong> 28 owned, 4 played. <span class="data neg">$518 sunk</span>. Engagement rate <span class="data">14%</span> — worst in library. Stop purchasing until backlog ≤ 5.</div>
+        </div>
+        <div class="flag-item">
+          <div class="flag-icon" style="background:var(--amber-dim);color:var(--amber)">⚠</div>
+          <div class="flag-text"><strong>Sale Addiction Pattern:</strong> <span class="data">73%</span> of library purchased on sale. Sale purchases have <span class="data warn">28% play rate</span> vs. <span class="data pos">61% for full-price</span>. Commitment bias confirmed.</div>
+        </div>
+        <div class="flag-item">
+          <div class="flag-icon" style="background:var(--amber-dim);color:var(--amber)">⚠</div>
+          <div class="flag-text"><strong>Backlog Velocity Negative:</strong> Buying <span class="data">4.2 games/month</span>. Completing <span class="data">1.1 games/month</span>. Net backlog growth: <span class="data neg">+3.1/month</span>. At this rate, backlog doubles in 11 months.</div>
+        </div>
+        <div class="flag-item">
+          <div class="flag-icon" style="background:var(--cyan-dim);color:var(--cyan)">→</div>
+          <div class="flag-text"><strong>Impulse Risk Score:</strong> <span class="data warn">6.8 / 10</span>. Avg wishlist-to-purchase time: <span class="data">2.3 days</span>. Games wishlisted 30+ days have <span class="data pos">74% play rate</span>. Games bought within 48hrs: <span class="data neg">22%</span>.</div>
+        </div>
+      </div>
+    </div>
+    <!-- SPENDING PATTERNS -->
+    <div class="t-wrap">
+      <div class="t-title" style="color:var(--cyan)">📊 Spending Pattern Analysis</div>
+      <table>
+        <thead><tr><th>Metric</th><th>Value</th><th>Signal</th></tr></thead>
+        <tbody>
+          <tr><td>Avg monthly spend</td><td class="mono">$48.20</td><td style="color:var(--text-dim)">within budget</td></tr>
+          <tr><td>Sale vs full-price ratio</td><td class="mono">73% / 27%</td><td class="warn">heavy sale bias</td></tr>
+          <tr><td>Sale purchase play rate</td><td class="mono neg">28%</td><td class="neg">below threshold</td></tr>
+          <tr><td>Full-price play rate</td><td class="mono pos">61%</td><td class="pos">healthy</td></tr>
+          <tr><td>Avg time-to-play</td><td class="mono">47 days</td><td class="warn">high latency</td></tr>
+          <tr><td>Games with 0hrs >6mo old</td><td class="mono neg">68</td><td class="neg">allocation waste</td></tr>
+          <tr><td>Backlog velocity</td><td class="mono neg">+3.1/mo</td><td class="neg">growing</td></tr>
+          <tr><td>Summer sale spike</td><td class="mono warn">$214</td><td class="warn">seasonal drift</td></tr>
+          <tr><td>Completion trend (YoY)</td><td class="mono pos">↑ 12%</td><td class="pos">improving</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- PRE-PURCHASE DECISION ENGINE -->
+<div class="section" style="padding-top:0">
+  <div class="s-bar">
+    <div class="s-label"><span class="hl">Pre-Purchase</span> · Decision Engine</div>
+    <div class="s-right">query: "Should I buy Civilization VII?"</div>
+  </div>
+  <div class="purchase-card" style="--c:var(--red)">
+    <div style="position:absolute;top:0;left:0;right:0;height:2px;background:var(--red)"></div>
+    <div class="purchase-header">
+      <div>
+        <div class="purchase-game">Civilization VII</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;color:var(--text-dim);margin-top:2px">Strategy · 4X · Turn-Based · Firaxis</div>
+      </div>
+      <div class="purchase-price" style="color:var(--amber)">$49.99 <span style="font-size:0.6rem;color:var(--text-dim);font-weight:400">(full price)</span></div>
+    </div>
+    <div class="purchase-meta">
+      <div class="pm">
+        <div class="pm-label">Your Strategy Stats</div>
+        <div class="pm-val" style="color:var(--red)">14%</div>
+        <div style="font-size:0.55rem;color:var(--text-dim)">engagement rate</div>
+      </div>
+      <div class="pm">
+        <div class="pm-label">Strategy Backlog</div>
+        <div class="pm-val" style="color:var(--amber)">24</div>
+        <div style="font-size:0.55rem;color:var(--text-dim)">unplayed games</div>
+      </div>
+      <div class="pm">
+        <div class="pm-label">Prediction</div>
+        <div class="pm-val" style="color:var(--red)">18%</div>
+        <div style="font-size:0.55rem;color:var(--text-dim)">chance you play >2hrs</div>
+      </div>
+    </div>
+    <div class="purchase-verdict" style="background:var(--red-dim);color:var(--text)">
+      <strong style="color:var(--red)">⚠ RISK ASSESSMENT: HIGH</strong><br><br>
+      <span style="color:var(--text-mid)">Your data tells a clear story:</span><br>
+      › 28 strategy games owned · 4 played past 2 hours · <span style="color:var(--red)">$12.33/hour</span> (6x your library avg)<br>
+      › You own Civ V (0.8 hrs) and Civ VI (1.4 hrs) — neither finished tutorial<br>
+      › Last strategy game you engaged with meaningfully: <span style="color:var(--text-dim)">none found</span><br>
+      › Based on your patterns, there is an <span style="color:var(--red)">82% probability</span> this goes unplayed
+    </div>
+    <div class="purchase-rec" style="border-color:var(--gold);background:var(--gold-dim)">
+      <strong style="color:var(--gold)">↳ RECOMMENDATION:</strong> <span style="color:var(--text-mid)">Add to wishlist. Set 30-day hold. Play 3 existing strategy games first (Civ VI, Total War: Warhammer III, XCOM 2). If you finish any of them, revisit this purchase. If you don't — that's your answer.</span>
+    </div>
+  </div>
+</div>
+
+<!-- BACKLOG PRIORITY -->
+<div class="section" style="padding-top:0">
+  <div class="s-bar">
+    <div class="s-label"><span class="hl">Backlog</span> · Priority Queue</div>
+    <div class="s-right">sorted by: value recovery potential</div>
+  </div>
+  <div class="t-wrap">
+    <div class="t-title">Play These Next — Maximum Value Extraction</div>
+    <div class="backlog-item">
+      <div class="bl-left">
+        <div class="bl-rank" style="color:var(--gold)">#1</div>
+        <div><div class="bl-name" style="color:var(--text)">Baldur's Gate 3</div><div class="bl-genre">RPG · 2.1hrs played · purchased 8mo ago</div></div>
+      </div>
+      <div class="bl-right">
+        <div class="bl-val" style="color:var(--green)">$59.99 recoverable</div>
+        <div class="bl-reason">highest sunk cost · past refund window · genre avg: 86hrs</div>
+      </div>
+    </div>
+    <div class="backlog-item">
+      <div class="bl-left">
+        <div class="bl-rank" style="color:var(--gold)">#2</div>
+        <div><div class="bl-name" style="color:var(--text)">Elden Ring</div><div class="bl-genre">Action RPG · 1.2hrs played · purchased 14mo ago</div></div>
+      </div>
+      <div class="bl-right">
+        <div class="bl-val" style="color:var(--green)">$59.99 recoverable</div>
+        <div class="bl-reason">highest $/hr potential · genre avg: 120hrs</div>
+      </div>
+    </div>
+    <div class="backlog-item">
+      <div class="bl-left">
+        <div class="bl-rank" style="color:var(--gold)">#3</div>
+        <div><div class="bl-name" style="color:var(--text)">Hollow Knight</div><div class="bl-genre">Metroidvania · 0hrs · purchased 22mo ago</div></div>
+      </div>
+      <div class="bl-right">
+        <div class="bl-val" style="color:var(--green)">$14.99 recoverable</div>
+        <div class="bl-reason">wishlisted 14mo before purchase · genuine interest signal</div>
+      </div>
+    </div>
+    <div class="backlog-item">
+      <div class="bl-left">
+        <div class="bl-rank" style="color:var(--gold)">#4</div>
+        <div><div class="bl-name" style="color:var(--text)">Disco Elysium</div><div class="bl-genre">RPG · 0hrs · purchased 18mo ago</div></div>
+      </div>
+      <div class="bl-right">
+        <div class="bl-val" style="color:var(--green)">$39.99 recoverable</div>
+        <div class="bl-reason">longest wishlist hold (11mo) · strongest intent signal</div>
+      </div>
+    </div>
+    <div class="backlog-item">
+      <div class="bl-left">
+        <div class="bl-rank" style="color:var(--gold)">#5</div>
+        <div><div class="bl-name" style="color:var(--text)">Dead Cells</div><div class="bl-genre">Roguelike · 0hrs · purchased 6mo ago</div></div>
+      </div>
+      <div class="bl-right">
+        <div class="bl-val" style="color:var(--green)">$24.99 recoverable</div>
+        <div class="bl-reason">your best genre (73% engage) · high completion probability</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MONTHLY BUDGET TRACKER -->
+<div class="section" style="padding-top:0">
+  <div class="s-bar">
+    <div class="s-label"><span class="hl">Budget</span> · February 2026</div>
+    <div class="s-right">target: $50/mo · efficiency target: $2.00/hr</div>
+  </div>
+  <div class="kpi-row" style="grid-template-columns:repeat(4,1fr)">
+    <div class="kpi"><div style="position:absolute;top:0;left:0;right:0;height:2px;background:var(--amber)"></div>
+      <div class="kpi-l">Spent This Month</div>
+      <div class="kpi-v" style="color:var(--amber)">$73.48</div>
+      <div class="kpi-s">$23.48 over budget</div>
+      <div class="kpi-t" style="color:var(--red)">▲ 47% over target</div>
+    </div>
+    <div class="kpi"><div style="position:absolute;top:0;left:0;right:0;height:2px;background:var(--cyan)"></div>
+      <div class="kpi-l">Hours Played</div>
+      <div class="kpi-v" style="color:var(--cyan)">38</div>
+      <div class="kpi-s">across 4 games</div>
+    </div>
+    <div class="kpi"><div style="position:absolute;top:0;left:0;right:0;height:2px;background:var(--green)"></div>
+      <div class="kpi-l">Actual $/Hour</div>
+      <div class="kpi-v" style="color:var(--green)">$1.93</div>
+      <div class="kpi-s">below $2.00 target ✓</div>
+    </div>
+    <div class="kpi"><div style="position:absolute;top:0;left:0;right:0;height:2px;background:var(--red)"></div>
+      <div class="kpi-l">Utilization Gap</div>
+      <div class="kpi-v" style="color:var(--red)">$35.48</div>
+      <div class="kpi-s">spent but not yet played</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  BlindSpot · Steam Integration v0.1 · find your blind spots before they cost you<br>
+  <span style="margin-top:4px;display:inline-block;opacity:0.5">moneyball for your steam library · same engine · different data</span>
+</div>
+
+</body>
+</html>

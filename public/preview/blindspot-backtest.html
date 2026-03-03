@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BlindSpot — Strategy Backtesting Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0e17;
+  --card: #111827;
+  --card-border: #1e293b;
+  --text: #e2e8f0;
+  --text-dim: #64748b;
+  --text-muted: #475569;
+  --green: #22c55e;
+  --green-dim: rgba(34,197,94,0.12);
+  --green-glow: rgba(34,197,94,0.25);
+  --red: #ef4444;
+  --red-dim: rgba(239,68,68,0.12);
+  --red-glow: rgba(239,68,68,0.25);
+  --cyan: #06b6d4;
+  --cyan-dim: rgba(6,182,212,0.12);
+  --amber: #f59e0b;
+  --amber-dim: rgba(245,158,11,0.12);
+  --purple: #a78bfa;
+  --purple-dim: rgba(167,139,250,0.12);
+  --mono: 'JetBrains Mono', monospace;
+  --sans: 'Plus Jakarta Sans', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Subtle grid background */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image:
+    linear-gradient(rgba(30,41,59,0.3) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30,41,59,0.3) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 24px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--cyan), var(--purple));
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--bg);
+}
+
+.logo-text {
+  font-family: var(--mono);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.logo-text span { color: var(--cyan); }
+
+.logo-sub {
+  font-size: 11px;
+  color: var(--text-dim);
+  font-family: var(--mono);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.header-right {
+  text-align: right;
+}
+
+.header-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 4px;
+}
+
+.header-strats {
+  display: flex;
+  gap: 8px;
+}
+
+.strat-tag {
+  font-family: var(--mono);
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.strat-a { background: var(--cyan-dim); color: var(--cyan); }
+.strat-b { background: var(--purple-dim); color: var(--purple); }
+
+/* Strategy Toggle */
+.strategy-toggle {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.toggle-btn {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 8px 20px;
+  border-radius: 6px;
+  border: 1px solid var(--card-border);
+  background: var(--card);
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.toggle-btn.active {
+  border-color: var(--cyan);
+  color: var(--cyan);
+  background: var(--cyan-dim);
+}
+
+.toggle-btn:hover:not(.active) {
+  border-color: var(--text-muted);
+  color: var(--text);
+}
+
+/* KPI Row */
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.kpi-card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.kpi-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+}
+
+.kpi-card.green::after { background: var(--green); }
+.kpi-card.red::after { background: var(--red); }
+.kpi-card.cyan::after { background: var(--cyan); }
+.kpi-card.amber::after { background: var(--amber); }
+.kpi-card.purple::after { background: var(--purple); }
+
+.kpi-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  margin-bottom: 8px;
+}
+
+.kpi-value {
+  font-family: var(--mono);
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.kpi-value.green { color: var(--green); }
+.kpi-value.red { color: var(--red); }
+.kpi-value.cyan { color: var(--cyan); }
+.kpi-value.amber { color: var(--amber); }
+.kpi-value.purple { color: var(--purple); }
+
+.kpi-sub {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--text-dim);
+  margin-top: 4px;
+}
+
+/* Main Grid */
+.main-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.panel {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.panel-title {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text);
+}
+
+.panel-badge {
+  font-family: var(--mono);
+  font-size: 9px;
+  padding: 3px 8px;
+  border-radius: 3px;
+  background: var(--cyan-dim);
+  color: var(--cyan);
+  letter-spacing: 0.5px;
+}
+
+/* Equity Curve */
+.equity-curve {
+  height: 200px;
+  position: relative;
+  margin-top: 8px;
+}
+
+.curve-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Trade Table */
+.trade-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.trade-table th {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 8px 6px;
+  text-align: left;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.trade-table th:last-child,
+.trade-table td:last-child { text-align: right; }
+
+.trade-table td {
+  font-family: var(--mono);
+  font-size: 11px;
+  padding: 8px 6px;
+  border-bottom: 1px solid rgba(30,41,59,0.5);
+  color: var(--text);
+}
+
+.trade-table tr:hover { background: rgba(30,41,59,0.3); }
+
+.gain { color: var(--green); }
+.loss { color: var(--red); }
+
+.ticker {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.trade-type {
+  font-size: 9px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-weight: 600;
+}
+
+.type-long { background: var(--green-dim); color: var(--green); }
+.type-short { background: var(--red-dim); color: var(--red); }
+
+/* Distribution bars */
+.dist-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.dist-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--text-dim);
+  width: 70px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.dist-bar-wrap {
+  flex: 1;
+  height: 20px;
+  background: rgba(30,41,59,0.5);
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+}
+
+.dist-bar {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 1s ease;
+}
+
+.dist-bar.green { background: linear-gradient(90deg, var(--green), rgba(34,197,94,0.5)); }
+.dist-bar.red { background: linear-gradient(90deg, var(--red), rgba(239,68,68,0.5)); }
+
+.dist-value {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--text-dim);
+  width: 40px;
+  flex-shrink: 0;
+}
+
+/* Full width panels */
+.full-panel {
+  grid-column: 1 / -1;
+}
+
+/* Biggest movers */
+.movers-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.mover-section-title {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.mover-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-radius: 6px;
+  margin-bottom: 6px;
+  transition: transform 0.15s;
+}
+
+.mover-item:hover { transform: translateX(4px); }
+
+.mover-item.win { background: var(--green-dim); }
+.mover-item.lose { background: var(--red-dim); }
+
+.mover-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.mover-rank {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--text-muted);
+  width: 18px;
+}
+
+.mover-ticker {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.mover-date {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--text-dim);
+}
+
+.mover-pnl {
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* Strategy comparison */
+.compare-row {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(30,41,59,0.5);
+}
+
+.compare-row:last-child { border-bottom: none; }
+
+.compare-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--text-dim);
+  width: 140px;
+  flex-shrink: 0;
+}
+
+.compare-bars {
+  flex: 1;
+  display: flex;
+  gap: 6px;
+}
+
+.compare-bar {
+  height: 24px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  min-width: 50px;
+  transition: width 1s ease;
+}
+
+.compare-bar.a { background: var(--cyan-dim); color: var(--cyan); }
+.compare-bar.b { background: var(--purple-dim); color: var(--purple); }
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 24px 0;
+  border-top: 1px solid var(--card-border);
+  margin-top: 16px;
+}
+
+.footer-text {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+.footer-text span { color: var(--cyan); }
+
+.footer-sub {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--text-muted);
+  margin-top: 6px;
+  opacity: 0.6;
+}
+
+/* Pitch banner */
+.pitch-banner {
+  background: linear-gradient(135deg, rgba(6,182,212,0.08), rgba(167,139,250,0.08));
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 24px 32px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pitch-left h2 {
+  font-family: var(--sans);
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.pitch-left p {
+  font-size: 13px;
+  color: var(--text-dim);
+  max-width: 500px;
+  line-height: 1.5;
+}
+
+.pitch-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.pitch-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--cyan);
+  letter-spacing: 1px;
+}
+
+.pitch-flow {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.pitch-flow span { color: var(--text); font-weight: 600; }
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.kpi-card, .panel, .pitch-banner {
+  animation: fadeUp 0.5s ease both;
+}
+
+.kpi-card:nth-child(1) { animation-delay: 0.05s; }
+.kpi-card:nth-child(2) { animation-delay: 0.1s; }
+.kpi-card:nth-child(3) { animation-delay: 0.15s; }
+.kpi-card:nth-child(4) { animation-delay: 0.2s; }
+.kpi-card:nth-child(5) { animation-delay: 0.25s; }
+
+@media (max-width: 768px) {
+  .kpi-row { grid-template-columns: repeat(2, 1fr); }
+  .main-grid { grid-template-columns: 1fr; }
+  .movers-grid { grid-template-columns: 1fr; }
+  .header { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .pitch-banner { flex-direction: column; gap: 16px; }
+  .pitch-right { align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Pitch Banner -->
+  <div class="pitch-banner">
+    <div class="pitch-left">
+      <h2>What if your backtest data looked like this?</h2>
+      <p>You track the trades. BlindSpot structures them, finds the patterns, and shows you exactly where your strategies win and bleed — so you can see what your spreadsheet can't tell you yet.</p>
+    </div>
+    <div class="pitch-right">
+      <div class="pitch-tag">BLINDSPOT BACKTESTING</div>
+      <div class="pitch-flow"><span>Your data</span> → structured → <span>insight</span></div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo">
+      <div class="logo-icon">BS</div>
+      <div>
+        <div class="logo-text">Blind<span>Spot</span></div>
+        <div class="logo-sub">Strategy Backtesting Dashboard</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="header-label">Comparing Strategies</div>
+      <div class="header-strats">
+        <span class="strat-tag strat-a">Strategy A — Momentum</span>
+        <span class="strat-tag strat-b">Strategy B — Mean Reversion</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Strategy Toggle -->
+  <div class="strategy-toggle">
+    <button class="toggle-btn active" onclick="setView(this)">Both Strategies</button>
+    <button class="toggle-btn" onclick="setView(this)">Strategy A Only</button>
+    <button class="toggle-btn" onclick="setView(this)">Strategy B Only</button>
+    <button class="toggle-btn" onclick="setView(this)">Head-to-Head</button>
+  </div>
+
+  <!-- KPI Row -->
+  <div class="kpi-row">
+    <div class="kpi-card green">
+      <div class="kpi-label">Total P&L</div>
+      <div class="kpi-value green">+$4,280</div>
+      <div class="kpi-sub">across 47 trades</div>
+    </div>
+    <div class="kpi-card cyan">
+      <div class="kpi-label">Win Rate</div>
+      <div class="kpi-value cyan">63.8%</div>
+      <div class="kpi-sub">30 wins / 17 losses</div>
+    </div>
+    <div class="kpi-card amber">
+      <div class="kpi-label">Avg Win / Avg Loss</div>
+      <div class="kpi-value amber">2.1x</div>
+      <div class="kpi-sub">$312 avg win · $148 avg loss</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="kpi-label">Best Trade</div>
+      <div class="kpi-value green">+$1,840</div>
+      <div class="kpi-sub">NVDA · Jan 22 · Strategy A</div>
+    </div>
+    <div class="kpi-card red">
+      <div class="kpi-label">Worst Trade</div>
+      <div class="kpi-value red">-$620</div>
+      <div class="kpi-sub">TSLA · Feb 3 · Strategy B</div>
+    </div>
+  </div>
+
+  <!-- Main Grid -->
+  <div class="main-grid">
+
+    <!-- Biggest Winners & Losers -->
+    <div class="panel full-panel">
+      <div class="panel-header">
+        <div class="panel-title">Biggest Movers — This Is What You Asked For</div>
+        <div class="panel-badge">Top 5 Each</div>
+      </div>
+      <div class="movers-grid">
+        <div>
+          <div class="mover-section-title" style="color: var(--green);">Biggest Gains</div>
+          <div class="mover-item win">
+            <div class="mover-left">
+              <div class="mover-rank">1</div>
+              <div>
+                <div class="mover-ticker">NVDA</div>
+                <div class="mover-date">Jan 22 · Strategy A · Long</div>
+              </div>
+            </div>
+            <div class="mover-pnl gain">+$1,840</div>
+          </div>
+          <div class="mover-item win">
+            <div class="mover-left">
+              <div class="mover-rank">2</div>
+              <div>
+                <div class="mover-ticker">AAPL</div>
+                <div class="mover-date">Feb 12 · Strategy A · Long</div>
+              </div>
+            </div>
+            <div class="mover-pnl gain">+$720</div>
+          </div>
+          <div class="mover-item win">
+            <div class="mover-left">
+              <div class="mover-rank">3</div>
+              <div>
+                <div class="mover-ticker">META</div>
+                <div class="mover-date">Jan 30 · Strategy B · Long</div>
+              </div>
+            </div>
+            <div class="mover-pnl gain">+$580</div>
+          </div>
+          <div class="mover-item win">
+            <div class="mover-left">
+              <div class="mover-rank">4</div>
+              <div>
+                <div class="mover-ticker">AMD</div>
+                <div class="mover-date">Feb 8 · Strategy A · Long</div>
+              </div>
+            </div>
+            <div class="mover-pnl gain">+$440</div>
+          </div>
+          <div class="mover-item win">
+            <div class="mover-left">
+              <div class="mover-rank">5</div>
+              <div>
+                <div class="mover-ticker">MSFT</div>
+                <div class="mover-date">Jan 17 · Strategy B · Long</div>
+              </div>
+            </div>
+            <div class="mover-pnl gain">+$380</div>
+          </div>
+        </div>
+        <div>
+          <div class="mover-section-title" style="color: var(--red);">Biggest Losses</div>
+          <div class="mover-item lose">
+            <div class="mover-left">
+              <div class="mover-rank">1</div>
+              <div>
+                <div class="mover-ticker">TSLA</div>
+                <div class="mover-date">Feb 3 · Strategy B · Long</div>
+              </div>
+            </div>
+            <div class="mover-pnl loss">-$620</div>
+          </div>
+          <div class="mover-item lose">
+            <div class="mover-left">
+              <div class="mover-rank">2</div>
+              <div>
+                <div class="mover-ticker">COIN</div>
+                <div class="mover-date">Jan 28 · Strategy A · Long</div>
+              </div>
+            </div>
+            <div class="mover-pnl loss">-$410</div>
+          </div>
+          <div class="mover-item lose">
+            <div class="mover-left">
+              <div class="mover-rank">3</div>
+              <div>
+                <div class="mover-ticker">RIVN</div>
+                <div class="mover-date">Feb 14 · Strategy B · Long</div>
+              </div>
+            </div>
+            <div class="mover-pnl loss">-$340</div>
+          </div>
+          <div class="mover-item lose">
+            <div class="mover-left">
+              <div class="mover-rank">4</div>
+              <div>
+                <div class="mover-ticker">SOFI</div>
+                <div class="mover-date">Jan 19 · Strategy A · Long</div>
+              </div>
+            </div>
+            <div class="mover-pnl loss">-$280</div>
+          </div>
+          <div class="mover-item lose">
+            <div class="mover-left">
+              <div class="mover-rank">5</div>
+              <div>
+                <div class="mover-ticker">SNAP</div>
+                <div class="mover-date">Feb 7 · Strategy B · Long</div>
+              </div>
+            </div>
+            <div class="mover-pnl loss">-$190</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- P&L Distribution -->
+    <div class="panel">
+      <div class="panel-header">
+        <div class="panel-title">P&L Distribution</div>
+        <div class="panel-badge">All Trades</div>
+      </div>
+      <div style="margin-top: 8px;">
+        <div class="dist-row">
+          <div class="dist-label">+$1000+</div>
+          <div class="dist-bar-wrap"><div class="dist-bar green" style="width: 8%"></div></div>
+          <div class="dist-value">1</div>
+        </div>
+        <div class="dist-row">
+          <div class="dist-label">+$500-999</div>
+          <div class="dist-bar-wrap"><div class="dist-bar green" style="width: 24%"></div></div>
+          <div class="dist-value">3</div>
+        </div>
+        <div class="dist-row">
+          <div class="dist-label">+$200-499</div>
+          <div class="dist-bar-wrap"><div class="dist-bar green" style="width: 56%"></div></div>
+          <div class="dist-value">12</div>
+        </div>
+        <div class="dist-row">
+          <div class="dist-label">+$1-199</div>
+          <div class="dist-bar-wrap"><div class="dist-bar green" style="width: 66%"></div></div>
+          <div class="dist-value">14</div>
+        </div>
+        <div class="dist-row">
+          <div class="dist-label">-$1-199</div>
+          <div class="dist-bar-wrap"><div class="dist-bar red" style="width: 38%"></div></div>
+          <div class="dist-value">8</div>
+        </div>
+        <div class="dist-row">
+          <div class="dist-label">-$200-499</div>
+          <div class="dist-bar-wrap"><div class="dist-bar red" style="width: 28%"></div></div>
+          <div class="dist-value">6</div>
+        </div>
+        <div class="dist-row">
+          <div class="dist-label">-$500+</div>
+          <div class="dist-bar-wrap"><div class="dist-bar red" style="width: 14%"></div></div>
+          <div class="dist-value">3</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Strategy Comparison -->
+    <div class="panel">
+      <div class="panel-header">
+        <div class="panel-title">Strategy A vs B</div>
+        <div class="panel-badge">Head-to-Head</div>
+      </div>
+      <div>
+        <div class="compare-row">
+          <div class="compare-label">Win Rate</div>
+          <div class="compare-bars">
+            <div class="compare-bar a" style="width: 68%">68%</div>
+            <div class="compare-bar b" style="width: 58%">58%</div>
+          </div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-label">Total P&L</div>
+          <div class="compare-bars">
+            <div class="compare-bar a" style="width: 72%">+$2,890</div>
+            <div class="compare-bar b" style="width: 45%">+$1,390</div>
+          </div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-label">Avg Trade</div>
+          <div class="compare-bars">
+            <div class="compare-bar a" style="width: 65%">+$116</div>
+            <div class="compare-bar b" style="width: 40%">+$64</div>
+          </div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-label">Max Drawdown</div>
+          <div class="compare-bars">
+            <div class="compare-bar a" style="width: 35%">-$680</div>
+            <div class="compare-bar b" style="width: 55%">-$940</div>
+          </div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-label">Longest Streak</div>
+          <div class="compare-bars">
+            <div class="compare-bar a" style="width: 60%">6 wins</div>
+            <div class="compare-bar b" style="width: 40%">4 wins</div>
+          </div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-label">Trade Count</div>
+          <div class="compare-bars">
+            <div class="compare-bar a" style="width: 53%">25</div>
+            <div class="compare-bar b" style="width: 47%">22</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Trades -->
+    <div class="panel full-panel">
+      <div class="panel-header">
+        <div class="panel-title">Recent Trades</div>
+        <div class="panel-badge">Last 10</div>
+      </div>
+      <table class="trade-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Ticker</th>
+            <th>Strategy</th>
+            <th>Type</th>
+            <th>Entry</th>
+            <th>Exit</th>
+            <th>Shares</th>
+            <th>P&L</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Feb 21</td>
+            <td class="ticker">NVDA</td>
+            <td><span class="strat-tag strat-a" style="font-size:9px">A</span></td>
+            <td><span class="trade-type type-long">LONG</span></td>
+            <td>$128.40</td>
+            <td>$131.20</td>
+            <td>50</td>
+            <td class="gain">+$140</td>
+          </tr>
+          <tr>
+            <td>Feb 20</td>
+            <td class="ticker">TSLA</td>
+            <td><span class="strat-tag strat-b" style="font-size:9px">B</span></td>
+            <td><span class="trade-type type-long">LONG</span></td>
+            <td>$342.10</td>
+            <td>$338.50</td>
+            <td>15</td>
+            <td class="loss">-$54</td>
+          </tr>
+          <tr>
+            <td>Feb 19</td>
+            <td class="ticker">AAPL</td>
+            <td><span class="strat-tag strat-a" style="font-size:9px">A</span></td>
+            <td><span class="trade-type type-long">LONG</span></td>
+            <td>$241.80</td>
+            <td>$245.60</td>
+            <td>30</td>
+            <td class="gain">+$114</td>
+          </tr>
+          <tr>
+            <td>Feb 18</td>
+            <td class="ticker">META</td>
+            <td><span class="strat-tag strat-b" style="font-size:9px">B</span></td>
+            <td><span class="trade-type type-long">LONG</span></td>
+            <td>$688.20</td>
+            <td>$694.80</td>
+            <td>10</td>
+            <td class="gain">+$66</td>
+          </tr>
+          <tr>
+            <td>Feb 17</td>
+            <td class="ticker">AMD</td>
+            <td><span class="strat-tag strat-a" style="font-size:9px">A</span></td>
+            <td><span class="trade-type type-long">LONG</span></td>
+            <td>$118.90</td>
+            <td>$124.10</td>
+            <td>40</td>
+            <td class="gain">+$208</td>
+          </tr>
+          <tr>
+            <td>Feb 14</td>
+            <td class="ticker">RIVN</td>
+            <td><span class="strat-tag strat-b" style="font-size:9px">B</span></td>
+            <td><span class="trade-type type-long">LONG</span></td>
+            <td>$14.80</td>
+            <td>$13.10</td>
+            <td>200</td>
+            <td class="loss">-$340</td>
+          </tr>
+          <tr>
+            <td>Feb 13</td>
+            <td class="ticker">MSFT</td>
+            <td><span class="strat-tag strat-a" style="font-size:9px">A</span></td>
+            <td><span class="trade-type type-long">LONG</span></td>
+            <td>$412.30</td>
+            <td>$416.90</td>
+            <td>20</td>
+            <td class="gain">+$92</td>
+          </tr>
+          <tr>
+            <td>Feb 12</td>
+            <td class="ticker">AAPL</td>
+            <td><span class="strat-tag strat-a" style="font-size:9px">A</span></td>
+            <td><span class="trade-type type-long">LONG</span></td>
+            <td>$228.40</td>
+            <td>$252.40</td>
+            <td>30</td>
+            <td class="gain">+$720</td>
+          </tr>
+          <tr>
+            <td>Feb 10</td>
+            <td class="ticker">COIN</td>
+            <td><span class="strat-tag strat-a" style="font-size:9px">A</span></td>
+            <td><span class="trade-type type-long">LONG</span></td>
+            <td>$268.50</td>
+            <td>$258.20</td>
+            <td>40</td>
+            <td class="loss">-$412</td>
+          </tr>
+          <tr>
+            <td>Feb 7</td>
+            <td class="ticker">SNAP</td>
+            <td><span class="strat-tag strat-b" style="font-size:9px">B</span></td>
+            <td><span class="trade-type type-long">LONG</span></td>
+            <td>$12.40</td>
+            <td>$11.45</td>
+            <td>200</td>
+            <td class="loss">-$190</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-text">Built with <span>BlindSpot</span> · Powered by Dropdown Logistics</div>
+    <div class="footer-sub">Your data. Structured. Visible. Yours.</div>
+  </div>
+
+</div>
+
+<script>
+function setView(btn) {
+  document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+</script>
+
+</body>
+</html>

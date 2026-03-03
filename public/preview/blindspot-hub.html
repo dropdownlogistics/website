@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BlindSpot — Same Engine. Different Data.</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0D1B2A;
+  --card:#10202f;
+  --card-hover:#162538;
+  --cream:#F5F1EB;
+  --cream-high:rgba(245,241,235,0.85);
+  --cream-mid:rgba(245,241,235,0.55);
+  --cream-dim:rgba(245,241,235,0.3);
+  --cream-ghost:rgba(245,241,235,0.08);
+  --border:rgba(245,241,235,0.06);
+  --amber:#C49A3C;
+  --amber-dim:rgba(196,154,60,0.15);
+  --amber-glow:rgba(196,154,60,0.06);
+  --crimson:#B23531;
+  --green:#4A9E6B;
+  --blue:#6B9DC2;
+  --violet:#8a6cc9;
+  --ember:#c98a4a;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Source Serif 4',Georgia,serif;background:var(--navy);color:var(--cream);line-height:1.6;overflow-x:hidden}
+
+.container{max-width:800px;margin:0 auto;padding:64px 24px 80px}
+
+/* HERO */
+.hero{text-align:center;margin-bottom:64px;position:relative}
+.hero::before{content:'';position:absolute;top:20%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,var(--amber-glow) 0%,transparent 70%);pointer-events:none}
+
+.logo-mark{width:80px;height:80px;margin:0 auto 24px;position:relative;z-index:1}
+.logo-inner{width:80px;height:80px;border-radius:14px;background:linear-gradient(135deg,var(--card) 0%,#0A1520 60%);border:1px solid rgba(196,154,60,0.2);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.logo-inner::before{content:'';position:absolute;top:-10px;left:-10px;width:50px;height:50px;background:radial-gradient(circle,rgba(196,154,60,0.3) 0%,transparent 70%)}
+.b-letter{font-family:'Space Grotesk',sans-serif;font-size:42px;font-weight:700;background:linear-gradient(135deg,var(--cream) 0%,var(--cream) 48%,var(--card) 52%,var(--card) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;position:relative;z-index:1}
+
+.hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.2rem,5vw,3rem);font-weight:700;line-height:1.15;margin-bottom:8px;position:relative;z-index:1}
+.hero h1 .amber{color:var(--amber)}
+.hero .tagline{font-family:'JetBrains Mono',monospace;font-size:0.82rem;color:var(--amber);margin-bottom:16px;letter-spacing:0.04em;position:relative;z-index:1}
+.hero .sub{font-size:1rem;color:var(--cream-mid);max-width:560px;margin:0 auto;font-weight:300;line-height:1.8;position:relative;z-index:1}
+
+/* THESIS */
+.thesis{margin-bottom:48px}
+.thesis-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:32px 28px;position:relative;overflow:hidden}
+.thesis-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--amber),var(--green),var(--blue))}
+.thesis-card h2{font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:600;margin-bottom:12px}
+.thesis-card p{color:var(--cream-mid);font-size:0.95rem;line-height:1.8;font-weight:300}
+.thesis-card .em{color:var(--cream);font-weight:400}
+.thesis-card .amber{color:var(--amber)}
+
+/* MODULES */
+.modules{margin-bottom:48px}
+.section-label{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--amber);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:16px}
+.module-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:600px){.module-grid{grid-template-columns:1fr}}
+
+.module{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:24px 22px;text-decoration:none;display:block;transition:all 0.2s;position:relative;overflow:hidden}
+.module:hover{border-color:rgba(196,154,60,0.3);background:var(--card-hover);transform:translateY(-2px)}
+.module::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;border-radius:3px 0 0 3px;transition:opacity 0.2s}
+.module:hover::before{opacity:1}
+.module .icon{font-size:1.4rem;margin-bottom:10px;display:block}
+.module h3{font-family:'Space Grotesk',sans-serif;font-size:0.95rem;font-weight:600;color:var(--cream);margin-bottom:6px}
+.module p{font-size:0.8rem;color:var(--cream-dim);line-height:1.6;font-weight:300}
+.module .status{font-family:'JetBrains Mono',monospace;font-size:0.55rem;letter-spacing:0.08em;text-transform:uppercase;margin-top:10px;padding:3px 8px;border-radius:3px;display:inline-block}
+
+.module.trading::before{background:var(--green)}
+.module.trading .status{background:rgba(74,158,107,0.15);color:var(--green)}
+.module.campaign::before{background:var(--ember)}
+.module.campaign .status{background:rgba(201,138,74,0.15);color:var(--ember)}
+.module.steam::before{background:var(--blue)}
+.module.steam .status{background:rgba(107,157,194,0.15);color:var(--blue)}
+.module.betting::before{background:var(--amber)}
+.module.betting .status{background:var(--amber-dim);color:var(--amber)}
+.module.backtest::before{background:var(--violet)}
+.module.backtest .status{background:rgba(138,108,201,0.15);color:var(--violet)}
+.module.llm::before{background:var(--crimson)}
+.module.llm .status{background:rgba(178,53,49,0.15);color:var(--crimson)}
+
+/* HOW IT WORKS */
+.how{margin-bottom:48px}
+.step-row{display:flex;align-items:flex-start;gap:20px;margin-bottom:20px}
+.step-num{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--amber);letter-spacing:0.1em;flex-shrink:0;padding-top:3px;width:80px}
+.step-content h3{font-family:'Space Grotesk',sans-serif;font-size:0.95rem;font-weight:600;margin-bottom:4px}
+.step-content p{font-size:0.85rem;color:var(--cream-mid);font-weight:300;line-height:1.7}
+
+/* STATS */
+.stats{display:flex;justify-content:center;gap:32px;padding:20px 0;margin-bottom:48px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);flex-wrap:wrap}
+.stat{text-align:center}
+.stat-num{font-family:'JetBrains Mono',monospace;font-size:1.2rem;font-weight:700;color:var(--cream)}
+.stat-label{font-family:'JetBrains Mono',monospace;font-size:0.5rem;color:var(--cream-dim);letter-spacing:0.1em;text-transform:uppercase;margin-top:2px}
+
+/* PITCH */
+.pitch{margin-bottom:48px}
+.pitch-box{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:36px 28px;position:relative;overflow:hidden}
+.pitch-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--amber),var(--green))}
+.pitch-box h2{font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:600;margin-bottom:16px}
+.pitch-box p{color:var(--cream-mid);font-size:0.92rem;line-height:1.8;margin-bottom:12px;font-weight:300}
+.pitch-box .em{color:var(--cream);font-weight:400}
+.pitch-box .amber{color:var(--amber)}
+.pitch-box .sig{font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--cream-dim);margin-top:24px}
+
+/* FOOTER */
+.foot{text-align:center}
+.foot-gradient{height:2px;border-radius:1px;margin-bottom:14px;background:linear-gradient(90deg,var(--crimson),var(--amber),var(--blue),var(--violet),var(--green))}
+.foot-line{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--cream-dim);letter-spacing:0.08em}
+.foot-sub{font-family:'JetBrains Mono',monospace;font-size:0.55rem;color:var(--cream-dim);margin-top:4px;opacity:0.4}
+
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="logo-mark">
+      <div class="logo-inner">
+        <span class="b-letter">B</span>
+      </div>
+    </div>
+    <h1>Blind<span class="amber">Spot</span></h1>
+    <div class="tagline">same engine · different data</div>
+    <p class="sub">Analytics engines for domains nobody thinks to measure. If it generates data, BlindSpot builds the dashboard. The architecture doesn't change. The data does.</p>
+  </div>
+
+  <!-- THESIS -->
+  <div class="thesis">
+    <div class="thesis-card">
+      <h2>One engine. Every domain.</h2>
+      <p>BlindSpot started as a sports betting analytics tool — backtesting strategies against historical spreads. Then it tracked a Steam library. Then it parsed D&D campaigns with local LLMs. <span class="em">The engine didn't care.</span></p>
+      <p style="margin-top:12px">That's the thesis: <span class="amber">dimensional modeling doesn't have a domain.</span> Facts, dimensions, measures, time. Every dataset speaks this language. BlindSpot just listens.</p>
+    </div>
+  </div>
+
+  <!-- MODULES -->
+  <div class="modules">
+    <div class="section-label">Modules</div>
+    <div class="module-grid">
+      <a href="/blindspot/trading" class="module trading">
+        <span class="icon">📈</span>
+        <h3>Trading</h3>
+        <p>Strategy backtesting across sports markets. 117% return over 16.5 months. P&L distributions, edge decay analysis, bankroll curves.</p>
+        <span class="status">live</span>
+      </a>
+      <a href="/blindspot/campaign" class="module campaign">
+        <span class="icon">⚔️</span>
+        <h3>Campaign Intelligence</h3>
+        <p>D&D campaign analytics. Spotlight balance, quest thread decay, faction heat maps, dice distributions. Parsed by local LLMs.</p>
+        <span class="status">live</span>
+      </a>
+      <a href="/blindspot/steam" class="module steam">
+        <span class="icon">🎮</span>
+        <h3>Steam Library</h3>
+        <p>Library auditing and play pattern analysis. Cost-per-hour, genre distribution, completion rates, backlog intelligence.</p>
+        <span class="status">live</span>
+      </a>
+      <a href="/blindspot/betting" class="module betting">
+        <span class="icon">🏀</span>
+        <h3>Betting Analytics</h3>
+        <p>The original BlindSpot. Fake-money sports betting with real analytics. Spreads, moneylines, seed matchup patterns, bankroll tracking.</p>
+        <span class="status">live</span>
+      </a>
+      <a href="/blindspot/backtest" class="module backtest">
+        <span class="icon">🧪</span>
+        <h3>Backtest Engine</h3>
+        <p>Historical strategy validation. Run your thesis against past data before you commit. P&L distributions across market conditions.</p>
+        <span class="status">prototype</span>
+      </a>
+      <a href="/blindspot/llm" class="module llm">
+        <span class="icon">🤖</span>
+        <h3>Local LLM Setup</h3>
+        <p>Run Llama 3.1 and Mistral on your GPU. Transcript parsing, intelligence brief generation, convergent analysis. Zero cloud dependency.</p>
+        <span class="status">guide</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="how">
+    <div class="section-label">How It Works</div>
+    <div class="step-row">
+      <div class="step-num">01 — INGEST</div>
+      <div class="step-content">
+        <h3>Feed it data</h3>
+        <p>Session transcripts, CSV exports, API pulls, manual entry. BlindSpot doesn't care where the data comes from. It cares that the data exists.</p>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-num">02 — MODEL</div>
+      <div class="step-content">
+        <h3>Dimensional architecture</h3>
+        <p>Facts, dimensions, measures, time. Star schema. Same bones every time. The domain-specific logic lives in the dimension tables, not the engine.</p>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-num">03 — SURFACE</div>
+      <div class="step-content">
+        <h3>See what you're missing</h3>
+        <p>KPI rows, distribution charts, heat maps, trend lines, anomaly flags. The dashboard reveals the patterns your memory can't hold.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">6</div>
+      <div class="stat-label">modules</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">4</div>
+      <div class="stat-label">domains</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">1</div>
+      <div class="stat-label">engine</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">0</div>
+      <div class="stat-label">cloud dependencies</div>
+    </div>
+  </div>
+
+  <!-- PITCH -->
+  <div class="pitch">
+    <div class="pitch-box">
+      <h2>The engine doesn't care.</h2>
+      <p>I built the first version to backtest sports bets. Then I pointed it at my Steam library and it worked. Then at a D&D campaign — <span class="em">same architecture, same primitives, same dashboard patterns</span>. The only thing that changed was the dimension tables.</p>
+      <p>That's when I stopped calling it a betting tool and started calling it <span class="amber">BlindSpot</span> — because every domain has data you're generating but not reading. The blind spot isn't ignorance. It's structure. You need a schema before you can see the pattern.</p>
+      <div class="sig">— Dave · same engine · different data</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="foot">
+    <div class="foot-gradient"></div>
+    <div class="foot-line">BlindSpot · D&A · Dropdown Logistics</div>
+    <div class="foot-sub">same engine · different data · if it generates data, BlindSpot builds the dashboard</div>
+  </div>
+
+</div>
+</body>
+</html>

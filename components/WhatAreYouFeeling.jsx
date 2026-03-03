@@ -30,12 +30,18 @@ const moods = [
     label: "Show me what you built",
     color: C.crimson,
     pages: [
-      { title: "BlindSpot — D&A Landing", href: "/blindspot", wing: "D&A" },
+      { title: "BlindSpot Hub", href: "/blindspot", wing: "D&A" },
+      { title: "BlindSpot Trading", href: "/blindspot/trading", wing: "D&A" },
+      { title: "BlindSpot Campaign", href: "/blindspot/campaign", wing: "D&A" },
+      { title: "BlindSpot Betting", href: "/blindspot/betting", wing: "D&A" },
       { title: "Excelligence — Knowledge Graph", href: "/excelligence", wing: "DDL" },
       { title: "Template Palette", href: "/methodology/palette", wing: "DDL" },
       { title: "r/excel Launch", href: "/work/rexcel", wing: "DDL" },
       { title: "Other Works", href: "/other-works", wing: "DexVerse" },
       { title: "PrioritEase", href: "/prioritease", wing: "DDL" },
+      { title: "Behavioral Intelligence", href: "/products/behavioral-intelligence", wing: "Products" },
+      { title: "Grammarly — 4.57M Words", href: "/analytics/grammarly", wing: "D&A" },
+      { title: "PSS — Prompt Strategy System", href: "/framework/pss", wing: "DDL" },
     ],
   },
   {
@@ -49,6 +55,10 @@ const moods = [
       { title: "The Protocol", href: "/memoir/the-protocol", wing: "DDL" },
       { title: "The Recursive Mind", href: "/mindframe/recursive", wing: "DDL" },
       { title: "Palette Narrative", href: "/methodology/palette/narrative", wing: "DexVerse" },
+      { title: "Leafshadow Lineage", href: "/dossiers/leafshadow-lineage", wing: "Dossiers" },
+      { title: "Forewords — Nine Models", href: "/forewords", wing: "DDL" },
+      { title: "DexLore — Origin Archaeology", href: "/dexlore", wing: "DexVerse" },
+      { title: "The Continuum", href: "/dexlore/continuum", wing: "DexVerse" },
     ],
   },
   {
@@ -59,10 +69,14 @@ const moods = [
       { title: "Methodology", href: "/methodology", wing: "DDL" },
       { title: "Council FAQ", href: "/council/faq", wing: "DDL" },
       { title: "STD-0066 Narrative", href: "/council/std-0066-narrative", wing: "DDL" },
-      { title: "Operator Dossier", href: "/cognitive", wing: "DDL" },
-      { title: "Dimensional Map", href: "/cognitive/map", wing: "DDL" },
       { title: "DDL Glossary", href: "/knowledge/glossary", wing: "DexVerse" },
       { title: "LLM Setup Guide", href: "/guides/llm", wing: "DDL" },
+      { title: "PSS — Prompt Strategy", href: "/framework/pss", wing: "DDL" },
+      { title: "Vibe Coding", href: "/framework/vibe-coding", wing: "DDL" },
+      { title: "AI Context — /ai", href: "/ai", wing: "DDL" },
+      { title: "MindFrame", href: "/mindframe", wing: "DDL" },
+      { title: "DexOS", href: "/dexos", wing: "DDL" },
+      { title: "AutoCouncil", href: "/council/auto-council", wing: "DDL" },
     ],
   },
   {
@@ -75,7 +89,15 @@ const moods = [
       { title: "Prediction vs Actuals", href: "/recaps/predictions", wing: "D&A" },
       { title: "BlindSpot Trading", href: "/blindspot/trading", wing: "D&A" },
       { title: "BlindSpot Steam", href: "/blindspot/steam", wing: "D&A" },
-      { title: "Knowledge Map", href: "/knowledge/map", wing: "DDL" },
+      { title: "BlindSpot Backtest", href: "/blindspot/backtest", wing: "D&A" },
+      { title: "Campaign Analytics", href: "/dossiers/campaign-analytics", wing: "Dossiers" },
+      { title: "Knowledge Map", href: "/knowledge/map", wing: "DexVerse" },
+      { title: "Sonic Thread", href: "/analytics/sonic-thread", wing: "D&A" },
+      { title: "Callback Engine", href: "/analytics/callback-engine", wing: "D&A" },
+      { title: "Catnip Map", href: "/analytics/catnip-map", wing: "D&A" },
+      { title: "Tone Analysis", href: "/analytics/tone", wing: "D&A" },
+      { title: "Memoir Analytics", href: "/analytics/memoir", wing: "D&A" },
+      { title: "DexDash", href: "/analytics/dexdash", wing: "D&A" },
     ],
   },
   {
@@ -88,7 +110,28 @@ const moods = [
       { title: "Registry", href: "/registry", wing: "DDL" },
       { title: "Council", href: "/council", wing: "DDL" },
       { title: "Council Profiles", href: "/council/profiles", wing: "DDL" },
+      { title: "Council Scaling", href: "/council/scaling", wing: "DDL" },
+      { title: "Hal Style Lock", href: "/dossiers/hal-style-lock", wing: "Dossiers" },
       { title: "STD-0066 Brief", href: "/council/BRF-council-naming-std-ALL-20260301", wing: "DDL" },
+    ],
+  },
+  {
+    emoji: "⚔️",
+    label: "Meet the party",
+    color: C.green,
+    pages: [
+      { title: "Feliciano — Dragonborn Paladin", href: "/dossiers/feliciano", wing: "Dossiers" },
+      { title: "Hillie — Drow Warlock", href: "/dossiers/hillie", wing: "Dossiers" },
+      { title: "Merrick — Elf Mage", href: "/dossiers/merrick", wing: "Dossiers" },
+      { title: "Riflen — Fighter", href: "/dossiers/riflen", wing: "Dossiers" },
+      { title: "Doc Rickets — Undead Rogue", href: "/dossiers/doc-rickets", wing: "Dossiers" },
+      { title: "Xuth Jr — Argonian L56", href: "/dossiers/xuth-jr", wing: "Dossiers" },
+      { title: "Xuth III — Argonian Reboot", href: "/dossiers/xuth-iii", wing: "Dossiers" },
+      { title: "Xuth Sr — Daedric Ancestor", href: "/dossiers/xuth-sr", wing: "Dossiers" },
+      { title: "Ash, Snow & Steel — D&D Party", href: "/dossiers/ash-snow-steel", wing: "Dossiers" },
+      { title: "Fort Joy — Divinity Party", href: "/dossiers/fort-joy", wing: "Dossiers" },
+      { title: "Leafshadow Lineage", href: "/dossiers/leafshadow-lineage", wing: "Dossiers" },
+      { title: "BlindSpot Campaign", href: "/blindspot/campaign", wing: "D&A" },
     ],
   },
   {
@@ -103,7 +146,13 @@ const moods = [
 const allPages = moods.slice(0, -1).flatMap((m) => m.pages);
 moods[moods.length - 1].pages = allPages;
 
-const wingColors = { DDL: C.crimson, "D&A": C.amber, DexVerse: C.violet };
+const wingColors = {
+  DDL: C.crimson,
+  "D&A": C.amber,
+  DexVerse: C.violet,
+  Dossiers: C.green,
+  Products: C.blue,
+};
 
 export default function WhatAreYouFeeling() {
   const [selectedMood, setSelectedMood] = useState(null);

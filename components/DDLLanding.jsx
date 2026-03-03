@@ -57,9 +57,9 @@ const wings = [
       { label: "Registry", desc: "The canonical index", href: "/registry" },
       { label: "Methodology", desc: "How it's built", href: "/methodology" },
       { label: "Excelligence", desc: "Knowledge graph", href: "/excelligence" },
-      { label: "Cognitive", desc: "Operator architecture", href: "/cognitive" },
       { label: "MindFrame", desc: "Persona calibration", href: "/mindframe" },
       { label: "DexOS", desc: "Multi-model coordination", href: "/dexos" },
+      { label: "PSS", desc: "Prompt strategy system", href: "/framework/pss" },
     ],
     story: [
       { label: "Memoir", desc: "Little to Know Experience", href: "/memoir" },
@@ -71,7 +71,7 @@ const wings = [
   {
     id: "da",
     name: "D&A",
-    full: "BlindSpot Analytics",
+    full: "Data & Analytics",
     tagline: "The Intelligence Surface",
     color: C.amber,
     accent: C.amberDim,
@@ -82,15 +82,18 @@ const wings = [
       { label: "Trading", desc: "Strategy backtesting", href: "/blindspot/trading" },
       { label: "Steam", desc: "Library analytics", href: "/blindspot/steam" },
       { label: "Campaign", desc: "D&D intelligence", href: "/blindspot/campaign" },
-      { label: "Backtest", desc: "P&L distributions", href: "/blindspot/backtest" },
       { label: "LLM Guide", desc: "Local model setup", href: "/blindspot/llm" },
+      { label: "Grammarly", desc: "4.57M words analyzed", href: "/analytics/grammarly" },
+      { label: "Sonic Thread", desc: "Audio analytics", href: "/analytics/sonic-thread" },
+      { label: "Callback Engine", desc: "Pattern detection", href: "/analytics/callback-engine" },
+      { label: "Catnip Map", desc: "Behavioral analytics", href: "/analytics/catnip-map" },
     ],
     story: [
       { label: "Recaps", desc: "Year-end signal reports", href: "/recaps" },
       { label: "Apple Music", desc: "2025 deep dive", href: "/recaps/apple-music" },
       { label: "Predictions", desc: "AI accuracy audit", href: "/recaps/predictions" },
     ],
-    stat: { number: "5", label: "modules", sub: "3 recaps · 1 LLM guide" },
+    stat: { number: "5", label: "modules", sub: "7 dashboards · 3 recaps" },
   },
   {
     id: "dexverse",
@@ -113,6 +116,32 @@ const wings = [
       { label: "Palette Narrative", desc: "Seeds to synthesis", href: "/methodology/palette/narrative" },
     ],
     stat: { number: "15", label: "companions", sub: "56 threads · 5 eras" },
+  },
+  {
+    id: "dossiers",
+    name: "Dossiers",
+    full: "CottageHumble RPG",
+    tagline: "The Character Archive",
+    color: C.green,
+    accent: C.greenDim,
+    href: "/dossiers",
+    description: "Every character gets a governed dossier. Stat blocks, narrative bios, campaign analytics, and lineage chronicles — across D&D 5e, Divinity: Original Sin 2, and Skyrim. Party registries track group composition. BlindSpot Campaign tracks the data behind the stories.",
+    sections: [
+      { label: "Feliciano", desc: "Dragonborn Paladin, D&D 5e", href: "/dossiers/feliciano" },
+      { label: "Hillie", desc: "Elf/Drow Warlock, D&D 5e", href: "/dossiers/hillie" },
+      { label: "Merrick", desc: "Elf Mage, Divinity OS2", href: "/dossiers/merrick" },
+      { label: "Xuth Jr", desc: "Argonian L56, Skyrim", href: "/dossiers/xuth-jr" },
+      { label: "Xuth III", desc: "Argonian reboot, Skyrim", href: "/dossiers/xuth-iii" },
+      { label: "Xuth Sr", desc: "Daedric ancestor, Skyrim", href: "/dossiers/xuth-sr" },
+      { label: "Ash, Snow & Steel", desc: "D&D party registry", href: "/dossiers/ash-snow-steel" },
+      { label: "Fort Joy", desc: "Divinity party registry", href: "/dossiers/fort-joy" },
+      { label: "Leafshadow Lineage", desc: "Three-gen chronicle", href: "/dossiers/leafshadow-lineage" },
+    ],
+    story: [
+      { label: "Campaign Analytics", desc: "BlindSpot RPG dashboard", href: "/dossiers/campaign-analytics" },
+      { label: "Hal Style Lock", desc: "Portrait governance", href: "/dossiers/hal-style-lock" },
+    ],
+    stat: { number: "14", label: "dossiers", sub: "3 games · 3 parties · 1 lineage" },
   },
 ];
 
@@ -240,7 +269,7 @@ function WingCard({ wing, isExpanded, onToggle }) {
           {/* Story/companion routes */}
           <div>
             <div style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 10 }}>
-              {wing.id === "ddl" ? "Story" : wing.id === "da" ? "Signal Reports" : "Reference"}
+              {wing.id === "ddl" ? "Story" : wing.id === "da" ? "Signal Reports" : wing.id === "dossiers" ? "Tools" : "Reference"}
             </div>
             <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
               {wing.story.map((s) => (
@@ -306,6 +335,57 @@ function WingCard({ wing, isExpanded, onToggle }) {
 }
 
 // ═══════════════════════════════════════════════════════════
+// Products Link Card (compact, not a full wing card)
+// ═══════════════════════════════════════════════════════════
+
+function ProductsCard() {
+  return (
+    <a
+      href="/products/behavioral-intelligence"
+      style={{
+        display: "block",
+        background: C.card,
+        border: `1px solid ${C.border}`,
+        borderRadius: 7,
+        padding: "24px 28px",
+        textDecoration: "none",
+        transition: "all 0.2s ease",
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.borderColor = C.blue + "40";
+        e.currentTarget.style.background = C.cardHover;
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.borderColor = C.border;
+        e.currentTarget.style.background = C.card;
+      }}
+    >
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <div>
+          <div style={{ fontFamily: font.mono, fontSize: 10, color: C.blue, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 6 }}>
+            Products
+          </div>
+          <div style={{ fontFamily: font.display, fontSize: 20, fontWeight: 600, color: C.cream, marginBottom: 4 }}>
+            Behavioral Intelligence
+          </div>
+          <div style={{ fontFamily: font.body, fontSize: 13, color: C.creamMid, lineHeight: 1.6 }}>
+            What if the conversation itself was the product? A concept suite exploring AI-native behavioral analytics — from investor brief to origin story.
+          </div>
+        </div>
+        <div style={{ flexShrink: 0, marginLeft: 24 }}>
+          <div style={{
+            width: 40, height: 40, borderRadius: 8,
+            background: C.blue + "18", border: `1px solid ${C.blue}30`,
+            display: "flex", alignItems: "center", justifyContent: "center",
+            fontFamily: font.mono, fontSize: 18, color: C.blue,
+          }}>→</div>
+        </div>
+      </div>
+    </a>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════
 // Main Landing Page
 // ═══════════════════════════════════════════════════════════
 export default function DDLLanding() {
@@ -315,7 +395,7 @@ export default function DDLLanding() {
     <div style={{ minHeight: "100vh", background: C.navy, color: C.cream }}>
       <div style={{ maxWidth: 800, margin: "0 auto", padding: "64px 24px 80px" }}>
 
-        {/* ─── HERO ─── */}
+        {/* ——— HERO ——— */}
         <div style={{ textAlign: "center", marginBottom: 64 }}>
           {/* Logo mark */}
           <img
@@ -340,13 +420,13 @@ export default function DDLLanding() {
             lineHeight: 1.7, maxWidth: 520, margin: "0 auto",
             fontStyle: "italic",
           }}>
-            Three wings. One cathedral.
+            Five wings. One cathedral.
           </p>
 
           <div style={{ height: 2, width: 48, background: C.crimson, margin: "24px auto 0", opacity: 0.4 }} />
         </div>
 
-        {/* ─── METHODOLOGY LINE ─── */}
+        {/* ——— METHODOLOGY LINE ——— */}
         <div style={{
           display: "flex", alignItems: "center", justifyContent: "center",
           gap: 16, marginBottom: 48,
@@ -366,7 +446,7 @@ export default function DDLLanding() {
           ))}
         </div>
 
-        {/* ─── THREE WINGS ─── */}
+        {/* ——— WING CARDS ——— */}
         <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
           {wings.map((wing) => (
             <WingCard
@@ -378,24 +458,30 @@ export default function DDLLanding() {
           ))}
         </div>
 
-        {/* ─── DISCOVERY ─── */}
+        {/* ——— PRODUCTS LINK ——— */}
+        <div style={{ marginTop: 12 }}>
+          <ProductsCard />
+        </div>
+
+        {/* ——— DISCOVERY ——— */}
         <div style={{ marginTop: 24 }}>
           <WhatAreYouFeeling />
         </div>
 
-        {/* ─── BOTTOM STATS ─── */}
+        {/* ——— BOTTOM STATS ——— */}
         <div style={{
           display: "flex", justifyContent: "center", gap: 32,
           marginTop: 48, padding: "20px 0",
           borderTop: `1px solid ${C.border}`,
           borderBottom: `1px solid ${C.border}`,
+          flexWrap: "wrap",
         }}>
           {[
             { n: "44", l: "systems" },
             { n: "65", l: "standards" },
             { n: "9", l: "council models" },
             { n: "15", l: "companions" },
-            { n: "56", l: "threads" },
+            { n: "110+", l: "routes" },
           ].map((s, i) => (
             <div key={i} style={{ textAlign: "center" }}>
               <div style={{ fontFamily: font.mono, fontSize: 18, fontWeight: 700, color: C.cream }}>{s.n}</div>
@@ -404,11 +490,11 @@ export default function DDLLanding() {
           ))}
         </div>
 
-        {/* ─── FOOTER ─── */}
+        {/* ——— FOOTER ——— */}
         <div style={{ marginTop: 48 }}>
           <div style={{
             height: 2, borderRadius: 1, marginBottom: 14,
-            background: `linear-gradient(90deg, ${C.crimson}, ${C.amber}, ${C.violet})`,
+            background: `linear-gradient(90deg, ${C.crimson}, ${C.amber}, ${C.blue}, ${C.violet}, ${C.green})`,
           }} />
           <div style={{ textAlign: "center" }}>
             <div style={{ fontFamily: font.mono, fontSize: 10, color: C.creamDim, letterSpacing: "0.08em", marginBottom: 4 }}>
@@ -423,7 +509,3 @@ export default function DDLLanding() {
     </div>
   );
 }
-
-
-
-

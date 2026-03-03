@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CODEX — The Hal Style Lock</title>
+<title>CODEX â€” The Hal Style Lock</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
-<style><style>
+<style>
   :root {
     --navy: #0D1B2A;
     --card: #10202f;
@@ -49,7 +49,7 @@
     padding: 48px 24px 64px;
   }
 
-  /* ── Classification Banner ── */
+  /* â”€â”€ Classification Banner â”€â”€ */
   .classification {
     text-align: center;
     margin-bottom: 40px;
@@ -77,7 +77,7 @@
     letter-spacing: 0.12em;
   }
 
-  /* ── Hero Name ── */
+  /* â”€â”€ Hero Name â”€â”€ */
   .hero-name {
     font-family: var(--font-body);
     font-size: 48px;
@@ -88,7 +88,7 @@
     letter-spacing: -0.01em;
   }
 
-  /* ── Title / Role ── */
+  /* â”€â”€ Title / Role â”€â”€ */
   .hero-role {
     font-family: var(--font-mono);
     font-size: 13px;
@@ -98,7 +98,7 @@
     margin-bottom: 16px;
   }
 
-  /* ── Status Badge ── */
+  /* â”€â”€ Status Badge â”€â”€ */
   .status-row {
     display: flex;
     flex-wrap: wrap;
@@ -121,7 +121,7 @@
   .badge-amber { color: var(--amber); background: var(--amber-dim); border-color: rgba(196,154,60,0.3); }
   .badge-ember { color: var(--ember); background: var(--ember-dim); border-color: rgba(201,138,74,0.3); }
 
-  /* ── Stat Block ── */
+  /* â”€â”€ Stat Block â”€â”€ */
   .stat-block {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -156,7 +156,7 @@
   .stat-value.blue { color: var(--blue); }
   .stat-value.green { color: var(--green); }
 
-  /* ── Signature Directive (Pull Quote) ── */
+  /* â”€â”€ Signature Directive (Pull Quote) â”€â”€ */
   .directive {
     border-left: 2px solid var(--crimson);
     padding: 16px 20px;
@@ -180,7 +180,7 @@
     margin-top: 8px;
   }
 
-  /* ── Narrative Bio ── */
+  /* â”€â”€ Narrative Bio â”€â”€ */
   .narrative {
     margin-bottom: 32px;
   }
@@ -194,7 +194,7 @@
   .narrative p:last-child { margin-bottom: 0; }
   .narrative strong { color: var(--cream-high); font-weight: 600; }
 
-  /* ── Section Headers ── */
+  /* â”€â”€ Section Headers â”€â”€ */
   .section-head {
     display: flex;
     align-items: center;
@@ -225,7 +225,7 @@
     background: var(--border);
   }
 
-  /* ── Attribute Grid ── */
+  /* â”€â”€ Attribute Grid â”€â”€ */
   .attr-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -256,7 +256,7 @@
   .attr-val.warn { color: var(--crimson); }
   .attr-val.good { color: var(--green); }
 
-  /* ── Equipment Cards ── */
+  /* â”€â”€ Equipment Cards â”€â”€ */
   .equip-card {
     background: var(--card);
     border: 1px solid var(--border);
@@ -298,7 +298,7 @@
     line-height: 1.5;
   }
 
-  /* ── Collapsible Sections ── */
+  /* â”€â”€ Collapsible Sections â”€â”€ */
   .collapsible {
     margin-bottom: 8px;
   }
@@ -342,7 +342,7 @@
   .collapsible-content p { margin-bottom: 12px; }
   .collapsible-content strong { color: var(--cream-high); }
 
-  /* ── Talent List ── */
+  /* â”€â”€ Talent List â”€â”€ */
   .talent-item {
     background: var(--card);
     border: 1px solid var(--border);
@@ -364,7 +364,7 @@
     line-height: 1.6;
   }
 
-  /* ── Vulnerability Flags ── */
+  /* â”€â”€ Vulnerability Flags â”€â”€ */
   .vuln-item {
     display: flex;
     gap: 12px;
@@ -391,7 +391,7 @@
   }
   .vuln-text strong { color: var(--cream-high); }
 
-  /* ── Role Cards ── */
+  /* â”€â”€ Role Cards â”€â”€ */
   .role-card {
     background: var(--card);
     border: 1px solid var(--border);
@@ -421,7 +421,7 @@
     line-height: 1.7;
   }
 
-  /* ── Resistance Bar ── */
+  /* â”€â”€ Resistance Bar â”€â”€ */
   .resist-row {
     display: flex;
     gap: 4px;
@@ -450,7 +450,7 @@
     margin-top: 2px;
   }
 
-  /* ── Footer ── */
+  /* â”€â”€ Footer â”€â”€ */
   .dossier-footer {
     margin-top: 56px;
   }
@@ -477,7 +477,7 @@
     opacity: 0.5;
   }
 
-  /* ── Responsive ── */
+  /* â”€â”€ Responsive â”€â”€ */
   @media (max-width: 520px) {
     .hero-name { font-size: 36px; }
     .stat-block { grid-template-columns: repeat(3, 1fr); }
@@ -491,11 +491,11 @@
 <body>
 <div class="dossier">
   <div class="classification">
-    <div class="classification-tag" style="color:var(--green);background:var(--green-dim);border-color:rgba(74,158,107,0.3)">DDL Governance — Visual Continuity Standard</div>
-    <div class="classification-sub">Hal Style Lock Codex · Chibi Portrait Governance · No Drift, Council Approved</div>
+    <div class="classification-tag" style="color:var(--green);background:var(--green-dim);border-color:rgba(74,158,107,0.3)">DDL Governance â€” Visual Continuity Standard</div>
+    <div class="classification-sub">Hal Style Lock Codex Â· Chibi Portrait Governance Â· No Drift, Council Approved</div>
   </div>
   <h1 class="hero-name">The Hal Style Lock</h1>
-  <div class="hero-role" style="color:var(--green)">Visual Continuity Artifact · DDL Certified · Mascot Governance Protocol</div>
+  <div class="hero-role" style="color:var(--green)">Visual Continuity Artifact Â· DDL Certified Â· Mascot Governance Protocol</div>
   <div class="status-row">
     <span class="badge badge-green">DDL CERTIFIED</span>
     <span class="badge badge-amber">NO DRIFT</span>
@@ -503,11 +503,11 @@
   </div>
   <div class="directive" style="border-color:var(--green);background:var(--green-dim)">
     <div class="directive-text">"Hal is the goblin who holds the sign. The sign is the standard. The standard is the system."</div>
-    <div class="directive-source">— DDL Visual Continuity Protocol</div>
+    <div class="directive-source">â€” DDL Visual Continuity Protocol</div>
   </div>
   <div class="narrative">
-    <p><strong>Hal</strong> is a small green goblin who appears across all DDL creative artifacts as a visual continuity anchor. He holds signs. He photobombs character portraits. He appears in certification medals. He is not a character — he is a <strong>governance mechanism in chibi form</strong>.</p>
-    <p>The Hal Style Lock ensures that every AI-generated portrait in the DDL ecosystem maintains visual consistency. When Hal appears in a character's chibi portrait, it confirms the image was generated within the DDL continuity standard — correct proportions, correct color palette, correct crayon-style rendering.</p>
+    <p><strong>Hal</strong> is a small green goblin who appears across all DDL creative artifacts as a visual continuity anchor. He holds signs. He photobombs character portraits. He appears in certification medals. He is not a character â€” he is a <strong>governance mechanism in chibi form</strong>.</p>
+    <p>The Hal Style Lock ensures that every AI-generated portrait in the DDL ecosystem maintains visual consistency. When Hal appears in a character's chibi portrait, it confirms the image was generated within the DDL continuity standard â€” correct proportions, correct color palette, correct crayon-style rendering.</p>
   </div>
   <div class="section-head"><div class="section-num" style="background:var(--green-dim);color:var(--green)">I</div><span class="section-title">Style Lock Parameters</span><div class="section-line"></div></div>
   <div class="attr-grid">
@@ -527,10 +527,10 @@
   <div class="talent-item"><div class="talent-name" style="color:var(--ember)">Plaid Shirt Elder</div><div class="talent-desc">Older gentleman, warm smile, glasses. The campaign's gentle presence. Possibly the most dangerous one at the table.</div></div>
   <div class="section-head"><div class="section-num" style="background:var(--violet-dim);color:var(--violet)">III</div><span class="section-title">Governance Notes</span><div class="section-line"></div></div>
   <div class="narrative">
-    <p>The Hal Style Lock is not decorative. It is a <strong>DDL standard</strong> — part of the same governance framework that produces the 44 systems and 65 standards in the Dropdown Logistics registry. When a chibi portrait includes Hal, it means the image passed the visual continuity check. When a certification medal features Hal, it means the underlying system met the DDL standard for documentation and drift prevention.</p>
+    <p>The Hal Style Lock is not decorative. It is a <strong>DDL standard</strong> â€” part of the same governance framework that produces the 44 systems and 65 standards in the Dropdown Logistics registry. When a chibi portrait includes Hal, it means the image passed the visual continuity check. When a certification medal features Hal, it means the underlying system met the DDL standard for documentation and drift prevention.</p>
     <p>Hal's role is to be small, green, and present. That is the whole job. He does it perfectly.</p>
   </div>
-  <div class="dossier-footer"><div class="footer-gradient"></div><div class="footer-text"><div class="footer-motto">Cottage — Humble surface. Cathedral underneath.</div><div class="footer-meta">Prepared by Dropdown Logistics · Governance Division · Visual Continuity Standard</div></div></div>
+  <div class="dossier-footer"><div class="footer-gradient"></div><div class="footer-text"><div class="footer-motto">Cottage â€” Humble surface. Cathedral underneath.</div><div class="footer-meta">Prepared by Dropdown Logistics Â· Governance Division Â· Visual Continuity Standard</div></div></div>
 </div>
 </body>
 </html>

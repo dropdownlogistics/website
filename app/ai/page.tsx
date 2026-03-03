@@ -1,11 +1,11 @@
-﻿export const metadata = { title: 'BlindSpot - D&A - DDL' };
+﻿export const metadata = { title: 'AI Context - Dropdown Logistics' };
 
 export default function Page() {
   return (
     <iframe
-      src="/preview/blindspot-hub.html"
+      src="/preview/ai-context.html"
       style={{ width: '100%', height: '100vh', border: 'none' }}
-      title="BlindSpot - D&A"
+      title="AI Context"
     />
   );
 }

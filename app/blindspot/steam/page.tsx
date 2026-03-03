@@ -1,4 +1,4 @@
-export const metadata = { title: 'BlindSpot Steam — DDL' };
+﻿export const metadata = { title: 'BlindSpot Steam - DDL' };
 
 export default function Page() {
   return (
