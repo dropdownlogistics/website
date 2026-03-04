@@ -59,7 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 fontSize: 11,
                 color: 'rgba(245,241,235,0.25)',
               }}>
-                Â© {new Date().getFullYear()} Dropdown Logistics
+                © {new Date().getFullYear()} Dropdown Logistics
               </span>
               <span style={{
                 fontFamily: "'Source Serif 4', serif",
