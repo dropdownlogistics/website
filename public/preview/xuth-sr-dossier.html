@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DOSSIER â€” Xuth Leafshadow Sr. | Skyrim Chronicles</title>
+<title>DOSSIER — Xuth Leafshadow Sr. | Skyrim Chronicles</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -49,7 +49,7 @@
     padding: 48px 24px 64px;
   }
 
-  /* â”€â”€ Classification Banner â”€â”€ */
+  /* ── Classification Banner ── */
   .classification {
     text-align: center;
     margin-bottom: 40px;
@@ -77,7 +77,7 @@
     letter-spacing: 0.12em;
   }
 
-  /* â”€â”€ Hero Name â”€â”€ */
+  /* ── Hero Name ── */
   .hero-name {
     font-family: var(--font-body);
     font-size: 48px;
@@ -88,7 +88,7 @@
     letter-spacing: -0.01em;
   }
 
-  /* â”€â”€ Title / Role â”€â”€ */
+  /* ── Title / Role ── */
   .hero-role {
     font-family: var(--font-mono);
     font-size: 13px;
@@ -98,7 +98,7 @@
     margin-bottom: 16px;
   }
 
-  /* â”€â”€ Status Badge â”€â”€ */
+  /* ── Status Badge ── */
   .status-row {
     display: flex;
     flex-wrap: wrap;
@@ -121,7 +121,7 @@
   .badge-amber { color: var(--amber); background: var(--amber-dim); border-color: rgba(196,154,60,0.3); }
   .badge-ember { color: var(--ember); background: var(--ember-dim); border-color: rgba(201,138,74,0.3); }
 
-  /* â”€â”€ Stat Block â”€â”€ */
+  /* ── Stat Block ── */
   .stat-block {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -156,7 +156,7 @@
   .stat-value.blue { color: var(--blue); }
   .stat-value.green { color: var(--green); }
 
-  /* â”€â”€ Signature Directive (Pull Quote) â”€â”€ */
+  /* ── Signature Directive (Pull Quote) ── */
   .directive {
     border-left: 2px solid var(--crimson);
     padding: 16px 20px;
@@ -180,7 +180,7 @@
     margin-top: 8px;
   }
 
-  /* â”€â”€ Narrative Bio â”€â”€ */
+  /* ── Narrative Bio ── */
   .narrative {
     margin-bottom: 32px;
   }
@@ -194,7 +194,7 @@
   .narrative p:last-child { margin-bottom: 0; }
   .narrative strong { color: var(--cream-high); font-weight: 600; }
 
-  /* â”€â”€ Section Headers â”€â”€ */
+  /* ── Section Headers ── */
   .section-head {
     display: flex;
     align-items: center;
@@ -225,7 +225,7 @@
     background: var(--border);
   }
 
-  /* â”€â”€ Attribute Grid â”€â”€ */
+  /* ── Attribute Grid ── */
   .attr-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -256,7 +256,7 @@
   .attr-val.warn { color: var(--crimson); }
   .attr-val.good { color: var(--green); }
 
-  /* â”€â”€ Equipment Cards â”€â”€ */
+  /* ── Equipment Cards ── */
   .equip-card {
     background: var(--card);
     border: 1px solid var(--border);
@@ -298,7 +298,7 @@
     line-height: 1.5;
   }
 
-  /* â”€â”€ Collapsible Sections â”€â”€ */
+  /* ── Collapsible Sections ── */
   .collapsible {
     margin-bottom: 8px;
   }
@@ -342,7 +342,7 @@
   .collapsible-content p { margin-bottom: 12px; }
   .collapsible-content strong { color: var(--cream-high); }
 
-  /* â”€â”€ Talent List â”€â”€ */
+  /* ── Talent List ── */
   .talent-item {
     background: var(--card);
     border: 1px solid var(--border);
@@ -364,7 +364,7 @@
     line-height: 1.6;
   }
 
-  /* â”€â”€ Vulnerability Flags â”€â”€ */
+  /* ── Vulnerability Flags ── */
   .vuln-item {
     display: flex;
     gap: 12px;
@@ -391,7 +391,7 @@
   }
   .vuln-text strong { color: var(--cream-high); }
 
-  /* â”€â”€ Role Cards â”€â”€ */
+  /* ── Role Cards ── */
   .role-card {
     background: var(--card);
     border: 1px solid var(--border);
@@ -421,7 +421,7 @@
     line-height: 1.7;
   }
 
-  /* â”€â”€ Resistance Bar â”€â”€ */
+  /* ── Resistance Bar ── */
   .resist-row {
     display: flex;
     gap: 4px;
@@ -450,7 +450,7 @@
     margin-top: 2px;
   }
 
-  /* â”€â”€ Footer â”€â”€ */
+  /* ── Footer ── */
   .dossier-footer {
     margin-top: 56px;
   }
@@ -477,7 +477,7 @@
     opacity: 0.5;
   }
 
-  /* â”€â”€ Responsive â”€â”€ */
+  /* ── Responsive ── */
   @media (max-width: 520px) {
     .hero-name { font-size: 36px; }
     .stat-block { grid-template-columns: repeat(3, 1fr); }
@@ -491,11 +491,11 @@
 <body>
 <div class="dossier">
   <div class="classification">
-    <div class="classification-tag" style="color:var(--crimson);background:var(--crimson-faint);border-color:var(--crimson-dim)">Tamriel Intelligence â€” Ancestral Archive</div>
-    <div class="classification-sub">Character Dossier Â· Skyrim Chronicles Â· First Invocation Â· The Origin Myth</div>
+    <div class="classification-tag" style="color:var(--crimson);background:var(--crimson-faint);border-color:var(--crimson-dim)">Tamriel Intelligence — Ancestral Archive</div>
+    <div class="classification-sub">Character Dossier · Skyrim Chronicles · First Invocation · The Origin Myth</div>
   </div>
   <h1 class="hero-name">Xuth Leafshadow Sr.</h1>
-  <div class="hero-role" style="color:var(--crimson)">Argonian Â· Apex Predator Â· Level 370+ Â· The Legend State</div>
+  <div class="hero-role" style="color:var(--crimson)">Argonian · Apex Predator · Level 370+ · The Legend State</div>
   <div class="status-row">
     <span class="badge badge-crimson">BEYOND LEVEL 370</span>
     <span class="badge badge-amber">FULL DAEDRIC GLORY</span>
@@ -504,38 +504,38 @@
     <span class="badge badge-ember">ECONOMY: BROKEN</span>
   </div>
   <div class="directive" style="border-color:var(--crimson);background:var(--crimson-faint)">
-    <div class="directive-text">"Xuth-Leafshadow Sr. walks beyond level 370 in full Daedric glory. Jr. walks the same road, not in imitation â€” but in declaration."</div>
-    <div class="directive-source">â€” Scroll 0001, Lineage Addendum</div>
+    <div class="directive-text">"Xuth-Leafshadow Sr. walks beyond level 370 in full Daedric glory. Jr. walks the same road, not in imitation — but in declaration."</div>
+    <div class="directive-source">— Scroll 0001, Lineage Addendum</div>
   </div>
   <div class="narrative">
-    <p>Before the chronicles, before the DexScrollkeeper, before the scrolls were even a concept â€” there was <strong>the first playthrough</strong>. No documentation. No system. Just a player and a game and hundreds of hours of discovery that became the foundation for everything that followed.</p>
+    <p>Before the chronicles, before the DexScrollkeeper, before the scrolls were even a concept — there was <strong>the first playthrough</strong>. No documentation. No system. Just a player and a game and hundreds of hours of discovery that became the foundation for everything that followed.</p>
     <p>Xuth Leafshadow Sr. is not a character. He is the <strong>origin myth</strong>. The save file that proved Skyrim could be played as a system rather than a story. He broke every skill past 100 multiple times. He Legendary'd until the number stopped meaning anything. He amassed wealth that made merchants irrelevant and power that made dragons an inconvenience.</p>
-    <p>Sr. never had scrolls because the scrolls didn't exist yet. His legacy lives in muscle memory â€” in the knowledge that the Fortify loop converges, that Transmute turns iron into destiny, that every cage should be picked even when empty. <strong>Jr. chronicled what Sr. discovered.</strong> III executes what Jr. chronicled. The lineage is a recursive function, and Sr. is the base case.</p>
+    <p>Sr. never had scrolls because the scrolls didn't exist yet. His legacy lives in muscle memory — in the knowledge that the Fortify loop converges, that Transmute turns iron into destiny, that every cage should be picked even when empty. <strong>Jr. chronicled what Sr. discovered.</strong> III executes what Jr. chronicled. The lineage is a recursive function, and Sr. is the base case.</p>
   </div>
   <div class="section-head"><div class="section-num" style="background:var(--crimson-dim);color:var(--crimson)">I</div><span class="section-title">The Legend State</span><div class="section-line"></div></div>
   <div class="attr-grid">
     <div class="attr-cell"><span class="attr-key">Level</span><span class="attr-val" style="color:var(--crimson)">370+</span></div>
     <div class="attr-cell"><span class="attr-key">Gold</span><span class="attr-val" style="color:var(--amber)">Irrelevant</span></div>
-    <div class="attr-cell"><span class="attr-key">Alchemy</span><span class="attr-val good">100 (âˆžx Legendary)</span></div>
-    <div class="attr-cell"><span class="attr-key">Enchanting</span><span class="attr-val good">100 (âˆžx Legendary)</span></div>
-    <div class="attr-cell"><span class="attr-key">Smithing</span><span class="attr-val good">100 (âˆžx Legendary)</span></div>
+    <div class="attr-cell"><span class="attr-key">Alchemy</span><span class="attr-val good">100 (∞x Legendary)</span></div>
+    <div class="attr-cell"><span class="attr-key">Enchanting</span><span class="attr-val good">100 (∞x Legendary)</span></div>
+    <div class="attr-cell"><span class="attr-key">Smithing</span><span class="attr-val good">100 (∞x Legendary)</span></div>
     <div class="attr-cell"><span class="attr-key">All Other Skills</span><span class="attr-val good">Mastered</span></div>
     <div class="attr-cell"><span class="attr-key">Armor Rating</span><span class="attr-val" style="color:var(--crimson)">Cap</span></div>
     <div class="attr-cell"><span class="attr-key">Carry Weight</span><span class="attr-val" style="color:var(--crimson)">Unlimited (effective)</span></div>
   </div>
   <div class="section-head"><div class="section-num" style="background:var(--amber-dim);color:var(--amber)">II</div><span class="section-title">What Sr. Discovered</span><div class="section-line"></div></div>
   <div class="talent-item"><div class="talent-name" style="color:var(--crimson)">The Fortify Loop Convergence</div><div class="talent-desc">Sr. was the first to push the loop to its logical extreme. He proved it works. He proved it breaks the game. He proved that breaking the game is the game.</div></div>
-  <div class="talent-item"><div class="talent-name" style="color:var(--crimson)">The Cheese Doctrine (Undocumented)</div><div class="talent-desc">Every exploit Jr. later codified, Sr. discovered through play. The oil slick baptism. The sparring dummy method. The transmute ritual. All of it â€” instinct before it became scripture.</div></div>
-  <div class="talent-item"><div class="talent-name" style="color:var(--crimson)">The Naming Convention</div><div class="talent-desc">The decision to name subsequent characters "Jr." and "III" â€” to treat each playthrough as a lineage rather than a restart â€” began here. Sr. didn't know he was founding a dynasty. He was just playing Skyrim.</div></div>
+  <div class="talent-item"><div class="talent-name" style="color:var(--crimson)">The Cheese Doctrine (Undocumented)</div><div class="talent-desc">Every exploit Jr. later codified, Sr. discovered through play. The oil slick baptism. The sparring dummy method. The transmute ritual. All of it — instinct before it became scripture.</div></div>
+  <div class="talent-item"><div class="talent-name" style="color:var(--crimson)">The Naming Convention</div><div class="talent-desc">The decision to name subsequent characters "Jr." and "III" — to treat each playthrough as a lineage rather than a restart — began here. Sr. didn't know he was founding a dynasty. He was just playing Skyrim.</div></div>
   <div class="section-head"><div class="section-num" style="background:var(--green-dim);color:var(--green)">III</div><span class="section-title">Legacy Assessment</span><div class="section-line"></div></div>
-  <div class="role-card"><div class="role-type" style="color:var(--crimson)">Historical Significance</div><div class="role-name">The Base Case</div><div class="role-desc">Without Sr., there are no scrolls, no DexKit, no chronicles. He is the silent proof that Skyrim â€” when played with intention, even undocumented intention â€” becomes something more than a game. He is why the other two exist.</div></div>
-  <details class="collapsible"><summary><span class="collapsible-label">Operator Context</span><span class="collapsible-chevron">â€º</span></summary>
+  <div class="role-card"><div class="role-type" style="color:var(--crimson)">Historical Significance</div><div class="role-name">The Base Case</div><div class="role-desc">Without Sr., there are no scrolls, no DexKit, no chronicles. He is the silent proof that Skyrim — when played with intention, even undocumented intention — becomes something more than a game. He is why the other two exist.</div></div>
+  <details class="collapsible"><summary><span class="collapsible-label">Operator Context</span><span class="collapsible-chevron">›</span></summary>
     <div class="collapsible-content">
-      <p><strong>Player:</strong> Dave Â· <strong>Platform:</strong> Original Skyrim playthrough Â· <strong>Documentation:</strong> None (retroactive lore only)</p>
-      <p><strong>Note:</strong> This dossier is <strong>invented lore</strong> â€” constructed from references in Jr.'s chronicles and the acknowledgment in Scroll 0001 that Sr. "walks beyond level 370 in full Daedric glory." The specific discoveries and milestones are interpolated from Jr.'s documented methods.</p>
+      <p><strong>Player:</strong> Dave · <strong>Platform:</strong> Original Skyrim playthrough · <strong>Documentation:</strong> None (retroactive lore only)</p>
+      <p><strong>Note:</strong> This dossier is <strong>invented lore</strong> — constructed from references in Jr.'s chronicles and the acknowledgment in Scroll 0001 that Sr. "walks beyond level 370 in full Daedric glory." The specific discoveries and milestones are interpolated from Jr.'s documented methods.</p>
     </div>
   </details>
-  <div class="dossier-footer"><div class="footer-gradient"></div><div class="footer-text"><div class="footer-motto">Cottage â€” Humble surface. Cathedral underneath.</div><div class="footer-meta">Prepared by Dropdown Logistics Â· Tamriel Intelligence Division Â· Scrollkeeper Archive</div></div></div>
+  <div class="dossier-footer"><div class="footer-gradient"></div><div class="footer-text"><div class="footer-motto">Cottage — Humble surface. Cathedral underneath.</div><div class="footer-meta">Prepared by Dropdown Logistics · Tamriel Intelligence Division · Scrollkeeper Archive</div></div></div>
 </div>
 </body>
 </html>

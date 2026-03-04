@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DOSSIER â€” Feliciano the Brutal | Ash, Snow & Steel</title>
+<title>DOSSIER — Feliciano the Brutal | Ash, Snow & Steel</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -49,7 +49,7 @@
     padding: 48px 24px 64px;
   }
 
-  /* â”€â”€ Classification Banner â”€â”€ */
+  /* ── Classification Banner ── */
   .classification {
     text-align: center;
     margin-bottom: 40px;
@@ -77,7 +77,7 @@
     letter-spacing: 0.12em;
   }
 
-  /* â”€â”€ Hero Name â”€â”€ */
+  /* ── Hero Name ── */
   .hero-name {
     font-family: var(--font-body);
     font-size: 48px;
@@ -88,7 +88,7 @@
     letter-spacing: -0.01em;
   }
 
-  /* â”€â”€ Title / Role â”€â”€ */
+  /* ── Title / Role ── */
   .hero-role {
     font-family: var(--font-mono);
     font-size: 13px;
@@ -98,7 +98,7 @@
     margin-bottom: 16px;
   }
 
-  /* â”€â”€ Status Badge â”€â”€ */
+  /* ── Status Badge ── */
   .status-row {
     display: flex;
     flex-wrap: wrap;
@@ -121,7 +121,7 @@
   .badge-amber { color: var(--amber); background: var(--amber-dim); border-color: rgba(196,154,60,0.3); }
   .badge-ember { color: var(--ember); background: var(--ember-dim); border-color: rgba(201,138,74,0.3); }
 
-  /* â”€â”€ Stat Block â”€â”€ */
+  /* ── Stat Block ── */
   .stat-block {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -156,7 +156,7 @@
   .stat-value.blue { color: var(--blue); }
   .stat-value.green { color: var(--green); }
 
-  /* â”€â”€ Signature Directive (Pull Quote) â”€â”€ */
+  /* ── Signature Directive (Pull Quote) ── */
   .directive {
     border-left: 2px solid var(--crimson);
     padding: 16px 20px;
@@ -180,7 +180,7 @@
     margin-top: 8px;
   }
 
-  /* â”€â”€ Narrative Bio â”€â”€ */
+  /* ── Narrative Bio ── */
   .narrative {
     margin-bottom: 32px;
   }
@@ -194,7 +194,7 @@
   .narrative p:last-child { margin-bottom: 0; }
   .narrative strong { color: var(--cream-high); font-weight: 600; }
 
-  /* â”€â”€ Section Headers â”€â”€ */
+  /* ── Section Headers ── */
   .section-head {
     display: flex;
     align-items: center;
@@ -225,7 +225,7 @@
     background: var(--border);
   }
 
-  /* â”€â”€ Attribute Grid â”€â”€ */
+  /* ── Attribute Grid ── */
   .attr-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -256,7 +256,7 @@
   .attr-val.warn { color: var(--crimson); }
   .attr-val.good { color: var(--green); }
 
-  /* â”€â”€ Equipment Cards â”€â”€ */
+  /* ── Equipment Cards ── */
   .equip-card {
     background: var(--card);
     border: 1px solid var(--border);
@@ -298,7 +298,7 @@
     line-height: 1.5;
   }
 
-  /* â”€â”€ Collapsible Sections â”€â”€ */
+  /* ── Collapsible Sections ── */
   .collapsible {
     margin-bottom: 8px;
   }
@@ -342,7 +342,7 @@
   .collapsible-content p { margin-bottom: 12px; }
   .collapsible-content strong { color: var(--cream-high); }
 
-  /* â”€â”€ Talent List â”€â”€ */
+  /* ── Talent List ── */
   .talent-item {
     background: var(--card);
     border: 1px solid var(--border);
@@ -364,7 +364,7 @@
     line-height: 1.6;
   }
 
-  /* â”€â”€ Vulnerability Flags â”€â”€ */
+  /* ── Vulnerability Flags ── */
   .vuln-item {
     display: flex;
     gap: 12px;
@@ -391,7 +391,7 @@
   }
   .vuln-text strong { color: var(--cream-high); }
 
-  /* â”€â”€ Role Cards â”€â”€ */
+  /* ── Role Cards ── */
   .role-card {
     background: var(--card);
     border: 1px solid var(--border);
@@ -421,7 +421,7 @@
     line-height: 1.7;
   }
 
-  /* â”€â”€ Resistance Bar â”€â”€ */
+  /* ── Resistance Bar ── */
   .resist-row {
     display: flex;
     gap: 4px;
@@ -450,7 +450,7 @@
     margin-top: 2px;
   }
 
-  /* â”€â”€ Footer â”€â”€ */
+  /* ── Footer ── */
   .dossier-footer {
     margin-top: 56px;
   }
@@ -477,7 +477,7 @@
     opacity: 0.5;
   }
 
-  /* â”€â”€ Responsive â”€â”€ */
+  /* ── Responsive ── */
   @media (max-width: 520px) {
     .hero-name { font-size: 36px; }
     .stat-block { grid-template-columns: repeat(3, 1fr); }
@@ -491,17 +491,17 @@
 <body>
 <div class="dossier">
   <div class="classification">
-    <div class="classification-tag" style="color:var(--amber);background:var(--amber-dim);border-color:rgba(196,154,60,0.3)">Ash, Snow & Steel â€” Campaign Intelligence</div>
-    <div class="classification-sub">Character Dossier Â· Paladin Registry Â· Walk Soft. Cast Sharp.</div>
+    <div class="classification-tag" style="color:var(--amber);background:var(--amber-dim);border-color:rgba(196,154,60,0.3)">Ash, Snow & Steel — Campaign Intelligence</div>
+    <div class="classification-sub">Character Dossier · Paladin Registry · Walk Soft. Cast Sharp.</div>
   </div>
   <h1 class="hero-name">Feliciano the Brutal</h1>
-  <div class="hero-role" style="color:var(--amber)">Dragonborn Â· Paladin Â· Oath of Devotion Â· Level 14</div>
+  <div class="hero-role" style="color:var(--amber)">Dragonborn · Paladin · Oath of Devotion · Level 14</div>
   <div class="status-row">
     <span class="badge badge-amber">OATH-BOUND</span>
-    <span class="badge badge-green">NOBLE Â· HOUSE K'ABULA</span>
+    <span class="badge badge-green">NOBLE · HOUSE K'ABULA</span>
     <span class="badge badge-blue">LAWFUL NEUTRAL</span>
     <span class="badge badge-violet">AKATOSH DEVOTEE</span>
-    <span class="badge badge-crimson">MARRIED Â· HILLIE O'KILLIE</span>
+    <span class="badge badge-crimson">MARRIED · HILLIE O'KILLIE</span>
   </div>
   <div class="stat-block">
     <div class="stat-cell"><div class="stat-value accent">18</div><div class="stat-label">Strength</div></div>
@@ -513,11 +513,11 @@
   </div>
   <div class="directive" style="border-color:var(--amber);background:var(--amber-dim)">
     <div class="directive-text">"The strong exist to protect, not to take."</div>
-    <div class="directive-source">â€” Feliciano the Brutal, House K'abula Oath</div>
+    <div class="directive-source">— Feliciano the Brutal, House K'abula Oath</div>
   </div>
   <div class="narrative">
-    <p>Feliciano walks the holds of Skyrim with the gait of a man who was born to serve and chose to lead. <strong>House K'abula</strong> â€” a Dragonborn noble lineage â€” raised him on two truths: the world will try to break you, and the broken need someone who didn't. He took both to heart and became a wall.</p>
-    <p>The Oath of Devotion is not performance. It's architecture. Feliciano's moral code is load-bearing â€” remove it and the man collapses. He protects Hillie not because she's fragile (she would set that sentence on fire) but because devotion without an object is just posturing.</p>
+    <p>Feliciano walks the holds of Skyrim with the gait of a man who was born to serve and chose to lead. <strong>House K'abula</strong> — a Dragonborn noble lineage — raised him on two truths: the world will try to break you, and the broken need someone who didn't. He took both to heart and became a wall.</p>
+    <p>The Oath of Devotion is not performance. It's architecture. Feliciano's moral code is load-bearing — remove it and the man collapses. He protects Hillie not because she's fragile (she would set that sentence on fire) but because devotion without an object is just posturing.</p>
     <p><strong>Akatosh's scales gleam on his shield.</strong> At Level 14, the Aura of Protection radiates outward like a second skin. Every ally within ten feet saves better because he's standing there. The Aura of Devotion makes charm effects irrelevant. He is not just a fighter. He is a field condition.</p>
   </div>
   <div class="section-head"><div class="section-num" style="background:var(--amber-dim);color:var(--amber)">I</div><span class="section-title">Vitals & Combat</span><div class="section-line"></div></div>
@@ -535,27 +535,27 @@
   <div class="talent-item"><div class="talent-name" style="color:var(--amber)">Sacred Weapon</div><div class="talent-desc">Add CHA modifier (+4) to attack rolls for 1 minute. The weapon glows with golden light. The room knows.</div></div>
   <div class="talent-item"><div class="talent-name" style="color:var(--amber)">Turn the Unholy</div><div class="talent-desc">Fiends and undead within 30 ft must save or flee. In Skyrim's draugr-infested barrows, this is a room-clearer.</div></div>
   <div class="talent-item"><div class="talent-name" style="color:var(--amber)">Aura of Protection (10 ft)</div><div class="talent-desc">All allies add +4 to saving throws. Feliciano's presence is a passive buff. Stand near him and survive better.</div></div>
-  <div class="talent-item"><div class="talent-name" style="color:var(--amber)">Aura of Devotion (10 ft)</div><div class="talent-desc">Allies are immune to charm effects. Dragon priests, hagravens, vampires â€” none of it lands near him.</div></div>
+  <div class="talent-item"><div class="talent-name" style="color:var(--amber)">Aura of Devotion (10 ft)</div><div class="talent-desc">Allies are immune to charm effects. Dragon priests, hagravens, vampires — none of it lands near him.</div></div>
   <div class="talent-item"><div class="talent-name" style="color:var(--amber)">Draconic Flight</div><div class="talent-desc">Wings manifest from the bloodline. 30 ft fly speed. Terrain becomes a suggestion, not a limitation.</div></div>
   <div class="section-head"><div class="section-num" style="background:var(--ember-dim);color:var(--ember)">III</div><span class="section-title">Equipment Loadout</span><div class="section-line"></div></div>
-  <div class="equip-card"><div class="equip-header"><span class="equip-name">Longsword of Akatosh's Mandate</span><span class="equip-rarity" style="color:var(--amber)">RARE</span></div><div class="equip-stats">1d8+4 slashing Â· Versatile (1d10+4) Â· +1 Â· Extra 1d6 radiant vs. undead</div><div class="equip-flavor">Etched with the Akatosh sigil. The blade hums in barrows.</div></div>
-  <div class="equip-card"><div class="equip-header"><span class="equip-name">Plate Armor + Shield of House K'abula</span><span class="equip-rarity" style="color:var(--green)">AC 20 TOTAL</span></div><div class="equip-stats">Full plate (AC 18) + shield (+2) Â· Dragon crest emblazoned</div></div>
-  <div class="equip-card"><div class="equip-header"><span class="equip-name">Javelins (5)</span><span class="equip-rarity" style="color:var(--cream-dim)">STANDARD</span></div><div class="equip-stats">1d6+4 piercing Â· Range 30/120 Â· Thrown</div></div>
+  <div class="equip-card"><div class="equip-header"><span class="equip-name">Longsword of Akatosh's Mandate</span><span class="equip-rarity" style="color:var(--amber)">RARE</span></div><div class="equip-stats">1d8+4 slashing · Versatile (1d10+4) · +1 · Extra 1d6 radiant vs. undead</div><div class="equip-flavor">Etched with the Akatosh sigil. The blade hums in barrows.</div></div>
+  <div class="equip-card"><div class="equip-header"><span class="equip-name">Plate Armor + Shield of House K'abula</span><span class="equip-rarity" style="color:var(--green)">AC 20 TOTAL</span></div><div class="equip-stats">Full plate (AC 18) + shield (+2) · Dragon crest emblazoned</div></div>
+  <div class="equip-card"><div class="equip-header"><span class="equip-name">Javelins (5)</span><span class="equip-rarity" style="color:var(--cream-dim)">STANDARD</span></div><div class="equip-stats">1d6+4 piercing · Range 30/120 · Thrown</div></div>
   <div class="section-head"><div class="section-num" style="background:var(--crimson-dim);color:var(--crimson)">IV</div><span class="section-title">Tactical Assessment</span><div class="section-line"></div></div>
   <div class="role-card"><div class="role-type" style="color:var(--amber)">Primary Role</div><div class="role-name">Frontline Anchor / Aura Platform</div><div class="role-desc">Feliciano's value multiplies with adjacency. The closer allies are, the harder the party is to kill. He holds position so others can operate.</div></div>
   <div class="role-card"><div class="role-type" style="color:var(--crimson)">Nova Threat</div><div class="role-name">Divine Smite Burst</div><div class="role-desc">Two attacks per turn, each carrying potential 5d8 radiant on a critical. Against undead or fiends, the damage is catastrophic. Boss encounters are his specialty.</div></div>
   <div class="section-head"><div class="section-num" style="background:var(--crimson-dim);color:var(--crimson)">V</div><span class="section-title">Identified Vulnerabilities</span><div class="section-line"></div></div>
-  <div class="vuln-item"><span class="vuln-icon">â– </span><div class="vuln-text"><strong>Ranged Weakness</strong> â€” Javelins cap at 120 ft. If enemies kite, he burns Draconic Flight or closes on foot. Melee creature in a ranged world.</div></div>
-  <div class="vuln-item"><span class="vuln-icon">â– </span><div class="vuln-text"><strong>Slot Dependency</strong> â€” Smites eat slots. Lay on Hands eats actions. By the third encounter of a long day, the paladin becomes a mundane fighter.</div></div>
-  <div class="vuln-item"><span class="vuln-icon">â– </span><div class="vuln-text"><strong>INT 8</strong> â€” Feliciano is not clever. He is good and he is strong. Puzzles, traps, deception route around him. Hillie handles the thinking.</div></div>
-  <details class="collapsible"><summary><span class="collapsible-label">Party Dynamics & Operator Context</span><span class="collapsible-chevron">â€º</span></summary>
+  <div class="vuln-item"><span class="vuln-icon">■</span><div class="vuln-text"><strong>Ranged Weakness</strong> — Javelins cap at 120 ft. If enemies kite, he burns Draconic Flight or closes on foot. Melee creature in a ranged world.</div></div>
+  <div class="vuln-item"><span class="vuln-icon">■</span><div class="vuln-text"><strong>Slot Dependency</strong> — Smites eat slots. Lay on Hands eats actions. By the third encounter of a long day, the paladin becomes a mundane fighter.</div></div>
+  <div class="vuln-item"><span class="vuln-icon">■</span><div class="vuln-text"><strong>INT 8</strong> — Feliciano is not clever. He is good and he is strong. Puzzles, traps, deception route around him. Hillie handles the thinking.</div></div>
+  <details class="collapsible"><summary><span class="collapsible-label">Party Dynamics & Operator Context</span><span class="collapsible-chevron">›</span></summary>
     <div class="collapsible-content">
       <p><strong>With Hillie:</strong> The marriage is mechanical as much as emotional. His auras protect her while she blasts from behind. Her Hex marks targets; his smite deletes them. Two-person engine: she paints, he hammers.</p>
-      <p><strong>Player:</strong> Gavin Â· <strong>DM:</strong> Dave Â· <strong>Campaign:</strong> Ash, Snow & Steel â€” D&D 5e / Skyrim geography</p>
+      <p><strong>Player:</strong> Gavin · <strong>DM:</strong> Dave · <strong>Campaign:</strong> Ash, Snow & Steel — D&D 5e / Skyrim geography</p>
       <p><strong>Build note:</strong> Projected L14 from L1 sheet. ASIs at 4, 8, 12 allocated to STR 18 and CHA 18.</p>
     </div>
   </details>
-  <div class="dossier-footer"><div class="footer-gradient"></div><div class="footer-text"><div class="footer-motto">Cottage â€” Humble surface. Cathedral underneath.</div><div class="footer-meta">Prepared by Dropdown Logistics Â· Campaign Intelligence Division Â· Ash, Snow & Steel Theater</div></div></div>
+  <div class="dossier-footer"><div class="footer-gradient"></div><div class="footer-text"><div class="footer-motto">Cottage — Humble surface. Cathedral underneath.</div><div class="footer-meta">Prepared by Dropdown Logistics · Campaign Intelligence Division · Ash, Snow & Steel Theater</div></div></div>
 </div>
 </body>
 </html>
