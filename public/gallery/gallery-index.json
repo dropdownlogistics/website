@@ -1,0 +1,44 @@
+{
+  "version": "1.0",
+  "updated": "2026-03-03",
+  "asset_count": 0,
+  "schema_version": "SYS-020",
+  "categories": [
+    "dex",
+    "council",
+    "brand",
+    "screenshots",
+    "messages",
+    "campaign",
+    "products",
+    "memoir",
+    "meta"
+  ],
+  "category_descriptions": {
+    "dex": "Dex-era art, avatars, generated images",
+    "council": "Council medals, banners, visual artifacts",
+    "brand": "DDL logos, CottageHumble marks, favicons",
+    "screenshots": "Reddit threads, analytics, site captures",
+    "messages": "Text messages, iMessages, chat exports",
+    "campaign": "D&D character art, campaign maps, tokens",
+    "products": "Product mockups, pitch visuals, demos",
+    "memoir": "Memoir-related images, cover art, promos",
+    "meta": "Process screenshots, build artifacts, things that document how DDL works"
+  },
+  "field_definitions": {
+    "id": "Sequential gallery ID (GAL-XXXX)",
+    "file": "Path relative to domain root (/gallery/category/filename)",
+    "category": "One of the nine category folders",
+    "title": "Human-readable name",
+    "description": "What this image is and why it matters",
+    "tags": "Searchable keywords (array of strings)",
+    "context": "When/why to use this asset (for models)",
+    "source": "Origin: operator-created | model-generated | screenshot | partner | external",
+    "date_created": "When the original was made (YYYY-MM-DD, best guess OK)",
+    "date_added": "When it entered the gallery (YYYY-MM-DD)",
+    "wing": "DDL wing: ddl | dna | dexverse | dossiers | products | general",
+    "visibility": "public (anyone can see) | internal (unlisted, models only)",
+    "used_in": "Array of routes/docs where this asset appears (starts empty, updated on use)"
+  },
+  "assets": []
+}
