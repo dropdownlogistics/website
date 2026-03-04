@@ -4,9 +4,9 @@ import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-// ═══════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 // Types
-// ═══════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 
 interface NavLink { href: string; label: string; }
 interface NavGroup { label: string; items: NavLink[]; }
@@ -19,9 +19,9 @@ interface Wing {
   groups: NavGroup[];
 }
 
-// ═══════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 // CottageHumble Tokens
-// ═══════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 
 const C = {
   navy: '#0D1B2A',
@@ -45,9 +45,9 @@ const font = {
   body: "'Source Serif 4', Georgia, serif",
 };
 
-// ═══════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 // Wing Definitions
-// ═══════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 
 const wingsData: Wing[] = [
   {
@@ -165,7 +165,7 @@ const wingsData: Wing[] = [
       },
     ],
   },
-  // ─── Accent-only wings (no dropdown groups) ───
+  // ——— Accent-only wings (no dropdown groups) ———
   {
     id: 'dossiers',
     name: 'Dossiers',
@@ -184,9 +184,9 @@ const wingsData: Wing[] = [
   },
 ];
 
-// ═══════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 // Wing Detection
-// ═══════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 
 const routeWingMap: Record<string, string> = {
   // D&A wing
@@ -216,9 +216,9 @@ function detectWing(pathname: string | null): Wing {
   return wingsData[0];
 }
 
-// ═══════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 // Dropdown Component
-// ═══════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 
 function Dropdown({ group, isActive, pathname, wingColor }: {
   group: NavGroup;
@@ -280,9 +280,9 @@ function Dropdown({ group, isActive, pathname, wingColor }: {
   );
 }
 
-// ═══════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 // Wing Switcher — five entries, three with dropdowns
-// ═══════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 
 function WingSwitcher({ currentWing }: { currentWing: Wing }) {
   return (
@@ -301,16 +301,15 @@ function WingSwitcher({ currentWing }: { currentWing: Wing }) {
   );
 }
 
-// ═══════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 // Mobile Menu
-// ═══════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 
 function MobileMenu({ wing, isActive, onClose }: {
   wing: Wing;
   isActive: (h: string) => boolean;
   onClose: () => void;
 }) {
-  // Section links for mobile (always visible)
   const mobileSections: NavLink[] = [
     { href: '/dossiers', label: 'Dossiers' },
     { href: '/products/behavioral-intelligence', label: 'Products' },
@@ -401,23 +400,28 @@ function MobileMenu({ wing, isActive, onClose }: {
   );
 }
 
-// ═══════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 // Main Nav
-// ═══════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 
 export default function SiteNav() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const wing = detectWing(pathname);
 
+  useEffect(() => { setMounted(true); }, []);
   useEffect(() => { setMobileOpen(false); }, [pathname]);
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
   }, [mobileOpen]);
 
-  // Landing page — no nav (after hooks to satisfy Rules of Hooks)
+  // Landing page — no nav
   if (pathname === '/') return null;
+
+  // Mount guard — prevents double nav from SSR hydration mismatch
+  if (!mounted) return <div style={{ height: 60 }} />;
 
   const isActive = (href: string) => {
     if (href === '/') return pathname === '/';
