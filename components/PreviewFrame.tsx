@@ -28,6 +28,8 @@ export default function PreviewFrame({ src, title }: { src: string; title: strin
           }
         });
       } catch (e) { /* cross-origin guard */ }
+      // Fade in after cleanup
+      iframe.style.opacity = '1';
     };
 
     iframe.addEventListener('load', hideNav);
@@ -39,7 +41,7 @@ export default function PreviewFrame({ src, title }: { src: string; title: strin
       ref={ref}
       src={src}
       title={title}
-      style={{ width: '100%', height: '100vh', border: 'none' }}
+      style={{ width: '100%', height: '100vh', border: 'none', opacity: 0, transition: 'opacity 0.15s' }}
     />
   );
 }
