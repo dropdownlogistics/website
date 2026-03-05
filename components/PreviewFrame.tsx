@@ -12,21 +12,19 @@ export default function PreviewFrame({ src, title }: { src: string; title: strin
       try {
         const doc = iframe.contentDocument;
         if (!doc) return;
-        // Hide any nav/header elements inside the iframe
-        const selectors = 'header, nav, .site-nav, .navbar, [class*="nav-"], [class*="Nav"]';
-        doc.querySelectorAll(selectors).forEach(el => {
-          (el as HTMLElement).style.display = 'none';
-        });
-        // Also hide any fixed/sticky positioned elements at the top (likely navs)
-        doc.querySelectorAll('*').forEach(el => {
-          const style = window.getComputedStyle(el as Element);
-          if (
-            (style.position === 'fixed' || style.position === 'sticky') &&
-            parseInt(style.top) <= 10
-          ) {
-            (el as HTMLElement).style.display = 'none';
+        // Inject CSS to instantly hide nav elements — no flash
+        const style = doc.createElement('style');
+        style.textContent = `
+          header, nav, .site-nav, .navbar,
+          [class*="nav-"], [class*="Nav"],
+          [style*="position: fixed"][style*="top: 0"],
+          [style*="position:fixed"][style*="top:0"],
+          [style*="position: sticky"][style*="top: 0"],
+          [style*="position:sticky"][style*="top:0"] {
+            display: none !important;
           }
-        });
+        `;
+        doc.head.appendChild(style);
       } catch (e) { /* cross-origin guard */ }
       // Fade in after cleanup
       iframe.style.opacity = '1';

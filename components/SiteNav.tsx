@@ -189,19 +189,14 @@ const wingsData: Wing[] = [
 // ═══════════════════════════════════════════════════════
 
 const routeWingMap: Record<string, string> = {
-  // D&A wing
   '/blindspot':   'da',
   '/analytics':   'da',
   '/recaps':      'da',
-  // DexVerse wing
   '/dexlore':     'dexverse',
   '/other-works': 'dexverse',
   '/knowledge':   'dexverse',
-  // Dossiers (accent-only)
   '/dossiers':    'dossiers',
-  // Products (accent-only)
   '/products':    'products',
-  // Everything else → DDL
 };
 
 function detectWing(pathname: string | null): Wing {
@@ -214,6 +209,23 @@ function detectWing(pathname: string | null): Wing {
     }
   }
   return wingsData[0];
+}
+
+// ═══════════════════════════════════════════════════════
+// Contextual Logo Link
+// On a wing landing → go home
+// On a subpage → go to wing landing
+// ═══════════════════════════════════════════════════════
+
+function getLogoHref(pathname: string | null, wing: Wing): string {
+  if (!pathname) return '/';
+  // Strip trailing slash for comparison
+  const clean = pathname.replace(/\/$/, '') || '/';
+  const wingHome = wing.home.replace(/\/$/, '');
+  // If we're on the wing's home page, go to site root
+  if (clean === wingHome) return '/';
+  // Otherwise go to wing home
+  return wing.home;
 }
 
 // ═══════════════════════════════════════════════════════
@@ -281,7 +293,7 @@ function Dropdown({ group, isActive, pathname, wingColor }: {
 }
 
 // ═══════════════════════════════════════════════════════
-// Wing Switcher — five entries, three with dropdowns
+// Wing Switcher
 // ═══════════════════════════════════════════════════════
 
 function WingSwitcher({ currentWing }: { currentWing: Wing }) {
@@ -409,6 +421,7 @@ export default function SiteNav() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const wing = detectWing(pathname);
+  const logoHref = getLogoHref(pathname, wing);
 
   useEffect(() => { setMounted(true); }, []);
   useEffect(() => { setMobileOpen(false); }, [pathname]);
@@ -420,7 +433,7 @@ export default function SiteNav() {
   // Landing page — no nav
   if (pathname === '/') return null;
 
-  // Mount guard — prevents double nav from SSR hydration mismatch
+  // Mount guard
   if (!mounted) return <div style={{ height: 60 }} />;
 
   const isActive = (href: string) => {
@@ -461,8 +474,8 @@ export default function SiteNav() {
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
           height: 60, gap: 8,
         }}>
-          {/* Logo */}
-          <Link href="/" style={{
+          {/* Logo — contextual back navigation */}
+          <Link href={logoHref} style={{
             textDecoration: 'none', display: 'flex',
             alignItems: 'center', gap: 10, flexShrink: 0,
           }}>
@@ -484,7 +497,7 @@ export default function SiteNav() {
                 color: wing.color + '80', letterSpacing: '0.04em',
                 transition: 'color 0.3s',
               }}>
-                {wing.tagline}
+                {logoHref === '/' ? wing.tagline : '← ' + wing.name}
               </div>
             </div>
           </Link>
@@ -495,7 +508,6 @@ export default function SiteNav() {
           }}>
             <WingSwitcher currentWing={wing} />
 
-            {/* Divider between wing switcher and dropdowns */}
             {wing.groups.length > 0 && (
               <div style={{
                 width: 1, height: 20,
@@ -503,7 +515,6 @@ export default function SiteNav() {
               }} />
             )}
 
-            {/* Wing-contextual dropdown groups */}
             {wing.groups.map(g => (
               <Dropdown
                 key={g.label}
