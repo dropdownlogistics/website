@@ -1,11 +1,16 @@
-﻿import './globals.css';
+import './globals.css';
 import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from 'next';
-import SiteNav from '@/components/SiteNav';
+import dynamic from 'next/dynamic';
+
+const SiteNav = dynamic(() => import('@/components/SiteNav'), {
+  ssr: false,
+  loading: () => <div style={{ height: 60 }} />,
+});
 
 export const metadata: Metadata = {
   title: 'Dropdown Logistics',
-  description: 'Chaos â†’ Structured â†’ Automated. One-person ops studio.',
+  description: 'Chaos → Structured → Automated. One-person ops studio.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -77,4 +82,3 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
-

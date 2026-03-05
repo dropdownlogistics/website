@@ -1,11 +1,6 @@
-export const metadata = { title: 'r/excel Launch — DDL' };
+﻿import PreviewFrame from '@/components/PreviewFrame';
 
+export const metadata = { title: 'r/excel Launch â€” DDL' };
 export default function Page() {
-  return (
-    <iframe
-      src="/preview/rexcel-launch.html"
-      style={{ width: '100%', height: '100vh', border: 'none' }}
-      title="r/excel Launch"
-    />
-  );
+  return <PreviewFrame src="/preview/rexcel-launch.html" title="r/excel Launch" />;
 }

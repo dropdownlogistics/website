@@ -1,11 +1,6 @@
-export const metadata = { title: 'Opus Project Prompt — DDL' };
+﻿import PreviewFrame from '@/components/PreviewFrame';
 
+export const metadata = { title: 'Opus Project Prompt â€” DDL' };
 export default function Page() {
-  return (
-    <iframe
-      src="/preview/opus-project-prompt.html"
-      style={{ width: '100%', height: '100vh', border: 'none' }}
-      title="Opus Project Prompt"
-    />
-  );
+  return <PreviewFrame src="/preview/opus-project-prompt.html" title="Opus Project Prompt" />;
 }

@@ -1,11 +1,6 @@
-export const metadata = { title: 'DDL Glossary — DDL' };
+﻿import PreviewFrame from '@/components/PreviewFrame';
 
+export const metadata = { title: 'DDL Glossary â€” DDL' };
 export default function Page() {
-  return (
-    <iframe
-      src="/preview/trademark-glossary.html"
-      style={{ width: '100%', height: '100vh', border: 'none' }}
-      title="DDL Glossary"
-    />
-  );
+  return <PreviewFrame src="/preview/trademark-glossary.html" title="DDL Glossary" />;
 }
