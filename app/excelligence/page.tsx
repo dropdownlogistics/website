@@ -5,37 +5,54 @@ import { useState, useMemo, useCallback, useEffect, useRef } from 'react';
 const ENTRIES = [
   {id:"FRM-0001",name:"XLOOKUP",type:"FRM",tier:"Intermediate",intent:"When you need to retrieve a value from another table based on a lookup key, use XLOOKUP to return exact or approximate matches without column index dependency."},
   {id:"FRM-0002",name:"LET",type:"FRM",tier:"Advanced",intent:"When a formula requires intermediate calculations or repeated sub-expressions, use LET to name variables, improving readability, performance, and auditability."},
-  {id:"ARC-0001",name:"MAKEARRAY Engine",type:"ARC",tier:"Expert",intent:"When you need to generate a dynamic grid of calculated values across two dimensions, use MAKEARRAY with LAMBDA to build self-constructing matrices."},
-  {id:"ANT-0001",name:"Merged Cells",type:"ANT",tier:"Beginner",intent:"When you need visual alignment across cells, use Center Across Selection to achieve the appearance without breaking sorting, filtering, references, or copy-paste."},
+  {id:"ARC-0001",name:"MAKEARRAY Engine",type:"ARC",tier:"Expert",intent:"When you need to generate a dynamic grid of calculated values across two dimensions, use MAKEARRAY with LAMBDA to build self-constructing matrices that eliminate manual cell-by-cell formulas."},
+  {id:"ANT-0001",name:"Merged Cells",type:"ANT",tier:"Beginner",intent:"When you need visual alignment across cells, use Center Across Selection to achieve the appearance without breaking sorting, filtering, references, or copy-paste operations."},
   {id:"FRM-0003",name:"INDEX/MATCH",type:"FRM",tier:"Intermediate",intent:"When you need flexible lookups in legacy workbooks or left-facing retrieval, use INDEX/MATCH to reference any column without structural dependency on table layout."},
   {id:"FRM-0004",name:"LAMBDA",type:"FRM",tier:"Expert",intent:"When you need to create reusable custom functions without VBA, use LAMBDA to encapsulate logic into named, portable, testable function objects."},
   {id:"FRM-0005",name:"FILTER",type:"FRM",tier:"Intermediate",intent:"When you need to extract a subset of rows based on criteria, use FILTER to return dynamic arrays that automatically update without helper columns."},
   {id:"FRM-0006",name:"SUMPRODUCT",type:"FRM",tier:"Advanced",intent:"When you need multi-criteria aggregation without helper columns, use SUMPRODUCT to evaluate array conditions and return weighted or conditional totals."},
-  {id:"PTN-0001",name:"Star Schema Layout",type:"PTN",tier:"Advanced",intent:"When you need to organize workbook data for scalable analysis, use star schema layout to separate dimension tables from fact tables."},
-  {id:"KEY-0001",name:"Ctrl+T (Table Convert)",type:"KEY",tier:"Beginner",intent:"When you need structured references, auto-expansion, and Power Query readiness, use Ctrl+T to convert a range into a proper Excel Table."},
+  {id:"PTN-0001",name:"Star Schema Layout",type:"PTN",tier:"Advanced",intent:"When you need to organize workbook data for scalable analysis, use star schema layout to separate dimension tables from fact tables, enabling governed lookups and pivot-ready architecture."},
+  {id:"KEY-0001",name:"Ctrl+T (Table Conversion)",type:"KEY",tier:"Beginner",intent:"When you need structured references, auto-expansion, and Power Query readiness, use Ctrl+T to convert a range into a proper Excel Table."},
   {id:"CON-0001",name:"Center Across Selection",type:"CON",tier:"Beginner",intent:"When you need centered text spanning multiple columns, use Center Across Selection to achieve visual alignment without merging cells."},
-  {id:"ANT-0002",name:"Volatile Functions",type:"ANT",tier:"Intermediate",intent:"When you encounter NOW, TODAY, INDIRECT, or OFFSET in performance-critical workbooks, use non-volatile alternatives to prevent full recalculation."},
+  {id:"ANT-0002",name:"Volatile Functions",type:"ANT",tier:"Intermediate",intent:"When you encounter NOW, TODAY, INDIRECT, or OFFSET in performance-critical workbooks, use non-volatile alternatives to prevent full recalculation on every change."},
   {id:"ARC-0002",name:"Spill-Range Architecture",type:"ARC",tier:"Advanced",intent:"When you need dynamic output that resizes automatically, use spill-range architecture to build formulas that expand without manual range management."},
-  {id:"PQ-0001",name:"Power Query Load",type:"PQ",tier:"Intermediate",intent:"When you need to transform and load external data into a governed Excel Table, use Power Query to create repeatable, auditable data pipelines."},
+  {id:"PQ-0001",name:"Power Query Load to Table",type:"PQ",tier:"Intermediate",intent:"When you need to transform and load external data into a governed Excel Table, use Power Query to create repeatable, auditable data pipelines."},
+  {id:"FRM-0007",name:"SORT",type:"FRM",tier:"Intermediate",intent:"When you need to reorder data dynamically without altering the source, use SORT to produce a spill-range output sorted by any column in ascending or descending order."},
+  {id:"FRM-0008",name:"UNIQUE",type:"FRM",tier:"Intermediate",intent:"When you need a deduplicated list for validation, dropdowns, or aggregation, use UNIQUE to extract distinct values as a self-updating spill range."},
+  {id:"FRM-0009",name:"CHOOSECOLS",type:"FRM",tier:"Advanced",intent:"When you need to select or reorder specific columns from a spill range or table output, use CHOOSECOLS to shape the output array without intermediate formulas."},
+  {id:"FRM-0010",name:"IF/IFS",type:"FRM",tier:"Beginner",intent:"When you need conditional logic with multiple branches, use IF or IFS to evaluate conditions and return governed outcomes without deep nesting."},
+  {id:"PTN-0002",name:"Named Ranges",type:"PTN",tier:"Beginner",intent:"When you need formulas to be self-documenting or assumptions to be centrally managed, use named ranges to replace cell references with meaningful labels."},
+  {id:"PTN-0003",name:"Defensive Defaults",type:"PTN",tier:"Advanced",intent:"When a formula can encounter expected errors from missing data or boundary conditions, use defensive defaults to return governed fallback values instead of exposing raw error codes."},
+  {id:"KEY-0002",name:"Alt Shortcuts",type:"KEY",tier:"Beginner",intent:"When you need to execute ribbon commands without leaving the keyboard, use Alt shortcut sequences to maintain flow and reduce mouse-dependent friction."},
+  {id:"CON-0002",name:"Consistent Grain",type:"CON",tier:"Advanced",intent:"When you need reliable aggregation and filtering, use consistent grain to ensure every row in a table represents exactly one instance of the same thing."},
+  {id:"ANT-0003",name:"Hardcoded Values",type:"ANT",tier:"Beginner",intent:"When you find literal values embedded in formulas, use named ranges or dedicated assumption cells to make all inputs visible, auditable, and centrally updatable."},
+  {id:"ANT-0004",name:"Nested IFs",type:"ANT",tier:"Intermediate",intent:"When you encounter nested IF statements beyond two levels, use IFS, SWITCH, or LET with structured logic to eliminate nesting and restore formula readability."},
+  {id:"ARC-0003",name:"Selector-Driven Reconfiguration",type:"ARC",tier:"Expert",intent:"When you need a single dashboard to serve multiple views or audiences, use selector-driven reconfiguration to let dropdown choices drive the matrix dimensions, measures, and filters."},
+  {id:"PQ-0002",name:"Unpivot / Pivot",type:"PQ",tier:"Advanced",intent:"When you need to reshape data between wide and tall formats for analysis or loading, use Power Query Unpivot to normalize wide data or Pivot to denormalize tall data."},
 ];
 
 const EDGES = [
-  {source:"FRM-0001",target:"FRM-0002",type:"LEADS_TO"},{source:"FRM-0001",target:"ARC-0001",type:"LEADS_TO"},
-  {source:"FRM-0002",target:"ARC-0001",type:"LEADS_TO"},{source:"FRM-0002",target:"FRM-0001",type:"DEPENDS_ON"},
-  {source:"ARC-0001",target:"FRM-0002",type:"DEPENDS_ON"},{source:"ARC-0001",target:"FRM-0001",type:"DEPENDS_ON"},
-  {source:"ANT-0001",target:"CON-0001",type:"LEADS_TO"},{source:"FRM-0003",target:"FRM-0001",type:"LEADS_TO"},
-  {source:"FRM-0004",target:"FRM-0002",type:"DEPENDS_ON"},{source:"FRM-0004",target:"ARC-0001",type:"LEADS_TO"},
-  {source:"FRM-0005",target:"ARC-0002",type:"LEADS_TO"},{source:"FRM-0005",target:"KEY-0001",type:"DEPENDS_ON"},
-  {source:"FRM-0006",target:"FRM-0002",type:"LEADS_TO"},{source:"PTN-0001",target:"KEY-0001",type:"DEPENDS_ON"},
-  {source:"PTN-0001",target:"FRM-0001",type:"DEPENDS_ON"},{source:"PTN-0001",target:"ARC-0001",type:"LEADS_TO"},
-  {source:"KEY-0001",target:"FRM-0001",type:"LEADS_TO"},{source:"KEY-0001",target:"PQ-0001",type:"LEADS_TO"},
-  {source:"CON-0001",target:"PTN-0001",type:"LEADS_TO"},{source:"ANT-0002",target:"FRM-0006",type:"LEADS_TO"},
-  {source:"ARC-0002",target:"FRM-0005",type:"DEPENDS_ON"},{source:"ARC-0002",target:"FRM-0002",type:"DEPENDS_ON"},
-  {source:"ARC-0002",target:"ARC-0001",type:"LEADS_TO"},{source:"PQ-0001",target:"KEY-0001",type:"DEPENDS_ON"},
-  {source:"PQ-0001",target:"PTN-0001",type:"LEADS_TO"},
-  {source:"FRM-0001",target:"FRM-0002",type:"PAIRS_WITH"},{source:"FRM-0002",target:"FRM-0004",type:"PAIRS_WITH"},
-  {source:"ARC-0001",target:"FRM-0002",type:"PAIRS_WITH"},{source:"FRM-0005",target:"FRM-0001",type:"PAIRS_WITH"},
-  {source:"ARC-0002",target:"FRM-0005",type:"PAIRS_WITH"},{source:"PQ-0001",target:"KEY-0001",type:"PAIRS_WITH"},
+  {source:"FRM-0001",target:"FRM-0002",type:"LEADS_TO"},{source:"FRM-0001",target:"ARC-0001",type:"LEADS_TO"},{source:"FRM-0001",target:"FRM-0002",type:"PAIRS_WITH"},
+  {source:"FRM-0002",target:"ARC-0001",type:"LEADS_TO"},{source:"FRM-0002",target:"FRM-0001",type:"DEPENDS_ON"},{source:"FRM-0002",target:"FRM-0001",type:"PAIRS_WITH"},
+  {source:"ARC-0001",target:"FRM-0002",type:"DEPENDS_ON"},{source:"ARC-0001",target:"FRM-0001",type:"DEPENDS_ON"},{source:"ARC-0001",target:"FRM-0002",type:"PAIRS_WITH"},
+  {source:"ANT-0001",target:"CON-0001",type:"LEADS_TO"},{source:"FRM-0003",target:"FRM-0001",type:"LEADS_TO"},{source:"FRM-0003",target:"FRM-0002",type:"LEADS_TO"},
+  {source:"FRM-0003",target:"FRM-0001",type:"PAIRS_WITH"},{source:"FRM-0004",target:"FRM-0002",type:"DEPENDS_ON"},{source:"FRM-0004",target:"ARC-0001",type:"LEADS_TO"},
+  {source:"FRM-0004",target:"FRM-0002",type:"PAIRS_WITH"},{source:"FRM-0005",target:"ARC-0002",type:"LEADS_TO"},{source:"FRM-0005",target:"FRM-0001",type:"PAIRS_WITH"},
+  {source:"FRM-0006",target:"FRM-0002",type:"LEADS_TO"},{source:"FRM-0006",target:"FRM-0005",type:"PAIRS_WITH"},{source:"PTN-0001",target:"FRM-0001",type:"DEPENDS_ON"},
+  {source:"PTN-0001",target:"ARC-0001",type:"LEADS_TO"},{source:"PTN-0001",target:"FRM-0002",type:"PAIRS_WITH"},{source:"KEY-0001",target:"FRM-0001",type:"LEADS_TO"},
+  {source:"KEY-0001",target:"PQ-0001",type:"LEADS_TO"},{source:"CON-0001",target:"PTN-0001",type:"LEADS_TO"},{source:"ANT-0002",target:"FRM-0003",type:"LEADS_TO"},
+  {source:"ANT-0002",target:"FRM-0006",type:"LEADS_TO"},{source:"ARC-0002",target:"FRM-0005",type:"DEPENDS_ON"},{source:"ARC-0002",target:"FRM-0002",type:"DEPENDS_ON"},
+  {source:"ARC-0002",target:"ARC-0001",type:"LEADS_TO"},{source:"ARC-0002",target:"FRM-0005",type:"PAIRS_WITH"},{source:"PQ-0001",target:"KEY-0001",type:"DEPENDS_ON"},
+  {source:"PQ-0001",target:"PTN-0001",type:"LEADS_TO"},{source:"PQ-0001",target:"KEY-0001",type:"PAIRS_WITH"},{source:"FRM-0007",target:"ARC-0002",type:"LEADS_TO"},
+  {source:"FRM-0007",target:"FRM-0005",type:"PAIRS_WITH"},{source:"FRM-0008",target:"FRM-0007",type:"PAIRS_WITH"},{source:"FRM-0008",target:"ARC-0002",type:"LEADS_TO"},
+  {source:"FRM-0009",target:"FRM-0005",type:"DEPENDS_ON"},{source:"FRM-0009",target:"ARC-0002",type:"LEADS_TO"},{source:"FRM-0009",target:"FRM-0007",type:"PAIRS_WITH"},
+  {source:"FRM-0010",target:"FRM-0002",type:"LEADS_TO"},{source:"FRM-0010",target:"FRM-0005",type:"LEADS_TO"},{source:"PTN-0002",target:"FRM-0004",type:"LEADS_TO"},
+  {source:"PTN-0002",target:"FRM-0002",type:"LEADS_TO"},{source:"PTN-0003",target:"FRM-0001",type:"DEPENDS_ON"},{source:"PTN-0003",target:"FRM-0002",type:"PAIRS_WITH"},
+  {source:"KEY-0002",target:"KEY-0001",type:"PAIRS_WITH"},{source:"KEY-0002",target:"FRM-0010",type:"LEADS_TO"},{source:"CON-0002",target:"PTN-0001",type:"LEADS_TO"},
+  {source:"CON-0002",target:"PTN-0001",type:"PAIRS_WITH"},{source:"ANT-0003",target:"PTN-0002",type:"LEADS_TO"},{source:"ANT-0003",target:"FRM-0002",type:"LEADS_TO"},
+  {source:"ANT-0004",target:"FRM-0010",type:"LEADS_TO"},{source:"ANT-0004",target:"FRM-0002",type:"LEADS_TO"},{source:"ARC-0003",target:"ARC-0001",type:"DEPENDS_ON"},
+  {source:"ARC-0003",target:"FRM-0002",type:"DEPENDS_ON"},{source:"ARC-0003",target:"PTN-0001",type:"DEPENDS_ON"},{source:"PQ-0002",target:"PQ-0001",type:"DEPENDS_ON"},
+  {source:"PQ-0002",target:"CON-0002",type:"LEADS_TO"},{source:"PQ-0002",target:"PTN-0001",type:"PAIRS_WITH"},
 ];
 
 const TC: Record<string,{bg:string}> = {
@@ -218,7 +235,7 @@ export default function ExcelligencePage() {
               {Object.entries(TC).map(([type,c])=><span key={type} style={{padding:"2px 8px",background:c.bg,borderRadius:4,fontSize:10,fontWeight:700,color:"#FFF"}}>{type}</span>)}</div></div>
         </div>
       </div>
-      <div style={{marginTop:10,textAlign:"center",fontSize:10,color:"#475569"}}>Excelligence v0.1.1 &middot; Dropdown Logistics &middot; Chaos &rarr; Structured &rarr; Automated</div>
+      <div style={{marginTop:10,textAlign:"center",fontSize:10,color:"#475569"}}>Excelligence v0.1.2 &middot; Dropdown Logistics &middot; Chaos &rarr; Structured &rarr; Automated</div>
     </div>
   );
 }
