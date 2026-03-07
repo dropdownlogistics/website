@@ -1,11 +1,6 @@
-export const metadata = { title: 'LLM Setup Guide — DDL' };
+﻿import PreviewFrame from '@/components/PreviewFrame';
 
+export const metadata = { title: 'LLM Setup Guide â€” DDL' };
 export default function Page() {
-  return (
-    <iframe
-      src="/preview/llm-setup-guide.html"
-      style={{ width: '100%', height: '100vh', border: 'none' }}
-      title="LLM Setup Guide"
-    />
-  );
+  return <PreviewFrame src="/preview/llm-setup-guide.html" title="LLM Setup Guide" />;
 }

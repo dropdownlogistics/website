@@ -1,11 +1,6 @@
-export const metadata = { title: 'Other Works — DDL' };
+﻿import PreviewFrame from '@/components/PreviewFrame';
 
+export const metadata = { title: 'Other Works â€” DDL' };
 export default function Page() {
-  return (
-    <iframe
-      src="/preview/other-works.html"
-      style={{ width: '100%', height: '100vh', border: 'none' }}
-      title="Other Works"
-    />
-  );
+  return <PreviewFrame src="/preview/other-works.html" title="Other Works" />;
 }

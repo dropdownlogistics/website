@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CONSOLE â€” BlindSpot: Ash, Snow & Steel</title>
+<title>CONSOLE — BlindSpot: Ash, Snow & Steel</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -49,7 +49,7 @@
     padding: 48px 24px 64px;
   }
 
-  /* â”€â”€ Classification Banner â”€â”€ */
+  /* ── Classification Banner ── */
   .classification {
     text-align: center;
     margin-bottom: 40px;
@@ -77,7 +77,7 @@
     letter-spacing: 0.12em;
   }
 
-  /* â”€â”€ Hero Name â”€â”€ */
+  /* ── Hero Name ── */
   .hero-name {
     font-family: var(--font-body);
     font-size: 48px;
@@ -88,7 +88,7 @@
     letter-spacing: -0.01em;
   }
 
-  /* â”€â”€ Title / Role â”€â”€ */
+  /* ── Title / Role ── */
   .hero-role {
     font-family: var(--font-mono);
     font-size: 13px;
@@ -98,7 +98,7 @@
     margin-bottom: 16px;
   }
 
-  /* â”€â”€ Status Badge â”€â”€ */
+  /* ── Status Badge ── */
   .status-row {
     display: flex;
     flex-wrap: wrap;
@@ -121,7 +121,7 @@
   .badge-amber { color: var(--amber); background: var(--amber-dim); border-color: rgba(196,154,60,0.3); }
   .badge-ember { color: var(--ember); background: var(--ember-dim); border-color: rgba(201,138,74,0.3); }
 
-  /* â”€â”€ Stat Block â”€â”€ */
+  /* ── Stat Block ── */
   .stat-block {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -156,7 +156,7 @@
   .stat-value.blue { color: var(--blue); }
   .stat-value.green { color: var(--green); }
 
-  /* â”€â”€ Signature Directive (Pull Quote) â”€â”€ */
+  /* ── Signature Directive (Pull Quote) ── */
   .directive {
     border-left: 2px solid var(--crimson);
     padding: 16px 20px;
@@ -180,7 +180,7 @@
     margin-top: 8px;
   }
 
-  /* â”€â”€ Narrative Bio â”€â”€ */
+  /* ── Narrative Bio ── */
   .narrative {
     margin-bottom: 32px;
   }
@@ -194,7 +194,7 @@
   .narrative p:last-child { margin-bottom: 0; }
   .narrative strong { color: var(--cream-high); font-weight: 600; }
 
-  /* â”€â”€ Section Headers â”€â”€ */
+  /* ── Section Headers ── */
   .section-head {
     display: flex;
     align-items: center;
@@ -225,7 +225,7 @@
     background: var(--border);
   }
 
-  /* â”€â”€ Attribute Grid â”€â”€ */
+  /* ── Attribute Grid ── */
   .attr-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -256,7 +256,7 @@
   .attr-val.warn { color: var(--crimson); }
   .attr-val.good { color: var(--green); }
 
-  /* â”€â”€ Equipment Cards â”€â”€ */
+  /* ── Equipment Cards ── */
   .equip-card {
     background: var(--card);
     border: 1px solid var(--border);
@@ -298,7 +298,7 @@
     line-height: 1.5;
   }
 
-  /* â”€â”€ Collapsible Sections â”€â”€ */
+  /* ── Collapsible Sections ── */
   .collapsible {
     margin-bottom: 8px;
   }
@@ -342,7 +342,7 @@
   .collapsible-content p { margin-bottom: 12px; }
   .collapsible-content strong { color: var(--cream-high); }
 
-  /* â”€â”€ Talent List â”€â”€ */
+  /* ── Talent List ── */
   .talent-item {
     background: var(--card);
     border: 1px solid var(--border);
@@ -364,7 +364,7 @@
     line-height: 1.6;
   }
 
-  /* â”€â”€ Vulnerability Flags â”€â”€ */
+  /* ── Vulnerability Flags ── */
   .vuln-item {
     display: flex;
     gap: 12px;
@@ -391,7 +391,7 @@
   }
   .vuln-text strong { color: var(--cream-high); }
 
-  /* â”€â”€ Role Cards â”€â”€ */
+  /* ── Role Cards ── */
   .role-card {
     background: var(--card);
     border: 1px solid var(--border);
@@ -421,7 +421,7 @@
     line-height: 1.7;
   }
 
-  /* â”€â”€ Resistance Bar â”€â”€ */
+  /* ── Resistance Bar ── */
   .resist-row {
     display: flex;
     gap: 4px;
@@ -450,7 +450,7 @@
     margin-top: 2px;
   }
 
-  /* â”€â”€ Footer â”€â”€ */
+  /* ── Footer ── */
   .dossier-footer {
     margin-top: 56px;
   }
@@ -477,7 +477,7 @@
     opacity: 0.5;
   }
 
-  /* â”€â”€ Responsive â”€â”€ */
+  /* ── Responsive ── */
   @media (max-width: 520px) {
     .hero-name { font-size: 36px; }
     .stat-block { grid-template-columns: repeat(3, 1fr); }
@@ -491,11 +491,11 @@
 <body>
 <div class="dossier">
   <div class="classification">
-    <div class="classification-tag" style="color:var(--ember);background:var(--ember-dim);border-color:rgba(201,138,74,0.3)">BlindSpot Analytics â€” Campaign Console</div>
-    <div class="classification-sub">Ash, Snow & Steel Â· Mock Campaign Intelligence Â· DDL Analytics Engine</div>
+    <div class="classification-tag" style="color:var(--ember);background:var(--ember-dim);border-color:rgba(201,138,74,0.3)">BlindSpot Analytics — Campaign Console</div>
+    <div class="classification-sub">Ash, Snow & Steel · Mock Campaign Intelligence · DDL Analytics Engine</div>
   </div>
   <h1 class="hero-name">BlindSpot Console</h1>
-  <div class="hero-role" style="color:var(--ember)">Campaign Analytics Â· Ash, Snow & Steel Â· Simulated Data</div>
+  <div class="hero-role" style="color:var(--ember)">Campaign Analytics · Ash, Snow & Steel · Simulated Data</div>
   <div class="status-row">
     <span class="badge badge-ember">MOCK DATA</span>
     <span class="badge badge-amber">DDL FORMAT</span>
@@ -518,8 +518,8 @@
   </div>
   <div class="section-head"><div class="section-num" style="background:var(--violet-dim);color:var(--violet)">II</div><span class="section-title">Spotlight Balance</span><div class="section-line"></div></div>
   <div class="bar-chart">
-    <div class="bar-row"><span class="bar-label">Hillie</span><div class="bar-track"><div class="bar-fill" style="width:62%;background:var(--violet);color:var(--cream)">62% â€” Hex + EB dominance</div></div></div>
-    <div class="bar-row"><span class="bar-label">Feliciano</span><div class="bar-track"><div class="bar-fill" style="width:38%;background:var(--amber);color:var(--navy)">38% â€” Aura + Smite</div></div></div>
+    <div class="bar-row"><span class="bar-label">Hillie</span><div class="bar-track"><div class="bar-fill" style="width:62%;background:var(--violet);color:var(--cream)">62% — Hex + EB dominance</div></div></div>
+    <div class="bar-row"><span class="bar-label">Feliciano</span><div class="bar-track"><div class="bar-fill" style="width:38%;background:var(--amber);color:var(--navy)">38% — Aura + Smite</div></div></div>
   </div>
   <div class="section-head"><div class="section-num" style="background:var(--green-dim);color:var(--green)">III</div><span class="section-title">Resource Efficiency</span><div class="section-line"></div></div>
   <div class="attr-grid">
@@ -533,7 +533,7 @@
   <div class="narrative">
     <p><em>Note: All data in this console is simulated. BlindSpot is a DDL analytics engine originally built for sports betting and trading analytics. This mock applies the same analytical framework to tabletop RPG campaign data as a proof-of-concept for campaign intelligence tracking.</em></p>
   </div>
-  <div class="dossier-footer"><div class="footer-gradient"></div><div class="footer-text"><div class="footer-motto">Cottage â€” Humble surface. Cathedral underneath.</div><div class="footer-meta">Prepared by Dropdown Logistics Â· BlindSpot Analytics Engine Â· Campaign Intelligence Division</div></div></div>
+  <div class="dossier-footer"><div class="footer-gradient"></div><div class="footer-text"><div class="footer-motto">Cottage — Humble surface. Cathedral underneath.</div><div class="footer-meta">Prepared by Dropdown Logistics · BlindSpot Analytics Engine · Campaign Intelligence Division</div></div></div>
 </div>
 </body>
 </html>

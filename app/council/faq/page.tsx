@@ -1,11 +1,6 @@
-﻿export const metadata = { title: 'Council Calibration FAQ ΓÇö DDL' };
+﻿import PreviewFrame from '@/components/PreviewFrame';
 
+export const metadata = { title: 'Council Calibration FAQ ΓÇö DDL' };
 export default function Page() {
-  return (
-    <iframe
-      src="/preview/council-calibration-faq.html"
-      style={{ width: '100%', height: '100vh', border: 'none' }}
-      title="Council Calibration FAQ"
-    />
-  );
+  return <PreviewFrame src="/preview/council-calibration-faq.html" title="Council Calibration FAQ" />;
 }

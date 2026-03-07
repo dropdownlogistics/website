@@ -1,0 +1,12 @@
+MISSING PREVIEW PAGES — Parked 2026-03-03
+Routes deleted because source files are JSX, not HTML.
+Rebuild when ready. Source JSX lives in iCloud Bigger folder.
+
+callback-engine.html  <- console-callback-engine.jsx
+catnip-map.html       <- console-catnip-map.jsx
+sonic-thread.html     <- console-sonic-thread.jsx
+
+Routes to recreate:
+  app/analytics/callback-engine/page.tsx
+  app/analytics/catnip-map/page.tsx
+  app/analytics/sonic-thread/page.tsx

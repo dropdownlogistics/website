@@ -1,4 +1,6 @@
-﻿export const metadata = { title: 'Convergence Brief â€” DDL' };
+﻿import PreviewFrame from '@/components/PreviewFrame';
+
+export const metadata = { title: 'Convergence Brief â€” DDL' };
 export default function Page() {
-  return <iframe src="/preview/convergence-brief.html" style={{ width: '100%', height: '100vh', border: 'none' }} title="Convergence Brief" />;
+  return <PreviewFrame src="/preview/convergence-brief.html" title="Convergence Brief" />;
 }

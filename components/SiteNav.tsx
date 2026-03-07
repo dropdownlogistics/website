@@ -1,12 +1,8 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-
-// ═══════════════════════════════════════════════════════════
-// Types
-// ═══════════════════════════════════════════════════════════
 
 interface NavLink { href: string; label: string; }
 interface NavGroup { label: string; items: NavLink[]; }
@@ -18,10 +14,6 @@ interface Wing {
   home: string;
   groups: NavGroup[];
 }
-
-// ═══════════════════════════════════════════════════════════
-// CottageHumble Tokens
-// ═══════════════════════════════════════════════════════════
 
 const C = {
   navy: '#0D1B2A',
@@ -45,15 +37,11 @@ const font = {
   body: "'Source Serif 4', Georgia, serif",
 };
 
-// ═══════════════════════════════════════════════════════════
-// Wing Definitions
-// ═══════════════════════════════════════════════════════════
-
 const wingsData: Wing[] = [
   {
     id: 'ddl',
     name: 'DDL',
-    tagline: 'Chaos → Structured → Automated',
+    tagline: 'Chaos â†’ Structured â†’ Automated',
     color: C.crimson,
     home: '/ddl',
     groups: [
@@ -123,6 +111,7 @@ const wingsData: Wing[] = [
           { href: '/analytics/sonic-thread', label: 'Sonic Thread' },
           { href: '/analytics/callback-engine', label: 'Callback Engine' },
           { href: '/analytics/catnip-map', label: 'Catnip Map' },
+        { href: '/analytics/dimensional-map', label: 'Dimensional Map' },
           { href: '/analytics/dexdash', label: 'DexDash' },
           { href: '/analytics/tone', label: 'Tone Analysis' },
           { href: '/analytics/memoir', label: 'Memoir Analytics' },
@@ -135,6 +124,7 @@ const wingsData: Wing[] = [
           { href: '/recaps/apple-music', label: 'Apple Music' },
           { href: '/recaps/annual-signal', label: 'Annual Signal' },
           { href: '/recaps/predictions', label: 'Predictions' },
+        { href: '/recaps/duolingo', label: 'Duolingo' },
         ],
       },
     ],
@@ -165,7 +155,6 @@ const wingsData: Wing[] = [
       },
     ],
   },
-  // ─── Accent-only wings (no dropdown groups) ───
   {
     id: 'dossiers',
     name: 'Dossiers',
@@ -184,24 +173,15 @@ const wingsData: Wing[] = [
   },
 ];
 
-// ═══════════════════════════════════════════════════════════
-// Wing Detection
-// ═══════════════════════════════════════════════════════════
-
 const routeWingMap: Record<string, string> = {
-  // D&A wing
-  '/blindspot':   'da',
-  '/analytics':   'da',
-  '/recaps':      'da',
-  // DexVerse wing
-  '/dexlore':     'dexverse',
+  '/blindspot': 'da',
+  '/analytics': 'da',
+  '/recaps': 'da',
+  '/dexlore': 'dexverse',
   '/other-works': 'dexverse',
-  '/knowledge':   'dexverse',
-  // Dossiers (accent-only)
-  '/dossiers':    'dossiers',
-  // Products (accent-only)
-  '/products':    'products',
-  // Everything else → DDL
+  '/knowledge': 'dexverse',
+  '/dossiers': 'dossiers',
+  '/products': 'products',
 };
 
 function detectWing(pathname: string | null): Wing {
@@ -216,9 +196,15 @@ function detectWing(pathname: string | null): Wing {
   return wingsData[0];
 }
 
-// ═══════════════════════════════════════════════════════════
-// Dropdown Component
-// ═══════════════════════════════════════════════════════════
+function getLogoHref(pathname: string | null, wing: Wing): string {
+  if (pathname?.startsWith('/analytics/')) return '/analytics';
+  if (pathname === '/analytics') return '/';
+  if (!pathname) return '/';
+  const clean = pathname.replace(/\/$/, '') || '/';
+  const wingHome = wing.home.replace(/\/$/, '');
+  if (clean === wingHome) return '/';
+  return wing.home;
+}
 
 function Dropdown({ group, isActive, pathname, wingColor }: {
   group: NavGroup;
@@ -250,7 +236,7 @@ function Dropdown({ group, isActive, pathname, wingColor }: {
           fontSize: 8, opacity: 0.5,
           transform: open ? 'rotate(180deg)' : 'rotate(0)',
           transition: 'transform 0.2s', display: 'inline-block',
-        }}>▼</span>
+        }}>â–¼</span>
       </button>
       {open && (
         <div style={{
@@ -280,10 +266,6 @@ function Dropdown({ group, isActive, pathname, wingColor }: {
   );
 }
 
-// ═══════════════════════════════════════════════════════════
-// Wing Switcher — five entries, three with dropdowns
-// ═══════════════════════════════════════════════════════════
-
 function WingSwitcher({ currentWing }: { currentWing: Wing }) {
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 2 }}>
@@ -301,16 +283,11 @@ function WingSwitcher({ currentWing }: { currentWing: Wing }) {
   );
 }
 
-// ═══════════════════════════════════════════════════════════
-// Mobile Menu
-// ═══════════════════════════════════════════════════════════
-
 function MobileMenu({ wing, isActive, onClose }: {
   wing: Wing;
   isActive: (h: string) => boolean;
   onClose: () => void;
 }) {
-  // Section links for mobile (always visible)
   const mobileSections: NavLink[] = [
     { href: '/dossiers', label: 'Dossiers' },
     { href: '/products/behavioral-intelligence', label: 'Products' },
@@ -320,11 +297,19 @@ function MobileMenu({ wing, isActive, onClose }: {
 
   return (
     <div style={{
-      position: 'fixed', top: 52, left: 0, right: 0, bottom: 0,
+      position: 'absolute',
+      top: '100%',
+      left: 0,
+      right: 0,
+      height: 'calc(100dvh - 52px)',
       background: 'rgba(7,16,28,0.98)',
-      backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)',
-      overflowY: 'auto', padding: '20px 24px 40px',
-      animation: 'ddlSlideDown 0.2s ease', zIndex: 50,
+      backdropFilter: 'blur(20px)',
+      WebkitBackdropFilter: 'blur(20px)',
+      overflowY: 'auto',
+      WebkitOverflowScrolling: 'touch',
+      padding: '20px 24px 80px',
+      animation: 'ddlSlideDown 0.2s ease',
+      zIndex: 50,
     }}>
       {/* Wing switcher */}
       <div style={{ marginBottom: 24 }}>
@@ -339,7 +324,7 @@ function MobileMenu({ wing, isActive, onClose }: {
             color: wing.id === w.id ? w.color : C.creamMid,
             textDecoration: 'none', padding: '10px 0',
             borderBottom: `1px solid ${C.border}`,
-          }}>{w.name} — {w.tagline}</Link>
+          }}>{w.name} â€” {w.tagline}</Link>
         ))}
       </div>
 
@@ -360,7 +345,7 @@ function MobileMenu({ wing, isActive, onClose }: {
         ))}
       </div>
 
-      {/* Current wing dropdown groups (expanded) */}
+      {/* Current wing dropdown groups */}
       {wing.groups.length > 0 && (
         <>
           <div style={{
@@ -395,29 +380,28 @@ function MobileMenu({ wing, isActive, onClose }: {
         fontFamily: font.mono, fontSize: 9, letterSpacing: '0.3em',
         color: 'rgba(245,241,235,0.1)', textTransform: 'uppercase' as const,
       }}>
-        Cottage — Humble surface. Cathedral underneath.
+        Cottage â€” Humble surface. Cathedral underneath.
       </div>
     </div>
   );
 }
 
-// ═══════════════════════════════════════════════════════════
-// Main Nav
-// ═══════════════════════════════════════════════════════════
-
 export default function SiteNav() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const wing = detectWing(pathname);
+  const logoHref = getLogoHref(pathname, wing);
 
+  useEffect(() => { setMounted(true); }, []);
   useEffect(() => { setMobileOpen(false); }, [pathname]);
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
   }, [mobileOpen]);
 
-  // Landing page — no nav (after hooks to satisfy Rules of Hooks)
   if (pathname === '/') return null;
+  if (!mounted) return <div style={{ height: 60 }} />;
 
   const isActive = (href: string) => {
     if (href === '/') return pathname === '/';
@@ -456,9 +440,9 @@ export default function SiteNav() {
           maxWidth: 1200, margin: '0 auto', padding: '0 24px',
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
           height: 60, gap: 8,
+          position: 'relative',
         }}>
-          {/* Logo */}
-          <Link href="/" style={{
+          <Link href={logoHref} style={{
             textDecoration: 'none', display: 'flex',
             alignItems: 'center', gap: 10, flexShrink: 0,
           }}>
@@ -480,26 +464,21 @@ export default function SiteNav() {
                 color: wing.color + '80', letterSpacing: '0.04em',
                 transition: 'color 0.3s',
               }}>
-                {wing.tagline}
+                {logoHref === '/' ? wing.tagline : 'â† ' + wing.name}
               </div>
             </div>
           </Link>
 
-          {/* Desktop nav */}
           <nav className="ddl-desk" style={{
             display: 'flex', alignItems: 'center', gap: 2,
           }}>
             <WingSwitcher currentWing={wing} />
-
-            {/* Divider between wing switcher and dropdowns */}
             {wing.groups.length > 0 && (
               <div style={{
                 width: 1, height: 20,
                 background: C.creamGhost, margin: '0 6px',
               }} />
             )}
-
-            {/* Wing-contextual dropdown groups */}
             {wing.groups.map(g => (
               <Dropdown
                 key={g.label}
@@ -511,7 +490,6 @@ export default function SiteNav() {
             ))}
           </nav>
 
-          {/* Mobile hamburger */}
           <button
             className="ddl-mob-btn"
             onClick={() => setMobileOpen(!mobileOpen)}
@@ -525,11 +503,10 @@ export default function SiteNav() {
               transition: 'color 0.15s',
             }}
           >
-            {mobileOpen ? '✕' : '☰'}
+            {mobileOpen ? 'âœ•' : 'â˜°'}
           </button>
         </div>
 
-        {/* Mobile menu */}
         {mobileOpen && (
           <MobileMenu
             wing={wing}
@@ -541,3 +518,6 @@ export default function SiteNav() {
     </>
   );
 }
+
+
+

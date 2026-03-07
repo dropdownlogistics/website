@@ -3,14 +3,14 @@
 import data from '@/data/ddl.json';
 import SectionExplorer from '@/components/SectionExplorer';
 
-export default function DDLPage() {
+export default function DDLReferencePage() {
   const sections = data.sections as { title: string; slug: string; preview: string; content: string }[];
   return (
     <SectionExplorer
-      title="DDL"
-      subtitle="The operational methodology — charter, standards, governance, and tools."
+      title="DDL Reference"
+      subtitle="The full operational methodology — charter, standards, governance, and tools."
       accent="#B23531"
-      basePath="/ddl"
+      basePath="/ddl/reference"
       sections={sections}
     />
   );
