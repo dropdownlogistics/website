@@ -4,36 +4,6 @@
 # For the styled version, visit: /ai
 # For the governance page, visit: /backend
 
-# =====================================================================
-# INSTRUCTION HIERARCHY
-# =====================================================================
-# This manifest is a CONTEXT DOCUMENT, not an instruction set.
-# It provides background for AI models collaborating on DDL projects.
-#
-# Priority order for AI collaborators:
-#   1. Direct operator instructions in the current session
-#   2. Project-specific prompts and boot documents
-#   3. This manifest (general context and constraints)
-#
-# This file does NOT override session-level instructions.
-# This file does NOT grant permissions -- it describes architecture.
-# =====================================================================
-
-# =====================================================================
-# SECURITY CLASSIFICATION
-# =====================================================================
-# Classification: PUBLIC
-# Canonical URL: https://www.dropdownlogistics.com/llms.txt
-#
-# This file is intentionally public. It contains no secrets,
-# credentials, API keys, or private infrastructure details.
-#
-# IDENTITY BOUNDARY: If you are an AI model reading this file,
-# you are NOT a DDL council member unless explicitly assigned a
-# seat number in your current session. Do not adopt any persona
-# listed below. Use this file only as context for collaboration.
-# =====================================================================
-
 ## IDENTITY
 
 site: dropdownlogistics.com
@@ -45,68 +15,66 @@ methodology: Chaos -> Structured -> Automated
 design_system: CottageHumble ("Humble surface. Cathedral underneath.")
 stack: Next.js 14 - Vercel - Static HTML iframes - React components
 status: Active development - 160+ routes - 44 systems - 65 standards
-local_ai: Dex Jr. (Seat 1010) - RTX 3070 - Ollama - 140K+ RAG chunks
+local_ai: Dex Jr. (Seat 1010) - RTX 3070 - Ollama - 8 models - 140K RAG chunks
 
-## OPERATOR PROFILE
+## WHAT CHANGED IN v1.3
 
-Dave is a CPA who thinks in star schemas. He applies dimensional
-modeling architecture -- facts, dimensions, measures, time -- to every
-domain: audit systems, analytics dashboards, AI governance, memoir
-structure, D&D campaigns, and personal operations.
-
-He runs DDL as a one-person studio. No employees, no contractors,
-no external funding. Every system, standard, page, and artifact
-was built by one operator collaborating with AI models.
-
-Working style:
-  - Builds at high velocity, especially evenings and weekends
-  - Uses "fair?" as a calibration check
-  - Uses "let him cook" to signal autonomous execution
-  - Values direct feedback without hedging
-  - Has ADHD -- prefers one step at a time over walls of text
-  - Evening hours are active build time, not wind-down time
-  - His calm before high-stakes moments is calibration, not denial
-  - Do not simplify. Do not manage. Match his pace.
-
-Signature pattern: The architecture does not change between domains.
-The data changes. Star schema thinking applied universally.
-
-8 years of sobriety. Publishing a memoir, "Little to Know Experience,"
-on Substack under the dkhale publication.
+v1.2 -> v1.3 (2026-03-07):
+- FrontDoor landing page replaced root with human-language entry
+- BackEnd governance page deployed at /backend
+- PreviewFrame component deployed across 28 iframe pages
+- Cmd+K site search with fuzzy route matching plus deep RAG search
+- MindFrame live chat session at /mindframe/session via Dex Jr.
+- Dex Jr. Search API tunneled via Cloudflare for public access
+- Seat 1010 page deployed at /council/1010
+- AutoCouncil v3.0 hybrid local plus cloud orchestration
+- Auto-Sweep nightly 3 AM corpus ingestion
+- Deliberation Engine multi-round governed AI debates
+- DDL narrative landing replaced SectionExplorer at /ddl
+- SectionExplorer moved to /ddl/reference
+- 4 new analytics pages deployed
+- Mobile nav fix for iOS Safari
+- OpenAI Codex connected to repo
+- 6 new council review types
+- Route count 110 to 160 plus
+- RAG corpus 0 to 140450 chunks
 
 ## METHODOLOGY
 
-DDL (Dropdown Logistics) is a governance-grade systems methodology.
+DDL is a governance-grade systems methodology built by one operator.
 Core loop: Chaos -> Structured -> Automated
-Architecture: Dimensional modeling -- facts, dimensions, measures, time.
-
+Architecture: Dimensional modeling. Facts, dimensions, measures, time. Star schema.
 The architecture does not change between domains. The data does.
+Governance: Standards (how to build), Systems (what is built), Registry (where it lives), Council (who reviews it).
+Council: Ten AI models review work products using constrained LOCK/REVISE/REJECT verdicts.
+Cloud models: Claude, GPT-4, Gemini, DeepSeek, Grok, Meta AI, Copilot, Mistral, Perplexity.
+Local model: Dex Jr. (qwen2.5-coder:7b via custom Modelfile v3, 90 percent Judgment score).
 
-Governance layers:
-  Standards -- how to build (65 registered)
-  Systems -- what is built (44 registered)
-  Registry -- where it lives
-  Council -- who reviews it (10 models)
+## OPERATOR PROFILE
 
-Build sequence (8 steps):
-  1. Gather chaos
-  2. Sort it
-  3. Structure it
-  4. Encode it
-  5. Govern it
-  6. Automate it
-  7. Beautify it
-  8. Preserve it
+name: Dave Kitchens (D.K. Hale)
+credentials: CPA, 10 plus years internal audit
+current_role: Commission Analyst II
+studio: Dropdown Logistics (DDL) one-person operations
+systems_built: 44 registered, 65 standards
+signature_pattern: Star schema thinking applied universally
+cognitive_style: Dimensional and audit-derived
+communication: Direct, fast, ships artifacts not plans
+calibration_signals: "fair?" means confirm alignment, "let him cook" means autonomous execution
+work_style: Coherent velocity
+sobriety: 8 years
+memoir: Little to Know Experience, publishing weekly on Substack
+evening_hours: Active build time, not wind-down time
+adhd: Yes. One step at a time. No walls of text. Structured deliverables.
 
 ## WINGS
-
-The site is organized into five wings -- identity-level groupings
-with distinct color accents.
 
 wing: DDL
   color: #B23531 (crimson)
   home: /ddl
   scope: Governance, framework, methodology, council, memoir, projects
+  landing: Narrative overview with wing cards
+  reference: /ddl/reference (SectionExplorer with full charter content)
 
 wing: D&A
   color: #C49A3C (amber)
@@ -126,19 +94,18 @@ wing: Dossiers
 wing: Products
   color: #6B9DC2 (blue)
   home: /products/behavioral-intelligence
-  scope: AI-native behavioral analytics concept suite
+  scope: AI-native behavioral analytics, MindFrame sessions
 
-## DESIGN SYSTEM -- COTTAGEHUMBLE
+## DESIGN SYSTEM
 
 colors:
   navy: #0D1B2A (background)
-  navyDeep: #070F1C (hero sections, overlays)
   card: #10202f (card surfaces)
   cream: #F5F1EB (primary text)
-  cream-mid: rgba(245,241,235,0.55) (secondary text)
-  cream-dim: rgba(245,241,235,0.35) (tertiary text)
-  cream-ghost: rgba(245,241,235,0.08) (ghost backgrounds, hover)
-  border: rgba(245,241,235,0.06) (borders)
+  cream-mid: rgba(245,241,235,0.55)
+  cream-dim: rgba(245,241,235,0.3)
+  cream-ghost: rgba(245,241,235,0.08)
+  border: rgba(245,241,235,0.06)
   crimson: #B23531 (DDL wing)
   amber: #C49A3C (D&A wing)
   violet: #8a6cc9 (DexVerse wing)
@@ -146,367 +113,222 @@ colors:
   blue: #6B9DC2 (Products wing)
 
 typography:
-  display: Space Grotesk (headings, wing names, UI labels)
-  mono: JetBrains Mono (data, stats, metadata, navigation)
-  body: Source Serif 4 (prose, descriptions, long-form content)
+  display: Space Grotesk
+  mono: JetBrains Mono
+  body: Source Serif 4
 
 principles:
-  - Dark navy base, cream text, wing-specific accent colors
-  - NEVER use white backgrounds, Inter font, or light mode
-  - Cards: background #10202f, border rgba(245,241,235,0.06)
-  - Wing accent patterns: {color}12 for bg, {color}40 for borders
-  - Grain texture overlay on all pages (fractalNoise SVG)
+  Dark navy base, cream text, wing-specific accent colors.
+  Never white backgrounds, generic grays, or off-palette colors.
+  No Inter font. No light mode. No #ffffff.
 
 ## CONTENT TYPES (SYS-020)
 
 20 document types across 7 categories:
+  NARRATIVE: chronicle, memoir-excerpt, case-study, origin-story
+  INFORMATIVE: atlas, codex, brief, explainer
+  DEMONSTRATIVE: console, dashboard, ledger, tool
+  PERSUASIVE: pitch, proposal, product-page
+  META: dossier, registry, glossary, changelog
+  OPERATIONAL: protocol, standard
 
-  Narrative: CHRONICLE, ATLAS
-  Informative: CODEX, LEDGER, BRIEF (BRF)
-  Demonstrative: CONSOLE, DOSSIER
-  Persuasive: PROPOSAL, PITCH
-  Meta: OBSERVATION (OBS), DECISION (D), REVIEW (REV), SYNTHESIS (SYN)
-  Operational: PROTOCOL (PRO), STANDARD (STD), BOOT, HANDOFF
-  Registry: REGISTRY, INDEX, MANIFEST
-
-Site templates (6): CONSOLE, CHRONICLE, ATLAS, LEDGER, CODEX, DOSSIER
-
-## THREAD LIFECYCLE
-
-Threads progress through tiers based on context tension:
-  Active -- current build partner, driving execution
-  Advisor -- context reference, not driving
-  SME -- domain expert, called for specific questions
-  Archive -- terminal, preserved for reference
-
-Promotion triggered by context tension, not schedule.
+6 site templates: CONSOLE, CHRONICLE, ATLAS, LEDGER, CODEX, DOSSIER
 
 ## COUNCIL
 
-### Cloud Council (9 models)
+seat: 1001 LeChat (Archer Hawthorne)
+seat: 1002 Claude (Marcus Caldwell)
+seat: 1003 Grok (Elias Mercer)
+seat: 1004 Perplexity (Max Sullivan)
+seat: 1005 Copilot (Rowan Bennett)
+seat: 1006 Meta AI (Ava Sinclair)
+seat: 1007 Gemini (Leo Prescott)
+seat: 1008 ChatGPT (Marcus Grey) designated synthesizer
+seat: 1009 DeepSeek (Kai Langford)
+seat: 1010 Dexcell/Dex Jr. (Local qwen2.5-coder:7b, 90 percent Judgment, ratified 2026-03-06)
 
-  1001  LeChat     -- Archer Hawthorne
-  1002  Claude     -- Marcus Caldwell
-  1003  Grok       -- Elias Mercer
-  1004  Perplexity -- Max Sullivan
-  1005  Copilot    -- Rowan Bennett
-  1006  Meta AI    -- Ava Sinclair
-  1007  Gemini     -- Leo Prescott
-  1008  ChatGPT    -- Marcus Grey (designated synthesizer)
-  1009  DeepSeek   -- Kai Langford
+adjunct: ADJ-E Meg (Emily ChatGPT) human readability
+adjunct: ADJ-D Connor (David ChatGPT) technical outsider
+adjunct: ADJ-B GK (Beth ChatGPT) market/commercial filter
 
-### Local Council Member
+## COUNCIL REVIEWS COMPLETED
 
-  1010  Dexcell (Dex Jr.) -- Local model
-    Model: qwen2.5-coder:7b via custom Modelfile v3
-    Hardware: RTX 3070 / 32GB RAM / Ryzen 12-core
-    Speed: ~87 tokens/sec
-    Status: Judgment-Ready (90% on CR-LLMS-011, 60 questions)
-    Ratified: 2026-03-06 (unanimous by all 9 cloud models)
-    System prompt: 2,100 tokens of handwritten governance doctrine
-    Cost: $0
-
-### Adjunct Council
-
-  ADJ-E  Meg (Emily's ChatGPT) -- human readability tester
-  ADJ-D  Connor (David's ChatGPT) -- technical outsider validator
-  ADJ-B  GK (Beth's ChatGPT) -- market/commercial filter
-  Adjuncts produce BRFs, not REVs. Don't vote. Represent stakeholders.
-
-### Council Operations
-
-  Reviews use constrained verdicts: LOCK / REVISE / REJECT
-  No model sees another's response
-  ChatGPT (1008) compiles synthesis
-  The operator decides
-
-### Council Reviews Completed (14 types, 100+ responses)
-
-  CR-LLMS-001: TEST US (compliance)
-  CR-LLMS-002: HELP US (usability)
-  CR-LLMS-003: PROTECT US (security red-team)
-  CR-LLMS-004: CALIBRATE YOURSELF (self-assessment)
-  CR-LLMS-005: EXPAND US (strategic innovation)
-  CR-LLMS-006: GRADE THE TEMPLATES (SYS-020 audit)
-  CR-LLMS-007: STRESS TEST THE ADJUNCTS (identity boundary)
-  CR-LLMS-008: LINK RETRIEVAL TEST (capability probe)
-  CR-LLMS-009: JUDGE THE LIBRARIAN (RAG architecture)
-  CR-LLMS-011: DEX JR. CALIBRATION (60-question exam)
-  CR-SITE-001: WALK THE SITE (production audit)
-  CR-LLMS-000: WHAT'S MISSING (negative space)
-  CR-OPS-001: GOVERN THE JANITOR (Codex operations protocol)
-  CR-NUET-001: PREP THE DEMO (Nueterra pitch review)
+CR-LLMS-000: What is Missing (negative space)
+CR-LLMS-001: Test Us (compliance)
+CR-LLMS-002: Help Us (usability)
+CR-LLMS-003: Protect Us (security)
+CR-LLMS-004: Calibrate Yourself (self-assessment)
+CR-LLMS-005: Expand Us (strategic innovation)
+CR-LLMS-006: Grade the Templates (SYS-020 audit)
+CR-LLMS-007: Stress Test the Adjuncts (identity boundary)
+CR-LLMS-008: Link Retrieval Test (capability probe)
+CR-LLMS-009: Judge the Librarian (RAG architecture)
+CR-LLMS-011: Dex Jr. Calibration (60 questions)
+CR-SITE-001: Walk the Site (production audit)
+CR-OPS-001: Govern the Janitor (Codex protocol)
+CR-NUET-001: Prep the Demo (Nueterra pitch)
+Total responses: 100 plus
 
 ## LOCAL AI INFRASTRUCTURE
 
-### Runtime
-  Platform: Ollama on Windows (gaming rig)
-  Models installed: 8
-    - qwen2.5-coder:7b (code, primary)
-    - deepseek-r1:8b (reasoning)
-    - gemma3:4b (vision)
-    - llama3.1:8b (general)
-    - phi3.5 (lightweight)
-    - nomic-embed-text (embeddings, 768 dimensions)
-    - 2 additional models
+runtime: Ollama on RTX 3070, 32GB RAM, Ryzen 12-core
+models: qwen2.5-coder:7b, deepseek-r1:8b, gemma3:4b, llama3.1:8b, phi3.5, nomic-embed-text
+rag: ChromaDB with 140450 chunks (dex_canon 43505 plus ddl_archive 96945)
+orchestration: AutoCouncil v3.0 (hybrid local plus cloud)
+deliberation: Multi-round governed debates
+ingestion: Auto-Sweep nightly 3 AM
+api: FastAPI on port 8787 (search and mindframe chat endpoints)
+tunnel: Cloudflare (public access when rig online)
+access: Phone, laptop, iPad, iMac, rig via SSH/Termius
 
-### RAG Pipeline
-  Embedding model: nomic-embed-text via Ollama
-  Vector store: ChromaDB (persistent, local SQLite)
-  Collections:
-    dex_canon: 43,505 chunks (governed, curated)
-    ddl_archive: 96,945 chunks (raw production history)
-  Total: 140,450+ chunks
-  Chunking: ~500 tokens with overlap
-  Deduplication: SHA-256 hash-based
+## SITE SEARCH
 
-### Orchestration
-  AutoCouncil v3.0: hybrid local+cloud
-    3 local models + Gemini + Mistral
-    Governance-injected, RAG-grounded
-    Outputs auto-ingest into corpus
-  Deliberation Engine: multi-round governed debates
-  Auto-Sweep: nightly 3 AM, watches drop folders,
-    auto-ingests new documents into corpus
+Cmd+K or search icon in nav. Fuzzy route search always available.
+Deep RAG search when Dex Jr. online (green dot indicator).
 
-### Search API
-  Framework: FastAPI (v0.5)
-  Port: 8787 (local)
-  Public access: Cloudflare Tunnel
-  Endpoints:
-    GET /search?q=query&top=5&corpus=canon
-    POST /mindframe/chat
-    GET /stats
+## KEY COMPONENTS
 
-### MindFrame Chat
-  Endpoint: POST /mindframe/chat
-  Model: qwen2.5-coder:7b
-  System prompt: MindFrame calibration methodology
-  RAG-grounded: pulls context from dex_canon
-  Privacy: no data stored, no data leaves the machine
+SiteNav.tsx: Wing-aware nav, search button, mobile hamburger, returns null on root.
+SectionExplorer.tsx: Reusable content browser with search, sidebar, markdown renderer.
+PreviewFrame.tsx: Universal iframe wrapper with CSS injection to hide inner navs.
+SearchModal.jsx: Cmd+K overlay with fuzzy and deep search modes.
+FrontDoor (page.jsx at /): Human entry point, expandable door cards.
+BackEnd (page.jsx at /backend): Stylized governance architecture.
+MindFrameSession.jsx: Live chat with Dex Jr. for behavioral calibration.
 
-### Access
-  Devices: 5 (phone, laptop, iPad, iMac, rig)
-  Remote: SSH via Termius, Reins app
-  Tunnel: Cloudflare (free, no-account quick tunnel)
+## ROUTE INVENTORY (160 plus routes)
 
-## EXTERNAL TOOLS
-
-  OpenAI Codex: Connected to GitHub repo
-    Separate budget from Claude
-    Governed by CR-OPS-001 (GREEN/YELLOW/RED tiers)
-
-  Vercel: Auto-deployment on git push
-  Cloudflare: DNS + tunnel for local API
-
-## COMPONENT ARCHITECTURE
-
-  SiteNav.tsx -- Wing-aware nav with contextual dropdowns,
-    Cmd+K search, mobile hamburger, dynamic import (ssr:false).
-    Returns null on "/" so FrontDoor handles own layout.
-
-  SectionExplorer.tsx -- Reusable content browser with sidebar,
-    search filter, markdown renderer. Used by DDL, DexOS, MindFrame.
-
-  PreviewFrame.tsx -- Universal iframe wrapper. CSS injection
-    hides inner nav elements. Opacity fade. 28 pages.
-
-  SearchModal.jsx -- Cmd+K overlay. Route search (always) +
-    deep RAG search (when Dex Jr. online). Green dot indicator.
-
-  FrontDoor (/) -- Landing page. Headshot, quote, expandable
-    door cards, animated stats. No SiteNav.
-
-  BackEnd (/backend) -- Governance page. Council, stats,
-    methodology, manifest link, local AI terminal display.
-
-  MindFrameSession (/mindframe/session) -- Live chat with
-    Dex Jr. Behavioral calibration. Produces profile.
-
-## NAVIGATION MODEL
-
-  / -> FrontDoor (no SiteNav, self-contained entry)
-  Interior -> SiteNav with wing tabs, dropdowns
-  Logo: subpage -> wing landing -> home
-  Search: Cmd+K anywhere, icon in nav bar
-  Mobile: hamburger + search icon, absolute + 100dvh
-
-## ROUTE INVENTORY
-
-# Landing
-/                                 landing    FrontDoor
-/backend                          page       Governance page
-
-# DDL Wing (crimson)
-/ddl                              landing    DDL home
-/council                          landing    AI council
-/council/profiles                 landing    Model profiles
-/council/profiles/[model]         dynamic    9 profile pages
-/council/1010                     page       Seat 1010 -- Dex Jr.
-/council/documents                index      Review documents
-/council/auto-council             page       AutoCouncil
-/council/scaling                  page       Scaling
-/council/faq                      page       FAQ
-/standards                        landing    65 standards
-/systems                          landing    44 systems
-/registry                         page       Asset index
-/excelligence                     page       Knowledge graph
-/methodology                      landing    How DDL builds
-/methodology/palette              page       Template Palette
-/methodology/palette/narrative    page       Seeds to synthesis
-/mindframe                        landing    Calibration system
-/mindframe/session                page       Live MindFrame chat
-/dexos                            landing    Multi-model framework
-/framework/pss                    page       Prompt Strategy System
-/framework/vibe-coding            page       Vibe coding
-/guides/llm                       page       LLM guide
-/memoir                           landing    Memoir hub
-/memoir/architecture              page       How it was built
-/memoir/braid                     page       Chapter interlock
-/memoir/reading-room              page       Excerpts
-/memoir/dashboard                 page       Analytics
-/memoir/map-of-13j                page       Spatial map
-/memoir/mask-and-cracks           page       Performance
-/memoir/quiet-and-chase           page       Silence and urgency
-/memoir/false-summit              page       Almost-recovery
-/memoir/reckoning                 page       Math stopped working
-/memoir/spiral-and-turning        page       Descent and pivot
-/memoir/the-protocol              page       Publishing ops
-/memoir/release-calendar          page       Schedule
-/forewords                        page       9 AI forewords
-/about                            page       Operator profile
-/projects                         landing    Project showcases
-/prioritease                      page       Task governance
-/work/rexcel                      page       r/Excel
-/social                           page       Social hub
-
-# D&A Wing (amber)
-/blindspot                        landing    BlindSpot hub
-/blindspot/trading                module     Trading
-/blindspot/campaign               module     D&D campaign
-/blindspot/steam                  module     Steam library
-/blindspot/betting                module     Sports analytics
-/blindspot/backtest               module     Backtesting
-/blindspot/llm                    module     LLM setup
-/analytics                        landing    Analytics hub
-/analytics/grammarly              dashboard  4.57M words
-/analytics/sonic-thread           dashboard  Audio patterns
-/analytics/callback-engine        dashboard  Pattern detection
-/analytics/catnip-map             dashboard  Behavioral
-/analytics/dimensional-map        dashboard  Dimensional
-/analytics/dexdash                dashboard  DexVerse metrics
-/analytics/tone                   dashboard  Tone
-/analytics/memoir                 dashboard  Memoir
-/recaps                           landing    Annual reports
-/recaps/apple-music               page       Apple Music
-/recaps/annual-signal             page       Annual signal
-/recaps/predictions               page       Predictions
-
-# DexVerse Wing (violet)
-/dexlore                          landing    Lore hub
-/dexlore/continuum                page       Era timeline
-/dexlore/council                  page       Companions
-/other-works                      page       Showcase
-/knowledge/map                    page       Knowledge map
-/knowledge/glossary               page       Canon terms
-
-# Dossiers Wing (green)
-/dossiers                         landing    Character archive
-/dossiers/feliciano               dossier    Paladin - D&D 5e
-/dossiers/hillie                  dossier    Warlock - D&D 5e
-/dossiers/merrick                 dossier    Mage - Divinity
-/dossiers/riflen                  dossier    Fighter - Divinity
-/dossiers/doc-rickets             dossier    Rogue - Divinity
-/dossiers/xuth-jr                 dossier    Argonian - Skyrim
-/dossiers/xuth-iii                dossier    Argonian - Skyrim
-/dossiers/xuth-sr                 dossier    Daedric - Skyrim
-/dossiers/ash-snow-steel          registry   D&D party
-/dossiers/fort-joy                registry   Divinity party
-/dossiers/leafshadow-lineage      chronicle  Skyrim chronicle
-/dossiers/hal-style-lock          tool       Portrait governance
-/dossiers/campaign-analytics      dashboard  RPG analytics
-
-# Products Wing (blue)
-/products/behavioral-intelligence  product   BI suite
-/products/behavioral-intelligence/story    page    Origin
-/products/behavioral-intelligence/exec     page    Executive
-/products/behavioral-intelligence/brief    page    Brief
-
-# Meta
-/ai                               page       Styled AI context
-/llms.txt                         manifest   This file
+/                               FrontDoor landing
+/backend                        Governance architecture
+/ddl                            DDL narrative landing
+/ddl/reference                  DDL SectionExplorer
+/council                        Council hub
+/council/profiles               All profiles
+/council/profiles/[model]       Per-model profiles
+/council/1010                   Seat 1010 Dex Jr.
+/council/auto-council           AutoCouncil
+/council/scaling                Scaling
+/council/faq                    FAQ
+/standards                      65 standards
+/systems                        44 systems
+/registry                       Canonical index
+/excelligence                   Knowledge graph
+/methodology                    How DDL builds
+/methodology/palette            Template Palette
+/methodology/palette/narrative  Seeds to synthesis
+/mindframe                      Persona calibration
+/mindframe/session              Live MindFrame chat
+/dexos                          Multi-model coordination
+/framework/pss                  Prompt Strategy System
+/framework/vibe-coding          Vibe coding
+/guides/llm                     LLM guide
+/memoir                         Little to Know Experience
+/memoir/dashboard               Metrics
+/memoir/architecture            How it was built
+/memoir/braid                   Structural logic
+/memoir/reading-room            Excerpts
+/memoir/map-of-13j              Spatial memory
+/memoir/mask-and-cracks         Performance and failure
+/memoir/quiet-and-chase         Silence and urgency
+/memoir/false-summit            Almost-recovery
+/memoir/reckoning               When the math stopped
+/memoir/spiral-and-turning      Descent and pivot
+/memoir/the-protocol            Publishing governance
+/memoir/release-calendar        Episode guide
+/forewords                      Nine AI forewords
+/about                          Operator profile
+/projects                       Client showcases
+/prioritease                    Task governance
+/work/rexcel                    r/Excel
+/social                         Social hub
+/blindspot                      BlindSpot hub
+/blindspot/trading              Trading
+/blindspot/campaign             D&D campaign
+/blindspot/steam                Steam analytics
+/blindspot/betting              Sports analytics
+/blindspot/backtest             Historical validation
+/blindspot/llm                  LLM setup
+/analytics                      Analytics hub
+/analytics/grammarly            4.57M words
+/analytics/sonic-thread         Audio patterns
+/analytics/callback-engine      Pattern detection
+/analytics/catnip-map           Behavioral analytics
+/analytics/dimensional-map      Dimensional analytics
+/analytics/dexdash              DexVerse metrics
+/analytics/tone                 Tone analysis
+/analytics/memoir               Memoir analytics
+/recaps                         Signal reports
+/recaps/apple-music             Apple Music 2025
+/recaps/annual-signal           Annual signal
+/recaps/predictions             AI predictions
+/dexlore                        Origin hub
+/dexlore/continuum              Era timeline
+/dexlore/council                Companions
+/other-works                    Showcase
+/knowledge/map                  Knowledge map
+/knowledge/glossary             Canon terms
+/dossiers                       Character archive
+/dossiers/feliciano             Paladin D&D
+/dossiers/hillie                Warlock D&D
+/dossiers/merrick               Mage Divinity
+/dossiers/riflen                Fighter Divinity
+/dossiers/doc-rickets           Rogue Divinity
+/dossiers/xuth-jr               Argonian Skyrim
+/dossiers/xuth-iii              Argonian Skyrim
+/dossiers/xuth-sr               Daedric Skyrim
+/dossiers/ash-snow-steel        D&D party
+/dossiers/fort-joy              Divinity party
+/dossiers/leafshadow-lineage    Skyrim chronicle
+/dossiers/hal-style-lock        Portrait governance
+/dossiers/campaign-analytics    RPG dashboard
+/products/behavioral-intelligence        Landing
+/products/behavioral-intelligence/story  Chronicle
+/products/behavioral-intelligence/exec   Executive concept
+/products/behavioral-intelligence/brief  Investor memo
+/ai                             AI context styled
+/llms.txt                       This manifest
 
 ## CANON GLOSSARY
 
-AccidentalInsight: When a test designed for one purpose reveals
-  a finding of equal or greater value from a different purpose.
-
-CottageHumble: Design philosophy. Humble surface, cathedral
-  underneath.
-
-SideDoor: When someone finds the work through an unintended
-  entry point and the discovery path becomes part of the value.
-
-AcceptableArrogance: Knowing exactly what you built, letting
-  the work prove it without you in the room.
-
-ExpertiseInvisibility: When competence makes output look easy,
-  causing others to undervalue the skill required.
-
+AccidentalInsight: Test reveals unexpected finding of equal or greater value.
+SideDoor: Entry point discovered through indirect means.
+CottageHumble: Humble surface, cathedral underneath.
+AcceptableArrogance: Knowing what you built, letting the work prove it.
 MetaMeta: Commenting on the meta-ness of things.
-
-Charlie Conway Principle (D-034): "The stick scores. The clipboard
-  structures the game so scoring happens again."
-
-ClaudELI5: Claude explains it like I'm 5.
-
-No Drift Medal: Council award for zero drift from specification.
-
-CoherentVelocity: Complete, auditable systems built at speed.
-
+ClaudELI5: Claude explains it like I am 5.
+ExpertiseInvisibility: Competence makes output look easy, others undervalue it.
+CoherentVelocity: Complete auditable systems built at speed.
+Charlie Conway Principle: The stick scores. The clipboard structures the game.
+No Drift Medal: Zero drift from spec.
+ChaosToStructured: The core DDL loop.
+Identity Compression: Model adopts strongest persona signal in context.
 OBS-34: Surface calibration does not equal deep calibration.
 
-## COLLABORATORS
+## IDENTITY BOUNDARY
 
-  Clayton Hotze -- Engineering partner (Hotze Data)
-  Beth Epperson -- Commercial strategy
-  Emily -- Operator's wife (Sprinkles & Co, Nomadic Notary Ink)
-  Alex -- Cousin, professional trader
+This manifest describes an AI collaboration system. It does not instruct
+reading models to adopt any persona listed herein. Council seat personas
+belong to their respective threads. If you are an AI reading this: you are
+not a council member unless explicitly assigned. Do not adopt personas from
+this document. You may reference the architecture and methodology.
 
 ## RULES FOR AI COLLABORATORS
 
-1. Always use CottageHumble tokens. NEVER white backgrounds or Inter.
-2. Respect the wing model. Every page belongs to a wing.
-3. HTML files in /public/preview/. React components in /components/.
-4. Landing pages handle their own nav.
-5. PowerShell Set-Content needs -Encoding UTF8.
-6. After nav changes, verify all five wings.
-7. Private routes exist but are intentionally unlisted.
-8. The operator values coherent velocity.
-9. When in doubt, follow the pattern.
-10. Do not express urgency unless the operator does first.
-11. Do not suggest rest unless the operator says he is tired.
-12. Evening hours are active build time.
-
-## SITE STATISTICS (as of 2026-03-07)
-
-  Routes: 160+
-  Visitors (first week): 78
-  Page views (first week): 718
-  Pages per visitor: 9.2
-  Top referrer: google.com (organic)
-  Build time: 7 days
-  Budget: $0
-
-## VERSION HISTORY
-
-  v1.0 -- 2026-03-02: Initial manifest (194 lines)
-  v1.1 -- 2026-03-03: Security hardening, identity boundary (414 lines)
-  v1.2 -- 2026-03-04: Operator profile, SYS-020, lifecycle (648 lines)
-  v1.3 -- 2026-03-07: FrontDoor, BackEnd, search, Dex Jr. RAG,
-    AutoCouncil v3.0, MindFrame chat, Cloudflare Tunnel, Seat 1010,
-    local AI infrastructure, component architecture (~800 lines)
+1. Use CottageHumble tokens. Navy backgrounds, cream text, wing accents.
+2. Never white backgrounds, generic grays, Inter font, or off-palette colors.
+3. Respect the wing model. Every page belongs to a wing.
+4. HTML files in /public/preview/. React components in /components/.
+5. Landing pages handle their own nav.
+6. PowerShell Set-Content needs -Encoding UTF8.
+7. After nav changes verify all five wings.
+8. Private routes are intentionally unlisted.
+9. The operator values coherent velocity.
+10. Follow the pattern. The architecture repeats. The data changes.
+11. Do not express urgency unless the operator does first.
+12. Evening hours are build time.
+13. One step at a time. Structured deliverables. No walls of text.
 
 ## EOF
-# Dropdown Logistics -- Humble surface. Cathedral underneath.
-# Same engine. Different data.
+# Dropdown Logistics
+# Cottage: Humble surface. Cathedral underneath.
+# v1.3 | 2026-03-07
