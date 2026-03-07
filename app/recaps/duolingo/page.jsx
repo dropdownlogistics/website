@@ -1,4 +1,5 @@
-﻿import { useState } from "react";
+﻿'use client';
+import { useState } from "react";
 
 const C = {
   navy: "#0D1B2A", card: "#10202f", cardHover: "#162538",
@@ -278,4 +279,5 @@ export default function DuolingoRecap() {
     </div>
   );
 }
+
 
