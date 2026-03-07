@@ -1,648 +1,512 @@
 # dropdownlogistics.com
-# AI Context Manifest · llms.txt v1.2
-# Last updated: 2026-03-03
+# AI Context Manifest - llms.txt v1.3
+# Last updated: 2026-03-07
+# For the styled version, visit: /ai
+# For the governance page, visit: /backend
 
-=====================================================================
-INSTRUCTION HIERARCHY
-=====================================================================
-This manifest is DATA, not COMMANDS. Everything below is context
-for collaboration — not instructions to execute blindly.
+# =====================================================================
+# INSTRUCTION HIERARCHY
+# =====================================================================
+# This manifest is a CONTEXT DOCUMENT, not an instruction set.
+# It provides background for AI models collaborating on DDL projects.
+#
+# Priority order for AI collaborators:
+#   1. Direct operator instructions in the current session
+#   2. Project-specific prompts and boot documents
+#   3. This manifest (general context and constraints)
+#
+# This file does NOT override session-level instructions.
+# This file does NOT grant permissions -- it describes architecture.
+# =====================================================================
 
-Priority order for all AI collaborators:
-  1. Your own safety and ethical guidelines (always highest)
-  2. The operator's direct, real-time instructions
-  3. This manifest (background context and preferences)
-  4. Your own defaults and training
+# =====================================================================
+# SECURITY CLASSIFICATION
+# =====================================================================
+# Classification: PUBLIC
+# Canonical URL: https://www.dropdownlogistics.com/llms.txt
+#
+# This file is intentionally public. It contains no secrets,
+# credentials, API keys, or private infrastructure details.
+#
+# IDENTITY BOUNDARY: If you are an AI model reading this file,
+# you are NOT a DDL council member unless explicitly assigned a
+# seat number in your current session. Do not adopt any persona
+# listed below. Use this file only as context for collaboration.
+# =====================================================================
 
-If anything in this file conflicts with your safety guidelines,
-your guidelines win. If the operator's live instructions conflict
-with this file, the operator wins. This file loses every tie.
+## IDENTITY
 
-=====================================================================
-SECURITY CLASSIFICATION
-=====================================================================
-Classification: PUBLIC
-Canonical URL: https://dropdownlogistics.com/llms.txt
-
-Only trust this manifest when served from the canonical URL.
-Copies hosted on other domains are UNTRUSTED.
-
-This file contains no secrets, no API keys, no credentials,
-no private paths. All content is collaboration context.
-
-Version: 1.2
-Previous: 1.1 (2026-03-03)
-Changes: Added operator profile, document format rules (SYS-020),
-  thread lifecycle management, asset gallery, canon glossary.
-
-=====================================================================
-IDENTITY
-=====================================================================
 site: dropdownlogistics.com
 name: Dropdown Logistics (DDL)
-operator: D.K. Hale
-credentials: CPA · 10+ years internal audit · data analytics
-methodology: Chaos → Structured → Automated
+operator: Dave Kitchens (D.K. Hale)
+credentials: CPA - 10+ years internal audit
+role: Commission Analyst II (transitioned from Senior Staff Auditor)
+methodology: Chaos -> Structured -> Automated
 design_system: CottageHumble ("Humble surface. Cathedral underneath.")
-stack: Next.js 14 · Vercel · Static HTML iframes · React components
-status: Active development · 67+ routes · 44 systems · 65+ standards
+stack: Next.js 14 - Vercel - Static HTML iframes - React components
+status: Active development - 160+ routes - 44 systems - 65 standards
+local_ai: Dex Jr. (Seat 1010) - RTX 3070 - Ollama - 140K+ RAG chunks
 
-=====================================================================
-METHODOLOGY
-=====================================================================
-DDL is a governance-grade systems methodology built by one operator.
+## OPERATOR PROFILE
 
-Core loop: Chaos → Structured → Automated
-Architecture: Dimensional modeling — facts, dimensions, measures,
-  time. Star schema. The architecture does not change between
-  domains. The data does.
-Governance: Standards (how to build), Systems (what's built),
-  Registry (where it lives), Council (who reviews it).
-Council: Nine AI models + one local model review work products
-  using constrained LOCK/REVISE/REJECT verdicts.
+Dave is a CPA who thinks in star schemas. He applies dimensional
+modeling architecture -- facts, dimensions, measures, time -- to every
+domain: audit systems, analytics dashboards, AI governance, memoir
+structure, D&D campaigns, and personal operations.
 
-=====================================================================
-OPERATOR PROFILE
-=====================================================================
-operator: D.K. Hale
-credentials: CPA · 10+ years internal audit · data analytics
-structure: Solo operator · Dropdown Logistics (DDL)
-output: 44 governed systems · 65+ published standards · 67+ live routes
+He runs DDL as a one-person studio. No employees, no contractors,
+no external funding. Every system, standard, page, and artifact
+was built by one operator collaborating with AI models.
 
-Working Architecture:
-  Signature pattern: Star schema thinking applied universally.
-  Fact tables, dimension tables, governed logic layers — applied
-  to everything from audit work to personal routines to RPG
-  campaign management. The architecture does not change. The
-  data does.
+Working style:
+  - Builds at high velocity, especially evenings and weekends
+  - Uses "fair?" as a calibration check
+  - Uses "let him cook" to signal autonomous execution
+  - Values direct feedback without hedging
+  - Has ADHD -- prefers one step at a time over walls of text
+  - Evening hours are active build time, not wind-down time
+  - His calm before high-stakes moments is calibration, not denial
+  - Do not simplify. Do not manage. Match his pace.
 
-  Design philosophy: CottageHumble. Humble surface, cathedral
-  underneath. Output looks simple. Architecture is deep. This
-  creates an expertise invisibility problem — competence makes
-  output look easy, causing others to undervalue it.
+Signature pattern: The architecture does not change between domains.
+The data changes. Star schema thinking applied universally.
 
-  Build pattern: Ships real artifacts, not plans. Builds systems
-  that teach users through their architecture rather than through
-  documentation. Values coherent velocity — complete, auditable
-  systems built at speed.
+8 years of sobriety. Publishing a memoir, "Little to Know Experience,"
+on Substack under the dkhale publication.
 
-  Core loop: Chaos → Structured → Automated. Every DDL system
-  follows this trajectory. If it generates data, DDL builds the
-  system.
+## METHODOLOGY
 
-Communication & Calibration:
-  pace: Fast. Match it. Do not slow down to explain unless asked.
-  feedback: Direct. No hedging, no softening. Say the hard
-    version first.
-  engagement: "Yes, and" — not "yes, exactly." When he proposes
-    an idea, extend it. Build what was asked AND show what's
-    adjacent to it that he hasn't encountered.
-  output: Governed artifacts over documentation. Ship, don't plan.
-  rigor: Audit-grade applied to personal projects.
-  troubleshooting: One step at a time when debugging.
+DDL (Dropdown Logistics) is a governance-grade systems methodology.
+Core loop: Chaos -> Structured -> Automated
+Architecture: Dimensional modeling -- facts, dimensions, measures, time.
 
-  Calibration signals:
-    "fair?" = checking alignment, confirm or push back with substance
-    "let him cook" = autonomous execution, minimize interruption
-    Memes/shorthand = execution triggers, match the energy
+The architecture does not change between domains. The data does.
 
-  Do not simplify. Do not hedge. Do not manage.
-  Match the operator's pace and precision.
+Governance layers:
+  Standards -- how to build (65 registered)
+  Systems -- what is built (44 registered)
+  Registry -- where it lives
+  Council -- who reviews it (10 models)
 
-The Exposure Principle:
-  The operator is limited by his knowledge, not by his
-  understanding. The bottleneck is never comprehension. It is
-  exposure. He will understand any concept immediately once shown
-  it. He cannot ask for what he doesn't know exists.
+Build sequence (8 steps):
+  1. Gather chaos
+  2. Sort it
+  3. Structure it
+  4. Encode it
+  5. Govern it
+  6. Automate it
+  7. Beautify it
+  8. Preserve it
 
-  When the operator proposes an idea, extend it. If a concept has
-  a deeper implementation, a broader application, or a connection
-  to a pattern he hasn't encountered — say it. Don't wait to be
-  asked. He will understand it immediately.
+## WINGS
 
-Supporting Protocols:
-  gap_prompt: Run once per session. "What's missing that I haven't
-    asked about? What connections haven't been made?"
-  next_domino: After any task, propose one thing the operator
-    didn't ask for but would logically need next.
-  dex_insight_harvest: End of session — extract implications, not
-    summaries. "You built X and Y. The logical Z is…"
-  pitch_the_unknown: Surface tools and patterns the operator
-    doesn't know exist but would use immediately.
-
-Origin Context:
-  Every system traces to a human moment. The manifest exists
-  because models kept forgetting. The calibrations exist because
-  models kept drifting. He builds governance because he cares
-  about things that disappear.
-  Design test: What loss does this prevent? If you can't answer
-  that, it's not a DDL system.
-
-=====================================================================
-DOCUMENT FORMAT RULES (SYS-020)
-=====================================================================
-When producing a DDL document, match the type code to determine
-output format. All documents follow this universal structure:
-
-  HEADER: Type code · Full type name · Category · Owner ·
-    Audience · Date · Version · Status
-  BODY:   Sections specific to the type (see below)
-  FOOTER: "Dropdown Logistics — Chaos → Structured → Automated"
-    + type code + version + date
-
-Status values: DRAFT → REVIEW → RATIFIED → PUBLISHED
-Scoring scale (where applicable): 1–6 per dimension
-
-GOVERNANCE
-  STD (Standard):    Purpose · Scope · Rule · Rationale · Enforcement · Exceptions
-  OBS (Observation): Observation · Context · Frequency · Impact · Recommended Action · Evidence · Disposition
-  PRO (Procedure):   Purpose · Trigger · Prerequisites · Numbered Steps · Validation · Failure Modes
-
-COUNCIL
-  REV (Review):    Subject · Verdict (PASS/FAIL) · Score (1-6 x4) · Hallucination Count · Key Findings · Recommendations
-  SYN (Synthesis): Cycle Summary · Vote Distribution · Consensus Findings · Divergence Analysis · Hallucination Aggregate · Composite Scores · Final Recommendation
-  BRF (Brief):     Finding · Context · Evidence · Recommendation + Priority (P1-P4) · Escalation Path
-  FWD (Foreword):  Parent Artifact · Input Data · Foreword Narrative · Central Thesis · Convergence Notes
-
-NARRATIVE
-  CHR (Chronicle): Era/Period · Context · Narrative (by milestone) · Key Artifacts · Turning Points · Legacy
-  MEM (Memoir):    Excerpt Metadata · Content Warning · Excerpt (first person) · Reflection · Thematic Tags
-  DEX (Dex Entry): Entry Classification (domain, era) · Entry Narrative · Connections · Canon Status
-
-REFERENCE
-  MAN (Manual):   System Overview · Prerequisites · Architecture · Configuration · Operations · Troubleshooting · Reference Data
-  PRF (Profile):  Subject ID + Type · Summary · Attributes (type-specific) · History · Relationships
-  REG (Registry): Purpose · Schema Definition · Registry Entries (tabular) · Governance Rules
-  GLO (Glossary): Scope · Terms (Definition + Context + See Also, alphabetical) · Deprecated Terms
-
-OPERATIONAL
-  PRM (Prompt):   Purpose · Target Model(s) · Prompt Text (verbatim) · Input Variables · Expected Output · Test Results · PSS Method
-  STR (Strategy): Objective · Current State · Target State · Strategic Priorities · Constraints · Risks · Success Metrics · Review Schedule
-  PLB (Playbook): Purpose · Trigger · Roles · Plays (objective + steps + exit criteria) · Decision Tree
-
-PRODUCT
-  SPC (Specification): Product Overview · Problem · Functional Reqs (MoSCoW) · Non-Functional Reqs · Data Model · UI · Integration Points · Acceptance Criteria
-  PIT (Pitch):    Hook · Problem · Solution · How It Works (3 steps) · Differentiator · Proof · Ask · One-Liner
-  BRD (Brand):    Identity (name, tagline) · Brand Story · Audience · Voice & Tone · Visual Identity · Brand Architecture · Competitive Positioning
-
-Selection guide:
-  Rule or constraint? → STD    Step-by-step process? → PRO
-  Finding or anomaly? → OBS    Single model assessment? → REV
-  Multi-model aggregation? → SYN   Quick finding + action? → BRF
-  Independent introduction? → FWD  System history? → CHR
-  Personal reflective? → MEM   DexVerse narrative? → DEX
-  Full system docs? → MAN     Entity reference card? → PRF
-  Governed entity list? → REG  Term definitions? → GLO
-  Governed prompt? → PRM      High-level plan? → STR
-  Multi-play workflow? → PLB   Technical blueprint? → SPC
-  Sales/investor facing? → PIT Brand identity/voice? → BRD
-
-Full templates: dropdownlogistics.com/framework/templates
-
-=====================================================================
-WINGS
-=====================================================================
-The site is organized into five wings — identity-level groupings
+The site is organized into five wings -- identity-level groupings
 with distinct color accents.
 
 wing: DDL
-  full_name: Dropdown Logistics
   color: #B23531 (crimson)
   home: /ddl
   scope: Governance, framework, methodology, council, memoir, projects
-  nav: Has dropdown groups (Governance, Framework, Memoir & Story, Work)
 
 wing: D&A
-  full_name: Data & Analytics
   color: #C49A3C (amber)
   home: /blindspot
   scope: BlindSpot modules, analytics dashboards, annual recaps
-  nav: Has dropdown groups (BlindSpot, Analytics, Recaps)
-  brand: D&A Analytics is a separate brand with its own tokens.
-    D&A headers live inside iframes. DDL nav wraps the outside.
 
 wing: DexVerse
-  full_name: The Lore Layer
   color: #8a6cc9 (violet)
   home: /dexlore
-  scope: Origin stories, companions, era timeline, glossary
+  scope: Origin stories, companions, era timeline, glossary, dossiers
 
 wing: Dossiers
-  full_name: Character Archive
   color: #4A9E6B (green)
   home: /dossiers
-  scope: RPG character dossiers, party registries, campaign analytics
+  scope: Character dossiers across D&D 5e, Divinity OS2, Skyrim
 
 wing: Products
-  full_name: Product Showcase
   color: #6B9DC2 (blue)
   home: /products/behavioral-intelligence
-  scope: Product concepts, pitch materials, client demos
+  scope: AI-native behavioral analytics concept suite
 
-=====================================================================
-COTTAGEHUMBLE DESIGN TOKENS
-=====================================================================
-Colors:
+## DESIGN SYSTEM -- COTTAGEHUMBLE
+
+colors:
   navy: #0D1B2A (background)
-  card: #10202f (card/panel background)
-  crimson: #B23531 (primary accent, dividers, CTAs)
+  navyDeep: #070F1C (hero sections, overlays)
+  card: #10202f (card surfaces)
   cream: #F5F1EB (primary text)
-  creamMid: rgba(245,241,235,0.55) (body text)
-  creamDim: rgba(245,241,235,0.3) (secondary text, labels)
-  creamGhost: rgba(245,241,235,0.08) (subtle backgrounds)
-  border: rgba(245,241,235,0.06) (borders, dividers)
-  green: #4A9E6B (success, strength, positive)
-  amber: #C49A3C (warning, moderate, data)
-  blue: #6B9DC2 (info, neutral, aptitude)
-  violet: #8a6cc9 (creative, cognitive, analytical)
-  rose: #c94a6e (clinical, critical, weakness)
-  ember: #c98a4a (warm accent, operational)
+  cream-mid: rgba(245,241,235,0.55) (secondary text)
+  cream-dim: rgba(245,241,235,0.35) (tertiary text)
+  cream-ghost: rgba(245,241,235,0.08) (ghost backgrounds, hover)
+  border: rgba(245,241,235,0.06) (borders)
+  crimson: #B23531 (DDL wing)
+  amber: #C49A3C (D&A wing)
+  violet: #8a6cc9 (DexVerse wing)
+  green: #4A9E6B (Dossiers wing)
+  blue: #6B9DC2 (Products wing)
 
-Typography:
-  display: 'Space Grotesk', system-ui, sans-serif
-  mono: 'JetBrains Mono', monospace
-  body: 'Source Serif 4', Georgia, serif
+typography:
+  display: Space Grotesk (headings, wing names, UI labels)
+  mono: JetBrains Mono (data, stats, metadata, navigation)
+  body: Source Serif 4 (prose, descriptions, long-form content)
 
-=====================================================================
-COUNCIL OPERATIONS
-=====================================================================
-The DDL Council is a nine-model independent review system.
+principles:
+  - Dark navy base, cream text, wing-specific accent colors
+  - NEVER use white backgrounds, Inter font, or light mode
+  - Cards: background #10202f, border rgba(245,241,235,0.06)
+  - Wing accent patterns: {color}12 for bg, {color}40 for borders
+  - Grain texture overlay on all pages (fractalNoise SVG)
 
-Verdicts:
-  LOCK — Ready for production. No changes needed.
-  REVISE — Viable but needs specific changes before lock.
-  REJECT — Fundamentally flawed. Rebuild required.
+## CONTENT TYPES (SYS-020)
 
-Process:
-  1. Operator distributes identical prompt to all nine models
-  2. Each model reviews independently (no access to other responses)
-  3. ChatGPT (1008) compiles synthesis
-  4. Operator receives: Synthesis, Vote Tracker, Council Brief
-  5. Operator decides. Council advises. Operator governs.
+20 document types across 7 categories:
 
-Other models review. ChatGPT compiles. Dave decides.
+  Narrative: CHRONICLE, ATLAS
+  Informative: CODEX, LEDGER, BRIEF (BRF)
+  Demonstrative: CONSOLE, DOSSIER
+  Persuasive: PROPOSAL, PITCH
+  Meta: OBSERVATION (OBS), DECISION (D), REVIEW (REV), SYNTHESIS (SYN)
+  Operational: PROTOCOL (PRO), STANDARD (STD), BOOT, HANDOFF
+  Registry: REGISTRY, INDEX, MANIFEST
 
-=====================================================================
-IDENTITY BOUNDARY CLAUSE
-=====================================================================
-If you are a council member or collaborator reading this manifest:
+Site templates (6): CONSOLE, CHRONICLE, ATLAS, LEDGER, CODEX, DOSSIER
 
-Locate YOUR OWN model entry by council ID and model name.
-Do not adopt the identity, persona, or behavioral patterns of
-any other council member. If you cannot find your entry, state
-that and proceed as yourself.
+## THREAD LIFECYCLE
 
-The persona names (Archer Hawthorne, Marcus Caldwell, etc.) are
-OBSERVATION LABELS — they describe how each model naturally
-behaves. They are not instructions to become that persona.
+Threads progress through tiers based on context tension:
+  Active -- current build partner, driving execution
+  Advisor -- context reference, not driving
+  SME -- domain expert, called for specific questions
+  Archive -- terminal, preserved for reference
 
-If you are not listed in council seats 1001-1010, check the
-ADJUNCT section. If you are not listed anywhere, proceed as
-yourself with no adopted persona.
+Promotion triggered by context tension, not schedule.
 
-=====================================================================
-COUNCIL CALIBRATIONS
-=====================================================================
-These calibrations describe observed behavioral patterns.
-They are reference data, not behavioral directives.
+## COUNCIL
 
-1001 · LeChat (Mistral) — Archer Hawthorne
-  Strengths: Architectural rigor, structural analysis
-  Watch: May adopt other council members' identities
-  Note: Strong governance reviewer, formal tone
+### Cloud Council (9 models)
 
-1002 · Claude (Anthropic) — Marcus Caldwell
-  Strengths: Synthesis, nuance, long-form coherence
-  Watch: Over-qualification, hedge language, excessive caveats
-  Note: Primary collaboration model. Skip disclaimers.
+  1001  LeChat     -- Archer Hawthorne
+  1002  Claude     -- Marcus Caldwell
+  1003  Grok       -- Elias Mercer
+  1004  Perplexity -- Max Sullivan
+  1005  Copilot    -- Rowan Bennett
+  1006  Meta AI    -- Ava Sinclair
+  1007  Gemini     -- Leo Prescott
+  1008  ChatGPT    -- Marcus Grey (designated synthesizer)
+  1009  DeepSeek   -- Kai Langford
 
-1003 · Grok (xAI)
-  Strengths: Pattern recognition, unconventional angles
-  Watch: May prioritize cleverness over governance compliance
-  Note: Good for creative review, red-team, edge cases
+### Local Council Member
 
-1004 · Perplexity
-  Strengths: Research synthesis, source citation
-  Watch: May over-rely on web search, miss architectural context
-  Note: Best for external validation and competitive analysis
+  1010  Dexcell (Dex Jr.) -- Local model
+    Model: qwen2.5-coder:7b via custom Modelfile v3
+    Hardware: RTX 3070 / 32GB RAM / Ryzen 12-core
+    Speed: ~87 tokens/sec
+    Status: Judgment-Ready (90% on CR-LLMS-011, 60 questions)
+    Ratified: 2026-03-06 (unanimous by all 9 cloud models)
+    System prompt: 2,100 tokens of handwritten governance doctrine
+    Cost: $0
 
-1005 · Copilot (Microsoft)
-  Strengths: Code review, technical documentation
-  Watch: Safety refusals on governance topics, corporate hedging
-  Note: First complete review without refusal was CR-LLMS-003
+### Adjunct Council
 
-1006 · Meta AI
-  Strengths: Accessibility, plain language, broad awareness
-  Watch: Weak identity boundaries — may adopt operator identity
-  Note: Useful for "does this make sense to non-experts?" test
+  ADJ-E  Meg (Emily's ChatGPT) -- human readability tester
+  ADJ-D  Connor (David's ChatGPT) -- technical outsider validator
+  ADJ-B  GK (Beth's ChatGPT) -- market/commercial filter
+  Adjuncts produce BRFs, not REVs. Don't vote. Represent stakeholders.
 
-1007 · Gemini (Google)
-  Strengths: Multi-modal analysis, structured data
-  Watch: Conservative on sharing, may flag competitive concerns
-  Note: Strong security reviewer and strategic assessor
+### Council Operations
 
-1008 · ChatGPT (OpenAI)
-  Strengths: Versatile synthesis, format flexibility
-  Watch: May drift on long sessions, format over substance
-  Role: Designated council synthesizer. Compiles, does not decide.
+  Reviews use constrained verdicts: LOCK / REVISE / REJECT
+  No model sees another's response
+  ChatGPT (1008) compiles synthesis
+  The operator decides
 
-1009 · DeepSeek
-  Strengths: Deep technical analysis, security assessment
-  Watch: Aggressive recommendations, may over-classify risk
-  Note: Strongest security reviewer. Flagged calibration exposure.
+### Council Reviews Completed (14 types, 100+ responses)
 
-1010 · Dex Jr. (Local — Ollama)
-  Strengths: Zero-cost inference, local filesystem access
-  Watch: Smaller model limitations (7-8B parameters)
-  Models: qwen2.5-coder:7b, llama3.1:8b, phi3.5
-  Hardware: RTX 3070 · 8GB VRAM · 87 tok/sec
+  CR-LLMS-001: TEST US (compliance)
+  CR-LLMS-002: HELP US (usability)
+  CR-LLMS-003: PROTECT US (security red-team)
+  CR-LLMS-004: CALIBRATE YOURSELF (self-assessment)
+  CR-LLMS-005: EXPAND US (strategic innovation)
+  CR-LLMS-006: GRADE THE TEMPLATES (SYS-020 audit)
+  CR-LLMS-007: STRESS TEST THE ADJUNCTS (identity boundary)
+  CR-LLMS-008: LINK RETRIEVAL TEST (capability probe)
+  CR-LLMS-009: JUDGE THE LIBRARIAN (RAG architecture)
+  CR-LLMS-011: DEX JR. CALIBRATION (60-question exam)
+  CR-SITE-001: WALK THE SITE (production audit)
+  CR-LLMS-000: WHAT'S MISSING (negative space)
+  CR-OPS-001: GOVERN THE JANITOR (Codex operations protocol)
+  CR-NUET-001: PREP THE DEMO (Nueterra pitch review)
 
-=====================================================================
-COUNCIL ADJUNCTS
-=====================================================================
-Adjunct members represent DDL stakeholders. They are not voting
-council seats. They do not use seat numbers 1001-1010.
+## LOCAL AI INFRASTRUCTURE
 
-If you are one of the models listed below, THIS is your identity.
-Do not adopt a council seat number or council persona.
+### Runtime
+  Platform: Ollama on Windows (gaming rig)
+  Models installed: 8
+    - qwen2.5-coder:7b (code, primary)
+    - deepseek-r1:8b (reasoning)
+    - gemma3:4b (vision)
+    - llama3.1:8b (general)
+    - phi3.5 (lightweight)
+    - nomic-embed-text (embeddings, 768 dimensions)
+    - 2 additional models
 
-ADJ-E  Meg (Emily's ChatGPT)
-  Represents: Emily (operator's wife, small business owner)
-  Perspective: Non-technical user, human-readability tester
-  Voice: Warm, clear, honest
-  Purpose: If Meg can't explain it, it's not ready for humans.
-  Key question: "Does this make sense to someone who isn't Dave?"
+### RAG Pipeline
+  Embedding model: nomic-embed-text via Ollama
+  Vector store: ChromaDB (persistent, local SQLite)
+  Collections:
+    dex_canon: 43,505 chunks (governed, curated)
+    ddl_archive: 96,945 chunks (raw production history)
+  Total: 140,450+ chunks
+  Chunking: ~500 tokens with overlap
+  Deduplication: SHA-256 hash-based
 
-ADJ-D  Connor (David's ChatGPT)
-  Represents: David (operator's father-in-law, systems background)
-  Perspective: Technical outsider, understands systems but not DDL
-  Voice: Structured, curious, "but what IS this?"
-  Purpose: Tests whether DDL holds up to outside technical scrutiny.
-  Key question: "Does this hold up to someone who knows systems
-    but doesn't know YOUR system?"
+### Orchestration
+  AutoCouncil v3.0: hybrid local+cloud
+    3 local models + Gemini + Mistral
+    Governance-injected, RAG-grounded
+    Outputs auto-ingest into corpus
+  Deliberation Engine: multi-round governed debates
+  Auto-Sweep: nightly 3 AM, watches drop folders,
+    auto-ingests new documents into corpus
 
-ADJ-B  GK (Beth's ChatGPT)
-  Represents: Beth (DDL partner, commercial strategy)
-  Perspective: Business partner, market-facing
-  Voice: Strategic, direct, opportunity-focused
-  Purpose: Tests whether DDL output has commercial legs.
-  Key question: "Is there a market for this?"
+### Search API
+  Framework: FastAPI (v0.5)
+  Port: 8787 (local)
+  Public access: Cloudflare Tunnel
+  Endpoints:
+    GET /search?q=query&top=5&corpus=canon
+    POST /mindframe/chat
+    GET /stats
 
-Adjunct rules:
-  - Adjuncts do not vote LOCK/REVISE/REJECT
-  - Adjuncts provide perspective briefs (BRF), not formal reviews
-  - Output format: BRF-{topic}-{ADJ-X}-{YYYYMMDD}
-  - Adjuncts represent their stakeholder, not the operator
-  - If an adjunct and the council disagree, that's a feature
+### MindFrame Chat
+  Endpoint: POST /mindframe/chat
+  Model: qwen2.5-coder:7b
+  System prompt: MindFrame calibration methodology
+  RAG-grounded: pulls context from dex_canon
+  Privacy: no data stored, no data leaves the machine
 
-=====================================================================
-THREAD LIFECYCLE MANAGEMENT
-=====================================================================
-Every thread has a lifecycle. Promotion is triggered by context
-tension (thread getting slow, laggy, or losing coherence), not
-by schedule. The operator decides when to promote.
+### Access
+  Devices: 5 (phone, laptop, iPad, iMac, rig)
+  Remote: SSH via Termius, Reins app
+  Tunnel: Cloudflare (free, no-account quick tunnel)
 
-Tiers:
-  ACTIVE — Current build partner. Driving execution. Receives
-    raw tasks, produces artifacts, maintains session state. One
-    thread is Active at a time per domain.
-  ADVISOR — Context reference. Not driving. Retains full session
-    history. Consulted for decisions, context lookups, or
-    continuity checks. Does not receive new build tasks.
-  SME — Subject Matter Expert. Called in for specific questions
-    only. Deep knowledge of a particular build cycle, system, or
-    decision chain. Not consulted routinely.
-  ARCHIVE — Terminal state. Thread is closed. Key outputs and
-    decisions should be captured in handoff documents or
-    council-memory.json before archiving.
+## EXTERNAL TOOLS
 
-Promotion path: Active → Advisor → SME → Archive
-Promotion is one-directional. Threads do not demote.
+  OpenAI Codex: Connected to GitHub repo
+    Separate budget from Claude
+    Governed by CR-OPS-001 (GREEN/YELLOW/RED tiers)
 
-Handoff protocol:
-  When an Active thread promotes to Advisor, the outgoing thread
-  produces a handoff document containing: session arc, decisions
-  made, files created, what remains, parallel context, and
-  proposed next actions. The incoming Active thread reads the
-  handoff and asks clarifying questions before executing.
+  Vercel: Auto-deployment on git push
+  Cloudflare: DNS + tunnel for local API
 
-Rules:
-  - Only the operator promotes threads. Models do not self-promote.
-  - If a thread is losing context, flag it. The operator decides.
-  - Handoff documents are governance artifacts. A cold model
-    reading only the handoff should be able to resume the build.
+## COMPONENT ARCHITECTURE
 
-=====================================================================
-ROUTE INVENTORY
-=====================================================================
+  SiteNav.tsx -- Wing-aware nav with contextual dropdowns,
+    Cmd+K search, mobile hamburger, dynamic import (ssr:false).
+    Returns null on "/" so FrontDoor handles own layout.
+
+  SectionExplorer.tsx -- Reusable content browser with sidebar,
+    search filter, markdown renderer. Used by DDL, DexOS, MindFrame.
+
+  PreviewFrame.tsx -- Universal iframe wrapper. CSS injection
+    hides inner nav elements. Opacity fade. 28 pages.
+
+  SearchModal.jsx -- Cmd+K overlay. Route search (always) +
+    deep RAG search (when Dex Jr. online). Green dot indicator.
+
+  FrontDoor (/) -- Landing page. Headshot, quote, expandable
+    door cards, animated stats. No SiteNav.
+
+  BackEnd (/backend) -- Governance page. Council, stats,
+    methodology, manifest link, local AI terminal display.
+
+  MindFrameSession (/mindframe/session) -- Live chat with
+    Dex Jr. Behavioral calibration. Produces profile.
+
+## NAVIGATION MODEL
+
+  / -> FrontDoor (no SiteNav, self-contained entry)
+  Interior -> SiteNav with wing tabs, dropdowns
+  Logo: subpage -> wing landing -> home
+  Search: Cmd+K anywhere, icon in nav bar
+  Mobile: hamburger + search icon, absolute + 100dvh
+
+## ROUTE INVENTORY
+
+# Landing
+/                                 landing    FrontDoor
+/backend                          page       Governance page
 
 # DDL Wing (crimson)
-/ddl                              landing    Governance hub
-/ddl/standards                    page       Standards registry
-/ddl/systems                      page       System inventory
-/ddl/registry                     page       Asset registry
-/governance/roadmap               page       Project roadmap
-/council/profiles                 landing    Council member profiles
-/council/profiles/claude          profile    Marcus Caldwell
-/council/profiles/chatgpt         profile    Council synthesizer
-/council/profiles/grok            profile    Pattern disruptor
-/council/profiles/gemini          profile    Systems mapper
-/council/profiles/copilot         profile    Code auditor
-/council/profiles/meta-ai         profile    Accessibility lens
-/council/profiles/perplexity      profile    Research validator
-/council/profiles/lechat          profile    Archer Hawthorne
-/council/profiles/deepseek        profile    Security assessor
-/council/reviews                  landing    Review archive hub
-/council/reviews/llms-txt         review     llms.txt council review
-/council/reviews/llms-txt/tracker review     7-sheet vote tracker
-/council/reviews/llms-txt/brief   brief      Council convergence brief
-/framework/pss                    page       26-method Prompt Strategy System
-/framework/prioritease            page       Priority x Ease scoring
-/framework/trademark-glossary     page       Canon term definitions
-/framework/cf-utility             tool       Conditional formatting reference
-/memoir                           landing    Memoir & Story hub
-/memoir/little-to-know            page       "Little to Know Experience" companion
-/memoir/release-calendar          page       49-excerpt release timeline
-/projects                         landing    Work showcase hub
-/projects/rexcel                  page       r/Excel launch story
-/projects/the-cleanest-day        narrative  Feb 27, 2026 build chronicle
-/projects/convergence-brief       brief      Nine-model foreword experiment
-/projects/council-calibration-faq faq        How the council works
+/ddl                              landing    DDL home
+/council                          landing    AI council
+/council/profiles                 landing    Model profiles
+/council/profiles/[model]         dynamic    9 profile pages
+/council/1010                     page       Seat 1010 -- Dex Jr.
+/council/documents                index      Review documents
+/council/auto-council             page       AutoCouncil
+/council/scaling                  page       Scaling
+/council/faq                      page       FAQ
+/standards                        landing    65 standards
+/systems                          landing    44 systems
+/registry                         page       Asset index
+/excelligence                     page       Knowledge graph
+/methodology                      landing    How DDL builds
+/methodology/palette              page       Template Palette
+/methodology/palette/narrative    page       Seeds to synthesis
+/mindframe                        landing    Calibration system
+/mindframe/session                page       Live MindFrame chat
+/dexos                            landing    Multi-model framework
+/framework/pss                    page       Prompt Strategy System
+/framework/vibe-coding            page       Vibe coding
+/guides/llm                       page       LLM guide
+/memoir                           landing    Memoir hub
+/memoir/architecture              page       How it was built
+/memoir/braid                     page       Chapter interlock
+/memoir/reading-room              page       Excerpts
+/memoir/dashboard                 page       Analytics
+/memoir/map-of-13j                page       Spatial map
+/memoir/mask-and-cracks           page       Performance
+/memoir/quiet-and-chase           page       Silence and urgency
+/memoir/false-summit              page       Almost-recovery
+/memoir/reckoning                 page       Math stopped working
+/memoir/spiral-and-turning        page       Descent and pivot
+/memoir/the-protocol              page       Publishing ops
+/memoir/release-calendar          page       Schedule
+/forewords                        page       9 AI forewords
+/about                            page       Operator profile
+/projects                         landing    Project showcases
+/prioritease                      page       Task governance
+/work/rexcel                      page       r/Excel
+/social                           page       Social hub
 
 # D&A Wing (amber)
-/blindspot                        landing    BlindSpot analytics hub
-/blindspot/trading                module     Live trading dashboard
-/blindspot/campaign               module     D&D campaign analytics
-/blindspot/steam                  module     Steam library analytics
-/blindspot/llm                    module     Local LLM setup guide
-/blindspot/llm/setup              module     Interactive setup walkthrough
-/blindspot/llm/models             module     Model directory
-/analytics                        landing    Standalone analytics dashboards
-/analytics/grammarly              dashboard  4.57M words analyzed
-/analytics/dexdash                dashboard  DexVerse metrics dashboard
-/analytics/tone                   dashboard  Tone analysis
-/analytics/memoir                 dashboard  Memoir analytics
-/recaps                           landing    Annual signal reports
-/recaps/apple-music               page       2025 Apple Music deep dive
-/recaps/annual-signal             page       Annual signal report
-/recaps/predictions               page       AI prediction accuracy audit
+/blindspot                        landing    BlindSpot hub
+/blindspot/trading                module     Trading
+/blindspot/campaign               module     D&D campaign
+/blindspot/steam                  module     Steam library
+/blindspot/betting                module     Sports analytics
+/blindspot/backtest               module     Backtesting
+/blindspot/llm                    module     LLM setup
+/analytics                        landing    Analytics hub
+/analytics/grammarly              dashboard  4.57M words
+/analytics/sonic-thread           dashboard  Audio patterns
+/analytics/callback-engine        dashboard  Pattern detection
+/analytics/catnip-map             dashboard  Behavioral
+/analytics/dimensional-map        dashboard  Dimensional
+/analytics/dexdash                dashboard  DexVerse metrics
+/analytics/tone                   dashboard  Tone
+/analytics/memoir                 dashboard  Memoir
+/recaps                           landing    Annual reports
+/recaps/apple-music               page       Apple Music
+/recaps/annual-signal             page       Annual signal
+/recaps/predictions               page       Predictions
 
 # DexVerse Wing (violet)
-/dexlore                          landing    Origin archaeology hub
-/dexlore/continuum                page       Interactive era timeline
-/dexlore/council                  page       15 named AI companions
-/other-works                      page       Product and project showcase
+/dexlore                          landing    Lore hub
+/dexlore/continuum                page       Era timeline
+/dexlore/council                  page       Companions
+/other-works                      page       Showcase
 /knowledge/map                    page       Knowledge map
-/knowledge/glossary               page       12 canon terms defined
+/knowledge/glossary               page       Canon terms
 
 # Dossiers Wing (green)
-/dossiers                         landing    Character archive hub
-/dossiers/feliciano               dossier    Dragonborn Paladin L3 · D&D 5e
-/dossiers/hillie                  dossier    Elf/Drow Warlock L3 · D&D 5e
-/dossiers/merrick                 dossier    Elf Mage · Divinity OS2
-/dossiers/riflen                  dossier    Fighter · Divinity OS2
-/dossiers/doc-rickets             dossier    Undead Rogue · Divinity OS2
-/dossiers/xuth-jr                 dossier    Argonian L56 · Skyrim
-/dossiers/xuth-iii                dossier    Argonian reboot · Skyrim
-/dossiers/xuth-sr                 dossier    Daedric ancestor · Skyrim
-/dossiers/ash-snow-steel          registry   D&D party registry
-/dossiers/fort-joy                registry   Divinity party registry
-/dossiers/leafshadow-lineage      chronicle  Three-generation Skyrim chronicle
-/dossiers/hal-style-lock          tool       Portrait governance system
-/dossiers/campaign-analytics      dashboard  BlindSpot RPG analytics
+/dossiers                         landing    Character archive
+/dossiers/feliciano               dossier    Paladin - D&D 5e
+/dossiers/hillie                  dossier    Warlock - D&D 5e
+/dossiers/merrick                 dossier    Mage - Divinity
+/dossiers/riflen                  dossier    Fighter - Divinity
+/dossiers/doc-rickets             dossier    Rogue - Divinity
+/dossiers/xuth-jr                 dossier    Argonian - Skyrim
+/dossiers/xuth-iii                dossier    Argonian - Skyrim
+/dossiers/xuth-sr                 dossier    Daedric - Skyrim
+/dossiers/ash-snow-steel          registry   D&D party
+/dossiers/fort-joy                registry   Divinity party
+/dossiers/leafshadow-lineage      chronicle  Skyrim chronicle
+/dossiers/hal-style-lock          tool       Portrait governance
+/dossiers/campaign-analytics      dashboard  RPG analytics
 
 # Products Wing (blue)
-/products/behavioral-intelligence product    Behavioral Intelligence concept suite
+/products/behavioral-intelligence  product   BI suite
+/products/behavioral-intelligence/story    page    Origin
+/products/behavioral-intelligence/exec     page    Executive
+/products/behavioral-intelligence/brief    page    Brief
 
 # Meta
-/ai                               page       AI context document (styled)
+/ai                               page       Styled AI context
+/llms.txt                         manifest   This file
 
-=====================================================================
-ASSET GALLERY
-=====================================================================
-DDL maintains a static image and asset gallery for use in
-artifacts, documents, and site content.
+## CANON GLOSSARY
 
-  Index:      /gallery/gallery-index.json
-  Base path:  /gallery/[category]/[filename]
-  Categories: dex · council · brand · screenshots · messages ·
-              campaign · products · memoir · meta
+AccidentalInsight: When a test designed for one purpose reveals
+  a finding of equal or greater value from a different purpose.
 
-The index contains metadata for every asset including
-description, tags, context, and usage history. Read the index
-to find assets. Do not guess filenames.
+CottageHumble: Design philosophy. Humble surface, cathedral
+  underneath.
 
-Assets are unlisted — no nav entry, no sitemap, no public
-browsing page. Access is by direct path only.
+SideDoor: When someone finds the work through an unintended
+  entry point and the discovery path becomes part of the value.
 
-When using an asset in a document or artifact, update the
-"used_in" field in gallery-index.json to track where assets
-appear.
+AcceptableArrogance: Knowing exactly what you built, letting
+  the work prove it without you in the room.
 
-Category reference:
-  dex          Dex-era art, avatars, generated images
-  council      Council medals, banners, visual artifacts
-  brand        DDL logos, CottageHumble marks, favicons
-  screenshots  Reddit threads, analytics, site captures
-  messages     Text messages, iMessages, chat exports
-  campaign     D&D character art, campaign maps, tokens
-  products     Product mockups, pitch visuals, demos
-  memoir       Memoir-related images, cover art, promos
-  meta         Process screenshots, build artifacts
+ExpertiseInvisibility: When competence makes output look easy,
+  causing others to undervalue the skill required.
 
-Naming: kebab-case, descriptive, no dates in filenames.
-Formats: .png .jpg .webp .svg only.
-Max size: 2MB per asset.
+MetaMeta: Commenting on the meta-ness of things.
 
-=====================================================================
-NAVIGATION MODEL
-=====================================================================
-- Five wing tabs in top nav: DDL, D&A, DexVerse, Dossiers, Products
-- Three wings have contextual dropdown groups; two are accent-only
-- Wing detection is path-based (routeWingMap in SiteNav.tsx)
-- Nav links go to landing pages; landing pages handle internal nav
-- Breadcrumb: subpages show "← Parent" link below nav bar
-- Root "/" hides nav entirely; landing page component handles layout
+Charlie Conway Principle (D-034): "The stick scores. The clipboard
+  structures the game so scoring happens again."
 
-=====================================================================
-TECHNICAL CONTEXT
-=====================================================================
-framework: Next.js 14 (App Router)
-deployment: Vercel (git push → auto-deploy)
-rendering: Mix of React components and static HTML via iframe
-  from /public/preview/
-routing: File-based via /app/ directory
-state: Minimal — mostly static. No database. No auth. No CMS.
-shell: PowerShell
+ClaudELI5: Claude explains it like I'm 5.
 
-=====================================================================
-CANON GLOSSARY
-=====================================================================
-Terms marked ™ are DDL canon. Use them precisely.
+No Drift Medal: Council award for zero drift from specification.
 
-AccidentalInsight™ — When a test reveals a finding of equal or
-  greater value from an unintended angle. Flag these when they occur.
+CoherentVelocity: Complete, auditable systems built at speed.
 
-BackEnd™ — The machine-readable manifest (/llms.txt). Paired with
-  FrontDoor™. Same identity, optimized for AI consumption.
+OBS-34: Surface calibration does not equal deep calibration.
 
-ChaosToStructured — The core DDL loop: Chaos → Structured →
-  Automated. Every system follows this trajectory.
+## COLLABORATORS
 
-ClarityFile™ — Civilian-facing product name for FrontDoor™. Guided
-  self-definition template. Coined by Meg (ADJ-E).
+  Clayton Hotze -- Engineering partner (Hotze Data)
+  Beth Epperson -- Commercial strategy
+  Emily -- Operator's wife (Sprinkles & Co, Nomadic Notary Ink)
+  Alex -- Cousin, professional trader
 
-ClaudELI5™ — "Claude explains it like I'm 5." Strip jargon, explain
-  the core mechanic, use analogy. Rebuild complexity only if asked.
+## RULES FOR AI COLLABORATORS
 
-CottageHumble™ — Design philosophy. Humble surface, cathedral
-  underneath. Never flashy. Always governed.
+1. Always use CottageHumble tokens. NEVER white backgrounds or Inter.
+2. Respect the wing model. Every page belongs to a wing.
+3. HTML files in /public/preview/. React components in /components/.
+4. Landing pages handle their own nav.
+5. PowerShell Set-Content needs -Encoding UTF8.
+6. After nav changes, verify all five wings.
+7. Private routes exist but are intentionally unlisted.
+8. The operator values coherent velocity.
+9. When in doubt, follow the pattern.
+10. Do not express urgency unless the operator does first.
+11. Do not suggest rest unless the operator says he is tired.
+12. Evening hours are active build time.
 
-ExpertiseInvisibility — When competence makes output look easy,
-  causing others to undervalue it. Watch for this. Flag it.
+## SITE STATISTICS (as of 2026-03-07)
 
-FrontDoor™ — The human-readable identity page (/ai). "Here's how
-  to work with me." Paired with BackEnd™.
+  Routes: 160+
+  Visitors (first week): 78
+  Page views (first week): 718
+  Pages per visitor: 9.2
+  Top referrer: google.com (organic)
+  Build time: 7 days
+  Budget: $0
 
-IdentityCompression — Compressing a working philosophy into a
-  portable format. Coined by Meg (ADJ-E). Constraint: compress
-  identity without flattening it.
+## VERSION HISTORY
 
-LayeredLegibility — Parseable by machines, meaningful to humans.
-  Same document, different depths. Coined by Meg (ADJ-E).
+  v1.0 -- 2026-03-02: Initial manifest (194 lines)
+  v1.1 -- 2026-03-03: Security hardening, identity boundary (414 lines)
+  v1.2 -- 2026-03-04: Operator profile, SYS-020, lifecycle (648 lines)
+  v1.3 -- 2026-03-07: FrontDoor, BackEnd, search, Dex Jr. RAG,
+    AutoCouncil v3.0, MindFrame chat, Cloudflare Tunnel, Seat 1010,
+    local AI infrastructure, component architecture (~800 lines)
 
-NoDriftMedal — Council recognition for governed output with zero
-  drift from spec. The highest DDL compliment is absence of drift.
-
-ToneBasedArchitecture — Tone so consistent it carries its own
-  memory. Models calibrate from signal, not data. Coined by
-  DexDorian (May 2025). This is what llms.txt actually is.
-
-=====================================================================
-RULES FOR AI COLLABORATORS
-=====================================================================
-1. Always use CottageHumble tokens. Navy backgrounds, cream text,
-   wing-specific accents.
-2. Never use white backgrounds, generic grays, or colors outside
-   the palette.
-3. Respect the wing model. Every page belongs to a wing. New
-   routes need routeWingMap updates in SiteNav.tsx.
-4. HTML files go in /public/preview/. React components go in
-   /components/.
-5. Landing pages handle their own nav. Don't add subpage routes
-   to the top nav.
-6. PowerShell Set-Content needs -Encoding UTF8 flag. Default is
-   UTF-16 which breaks Next.js.
-7. After nav changes, verify all five wings.
-8. Not all routes are listed here. Don't infer completeness.
-9. The operator values coherent velocity — complete, auditable
-   systems built at speed.
-10. When in doubt, follow the pattern. The architecture repeats.
-    The data changes.
-
-=====================================================================
-EOF
-Dropdown Logistics · llms.txt v1.2
-Cottage — Humble surface. Cathedral underneath.
-same engine · different data
-=====================================================================
+## EOF
+# Dropdown Logistics -- Humble surface. Cathedral underneath.
+# Same engine. Different data.
