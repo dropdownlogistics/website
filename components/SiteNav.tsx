@@ -4,10 +4,6 @@ import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-// ═══════════════════════════════════════════════════════
-// Types
-// ═══════════════════════════════════════════════════════
-
 interface NavLink { href: string; label: string; }
 interface NavGroup { label: string; items: NavLink[]; }
 interface Wing {
@@ -18,10 +14,6 @@ interface Wing {
   home: string;
   groups: NavGroup[];
 }
-
-// ═══════════════════════════════════════════════════════
-// CottageHumble Tokens
-// ═══════════════════════════════════════════════════════
 
 const C = {
   navy: '#0D1B2A',
@@ -44,10 +36,6 @@ const font = {
   mono: "'JetBrains Mono', monospace",
   body: "'Source Serif 4', Georgia, serif",
 };
-
-// ═══════════════════════════════════════════════════════
-// Wing Definitions
-// ═══════════════════════════════════════════════════════
 
 const wingsData: Wing[] = [
   {
@@ -165,7 +153,6 @@ const wingsData: Wing[] = [
       },
     ],
   },
-  // ——— Accent-only wings (no dropdown groups) ———
   {
     id: 'dossiers',
     name: 'Dossiers',
@@ -184,19 +171,15 @@ const wingsData: Wing[] = [
   },
 ];
 
-// ═══════════════════════════════════════════════════════
-// Wing Detection
-// ═══════════════════════════════════════════════════════
-
 const routeWingMap: Record<string, string> = {
-  '/blindspot':   'da',
-  '/analytics':   'da',
-  '/recaps':      'da',
-  '/dexlore':     'dexverse',
+  '/blindspot': 'da',
+  '/analytics': 'da',
+  '/recaps': 'da',
+  '/dexlore': 'dexverse',
   '/other-works': 'dexverse',
-  '/knowledge':   'dexverse',
-  '/dossiers':    'dossiers',
-  '/products':    'products',
+  '/knowledge': 'dexverse',
+  '/dossiers': 'dossiers',
+  '/products': 'products',
 };
 
 function detectWing(pathname: string | null): Wing {
@@ -211,26 +194,13 @@ function detectWing(pathname: string | null): Wing {
   return wingsData[0];
 }
 
-// ═══════════════════════════════════════════════════════
-// Contextual Logo Link
-// On a wing landing → go home
-// On a subpage → go to wing landing
-// ═══════════════════════════════════════════════════════
-
 function getLogoHref(pathname: string | null, wing: Wing): string {
   if (!pathname) return '/';
-  // Strip trailing slash for comparison
   const clean = pathname.replace(/\/$/, '') || '/';
   const wingHome = wing.home.replace(/\/$/, '');
-  // If we're on the wing's home page, go to site root
   if (clean === wingHome) return '/';
-  // Otherwise go to wing home
   return wing.home;
 }
-
-// ═══════════════════════════════════════════════════════
-// Dropdown Component
-// ═══════════════════════════════════════════════════════
 
 function Dropdown({ group, isActive, pathname, wingColor }: {
   group: NavGroup;
@@ -292,10 +262,6 @@ function Dropdown({ group, isActive, pathname, wingColor }: {
   );
 }
 
-// ═══════════════════════════════════════════════════════
-// Wing Switcher
-// ═══════════════════════════════════════════════════════
-
 function WingSwitcher({ currentWing }: { currentWing: Wing }) {
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 2 }}>
@@ -313,10 +279,6 @@ function WingSwitcher({ currentWing }: { currentWing: Wing }) {
   );
 }
 
-// ═══════════════════════════════════════════════════════
-// Mobile Menu
-// ═══════════════════════════════════════════════════════
-
 function MobileMenu({ wing, isActive, onClose }: {
   wing: Wing;
   isActive: (h: string) => boolean;
@@ -331,11 +293,19 @@ function MobileMenu({ wing, isActive, onClose }: {
 
   return (
     <div style={{
-      position: 'fixed', top: 52, left: 0, right: 0, bottom: 0,
+      position: 'absolute',
+      top: '100%',
+      left: 0,
+      right: 0,
+      height: 'calc(100dvh - 52px)',
       background: 'rgba(7,16,28,0.98)',
-      backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)',
-      overflowY: 'auto', padding: '20px 24px 40px',
-      animation: 'ddlSlideDown 0.2s ease', zIndex: 50,
+      backdropFilter: 'blur(20px)',
+      WebkitBackdropFilter: 'blur(20px)',
+      overflowY: 'auto',
+      WebkitOverflowScrolling: 'touch',
+      padding: '20px 24px 80px',
+      animation: 'ddlSlideDown 0.2s ease',
+      zIndex: 50,
     }}>
       {/* Wing switcher */}
       <div style={{ marginBottom: 24 }}>
@@ -371,7 +341,7 @@ function MobileMenu({ wing, isActive, onClose }: {
         ))}
       </div>
 
-      {/* Current wing dropdown groups (expanded) */}
+      {/* Current wing dropdown groups */}
       {wing.groups.length > 0 && (
         <>
           <div style={{
@@ -412,10 +382,6 @@ function MobileMenu({ wing, isActive, onClose }: {
   );
 }
 
-// ═══════════════════════════════════════════════════════
-// Main Nav
-// ═══════════════════════════════════════════════════════
-
 export default function SiteNav() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -430,10 +396,7 @@ export default function SiteNav() {
     return () => { document.body.style.overflow = ''; };
   }, [mobileOpen]);
 
-  // Landing page — no nav
   if (pathname === '/') return null;
-
-  // Mount guard
   if (!mounted) return <div style={{ height: 60 }} />;
 
   const isActive = (href: string) => {
@@ -473,8 +436,8 @@ export default function SiteNav() {
           maxWidth: 1200, margin: '0 auto', padding: '0 24px',
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
           height: 60, gap: 8,
+          position: 'relative',
         }}>
-          {/* Logo — contextual back navigation */}
           <Link href={logoHref} style={{
             textDecoration: 'none', display: 'flex',
             alignItems: 'center', gap: 10, flexShrink: 0,
@@ -502,19 +465,16 @@ export default function SiteNav() {
             </div>
           </Link>
 
-          {/* Desktop nav */}
           <nav className="ddl-desk" style={{
             display: 'flex', alignItems: 'center', gap: 2,
           }}>
             <WingSwitcher currentWing={wing} />
-
             {wing.groups.length > 0 && (
               <div style={{
                 width: 1, height: 20,
                 background: C.creamGhost, margin: '0 6px',
               }} />
             )}
-
             {wing.groups.map(g => (
               <Dropdown
                 key={g.label}
@@ -526,7 +486,6 @@ export default function SiteNav() {
             ))}
           </nav>
 
-          {/* Mobile hamburger */}
           <button
             className="ddl-mob-btn"
             onClick={() => setMobileOpen(!mobileOpen)}
@@ -544,7 +503,6 @@ export default function SiteNav() {
           </button>
         </div>
 
-        {/* Mobile menu */}
         {mobileOpen && (
           <MobileMenu
             wing={wing}
