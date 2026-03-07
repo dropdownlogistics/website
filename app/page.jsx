@@ -3,10 +3,6 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
-// ═══════════════════════════════════════════════════════
-// CottageHumble Tokens
-// ═══════════════════════════════════════════════════════
-
 const C = {
   navy: '#0D1B2A',
   navyDeep: '#070F1C',
@@ -20,8 +16,6 @@ const C = {
   crimson: '#B23531',
   amber: '#C49A3C',
   violet: '#8a6cc9',
-  green: '#4A9E6B',
-  blue: '#6B9DC2',
 };
 
 const font = {
@@ -30,82 +24,46 @@ const font = {
   body: "'Source Serif 4', Georgia, serif",
 };
 
-// ═══════════════════════════════════════════════════════
-// Animated Counter
-// ═══════════════════════════════════════════════════════
-
 function Counter({ end, suffix = '', duration = 2000 }) {
   const [count, setCount] = useState(0);
   const [started, setStarted] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setStarted(true), 400);
-    return () => clearTimeout(timer);
-  }, []);
-
+  useEffect(() => { const t = setTimeout(() => setStarted(true), 400); return () => clearTimeout(t); }, []);
   useEffect(() => {
     if (!started) return;
     const steps = 60;
-    const increment = end / steps;
-    let current = 0;
-    const interval = setInterval(() => {
-      current += increment;
-      if (current >= end) {
-        setCount(end);
-        clearInterval(interval);
-      } else {
-        setCount(Math.floor(current));
-      }
+    const inc = end / steps;
+    let cur = 0;
+    const iv = setInterval(() => {
+      cur += inc;
+      if (cur >= end) { setCount(end); clearInterval(iv); }
+      else setCount(Math.floor(cur));
     }, duration / steps);
-    return () => clearInterval(interval);
+    return () => clearInterval(iv);
   }, [started, end, duration]);
-
   return <>{count}{suffix}</>;
 }
 
-// ═══════════════════════════════════════════════════════
-// Door Card
-// ═══════════════════════════════════════════════════════
-
-function DoorCard({ color, label, title, description, href, items }) {
-  const [hovered, setHovered] = useState(false);
-
+function InfoCard({ color, label, description, items }) {
   return (
-    <Link
-      href={href}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        display: 'block',
-        textDecoration: 'none',
-        background: hovered ? `${color}12` : C.card,
-        border: `1px solid ${hovered ? color + '40' : C.border}`,
-        borderRadius: 8,
-        padding: '32px 28px',
-        transition: 'all 0.25s ease',
-        transform: hovered ? 'translateY(-2px)' : 'none',
-        boxShadow: hovered ? `0 8px 32px ${color}15` : 'none',
-      }}
-    >
+    <div style={{
+      background: C.card,
+      border: `1px solid ${C.border}`,
+      borderRadius: 8,
+      padding: '28px 24px',
+    }}>
       <div style={{
         fontFamily: font.mono, fontSize: 9, letterSpacing: '0.2em',
-        textTransform: 'uppercase', color: color, marginBottom: 12,
+        textTransform: 'uppercase', color: color, marginBottom: 10,
       }}>
         {label}
       </div>
       <div style={{
-        fontFamily: font.display, fontSize: 22, fontWeight: 600,
-        color: C.cream, marginBottom: 12, lineHeight: 1.3,
-      }}>
-        {title}
-      </div>
-      <div style={{
         fontFamily: font.body, fontSize: 15, color: C.creamMid,
-        lineHeight: 1.7, marginBottom: 20,
+        lineHeight: 1.7, marginBottom: 16,
       }}>
         {description}
       </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
         {items.map((item, i) => (
           <div key={i} style={{
             fontFamily: font.mono, fontSize: 11, color: C.creamDim,
@@ -116,20 +74,9 @@ function DoorCard({ color, label, title, description, href, items }) {
           </div>
         ))}
       </div>
-      <div style={{
-        marginTop: 20, fontFamily: font.mono, fontSize: 11,
-        color: color, letterSpacing: '0.05em',
-        display: 'flex', alignItems: 'center', gap: 6,
-      }}>
-        Enter {title.split(' ')[0]} →
-      </div>
-    </Link>
+    </div>
   );
 }
-
-// ═══════════════════════════════════════════════════════
-// Main Page
-// ═══════════════════════════════════════════════════════
 
 export default function FrontDoor() {
   const [mounted, setMounted] = useState(false);
@@ -142,180 +89,193 @@ export default function FrontDoor() {
       color: C.cream,
       fontFamily: font.body,
     }}>
-      {/* Grain overlay */}
-      <div
-        aria-hidden
-        style={{
-          position: 'fixed', inset: 0, zIndex: 0, pointerEvents: 'none',
-          opacity: 0.03,
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-          backgroundRepeat: 'repeat', backgroundSize: '128px 128px',
-        }}
-      />
+      {/* Grain */}
+      <div aria-hidden style={{
+        position: 'fixed', inset: 0, zIndex: 0, pointerEvents: 'none', opacity: 0.03,
+        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+        backgroundRepeat: 'repeat', backgroundSize: '128px 128px',
+      }} />
 
       <div style={{ position: 'relative', zIndex: 1 }}>
 
         {/* ─── HERO ─── */}
         <section style={{
-          maxWidth: 900, margin: '0 auto', padding: '80px 24px 60px',
+          maxWidth: 720, margin: '0 auto', padding: '80px 24px 48px',
           textAlign: 'center',
           opacity: mounted ? 1 : 0,
           transform: mounted ? 'translateY(0)' : 'translateY(12px)',
           transition: 'all 0.8s ease',
         }}>
-          {/* Headshot */}
-          <Link href="/about" style={{ display: 'inline-block', marginBottom: 28 }}>
+          <Link href="/about" style={{ display: 'inline-block', marginBottom: 24 }}>
             <img
               src="/images/operator-headshot.jpg"
               alt="Dave Kitchens"
               style={{
-                width: 88, height: 88, borderRadius: '50%',
+                width: 80, height: 80, borderRadius: '50%',
                 border: `2px solid ${C.amber}40`,
                 objectFit: 'cover',
-                transition: 'border-color 0.3s',
               }}
-              onMouseEnter={e => e.currentTarget.style.borderColor = C.amber}
-              onMouseLeave={e => e.currentTarget.style.borderColor = C.amber + '40'}
             />
           </Link>
 
-          {/* The Quote */}
           <div style={{
-            fontFamily: font.body, fontSize: 20, fontStyle: 'italic',
-            color: C.creamHigh, lineHeight: 1.6, maxWidth: 600,
+            fontFamily: font.display, fontSize: 15, fontWeight: 500,
+            color: C.creamDim, marginBottom: 24,
+          }}>
+            <Link href="/about" style={{ color: C.creamMid, textDecoration: 'none' }}>
+              Dave Kitchens
+            </Link>
+            <span style={{ margin: '0 8px', color: C.creamGhost }}>·</span>
+            CPA · Builder · One-Person Studio
+          </div>
+
+          <div style={{
+            fontFamily: font.body, fontSize: 21, fontStyle: 'italic',
+            color: C.creamHigh, lineHeight: 1.6, maxWidth: 540,
             margin: '0 auto 32px',
           }}>
             "You build cathedrals and then whisper<br />
             'cottage humble' on the door."
           </div>
 
-          {/* Name + Title */}
-          <div style={{
-            fontFamily: font.display, fontSize: 13, fontWeight: 500,
-            color: C.creamDim, letterSpacing: '0.08em', marginBottom: 40,
-          }}>
-            <Link href="/about" style={{ color: C.creamMid, textDecoration: 'none' }}>
-              Dave Kitchens
-            </Link>
-            <span style={{ margin: '0 10px', color: C.creamGhost }}>·</span>
-            Dropdown Logistics
-          </div>
-
-          {/* Divider */}
           <div style={{
             width: 40, height: 1, background: C.crimson + '40',
-            margin: '0 auto 40px',
+            margin: '0 auto 32px',
           }} />
 
-          {/* Tagline */}
           <div style={{
-            fontFamily: font.display, fontSize: 38, fontWeight: 700,
-            color: C.cream, lineHeight: 1.2, marginBottom: 16,
-            letterSpacing: '-0.5px',
+            fontFamily: font.body, fontSize: 17, color: C.creamMid,
+            lineHeight: 1.8, maxWidth: 560, margin: '0 auto',
           }}>
-            Chaos → Structured → Automated
+            Dropdown Logistics is a one-person studio that builds tools, 
+            analytics engines, and governance systems — using AI as a 
+            collaborator, not a replacement.
           </div>
           <div style={{
             fontFamily: font.body, fontSize: 17, color: C.creamMid,
-            lineHeight: 1.7, maxWidth: 560, margin: '0 auto',
+            lineHeight: 1.8, maxWidth: 560, margin: '16px auto 0',
           }}>
-            A systems studio exploring how humans and machines collaborate to produce governed work.
+            Everything here was built by one person with a methodology: 
+            take something messy, find the structure inside it, and make 
+            it repeatable.
           </div>
         </section>
 
-        {/* ─── THREE DOORS ─── */}
+        {/* ─── ENTER SITE CTA ─── */}
         <section style={{
-          maxWidth: 1000, margin: '0 auto', padding: '40px 24px 60px',
+          maxWidth: 720, margin: '0 auto', padding: '8px 24px 48px',
+          textAlign: 'center',
+          opacity: mounted ? 1 : 0,
+          transition: 'all 0.8s ease 0.15s',
+        }}>
+          <Link href="/ddl" style={{
+            display: 'inline-flex', alignItems: 'center', gap: 10,
+            fontFamily: font.display, fontSize: 16, fontWeight: 600,
+            color: C.cream, textDecoration: 'none',
+            padding: '14px 36px',
+            background: C.crimson,
+            borderRadius: 8,
+            transition: 'all 0.2s',
+            boxShadow: `0 4px 20px ${C.crimson}30`,
+          }}
+            onMouseEnter={e => { e.currentTarget.style.background = '#9a2d2a'; e.currentTarget.style.boxShadow = `0 6px 28px ${C.crimson}50`; }}
+            onMouseLeave={e => { e.currentTarget.style.background = C.crimson; e.currentTarget.style.boxShadow = `0 4px 20px ${C.crimson}30`; }}
+          >
+            Enter the Site →
+          </Link>
+        </section>
+
+        {/* ─── WHAT'S INSIDE ─── */}
+        <section style={{
+          maxWidth: 1000, margin: '0 auto', padding: '20px 24px 48px',
           opacity: mounted ? 1 : 0,
           transform: mounted ? 'translateY(0)' : 'translateY(12px)',
-          transition: 'all 0.8s ease 0.2s',
+          transition: 'all 0.8s ease 0.25s',
         }}>
           <div style={{
             fontFamily: font.mono, fontSize: 9, letterSpacing: '0.2em',
             textTransform: 'uppercase', color: C.creamDim,
-            textAlign: 'center', marginBottom: 32,
+            textAlign: 'center', marginBottom: 28,
           }}>
-            Choose your depth
+            What you'll find inside
           </div>
 
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: 16,
+            gap: 14,
           }}>
-            <DoorCard
+            <InfoCard
               color={C.crimson}
-              label="Front Door"
-              title="Systems"
-              description="Interactive tools, analytics engines, and applied systems. See what the architecture actually produces."
-              href="/ddl"
+              label="Tools & Systems"
+              description="Live dashboards, analytics engines, and applied tools built through the DDL methodology."
               items={[
-                'BlindSpot Trading & Campaign Analytics',
-                'Commission Intelligence Engine',
-                'Behavioral Intelligence Suite',
-                'MindFrame Calibration System',
+                'BlindSpot — Trading & campaign analytics',
+                'Behavioral Intelligence — AI-driven profiles',
+                'MindFrame — AI calibration system',
+                'Projects — Client & partner work',
+                'Recaps — Year-end data stories',
               ]}
             />
-            <DoorCard
+            <InfoCard
               color={C.amber}
-              label="Back Door"
-              title="Governance"
-              description="Standards, protocols, and the architecture that makes the systems reliable. How everything is built."
-              href="/council"
+              label="How It's Built"
+              description="The standards, protocols, and AI council that govern everything. The operating system behind the tools."
               items={[
-                '9-Model AI Council',
-                '65 Standards · 44 Systems',
-                'Content Type Registry (SYS-020)',
+                'AI Council — 9 models, independent review',
+                '65 standards across 44 systems',
                 'Prompt Strategy System',
+                'Excelligence — Knowledge graph',
+                'Content Type Registry — 20 document types',
               ]}
             />
-            <DoorCard
+            <InfoCard
               color={C.violet}
-              label="Side Door"
-              title="Chronicle"
-              description="The narrative history of how the systems evolved. The story behind the structure."
-              href="/memoir"
+              label="The Story"
+              description="How a CPA with a spreadsheet habit and 8 years of sobriety ended up building an AI governance studio."
               items={[
-                'Little to Know Experience (Memoir)',
-                'DexLore · Five-Era Timeline',
-                'Foreword Convergence Experiment',
-                'Operator Profile & Dossiers',
+                'Little to Know Experience — Addiction memoir',
+                'DexLore — Timeline of the build',
+                'Foreword Convergence — 9 AIs, 1 experiment',
+                'Character dossiers — D&D campaign analytics',
+                'Operator profile — The full picture',
               ]}
             />
           </div>
         </section>
 
-        {/* ─── THE RECEIPT ─── */}
+        {/* ─── BY THE NUMBERS ─── */}
         <section style={{
-          maxWidth: 900, margin: '0 auto', padding: '48px 24px',
+          maxWidth: 900, margin: '0 auto', padding: '20px 24px 40px',
           opacity: mounted ? 1 : 0,
           transition: 'all 0.8s ease 0.4s',
         }}>
           <div style={{
             background: C.card, border: `1px solid ${C.border}`,
-            borderRadius: 8, padding: '32px 28px',
+            borderRadius: 8, padding: '28px 24px',
           }}>
             <div style={{
               fontFamily: font.mono, fontSize: 9, letterSpacing: '0.2em',
-              textTransform: 'uppercase', color: C.crimson, marginBottom: 20,
+              textTransform: 'uppercase', color: C.creamDim,
+              textAlign: 'center', marginBottom: 20,
             }}>
-              The Receipt
+              By the numbers
             </div>
             <div style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
-              gap: 20,
+              gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))',
+              gap: 16,
             }}>
               {[
-                { value: 155, suffix: '+', label: 'Live Routes' },
+                { value: 155, suffix: '+', label: 'Pages' },
                 { value: 44, suffix: '', label: 'Systems' },
                 { value: 65, suffix: '', label: 'Standards' },
-                { value: 9, suffix: '', label: 'Council Models' },
-                { value: 110, suffix: 'K', label: 'RAG Chunks' },
+                { value: 9, suffix: '', label: 'AI Models' },
+                { value: 1, suffix: '', label: 'Person' },
               ].map((stat, i) => (
                 <div key={i} style={{ textAlign: 'center' }}>
                   <div style={{
-                    fontFamily: font.display, fontSize: 28, fontWeight: 700,
+                    fontFamily: font.display, fontSize: 26, fontWeight: 700,
                     color: C.cream, lineHeight: 1,
                   }}>
                     {mounted ? <Counter end={stat.value} suffix={stat.suffix} /> : '0'}
@@ -331,37 +291,16 @@ export default function FrontDoor() {
             </div>
             <div style={{
               fontFamily: font.body, fontSize: 14, fontStyle: 'italic',
-              color: C.creamDim, textAlign: 'center', marginTop: 24,
+              color: C.creamDim, textAlign: 'center', marginTop: 20,
             }}>
-              Built by one person. Governed by nine models. Running locally and in the cloud.
+              Built by one person. Governed by nine AI models. Running locally and in the cloud.
             </div>
           </div>
         </section>
 
-        {/* ─── EXPLORE ─── */}
-        <section style={{
-          maxWidth: 900, margin: '0 auto', padding: '20px 24px 40px',
-          textAlign: 'center',
-          opacity: mounted ? 1 : 0,
-          transition: 'all 0.8s ease 0.5s',
-        }}>
-          <Link href="/ddl" style={{
-            display: 'inline-flex', alignItems: 'center', gap: 8,
-            fontFamily: font.mono, fontSize: 12, color: C.creamMid,
-            textDecoration: 'none', padding: '10px 20px',
-            border: `1px solid ${C.border}`, borderRadius: 6,
-            transition: 'all 0.2s',
-          }}
-            onMouseEnter={e => { e.currentTarget.style.borderColor = C.crimson + '40'; e.currentTarget.style.color = C.cream; }}
-            onMouseLeave={e => { e.currentTarget.style.borderColor = C.border; e.currentTarget.style.color = C.creamMid; }}
-          >
-            Explore the Full Site →
-          </Link>
-        </section>
-
         {/* ─── FOOTER ─── */}
         <footer style={{
-          maxWidth: 900, margin: '0 auto', padding: '40px 24px 32px',
+          maxWidth: 900, margin: '0 auto', padding: '32px 24px',
           borderTop: `1px solid ${C.border}`,
           display: 'flex', justifyContent: 'space-between', alignItems: 'center',
           flexWrap: 'wrap', gap: 12,
@@ -376,7 +315,7 @@ export default function FrontDoor() {
             fontFamily: font.body, fontSize: 12, fontStyle: 'italic',
             color: 'rgba(245,241,235,0.12)',
           }}>
-            CottageHumble surface. Cathedral underneath.
+            Humble surface. Something underneath.
           </span>
         </footer>
       </div>
