@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
@@ -41,7 +41,7 @@ const wingsData: Wing[] = [
   {
     id: 'ddl',
     name: 'DDL',
-    tagline: 'Chaos → Structured → Automated',
+    tagline: 'Chaos â†’ Structured â†’ Automated',
     color: C.crimson,
     home: '/ddl',
     groups: [
@@ -195,6 +195,8 @@ function detectWing(pathname: string | null): Wing {
 }
 
 function getLogoHref(pathname: string | null, wing: Wing): string {
+  if (pathname?.startsWith('/analytics/')) return '/analytics';
+  if (pathname === '/analytics') return '/';
   if (!pathname) return '/';
   const clean = pathname.replace(/\/$/, '') || '/';
   const wingHome = wing.home.replace(/\/$/, '');
@@ -232,7 +234,7 @@ function Dropdown({ group, isActive, pathname, wingColor }: {
           fontSize: 8, opacity: 0.5,
           transform: open ? 'rotate(180deg)' : 'rotate(0)',
           transition: 'transform 0.2s', display: 'inline-block',
-        }}>▼</span>
+        }}>â–¼</span>
       </button>
       {open && (
         <div style={{
@@ -320,7 +322,7 @@ function MobileMenu({ wing, isActive, onClose }: {
             color: wing.id === w.id ? w.color : C.creamMid,
             textDecoration: 'none', padding: '10px 0',
             borderBottom: `1px solid ${C.border}`,
-          }}>{w.name} — {w.tagline}</Link>
+          }}>{w.name} â€” {w.tagline}</Link>
         ))}
       </div>
 
@@ -376,7 +378,7 @@ function MobileMenu({ wing, isActive, onClose }: {
         fontFamily: font.mono, fontSize: 9, letterSpacing: '0.3em',
         color: 'rgba(245,241,235,0.1)', textTransform: 'uppercase' as const,
       }}>
-        Cottage — Humble surface. Cathedral underneath.
+        Cottage â€” Humble surface. Cathedral underneath.
       </div>
     </div>
   );
@@ -460,7 +462,7 @@ export default function SiteNav() {
                 color: wing.color + '80', letterSpacing: '0.04em',
                 transition: 'color 0.3s',
               }}>
-                {logoHref === '/' ? wing.tagline : '← ' + wing.name}
+                {logoHref === '/' ? wing.tagline : 'â† ' + wing.name}
               </div>
             </div>
           </Link>
@@ -499,7 +501,7 @@ export default function SiteNav() {
               transition: 'color 0.15s',
             }}
           >
-            {mobileOpen ? '✕' : '☰'}
+            {mobileOpen ? 'âœ•' : 'â˜°'}
           </button>
         </div>
 
@@ -514,3 +516,4 @@ export default function SiteNav() {
     </>
   );
 }
+
