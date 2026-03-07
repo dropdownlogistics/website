@@ -111,6 +111,7 @@ const wingsData: Wing[] = [
           { href: '/analytics/sonic-thread', label: 'Sonic Thread' },
           { href: '/analytics/callback-engine', label: 'Callback Engine' },
           { href: '/analytics/catnip-map', label: 'Catnip Map' },
+        { href: '/analytics/dimensional-map', label: 'Dimensional Map' },
           { href: '/analytics/dexdash', label: 'DexDash' },
           { href: '/analytics/tone', label: 'Tone Analysis' },
           { href: '/analytics/memoir', label: 'Memoir Analytics' },
@@ -123,6 +124,7 @@ const wingsData: Wing[] = [
           { href: '/recaps/apple-music', label: 'Apple Music' },
           { href: '/recaps/annual-signal', label: 'Annual Signal' },
           { href: '/recaps/predictions', label: 'Predictions' },
+        { href: '/recaps/duolingo', label: 'Duolingo' },
         ],
       },
     ],
@@ -516,4 +518,6 @@ export default function SiteNav() {
     </>
   );
 }
+
+
 
