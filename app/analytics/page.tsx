@@ -109,7 +109,7 @@ export default function AnalyticsHub() {
           textAlign: 'center', marginTop: 48, padding: '20px 0',
           borderTop: '1px solid #2a2a4a', color: '#3a4a6a', fontSize: 12,
         }}>
-          Drop Down Logistics · Analytics Suite · Chaos → Structured → Automated
+          Dropdown Logistics · Analytics Suite · Chaos → Structured → Automated
         </div>
       </div>
     </div>

@@ -1,10 +1,10 @@
 # Codebase issue backlog (proposed tasks)
 
 ## 1) Typo/branding consistency task
-**Issue:** The project name appears as both **"Drop Down Logistics"** and **"Dropdown Logistics"**.
+**Issue:** The project name appears with inconsistent spacing in branding.
 
 - `README.md` title and footer use different forms.
-- `app/analytics/page.tsx` footer also uses "Drop Down Logistics".
+- `app/analytics/page.tsx` footer also uses the spaced variant.
 
 **Proposed task:** Standardize to one canonical spelling (recommended: "Dropdown Logistics") across all user-facing copy, metadata, and docs.
 
