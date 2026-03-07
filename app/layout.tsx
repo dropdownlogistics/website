@@ -2,7 +2,6 @@ import './globals.css';
 import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
-import SearchProvider from '@/components/SearchProvider';
 
 const SiteNav = dynamic(() => import('@/components/SiteNav'), {
   ssr: false,
@@ -24,56 +23,27 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body style={{
-        margin: 0,
-        padding: 0,
-        minHeight: '100vh',
-        background: '#0F1A2E',
-        color: '#F5F1EB',
+        margin: 0, padding: 0, minHeight: '100vh',
+        background: '#0F1A2E', color: '#F5F1EB',
         fontFamily: "'Source Serif 4', serif",
       }}>
-        {/* Grain texture overlay */}
-        <div
-          aria-hidden
-          style={{
-            position: 'fixed',
-            inset: 0,
-            zIndex: 1,
-            pointerEvents: 'none',
-            opacity: 0.035,
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-            backgroundRepeat: 'repeat',
-            backgroundSize: '128px 128px',
-          }}
-        />
+        <div aria-hidden style={{
+          position: 'fixed', inset: 0, zIndex: 1, pointerEvents: 'none', opacity: 0.035,
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+          backgroundRepeat: 'repeat', backgroundSize: '128px 128px',
+        }} />
         <div style={{ position: 'relative', zIndex: 1, minHeight: '100vh' }}>
           <SiteNav />
-          <SearchProvider />
           <main>{children}</main>
-          <footer style={{
-            maxWidth: 1200,
-            margin: '0 auto',
-            padding: '60px 24px 32px',
-          }}>
+          <footer style={{ maxWidth: 1200, margin: '0 auto', padding: '60px 24px 32px' }}>
             <div style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              flexWrap: 'wrap',
-              gap: 12,
+              display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+              flexWrap: 'wrap', gap: 12,
             }}>
-              <span style={{
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: 11,
-                color: 'rgba(245,241,235,0.25)',
-              }}>
+              <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: 'rgba(245,241,235,0.25)' }}>
                 © {new Date().getFullYear()} Dropdown Logistics
               </span>
-              <span style={{
-                fontFamily: "'Source Serif 4', serif",
-                fontSize: 12,
-                fontStyle: 'italic',
-                color: 'rgba(245,241,235,0.15)',
-              }}>
+              <span style={{ fontFamily: "'Source Serif 4', serif", fontSize: 12, fontStyle: 'italic', color: 'rgba(245,241,235,0.15)' }}>
                 CottageHumble surface. Cathedral underneath.
               </span>
             </div>
