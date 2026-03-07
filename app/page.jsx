@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
@@ -40,9 +40,9 @@ function Counter({ end, suffix = '', duration = 2000 }) {
   return <>{count}{suffix}</>;
 }
 
-// ═══════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 // Door Data
-// ═══════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 const doors = [
   {
@@ -64,7 +64,7 @@ const doors = [
         name: 'Analytics',
         items: [
           { href: '/analytics', label: 'Analytics Hub' },
-          { href: '/analytics/grammarly', label: 'Grammarly — 4.57M Words' },
+          { href: '/analytics/grammarly', label: 'Grammarly â€” 4.57M Words' },
           { href: '/analytics/tone', label: 'Tone Analysis' },
           { href: '/analytics/memoir', label: 'Memoir Analytics' },
           { href: '/analytics/dexdash', label: 'DexDash' },
@@ -110,7 +110,7 @@ const doors = [
         items: [
           { href: '/council', label: 'Council Hub' },
           { href: '/council/profiles', label: 'All Council Profiles' },
-          { href: '/council/1010', label: 'Seat 1010 — Dex Jr.' },
+          { href: '/council/1010', label: 'Seat 1010 â€” Dex Jr.' },
           { href: '/council/auto-council', label: 'AutoCouncil' },
           { href: '/council/scaling', label: 'Scaling' },
         ],
@@ -121,7 +121,7 @@ const doors = [
           { href: '/standards', label: 'Standards Registry' },
           { href: '/systems', label: 'Systems Registry' },
           { href: '/registry', label: 'Full Registry' },
-          { href: '/excelligence', label: 'Excelligence — Knowledge Graph' },
+          { href: '/excelligence', label: 'Excelligence â€” Knowledge Graph' },
         ],
       },
       {
@@ -184,9 +184,9 @@ const doors = [
   },
 ];
 
-// ═══════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 // Expandable Door Card
-// ═══════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 function DoorCard({ door }) {
   const [open, setOpen] = useState(false);
@@ -199,7 +199,7 @@ function DoorCard({ door }) {
       overflow: 'hidden',
       transition: 'border-color 0.2s',
     }}>
-      {/* Header — always visible, clickable */}
+      {/* Header â€” always visible, clickable */}
       <button
         onClick={() => setOpen(!open)}
         style={{
@@ -271,7 +271,7 @@ function DoorCard({ door }) {
             textDecoration: 'none', marginTop: 20,
             letterSpacing: '0.05em',
           }}>
-            Enter {door.label.split(' ')[0]} →
+            Enter {door.label.split(' ')[0]} â†’
           </Link>
         </div>
       )}
@@ -279,9 +279,9 @@ function DoorCard({ door }) {
   );
 }
 
-// ═══════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 // Main Page
-// ═══════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 export default function FrontDoor() {
   const [mounted, setMounted] = useState(false);
@@ -302,7 +302,7 @@ export default function FrontDoor() {
 
       <div style={{ position: 'relative', zIndex: 1 }}>
 
-        {/* ─── HERO ─── */}
+        {/* â”€â”€â”€ HERO â”€â”€â”€ */}
         <section style={{
           maxWidth: 720, margin: '0 auto', padding: '80px 24px 48px',
           textAlign: 'center',
@@ -329,8 +329,8 @@ export default function FrontDoor() {
             <Link href="/about" style={{ color: C.creamMid, textDecoration: 'none' }}>
               Dave Kitchens
             </Link>
-            <span style={{ margin: '0 8px', color: C.creamGhost }}>·</span>
-            CPA · Builder · One-Person Studio
+            <span style={{ margin: '0 8px', color: C.creamGhost }}>Â·</span>
+            CPA Â· Builder Â· One-Person Studio
           </div>
 
           <div style={{
@@ -352,7 +352,7 @@ export default function FrontDoor() {
             lineHeight: 1.8, maxWidth: 560, margin: '0 auto',
           }}>
             Dropdown Logistics is a one-person studio that builds tools,
-            analytics engines, and governance systems — using AI as a
+            analytics engines, and governance systems â€” using AI as a
             collaborator, not a replacement.
           </div>
           <div style={{
@@ -365,7 +365,7 @@ export default function FrontDoor() {
           </div>
         </section>
 
-        {/* ─── ENTER SITE CTA ─── */}
+        {/* â”€â”€â”€ ENTER SITE CTA â”€â”€â”€ */}
         <section style={{
           maxWidth: 720, margin: '0 auto', padding: '8px 24px 48px',
           textAlign: 'center',
@@ -385,11 +385,11 @@ export default function FrontDoor() {
             onMouseEnter={e => { e.currentTarget.style.background = '#9a2d2a'; e.currentTarget.style.boxShadow = `0 6px 28px ${C.crimson}50`; }}
             onMouseLeave={e => { e.currentTarget.style.background = C.crimson; e.currentTarget.style.boxShadow = `0 4px 20px ${C.crimson}30`; }}
           >
-            Enter the Site →
+            Enter the Site â†’
           </Link>
         </section>
 
-        {/* ─── EXPANDABLE DOORS ─── */}
+        {/* â”€â”€â”€ EXPANDABLE DOORS â”€â”€â”€ */}
         <section style={{
           maxWidth: 1000, margin: '0 auto', padding: '20px 24px 48px',
           opacity: mounted ? 1 : 0,
@@ -415,7 +415,7 @@ export default function FrontDoor() {
           </div>
         </section>
 
-        {/* ─── BY THE NUMBERS ─── */}
+        {/* â”€â”€â”€ BY THE NUMBERS â”€â”€â”€ */}
         <section style={{
           maxWidth: 900, margin: '0 auto', padding: '20px 24px 40px',
           opacity: mounted ? 1 : 0,
@@ -469,20 +469,6 @@ export default function FrontDoor() {
           </div>
         </section>
 
-        {/* ─── FOOTER ─── */}
-        <footer style={{
-          maxWidth: 900, margin: '0 auto', padding: '32px 24px',
-          borderTop: `1px solid ${C.border}`,
-          display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-          flexWrap: 'wrap', gap: 12,
-        }}>
-          <span style={{ fontFamily: font.mono, fontSize: 10, color: 'rgba(245,241,235,0.2)' }}>
-            © {new Date().getFullYear()} Dropdown Logistics
-          </span>
-          <span style={{ fontFamily: font.body, fontSize: 12, fontStyle: 'italic', color: 'rgba(245,241,235,0.12)' }}>
-            Humble surface. Something underneath.
-          </span>
-        </footer>
       </div>
     </div>
   );
