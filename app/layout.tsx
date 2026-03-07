@@ -2,6 +2,7 @@ import './globals.css';
 import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
+import SearchProvider from '@/components/SearchProvider';
 
 const SiteNav = dynamic(() => import('@/components/SiteNav'), {
   ssr: false,
@@ -46,6 +47,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         <div style={{ position: 'relative', zIndex: 1, minHeight: '100vh' }}>
           <SiteNav />
+          <SearchProvider />
           <main>{children}</main>
           <footer style={{
             maxWidth: 1200,
