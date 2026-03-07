@@ -1,14 +1,14 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 
-// ═══════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 // Config
-// ═══════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 // Change this to your Cloudflare Tunnel URL when ready
-const API_URL = 'https://dex.dropdownlogistics.com';
+const API_URL = 'http://192.168.0.198:8787';
 // For local testing: 'http://localhost:8787'
 
 const C = {
@@ -32,9 +32,9 @@ const font = {
   body: "'Source Serif 4', Georgia, serif",
 };
 
-// ═══════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 // Static Route Index (fallback when API is offline)
-// ═══════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 const ROUTES = [
   { path: '/ddl', title: 'DDL Hub', desc: 'Core methodology, charter, and governance', wing: 'DDL' },
@@ -48,7 +48,7 @@ const ROUTES = [
   { path: '/dexos', title: 'DexOS', desc: 'Multi-model orchestration system', wing: 'DDL' },
   { path: '/framework/pss', title: 'Prompt Strategy System', desc: 'Governed prompt engineering', wing: 'DDL' },
   { path: '/projects', title: 'Projects', desc: 'Client and partner work showcase', wing: 'DDL' },
-  { path: '/about', title: 'Operator Profile', desc: 'Dave Kitchens — CPA, builder, operator', wing: 'DDL' },
+  { path: '/about', title: 'Operator Profile', desc: 'Dave Kitchens â€” CPA, builder, operator', wing: 'DDL' },
   { path: '/memoir', title: 'Little to Know Experience', desc: 'Addiction recovery memoir', wing: 'DDL' },
   { path: '/memoir/architecture', title: 'Memoir Architecture', desc: 'How the memoir was built', wing: 'DDL' },
   { path: '/memoir/reading-room', title: 'Reading Room', desc: 'Selected excerpts in reading order', wing: 'DDL' },
@@ -72,9 +72,9 @@ const ROUTES = [
   { path: '/registry', title: 'Registry', desc: 'Full systems and standards registry', wing: 'DDL' },
 ];
 
-// ═══════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 // Fuzzy match for static fallback
-// ═══════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 function fuzzyMatch(query, routes) {
   const q = query.toLowerCase();
@@ -95,9 +95,9 @@ function fuzzyMatch(query, routes) {
     .slice(0, 8);
 }
 
-// ═══════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 // Search Modal Component
-// ═══════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 export default function SearchModal({ isOpen, onClose }) {
   const [query, setQuery] = useState('');
@@ -236,7 +236,7 @@ export default function SearchModal({ isOpen, onClose }) {
           borderBottom: `1px solid ${C.border}`,
         }}>
           <span style={{ fontFamily: font.mono, fontSize: 14, color: C.creamDim }}>
-            {mode === 'deep' ? '🔬' : '🔍'}
+            {mode === 'deep' ? 'ðŸ”¬' : 'ðŸ”'}
           </span>
           <input
             ref={inputRef}
@@ -366,8 +366,8 @@ export default function SearchModal({ isOpen, onClose }) {
             fontFamily: font.mono, fontSize: 9, color: C.creamDim,
             display: 'flex', gap: 12,
           }}>
-            <span>↑↓ navigate</span>
-            <span>↵ open</span>
+            <span>â†‘â†“ navigate</span>
+            <span>â†µ open</span>
             {apiOnline && <span>tab toggle deep search</span>}
           </div>
           <div style={{
@@ -387,3 +387,4 @@ export default function SearchModal({ isOpen, onClose }) {
     </>
   );
 }
+

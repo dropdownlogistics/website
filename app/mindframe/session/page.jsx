@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useRef, useEffect } from 'react';
 
@@ -23,7 +23,7 @@ const font = {
 };
 
 // Change this when Cloudflare Tunnel is ready
-const API_URL = 'http://localhost:8787';
+const API_URL = 'http://192.168.0.198:8787';
 
 export default function MindFrameSession() {
   const [messages, setMessages] = useState([]);
@@ -130,7 +130,7 @@ export default function MindFrameSession() {
           lineHeight: 1.7,
         }}>
           A short conversation that maps how you think, communicate, and
-          make decisions. Not a personality test — a calibration session.
+          make decisions. Not a personality test â€” a calibration session.
           8-10 questions. All processed locally. Nothing leaves this machine.
         </div>
       </div>
@@ -161,7 +161,7 @@ export default function MindFrameSession() {
               transition: 'all 0.2s',
             }}
           >
-            Begin Calibration →
+            Begin Calibration â†’
           </button>
           <div style={{
             fontFamily: font.mono, fontSize: 10, color: C.creamDim,
@@ -173,7 +173,7 @@ export default function MindFrameSession() {
               background: apiOnline ? C.green : apiOnline === false ? C.crimson : C.creamDim,
               display: 'inline-block',
             }} />
-            {apiOnline ? 'Dex Jr. online — ready' : apiOnline === false ? 'Dex Jr. offline' : 'Checking...'}
+            {apiOnline ? 'Dex Jr. online â€” ready' : apiOnline === false ? 'Dex Jr. offline' : 'Checking...'}
           </div>
         </div>
       ) : (
@@ -318,3 +318,4 @@ export default function MindFrameSession() {
     </div>
   );
 }
+
