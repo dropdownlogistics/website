@@ -23,7 +23,7 @@ const font = {
 };
 
 // Change this when Cloudflare Tunnel is ready
-const API_URL = 'http://192.168.0.198:8787';
+const API_URL = 'https://sciences-echo-tracked-rev.trycloudflare.com';
 
 export default function MindFrameSession() {
   const [messages, setMessages] = useState([]);
@@ -318,4 +318,5 @@ export default function MindFrameSession() {
     </div>
   );
 }
+
 

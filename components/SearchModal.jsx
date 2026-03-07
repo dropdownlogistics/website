@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 // Change this to your Cloudflare Tunnel URL when ready
-const API_URL = 'http://192.168.0.198:8787';
+const API_URL = 'https://sciences-echo-tracked-rev.trycloudflare.com';
 // For local testing: 'http://localhost:8787'
 
 const C = {
@@ -387,4 +387,5 @@ export default function SearchModal({ isOpen, onClose }) {
     </>
   );
 }
+
 
