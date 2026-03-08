@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import { useState } from "react";
 
 const C = {
@@ -250,3 +250,4 @@ ${platforms.map((_, i) => `.fade-d${i}{animation-delay:${i * 0.07}s}`).join("\n"
     </div>
   );
 }
+
