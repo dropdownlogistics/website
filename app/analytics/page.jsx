@@ -161,6 +161,14 @@ export default function AnalyticsLanding() {
         gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))',
         gap: 12, marginBottom: 32,
       }}>
+<DashCard
+  href="/analytics/build-log"
+  title="Build Log"
+  stat=""
+  statLabel=""
+  color={C.amber}
+  desc="GitHub commit history and Vercel deployment analytics. The site documenting itself."
+/>
         <DashCard
           href="/analytics/sonic-thread"
           title="Sonic Thread"
