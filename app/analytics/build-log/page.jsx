@@ -20,8 +20,6 @@ const font = {
 };
 
 const GH_REPO = 'dropdownlogistics/website';
-const GH_API = `https://api.github.com/repos/${GH_REPO}`;
-
 function StatCard({ label, value, sub, color = C.amber }) {
   return (
     <div style={{
@@ -131,8 +129,6 @@ export default function BuildLog() {
   const [commits, setCommits] = useState([]);
   const [weeklyData, setWeeklyData] = useState([]);
   const [deploys, setDeploys] = useState([]);
-  const [vercelToken, setVercelToken] = useState('');
-  const [tokenInput, setTokenInput] = useState('');
   const [loading, setLoading] = useState({ gh: true, vercel: false });
   const [error, setError] = useState({ gh: null, vercel: null });
   const [mounted, setMounted] = useState(false);
@@ -140,26 +136,18 @@ export default function BuildLog() {
 
   useEffect(() => {
     setMounted(true);
-    // Load saved token
-    const saved = typeof window !== 'undefined' ? localStorage.getItem('ddl_vercel_token') : null;
-    if (saved) setVercelToken(saved);
   }, []);
 
-  // Fetch GitHub data
+  // Fetch GitHub data via server-side API route
   useEffect(() => {
     async function fetchGH() {
       try {
         setLoading(l => ({ ...l, gh: true }));
 
-        // Repo info
-        const repoRes = await fetch(`${GH_API}`);
-        const repo = await repoRes.json();
+        const res = await fetch('/api/github');
+        const { repo, commits: commitsData, error } = await res.json();
 
-        // Commits (last 100)
-        const commitsRes = await fetch(`${GH_API}/commits?per_page=100`);
-        const commitsData = await commitsRes.json();
-
-        if (!Array.isArray(commitsData)) throw new Error('GitHub rate limit hit');
+        if (error) throw new Error(error);
 
         setGhData(repo);
         setCommits(commitsData);
@@ -191,17 +179,14 @@ export default function BuildLog() {
     fetchGH();
   }, []);
 
-  // Fetch Vercel data
+  // Fetch Vercel data via server-side API route (token stays in .env.local)
   useEffect(() => {
-    if (!vercelToken) return;
     async function fetchVercel() {
       try {
         setLoading(l => ({ ...l, vercel: true }));
-        const res = await fetch('https://api.vercel.com/v6/deployments?limit=50&projectId=dropdownlogistics', {
-          headers: { Authorization: `Bearer ${vercelToken}` },
-        });
+        const res = await fetch('/api/vercel');
         const data = await res.json();
-        if (data.error) throw new Error(data.error.message);
+        if (data.error) throw new Error(data.error);
         setDeploys(data.deployments || []);
         setLoading(l => ({ ...l, vercel: false }));
         setError(err => ({ ...err, vercel: null }));
@@ -211,14 +196,7 @@ export default function BuildLog() {
       }
     }
     fetchVercel();
-  }, [vercelToken]);
-
-  const handleTokenSubmit = () => {
-    if (!tokenInput.trim()) return;
-    localStorage.setItem('ddl_vercel_token', tokenInput.trim());
-    setVercelToken(tokenInput.trim());
-    setTokenInput('');
-  };
+  }, []);
 
   // Stats
   const totalCommits = commits.length;
