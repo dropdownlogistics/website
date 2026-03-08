@@ -27,6 +27,7 @@ export async function GET() {
 
     return NextResponse.json({ repo, commits });
   } catch (e) {
-    return NextResponse.json({ error: e.message }, { status: 500 });
+    const msg = e instanceof Error ? e.message : 'Unknown error';
+    return NextResponse.json({ error: msg }, { status: 500 });
   }
 }
