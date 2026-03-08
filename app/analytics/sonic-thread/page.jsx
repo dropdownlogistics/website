@@ -157,10 +157,10 @@ export default function SonicThread() {
               keyArtists={["Colin Hay", "The Fray", "Joshua Radin", "Lazlo Bane", "Rhett Miller", "The Shins", "Guided by Voices", "Erasure"]}
               examples={[
                 { moment: "Colin Hay -- the acoustic ghost",
-                  track: "\"Overkill,\" \"Waiting for My Real Life to Begin,\" \"Beautiful World\"",
+                  track: "'Overkill,' 'Waiting for My Real Life to Begin,' 'Beautiful World'",
                   desc: "Colin Hay appears physically in the show as a wandering musician, then his songs score the emotional climaxes. The diegetic becomes non-diegetic. The music exists in the world and outside it simultaneously. Acoustic guitar, vulnerable male vocal, lyrics about waiting for things to make sense. For a brain with auditory response control at 82, the simplicity of the arrangement -- single voice, single instrument -- keeps the processing cost minimal while the lyrical content carries the emotional weight." },
-                { moment: "The Fray -- \"How to Save a Life\"",
-                  track: "S5E20 -- \"My Lunch\"",
+                { moment: "The Fray -- 'How to Save a Life'",
+                  track: "S5E20 -- 'My Lunch'",
                   desc: "The song scores Dr. Cox losing three patients. Piano-driven, building dynamic, lyrics about helplessness. The song became iconic because the show placed it at the exact moment the tonal whiplash architecture demanded total emotional surrender. Same build-to-resolution structure as melodic bass -- but acoustic, stripped, intimate." },
                 { moment: "The musical placement philosophy",
                   track: "Christa Miller's curation approach",
@@ -181,10 +181,10 @@ export default function SonicThread() {
                   track: "End-of-episode montages throughout series",
                   desc: "Every SOA episode ends with a 2-4 minute music montage that scores the consequences of the episode's events across multiple characters simultaneously. The music isn't background -- it's the binding agent. Folk-rock or acoustic cover, always with a gravitas that elevates street-level violence into something mythic. The montage structure is the build-drop-resolve of the episode arc." },
                 { moment: "Cover songs as thematic commentary",
-                  track: "\"Bohemian Rhapsody\" (Forest Rangers), \"To Sir With Love\" (Katey Sagal)",
+                  track: "'Bohemian Rhapsody' (Forest Rangers), 'To Sir With Love' (Katey Sagal)",
                   desc: "SOA doesn't use original songs for its biggest moments -- it uses covers. Known songs recontextualized by the show's world. The recursion is musical: you know this melody, but the arrangement and the context transform it. Same pattern-recognition reward as the comedy callbacks -- familiar structure, new information." },
                 { moment: "The White Buffalo as Jax's shadow voice",
-                  track: "\"The Matador,\" \"Come Join the Murder\"",
+                  track: "'The Matador,' 'Come Join the Murder'",
                   desc: "The White Buffalo's baritone folk-rock scores Jax's internal state when the character can't or won't speak it. Acoustic guitar, deep male vocal, lyrics about inevitability and consequence. The same Expressive communication prosthetic as Scrubs' Colin Hay -- different genre, identical function." },
               ]}
               emotionalFunction="SOA's soundtrack treats every episode ending as a sacred closing ritual -- the montage-as-liturgy. Acoustic darkness, folk-rock gravitas, and cover songs that leverage the viewer's existing emotional association with the melody. The sound profile is dense enough to score violence as myth but structured enough to stay in the Sensation Avoiding comfort zone. Nothing sonically chaotic. Everything sonically heavy."
@@ -199,7 +199,7 @@ export default function SonicThread() {
               keyArtists={["Explosions in the Sky", "W.G. Snuffy Walden", "Daniel Lanois"]}
               examples={[
                 { moment: "Explosions in the Sky -- the show's emotional infrastructure",
-                  track: "\"Your Hand in Mine,\" \"First Breath After Coma\"",
+                  track: "'Your Hand in Mine,' 'First Breath After Coma'",
                   desc: "Post-rock: no lyrics, guitar-driven, slow builds to cathartic crescendos. Explosions in the Sky doesn't tell you what to feel -- it architecturally constructs the feeling through dynamic shape. Quiet  ->  building  ->  swelling  ->  release. The structure is identical to melodic bass minus the electronic production. Same build-drop-resolve, acoustic instrumentation." },
                 { moment: "The wordless scoring",
                   track: "Throughout series -- game sequences, emotional climaxes",
@@ -223,7 +223,7 @@ export default function SonicThread() {
                   track: "No non-diegetic score in the series",
                   desc: "The Wire uses zero non-diegetic music. Every song exists in the show's world -- from a car radio, a jukebox, a character's headphones. The absence of a score is itself a sonic architecture. No emotional manipulation through music. The viewer must process emotional information without sonic guidance. This is the anti-Scrubs: the soundtrack refuses to do the Expressive work for you." },
                 { moment: "The season-opening Tom Waits covers",
-                  track: "\"Way Down in the Hole\" -- 5 different versions across 5 seasons",
+                  track: "'Way Down in the Hole' -- 5 different versions across 5 seasons",
                   desc: "Same song, five different artists, five different arrangements. The Blind Boys of Alabama. Steve Earle. The Neville Brothers. Each cover recontextualizes the same structure for the season's institutional focus. The recursion is the SOA cover principle applied to a single song across the entire series -- familiar structure, shifting context, pattern recognition across arrangements." },
                 { moment: "The one exception per season",
                   track: "Non-diegetic music in each season finale's final montage",
@@ -240,14 +240,14 @@ export default function SonicThread() {
               sonicDNA={["BRIGHT ACOUSTIC POP", "PREDICTABLE SCORING", "COMEDIC UNDERSCORE", "LOW THREAT", "KNOWN QUANTITY"]}
               keyArtists={["The Friendly Indians (theme)", "Boyz II Men (musical)", "Curt Smith"]}
               examples={[
-                { moment: "\"I Know You Know\" -- the theme as regulation anchor",
+                { moment: "'I Know You Know' -- the theme as regulation anchor",
                   track: "The Friendly Indians",
                   desc: "Bright, major-key, acoustic-driven theme song. The first sound of every episode is a known, pleasant, zero-threat auditory stimulus. For a show used as a sleep aid during detox and still used for insomnia, the theme song is the activation signal for the regulation state. Pavlovian auditory conditioning -- the melody means safety." },
                 { moment: "The scoring as ambient predictability",
                   track: "Throughout series -- comedic underscore",
                   desc: "Psych's incidental music is the most predictable in the comedy catalog. Light, bouncy, never dissonant, never surprising. The sonic bed is specifically designed to never startle, never spike, never create auditory unpredictability. For Sensation Avoiding at 50/75 and a brain used as a sleep regulation tool, this is the sound design of safety." },
                 { moment: "The musical episode -- maximum known quantity",
-                  track: "\"Psych: The Musical\" (S7)",
+                  track: "'Psych: The Musical' (S7)",
                   desc: "When Psych does a musical episode, the songs are original but stylistically indistinguishable from the show's normal tone -- bright, playful, unthreatening. Even at maximum musical ambition, the show stays inside its sonic comfort zone. The musical episode is the show proving it will never break the auditory contract." },
               ]}
               emotionalFunction="Psych's soundtrack is the inverse of The Wire's. Where The Wire withholds music to force raw processing, Psych provides constant, predictable, low-threat sound to minimize processing entirely. This is the auditory regulation function at its purest -- the show that scores sleep. The sonic profile is the exact opposite of ILLENIUM in every parameter (bright vs. dark, sparse vs. dense, quiet vs. loud) but serves the same operator for the same reason: auditory predictability for an over-aroused brain."
@@ -265,7 +265,7 @@ export default function SonicThread() {
                   track: "Western, sci-fi, horror, anime, documentary scores",
                   desc: "When Community does a Western episode, the score is an actual Western score. When it does horror, it's scored like horror. Ludwig Goransson composes genre-faithful music for each parody, which means the sonic experience shifts completely between episodes. The recursion isn't in the music itself -- it's in the viewer's recognition of the genre the music is invoking. Pattern recognition as sound design." },
                 { moment: "The main theme variations",
-                  track: "\"At Least It Was Here\" by The 88 -- multiple arrangements",
+                  track: "'At Least It Was Here' by The 88 -- multiple arrangements",
                   desc: "The theme song appears in different arrangements across the series -- acoustic, 8-bit, orchestral, a cappella -- mirroring The Wire's Tom Waits approach but comedically. Same melody, shifting context, the show using its own theme as a recursion device." },
               ]}
               emotionalFunction="Community's soundtrack is the musical equivalent of its genre-recursion comedy -- it asks the viewer to recognize sonic patterns across domains. The score is never just background; it's always commenting on what genre of show you're currently watching. For the Occipital Alpha creativity profile, this is pattern recognition through the auditory channel -- despite the mild auditory impairment, genre-recognition is processed more holistically than linguistically."
@@ -287,9 +287,9 @@ export default function SonicThread() {
               keyArtists={["Ludacris", "T.I.", "Don Omar", "Wiz Khalifa & Charlie Puth", "Teriyaki Boyz", "Brian Tyler (score)"]}
               examples={[
                 { moment: "The street-racing sonic palette",
-                  track: "\"Act a Fool\" (Ludacris), \"Ride Out,\" franchise-wide",
+                  track: "'Act a Fool' (Ludacris), 'Ride Out,' franchise-wide",
                   desc: "Bass-heavy, high BPM, hip-hop-EDM hybrid. The racing sequences are scored like ILLENIUM shows -- driving rhythm, building energy, physical sonic impact. The franchise's musical DNA is the same activation-energy architecture as the listening profile, but through a hip-hop lens rather than melodic bass." },
-                { moment: "\"See You Again\" -- the franchise's emotional peak",
+                { moment: "'See You Again' -- the franchise's emotional peak",
                   track: "Wiz Khalifa & Charlie Puth  /  Furious 7",
                   desc: "Piano-driven, vocal-led, building to a chorus that resolves into loss acceptance. Paul Walker's tribute. The franchise that's 'ridiculous on purpose' deploys its most emotionally sincere moment through a song structure identical to ILLENIUM's vocal ballads -- piano build, emotional vocal, harmonic resolution. The absurdity permission structure drops for one song, and the sonic architecture carries the sincerity." },
                 { moment: "T.I. as franchise sonic thread",
@@ -297,7 +297,7 @@ export default function SonicThread() {
                   desc: "T.I. is in the Apple Music Replay top 20 -- the only hip-hop artist in a profile dominated by EDM and math rock. T.I. is also in the Fast and Furious franchise. The listening profile and the media preference share an actual artist. The thread is literal." },
               ]}
               emotionalFunction="F&amp;F's soundtrack is the activation-energy function expressed through hip-hop and EDM -- high BPM, bass-driven, physically stimulating. The racing sequences are scored to provide the same external drive that ILLENIUM provides at 140-174 BPM. And when the franchise needs to land emotional sincerity, it uses the exact same piano-vocal-build structure as the listening profile's catharsis architecture."
-              listeningProfileLink="T.I. appears in both the franchise and the Apple Music top 20 -- the only artist in the media diet who crosses from soundtrack to listening profile. Bass-heavy racing score  ->  ILLENIUM's BPM activation. \"See You Again\" piano build  ->  ILLENIUM vocal ballad structure."
+              listeningProfileLink="T.I. appears in both the franchise and the Apple Music top 20 -- the only artist in the media diet who crosses from soundtrack to listening profile. Bass-heavy racing score  ->  ILLENIUM's BPM activation. 'See You Again' piano build  ->  ILLENIUM vocal ballad structure."
             />
 
             <SoundtrackCard
@@ -388,7 +388,7 @@ export default function SonicThread() {
                   { title: "LOTR (Shore)", role: "Orchestral build across hours" },
                   { title: "FFVII (One-Winged Angel)", role: "Boss battle as cathartic release" },
                   { title: "SOA montages", role: "Episode-closing build-resolve ritual" },
-                  { title: "\"See You Again\" (F&amp;F)", role: "Piano-vocal build to acceptance" },
+                  { title: "'See You Again' (F&amp;F)", role: "Piano-vocal build to acceptance" },
                   { title: "Scrubs (The Fray)", role: "Acoustic build to emotional ambush" },
                 ],
                 desc: "The most prevalent sonic architecture across the entire media diet. Every category contains at least one build-to-resolve structure. The mechanism is identical regardless of genre -- tension accumulates through dynamic escalation and resolves through harmonic or structural completion. For Bipolar II cycling and clinically significant internalizing, the guarantee of resolution is the therapeutic function.",
