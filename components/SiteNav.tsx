@@ -311,7 +311,7 @@ export default function SiteNav() {
         {/* Mobile menu */}
         {mobileOpen && (
           <div className="ddl-mob-menu" style={{
-            position: 'fixed', top: 52, left: 0, right: 0, bottom: 0,
+            position: 'absolute', top: '100%', left: 0, right: 0, height: 'calc(100dvh - 52px)', WebkitOverflowScrolling: 'touch',
             background: 'rgba(7,16,28,0.98)', backdropFilter: 'blur(20px)',
             WebkitBackdropFilter: 'blur(20px)', overflowY: 'auto',
             padding: '20px 24px 40px', animation: 'ddlSlideDown 0.2s ease',
