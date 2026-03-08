@@ -242,7 +242,7 @@ export default function BuildLog() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: 10, marginBottom: 32 }}>
           <StatCard label="Total Commits" value={loading.gh ? '—' : totalCommits} sub="last 100 fetched" color={C.amber} />
           <StatCard label="Last 30 Days" value={loading.gh ? '—' : last30} sub="commit velocity" color={C.green} />
-          <StatCard label="Deploys" value={loading.vercel ? '—' : deploys.length || '—'} sub={vercelToken ? `${successDeploys} passed` : 'token needed'} color={C.blue} />
+          <StatCard label="Deploys" value={loading.vercel ? '—' : deploys.length || '—'} sub={deploys.length ? `${successDeploys} passed` : 'loading...'} color={C.blue} />
           <StatCard label="Avg Build" value={avgBuild ? `${avgBuild}s` : '—'} sub="vercel build time" color={C.violet} />
           <StatCard label="Fail Rate" value={deploys.length ? `${Math.round(failDeploys / deploys.length * 100)}%` : '—'} sub={`${failDeploys} errors`} color={C.crimson} />
         </div>
@@ -296,35 +296,6 @@ export default function BuildLog() {
               </div>
             )}
 
-            {/* Vercel token input */}
-            {!vercelToken && (
-              <div style={{ background: C.card, border: `1px solid ${C.violet}20`, borderRadius: 8, padding: '18px 20px', marginBottom: 12 }}>
-                <div style={{ fontFamily: font.mono, fontSize: 9, color: C.violet, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 8 }}>Vercel Token Required</div>
-                <div style={{ fontFamily: font.body, fontSize: 13, color: C.creamMid, marginBottom: 12 }}>
-                  Add your Vercel API token to unlock deployment analytics. Stored locally.
-                </div>
-                <div style={{ display: 'flex', gap: 8 }}>
-                  <input
-                    type="password"
-                    value={tokenInput}
-                    onChange={e => setTokenInput(e.target.value)}
-                    onKeyDown={e => e.key === 'Enter' && handleTokenSubmit()}
-                    placeholder="vercel_token_..."
-                    style={{
-                      flex: 1, padding: '8px 12px', borderRadius: 5,
-                      background: C.cardDeep, border: `1px solid ${C.border}`,
-                      fontFamily: font.mono, fontSize: 12, color: C.cream, outline: 'none',
-                    }}
-                  />
-                  <button onClick={handleTokenSubmit} style={{
-                    padding: '8px 16px', borderRadius: 5, cursor: 'pointer',
-                    background: C.violetDim, border: `1px solid ${C.violet}40`,
-                    fontFamily: font.mono, fontSize: 11, color: C.violet,
-                  }}>Connect</button>
-                </div>
-              </div>
-            )}
-
             {/* Recent commits preview */}
             {!loading.gh && commits.length > 0 && (
               <div style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 8, padding: '18px 20px' }}>
@@ -362,11 +333,7 @@ export default function BuildLog() {
         {/* Deploys tab */}
         {activeTab === 'deploys' && (
           <div>
-            {!vercelToken && (
-              <div style={{ fontFamily: font.mono, fontSize: 12, color: C.creamDim, padding: '20px 0' }}>
-                Enter Vercel token in the Overview tab to load deployment data.
-              </div>
-            )}
+
             {loading.vercel && (
               <div style={{ fontFamily: font.mono, fontSize: 12, color: C.creamDim, padding: 20 }}>Fetching Vercel data...</div>
             )}
@@ -378,7 +345,7 @@ export default function BuildLog() {
             {!loading.vercel && deploys.map(d => (
               <DeployRow key={d.uid} deploy={d} />
             ))}
-            {vercelToken && !loading.vercel && deploys.length === 0 && !error.vercel && (
+            {!loading.vercel && deploys.length === 0 && !error.vercel && (
               <div style={{ fontFamily: font.mono, fontSize: 12, color: C.creamDim, padding: '20px 0' }}>
                 No deployments found. Check that the project name matches.
               </div>
