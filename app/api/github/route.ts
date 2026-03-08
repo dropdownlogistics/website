@@ -9,7 +9,7 @@ export async function GET() {
   }
 
   const headers = {
-    Authorization: `Bearer ${token}`,
+    Authorization: `token ${token}`,
     Accept: 'application/vnd.github+json',
     'X-GitHub-Api-Version': '2022-11-28',
   };
