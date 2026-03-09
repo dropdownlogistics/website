@@ -385,7 +385,7 @@ export default function FrontDoor() {
             onMouseEnter={e => { e.currentTarget.style.background = '#9a2d2a'; e.currentTarget.style.boxShadow = `0 6px 28px ${C.crimson}50`; }}
             onMouseLeave={e => { e.currentTarget.style.background = C.crimson; e.currentTarget.style.boxShadow = `0 4px 20px ${C.crimson}30`; }}
           >
-            Enter the Site →
+            Enter the Story →
           </Link>
         </section>
 
