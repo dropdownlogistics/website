@@ -271,7 +271,7 @@ function DoorCard({ door }) {
             textDecoration: 'none', marginTop: 20,
             letterSpacing: '0.05em',
           }}>
-            Enter {door.label.split(' ')[0]} â†’
+            Enter {door.label} →
           </Link>
         </div>
       )}
@@ -385,7 +385,7 @@ export default function FrontDoor() {
             onMouseEnter={e => { e.currentTarget.style.background = '#9a2d2a'; e.currentTarget.style.boxShadow = `0 6px 28px ${C.crimson}50`; }}
             onMouseLeave={e => { e.currentTarget.style.background = C.crimson; e.currentTarget.style.boxShadow = `0 4px 20px ${C.crimson}30`; }}
           >
-            Enter the Site â†’
+            Enter the Site →
           </Link>
         </section>
 
@@ -473,3 +473,4 @@ export default function FrontDoor() {
     </div>
   );
 }
+
