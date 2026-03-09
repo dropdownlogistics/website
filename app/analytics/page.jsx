@@ -193,6 +193,22 @@ export default function AnalyticsLanding() {
           color={C.blue}
           desc="Multi-dimensional analysis. Cross-domain signal mapping across behavioral and creative data."
         />
+        <DashCard
+          href="/recaps/fast-and-furious"
+          title="Fast & Furious"
+          stat=""
+          statLabel=""
+          color={C.amber}
+          desc="Franchise behavioral analysis. What 10 films of the same universe reveal about loyalty, identity, and escalation."
+        />
+        <DashCard
+          href="/recaps/sons-of-anarchy"
+          title="Sons of Anarchy"
+          stat=""
+          statLabel=""
+          color={C.amber}
+          desc="Seven seasons mapped against the psychometric profile. Pattern recognition through narrative arc."
+        />
       </div>
 
       {/* Memoir Analytics */}
