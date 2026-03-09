@@ -329,8 +329,8 @@ export default function FrontDoor() {
             <Link href="/about" style={{ color: C.creamMid, textDecoration: 'none' }}>
               Dave Kitchens
             </Link>
-            <span style={{ margin: '0 8px', color: C.creamGhost }}>Â·</span>
-            CPA Â· Builder Â· One-Person Studio
+            <span style={{ margin: '0 8px', color: C.creamGhost }}>·</span>
+            CPA · Builder · One-Person Studio
           </div>
 
           <div style={{
@@ -352,7 +352,7 @@ export default function FrontDoor() {
             lineHeight: 1.8, maxWidth: 560, margin: '0 auto',
           }}>
             Dropdown Logistics is a one-person studio that builds tools,
-            analytics engines, and governance systems â€” using AI as a
+            analytics engines, and governance systems — using AI as a
             collaborator, not a replacement.
           </div>
           <div style={{
