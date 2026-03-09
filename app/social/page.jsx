@@ -56,7 +56,7 @@ const platforms = [
     activity: "Community, gaming, conversation",
   },
   {
-    name: "Substack", handle: "Little to Know Experience", url: "https://dfrictionated.substack.com",
+    name: "Substack", handle: "Little to Know Experience", url: "https://substack.com/@dkhale?utm_campaign=profile&utm_medium=profile-page",
     color: "#FF6719", icon: "✎",
     bio: "The memoir. Weekly posts from 21 years of recovery, discovery, and building.",
     activity: "Weekly memoir excerpts, essays",
