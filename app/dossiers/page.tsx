@@ -17,6 +17,8 @@ const supporting = [
   { href: '/dossiers/leafshadow-lineage', name: 'Leafshadow Lineage', sub: 'Three-generation chronicle', color: '#22c55e' },
   { href: '/dossiers/hal-style-lock', name: 'Hal Style Lock', sub: 'Portrait governance codex', color: '#67e8f9' },
   { href: '/dossiers/campaign-analytics', name: 'Campaign Analytics', sub: 'BlindSpot applied to RPG data', color: '#9B8EC4' },
+  { href: '/dossiers/operator', name: 'The Operator', sub: 'D.K. Hale — full profile', color: '#B23531' },
+  { href: '/dossiers/lego', name: 'The Collection', sub: 'Lego — 15 sets, 6,014 pieces', color: '#C49A3C' },
 ];
 
 export default function DossiersPage() {
