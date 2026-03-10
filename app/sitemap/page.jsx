@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import { useState } from 'react';
 import Link from 'next/link';
 
@@ -51,7 +51,7 @@ const wings = [
   {
     label: 'D&A', color: C.amber, routes: [
       { href: '/analytics', label: 'Analytics Hub' },
-      { href: '/analytics/grammarly', label: 'Grammarly — 4.57M Words' },
+      { href: '/analytics/grammarly', label: 'Grammarly â€” 4.57M Words' },
       { href: '/analytics/tone', label: 'Tone Analysis' },
       { href: '/analytics/memoir', label: 'Memoir Analytics' },
       { href: '/analytics/dexdash', label: 'DexDash' },
@@ -77,8 +77,8 @@ const wings = [
       { href: '/recaps/fast-and-furious', label: 'Fast & Furious' },
       { href: '/recaps/sons-of-anarchy', label: 'Sons of Anarchy' },
       { href: '/recaps/duolingo', label: 'Duolingo' },
-      { href: '/excelligence', label: 'Excelligence — Landing' },
-      { href: '/excelligence/explorer', label: 'Excelligence — Graph Explorer' },
+      { href: '/excelligence', label: 'Excelligence â€” Landing' },
+      { href: '/excelligence/explorer', label: 'Excelligence â€” Graph Explorer' },
     ],
   },
   {
@@ -93,16 +93,16 @@ const wings = [
       { href: '/mindframe/what-are-you-feeling', label: 'What Are You Feeling' },
       { href: '/council', label: 'Council Hub' },
       { href: '/council/profiles', label: 'All Council Profiles' },
-      { href: '/council/profiles/claude', label: 'Claude — Seat 1002' },
-      { href: '/council/profiles/chatgpt', label: 'ChatGPT — Seat 1008' },
-      { href: '/council/profiles/grok', label: 'Grok — Seat 1003' },
-      { href: '/council/profiles/gemini', label: 'Gemini — Seat 1007' },
-      { href: '/council/profiles/perplexity', label: 'Perplexity — Seat 1004' },
-      { href: '/council/profiles/copilot', label: 'Copilot — Seat 1005' },
-      { href: '/council/profiles/meta-ai', label: 'Meta AI — Seat 1006' },
-      { href: '/council/profiles/lechat', label: 'LeChat — Seat 1001' },
-      { href: '/council/profiles/deepseek', label: 'DeepSeek — Seat 1009' },
-      { href: '/council/1010', label: 'Seat 1010 — Dex Jr.' },
+      { href: '/council/profiles/claude', label: 'Claude â€” Seat 1002' },
+      { href: '/council/profiles/chatgpt', label: 'ChatGPT â€” Seat 1008' },
+      { href: '/council/profiles/grok', label: 'Grok â€” Seat 1003' },
+      { href: '/council/profiles/gemini', label: 'Gemini â€” Seat 1007' },
+      { href: '/council/profiles/perplexity', label: 'Perplexity â€” Seat 1004' },
+      { href: '/council/profiles/copilot', label: 'Copilot â€” Seat 1005' },
+      { href: '/council/profiles/meta-ai', label: 'Meta AI â€” Seat 1006' },
+      { href: '/council/profiles/lechat', label: 'LeChat â€” Seat 1001' },
+      { href: '/council/profiles/deepseek', label: 'DeepSeek â€” Seat 1009' },
+      { href: '/council/1010', label: 'Seat 1010 â€” Dex Jr.' },
       { href: '/council/auto-council', label: 'AutoCouncil' },
       { href: '/council/scaling', label: 'Scaling' },
       { href: '/council/review-system', label: 'Review System' },
@@ -172,6 +172,11 @@ const wings = [
     ],
   },
   {
+    label: 'CanonPress', color: C.crimson, routes: [
+      { href: '/canonpress', label: 'CanonPress Hub' },
+    ],
+  },
+  {
     label: 'About', color: C.crimson, routes: [
       { href: '/about', label: 'Operator Profile' },
       { href: '/social', label: 'Social Hub' },
@@ -193,7 +198,7 @@ export default function SitemapPage() {
 
         {/* HEADER */}
         <div style={{ marginBottom: 40 }}>
-          <div style={{ fontFamily: font.mono, fontSize: 10, color: C.crimson, letterSpacing: '0.15em', marginBottom: 12 }}>DDL · SITE MAP</div>
+          <div style={{ fontFamily: font.mono, fontSize: 10, color: C.crimson, letterSpacing: '0.15em', marginBottom: 12 }}>DDL Â· SITE MAP</div>
           <h1 style={{ fontFamily: font.display, fontSize: 'clamp(28px, 5vw, 44px)', fontWeight: 700, color: C.cream, margin: '0 0 12px', lineHeight: 1.1 }}>Everything</h1>
           <p style={{ fontFamily: font.body, fontSize: 15, color: C.creamMid, margin: '0 0 24px' }}>{total} routes across {wings.length} wings.</p>
 
@@ -241,11 +246,12 @@ export default function SitemapPage() {
 
         {/* FOOTER */}
         <div style={{ marginTop: 48, paddingTop: 24, borderTop: `1px solid ${C.border}`, display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8 }}>
-          <div style={{ fontFamily: font.mono, fontSize: 10, color: C.creamDim }}>{total} routes · {wings.length} wings · dropdownlogistics.com</div>
-          <div style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim }}>Chaos → Structured → Automated</div>
+          <div style={{ fontFamily: font.mono, fontSize: 10, color: C.creamDim }}>{total} routes Â· {wings.length} wings Â· dropdownlogistics.com</div>
+          <div style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim }}>Chaos â†’ Structured â†’ Automated</div>
         </div>
 
       </div>
     </div>
   );
 }
+
