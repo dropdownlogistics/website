@@ -37,7 +37,7 @@ const VOICES = [
 const WEEKS = [
   {
     week: '01',
-    date: 'March 9, 2026',
+    date: 'March 8, 2026',
     material: 'The Twelve Leverage Points to Intervene in a System',
     author: 'Donella Meadows',
     topic: 'When should a governance system choose restraint over ambition?',

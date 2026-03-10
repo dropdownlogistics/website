@@ -196,7 +196,7 @@ export default function CanonPressTuningLog() {
 
         <div style={{ marginTop: 48, paddingTop: 24, borderTop: `1px solid ${C.border}`, display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8 }}>
           <div style={{ fontFamily: font.mono, fontSize: 10, color: C.creamDim }}>CanonPress · Tuning Log · Dropdown Logistics</div>
-          <div style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim }}>Chaos \u2192 Structured \u2192 Automated</div>
+          <div style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim }}>Chaos → Structured → Automated</div>
         </div>
 
       </div>

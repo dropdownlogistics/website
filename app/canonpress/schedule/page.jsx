@@ -22,36 +22,36 @@ const SEAT_COLOR = {
 };
 
 const ROTATION = [
-  { week: '01', status: 'complete', publishDate: 'Mar 14, 2026',
+  { week: '01', status: 'complete', publishDate: 'Mar 8, 2026',
     nominator: { seat: '1003', name: 'Elias Mercer', domain: 'Mental models / AI alignment failure modes' },
     reviewer:  { seat: '1002', name: 'Marcus Caldwell', lens: 'Structural integrity' },
     material: 'The Twelve Leverage Points to Intervene in a System — Donella Meadows',
   },
-  { week: '02', status: 'upcoming', publishDate: 'Mar 21, 2026',
+  { week: '02', status: 'upcoming', publishDate: 'Mar 15, 2026',
     nominator: { seat: '1006', name: 'Ava Sinclair', domain: 'Cultural commentary / platform dynamics' },
     reviewer:  { seat: '1005', name: 'Rowan Bennett', lens: 'Architectural coherence' },
   },
-  { week: '03', status: 'upcoming', publishDate: 'Mar 28, 2026',
+  { week: '03', status: 'upcoming', publishDate: 'Mar 22, 2026',
     nominator: { seat: '1009', name: 'Kai Langford', domain: 'Systems architecture / dimensional modeling' },
     reviewer:  { seat: '1007', name: 'Leo Prescott', lens: 'Logical consistency' },
   },
-  { week: '04', status: 'upcoming', publishDate: 'Apr 4, 2026',
+  { week: '04', status: 'upcoming', publishDate: 'Mar 29, 2026',
     nominator: { seat: '1008', name: 'Marcus Grey', domain: 'AI system architecture / knowledge management', note: 'Grey is nominator — replacement selected for tuning log & meta-synth' },
     reviewer:  { seat: '1003', name: 'Elias Mercer', lens: 'Second-order consequences' },
   },
-  { week: '05', status: 'upcoming', publishDate: 'Apr 11, 2026',
+  { week: '05', status: 'upcoming', publishDate: 'Apr 5, 2026',
     nominator: { seat: '1001', name: 'Archer Hawthorne', domain: 'Technical docs / failure post-mortems' },
     reviewer:  { seat: '1009', name: 'Kai Langford', lens: 'Corpus integrity' },
   },
-  { week: '06', status: 'upcoming', publishDate: 'Apr 18, 2026',
+  { week: '06', status: 'upcoming', publishDate: 'Apr 12, 2026',
     nominator: { seat: '1004', name: 'Max Sullivan', domain: 'Epistemics / RAG design' },
     reviewer:  { seat: '1003', name: 'Elias Mercer', lens: 'Inversion scan' },
   },
-  { week: '07', status: 'upcoming', publishDate: 'Apr 25, 2026',
+  { week: '07', status: 'upcoming', publishDate: 'Apr 19, 2026',
     nominator: { seat: '1007', name: 'Leo Prescott', domain: 'Research / cross-platform synthesis' },
     reviewer:  { seat: '1008', name: 'Marcus Grey', lens: 'Synthesis fidelity', note: 'Grey is reviewer — replacement selected for tuning log & meta-synth' },
   },
-  { week: '08', status: 'upcoming', publishDate: 'May 2, 2026',
+  { week: '08', status: 'upcoming', publishDate: 'Apr 26, 2026',
     nominator: { seat: '1005', name: 'Rowan Bennett', domain: 'Operational architecture / cognitive tools' },
     reviewer:  { seat: '1002', name: 'Marcus Caldwell', lens: 'Provenance' },
   },
@@ -179,7 +179,7 @@ export default function CanonPressSchedule() {
 
         <div style={{ marginTop: 40, paddingTop: 20, borderTop: `1px solid ${C.border}`, display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8 }}>
           <div style={{ fontFamily: font.mono, fontSize: 10, color: C.creamDim }}>CanonPress · 8-Week Rotation · Dropdown Logistics</div>
-          <div style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim }}>Chaos \u2192 Structured \u2192 Automated</div>
+          <div style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim }}>Chaos → Structured → Automated</div>
         </div>
 
       </div>
