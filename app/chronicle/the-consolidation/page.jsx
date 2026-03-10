@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 const C = {
   navy: '#0D1B2A', card: '#10202f',
@@ -21,7 +21,7 @@ const acts = [
     color: C.amber,
     body: 'Screenshots of what the notes actually look like. GPT-3.5 emoji headers next to PowerShell dedup functions. Half-finished proposals that became live systems six months later without anyone noticing the lineage. A repo path in a note that points to a repo you forgot existed.',
     pulls: [
-      '"Wait â€” this is the same system. I just built it again."',
+      '"Wait — this is the same system. I just built it again."',
       '"DexKit v3.0 / folder 5 / DexScripture"',
     ],
   },
@@ -29,17 +29,17 @@ const acts = [
     num: 'ACT II',
     title: 'The Finds',
     color: C.violet,
-    body: 'Working tools buried in scratch notes. Early versions of systems that evolved beyond recognition. Ideas that were paused, not abandoned â€” and the difference matters. The moment you realize DexKit v3.0 folder 5 (DexScripture) is the ancestor of the CottageHumble footer tagline.',
+    body: 'Working tools buried in scratch notes. Early versions of systems that evolved beyond recognition. Ideas that were paused, not abandoned — and the difference matters. The moment you realize DexKit v3.0 folder 5 (DexScripture) is the ancestor of the CottageHumble footer tagline.',
     pulls: [
       '"Paused is not the same as abandoned."',
-      '"Humble surface. Cathedral underneath." â€” found in a scratch note, 2023.',
+      '"Humble surface. Cathedral underneath." — found in a scratch note, 2023.',
     ],
   },
   {
     num: 'ACT III',
     title: 'The Pattern',
     color: C.green,
-    body: 'What consolidation reveals about how you actually work. Capture is prolific. Refinement is selective. The gap between them is where things get lost. The nine buckets are not categories invented today â€” they are categories that were always there, just never named.',
+    body: 'What consolidation reveals about how you actually work. Capture is prolific. Refinement is selective. The gap between them is where things get lost. The nine buckets are not categories invented today — they are categories that were always there, just never named.',
     pulls: [
       '"The archive doesn\'t need organization. It needs inventory control."',
       '"The categories were always there."',
@@ -95,7 +95,7 @@ export default function TheConsolidation() {
 
         {/* BREADCRUMB */}
         <div style={{ fontFamily: font.mono, fontSize: 10, color: C.crimson, letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 48 }}>
-          CHRONICLE Â· DDL Â· THE OPERATOR
+          CHRONICLE · DDL · THE OPERATOR
         </div>
 
         {/* HERO */}
@@ -124,10 +124,7 @@ export default function TheConsolidation() {
           <p style={{ fontFamily: font.body, fontSize: 16, color: C.creamMid, lineHeight: 1.85, margin: '0 0 20px' }}>
             Why now. 67 routes live, the site is real, and the foundation underneath is held together by memory. The consolidation is not organization.
           </p>
-  <PullQuote
-    text={"It's inventory control for intellectual property you forgot you owned."}
-    color={C.crimson}
-  />
+          <PullQuote text='"It\'s inventory control for intellectual property you forgot you owned."' color={C.crimson} />
         </div>
 
         {/* ACTS TIMELINE */}
@@ -139,9 +136,9 @@ export default function TheConsolidation() {
 
         {/* CLOSING */}
         <div style={{ background: C.card, border: `1px solid ${C.borderMed}`, borderLeft: `3px solid ${C.crimson}`, borderRadius: 8, padding: '28px 32px', marginBottom: 64 }}>
-          <div style={{ fontFamily: font.mono, fontSize: 9, color: C.crimson, letterSpacing: '0.15em', marginBottom: 16 }}>CLOSING Â· THE REGISTRY PROPOSAL</div>
+          <div style={{ fontFamily: font.mono, fontSize: 9, color: C.crimson, letterSpacing: '0.15em', marginBottom: 16 }}>CLOSING · THE REGISTRY PROPOSAL</div>
           <p style={{ fontFamily: font.body, fontSize: 16, color: C.creamMid, lineHeight: 1.85, margin: '0 0 16px' }}>
-            This is the last manual pass. After this, capture has a pipeline. The consolidation is proof the pipeline was always needed â€” and evidence of everything it will protect going forward.
+            This is the last manual pass. After this, capture has a pipeline. The consolidation is proof the pipeline was always needed — and evidence of everything it will protect going forward.
           </p>
           <p style={{ fontFamily: font.body, fontSize: 15, color: C.creamDim, lineHeight: 1.75, margin: 0, fontStyle: 'italic' }}>
             The nine buckets are not categories invented today. They are categories that were always there, waiting for someone patient enough to name them.
@@ -157,18 +154,16 @@ export default function TheConsolidation() {
           <div style={{ fontFamily: font.body, fontSize: 22, fontStyle: 'italic', color: C.cream, lineHeight: 1.5, marginBottom: 32 }}>
             He audited them."
           </div>
-          <div style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim, letterSpacing: '0.12em' }}>D.K. HALE Â· THE CONSOLIDATION</div>
+          <div style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim, letterSpacing: '0.12em' }}>D.K. HALE · THE CONSOLIDATION</div>
         </div>
 
         {/* FOOTER */}
         <div style={{ paddingTop: 32, borderTop: `1px solid ${C.border}`, display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8 }}>
-          <div style={{ fontFamily: font.mono, fontSize: 10, color: C.creamDim, letterSpacing: '0.08em' }}>DDL Â· CHRONICLE Â· The Consolidation</div>
-          <div style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim }}>dropdownlogistics.com Â· 2026</div>
+          <div style={{ fontFamily: font.mono, fontSize: 10, color: C.creamDim, letterSpacing: '0.08em' }}>DDL · CHRONICLE · The Consolidation</div>
+          <div style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim }}>dropdownlogistics.com · 2026</div>
         </div>
 
       </div>
     </div>
   );
 }
-
-

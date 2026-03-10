@@ -64,7 +64,7 @@ const doors = [
         name: 'Analytics',
         items: [
           { href: '/analytics', label: 'Analytics Hub' },
-          { href: '/analytics/grammarly', label: 'Grammarly â€” 4.57M Words' },
+          { href: '/analytics/grammarly', label: 'Grammarly — 4.57M Words' },
           { href: '/analytics/tone', label: 'Tone Analysis' },
           { href: '/analytics/memoir', label: 'Memoir Analytics' },
           { href: '/analytics/dexdash', label: 'DexDash' },
@@ -110,7 +110,7 @@ const doors = [
         items: [
           { href: '/council', label: 'Council Hub' },
           { href: '/council/profiles', label: 'All Council Profiles' },
-          { href: '/council/1010', label: 'Seat 1010 â€” Dex Jr.' },
+          { href: '/council/1010', label: 'Seat 1010 — Dex Jr.' },
           { href: '/council/auto-council', label: 'AutoCouncil' },
           { href: '/council/scaling', label: 'Scaling' },
         ],
@@ -121,7 +121,7 @@ const doors = [
           { href: '/standards', label: 'Standards Registry' },
           { href: '/systems', label: 'Systems Registry' },
           { href: '/registry', label: 'Full Registry' },
-          { href: '/excelligence', label: 'Excelligence â€” Knowledge Graph' },
+          { href: '/excelligence', label: 'Excelligence — Knowledge Graph' },
         ],
       },
       {
@@ -199,7 +199,7 @@ function DoorCard({ door }) {
       overflow: 'hidden',
       transition: 'border-color 0.2s',
     }}>
-      {/* Header â€” always visible, clickable */}
+      {/* Header — always visible, clickable */}
       <button
         onClick={() => setOpen(!open)}
         style={{
@@ -329,8 +329,8 @@ export default function FrontDoor() {
             <Link href="/about" style={{ color: C.creamMid, textDecoration: 'none' }}>
               Dave Kitchens
             </Link>
-            <span style={{ margin: '0 8px', color: C.creamGhost }}>Â·</span>
-            CPA Â· Builder Â· One-Person Studio
+            <span style={{ margin: '0 8px', color: C.creamGhost }}>·</span>
+            CPA · Builder · One-Person Studio
           </div>
 
           <div style={{
@@ -352,7 +352,7 @@ export default function FrontDoor() {
             lineHeight: 1.8, maxWidth: 560, margin: '0 auto',
           }}>
             Dropdown Logistics is a one-person studio that builds tools,
-            analytics engines, and governance systems â€” using AI as a
+            analytics engines, and governance systems — using AI as a
             collaborator, not a replacement.
           </div>
           <div style={{
