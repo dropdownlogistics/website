@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 const C = {
   navy: '#0D1B2A', card: '#10202f',
@@ -46,12 +46,29 @@ const LEGO_SHELVES = ['All', 'Fast & Furious', 'Hypercars', 'Icons', 'AMG Duo', 
 function SetCard({ set }) {
   const [tab, setTab] = useState('hero');
   const [imgIdx, setImgIdx] = useState(0);
+  const touchX = useRef(null);
   const currentImages = tab === 'hero' ? (set.hero ? [set.hero] : []) : tab === 'build' ? set.builds : set.complete;
   const currentImg = currentImages[imgIdx] || null;
   function switchTab(t) { setTab(t); setImgIdx(0); }
   return (
     <div style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 8, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-      <div style={{ position: 'relative', width: '100%', paddingBottom: '66%', background: '#0a1520' }}>
+      <div
+        style={{ position: 'relative', width: '100%', paddingBottom: '66%', background: '#0a1520', cursor: 'grab' }}
+        onTouchStart={e => { touchX.current = e.touches[0].clientX; }}
+        onTouchEnd={e => {
+          if (touchX.current === null) return;
+          const diff = touchX.current - e.changedTouches[0].clientX;
+          if (Math.abs(diff) > 40) setImgIdx(i => diff > 0 ? Math.min(i+1, currentImages.length-1) : Math.max(i-1, 0));
+          touchX.current = null;
+        }}
+        onMouseDown={e => { touchX.current = e.clientX; }}
+        onMouseUp={e => {
+          if (touchX.current === null) return;
+          const diff = touchX.current - e.clientX;
+          if (Math.abs(diff) > 40) setImgIdx(i => diff > 0 ? Math.min(i+1, currentImages.length-1) : Math.max(i-1, 0));
+          touchX.current = null;
+        }}
+      >
         {currentImg ? (
           <img src={currentImg} alt={set.name} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} onError={e => { e.currentTarget.style.display = 'none'; }} />
         ) : (
