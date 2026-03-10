@@ -26,10 +26,11 @@ const PIPELINE = [
 ];
 
 const VOICES = [
-  { seat: '1010', name: 'Dex Jr.', role: 'Synthesis', color: C.amber, desc: 'Synthesizes council deliberation. Local model. Evidence over opinion.' },
-  { seat: '1002', name: 'Marcus Caldwell', role: 'Reviewer', color: C.crimson, desc: 'Critiques the synthesis. Finds what the council missed. Rotates weekly.' },
-  { seat: 'OPR', name: 'D.K. Hale', role: 'Operator', color: C.cream, desc: 'Writes from inside the process. What it felt like to build the machine.' },
-  { seat: '1008', name: 'Marcus Grey', role: 'Meta-Synth', color: C.crimson, desc: 'Synthesizes all three voices into a single artifact. ChatGPT. Steps in unless nominated or reviewing.' },
+  { seat: 'ROTATES', name: 'Nominator', role: 'Material Selection', color: C.violet, desc: 'One council seat per week, on an 8-week rotation. Declares one piece of material for corpus ingestion and frames the deliberation topic.' },
+  { seat: 'ROTATES', name: 'Reviewer', role: 'Synthesis Critique', color: C.blue, desc: 'A different council seat each week. Writes on the Dex Jr. synthesis — not the raw material. Lens varies by seat.' },
+  { seat: '1010', name: 'Dex Jr.', role: 'Deliberation Synthesis', color: C.amber, desc: 'Always synthesizes the full council deliberation. Fixed role. No rotation. Local model running on RTX 3070.' },
+  { seat: '1008', name: 'Marcus Grey', role: 'Tuning Log + Meta-Synth', color: C.crimson, desc: 'Writes the prompt tuning analysis and final meta-synthesis every week — unless he is nominator or reviewer, in which case he selects his own replacement for both roles.' },
+  { seat: 'OPR', name: 'D.K. Hale', role: 'Operator Article', color: C.cream, desc: 'Writes from inside the process every week. Experience over analysis. Wildcard nomination reserved 1x per month.' },
 ];
 
 const WEEKS = [
@@ -109,7 +110,7 @@ export default function CanonPressPage() {
 
         {/* THREE VOICES */}
         <div style={{ marginBottom: 64 }}>
-          <div style={{ fontFamily: font.mono, fontSize: 10, color: C.crimson, letterSpacing: '0.15em', marginBottom: 24 }}>THREE VOICES</div>
+          <div style={{ fontFamily: font.mono, fontSize: 10, color: C.crimson, letterSpacing: '0.15em', marginBottom: 24 }}>FIVE ROLES</div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gap: 12 }}>
             {VOICES.map(v => (
               <div key={v.seat} style={{ background: C.card, border: `1px solid ${C.border}`, borderTop: `2px solid ${v.color}`, borderRadius: 6, padding: '18px 20px' }}>
@@ -181,6 +182,24 @@ export default function CanonPressPage() {
           }}>
             @ddlogistics →
           </a>
+        </div>
+
+        {/* NAV LINKS */}
+        <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginBottom: 48 }}>
+          {[
+            { href: '/canonpress/schedule', label: '8-Week Schedule →' },
+            { href: '/canonpress/tuning-log', label: 'Tuning Log →' },
+          ].map(l => (
+            <a key={l.href} href={l.href} style={{
+              fontFamily: font.mono, fontSize: 11, color: C.creamMid,
+              border: `1px solid ${C.borderMed}`, borderRadius: 5,
+              padding: '8px 16px', textDecoration: 'none',
+              transition: 'color 0.15s, border-color 0.15s',
+            }}
+              onMouseEnter={e => { e.currentTarget.style.color = C.cream; e.currentTarget.style.borderColor = C.creamMid; }}
+              onMouseLeave={e => { e.currentTarget.style.color = C.creamMid; e.currentTarget.style.borderColor = C.borderMed; }}
+            >{l.label}</a>
+          ))}
         </div>
 
         {/* FOOTER LINE */}
