@@ -46,6 +46,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <span style={{ fontFamily: "'Source Serif 4', serif", fontSize: 12, fontStyle: 'italic', color: 'rgba(245,241,235,0.15)' }}>
                 CottageHumble surface. Cathedral underneath.
               </span>
+              <a href="/sitemap" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, color: 'rgba(245,241,235,0.18)', textDecoration: 'none', letterSpacing: '0.08em' }}>All Routes →</a>
             </div>
           </footer>
         </div>
