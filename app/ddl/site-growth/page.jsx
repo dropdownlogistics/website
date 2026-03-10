@@ -43,7 +43,7 @@ const brandLanes = [
 const siteTimeline = [
   {
     phase: "Genesis",
-    date: "March 1, 2026",
+    date: "Feb 27, 2026",
     color: C.crimson,
     events: [
       "Boot prompt written — 10-page architecture document before a single line of code",
@@ -58,7 +58,7 @@ const siteTimeline = [
   },
   {
     phase: "Foundation",
-    date: "Early March",
+    date: "Feb 28, 2026",
     color: C.amber,
     events: [
       "DDL favicon system (crimson DD circuit board mark, all sizes)",
@@ -73,7 +73,7 @@ const siteTimeline = [
   },
   {
     phase: "Analytics Suite",
-    date: "Mid March",
+    date: "Late Feb – Early Mar",
     color: C.blue,
     events: [
       "Analytics hub page with 4 dashboard cards",
@@ -88,7 +88,7 @@ const siteTimeline = [
   },
   {
     phase: "Multi-Brand Architecture",
-    date: "Mid–Late March",
+    date: "Early March 2026",
     color: C.green,
     events: [
       "Three brand lanes formalized: CottageHumble, D&A, Memoir",
@@ -103,7 +103,7 @@ const siteTimeline = [
   },
   {
     phase: "DEXLORE Layer",
-    date: "Late March",
+    date: "Early–Mid March",
     color: C.violet,
     events: [
       "12 files built for the narrative/myth layer of the DexVerse",
@@ -118,7 +118,7 @@ const siteTimeline = [
   },
   {
     phase: "Dossier Wing",
-    date: "Late March",
+    date: "Early–Mid March",
     color: C.ember,
     events: [
       "13 HTML pages: RPG character dossiers across 3 game systems",
@@ -133,7 +133,7 @@ const siteTimeline = [
   },
   {
     phase: "Product Concept Suite",
-    date: "Late March",
+    date: "Early–Mid March",
     color: C.rose,
     events: [
       "\"A Conversation That Listens Back\" — behavioral intelligence product concept",
@@ -148,7 +148,7 @@ const siteTimeline = [
   },
   {
     phase: "The 14-Hour Session",
-    date: "March 1–2, 2026",
+    date: "Feb 27–28, 2026",
     color: C.crimson,
     events: [
       "Apple Music Replay 2025 deep dive — 84 songs, 20 artists, 15 albums from 5 screenshots",
