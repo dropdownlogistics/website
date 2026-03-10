@@ -124,7 +124,7 @@ export default function TheConsolidation() {
           <p style={{ fontFamily: font.body, fontSize: 16, color: C.creamMid, lineHeight: 1.85, margin: '0 0 20px' }}>
             Why now. 67 routes live, the site is real, and the foundation underneath is held together by memory. The consolidation is not organization.
           </p>
-          <PullQuote text='"It\'s inventory control for intellectual property you forgot you owned."' color={C.crimson} />
+          <PullQuote text={"It’s inventory control for intellectual property you forgot you owned."} color={C.crimson} />
         </div>
 
         {/* ACTS TIMELINE */}
