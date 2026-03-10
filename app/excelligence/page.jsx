@@ -1,3 +1,5 @@
+﻿'use client'
+
 import { useState, useEffect, useRef } from "react";
 
 // ============================================================
@@ -148,7 +150,7 @@ export default function ExcelligenceLanding() {
           margin: "0 auto 40px",
         }}>
           A governed knowledge graph of Excel formulas, patterns, shortcuts,
-          conventions, architectures, and anti-patterns — connected by
+          conventions, architectures, and anti-patterns â€” connected by
           typed relationships that show you what to learn, what it depends on,
           and what breaks when you get it wrong.
         </p>
@@ -161,7 +163,7 @@ export default function ExcelligenceLanding() {
           margin: "0 auto",
         }}>
           Not a glossary. Not a tutorial. A graph that reveals how
-          Excel knowledge actually connects — and shows you the
+          Excel knowledge actually connects â€” and shows you the
           governed path between where you are and where you want to be.
         </p>
       </div>
@@ -389,7 +391,7 @@ export default function ExcelligenceLanding() {
                       <span style={{
                         color: "#3a3830", fontSize: 10, padding: "0 4px",
                         fontFamily: "'JetBrains Mono', monospace",
-                      }}>→</span>
+                      }}>â†’</span>
                     )}
                   </div>
                 ))}
@@ -453,7 +455,7 @@ export default function ExcelligenceLanding() {
           paddingBottom: 8,
           borderBottom: "1px solid rgba(178,53,49,0.12)",
         }}>
-          Coming Soon — The Living Graph
+          Coming Soon â€” The Living Graph
         </div>
 
         <div style={{
@@ -463,37 +465,37 @@ export default function ExcelligenceLanding() {
         }}>
           {[
             {
-              icon: "⚡",
+              icon: "âš¡",
               title: "Live API",
               desc: "The registry becomes a service. Entries update in real time without redeployment. Powered by a local LLM on dedicated hardware.",
               status: "In Development",
             },
             {
-              icon: "🧭",
+              icon: "ðŸ§­",
               title: "Learning Tracks",
               desc: "Curated paths through the graph for auditors, dashboard builders, and Power Query learners. The graph generates the curriculum.",
               status: "Designed",
             },
             {
-              icon: "🤖",
+              icon: "ðŸ¤–",
               title: "AI-Grounded Search",
-              desc: "Ask a question in plain language. A governed local LLM searches the registry and returns entries — not hallucinations.",
+              desc: "Ask a question in plain language. A governed local LLM searches the registry and returns entries â€” not hallucinations.",
               status: "In Development",
             },
             {
-              icon: "📊",
+              icon: "ðŸ“Š",
               title: "Companion Workbook",
               desc: "An Excel workbook connected to the registry via Power Query. Refresh to get the latest entries. Practice in your own environment.",
               status: "Planned",
             },
             {
-              icon: "🧠",
+              icon: "ðŸ§ ",
               title: "AI Proficiency Mapping",
               desc: "A guided conversation that assesses your Excel + AI skills and places you on the graph. Your score becomes a starting node.",
               status: "Designed",
             },
             {
-              icon: "🔍",
+              icon: "ðŸ”",
               title: "Workbook Scanner",
               desc: "Upload a workbook. The system maps your formulas to the registry, detects anti-patterns, and suggests governed upgrades.",
               status: "Cathedral",
@@ -562,7 +564,7 @@ export default function ExcelligenceLanding() {
             e.currentTarget.style.transform = "translateY(0)";
           }}
         >
-          Enter the Graph →
+          Enter the Graph â†’
         </a>
 
         <p style={{
@@ -571,7 +573,7 @@ export default function ExcelligenceLanding() {
           color: "#3a3830",
           marginTop: 12,
         }}>
-          50 entries · 118 edges · 7 types · 4 tiers · Interactive explorer with Path Finder
+          50 entries Â· 118 edges Â· 7 types Â· 4 tiers Â· Interactive explorer with Path Finder
         </p>
       </div>
 
@@ -607,9 +609,10 @@ export default function ExcelligenceLanding() {
           color: "#2a2820",
           letterSpacing: 2,
         }}>
-          CHAOS → STRUCTURED → AUTOMATED
+          CHAOS â†’ STRUCTURED â†’ AUTOMATED
         </div>
       </div>
     </div>
   );
 }
+
