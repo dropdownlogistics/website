@@ -1,4 +1,5 @@
 'use client';
+import BackButton from '@/components/BackButton';
 
 const C = {
   navy: '#0D1B2A', card: '#10202f',
@@ -91,6 +92,7 @@ function TimelineAct({ act, index }) {
 export default function TheConsolidation() {
   return (
     <div style={{ background: C.navy, minHeight: '100vh', color: C.cream }}>
+      <BackButton href="/chronicle" label="Chronicle" />
       <div style={{ maxWidth: 760, margin: '0 auto', padding: '64px 24px 100px' }}>
 
         {/* BREADCRUMB */}

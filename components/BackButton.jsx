@@ -9,7 +9,7 @@ export default function BackButton({ href, label }) {
     <button
       onClick={handleClick}
       style={{
-        position: 'fixed', top: 20, left: 20, zIndex: 50,
+        position: 'fixed', top: 68, left: 16, zIndex: 50,
         background: 'none', border: 'none', cursor: 'pointer',
         display: 'flex', alignItems: 'center', gap: 6,
         padding: '6px 10px',
