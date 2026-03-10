@@ -1,4 +1,5 @@
 'use client';
+import BackButton from '@/components/BackButton';
 import { useState, useRef } from 'react';
 
 const C = {
@@ -145,6 +146,7 @@ export default function LegoDossier() {
 
   return (
     <div style={{ background: C.navy, minHeight: '100vh', color: C.cream }}>
+      <BackButton href="/dossiers" label="Dossiers" />
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '48px 24px 80px' }}>
         <div style={{ marginBottom: 48 }}>
           <div style={{ fontFamily: font.mono, fontSize: 11, color: C.crimson, letterSpacing: '0.12em', marginBottom: 12 }}>DOSSIER · D.K. HALE</div>

@@ -1,4 +1,5 @@
 'use client';
+import BackButton from '@/components/BackButton';
 
 const C = {
   navy: '#0D1B2A', card: '#10202f',
@@ -68,6 +69,7 @@ const FIXED = [
 export default function CanonPressSchedule() {
   return (
     <div style={{ background: C.navy, minHeight: '100vh', color: C.cream }}>
+      <BackButton href="/canonpress" label="CanonPress" />
       <div style={{ maxWidth: 1000, margin: '0 auto', padding: '56px 24px 80px' }}>
 
         {/* HEADER */}

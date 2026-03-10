@@ -1,4 +1,5 @@
 'use client';
+import BackButton from '@/components/BackButton';
 import { useState } from 'react';
 
 const C = {
@@ -156,6 +157,7 @@ function LogCard({ log }) {
 export default function CanonPressTuningLog() {
   return (
     <div style={{ background: C.navy, minHeight: '100vh', color: C.cream }}>
+      <BackButton href="/canonpress" label="CanonPress" />
       <div style={{ maxWidth: 900, margin: '0 auto', padding: '56px 24px 80px' }}>
 
         {/* HEADER */}

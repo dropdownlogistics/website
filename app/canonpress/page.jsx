@@ -1,4 +1,5 @@
 'use client';
+import BackButton from '@/components/BackButton';
 import Link from 'next/link';
 
 const C = {
@@ -51,6 +52,7 @@ const WEEKS = [
 export default function CanonPressPage() {
   return (
     <div style={{ background: C.navy, minHeight: '100vh', color: C.cream }}>
+      <BackButton href="/" label="Home" />
 
       {/* HERO */}
       <div style={{ borderBottom: `1px solid ${C.border}`, padding: '64px 24px 56px', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
