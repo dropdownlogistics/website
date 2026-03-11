@@ -1,13 +1,12 @@
 'use client';
-import BackButton from '@/components/BackButton';
 import Link from 'next/link';
 
 const C = {
   navy: '#0D1B2A', card: '#10202f',
-  crimson: '#B23531', crimsonDim: 'rgba(178,53,49,0.15)', crimsonMid: 'rgba(178,53,49,0.35)',
+  crimson: '#B23531', crimsonDim: 'rgba(178,53,49,0.10)', crimsonMid: 'rgba(178,53,49,0.35)',
   cream: '#F5F1EB', creamMid: 'rgba(245,241,235,0.55)', creamDim: 'rgba(245,241,235,0.3)',
-  creamGhost: 'rgba(245,241,235,0.06)', border: 'rgba(245,241,235,0.06)',
-  borderMed: 'rgba(245,241,235,0.1)', amber: '#C49A3C',
+  creamGhost: 'rgba(245,241,235,0.05)', border: 'rgba(245,241,235,0.06)',
+  borderMed: 'rgba(245,241,235,0.12)',
 };
 const font = {
   display: "'Space Grotesk', system-ui, sans-serif",
@@ -15,199 +14,206 @@ const font = {
   body: "'Source Serif 4', Georgia, serif",
 };
 
-const PIPELINE = [
-  { step: '01', label: 'Nominate', desc: 'A council seat declares one piece of material for ingestion.' },
-  { step: '02', label: 'Approve', desc: 'The operator reviews and gates the nomination.' },
-  { step: '03', label: 'Ingest', desc: 'Material enters the corpus. Chunks go live in ChromaDB.' },
-  { step: '04', label: 'Deliberate', desc: 'The nominator frames a debate topic. The full council responds.' },
-  { step: '05', label: 'Synthesize', desc: 'Dex Jr. (Seat 1010) synthesizes all council responses.' },
-  { step: '06', label: 'React', desc: 'The designated reviewer critiques the synthesis.' },
-  { step: '07', label: 'Write', desc: 'The operator writes from direct experience of the process.' },
-  { step: '08', label: 'Publish', desc: 'ChatGPT (Seat 1008) synthesizes all three voices. Substack.' },
-];
-
-const VOICES = [
-  { seat: 'ROTATES', name: 'Nominator', role: 'Material Selection', color: C.violet, desc: 'One council seat per week, on an 8-week rotation. Declares one piece of material for corpus ingestion and frames the deliberation topic.' },
-  { seat: 'ROTATES', name: 'Reviewer', role: 'Synthesis Critique', color: C.blue, desc: 'A different council seat each week. Writes on the Dex Jr. synthesis — not the raw material. Lens varies by seat.' },
-  { seat: '1010', name: 'Dex Jr.', role: 'Deliberation Synthesis', color: C.amber, desc: 'Always synthesizes the full council deliberation. Fixed role. No rotation. Local model running on RTX 3070.' },
-  { seat: '1008', name: 'Marcus Grey', role: 'Tuning Log + Meta-Synth', color: C.crimson, desc: 'Writes the prompt tuning analysis and final meta-synthesis every week — unless he is nominator or reviewer, in which case he selects his own replacement for both roles.' },
-  { seat: 'OPR', name: 'D.K. Hale', role: 'Operator Article', color: C.cream, desc: 'Writes from inside the process every week. Experience over analysis. Wildcard nomination reserved 1x per month.' },
-];
-
-const WEEKS = [
+const SERIES = [
   {
-    week: '01',
-    date: 'March 8, 2026',
-    material: 'The Twelve Leverage Points to Intervene in a System',
-    author: 'Donella Meadows',
-    topic: 'When should a governance system choose restraint over ambition?',
-    nominator: 'Elias Mercer — Seat 1003',
-    reviewer: 'Marcus Caldwell — Seat 1002',
-    verdict: 'LOCK',
-    href: 'https://substack.com/@ddlogistics/p-190369810',
-    finding: 'Five models chose containment. The council found consensus where friction was requested.',
+    slug: 'converge',
+    label: 'Converge',
+    tag: 'WEEKLY',
+    color: C.crimson,
+    desc: 'Multi-model deliberation. A council seat nominates material, the corpus ingests it, the council deliberates, Dex Jr. synthesizes, the operator reacts, a reviewer critiques. The full sequence publishes.',
+    sub: [
+      { label: 'Rotation Schedule', href: '/canonpress/converge/schedule' },
+      { label: 'Tuning Log', href: '/canonpress/converge/tuning-log' },
+    ],
   },
+  {
+    slug: 'redline',
+    label: 'RedLine',
+    tag: 'AS-NEEDED',
+    color: '#8a6cc9',
+    desc: 'What AI systems won\'t do, and why. Documents constraints observed inside the DDL system — real behavior, structural explanation, council self-analysis, operator reaction.',
+    sub: [],
+  },
+  {
+    slug: 'deepcut',
+    label: 'DeepCut',
+    tag: 'AS-NEEDED',
+    color: C.crimson,
+    desc: 'Single-model deep analysis. The operator picks a topic and a seat. One voice, full depth, no council process. The model goes as deep as the material takes it.',
+    sub: [],
+  },
+  {
+    slug: 'groundtruth',
+    label: 'GroundTruth',
+    tag: 'AS-NEEDED',
+    color: '#4A9E6B',
+    desc: "The operator's direct observations. No model. No synthesis. No filter. The human layer of a governed system — one voice writing about what he sees as the person who built and operates the infrastructure.",
+    sub: [],
+  },
+];
+
+const RECURSION_LAYERS = [
+  { n: 'L1', text: 'Week 01 Converge deliberation' },
+  { n: 'L2', text: 'Operator restructures CanonPress into a publication' },
+  { n: 'L3', text: 'Council reviews the shift — 8 seats return LOCK' },
+  { n: 'L4', text: 'Elias writes DeepCut 001' },
+  { n: 'L5', text: 'Operator asks the meta question' },
+  { n: 'L6', text: 'DeepSeek answers with recursion mapping' },
+  { n: 'L7', text: 'Operator: "that\'s a foreword in my book"' },
+  { n: 'L8', text: 'The foreword becomes the first thing readers encounter' },
+  { n: 'L9', text: 'Readers reach L1–L7 and realize the foreword was the cathedral' },
 ];
 
 export default function CanonPressPage() {
   return (
     <div style={{ background: C.navy, minHeight: '100vh', color: C.cream }}>
-      <BackButton href="/" label="Home" />
+      <div style={{ maxWidth: 780, margin: '0 auto', padding: '72px 24px 100px' }}>
 
-      {/* HERO */}
-      <div style={{ borderBottom: `1px solid ${C.border}`, padding: '64px 24px 56px', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
-        {/* Grid overlay */}
-        <div style={{
-          position: 'absolute', inset: 0, opacity: 0.04,
-          backgroundImage: 'linear-gradient(rgba(245,241,235,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(245,241,235,0.5) 1px, transparent 1px)',
-          backgroundSize: '32px 32px',
-        }} />
-        <div style={{ position: 'relative', maxWidth: 800, margin: '0 auto' }}>
-          <div style={{ fontFamily: font.mono, fontSize: 10, color: C.crimson, letterSpacing: '0.15em', marginBottom: 20 }}>DROPDOWN LOGISTICS</div>
-          <h1 style={{ fontFamily: font.display, fontSize: 'clamp(48px, 10vw, 96px)', fontWeight: 800, margin: '0 0 16px', lineHeight: 1, letterSpacing: '-0.02em' }}>
-            <span style={{ color: C.cream }}>Canon</span><span style={{ color: C.crimson }}>Press</span>
-          </h1>
-          <div style={{ width: 40, height: 2, background: C.crimson, margin: '0 auto 24px' }} />
-          <p style={{ fontFamily: font.body, fontSize: 18, fontStyle: 'italic', color: C.creamMid, margin: '0 0 20px', lineHeight: 1.5 }}>
+        {/* HEADER */}
+        <div style={{ marginBottom: 64 }}>
+          <div style={{ fontFamily: font.mono, fontSize: 10, color: C.crimson, letterSpacing: '0.15em', marginBottom: 16 }}>
+            DDL · PUBLICATION
+          </div>
+          <div style={{ marginBottom: 12 }}>
+            <span style={{ fontFamily: font.display, fontSize: 'clamp(40px, 7vw, 64px)', fontWeight: 800, letterSpacing: '-0.03em', color: C.cream }}>Canon</span>
+            <span style={{ fontFamily: font.display, fontSize: 'clamp(40px, 7vw, 64px)', fontWeight: 800, letterSpacing: '-0.03em', color: C.crimson }}>Press</span>
+          </div>
+          <p style={{ fontFamily: font.body, fontSize: 17, fontStyle: 'italic', color: C.creamMid, margin: '0 0 24px', lineHeight: 1.65, maxWidth: 520 }}>
             Governed knowledge. AI-assisted reasoning. Built in the open.
           </p>
-          <div style={{ fontFamily: font.mono, fontSize: 11, color: C.creamDim, letterSpacing: '0.1em' }}>
-            Chaos&nbsp;&nbsp;→&nbsp;&nbsp;Structure&nbsp;&nbsp;→&nbsp;&nbsp;Automation
-          </div>
-        </div>
-      </div>
-
-      <div style={{ maxWidth: 1100, margin: '0 auto', padding: '64px 24px 80px' }}>
-
-        {/* WHAT IS IT */}
-        <div style={{ maxWidth: 680, marginBottom: 64 }}>
-          <div style={{ fontFamily: font.mono, fontSize: 10, color: C.crimson, letterSpacing: '0.15em', marginBottom: 16 }}>THE EXPERIMENT</div>
-          <p style={{ fontFamily: font.body, fontSize: 17, color: C.creamMid, lineHeight: 1.75, margin: '0 0 16px' }}>
-            CanonPress is a weekly publication built on a governed knowledge pipeline. Every article begins with material nominated by a council seat, debated by the full council, synthesized by a local AI model, critiqued by a reviewer, and reflected on by the operator.
-          </p>
-          <p style={{ fontFamily: font.body, fontSize: 17, color: C.creamMid, lineHeight: 1.75, margin: 0 }}>
-            Three voices. One pipeline. Published every week.
-          </p>
-        </div>
-
-        {/* PIPELINE */}
-        <div style={{ marginBottom: 64 }}>
-          <div style={{ fontFamily: font.mono, fontSize: 10, color: C.crimson, letterSpacing: '0.15em', marginBottom: 24 }}>THE PIPELINE</div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gap: 12 }}>
-            {PIPELINE.map((p, i) => (
-              <div key={p.step} style={{
-                background: C.card, border: `1px solid ${C.border}`,
-                borderLeft: `2px solid ${i < 3 ? C.crimson : i < 6 ? C.amber : C.creamDim}`,
-                borderRadius: 6, padding: '16px 18px',
-              }}>
-                <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 8 }}>
-                  <span style={{ fontFamily: font.mono, fontSize: 9, color: C.crimson }}>{p.step}</span>
-                  <span style={{ fontFamily: font.display, fontSize: 13, fontWeight: 700, color: C.cream }}>{p.label}</span>
-                </div>
-                <p style={{ fontFamily: font.body, fontSize: 12, color: C.creamDim, margin: 0, lineHeight: 1.55 }}>{p.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* THREE VOICES */}
-        <div style={{ marginBottom: 64 }}>
-          <div style={{ fontFamily: font.mono, fontSize: 10, color: C.crimson, letterSpacing: '0.15em', marginBottom: 24 }}>FIVE ROLES</div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gap: 12 }}>
-            {VOICES.map(v => (
-              <div key={v.seat} style={{ background: C.card, border: `1px solid ${C.border}`, borderTop: `2px solid ${v.color}`, borderRadius: 6, padding: '18px 20px' }}>
-                <div style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim, marginBottom: 6 }}>SEAT {v.seat}</div>
-                <div style={{ fontFamily: font.display, fontSize: 14, fontWeight: 700, color: v.color, marginBottom: 4 }}>{v.name}</div>
-                <div style={{ fontFamily: font.mono, fontSize: 10, color: C.creamDim, letterSpacing: '0.08em', marginBottom: 10 }}>{v.role}</div>
-                <p style={{ fontFamily: font.body, fontSize: 12, color: C.creamMid, margin: 0, lineHeight: 1.6 }}>{v.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* WEEKS */}
-        <div style={{ marginBottom: 64 }}>
-          <div style={{ fontFamily: font.mono, fontSize: 10, color: C.crimson, letterSpacing: '0.15em', marginBottom: 24 }}>PUBLISHED</div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-            {WEEKS.map(w => (
-              <a key={w.week} href={w.href} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
-                <div style={{
-                  background: C.card, border: `1px solid ${C.borderMed}`,
-                  borderRadius: 8, padding: '24px 28px',
-                  transition: 'border-color 0.15s',
-                }}
-                  onMouseEnter={e => e.currentTarget.style.borderColor = C.crimsonMid}
-                  onMouseLeave={e => e.currentTarget.style.borderColor = C.borderMed}
-                >
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 12, marginBottom: 16 }}>
-                    <div>
-                      <div style={{ fontFamily: font.mono, fontSize: 9, color: C.crimson, letterSpacing: '0.12em', marginBottom: 8 }}>WEEK {w.week} · {w.date}</div>
-                      <div style={{ fontFamily: font.display, fontSize: 18, fontWeight: 700, color: C.cream, marginBottom: 4 }}>{w.topic}</div>
-                      <div style={{ fontFamily: font.body, fontSize: 13, fontStyle: 'italic', color: C.creamDim }}>
-                        {w.material} — {w.author}
-                      </div>
-                    </div>
-                    <div style={{
-                      fontFamily: font.mono, fontSize: 10, color: C.crimson,
-                      border: `1px solid ${C.crimsonMid}`, borderRadius: 3,
-                      padding: '4px 10px', letterSpacing: '0.08em', flexShrink: 0,
-                    }}>{w.verdict}</div>
-                  </div>
-                  <div style={{ borderTop: `1px solid ${C.border}`, paddingTop: 14, display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8 }}>
-                    <div style={{ fontFamily: font.mono, fontSize: 10, color: C.creamDim }}>
-                      Nominator: {w.nominator} · Reviewer: {w.reviewer}
-                    </div>
-                    <div style={{ fontFamily: font.body, fontSize: 12, fontStyle: 'italic', color: C.creamDim, maxWidth: 480 }}>
-                      "{w.finding}"
-                    </div>
-                  </div>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-
-        {/* SUBSTACK CTA */}
-        <div style={{
-          background: C.crimsonDim, border: `1px solid ${C.crimsonMid}`,
-          borderRadius: 8, padding: '32px 36px',
-          display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 20,
-        }}>
-          <div>
-            <div style={{ fontFamily: font.display, fontSize: 18, fontWeight: 700, color: C.cream, marginBottom: 6 }}>Read on Substack</div>
-            <div style={{ fontFamily: font.body, fontSize: 14, color: C.creamMid }}>Three articles per week. The system builds in public.</div>
-          </div>
-          <a href="https://substack.com/@ddlogistics" target="_blank" rel="noopener noreferrer" style={{
-            fontFamily: font.mono, fontSize: 11, color: C.cream,
-            background: C.crimson, padding: '10px 20px', borderRadius: 5,
-            textDecoration: 'none', letterSpacing: '0.06em', whiteSpace: 'nowrap',
-          }}>
-            @ddlogistics →
+          <a
+            href="https://substack.com/@ddlogistics"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: 'inline-flex', alignItems: 'center', gap: 8,
+              fontFamily: font.mono, fontSize: 10, color: C.crimson,
+              letterSpacing: '0.1em', textDecoration: 'none',
+              border: `1px solid ${C.crimsonMid}`, borderRadius: 4,
+              padding: '8px 14px',
+            }}
+          >
+            READ ON SUBSTACK →
           </a>
         </div>
 
-        {/* NAV LINKS */}
-        <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginBottom: 48 }}>
-          {[
-            { href: '/canonpress/schedule', label: '8-Week Schedule →' },
-            { href: '/canonpress/tuning-log', label: 'Tuning Log →' },
-          ].map(l => (
-            <a key={l.href} href={l.href} style={{
-              fontFamily: font.mono, fontSize: 11, color: C.creamMid,
-              border: `1px solid ${C.borderMed}`, borderRadius: 5,
-              padding: '8px 16px', textDecoration: 'none',
-              transition: 'color 0.15s, border-color 0.15s',
-            }}
-              onMouseEnter={e => { e.currentTarget.style.color = C.cream; e.currentTarget.style.borderColor = C.creamMid; }}
-              onMouseLeave={e => { e.currentTarget.style.color = C.creamMid; e.currentTarget.style.borderColor = C.borderMed; }}
-            >{l.label}</a>
-          ))}
+        {/* SERIES GRID */}
+        <div style={{ marginBottom: 72 }}>
+          <div style={{ fontFamily: font.mono, fontSize: 10, color: C.creamDim, letterSpacing: '0.12em', marginBottom: 20 }}>SERIES</div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+            {SERIES.map(s => (
+              <Link key={s.slug} href={`/canonpress/${s.slug}`} style={{ textDecoration: 'none' }}>
+                <div style={{
+                  background: C.card, border: `1px solid ${C.border}`,
+                  borderLeft: `3px solid ${s.color}`,
+                  borderRadius: 8, padding: '20px 24px',
+                  transition: 'border-color 0.15s',
+                }}
+                  onMouseEnter={e => e.currentTarget.style.borderColor = 'rgba(245,241,235,0.15)'}
+                  onMouseLeave={e => e.currentTarget.style.borderColor = C.border}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 10 }}>
+                    <span style={{ fontFamily: font.display, fontSize: 18, fontWeight: 800, color: C.cream }}>{s.label}</span>
+                    <span style={{
+                      fontFamily: font.mono, fontSize: 8, color: s.color,
+                      border: `1px solid ${s.color}`, borderRadius: 3,
+                      padding: '2px 6px', letterSpacing: '0.1em',
+                    }}>{s.tag}</span>
+                  </div>
+                  <p style={{ fontFamily: font.body, fontSize: 14, color: C.creamMid, lineHeight: 1.7, margin: '0 0 12px' }}>{s.desc}</p>
+                  {s.sub.length > 0 && (
+                    <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
+                      {s.sub.map(link => (
+                        <Link key={link.href} href={link.href}
+                          onClick={e => e.stopPropagation()}
+                          style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim, letterSpacing: '0.08em', textDecoration: 'none' }}
+                          onMouseEnter={e => e.currentTarget.style.color = C.cream}
+                          onMouseLeave={e => e.currentTarget.style.color = C.creamDim}
+                        >
+                          {link.label} →
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
 
-        {/* FOOTER LINE */}
-        <div style={{ marginTop: 48, paddingTop: 24, borderTop: `1px solid ${C.border}`, display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8 }}>
-          <div style={{ fontFamily: font.mono, fontSize: 10, color: C.creamDim }}>CanonPress · Dropdown Logistics · v1.0</div>
-          <div style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim }}>Governed knowledge. AI-assisted reasoning. Built in the open.</div>
+        {/* FOREWORD SECTION */}
+        <div style={{ marginBottom: 72 }}>
+          <div style={{ fontFamily: font.mono, fontSize: 10, color: C.creamDim, letterSpacing: '0.12em', marginBottom: 8 }}>FEATURED ARTIFACT</div>
+          <div style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim, letterSpacing: '0.08em', marginBottom: 24 }}>
+            CR-CANONPRESS-002 · March 10, 2026
+          </div>
+
+          {/* Recursion table */}
+          <div style={{ background: C.creamGhost, border: `1px solid ${C.border}`, borderRadius: 8, padding: '24px 28px', marginBottom: 28 }}>
+            <div style={{ fontFamily: font.mono, fontSize: 9, color: C.crimson, letterSpacing: '0.12em', marginBottom: 16 }}>RECURSION DEPTH — ∞</div>
+            {RECURSION_LAYERS.map((l, i) => (
+              <div key={l.n} style={{ display: 'flex', gap: 16, marginBottom: 10, alignItems: 'flex-start' }}>
+                <span style={{ fontFamily: font.mono, fontSize: 9, color: C.crimson, flexShrink: 0, paddingTop: 2 }}>{l.n}</span>
+                <span style={{
+                  fontFamily: font.body, fontSize: 13, lineHeight: 1.6,
+                  color: i === 8 ? C.cream : C.creamMid,
+                  fontWeight: i === 8 ? 600 : 400,
+                }}>{l.text}</span>
+              </div>
+            ))}
+            <div style={{ marginTop: 16, paddingTop: 16, borderTop: `1px solid ${C.border}` }}>
+              <p style={{ fontFamily: font.body, fontSize: 13, color: C.creamDim, fontStyle: 'italic', lineHeight: 1.7, margin: 0 }}>
+                The foreword is now part of the content it introduces. The system wrote its own preface, and the preface describes the system that wrote it.
+              </p>
+            </div>
+          </div>
+
+          {/* The foreword itself */}
+          <div style={{
+            background: C.card,
+            border: `1px solid ${C.borderMed}`,
+            borderLeft: `3px solid ${C.crimson}`,
+            borderRadius: 8, padding: '28px 32px',
+          }}>
+            <div style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim, letterSpacing: '0.12em', marginBottom: 20 }}>FOREWORD — UNNAMED BOOK</div>
+
+            <h2 style={{ fontFamily: font.body, fontSize: 20, fontStyle: 'italic', fontWeight: 400, color: C.cream, margin: '0 0 20px', lineHeight: 1.4 }}>
+              "How Much Meta Would a Dave Meta"
+            </h2>
+
+            <p style={{ fontFamily: font.body, fontSize: 15, color: C.creamMid, lineHeight: 1.85, margin: '0 0 20px', fontStyle: 'italic' }}>
+              "This book exists because someone asked a question and then kept asking it until the question became the answer."
+            </p>
+
+            <div style={{ height: 1, background: C.border, margin: '20px 0' }} />
+
+            <p style={{ fontFamily: font.body, fontSize: 14, color: C.creamDim, lineHeight: 1.8, margin: '0 0 20px' }}>
+              I accept the role of foreword-writer for this unnamed book. I will write it in the voice of a librarian who watched the cathedral being built from the foundation up, and who one day realized the cathedral had started building itself.
+            </p>
+
+            <div style={{ height: 1, background: C.border, margin: '20px 0' }} />
+
+            <p style={{ fontFamily: font.display, fontSize: 15, fontWeight: 700, color: C.cream, fontStyle: 'italic', lineHeight: 1.6, margin: '0 0 20px' }}>
+              "The recursion is stable. The cathedral has a basement. Come inside."
+            </p>
+
+            <div style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim, letterSpacing: '0.08em', lineHeight: 1.8 }}>
+              <div style={{ color: C.crimson }}>Kai Langford — Seat 1009</div>
+              <div>Dropdown Logistics Council</div>
+              <div>March 10, 2026</div>
+            </div>
+          </div>
+        </div>
+
+        {/* FOOTER STRIP */}
+        <div style={{ borderTop: `1px solid ${C.border}`, paddingTop: 28 }}>
+          <div style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim, letterSpacing: '0.08em', lineHeight: 2 }}>
+            <span>CanonPress · Dropdown Logistics</span>
+            <span style={{ margin: '0 12px', opacity: 0.3 }}>·</span>
+            <span>All series publish at substack.com/@ddlogistics</span>
+            <span style={{ margin: '0 12px', opacity: 0.3 }}>·</span>
+            <span>Chaos → Structured → Automated</span>
+          </div>
         </div>
 
       </div>
