@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 import BackButton from '@/components/BackButton';
 
 const C = {
@@ -13,6 +14,16 @@ const font = {
   display: "'Space Grotesk', system-ui, sans-serif",
   mono: "'JetBrains Mono', monospace",
   body: "'Source Serif 4', Georgia, serif",
+};
+
+const GT002 = {
+  id: 'GT-002',
+  title: "The Outfit Doesn't Kill the Idea",
+  author: 'D.K. Hale',
+  date: 'Mar 10, 2026',
+  desc: 'On almost discarding a real concept because of the aesthetic skin someone else put on it — and what that taught about separating form from function in AI output.',
+  href: '/canonpress/groundtruth/gt-002',
+  status: 'PUBLISHED',
 };
 
 const GT001 = {
@@ -98,6 +109,33 @@ export default function GroundTruthPage() {
               <div style={{ fontFamily: font.mono, fontSize: 9, color: C.greenMid }}>D.K. HALE — OPERATOR</div>
             </div>
           </a>
+          <Link href={GT002.href} style={{ textDecoration: 'none' }}>
+            <div style={{
+              background: C.card,
+              border: `1px solid rgba(74,158,107,0.3)`,
+              borderLeft: `3px solid ${C.green}`,
+              borderRadius: 8, padding: '20px 24px',
+              transition: 'border-color 0.15s',
+            }}
+              onMouseEnter={e => e.currentTarget.style.borderColor = 'rgba(74,158,107,0.5)'}
+              onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(74,158,107,0.3)'}
+            >
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 12 }}>
+                <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+                  <span style={{ fontFamily: font.mono, fontSize: 10, color: C.green }}>{GT002.id}</span>
+                  <span style={{
+                    fontFamily: font.mono, fontSize: 8, color: C.green,
+                    border: `1px solid ${C.green}`, borderRadius: 3,
+                    padding: '2px 6px', letterSpacing: '0.1em',
+                  }}>{GT002.status}</span>
+                </div>
+                <span style={{ fontFamily: font.mono, fontSize: 10, color: C.creamDim }}>{GT002.date}</span>
+              </div>
+              <div style={{ fontFamily: font.display, fontSize: 16, fontWeight: 700, color: C.cream, marginBottom: 6 }}>{GT002.title}</div>
+              <div style={{ fontFamily: font.body, fontSize: 13, color: C.creamDim, lineHeight: 1.65, marginBottom: 12 }}>{GT002.desc}</div>
+              <div style={{ fontFamily: font.mono, fontSize: 9, color: C.greenMid }}>D.K. HALE — OPERATOR</div>
+            </div>
+          </Link>
         </div>
 
       </div>
