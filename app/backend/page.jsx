@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
@@ -242,7 +242,7 @@ export default function BackEnd() {
           onMouseEnter={e => e.currentTarget.style.borderColor = C.amber + '50'}
           onMouseLeave={e => e.currentTarget.style.borderColor = C.amber + '25'}
         >
-          Read llms.txt (v1.2)
+          Read llms.txt (v1.4)
         </Link>
       </div>
 
