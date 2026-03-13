@@ -174,6 +174,26 @@ const wings = [
   {
     label: 'CanonPress', color: C.crimson, routes: [
       { href: '/canonpress', label: 'CanonPress Hub' },
+      { href: '/canonpress/converge', label: 'Converge' },
+      { href: '/canonpress/converge/schedule', label: 'Converge — Schedule' },
+      { href: '/canonpress/converge/tuning-log', label: 'Converge — Tuning Log' },
+      { href: '/canonpress/redline', label: 'RedLine' },
+      { href: '/canonpress/deepcut', label: 'DeepCut' },
+      { href: '/canonpress/groundtruth', label: 'GroundTruth' },
+      { href: '/canonpress/groundtruth/gt-001', label: 'GT-001 — Watching the System Run' },
+      { href: '/canonpress/groundtruth/gt-002', label: 'GT-002 — The Outfit Doesn’t Kill the Idea' },
+    ],
+  },
+  {
+    label: 'The Bench', color: '#4A7C9B', routes: [
+      { href: '/bench', label: 'The Bench — Landing' },
+      { href: '/bench/onenote', label: 'OneNote' },
+      { href: '/bench/excel', label: 'Excel' },
+      { href: '/bench/word', label: 'Word' },
+      { href: '/bench/visio', label: 'Visio' },
+      { href: '/bench/cmd', label: 'CMD' },
+      { href: '/bench/powershell', label: 'PowerShell' },
+      { href: '/bench/adobe', label: 'Acrobat' },
     ],
   },
   {
@@ -247,7 +267,7 @@ export default function SitemapPage() {
         {/* FOOTER */}
         <div style={{ marginTop: 48, paddingTop: 24, borderTop: `1px solid ${C.border}`, display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8 }}>
           <div style={{ fontFamily: font.mono, fontSize: 10, color: C.creamDim }}>{total} routes · {wings.length} wings · dropdownlogistics.com</div>
-          <div style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim }}>Chaos â†’ Structured â†’ Automated</div>
+          <div style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim }}>Chaos → Structured → Automated</div>
         </div>
 
       </div>
