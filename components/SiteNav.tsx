@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
@@ -8,9 +8,9 @@ interface NavLink { href: string; label: string; }
 interface NavGroup { label: string; items: NavLink[]; }
 interface Wing { id: string; name: string; color: string; home: string; groups: NavGroup[]; }
 
-// ═══════════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 // Wing Definitions
-// ═══════════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 const wingsData: Wing[] = [
   {
@@ -110,9 +110,9 @@ const wingsData: Wing[] = [
   },
 ];
 
-// ═══════════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 // Wing Detection
-// ═══════════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 // Map route prefixes to wings
 const routeWingMap: Record<string, string> = {
@@ -124,7 +124,7 @@ const routeWingMap: Record<string, string> = {
   '/other-works': 'dexverse',
   '/knowledge/glossary': 'dexverse',
   '/methodology/palette': 'dexverse',
-  // Everything else → DDL
+  // Everything else â†’ DDL
 };
 
 function detectWing(pathname: string | null): Wing {
@@ -143,9 +143,9 @@ function detectWing(pathname: string | null): Wing {
   return wingsData[0];
 }
 
-// ═══════════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 // Dropdown Component
-// ═══════════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 function Dropdown({ group, isActive, pathname, wingColor }: {
   group: NavGroup;
@@ -173,7 +173,7 @@ function Dropdown({ group, isActive, pathname, wingColor }: {
         display: 'flex', alignItems: 'center', gap: 4, transition: 'all 0.15s',
       }}>
         {group.label}
-        <span style={{ fontSize: 8, opacity: 0.5, transform: open ? 'rotate(180deg)' : 'rotate(0)', transition: 'transform 0.2s', display: 'inline-block' }}>▼</span>
+        <span style={{ fontSize: 8, opacity: 0.5, transform: open ? 'rotate(180deg)' : 'rotate(0)', transition: 'transform 0.2s', display: 'inline-block' }}>â–¼</span>
       </button>
       {open && (
         <div style={{
@@ -201,9 +201,9 @@ function Dropdown({ group, isActive, pathname, wingColor }: {
   );
 }
 
-// ═══════════════════════════════════════════════════════════
-// Wing Switcher — the three-door toggle
-// ═══════════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// Wing Switcher â€” the three-door toggle
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 function WingSwitcher({ currentWing, isActive }: { currentWing: Wing; isActive: (h: string) => boolean }) {
   return (
@@ -222,16 +222,16 @@ function WingSwitcher({ currentWing, isActive }: { currentWing: Wing; isActive: 
   );
 }
 
-// ═══════════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 // Main Nav
-// ═══════════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 export default function SiteNav() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const wing = detectWing(pathname);
 
-  // Landing page — no nav, just the landing
+  // Landing page â€” no nav, just the landing
   const isLanding = pathname === '/';
 
   useEffect(() => { setMobileOpen(false); }, [pathname]);
@@ -266,7 +266,7 @@ export default function SiteNav() {
           maxWidth: 1200, margin: '0 auto', padding: '0 24px',
           display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 60,
         }}>
-          {/* Logo — always goes home */}
+          {/* Logo â€” always goes home */}
           <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
             <div style={{
               width: 28, height: 28, borderRadius: 6,
@@ -283,7 +283,7 @@ export default function SiteNav() {
                 color: wing.color + '80', letterSpacing: '0.04em',
                 transition: 'color 0.3s',
               }}>
-                {wing.id === 'ddl' ? 'Chaos → Structured → Automated' :
+                {wing.id === 'ddl' ? 'Chaos â†’ Structured â†’ Automated' :
                   wing.id === 'da' ? 'BlindSpot Analytics' :
                     'The Lore Layer'}
               </div>
@@ -304,7 +304,7 @@ export default function SiteNav() {
           {/* Mobile button */}
           <button className="ddl-mob-btn" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle menu"
             style={{ display: 'none', alignItems: 'center', justifyContent: 'center', background: 'none', border: 'none', color: 'rgba(245,241,235,0.6)', fontSize: 22, cursor: 'pointer', padding: 8, width: 40, height: 40, borderRadius: 6 }}>
-            {mobileOpen ? '✕' : '☰'}
+            {mobileOpen ? 'âœ•' : 'â˜°'}
           </button>
         </div>
 
@@ -316,7 +316,7 @@ export default function SiteNav() {
             WebkitBackdropFilter: 'blur(20px)', overflowY: 'auto',
             padding: '20px 24px 40px', animation: 'ddlSlideDown 0.2s ease',
           }}>
-            {/* Wing switcher — mobile */}
+            {/* Wing switcher â€” mobile */}
             <div style={{ marginBottom: 24 }}>
               <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: wing.color, marginBottom: 10 }}>Wings</div>
               {wingsData.map(w => (
@@ -326,7 +326,7 @@ export default function SiteNav() {
                   color: wing.id === w.id ? w.color : 'rgba(245,241,235,0.5)',
                   textDecoration: 'none', padding: '10px 0',
                   borderBottom: '1px solid rgba(255,255,255,0.04)',
-                }}>{w.name} — {w.id === 'ddl' ? 'Governance' : w.id === 'da' ? 'Analytics' : 'Lore'}</Link>
+                }}>{w.name} â€” {w.id === 'ddl' ? 'Governance' : w.id === 'da' ? 'Analytics' : 'Lore'}</Link>
               ))}
             </div>
 
@@ -347,7 +347,7 @@ export default function SiteNav() {
             ))}
 
             <div style={{ textAlign: 'center', paddingTop: 20, fontFamily: "'JetBrains Mono', monospace", fontSize: 9, letterSpacing: '0.3em', color: 'rgba(245,241,235,0.1)', textTransform: 'uppercase' }}>
-              Cottage — Humble surface. Cathedral underneath.
+              Cottage â€” Humble surface. Cathedral underneath.
             </div>
           </div>
         )}
@@ -355,3 +355,5 @@ export default function SiteNav() {
     </>
   );
 }
+
+
