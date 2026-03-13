@@ -198,7 +198,7 @@ export default function SitemapPage() {
 
         {/* HEADER */}
         <div style={{ marginBottom: 40 }}>
-          <div style={{ fontFamily: font.mono, fontSize: 10, color: C.crimson, letterSpacing: '0.15em', marginBottom: 12 }}>DDL Â· SITE MAP</div>
+          <div style={{ fontFamily: font.mono, fontSize: 10, color: C.crimson, letterSpacing: '0.15em', marginBottom: 12 }}>DDL · SITE MAP</div>
           <h1 style={{ fontFamily: font.display, fontSize: 'clamp(28px, 5vw, 44px)', fontWeight: 700, color: C.cream, margin: '0 0 12px', lineHeight: 1.1 }}>Everything</h1>
           <p style={{ fontFamily: font.body, fontSize: 15, color: C.creamMid, margin: '0 0 24px' }}>{total} routes across {wings.length} wings.</p>
 
@@ -246,7 +246,7 @@ export default function SitemapPage() {
 
         {/* FOOTER */}
         <div style={{ marginTop: 48, paddingTop: 24, borderTop: `1px solid ${C.border}`, display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8 }}>
-          <div style={{ fontFamily: font.mono, fontSize: 10, color: C.creamDim }}>{total} routes Â· {wings.length} wings Â· dropdownlogistics.com</div>
+          <div style={{ fontFamily: font.mono, fontSize: 10, color: C.creamDim }}>{total} routes · {wings.length} wings · dropdownlogistics.com</div>
           <div style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim }}>Chaos â†’ Structured â†’ Automated</div>
         </div>
 

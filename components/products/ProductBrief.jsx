@@ -180,7 +180,7 @@ export default function ProductBrief() {
           {/* Header */}
           <div style={{ marginBottom: 40 }}>
             <div style={{ fontFamily: font.mono, fontSize: 9, color: C.crimson, letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 8 }}>
-              DDL Â· ATLAS Â· Product Brief
+              DDL · ATLAS · Product Brief
             </div>
             <h1 style={{ fontFamily: font.display, fontSize: 30, fontWeight: 700, color: C.cream, lineHeight: 1.2, marginBottom: 8 }}>
               A Conversation That Listens Back
@@ -417,7 +417,7 @@ export default function ProductBrief() {
               marginBottom: 24,
             }}>
               <div style={{ fontFamily: font.display, fontSize: 18, fontWeight: 600, color: C.cream, marginBottom: 4 }}>D.K. Hale</div>
-              <div style={{ fontFamily: font.mono, fontSize: 10, color: C.crimson, marginBottom: 16 }}>Founder Â· Dropout Logistics</div>
+              <div style={{ fontFamily: font.mono, fontSize: 10, color: C.crimson, marginBottom: 16 }}>Founder · Dropout Logistics</div>
               <Prose>
                 CPA. 10+ years internal audit at enterprise scale. Built the MindFrame cognitive architecture (3 major versions, 8 programs, frozen at v3.x). Designed and operated the nine-model Council methodology across 100+ convergent analyses. Created the DDL governance framework: 44 systems, 65 standards, 26 months. Published memoir author. Developed the CottageHumble design system and six production templates. Built the Operator Dossier — 14 documents, 8 instruments, 24 years — as both the proof of concept and the test subject.
               </Prose>
@@ -458,7 +458,7 @@ export default function ProductBrief() {
                 Cottage — Humble surface. Cathedral underneath.
               </div>
               <div style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim }}>
-                dropdownlogistics.com Â· 2026 Â· Confidential
+                dropdownlogistics.com · 2026 · Confidential
               </div>
             </div>
           </div>

@@ -110,7 +110,7 @@ export default function VehicleFuelDashboard() {
             <span style={{ fontSize:18, fontWeight:700, letterSpacing:-0.5 }}>Vehicle Fuel Log</span>
             <span style={{ background:"#C49A3c22", color:"#C49A3C", border:"1px solid #C49A3C44", borderRadius:12, padding:"2px 10px", fontSize:10, fontWeight:700, letterSpacing:1, fontFamily:"'JetBrains Mono', monospace" }}>v3.0</span>
           </div>
-          <div style={styles.vehicleTag}>BKE-2021-FWD-001 Â· 2021 Buick Envision Essence FWD</div>
+          <div style={styles.vehicleTag}>BKE-2021-FWD-001 · 2021 Buick Envision Essence FWD</div>
         </div>
         <div style={{ display:"flex", gap:6 }}>
           {["dashboard","log"].map(v => (
@@ -124,7 +124,7 @@ export default function VehicleFuelDashboard() {
       {view === "dashboard" && (
         <div style={styles.section}>
           {/* KPIs */}
-          <div style={{ fontFamily:"'Space Grotesk', sans-serif", fontSize:11, color:"#8a9ab0", textTransform:"uppercase", letterSpacing:1.5, marginBottom:14 }}>Performance Summary Â· Nov 2025 â€“ Feb 2026</div>
+          <div style={{ fontFamily:"'Space Grotesk', sans-serif", fontSize:11, color:"#8a9ab0", textTransform:"uppercase", letterSpacing:1.5, marginBottom:14 }}>Performance Summary · Nov 2025 â€“ Feb 2026</div>
           <div style={styles.kpiGrid}>
             <KPI label="Total Fill-Ups" value={enriched.length} unit="" />
             <KPI label="Total Gallons" value={fmt(totalGallons,3)} unit="gal" />
@@ -182,7 +182,7 @@ export default function VehicleFuelDashboard() {
               <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", marginBottom:18 }}>
                 <div>
                   <div style={{ fontFamily:"'JetBrains Mono', monospace", fontSize:13, color:"#C49A3C", fontWeight:700 }}>{sel.id}</div>
-                  <div style={{ fontSize:11, color:"#8a9ab0", marginTop:2 }}>{sel.date} Â· {sel.time} Â· {sel.location}</div>
+                  <div style={{ fontSize:11, color:"#8a9ab0", marginTop:2 }}>{sel.date} · {sel.time} · {sel.location}</div>
                 </div>
                 <div style={{ display:"flex", gap:8, alignItems:"center" }}>
                   <span style={styles.badge(sel.confidence)}>{sel.confidence}</span>
@@ -256,7 +256,7 @@ export default function VehicleFuelDashboard() {
             </table>
           </div>
           <div style={{ fontFamily:"'JetBrains Mono', monospace", fontSize:10, color:"#8a9ab0", marginTop:10 }}>
-            Click any row to expand detail view Â· Gold = derived field Â· Green = confidence full Â· Amber = medium
+            Click any row to expand detail view · Gold = derived field · Green = confidence full · Amber = medium
           </div>
         </div>
       )}
@@ -264,7 +264,7 @@ export default function VehicleFuelDashboard() {
       {/* Footer */}
       <div style={{ borderTop:"1px solid #1e3448", padding:"12px 28px", display:"flex", justifyContent:"space-between", alignItems:"center" }}>
         <div style={{ fontFamily:"'JetBrains Mono', monospace", fontSize:10, color:"#8a9ab0" }}>
-          DDL Â· VehicleTracker v3.0 Â· Extracted 2026-03-07 Â· 9 fill-ups Â· 0 formula errors
+          DDL · VehicleTracker v3.0 · Extracted 2026-03-07 · 9 fill-ups · 0 formula errors
         </div>
         <div style={{ fontFamily:"'JetBrains Mono', monospace", fontSize:10, color:"#C49A3C" }}>
           BKE-2021-FWD-001

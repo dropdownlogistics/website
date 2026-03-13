@@ -236,7 +236,7 @@ export default function SearchModal({ isOpen, onClose }) {
           borderBottom: `1px solid ${C.border}`,
         }}>
           <span style={{ fontFamily: font.mono, fontSize: 14, color: C.creamDim }}>
-            {mode === 'deep' ? 'ðŸ”¬' : 'ðŸ”'}
+            {mode === 'deep' ? 'ðŸ”¬' : '🔍'}
           </span>
           <input
             ref={inputRef}
