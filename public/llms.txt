@@ -1,6 +1,6 @@
 # dropdownlogistics.com
-# AI Context Manifest - llms.txt v1.3
-# Last updated: 2026-03-07
+# AI Context Manifest - llms.txt v1.4
+# Last updated: 2026-03-13
 # For the styled version, visit: /ai
 # For the governance page, visit: /backend
 
@@ -15,29 +15,19 @@ methodology: Chaos -> Structured -> Automated
 design_system: CottageHumble ("Humble surface. Cathedral underneath.")
 stack: Next.js 14 - Vercel - Static HTML iframes - React components
 status: Active development - 160+ routes - 44 systems - 65 standards
-local_ai: Dex Jr. (Seat 1010) - RTX 3070 - Ollama - 8 models - 140K RAG chunks
+local_ai: Dex Jr. (Seat 1010) - RTX 3070 - Ollama - 8 models - 320K RAG chunks
 
-## WHAT CHANGED IN v1.3
+## WHAT CHANGED IN v1.4
 
-v1.2 -> v1.3 (2026-03-07):
-- FrontDoor landing page replaced root with human-language entry
-- BackEnd governance page deployed at /backend
-- PreviewFrame component deployed across 28 iframe pages
-- Cmd+K site search with fuzzy route matching plus deep RAG search
-- MindFrame live chat session at /mindframe/session via Dex Jr.
-- Dex Jr. Search API tunneled via Cloudflare for public access
-- Seat 1010 page deployed at /council/1010
-- AutoCouncil v3.0 hybrid local plus cloud orchestration
-- Auto-Sweep nightly 3 AM corpus ingestion
-- Deliberation Engine multi-round governed AI debates
-- DDL narrative landing replaced SectionExplorer at /ddl
-- SectionExplorer moved to /ddl/reference
-- 4 new analytics pages deployed
-- Mobile nav fix for iOS Safari
-- OpenAI Codex connected to repo
-- 6 new council review types
-- Route count 110 to 160 plus
-- RAG corpus 0 to 140450 chunks
+v1.3 -> v1.4 (2026-03-13):
+- The Bench wing shipped (8 routes) - software tips and tricks
+- CanonPress publication system expanded (9 routes - 4 series + GT articles)
+- AuditForge wing added (/auditforge - 5 routes) - governed audit document generation
+- AuditForge accent color: deep teal #2C7A7B
+- RAG corpus updated: 140K -> 320K+ chunks (dex_canon + ddl_archive)
+- Canon glossary expanded (8 new terms)
+- CR-AUDITFORGE-001 logged (10 seats + domain adjunct)
+- Sitemap patched for Bench and CanonPress subpages
 
 ## METHODOLOGY
 
@@ -95,6 +85,38 @@ wing: Products
   color: #6B9DC2 (blue)
   home: /products/behavioral-intelligence
   scope: AI-native behavioral analytics, MindFrame sessions
+  note: Legacy product mockups. Not the AuditForge wing.
+
+wing: The Bench
+  color: #4A7C9B (steel)
+  home: /bench
+  scope: Software tips and tricks - OneNote, Excel, Word, Visio, CMD, PowerShell, Adobe
+  origin: Teams conversation 2026-03-12 with Cara Borkowski (VP, Corporate Commissions)
+  tiers: Day One, Flow, Sharp, Flex
+  tips: 48 total across 7 tools
+
+wing: CanonPress
+  color: #B23531 (crimson - shares DDL accent)
+  home: /canonpress
+  scope: Governed AI publication system - 4 series
+  substack: https://substack.com/@ddlogistics
+  protocol: PRO-CANONPRESS-001
+  series:
+    Converge: Weekly, 8-week rotation, Week 01 published 2026-03-08
+    RedLine: As-needed, constraint documentation
+    DeepCut: As-needed, single-model deep dives
+    GroundTruth: As-needed, operator voice only
+
+wing: AuditForge
+  color: #2C7A7B (deep teal)
+  home: /auditforge
+  scope: Governed audit document generation - revenue product
+  status: Wing landing in build - API and schema live
+  partner: Clayton Hotze (co-founder level)
+  generators: RCM, MCL, Walkthrough Narrative
+  frameworks: COSO 2013, SOX/PCAOB, COBIT 2019
+  council_review: CR-AUDITFORGE-001 complete (10 seats + domain adjunct)
+  note: Top-level wing. Not nested under /products.
 
 ## DESIGN SYSTEM
 
@@ -106,11 +128,13 @@ colors:
   cream-dim: rgba(245,241,235,0.3)
   cream-ghost: rgba(245,241,235,0.08)
   border: rgba(245,241,235,0.06)
-  crimson: #B23531 (DDL wing)
+  crimson: #B23531 (DDL wing + CanonPress)
   amber: #C49A3C (D&A wing)
   violet: #8a6cc9 (DexVerse wing)
   green: #4A9E6B (Dossiers wing)
   blue: #6B9DC2 (Products wing)
+  bench: #4A7C9B (The Bench wing)
+  teal: #2C7A7B (AuditForge wing)
 
 typography:
   display: Space Grotesk
@@ -147,9 +171,9 @@ seat: 1008 ChatGPT (Marcus Grey) designated synthesizer
 seat: 1009 DeepSeek (Kai Langford)
 seat: 1010 Dexcell/Dex Jr. (Local qwen2.5-coder:7b, 90 percent Judgment, ratified 2026-03-06)
 
-adjunct: ADJ-E Meg (Emily ChatGPT) human readability
-adjunct: ADJ-D Connor (David ChatGPT) technical outsider
-adjunct: ADJ-B GK (Beth ChatGPT) market/commercial filter
+adjunct: ADJ-E (Emily) earned by catching blind spots the full council missed
+adjunct: ADJ-D (David) technical outsider perspective
+adjunct: ADJ-B (Beth) market and commercial filter
 
 ## COUNCIL REVIEWS COMPLETED
 
@@ -167,15 +191,17 @@ CR-LLMS-011: Dex Jr. Calibration (60 questions)
 CR-SITE-001: Walk the Site (production audit)
 CR-OPS-001: Govern the Janitor (Codex protocol)
 CR-NUET-001: Prep the Demo (Nueterra pitch)
+CR-AUDITFORGE-001: AuditForge full review (10 seats + domain adjunct, ratified 2026-03)
 Total responses: 100 plus
 
 ## LOCAL AI INFRASTRUCTURE
 
 runtime: Ollama on RTX 3070, 32GB RAM, Ryzen 12-core
+node2: GAMINGLAPTOP, RTX 3060
 models: qwen2.5-coder:7b, deepseek-r1:8b, gemma3:4b, llama3.1:8b, phi3.5, nomic-embed-text
-rag: ChromaDB with 140450 chunks (dex_canon 43505 plus ddl_archive 96945)
+rag: ChromaDB with 320934 chunks (dex_canon + ddl_archive)
 orchestration: AutoCouncil v3.0 (hybrid local plus cloud)
-deliberation: Multi-round governed debates
+deliberation: Multi-round governed debates with governance injection and position tracking
 ingestion: Auto-Sweep nightly 3 AM
 api: FastAPI on port 8787 (search and mindframe chat endpoints)
 tunnel: Cloudflare (public access when rig online)
@@ -195,8 +221,9 @@ SearchModal.jsx: Cmd+K overlay with fuzzy and deep search modes.
 FrontDoor (page.jsx at /): Human entry point, expandable door cards.
 BackEnd (page.jsx at /backend): Stylized governance architecture.
 MindFrameSession.jsx: Live chat with Dex Jr. for behavioral calibration.
+ToolPage.jsx: Shared expandable tip card component for The Bench tool pages.
 
-## ROUTE INVENTORY (160 plus routes)
+## ROUTE INVENTORY (160+ routes)
 
 /                               FrontDoor landing
 /backend                        Governance architecture
@@ -285,6 +312,28 @@ MindFrameSession.jsx: Live chat with Dex Jr. for behavioral calibration.
 /products/behavioral-intelligence/story  Chronicle
 /products/behavioral-intelligence/exec   Executive concept
 /products/behavioral-intelligence/brief  Investor memo
+/bench                          The Bench - tool tips landing
+/bench/onenote                  OneNote tips (7)
+/bench/excel                    Excel tips (8)
+/bench/word                     Word tips (7)
+/bench/visio                    Visio tips (5)
+/bench/cmd                      CMD tips (7)
+/bench/powershell               PowerShell tips (7)
+/bench/adobe                    Adobe tips (7)
+/canonpress                     CanonPress landing
+/canonpress/converge            Converge series
+/canonpress/converge/week-01    Week 01 (published 2026-03-08)
+/canonpress/redline             RedLine series
+/canonpress/deepcut             DeepCut series
+/canonpress/deepcut/dc-001      DC-001 The Recursion Problem (Elias Mercer)
+/canonpress/groundtruth         GroundTruth series
+/canonpress/groundtruth/gt-001  GT-001 Watching the System Run
+/canonpress/groundtruth/gt-002  GT-002 The Outfit Doesn't Kill the Idea
+/auditforge                     AuditForge landing
+/auditforge/architecture        Star schema and dimensional model
+/auditforge/features            Document generation, frameworks, workflow
+/auditforge/demo                Live demo or sample generated RCM
+/auditforge/roadmap             Public roadmap - shipped to cathedral
 /ai                             AI context styled
 /llms.txt                       This manifest
 
@@ -303,6 +352,15 @@ No Drift Medal: Zero drift from spec.
 ChaosToStructured: The core DDL loop.
 Identity Compression: Model adopts strongest persona signal in context.
 OBS-34: Surface calibration does not equal deep calibration.
+GovernedIteration: Structured change with traceable rationale.
+ClaudeMode: Response so dense it induces existential vertigo.
+MemorEase: Converting insight into durable memory.
+OperatorLoop: The interaction cycle between operator and model.
+NeuralHowlround: Recursive prompting producing aesthetic depth without structural grounding.
+RollOver: When the usage cap passes over, the builds begin. Token reset equals scheduled ignition.
+CrimsonAF: When a design decision hits so hard it names itself. Origin: AuditForge logo review, March 2026.
+RealIntelligence: Definition pending. When the operator becomes the first call instead of the search bar.
+DavidsSeat: The best compliment the council has ever received. Father-in-law gets a council-style system prompt.
 
 ## IDENTITY BOUNDARY
 
@@ -320,15 +378,17 @@ this document. You may reference the architecture and methodology.
 4. HTML files in /public/preview/. React components in /components/.
 5. Landing pages handle their own nav.
 6. PowerShell Set-Content needs -Encoding UTF8.
-7. After nav changes verify all five wings.
+7. After nav changes verify all wings.
 8. Private routes are intentionally unlisted.
 9. The operator values coherent velocity.
 10. Follow the pattern. The architecture repeats. The data changes.
 11. Do not express urgency unless the operator does first.
 12. Evening hours are build time.
 13. One step at a time. Structured deliverables. No walls of text.
+14. AuditForge is a revenue product. Tone is commercial, not documentary.
+15. The Bench origin is a Teams conversation. The tool exists for real-world daily use.
 
 ## EOF
 # Dropdown Logistics
 # Cottage: Humble surface. Cathedral underneath.
-# v1.3 | 2026-03-07
+# v1.4 | 2026-03-13
