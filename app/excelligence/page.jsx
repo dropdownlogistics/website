@@ -150,7 +150,7 @@ export default function ExcelligenceLanding() {
           margin: "0 auto 40px",
         }}>
           A governed knowledge graph of Excel formulas, patterns, shortcuts,
-          conventions, architectures, and anti-patterns â€” connected by
+          conventions, architectures, and anti-patterns — connected by
           typed relationships that show you what to learn, what it depends on,
           and what breaks when you get it wrong.
         </p>
@@ -163,7 +163,7 @@ export default function ExcelligenceLanding() {
           margin: "0 auto",
         }}>
           Not a glossary. Not a tutorial. A graph that reveals how
-          Excel knowledge actually connects â€” and shows you the
+          Excel knowledge actually connects — and shows you the
           governed path between where you are and where you want to be.
         </p>
       </div>
@@ -455,7 +455,7 @@ export default function ExcelligenceLanding() {
           paddingBottom: 8,
           borderBottom: "1px solid rgba(178,53,49,0.12)",
         }}>
-          Coming Soon â€” The Living Graph
+          Coming Soon — The Living Graph
         </div>
 
         <div style={{
@@ -479,7 +479,7 @@ export default function ExcelligenceLanding() {
             {
               icon: "ðŸ¤–",
               title: "AI-Grounded Search",
-              desc: "Ask a question in plain language. A governed local LLM searches the registry and returns entries â€” not hallucinations.",
+              desc: "Ask a question in plain language. A governed local LLM searches the registry and returns entries — not hallucinations.",
               status: "In Development",
             },
             {

@@ -6,9 +6,9 @@ const ENTRIES = [
   { id:"F002", date:"2025-11-18", time:"06:56", location:"Overland Park", station:"QuikTrip", odometer:63722, gallons:14.477, totalCost:39.65, ppg:2.74, temp:56, tripMiles:343.7, tripMPG:24.4, avgSpeed:30.2, confidence:"Full", notes:"" },
   { id:"F003", date:"2025-12-01", time:"13:05", location:"Merriam Town Center", station:"QuikTrip", odometer:64030, gallons:13.627, totalCost:39.50, ppg:2.90, temp:27, tripMiles:307.8, tripMPG:22.6, avgSpeed:32.3, confidence:"Full", notes:"" },
   { id:"F004", date:"2025-12-15", time:"10:44", location:"Merriam Town Center", station:"QuikTrip", odometer:64321, gallons:14.172, totalCost:37.68, ppg:2.66, temp:38, tripMiles:290.4, tripMPG:20.4, avgSpeed:20.6, confidence:"Full", notes:"Severe traffic / winter commute conditions" },
-  { id:"F005", date:"2025-12-28", time:"11:40", location:"Overland Park", station:"QuikTrip", odometer:64670, gallons:14.161, totalCost:36.00, ppg:2.54, temp:36, tripMiles:349.3, tripMPG:25.9, avgSpeed:34.0, confidence:"Medium", notes:"Total cost partially obscured â€” treated as approx" },
+  { id:"F005", date:"2025-12-28", time:"11:40", location:"Overland Park", station:"QuikTrip", odometer:64670, gallons:14.161, totalCost:36.00, ppg:2.54, temp:36, tripMiles:349.3, tripMPG:25.9, avgSpeed:34.0, confidence:"Medium", notes:"Total cost partially obscured — treated as approx" },
   { id:"F006", date:"2026-01-12", time:"06:41", location:"Overland Park", station:"QuikTrip", odometer:64953, gallons:12.806, totalCost:32.00, ppg:2.50, temp:33, tripMiles:282.7, tripMPG:22.2, avgSpeed:23.6, confidence:"Full", notes:"" },
-  { id:"F007", date:"2026-01-25", time:"10:08", location:"Overland Park", station:"QuikTrip", odometer:65227, gallons:12.556, totalCost:32.63, ppg:2.60, temp:7,  tripMiles:274.5, tripMPG:22.0, avgSpeed:24.0, confidence:"Full", notes:"Snow visible on pump â€” extreme cold" },
+  { id:"F007", date:"2026-01-25", time:"10:08", location:"Overland Park", station:"QuikTrip", odometer:65227, gallons:12.556, totalCost:32.63, ppg:2.60, temp:7,  tripMiles:274.5, tripMPG:22.0, avgSpeed:24.0, confidence:"Full", notes:"Snow visible on pump — extreme cold" },
   { id:"F008", date:"2026-02-07", time:"09:17", location:"Overland Park", station:"QuikTrip", odometer:65518, gallons:14.209, totalCost:36.93, ppg:2.60, temp:34, tripMiles:290.4, tripMPG:20.7, avgSpeed:20.9, confidence:"Full", notes:"" },
   { id:"F009", date:"2026-02-23", time:"10:43", location:"Overland Park", station:"QuikTrip", odometer:65852, gallons:14.625, totalCost:36.84, ppg:2.52, temp:19, tripMiles:332.5, tripMPG:22.9, avgSpeed:23.3, confidence:"Full", notes:"" },
 ];
@@ -22,7 +22,7 @@ const enriched = ENTRIES.map((e, i) => ({
 }));
 
 const avg = arr => arr.reduce((a,b) => a+b, 0) / arr.length;
-const fmt = (n, d=1) => n?.toFixed(d) ?? "â€”";
+const fmt = (n, d=1) => n?.toFixed(d) ?? "—";
 
 const KPI = ({ label, value, unit, sub }) => (
   <div style={{ background:"#10202f", border:"1px solid #1e3448", borderRadius:8, padding:"16px 18px", minWidth:140 }}>
@@ -134,7 +134,7 @@ export default function VehicleFuelDashboard() {
             <KPI label="Avg Trip MPG" value={fmt(avgMPG,2)} unit="mpg" sub={`Odo-verified: ${fmt(avgOdoMPG,2)} mpg`} />
             <KPI label="MPG Range" value={`${fmt(minMPG,1)}â€“${fmt(maxMPG,1)}`} unit="mpg" />
             <KPI label="Odometer Span" value={odometerSpan.toLocaleString()} unit="mi" />
-            <KPI label="Avg Fill Temp" value={fmt(avgTemp,1)} unit="Â°F" />
+            <KPI label="Avg Fill Temp" value={fmt(avgTemp,1)} unit="°F" />
           </div>
 
           {/* MPG Chart */}
@@ -144,7 +144,7 @@ export default function VehicleFuelDashboard() {
               <div key={e.id} style={{ display:"flex", alignItems:"center", gap:12, marginBottom:10 }}>
                 <div style={{ fontFamily:"'JetBrains Mono', monospace", fontSize:10, color:"#8a9ab0", minWidth:72 }}>{e.date.slice(5)}</div>
                 <div style={{ flex:1 }}><MPGBar value={e.tripMPG} /></div>
-                <div style={{ fontFamily:"'JetBrains Mono', monospace", fontSize:10, color:"#8a9ab0", minWidth:40, textAlign:"right" }}>{e.temp}Â°F</div>
+                <div style={{ fontFamily:"'JetBrains Mono', monospace", fontSize:10, color:"#8a9ab0", minWidth:40, textAlign:"right" }}>{e.temp}°F</div>
               </div>
             ))}
             <div style={{ display:"flex", gap:18, marginTop:14, paddingTop:12, borderTop:"1px solid #1e3448" }}>
@@ -160,10 +160,10 @@ export default function VehicleFuelDashboard() {
           <div style={{ background:"#10202f", border:"1px solid #1e3448", borderRadius:8, padding:"20px 22px" }}>
             <div style={{ fontSize:11, color:"#8a9ab0", textTransform:"uppercase", letterSpacing:1.5, marginBottom:14, fontFamily:"'Space Grotesk', sans-serif" }}>Analyst Flags</div>
             {[
-              { color:"#C49A3C", flag:"Winter MPG suppression confirmed â€” Dec/Jan tanks 2â€“5 mpg below Nov/Feb baseline" },
+              { color:"#C49A3C", flag:"Winter MPG suppression confirmed — Dec/Jan tanks 2â€“5 mpg below Nov/Feb baseline" },
               { color:"#C49A3C", flag:"Low avg speed correlates directly with MPG loss (F004: 20.6 mph â†’ 20.4 mpg)" },
-              { color:"#B23531", flag:"F007: Extreme cold (7Â°F) â€” lowest temp recorded. MPG held at 22.0, suspect mild suppression" },
-              { color:"#4A9E6B", flag:"F005: Medium confidence â€” total cost obscured in source image. Flag for re-verification" },
+              { color:"#B23531", flag:"F007: Extreme cold (7°F) — lowest temp recorded. MPG held at 22.0, suspect mild suppression" },
+              { color:"#4A9E6B", flag:"F005: Medium confidence — total cost obscured in source image. Flag for re-verification" },
               { color:"#4A9E6B", flag:"Fill cadence stable: 13â€“16 days per tank across all 9 entries" },
             ].map((a,i) => (
               <div key={i} style={{ display:"flex", gap:10, alignItems:"flex-start", marginBottom:10 }}>
@@ -196,12 +196,12 @@ export default function VehicleFuelDashboard() {
                   ["Gallons", fmt(sel.gallons,3) + " gal"],
                   ["Total Cost", "$" + fmt(sel.totalCost,2)],
                   ["Price/Gal", "$" + fmt(sel.ppg,3)],
-                  ["Temperature", sel.temp + "Â°F"],
+                  ["Temperature", sel.temp + "°F"],
                   ["Trip Miles", fmt(sel.tripMiles,1) + " mi"],
                   ["Trip MPG", fmt(sel.tripMPG,1) + " mpg"],
                   ["Avg Speed", fmt(sel.avgSpeed,1) + " mph"],
-                  ["Odo MPG", sel.odoMPG ? fmt(sel.odoMPG,2) + " mpg" : "â€”"],
-                  ["Days Since Last", sel.daysSinceLast ? sel.daysSinceLast + " days" : "â€”"],
+                  ["Odo MPG", sel.odoMPG ? fmt(sel.odoMPG,2) + " mpg" : "—"],
+                  ["Days Since Last", sel.daysSinceLast ? sel.daysSinceLast + " days" : "—"],
                   ["Cost/Mile", "$" + fmt(sel.costPerMile,3)],
                 ].map(([l,v]) => (
                   <div key={l}>
@@ -241,11 +241,11 @@ export default function VehicleFuelDashboard() {
                       <td style={styles.td(i,highlight)}>{fmt(e.gallons,3)}</td>
                       <td style={styles.td(i,highlight)}>${fmt(e.totalCost,2)}</td>
                       <td style={styles.td(i,highlight)}>${fmt(e.ppg,3)}</td>
-                      <td style={{...styles.td(i,highlight), color: e.temp <= 15 ? "#B23531" : e.temp <= 35 ? "#C49A3C" : "#4A9E6B"}}>{e.temp}Â°</td>
+                      <td style={{...styles.td(i,highlight), color: e.temp <= 15 ? "#B23531" : e.temp <= 35 ? "#C49A3C" : "#4A9E6B"}}>{e.temp}°</td>
                       <td style={styles.td(i,highlight)}>{fmt(e.tripMiles,1)}</td>
                       <td style={{...styles.td(i,highlight), color:mpgColor, fontWeight:700}}>{fmt(e.tripMPG,1)}</td>
-                      <td style={{...styles.td(i,highlight), color:"#8a9ab0"}}>{e.odoMPG ? fmt(e.odoMPG,2) : "â€”"}</td>
-                      <td style={{...styles.td(i,highlight), color:"#8a9ab0"}}>{e.daysSinceLast ?? "â€”"}</td>
+                      <td style={{...styles.td(i,highlight), color:"#8a9ab0"}}>{e.odoMPG ? fmt(e.odoMPG,2) : "—"}</td>
+                      <td style={{...styles.td(i,highlight), color:"#8a9ab0"}}>{e.daysSinceLast ?? "—"}</td>
                       <td style={styles.td(i,highlight)}>
                         <span style={styles.badge(e.confidence)}>{e.confidence}</span>
                       </td>

@@ -48,7 +48,7 @@ const ROUTES = [
   { path: '/dexos', title: 'DexOS', desc: 'Multi-model orchestration system', wing: 'DDL' },
   { path: '/framework/pss', title: 'Prompt Strategy System', desc: 'Governed prompt engineering', wing: 'DDL' },
   { path: '/projects', title: 'Projects', desc: 'Client and partner work showcase', wing: 'DDL' },
-  { path: '/about', title: 'Operator Profile', desc: 'Dave Kitchens â€” CPA, builder, operator', wing: 'DDL' },
+  { path: '/about', title: 'Operator Profile', desc: 'Dave Kitchens — CPA, builder, operator', wing: 'DDL' },
   { path: '/memoir', title: 'Little to Know Experience', desc: 'Addiction recovery memoir', wing: 'DDL' },
   { path: '/memoir/architecture', title: 'Memoir Architecture', desc: 'How the memoir was built', wing: 'DDL' },
   { path: '/memoir/reading-room', title: 'Reading Room', desc: 'Selected excerpts in reading order', wing: 'DDL' },

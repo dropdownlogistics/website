@@ -130,7 +130,7 @@ export default function MindFrameSession() {
           lineHeight: 1.7,
         }}>
           A short conversation that maps how you think, communicate, and
-          make decisions. Not a personality test â€” a calibration session.
+          make decisions. Not a personality test — a calibration session.
           8-10 questions. All processed locally. Nothing leaves this machine.
         </div>
       </div>
@@ -173,7 +173,7 @@ export default function MindFrameSession() {
               background: apiOnline ? C.green : apiOnline === false ? C.crimson : C.creamDim,
               display: 'inline-block',
             }} />
-            {apiOnline ? 'Dex Jr. online â€” ready' : apiOnline === false ? 'Dex Jr. offline' : 'Checking...'}
+            {apiOnline ? 'Dex Jr. online — ready' : apiOnline === false ? 'Dex Jr. offline' : 'Checking...'}
           </div>
         </div>
       ) : (

@@ -1,4 +1,4 @@
-﻿export const metadata = { title: 'Private â€” DDL' };
+﻿export const metadata = { title: 'Private — DDL' };
 
 const pages = [
   { href: '/private/ace', title: 'ACE Explained', desc: 'The framework, simply' },
