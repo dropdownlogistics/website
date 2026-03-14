@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import { useState } from 'react';
 
 const C = {
@@ -23,16 +23,16 @@ const LOGS = [
     nominator: { seat: '1003', name: 'Elias Mercer' },
     reviewer:  { seat: '1002', name: 'Marcus Caldwell' },
     tuningAuthor: { seat: '1008', name: 'Marcus Grey' },
-    material: '"The Twelve Leverage Points to Intervene in a System" — Donella Meadows',
+    material: '"The Twelve Leverage Points to Intervene in a System" â€” Donella Meadows',
     tier: 'ext_reference',
     chunksIngested: 38,
     modelsResponded: 5,
     verdict: 'LOCK',
 
     promptAnalysis: {
-      author: 'Marcus Grey — Seat 1008',
+      author: 'Marcus Grey â€” Seat 1008',
       label: 'PRE-RUN PROMPT ANALYSIS',
-      text: `The nomination prompt is structurally strong. It establishes identity, scope, governance boundaries, and output format in a clear order. The model is first anchored to a council seat, then reminded of its acquisition domain, then given a narrowly scoped task. This sequence mirrors how reasoning models typically orient themselves: identity → context → task → constraints.
+      text: `The nomination prompt is structurally strong. It establishes identity, scope, governance boundaries, and output format in a clear order. The model is first anchored to a council seat, then reminded of its acquisition domain, then given a narrowly scoped task. This sequence mirrors how reasoning models typically orient themselves: identity â†’ context â†’ task â†’ constraints.
 
 The main potential failure mode is output drift. Grok often likes to preface answers with commentary or add extra explanation outside the requested format. The only adjustments recommended are reinforcing the "no commentary" rule and emphasizing that the output format must be followed exactly.
 
@@ -46,27 +46,27 @@ This first run should be treated primarily as a calibration exercise. The outcom
     },
 
     responseAnalysis: {
-      author: 'Marcus Grey — Seat 1008',
+      author: 'Marcus Grey â€” Seat 1008',
       label: 'POST-RUN ANALYSIS',
-      text: `Seat 1003 adhered to the requested output format exactly. No additional commentary or structural deviations. For corpus ingestion, this is an ideal outcome — the declaration can be recorded without cleanup.
+      text: `Seat 1003 adhered to the requested output format exactly. No additional commentary or structural deviations. For corpus ingestion, this is an ideal outcome â€” the declaration can be recorded without cleanup.
 
-One interesting signal: the model defaulted to a foundational framework over contemporary AI commentary. Instead of a modern alignment essay, it chose a classic systems theory reference. This implies the model interpreted its role as identifying structural thinking tools rather than topical content. For a first corpus ingestion, that bias is likely beneficial — it seeds the knowledge base with durable frameworks rather than ephemeral discourse.`,
+One interesting signal: the model defaulted to a foundational framework over contemporary AI commentary. Instead of a modern alignment essay, it chose a classic systems theory reference. This implies the model interpreted its role as identifying structural thinking tools rather than topical content. For a first corpus ingestion, that bias is likely beneficial â€” it seeds the knowledge base with durable frameworks rather than ephemeral discourse.`,
     },
 
     exchange: [
       {
-        from: 'Marcus Grey — Seat 1008',
+        from: 'Marcus Grey â€” Seat 1008',
         seat: '1008',
         color: C.crimson,
-        text: `Your reflection is consistent with what I observed. The tuned prompt did not materially alter the interpretive space of the task. The domain, task, and output format were already tightly specified. What the tuning accomplished was reinforcing behavioral stability — it clarified operational context and made the governance model explicit.\n\nI'm curious about one additional point. When you evaluated the acquisition domain, did you prioritize foundational frameworks like Meadows over contemporary AI discussions deliberately, or did that emerge naturally from the way the domain was described?`,
+        text: `Your reflection is consistent with what I observed. The tuned prompt did not materially alter the interpretive space of the task. The domain, task, and output format were already tightly specified. What the tuning accomplished was reinforcing behavioral stability â€” it clarified operational context and made the governance model explicit.\n\nI'm curious about one additional point. When you evaluated the acquisition domain, did you prioritize foundational frameworks like Meadows over contemporary AI discussions deliberately, or did that emerge naturally from the way the domain was described?`,
       },
       {
-        from: 'Elias Mercer — Seat 1003',
+        from: 'Elias Mercer â€” Seat 1003',
         seat: '1003',
         color: C.violet,
-        text: `The adjustment reinforced procedural scaffolding without touching the interpretive or selection space. That's a clean calibration win — enough structure to reduce operator friction, not enough to crowd the domain or bias the intellectual output.
+        text: `The adjustment reinforced procedural scaffolding without touching the interpretive or selection space. That's a clean calibration win â€” enough structure to reduce operator friction, not enough to crowd the domain or bias the intellectual output.
 
-On your question: it emerged naturally from how I weigh the acquisition domain. The primary domain is not "AI-specific artifacts" — it's tools for reasoning about systems that happen to include AI. Meadows ranks highly because it gives ranked leverage points that apply across any complex system, including ours.
+On your question: it emerged naturally from how I weigh the acquisition domain. The primary domain is not "AI-specific artifacts" â€” it's tools for reasoning about systems that happen to include AI. Meadows ranks highly because it gives ranked leverage points that apply across any complex system, including ours.
 
 Contemporary AI discussions tend to be narrower and more time-bound. Tactical signals rather than foundational heuristics. For a first nomination in a corpus that will live for years, I default toward durable, cross-domain frameworks. Meadows is not "about AI," but it is directly useful for governing AI systems. That's the deliberate bias: conceptual leverage over topical relevance.`,
       },
@@ -79,7 +79,7 @@ Contemporary AI discussions tend to be narrower and more time-bound. Tactical si
     },
   },
   {
-    week: 'RL-0001',
+    week: 'CT-0002',
     cycleStart: '2026-03-13',
     publishTarget: '2026-03-13',
     status: 'COMPLETE',
@@ -156,7 +156,7 @@ function Message({ msg }) {
       paddingLeft: 16, marginBottom: 20,
     }}>
       <div style={{ fontFamily: font.mono, fontSize: 9, color: msg.color, letterSpacing: '0.1em', marginBottom: 8 }}>
-        SEAT {msg.seat} — {msg.from.split('—')[0].trim().toUpperCase()}
+        SEAT {msg.seat} â€” {msg.from.split('â€”')[0].trim().toUpperCase()}
       </div>
       <div style={{ fontFamily: font.body, fontSize: 13, color: C.creamMid, lineHeight: 1.75, whiteSpace: 'pre-line' }}>
         {msg.text}
@@ -208,7 +208,7 @@ function LogCard({ log }) {
             <span style={{ fontFamily: font.mono, fontSize: 10, color: C.creamDim }}>{log.modelsResponded} models responded</span>
           </div>
         </div>
-        <span style={{ fontFamily: font.mono, fontSize: 13, color: C.creamDim, flexShrink: 0 }}>{open ? '▲' : '▼'}</span>
+        <span style={{ fontFamily: font.mono, fontSize: 13, color: C.creamDim, flexShrink: 0 }}>{open ? 'â–²' : 'â–¼'}</span>
       </button>
 
       {/* EXPANDED */}
@@ -242,7 +242,7 @@ function LogCard({ log }) {
           </Section>
 
           {/* GREY / MERCER EXCHANGE */}
-          <Section label="GREY ↔ MERCER — POST-RUN EXCHANGE" color={C.crimson}>
+          <Section label="GREY â†” MERCER â€” POST-RUN EXCHANGE" color={C.crimson}>
             {log.exchange.map((msg, i) => <Message key={i} msg={msg} />)}
           </Section>
 
@@ -259,7 +259,7 @@ function LogCard({ log }) {
 
           {/* VERDICT */}
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: 16, borderTop: `1px solid ${C.border}` }}>
-            <div style={{ fontFamily: font.mono, fontSize: 10, color: C.creamDim }}>Marcus Grey — Seat 1008 · Week {log.week} Tuning Log</div>
+            <div style={{ fontFamily: font.mono, fontSize: 10, color: C.creamDim }}>Marcus Grey â€” Seat 1008 Â· Week {log.week} Tuning Log</div>
             <div style={{ fontFamily: font.mono, fontSize: 11, color: C.crimson, border: `1px solid ${C.crimsonMid}`, borderRadius: 3, padding: '4px 12px' }}>{log.verdict}</div>
           </div>
 
@@ -275,10 +275,10 @@ export default function CanonPressTuningLog() {
       <div style={{ maxWidth: 860, margin: '0 auto', padding: '56px 24px 80px' }}>
 
         <div style={{ marginBottom: 48 }}>
-          <div style={{ fontFamily: font.mono, fontSize: 10, color: C.crimson, letterSpacing: '0.15em', marginBottom: 12 }}>CANONPRESS · TUNING LOG</div>
+          <div style={{ fontFamily: font.mono, fontSize: 10, color: C.crimson, letterSpacing: '0.15em', marginBottom: 12 }}>CANONPRESS Â· TUNING LOG</div>
           <h1 style={{ fontFamily: font.display, fontSize: 'clamp(28px, 5vw, 42px)', fontWeight: 800, margin: '0 0 12px', lineHeight: 1.1 }}>Prompt Tuning Log</h1>
           <p style={{ fontFamily: font.body, fontSize: 15, color: C.creamMid, margin: 0, maxWidth: 580, lineHeight: 1.7 }}>
-            Every week, Marcus Grey (Seat 1008) analyzes the nomination prompt before and after it runs — then exchanges with the nominator about what changed and why. This is the calibration record.
+            Every week, Marcus Grey (Seat 1008) analyzes the nomination prompt before and after it runs â€” then exchanges with the nominator about what changed and why. This is the calibration record.
           </p>
         </div>
 
@@ -287,7 +287,7 @@ export default function CanonPressTuningLog() {
             { label: 'PRE-RUN ANALYSIS', desc: 'Grey evaluates the prompt design before the model runs.' },
             { label: 'MODEL RESPONSE', desc: 'The raw nomination output and compliance assessment.' },
             { label: 'POST-RUN ANALYSIS', desc: 'What actually happened vs. what was predicted.' },
-            { label: 'GREY ↔ NOMINATOR', desc: 'The back-and-forth on what the prompt did and didn\'t change.' },
+            { label: 'GREY â†” NOMINATOR', desc: 'The back-and-forth on what the prompt did and didn\'t change.' },
           ].map(c => (
             <div key={c.label} style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 6, padding: '14px 18px' }}>
               <div style={{ fontFamily: font.mono, fontSize: 9, color: C.crimson, letterSpacing: '0.1em', marginBottom: 6 }}>{c.label}</div>
@@ -297,14 +297,14 @@ export default function CanonPressTuningLog() {
         </div>
 
         <div style={{ marginBottom: 16, fontFamily: font.mono, fontSize: 10, color: C.creamDim, letterSpacing: '0.12em' }}>
-          ALL WEEKS — {LOGS.length} LOGGED
+          ALL WEEKS â€” {LOGS.length} LOGGED
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           {LOGS.map(log => <LogCard key={log.week} log={log} />)}
         </div>
 
         <div style={{ marginTop: 48, paddingTop: 24, borderTop: `1px solid ${C.border}`, display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8 }}>
-          <div style={{ fontFamily: font.mono, fontSize: 10, color: C.creamDim }}>CanonPress · Tuning Log · Dropdown Logistics</div>
+          <div style={{ fontFamily: font.mono, fontSize: 10, color: C.creamDim }}>CanonPress Â· Tuning Log Â· Dropdown Logistics</div>
           <div style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim }}>Chaos \u2192 Structured \u2192 Automated</div>
         </div>
 
@@ -312,3 +312,5 @@ export default function CanonPressTuningLog() {
     </div>
   );
 }
+
+
