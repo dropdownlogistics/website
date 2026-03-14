@@ -297,7 +297,7 @@ export default function CanonPressTuningLog() {
         </div>
 
         <div style={{ marginBottom: 16, fontFamily: font.mono, fontSize: 10, color: C.creamDim, letterSpacing: '0.12em' }}>
-          ALL WEEKS â€” {LOGS.length} LOGGED
+          ALL ARTIFACTS â€” {LOGS.length} LOGGED
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           {LOGS.map(log => <LogCard key={log.week} log={log} />)}
