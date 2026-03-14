@@ -119,7 +119,7 @@ const surpriseRoutes = [
 ];
 
 export default function DDLLanding() {
-  const [hovered, setHovered] = useState<string | null>(null);
+  const [hovered, setHovered] = useState(null);
   const [surpriseHref, setSurpriseHref] = useState('/excelligence');
 
   useEffect(() => {
@@ -461,5 +461,6 @@ function WingCard({ wing, hovered, setHovered }) {
     </Link>
   );
 }
+
 
 
