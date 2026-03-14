@@ -405,7 +405,7 @@ export default function SiteNav() {
             <div className="ddl-logo-mark">DD</div>
             <div className="ddl-logo-text">
               <span className="ddl-logo-name">Dropdown Logistics</span>
-              <span className="ddl-logo-sub">Chaos â†’ Structured â†’ Automated</span>
+              <span className="ddl-logo-sub">Chaos → Structured → Automated</span>
             </div>
           </Link>
 
@@ -428,7 +428,7 @@ export default function SiteNav() {
 
           {/* Mobile button */}
           <button className="ddl-mob-btn" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle menu">
-            {mobileOpen ? 'âœ•' : 'â˜°'}
+            {mobileOpen ? '✕' : '☰'}
           </button>
         </div>
       </nav>
