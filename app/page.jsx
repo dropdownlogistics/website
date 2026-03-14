@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
@@ -119,7 +119,7 @@ const surpriseRoutes = [
 ];
 
 export default function DDLLanding() {
-  const [hovered, setHovered] = useState(null);
+  const [hovered, setHovered] = useState<string | null>(null);
   const [surpriseHref, setSurpriseHref] = useState('/excelligence');
 
   useEffect(() => {
@@ -134,7 +134,7 @@ export default function DDLLanding() {
       fontFamily: "'Source Serif 4', Georgia, serif",
     }}>
 
-      {/* â”€â”€ HERO â”€â”€ */}
+      {/* ── HERO ── */}
       <div style={{
         maxWidth: 900,
         margin: '0 auto',
@@ -173,7 +173,7 @@ export default function DDLLanding() {
           color: C.muted,
           letterSpacing: '0.15em',
           marginBottom: 8,
-        }}>â†“</div>
+        }}>↓</div>
         <div style={{
           fontFamily: "'Space Grotesk', sans-serif",
           fontWeight: 700,
@@ -190,7 +190,7 @@ export default function DDLLanding() {
           color: C.muted,
           letterSpacing: '0.15em',
           marginBottom: 8,
-        }}>â†“</div>
+        }}>↓</div>
         <div style={{
           fontFamily: "'Space Grotesk', sans-serif",
           fontWeight: 700,
@@ -211,7 +211,7 @@ export default function DDLLanding() {
           lineHeight: 1.8,
           marginBottom: 16,
         }}>
-          A one-person operations studio. Tools, governance systems, analytics engines, and a publication platform â€” built with AI as a collaborator, not a replacement.
+          A one-person operations studio. Tools, governance systems, analytics engines, and a publication platform — built with AI as a collaborator, not a replacement.
         </div>
 
         <div style={{
@@ -222,7 +222,7 @@ export default function DDLLanding() {
           marginBottom: 48,
           fontStyle: 'italic',
         }}>
-          "What are the actual load-bearing elements of a human life?" â€” Leo Prescott, Seat 1007
+          "What are the actual load-bearing elements of a human life?" — Leo Prescott, Seat 1007
         </div>
 
         {/* CTAs */}
@@ -255,22 +255,22 @@ export default function DDLLanding() {
             letterSpacing: '0.01em',
           }}
             onMouseEnter={e => {
-              e.currentTarget.style.borderColor = 'rgba(245,241,235,0.35)';
-              e.currentTarget.style.color = C.cream;
+              (e.currentTarget as HTMLElement).style.borderColor = 'rgba(245,241,235,0.35)';
+              (e.currentTarget as HTMLElement).style.color = C.cream;
             }}
             onMouseLeave={e => {
-              e.currentTarget.style.borderColor = 'rgba(245,241,235,0.15)';
+              (e.currentTarget as HTMLElement).style.borderColor = 'rgba(245,241,235,0.15)';
             }}
           >
-            Surprise Me â†’
+            Surprise Me →
           </Link>
         </div>
       </div>
 
-      {/* â”€â”€ DIVIDER â”€â”€ */}
+      {/* ── DIVIDER ── */}
       <div style={{ height: 1, background: C.border, maxWidth: 960, margin: '0 auto' }} />
 
-      {/* â”€â”€ STATS â”€â”€ */}
+      {/* ── STATS ── */}
       <div style={{ maxWidth: 960, margin: '0 auto', padding: '56px 24px' }}>
         <div style={{
           fontFamily: "'JetBrains Mono', monospace",
@@ -315,10 +315,10 @@ export default function DDLLanding() {
         </div>
       </div>
 
-      {/* â”€â”€ DIVIDER â”€â”€ */}
+      {/* ── DIVIDER ── */}
       <div style={{ height: 1, background: C.border, maxWidth: 960, margin: '0 auto' }} />
 
-      {/* â”€â”€ WINGS â”€â”€ */}
+      {/* ── WINGS ── */}
       <div style={{ maxWidth: 960, margin: '0 auto', padding: '56px 24px' }}>
         <div style={{
           fontFamily: "'JetBrains Mono', monospace",
@@ -353,10 +353,10 @@ export default function DDLLanding() {
         </div>
       </div>
 
-      {/* â”€â”€ DIVIDER â”€â”€ */}
+      {/* ── DIVIDER ── */}
       <div style={{ height: 1, background: C.border, maxWidth: 960, margin: '0 auto' }} />
 
-      {/* â”€â”€ FOOTER â”€â”€ */}
+      {/* ── FOOTER ── */}
       <div style={{
         maxWidth: 960,
         margin: '0 auto',
@@ -373,7 +373,7 @@ export default function DDLLanding() {
           color: C.muted,
           letterSpacing: '0.1em',
         }}>
-          DROPDOWN LOGISTICS Â· D.K. HALE Â· CPA
+          DROPDOWN LOGISTICS · D.K. HALE · CPA
         </div>
         <div style={{ display: 'flex', gap: 20 }}>
           {[
@@ -388,8 +388,8 @@ export default function DDLLanding() {
               textDecoration: 'none',
               letterSpacing: '0.05em',
             }}
-              onMouseEnter={e => e.currentTarget.style.color = C.cream}
-              onMouseLeave={e => e.currentTarget.style.color = C.muted}
+              onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = C.cream}
+              onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = C.muted}
             >
               {l.label}
             </Link>
@@ -401,7 +401,11 @@ export default function DDLLanding() {
   );
 }
 
-function WingCard({ wing, hovered, setHovered }) {
+function WingCard({ wing, hovered, setHovered }: {
+  wing: typeof wings[0];
+  hovered: string | null;
+  setHovered: (id: string | null) => void;
+}) {
   const isHov = hovered === wing.id;
   return (
     <Link
@@ -461,10 +465,3 @@ function WingCard({ wing, hovered, setHovered }) {
     </Link>
   );
 }
-
-
-
-
-
-
-
