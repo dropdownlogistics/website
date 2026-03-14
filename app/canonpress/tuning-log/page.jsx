@@ -32,7 +32,7 @@ const LOGS = [
     promptAnalysis: {
       author: 'Marcus Grey â€” Seat 1008',
       label: 'PRE-RUN PROMPT ANALYSIS',
-      text: `The nomination prompt is structurally strong. It establishes identity, scope, governance boundaries, and output format in a clear order. The model is first anchored to a council seat, then reminded of its acquisition domain, then given a narrowly scoped task. This sequence mirrors how reasoning models typically orient themselves: identity â†’ context â†’ task â†’ constraints.
+      text: `The nomination prompt is structurally strong. It establishes identity, scope, governance boundaries, and output format in a clear order. The model is first anchored to a council seat, then reminded of its acquisition domain, then given a narrowly scoped task. This sequence mirrors how reasoning models typically orient themselves: identity → context → task → constraints.
 
 The main potential failure mode is output drift. Grok often likes to preface answers with commentary or add extra explanation outside the requested format. The only adjustments recommended are reinforcing the "no commentary" rule and emphasizing that the output format must be followed exactly.
 
@@ -197,7 +197,7 @@ function LogCard({ log }) {
       >
         <div style={{ flex: 1 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 10, flexWrap: 'wrap' }}>
-            <span style={{ fontFamily: font.mono, fontSize: 11, color: C.crimson }}>WEEK {log.week}</span>
+            <span style={{ fontFamily: font.mono, fontSize: 11, color: C.crimson }}>ARTIFACT {log.week}</span>
             <span style={{ fontFamily: font.mono, fontSize: 9, color: C.crimson, border: `1px solid ${C.crimsonMid}`, borderRadius: 3, padding: '2px 8px' }}>{log.status}</span>
             <span style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim }}>Target: {log.publishTarget}</span>
           </div>
