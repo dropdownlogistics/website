@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
@@ -8,9 +8,9 @@ interface NavLink { href: string; label: string; }
 interface NavGroup { label: string; items: NavLink[]; }
 interface Wing { id: string; name: string; color: string; home: string; groups: NavGroup[]; }
 
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ═══════════════════════════════════════════════════════════
 // Wing Definitions
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ═══════════════════════════════════════════════════════════
 
 const wingsData: Wing[] = [
   {
@@ -33,7 +33,6 @@ const wingsData: Wing[] = [
         label: 'Framework',
         items: [
           { href: '/methodology', label: 'Methodology' },
-          { href: '/cognitive', label: 'Cognitive' },
           { href: '/mindframe', label: 'MindFrame' },
           { href: '/dexos', label: 'DexOS' },
           { href: '/guides/llm', label: 'LLM Guide' },
@@ -108,29 +107,130 @@ const wingsData: Wing[] = [
       },
     ],
   },
+  {
+    id: 'dossiers',
+    name: 'Dossiers',
+    color: '#4A9E6B',
+    home: '/dossiers',
+    groups: [
+      {
+        label: 'D&D 5e',
+        items: [
+          { href: '/dossiers/feliciano', label: 'Feliciano' },
+          { href: '/dossiers/hillie', label: 'Hillie' },
+          { href: '/dossiers/ash-snow-steel', label: 'Party' },
+        ],
+      },
+      {
+        label: 'Divinity: OS2',
+        items: [
+          { href: '/dossiers/merrick', label: 'Merrick' },
+          { href: '/dossiers/riflen', label: 'Riflen' },
+          { href: '/dossiers/doc-rickets', label: 'Doc Rickets' },
+          { href: '/dossiers/fort-joy', label: 'Party' },
+        ],
+      },
+      {
+        label: 'Skyrim',
+        items: [
+          { href: '/dossiers/xuth-jr', label: 'Xuth Jr.' },
+          { href: '/dossiers/xuth-iii', label: 'Xuth III' },
+          { href: '/dossiers/xuth-sr', label: 'Xuth Sr.' },
+          { href: '/dossiers/leafshadow-lineage', label: 'Chronicle' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'bench',
+    name: 'The Bench',
+    color: '#4A7C9B',
+    home: '/bench',
+    groups: [
+      {
+        label: 'Tools',
+        items: [
+          { href: '/bench/onenote', label: 'OneNote' },
+          { href: '/bench/excel', label: 'Excel' },
+          { href: '/bench/word', label: 'Word' },
+          { href: '/bench/visio', label: 'Visio' },
+          { href: '/bench/cmd', label: 'CMD' },
+          { href: '/bench/powershell', label: 'PowerShell' },
+          { href: '/bench/adobe', label: 'Adobe' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'canonpress',
+    name: 'CanonPress',
+    color: '#B23531',
+    home: '/canonpress',
+    groups: [
+      {
+        label: 'Series',
+        items: [
+          { href: '/canonpress/converge', label: 'Converge' },
+          { href: '/canonpress/redline', label: 'RedLine' },
+          { href: '/canonpress/deepcut', label: 'DeepCut' },
+          { href: '/canonpress/groundtruth', label: 'GroundTruth' },
+        ],
+      },
+      {
+        label: 'Meta',
+        items: [
+          { href: '/canonpress/schedule', label: 'Schedule' },
+          { href: '/canonpress/tuning-log', label: 'Tuning Log' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'auditforge',
+    name: 'AuditForge',
+    color: '#2C7A7B',
+    home: '/auditforge',
+    groups: [
+      {
+        label: 'Product',
+        items: [
+          { href: '/auditforge/current', label: 'Current Build' },
+          { href: '/auditforge/branding', label: 'Brand Kit' },
+        ],
+      },
+    ],
+  },
 ];
 
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ═══════════════════════════════════════════════════════════
 // Wing Detection
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ═══════════════════════════════════════════════════════════
 
-// Map route prefixes to wings
 const routeWingMap: Record<string, string> = {
   // D&A wing
   '/blindspot': 'da',
   '/recaps': 'da',
+  '/analytics': 'da',
   // DexVerse wing
   '/dexlore': 'dexverse',
   '/other-works': 'dexverse',
   '/knowledge/glossary': 'dexverse',
   '/methodology/palette': 'dexverse',
-  // Everything else â†’ DDL
+  '/dexverse': 'dexverse',
+  // Dossiers wing
+  '/dossiers': 'dossiers',
+  // The Bench wing
+  '/bench': 'bench',
+  // CanonPress wing
+  '/canonpress': 'canonpress',
+  // AuditForge wing
+  '/auditforge': 'auditforge',
+  // Everything else -> DDL
 };
 
 function detectWing(pathname: string | null): Wing {
   if (!pathname) return wingsData[0];
 
-  // Check specific routes first (longer prefixes take priority)
   const sortedPrefixes = Object.keys(routeWingMap).sort((a, b) => b.length - a.length);
   for (const prefix of sortedPrefixes) {
     if (pathname.startsWith(prefix)) {
@@ -139,13 +239,12 @@ function detectWing(pathname: string | null): Wing {
     }
   }
 
-  // Default to DDL
   return wingsData[0];
 }
 
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ═══════════════════════════════════════════════════════════
 // Dropdown Component
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ═══════════════════════════════════════════════════════════
 
 function Dropdown({ group, isActive, pathname, wingColor }: {
   group: NavGroup;
@@ -171,29 +270,31 @@ function Dropdown({ group, isActive, pathname, wingColor }: {
         background: open ? 'rgba(255,255,255,0.04)' : 'transparent',
         border: 'none', padding: '5px 10px', borderRadius: 5, cursor: 'pointer',
         display: 'flex', alignItems: 'center', gap: 4, transition: 'all 0.15s',
+        letterSpacing: '0.05em',
       }}>
         {group.label}
-        <span style={{ fontSize: 8, opacity: 0.5, transform: open ? 'rotate(180deg)' : 'rotate(0)', transition: 'transform 0.2s', display: 'inline-block' }}>â–¼</span>
+        <span style={{ fontSize: 8, opacity: 0.5, transform: open ? 'rotate(180deg)' : 'rotate(0)', transition: 'transform 0.2s', display: 'inline-block' }}>▼</span>
       </button>
       {open && (
         <div style={{
-          position: 'absolute', top: '100%', left: '50%', transform: 'translateX(-50%)',
-          marginTop: 6, background: 'rgba(12,20,34,0.96)', backdropFilter: 'blur(20px)',
-          WebkitBackdropFilter: 'blur(20px)', border: '1px solid rgba(255,255,255,0.08)',
-          borderRadius: 8, padding: '6px 4px', minWidth: 150,
-          boxShadow: '0 12px 40px rgba(0,0,0,0.4)', animation: 'ddlDropIn 0.15s ease',
+          position: 'absolute', top: '100%', left: 0, zIndex: 100,
+          background: '#0e1a27', border: '1px solid rgba(245,241,235,0.06)',
+          borderRadius: 8, padding: '6px 0', minWidth: 160,
+          boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
         }}>
           {group.items.map(item => (
             <Link key={item.href} href={item.href} style={{
-              display: 'block', fontFamily: "'JetBrains Mono', monospace", fontSize: 11,
-              color: isActive(item.href) ? '#F5F1EB' : 'rgba(245,241,235,0.5)',
-              textDecoration: 'none', padding: '7px 14px', borderRadius: 5,
-              background: isActive(item.href) ? wingColor + '20' : 'transparent',
-              transition: 'all 0.12s', whiteSpace: 'nowrap',
+              display: 'block', padding: '7px 16px',
+              fontFamily: "'JetBrains Mono', monospace", fontSize: 11,
+              color: isActive(item.href) ? wingColor : 'rgba(245,241,235,0.55)',
+              textDecoration: 'none', transition: 'color 0.12s',
+              borderLeft: isActive(item.href) ? `2px solid ${wingColor}` : '2px solid transparent',
             }}
-              onMouseEnter={e => { if (!isActive(item.href)) { (e.currentTarget).style.background = 'rgba(255,255,255,0.04)'; (e.currentTarget).style.color = 'rgba(245,241,235,0.8)'; } }}
-              onMouseLeave={e => { if (!isActive(item.href)) { (e.currentTarget).style.background = 'transparent'; (e.currentTarget).style.color = 'rgba(245,241,235,0.5)'; } }}
-            >{item.label}</Link>
+              onMouseEnter={e => (e.currentTarget.style.color = wingColor)}
+              onMouseLeave={e => (e.currentTarget.style.color = isActive(item.href) ? wingColor : 'rgba(245,241,235,0.55)')}
+            >
+              {item.label}
+            </Link>
           ))}
         </div>
       )}
@@ -201,160 +302,160 @@ function Dropdown({ group, isActive, pathname, wingColor }: {
   );
 }
 
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-// Wing Switcher â€” the three-door toggle
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ═══════════════════════════════════════════════════════════
+// Wing Switcher
+// ═══════════════════════════════════════════════════════════
 
-function WingSwitcher({ currentWing, isActive }: { currentWing: Wing; isActive: (h: string) => boolean }) {
+function WingSwitcher({ wings, activeWing, setActiveWing }: {
+  wings: Wing[];
+  activeWing: Wing;
+  setActiveWing: (w: Wing) => void;
+}) {
   return (
-    <>
-      {wingsData.map((w, i) => (
-        <Link key={w.id} href={w.home} style={{
-          fontFamily: "'Space Grotesk', sans-serif", fontSize: 13,
-          fontWeight: currentWing.id === w.id ? 600 : 400,
-          color: currentWing.id === w.id ? w.color : 'rgba(245,241,235,0.4)',
-          textDecoration: 'none', padding: '6px 12px', borderRadius: 6,
-          background: currentWing.id === w.id ? w.color + '12' : 'transparent',
-          transition: 'all 0.15s',
-        }}>{w.name}</Link>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+      {wings.map(wing => (
+        <Link
+          key={wing.id}
+          href={wing.home}
+          onClick={() => setActiveWing(wing)}
+          style={{
+            fontFamily: "'Space Grotesk', sans-serif",
+            fontWeight: activeWing.id === wing.id ? 700 : 500,
+            fontSize: 13,
+            color: activeWing.id === wing.id ? wing.color : 'rgba(245,241,235,0.4)',
+            textDecoration: 'none',
+            padding: '4px 10px',
+            borderRadius: 5,
+            transition: 'all 0.15s',
+            background: activeWing.id === wing.id ? `${wing.color}15` : 'transparent',
+            letterSpacing: '-0.01em',
+          }}
+          onMouseEnter={e => {
+            if (activeWing.id !== wing.id) {
+              (e.currentTarget as HTMLElement).style.color = wing.color;
+              (e.currentTarget as HTMLElement).style.background = `${wing.color}10`;
+            }
+          }}
+          onMouseLeave={e => {
+            if (activeWing.id !== wing.id) {
+              (e.currentTarget as HTMLElement).style.color = 'rgba(245,241,235,0.4)';
+              (e.currentTarget as HTMLElement).style.background = 'transparent';
+            }
+          }}
+        >
+          {wing.name}
+        </Link>
       ))}
-    </>
+    </div>
   );
 }
 
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-// Main Nav
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ═══════════════════════════════════════════════════════════
+// Main SiteNav
+// ═══════════════════════════════════════════════════════════
 
 export default function SiteNav() {
   const pathname = usePathname();
+  const [activeWing, setActiveWing] = useState<Wing>(() => detectWing(pathname));
   const [mobileOpen, setMobileOpen] = useState(false);
-  const wing = detectWing(pathname);
 
-  // Landing page â€” no nav, just the landing
-  const isLanding = pathname === '/';
+  useEffect(() => {
+    setActiveWing(detectWing(pathname));
+  }, [pathname]);
 
-  useEffect(() => { setMobileOpen(false); }, [pathname]);
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [pathname]);
+
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
   }, [mobileOpen]);
 
-  const isActive = (href: string) => {
-    if (href === '/') return pathname === '/';
-    return pathname?.startsWith(href) ?? false;
-  };
+  if (pathname === '/') return null;
 
-  if (isLanding) return null; // Landing page manages its own chrome
+  const isActive = (href: string) => pathname === href || pathname?.startsWith(href + '/');
 
   return (
     <>
       <style>{`
-        @keyframes ddlDropIn { from { opacity:0; transform:translateX(-50%) translateY(-4px); } to { opacity:1; transform:translateX(-50%) translateY(0); } }
-        @keyframes ddlSlideDown { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:translateY(0); } }
-        @media (max-width:768px) { .ddl-desk { display:none!important; } .ddl-mob-btn { display:flex!important; } .ddl-tagline { display:none!important; } .ddl-bar { height:52px!important; padding:0 16px!important; } }
-        @media (min-width:769px) { .ddl-mob-btn { display:none!important; } .ddl-mob-menu { display:none!important; } }
+        .ddl-nav { position: sticky; top: 0; z-index: 50; background: rgba(13,27,42,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(245,241,235,0.06); }
+        .ddl-nav-inner { max-width: 1400px; margin: 0 auto; padding: 0 20px; height: 56px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+        .ddl-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+        .ddl-logo-mark { width: 28px; height: 28px; border-radius: 6px; background: #B23531; display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 12px; color: #F5F1EB; }
+        .ddl-logo-text { display: flex; flex-direction: column; gap: 1px; }
+        .ddl-logo-name { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 14px; color: #F5F1EB; letter-spacing: -0.02em; line-height: 1; }
+        .ddl-logo-sub { font-family: 'JetBrains Mono', monospace; font-size: 8px; color: rgba(245,241,235,0.3); letter-spacing: 0.05em; line-height: 1; }
+        .ddl-desktop { display: flex; align-items: center; gap: 12px; flex: 1; overflow: hidden; }
+        .ddl-sep { width: 1px; height: 20px; background: rgba(245,241,235,0.08); flex-shrink: 0; }
+        .ddl-groups { display: flex; align-items: center; gap: 2px; flex-wrap: nowrap; }
+        .ddl-mob-btn { display: none; background: transparent; border: none; cursor: pointer; padding: 8px; color: rgba(245,241,235,0.6); font-size: 20px; line-height: 1; }
+        .ddl-mobile-menu { position: fixed; inset: 56px 0 0 0; background: #0D1B2A; z-index: 49; overflow-y: auto; padding: 24px 20px; display: flex; flex-direction: column; gap: 24px; }
+        .ddl-mob-wing { display: flex; flex-direction: column; gap: 8px; }
+        .ddl-mob-wing-label { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 13px; padding: 4px 0; border-bottom: 1px solid rgba(245,241,235,0.06); padding-bottom: 8px; }
+        .ddl-mob-group-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: rgba(245,241,235,0.3); letter-spacing: 0.15em; padding: 8px 0 4px; }
+        .ddl-mob-link { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: rgba(245,241,235,0.6); text-decoration: none; padding: 6px 0; display: block; }
+        @media (max-width: 960px) { .ddl-desktop { display: none; } .ddl-mob-btn { display: flex; align-items: center; } }
+        @media (min-width: 961px) { .ddl-mobile-menu { display: none !important; } }
       `}</style>
 
-      <header style={{
-        position: 'sticky', top: 0, zIndex: 50,
-        borderBottom: `1px solid ${wing.color}15`,
-        background: 'rgba(7,16,28,0.88)',
-        backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)',
-      }}>
-        <div className="ddl-bar" style={{
-          maxWidth: 1200, margin: '0 auto', padding: '0 24px',
-          display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 60,
-        }}>
-          {/* Logo â€” always goes home */}
-          <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
-            <div style={{
-              width: 28, height: 28, borderRadius: 6,
-              background: `linear-gradient(135deg, ${wing.color}, ${wing.color}90)`,
-              boxShadow: `0 2px 8px ${wing.color}40`,
-              transition: 'all 0.3s',
-            }} />
-            <div>
-              <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 14, fontWeight: 600, color: '#F5F1EB', lineHeight: 1.2 }}>
-                Dropdown Logistics
-              </div>
-              <div className="ddl-tagline" style={{
-                fontFamily: "'JetBrains Mono', monospace", fontSize: 10,
-                color: wing.color + '80', letterSpacing: '0.04em',
-                transition: 'color 0.3s',
-              }}>
-                {wing.id === 'ddl' ? 'Chaos â†’ Structured â†’ Automated' :
-                  wing.id === 'da' ? 'BlindSpot Analytics' :
-                    'The Lore Layer'}
-              </div>
+      <nav className="ddl-nav">
+        <div className="ddl-nav-inner">
+          {/* Logo */}
+          <Link href="/" className="ddl-logo">
+            <div className="ddl-logo-mark">DD</div>
+            <div className="ddl-logo-text">
+              <span className="ddl-logo-name">Dropdown Logistics</span>
+              <span className="ddl-logo-sub">Chaos → Structured → Automated</span>
             </div>
           </Link>
 
           {/* Desktop nav */}
-          <nav className="ddl-desk" style={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-            {/* Wing switcher */}
-            <WingSwitcher currentWing={wing} isActive={isActive} />
-            <div style={{ width: 1, height: 20, background: 'rgba(255,255,255,0.08)', margin: '0 8px' }} />
-            {/* Wing-specific groups */}
-            {wing.groups.map(g => (
-              <Dropdown key={g.label} group={g} isActive={isActive} pathname={pathname} wingColor={wing.color} />
-            ))}
-          </nav>
+          <div className="ddl-desktop">
+            <WingSwitcher wings={wingsData} activeWing={activeWing} setActiveWing={setActiveWing} />
+            <div className="ddl-sep" />
+            <div className="ddl-groups">
+              {activeWing.groups.map(group => (
+                <Dropdown
+                  key={group.label}
+                  group={group}
+                  isActive={isActive}
+                  pathname={pathname}
+                  wingColor={activeWing.color}
+                />
+              ))}
+            </div>
+          </div>
 
           {/* Mobile button */}
-          <button className="ddl-mob-btn" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle menu"
-            style={{ display: 'none', alignItems: 'center', justifyContent: 'center', background: 'none', border: 'none', color: 'rgba(245,241,235,0.6)', fontSize: 22, cursor: 'pointer', padding: 8, width: 40, height: 40, borderRadius: 6 }}>
+          <button className="ddl-mob-btn" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle menu">
             {mobileOpen ? '✕' : '☰'}
           </button>
         </div>
+      </nav>
 
-        {/* Mobile menu */}
-        {mobileOpen && (
-          <div className="ddl-mob-menu" style={{
-            position: 'absolute', top: '100%', left: 0, right: 0, height: 'calc(100dvh - 52px)', WebkitOverflowScrolling: 'touch',
-            background: 'rgba(7,16,28,0.98)', backdropFilter: 'blur(20px)',
-            WebkitBackdropFilter: 'blur(20px)', overflowY: 'auto',
-            padding: '20px 24px 40px', animation: 'ddlSlideDown 0.2s ease',
-          }}>
-            {/* Wing switcher â€” mobile */}
-            <div style={{ marginBottom: 24 }}>
-              <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: wing.color, marginBottom: 10 }}>Wings</div>
-              {wingsData.map(w => (
-                <Link key={w.id} href={w.home} onClick={() => setMobileOpen(false)} style={{
-                  display: 'block', fontFamily: "'Space Grotesk', sans-serif", fontSize: 16,
-                  fontWeight: wing.id === w.id ? 600 : 400,
-                  color: wing.id === w.id ? w.color : 'rgba(245,241,235,0.5)',
-                  textDecoration: 'none', padding: '10px 0',
-                  borderBottom: '1px solid rgba(255,255,255,0.04)',
-                }}>{w.name} â€” {w.id === 'ddl' ? 'Governance' : w.id === 'da' ? 'Analytics' : 'Lore'}</Link>
+      {/* Mobile menu */}
+      {mobileOpen && (
+        <div className="ddl-mobile-menu">
+          {wingsData.map(wing => (
+            <div key={wing.id} className="ddl-mob-wing">
+              <Link href={wing.home} className="ddl-mob-wing-label" style={{ color: wing.color, textDecoration: 'none' }}>
+                {wing.name}
+              </Link>
+              {wing.groups.map(group => (
+                <div key={group.label}>
+                  <div className="ddl-mob-group-label">{group.label}</div>
+                  {group.items.map(item => (
+                    <Link key={item.href} href={item.href} className="ddl-mob-link"
+                      style={{ color: isActive(item.href) ? wing.color : 'rgba(245,241,235,0.6)' }}>
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
               ))}
             </div>
-
-            {/* Current wing groups */}
-            {wing.groups.map(g => (
-              <div key={g.label} style={{ marginBottom: 24 }}>
-                <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: wing.color, marginBottom: 10 }}>{g.label}</div>
-                {g.items.map(item => (
-                  <Link key={item.href} href={item.href} onClick={() => setMobileOpen(false)} style={{
-                    display: 'block', fontFamily: "'Space Grotesk', sans-serif", fontSize: 16,
-                    fontWeight: isActive(item.href) ? 600 : 400,
-                    color: isActive(item.href) ? '#F5F1EB' : 'rgba(245,241,235,0.5)',
-                    textDecoration: 'none', padding: '10px 0',
-                    borderBottom: '1px solid rgba(255,255,255,0.04)',
-                  }}>{item.label}</Link>
-                ))}
-              </div>
-            ))}
-
-            <div style={{ textAlign: 'center', paddingTop: 20, fontFamily: "'JetBrains Mono', monospace", fontSize: 9, letterSpacing: '0.3em', color: 'rgba(245,241,235,0.1)', textTransform: 'uppercase' }}>
-              Cottage â€” Humble surface. Cathedral underneath.
-            </div>
-          </div>
-        )}
-      </header>
+          ))}
+        </div>
+      )}
     </>
   );
 }
-
-
-
