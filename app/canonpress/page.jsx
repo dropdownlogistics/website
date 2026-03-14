@@ -50,6 +50,23 @@ const SERIES = [
     desc: "The operator's direct observations. No model. No synthesis. No filter. The human layer of a governed system — one voice writing about what he sees as the person who built and operates the infrastructure.",
     sub: [],
   },
+,
+  {
+    slug: 'insideinsights',
+    label: 'InsideInsights',
+    tag: 'AS-NEEDED',
+    color: '#C49A3C',
+    desc: 'Meta-analysis of council reasoning patterns. Marcus Grey (Seat 1008) examines how models interpret prompts, structure arguments, and reveal reasoning patterns during CanonPress work.',
+    sub: [],
+  },
+  {
+    slug: 'tuning-log',
+    label: 'CanonTuning',
+    tag: 'ARCHIVE',
+    color: '#4A7C9B',
+    desc: 'The engineering notebook of the CanonPress pipeline. Every prompt tuning cycle documented: start prompt, meta-tune analysis, end prompt, model response, Grey synthesis, nominator close.',
+    sub: [],
+  }
 ];
 
 const RECURSION_LAYERS = [
