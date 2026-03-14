@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import { useState } from 'react';
 import Link from 'next/link';
 
@@ -283,7 +283,7 @@ export default function SiteMap() {
         {/* 3-column grid */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
           gap: 20,
           alignItems: 'start',
         }}>
@@ -326,7 +326,7 @@ export default function SiteMap() {
                     <span className="rl" style={{ fontFamily: font.mono, fontSize: 11, color: C.creamMid, transition: 'color 0.1s', flexShrink: 0 }}>
                       {route.label}
                     </span>
-                    <span style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim, textAlign: 'right', opacity: 0.6 }}>
+                    <span style={{ fontFamily: font.mono, fontSize: 8, color: C.creamDim, textAlign: 'right', opacity: 0.6 }}>
                       {route.href}
                     </span>
                   </Link>
@@ -350,3 +350,4 @@ export default function SiteMap() {
     </div>
   );
 }
+
