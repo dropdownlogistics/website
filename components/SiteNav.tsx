@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
@@ -8,9 +8,9 @@ interface NavLink { href: string; label: string; }
 interface NavGroup { label: string; items: NavLink[]; }
 interface Wing { id: string; name: string; color: string; home: string; groups: NavGroup[]; }
 
-// ═══════════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 // Wing Definitions
-// ═══════════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 const wingsData: Wing[] = [
   {
@@ -202,9 +202,9 @@ const wingsData: Wing[] = [
   },
 ];
 
-// ═══════════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 // Wing Detection
-// ═══════════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 const routeWingMap: Record<string, string> = {
   // D&A wing
@@ -242,9 +242,9 @@ function detectWing(pathname: string | null): Wing {
   return wingsData[0];
 }
 
-// ═══════════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 // Dropdown Component
-// ═══════════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 function Dropdown({ group, isActive, pathname, wingColor }: {
   group: NavGroup;
@@ -273,7 +273,7 @@ function Dropdown({ group, isActive, pathname, wingColor }: {
         letterSpacing: '0.05em',
       }}>
         {group.label}
-        <span style={{ fontSize: 8, opacity: 0.5, transform: open ? 'rotate(180deg)' : 'rotate(0)', transition: 'transform 0.2s', display: 'inline-block' }}>▼</span>
+        <span style={{ fontSize: 8, opacity: 0.5, transform: open ? 'rotate(180deg)' : 'rotate(0)', transition: 'transform 0.2s', display: 'inline-block' }}>â–¼</span>
       </button>
       {open && (
         <div style={{
@@ -302,9 +302,9 @@ function Dropdown({ group, isActive, pathname, wingColor }: {
   );
 }
 
-// ═══════════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 // Wing Switcher
-// ═══════════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 function WingSwitcher({ wings, activeWing, setActiveWing }: {
   wings: Wing[];
@@ -350,9 +350,9 @@ function WingSwitcher({ wings, activeWing, setActiveWing }: {
   );
 }
 
-// ═══════════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 // Main SiteNav
-// ═══════════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 export default function SiteNav() {
   const pathname = usePathname();
@@ -385,7 +385,7 @@ export default function SiteNav() {
         .ddl-logo-text { display: flex; flex-direction: column; gap: 1px; }
         .ddl-logo-name { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 14px; color: #F5F1EB; letter-spacing: -0.02em; line-height: 1; }
         .ddl-logo-sub { font-family: 'JetBrains Mono', monospace; font-size: 8px; color: rgba(245,241,235,0.3); letter-spacing: 0.05em; line-height: 1; }
-        .ddl-desktop { display: flex; align-items: center; gap: 12px; flex: 1; overflow: hidden; }
+        .ddl-desktop { display: flex; align-items: center; gap: 12px; flex: 1; overflow: visible; }
         .ddl-sep { width: 1px; height: 20px; background: rgba(245,241,235,0.08); flex-shrink: 0; }
         .ddl-groups { display: flex; align-items: center; gap: 2px; flex-wrap: nowrap; }
         .ddl-mob-btn { display: none; background: transparent; border: none; cursor: pointer; padding: 8px; color: rgba(245,241,235,0.6); font-size: 20px; line-height: 1; }
@@ -405,7 +405,7 @@ export default function SiteNav() {
             <div className="ddl-logo-mark">DD</div>
             <div className="ddl-logo-text">
               <span className="ddl-logo-name">Dropdown Logistics</span>
-              <span className="ddl-logo-sub">Chaos → Structured → Automated</span>
+              <span className="ddl-logo-sub">Chaos â†’ Structured â†’ Automated</span>
             </div>
           </Link>
 
@@ -428,7 +428,7 @@ export default function SiteNav() {
 
           {/* Mobile button */}
           <button className="ddl-mob-btn" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle menu">
-            {mobileOpen ? '✕' : '☰'}
+            {mobileOpen ? 'âœ•' : 'â˜°'}
           </button>
         </div>
       </nav>
@@ -459,3 +459,4 @@ export default function SiteNav() {
     </>
   );
 }
+
