@@ -1,7 +1,8 @@
-import './globals.css';
+﻿import './globals.css';
 import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
+import LayoutFooter from '@/components/LayoutFooter';
 
 const SiteNav = dynamic(() => import('@/components/SiteNav'), {
   ssr: false,
@@ -10,7 +11,7 @@ const SiteNav = dynamic(() => import('@/components/SiteNav'), {
 
 export const metadata: Metadata = {
   title: 'Dropdown Logistics',
-  description: 'Chaos → Structured → Automated. One-person ops studio.',
+  description: 'Chaos â†’ Structured â†’ Automated. One-person ops studio.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -35,23 +36,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <div style={{ position: 'relative', zIndex: 1, minHeight: '100vh' }}>
           <SiteNav />
           <main>{children}</main>
-          <footer style={{ maxWidth: 1200, margin: '0 auto', padding: '60px 24px 32px' }}>
-            <div style={{
-              display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-              flexWrap: 'wrap', gap: 12, rowGap: 8,
-            }}>
-              <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: 'rgba(245,241,235,0.25)' }}>
-                © {new Date().getFullYear()} Dropdown Logistics
-              </span>
-              <span style={{ fontFamily: "'Source Serif 4', serif", fontSize: 12, fontStyle: 'italic', color: 'rgba(245,241,235,0.15)' }}>
-                CottageHumble surface. Cathedral underneath.
-              </span>
-              <a href="/sitemap" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, color: 'rgba(245,241,235,0.25)', textDecoration: 'none', letterSpacing: '0.08em', whiteSpace: 'nowrap' }}>All Routes →</a>
-            </div>
-          </footer>
+          <LayoutFooter />
         </div>
         <Analytics />
       </body>
     </html>
   );
 }
+
+
