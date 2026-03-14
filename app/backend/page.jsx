@@ -242,7 +242,7 @@ export default function BackEnd() {
           onMouseEnter={e => e.currentTarget.style.borderColor = C.amber + '50'}
           onMouseLeave={e => e.currentTarget.style.borderColor = C.amber + '25'}
         >
-          Read llms.txt (v1.4)
+          Read the OperatorManifest (v1.5)
         </Link>
       </div>
 
@@ -318,3 +318,4 @@ Cost:         $0`}</pre>
     </div>
   );
 }
+
