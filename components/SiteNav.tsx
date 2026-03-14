@@ -304,7 +304,7 @@ export default function SiteNav() {
           {/* Mobile button */}
           <button className="ddl-mob-btn" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle menu"
             style={{ display: 'none', alignItems: 'center', justifyContent: 'center', background: 'none', border: 'none', color: 'rgba(245,241,235,0.6)', fontSize: 22, cursor: 'pointer', padding: 8, width: 40, height: 40, borderRadius: 6 }}>
-            {mobileOpen ? 'âœ•' : 'â˜°'}
+            {mobileOpen ? '✕' : '☰'}
           </button>
         </div>
 
