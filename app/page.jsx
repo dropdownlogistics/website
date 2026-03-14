@@ -250,12 +250,12 @@ export default function DDLLanding() {
           EIGHT WINGS
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12, marginBottom: 12 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 12, marginBottom: 12 }}>
           {wings.slice(0, 4).map((wing) => (
             <WingCard key={wing.id} wing={wing} isOpen={open === wing.id} onToggle={() => toggle(wing.id)} />
           ))}
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 12 }}>
           {wings.slice(4).map((wing) => (
             <WingCard key={wing.id} wing={wing} isOpen={open === wing.id} onToggle={() => toggle(wing.id)} />
           ))}
@@ -342,4 +342,5 @@ function WingCard({ wing, isOpen, onToggle }) {
     </div>
   );
 }
+
 
