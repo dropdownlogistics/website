@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
@@ -43,7 +43,7 @@ const wings = [
     href: '/blindspot',
     tag: 'Analytics',
     tagline: 'BlindSpot analytics, dashboards, recaps.',
-    desc: 'BlindSpot analytics modules — trading, Steam, campaign, sports betting. Annual recaps and signal reports.',
+    desc: 'BlindSpot analytics modules â€” trading, Steam, campaign, sports betting. Annual recaps and signal reports.',
     links: [
       { label: 'Trading', href: '/blindspot/trading' },
       { label: 'Steam', href: '/blindspot/steam' },
@@ -132,7 +132,7 @@ const wings = [
     href: '/products/behavioral-intelligence',
     tag: 'Concepts',
     tagline: 'Concept products and design mockups.',
-    desc: 'Behavioral intelligence, Nordic Nomad, Drinks O System. Product concepts built to spec — not shipped, but fully designed.',
+    desc: 'Behavioral intelligence, Nordic Nomad, Drinks O System. Product concepts built to spec â€” not shipped, but fully designed.',
     links: [
       { label: 'Behavioral Intelligence', href: '/products/behavioral-intelligence' },
     ],
@@ -171,7 +171,7 @@ export default function DDLLanding() {
   return (
     <div style={{ background: C.navy, minHeight: '100vh', color: C.cream, fontFamily: "'Source Serif 4', Georgia, serif" }}>
 
-      {/* ── HERO ── */}
+      {/* â”€â”€ HERO â”€â”€ */}
       <div style={{ maxWidth: 900, margin: '0 auto', padding: '96px 24px 80px', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
 
         <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.65rem', color: C.crimson, letterSpacing: '0.3em', marginBottom: 28 }}>
@@ -223,7 +223,7 @@ export default function DDLLanding() {
 
       <div style={{ height: 1, background: C.border, maxWidth: 960, margin: '0 auto' }} />
 
-      {/* ── STATS ── */}
+      {/* â”€â”€ STATS â”€â”€ */}
       <div style={{ maxWidth: 960, margin: '0 auto', padding: '56px 24px' }}>
         <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.58rem', color: C.muted, letterSpacing: '0.2em', textAlign: 'center', marginBottom: 28 }}>
           BY THE NUMBERS
@@ -244,7 +244,7 @@ export default function DDLLanding() {
 
       <div style={{ height: 1, background: C.border, maxWidth: 960, margin: '0 auto' }} />
 
-      {/* ── WINGS ── */}
+      {/* â”€â”€ WINGS â”€â”€ */}
       <div style={{ maxWidth: 960, margin: '0 auto', padding: '56px 24px' }}>
         <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.58rem', color: C.muted, letterSpacing: '0.2em', marginBottom: 28, textAlign: 'center' }}>
           EIGHT WINGS
@@ -264,10 +264,10 @@ export default function DDLLanding() {
 
       <div style={{ height: 1, background: C.border, maxWidth: 960, margin: '0 auto' }} />
 
-      {/* ── FOOTER ── */}
+      {/* â”€â”€ FOOTER â”€â”€ */}
       <div style={{ maxWidth: 960, margin: '0 auto', padding: '40px 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>
         <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.55rem', color: C.muted, letterSpacing: '0.1em' }}>
-          DROPDOWN LOGISTICS &#x00B7; D.K. HALE &#x00B7; CPA
+          DROPDOWN LOGISTICS &#x00B7; DAVE KITCHENS &#x00B7; CPA
         </div>
         <div style={{ display: 'flex', gap: 20 }}>
           {[{ label: 'llms.txt', href: '/llms.txt' }, { label: 'Backend', href: '/backend' }, { label: 'Sitemap', href: '/sitemap' }].map(l => (
@@ -342,3 +342,4 @@ function WingCard({ wing, isOpen, onToggle }) {
     </div>
   );
 }
+
