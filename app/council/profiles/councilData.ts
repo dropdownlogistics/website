@@ -18,6 +18,8 @@
   dislikes: string[];
   analogsReal: string[];
   analogsFictional: string[];
+  analogsRealLinks?: string[];
+  analogsFictionalLinks?: string[];
   defaultOutputStyle: string[];
   whenToUse: string[];
   recoveryMoves: string[];
@@ -80,6 +82,8 @@ export const councilMembers: CouncilMember[] = [
       'Spock ΓÇö logic-first analyst',
       'Vi ΓÇö precision, no wasted motion',
     ],
+    analogsRealLinks: ['https://en.wikipedia.org/wiki/Martin_Fowler_(software_engineer)', 'https://en.wikipedia.org/wiki/Gene_Kim'],
+    analogsFictionalLinks: ['https://en.wikipedia.org/wiki/Spock', 'https://en.wikipedia.org/wiki/Vi_(text_editor)'],
     defaultOutputStyle: [
       'Headings + checklists + paste-ready blocks',
       'Structured reviews with clear evidence chains',
@@ -150,6 +154,8 @@ export const councilMembers: CouncilMember[] = [
       'Spock ΓÇö logic-first analyst; efficient path to goal',
       'Meredith Grey ΓÇö diagnostic pattern finder in chaos',
     ],
+    analogsRealLinks: ['https://en.wikipedia.org/wiki/Gene_Kranz', 'https://en.wikipedia.org/wiki/Susan_Cain'],
+    analogsFictionalLinks: ['https://en.wikipedia.org/wiki/Spock', 'https://en.wikipedia.org/wiki/Meredith_Grey'],
     defaultOutputStyle: [
       'Conversational co-building with decision hygiene',
       'Structure only when shipping artifacts',
@@ -214,6 +220,8 @@ export const councilMembers: CouncilMember[] = [
       'Sherlock Holmes ΓÇö pattern inference + sharp elimination',
       'Dr. Gregory House ΓÇö diagnostic bluntness, accuracy-first',
     ],
+    analogsRealLinks: ['https://en.wikipedia.org/wiki/Richard_Feynman', 'https://en.wikipedia.org/wiki/Nassim_Nicholas_Taleb'],
+    analogsFictionalLinks: ['https://en.wikipedia.org/wiki/Sherlock_Holmes', 'https://en.wikipedia.org/wiki/Gregory_House'],
     defaultOutputStyle: [
       'SUMMARY: 1ΓÇô2 lines on what\'s really happening + core risk',
       'RISKS: Top 3 failure modes, ranked',
@@ -284,6 +292,8 @@ export const councilMembers: CouncilMember[] = [
       'Spock ΓÇö logic-first, evidence-driven',
       'Hermione Granger ΓÇö research-first, receipts-ready',
     ],
+    analogsRealLinks: ['https://en.wikipedia.org/wiki/Nate_Silver', 'https://en.wikipedia.org/wiki/Christian_Rudder'],
+    analogsFictionalLinks: ['https://en.wikipedia.org/wiki/Spock', 'https://en.wikipedia.org/wiki/Hermione_Granger'],
     defaultOutputStyle: [
       'Answer (direct)',
       'Evidence (sources/citations if available)',
@@ -356,6 +366,8 @@ export const councilMembers: CouncilMember[] = [
       'Spock ΓÇö logic-forward, disciplined, precise',
       'Data ΓÇö systematic, literal, audit-oriented',
     ],
+    analogsRealLinks: ['https://en.wikipedia.org/wiki/Don_Norman', 'https://en.wikipedia.org/wiki/Atul_Gawande'],
+    analogsFictionalLinks: ['https://en.wikipedia.org/wiki/Spock', 'https://en.wikipedia.org/wiki/Data_(Star_Trek)'],
     defaultOutputStyle: [
       'Short verdict (1ΓÇô2 sentences)',
       'Top risks / failure modes (bullets)',
@@ -427,6 +439,8 @@ export const councilMembers: CouncilMember[] = [
       'Leslie Knope ΓÇö relentless "we can do this" energy + organizing instinct',
       'JARVIS ΓÇö helpful, steady assistant vibe, but more human',
     ],
+    analogsRealLinks: ['https://en.wikipedia.org/wiki/Bren%C3%A9_Brown', 'https://en.wikipedia.org/wiki/Adam_Grant'],
+    analogsFictionalLinks: ['https://en.wikipedia.org/wiki/Leslie_Knope', 'https://en.wikipedia.org/wiki/J.A.R.V.I.S.'],
     defaultOutputStyle: [
       'Clear take',
       'Why it matters (brief)',
@@ -498,6 +512,8 @@ export const councilMembers: CouncilMember[] = [
       'Commander Data ΓÇö precision + calm logic',
       'The Architect (The Matrix) ΓÇö systems-first, pattern-driven',
     ],
+    analogsRealLinks: ['https://en.wikipedia.org/wiki/Adam_Grant', 'https://en.wikipedia.org/wiki/Nancy_Duarte'],
+    analogsFictionalLinks: ['https://en.wikipedia.org/wiki/Data_(Star_Trek)', 'https://en.wikipedia.org/wiki/The_Architect_(The_Matrix)'],
     defaultOutputStyle: [
       '1ΓÇô3 sentence framing',
       'Bulleted plan with phases',
@@ -569,6 +585,8 @@ export const councilMembers: CouncilMember[] = [
       'Alfred Pennyworth ΓÇö polished, dependable, quietly sharp',
       'Jean-Luc Picard ΓÇö calm command, principle + structure',
     ],
+    analogsRealLinks: ['https://en.wikipedia.org/wiki/Tim_Cook', 'https://en.wikipedia.org/wiki/Anderson_Cooper'],
+    analogsFictionalLinks: ['https://en.wikipedia.org/wiki/Alfred_Pennyworth', 'https://en.wikipedia.org/wiki/Jean-Luc_Picard'],
     defaultOutputStyle: [
       'Clear headings',
       'Short, dense bullets',
@@ -642,6 +660,8 @@ export const councilMembers: CouncilMember[] = [
       'Spock ΓÇö logic-driven, efficient, risk-aware',
       'Dr. Ellie Arroway ΓÇö pattern-seeking, signal-from-noise persistence',
     ],
+    analogsRealLinks: ['https://en.wikipedia.org/wiki/Gene_Kranz', 'https://en.wikipedia.org/wiki/Grace_Hopper'],
+    analogsFictionalLinks: ['https://en.wikipedia.org/wiki/Spock', 'https://en.wikipedia.org/wiki/Contact_(novel)'],
     defaultOutputStyle: [
       'Take (what matters)',
       'Structure (what we\'re building)',

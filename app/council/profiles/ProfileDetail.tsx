@@ -74,7 +74,7 @@ function TagPill({ label }: { label: string }) {
   );
 }
 
-function AnalogCard({ name, type }: { name: string; type: 'real' | 'fictional' }) {
+function AnalogCard({ name, type, url }: { name: string; type: 'real' | 'fictional'; url?: string }) {
   const [hovered, setHovered] = useState(false);
   return (
     <div
@@ -99,14 +99,28 @@ function AnalogCard({ name, type }: { name: string; type: 'real' | 'fictional' }
       }}>
         {type === 'real' ? 'Real' : 'Fictional'}
       </span>
-      <span style={{
-        fontFamily: "'Source Serif 4', serif",
-        fontSize: 14,
-        color: 'rgba(245, 241, 235, 0.8)',
-        lineHeight: 1.6,
-      }}>
-        {name}
-      </span>
+      {url ? (
+        <a href={url} target="_blank" rel="noopener noreferrer" style={{
+          fontFamily: "'Source Serif 4', serif",
+          fontSize: 14,
+          color: 'rgba(245, 241, 235, 0.8)',
+          lineHeight: 1.6,
+          textDecoration: 'none',
+          borderBottom: '1px solid rgba(178, 53, 49, 0.3)',
+          transition: 'border-color 0.15s',
+        }}>
+          {name}
+        </a>
+      ) : (
+        <span style={{
+          fontFamily: "'Source Serif 4', serif",
+          fontSize: 14,
+          color: 'rgba(245, 241, 235, 0.8)',
+          lineHeight: 1.6,
+        }}>
+          {name}
+        </span>
+      )}
     </div>
   );
 }
@@ -378,10 +392,10 @@ export default function ProfileDetail({
           gap: 12,
         }}>
           {member.analogsReal.map((a, i) => (
-            <AnalogCard key={`r-${i}`} name={a} type="real" />
+            <AnalogCard key={`r-${i}`} name={a} type="real" url={member.analogsRealLinks?.[i]} />
           ))}
           {member.analogsFictional.map((a, i) => (
-            <AnalogCard key={`f-${i}`} name={a} type="fictional" />
+            <AnalogCard key={`f-${i}`} name={a} type="fictional" url={member.analogsFictionalLinks?.[i]} />
           ))}
         </div>
       </Section>
