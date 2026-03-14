@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import Link from 'next/link';
 import BackButton from '@/components/BackButton';
 
@@ -96,9 +96,9 @@ const what = [
     head: 'Generate',
     color: C.copper,
     lines: [
-      'RCM — full matrix, summary, cover.',
-      'MCL — complete catalog, status breakdown.',
-      'Walkthroughs — one per domain, sign-off table.',
+      'RCM â€” full matrix, summary, cover.',
+      'MCL â€” complete catalog, status breakdown.',
+      'Walkthroughs â€” one per domain, sign-off table.',
       'XLSX and DOCX. Under one second each.',
     ],
   },
@@ -106,7 +106,7 @@ const what = [
     head: 'Govern',
     color: C.crimsonAF,
     lines: [
-      'Draft \u2192 Prepared \u2192 Reviewed \u2192 Approved.',
+      'Draft → Prepared → Reviewed → Approved.',
       'Silent Fix Prevention: no edit without rationale.',
       'Audit trail on every mutation.',
       'Segregation of duties enforced at system level.',
@@ -119,7 +119,7 @@ export default function AuditForgeLanding() {
     <div style={{ background: C.navy, minHeight: '100vh', color: C.cream, fontFamily: "'Source Serif 4', Georgia, serif" }}>
       <BackButton />
 
-      {/* ── HERO ── */}
+      {/* â”€â”€ HERO â”€â”€ */}
       <div style={{ maxWidth: 960, margin: '0 auto', padding: '80px 24px 64px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 24, marginBottom: 48, flexWrap: 'wrap' }}>
           <StampSeal size={80} />
@@ -164,7 +164,7 @@ export default function AuditForgeLanding() {
           lineHeight: 1.8,
           marginBottom: 40,
         }}>
-          AuditForge is a system of structure — not a system of execution. It defines what the control is. The auditor issues the opinion. AuditForge produces the evidence package. That line does not move.
+          AuditForge is a system of structure â€” not a system of execution. It defines what the control is. The auditor issues the opinion. AuditForge produces the evidence package. That line does not move.
         </div>
 
         <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
@@ -179,7 +179,7 @@ export default function AuditForgeLanding() {
             borderRadius: 6,
             textDecoration: 'none',
           }}>
-            Current Build \u2192
+            Current Build →
           </Link>
           <Link href="/auditforge/branding" style={{
             display: 'inline-block',
@@ -200,7 +200,7 @@ export default function AuditForgeLanding() {
 
       <div style={{ height: 1, background: C.border, maxWidth: 960, margin: '0 auto' }}/>
 
-      {/* ── STATS ── */}
+      {/* â”€â”€ STATS â”€â”€ */}
       <div style={{ maxWidth: 960, margin: '0 auto', padding: '64px 24px' }}>
         <SLabel>BY THE NUMBERS</SLabel>
         <div style={{
@@ -236,10 +236,10 @@ export default function AuditForgeLanding() {
         </div>
       </div>
 
-      {/* ── RECEIPTS ── */}
+      {/* â”€â”€ RECEIPTS â”€â”€ */}
       <div style={{ background: C.card, borderTop: `1px solid ${C.border}`, borderBottom: `1px solid ${C.border}` }}>
         <div style={{ maxWidth: 960, margin: '0 auto', padding: '64px 24px' }}>
-          <SLabel>FRIDAY, MARCH 13 — THE RECEIPTS</SLabel>
+          <SLabel>FRIDAY, MARCH 13 â€” THE RECEIPTS</SLabel>
           <div style={{
             fontFamily: "'Space Grotesk', sans-serif",
             fontWeight: 700,
@@ -308,13 +308,13 @@ export default function AuditForgeLanding() {
               color: C.steel,
               letterSpacing: '0.1em',
             }}>
-              CR-AUDITFORGE-003 · 2026-03-13
+              CR-AUDITFORGE-003 Â· 2026-03-13
             </div>
           </div>
         </div>
       </div>
 
-      {/* ── WHAT IT DOES ── */}
+      {/* â”€â”€ WHAT IT DOES â”€â”€ */}
       <div style={{ maxWidth: 960, margin: '0 auto', padding: '64px 24px' }}>
         <SLabel>WHAT IT DOES</SLabel>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 16 }}>
@@ -350,7 +350,7 @@ export default function AuditForgeLanding() {
         </div>
       </div>
 
-      {/* ── NO AI REQUIRED ── */}
+      {/* â”€â”€ NO AI REQUIRED â”€â”€ */}
       <div style={{
         background: `linear-gradient(135deg, ${C.tealDim} 0%, transparent 60%)`,
         borderTop: `1px solid ${C.tealBorder}`,
@@ -378,12 +378,12 @@ export default function AuditForgeLanding() {
             lineHeight: 1.8,
             maxWidth: 560,
           }}>
-            Structured data in, governed documents out. No black box. No hallucination risk. No AI dependency. An optional AI acceleration layer is planned for a future premium tier — drafting assistance, gap detection, control suggestions — but the core product works fully without it.
+            Structured data in, governed documents out. No black box. No hallucination risk. No AI dependency. An optional AI acceleration layer is planned for a future premium tier â€” drafting assistance, gap detection, control suggestions â€” but the core product works fully without it.
           </div>
         </div>
       </div>
 
-      {/* ── BUILT BY ── */}
+      {/* â”€â”€ BUILT BY â”€â”€ */}
       <div style={{ maxWidth: 960, margin: '0 auto', padding: '64px 24px' }}>
         <SLabel>BUILT BY AN AUDITOR</SLabel>
         <div style={{
@@ -403,7 +403,7 @@ export default function AuditForgeLanding() {
           lineHeight: 1.8,
           marginBottom: 32,
         }}>
-          The dimensional model reflects real audit methodology — not a software engineer's approximation of it. The 6px spacer frame, the grid-off standard, the copper accent dividers: those came from a decade of knowing what professional Excel output actually looks like.
+          The dimensional model reflects real audit methodology â€” not a software engineer's approximation of it. The 6px spacer frame, the grid-off standard, the copper accent dividers: those came from a decade of knowing what professional Excel output actually looks like.
         </div>
         <div style={{
           fontFamily: "'JetBrains Mono', monospace",
@@ -411,11 +411,11 @@ export default function AuditForgeLanding() {
           color: C.copper,
           letterSpacing: '0.08em',
         }}>
-          Dave Kitchens, CPA · Dropdown Logistics
+          Dave Kitchens, CPA Â· Dropdown Logistics
         </div>
       </div>
 
-      {/* ── CTA ── */}
+      {/* â”€â”€ CTA â”€â”€ */}
       <div style={{ background: C.card, borderTop: `1px solid ${C.border}` }}>
         <div style={{ maxWidth: 960, margin: '0 auto', padding: '56px 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 24 }}>
           <div>
@@ -438,7 +438,7 @@ export default function AuditForgeLanding() {
               borderRadius: 6,
               textDecoration: 'none',
             }}>
-              Current Build \u2192
+              Current Build →
             </Link>
             <Link href="/auditforge/branding" style={{
               display: 'inline-block',
@@ -458,7 +458,7 @@ export default function AuditForgeLanding() {
         </div>
       </div>
 
-      {/* ── FOOTER ── */}
+      {/* â”€â”€ FOOTER â”€â”€ */}
       <div style={{
         borderTop: `1px solid ${C.border}`,
         maxWidth: 960,
@@ -471,10 +471,10 @@ export default function AuditForgeLanding() {
         gap: 12,
       }}>
         <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.55rem', color: C.steel, letterSpacing: '0.1em' }}>
-          AUDITFORGE · A DROPDOWN LOGISTICS PRODUCT
+          AUDITFORGE Â· A DROPDOWN LOGISTICS PRODUCT
         </div>
         <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.55rem', color: C.steel }}>
-          Chaos \u2192 Structured \u2192 Automated
+          Chaos → Structured → Automated
         </div>
       </div>
 
