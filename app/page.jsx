@@ -401,11 +401,7 @@ export default function DDLLanding() {
   );
 }
 
-function WingCard({ wing, hovered, setHovered }: {
-  wing: typeof wings[0];
-  hovered: string | null;
-  setHovered: (id: string | null) => void;
-}) {
+function WingCard({ wing, hovered, setHovered }) {
   const isHov = hovered === wing.id;
   return (
     <Link
@@ -465,4 +461,5 @@ function WingCard({ wing, hovered, setHovered }: {
     </Link>
   );
 }
+
 
