@@ -1,476 +1,467 @@
-﻿'use client';
-
+'use client';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 const C = {
-  navy: '#0D1B2A',
-  navyDeep: '#070F1C',
-  card: '#10202f',
-  cream: '#F5F1EB',
-  creamHigh: 'rgba(245,241,235,0.85)',
-  creamMid: 'rgba(245,241,235,0.55)',
-  creamDim: 'rgba(245,241,235,0.35)',
-  creamGhost: 'rgba(245,241,235,0.08)',
-  border: 'rgba(245,241,235,0.06)',
+  navy:    '#0D1B2A',
+  card:    '#10202f',
+  cardHi:  '#132435',
+  cream:   '#F5F1EB',
+  dim:     'rgba(245,241,235,0.55)',
+  muted:   'rgba(245,241,235,0.3)',
+  ghost:   'rgba(245,241,235,0.06)',
+  border:  'rgba(245,241,235,0.06)',
   crimson: '#B23531',
-  amber: '#C49A3C',
-  violet: '#8a6cc9',
+  amber:   '#C49A3C',
+  violet:  '#8a6cc9',
+  green:   '#4A9E6B',
+  steel:   '#4A7C9B',
+  teal:    '#2C7A7B',
+  copper:  '#C49A3C',
 };
 
-const font = {
-  display: "'Space Grotesk', system-ui, sans-serif",
-  mono: "'JetBrains Mono', monospace",
-  body: "'Source Serif 4', Georgia, serif",
-};
-
-function Counter({ end, suffix = '', duration = 2000 }) {
-  const [count, setCount] = useState(0);
-  const [started, setStarted] = useState(false);
-  useEffect(() => { const t = setTimeout(() => setStarted(true), 400); return () => clearTimeout(t); }, []);
-  useEffect(() => {
-    if (!started) return;
-    const steps = 60; const inc = end / steps; let cur = 0;
-    const iv = setInterval(() => {
-      cur += inc;
-      if (cur >= end) { setCount(end); clearInterval(iv); } else setCount(Math.floor(cur));
-    }, duration / steps);
-    return () => clearInterval(iv);
-  }, [started, end, duration]);
-  return <>{count}{suffix}</>;
-}
-
-// ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?
-// Door Data
-// ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?
-
-const doors = [
+const wings = [
   {
+    id: 'ddl',
+    name: 'DDL',
     color: C.crimson,
-    label: 'Tools & Systems',
-    description: 'Live dashboards, analytics engines, and applied tools built through the DDL methodology.',
-    hub: '/ddl',
-    groups: [
-      {
-        name: 'BlindSpot',
-        items: [
-          { href: '/blindspot', label: 'Overview' },
-          { href: '/blindspot/trading', label: 'Trading Dashboard' },
-          { href: '/blindspot/steam', label: 'Steam Library Analytics' },
-          { href: '/blindspot/campaign', label: 'D&D Campaign Analytics' },
-        ],
-      },
-      {
-        name: 'Analytics',
-        items: [
-          { href: '/analytics', label: 'Analytics Hub' },
-          { href: '/analytics/grammarly', label: 'Grammarly — 4.57M Words' },
-          { href: '/analytics/tone', label: 'Tone Analysis' },
-          { href: '/analytics/memoir', label: 'Memoir Analytics' },
-          { href: '/analytics/dexdash', label: 'DexDash' },
-        ],
-      },
-      {
-        name: 'Products',
-        items: [
-          { href: '/products/behavioral-intelligence', label: 'Behavioral Intelligence' },
-          { href: '/products/behavioral-intelligence/story', label: 'The Story Behind It' },
-          { href: '/products/behavioral-intelligence/exec', label: 'Executive Concept' },
-          { href: '/products/behavioral-intelligence/brief', label: 'Product Brief' },
-        ],
-      },
-      {
-        name: 'Projects',
-        items: [
-          { href: '/projects', label: 'All Projects' },
-          { href: '/mindframe', label: 'MindFrame' },
-          { href: '/prioritease', label: 'PrioritEase' },
-          { href: '/work/rexcel', label: 'r/Excel' },
-        ],
-      },
-      {
-        name: 'Recaps',
-        items: [
-          { href: '/recaps', label: 'All Recaps' },
-          { href: '/recaps/apple-music', label: 'Apple Music Replay' },
-          { href: '/recaps/annual-signal', label: 'Annual Signal Report' },
-          { href: '/recaps/predictions', label: 'Prediction Audit' },
-        ],
-      },
-    ],
+    href: '/ddl',
+    tagline: 'Governance, methodology, council, memoir.',
+    tag: 'Framework',
   },
   {
+    id: 'da',
+    name: 'D&A',
     color: C.amber,
-    label: "How It's Built",
-    description: 'The standards, protocols, and AI council that govern everything. The operating system behind the tools.',
-    hub: '/council',
-    groups: [
-      {
-        name: 'Council',
-        items: [
-          { href: '/council', label: 'Council Hub' },
-          { href: '/council/profiles', label: 'All Council Profiles' },
-          { href: '/council/1010', label: 'Seat 1010 — Dex Jr.' },
-          { href: '/council/auto-council', label: 'AutoCouncil' },
-          { href: '/council/scaling', label: 'Scaling' },
-        ],
-      },
-      {
-        name: 'Governance',
-        items: [
-          { href: '/standards', label: 'Standards Registry' },
-          { href: '/systems', label: 'Systems Registry' },
-          { href: '/registry', label: 'Full Registry' },
-          { href: '/excelligence', label: 'Excelligence — Knowledge Graph' },
-        ],
-      },
-      {
-        name: 'Framework',
-        items: [
-          { href: '/methodology', label: 'Methodology' },
-          { href: '/dexos', label: 'DexOS' },
-          { href: '/framework/pss', label: 'Prompt Strategy System' },
-          { href: '/framework/vibe-coding', label: 'Vibe Coding with Governance' },
-          { href: '/guides/llm', label: 'LLM Setup Guide' },
-        ],
-      },
-    ],
+    href: '/blindspot',
+    tagline: 'BlindSpot analytics, dashboards, recaps.',
+    tag: 'Analytics',
   },
   {
+    id: 'dexverse',
+    name: 'DexVerse',
     color: C.violet,
-    label: 'The Story',
-    description: 'How a CPA with a spreadsheet habit and 8 years of sobriety ended up building an AI governance studio.',
-    hub: '/memoir',
-    groups: [
-      {
-        name: 'Memoir',
-        items: [
-          { href: '/memoir', label: 'Little to Know Experience' },
-          { href: '/memoir/reading-room', label: 'Reading Room' },
-          { href: '/memoir/architecture', label: 'How the Memoir Was Built' },
-          { href: '/memoir/dashboard', label: 'Memoir Dashboard' },
-          { href: '/memoir/braid', label: 'The Braid' },
-          { href: '/forewords', label: 'Foreword Convergence' },
-        ],
-      },
-      {
-        name: 'DexVerse',
-        items: [
-          { href: '/dexlore', label: 'DexLore Hub' },
-          { href: '/dexlore/continuum', label: 'The Continuum' },
-          { href: '/dexlore/council', label: 'Companions' },
-          { href: '/other-works', label: 'Other Works' },
-          { href: '/knowledge/glossary', label: 'Glossary' },
-        ],
-      },
-      {
-        name: 'Dossiers',
-        items: [
-          { href: '/dossiers', label: 'All Dossiers' },
-          { href: '/dossiers/merrick', label: 'Merrick' },
-          { href: '/dossiers/feliciano', label: 'Feliciano' },
-          { href: '/dossiers/hillie', label: 'Hillie' },
-          { href: '/dossiers/ash-snow-steel', label: 'Ash, Snow & Steel' },
-        ],
-      },
-      {
-        name: 'About',
-        items: [
-          { href: '/about', label: 'Operator Profile' },
-          { href: '/social', label: 'Social Hub' },
-        ],
-      },
-    ],
+    href: '/dexlore',
+    tagline: 'Origin stories, companions, lore, glossary.',
+    tag: 'Lore',
+  },
+  {
+    id: 'dossiers',
+    name: 'Dossiers',
+    color: C.green,
+    href: '/dossiers',
+    tagline: 'Character archive across three universes.',
+    tag: 'Characters',
+  },
+  {
+    id: 'bench',
+    name: 'The Bench',
+    color: C.steel,
+    href: '/bench',
+    tagline: 'Software tips. OneNote to PowerShell.',
+    tag: 'Tools',
+  },
+  {
+    id: 'canonpress',
+    name: 'CanonPress',
+    color: C.crimson,
+    href: '/canonpress',
+    tagline: 'Governed publication. Four series.',
+    tag: 'Publication',
+  },
+  {
+    id: 'auditforge',
+    name: 'AuditForge',
+    color: C.teal,
+    href: '/auditforge',
+    tagline: 'Governed audit document generation.',
+    tag: 'Product',
+  },
+  {
+    id: 'products',
+    name: 'Products',
+    color: '#6B9DC2',
+    href: '/products/behavioral-intelligence',
+    tagline: 'Concept products and design mockups.',
+    tag: 'Concepts',
   },
 ];
 
-// ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?
-// Expandable Door Card
-// ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?
+const stats = [
+  { n: '203', label: 'Pages' },
+  { n: '8',   label: 'Wings' },
+  { n: '44',  label: 'Systems' },
+  { n: '65',  label: 'Standards' },
+  { n: '10',  label: 'Council Seats' },
+  { n: '320K', label: 'RAG Chunks' },
+  { n: '1',   label: 'Person' },
+];
 
-function DoorCard({ door }) {
-  const [open, setOpen] = useState(false);
+const surpriseRoutes = [
+  '/excelligence',
+  '/council',
+  '/dexlore',
+  '/memoir',
+  '/blindspot/trading',
+  '/dossiers/feliciano',
+  '/dossiers/xuth-jr',
+  '/canonpress/groundtruth/gt-001',
+  '/methodology',
+  '/dexverse/lotr',
+  '/bench/excel',
+  '/auditforge/current',
+  '/forewords',
+  '/framework/pss',
+  '/mindframe',
+  '/knowledge/glossary',
+  '/dossiers/fort-joy',
+  '/recaps/annual-signal',
+];
+
+export default function DDLLanding() {
+  const [hovered, setHovered] = useState<string | null>(null);
+  const [surpriseHref, setSurpriseHref] = useState('/excelligence');
+
+  useEffect(() => {
+    setSurpriseHref(surpriseRoutes[Math.floor(Math.random() * surpriseRoutes.length)]);
+  }, []);
 
   return (
     <div style={{
-      background: C.card,
-      border: `1px solid ${open ? door.color + '30' : C.border}`,
-      borderRadius: 8,
-      overflow: 'hidden',
-      transition: 'border-color 0.2s',
+      background: C.navy,
+      minHeight: '100vh',
+      color: C.cream,
+      fontFamily: "'Source Serif 4', Georgia, serif",
     }}>
-      {/* Header — always visible, clickable */}
-      <button
-        onClick={() => setOpen(!open)}
-        style={{
-          width: '100%', display: 'flex', alignItems: 'flex-start',
-          justifyContent: 'space-between', gap: 12,
-          padding: '28px 24px', background: 'transparent',
-          border: 'none', cursor: 'pointer', textAlign: 'left',
-        }}
-      >
-        <div style={{ flex: 1 }}>
-          <div style={{
-            fontFamily: font.mono, fontSize: 9, letterSpacing: '0.2em',
-            textTransform: 'uppercase', color: door.color, marginBottom: 10,
-          }}>
-            {door.label}
-          </div>
-          <div style={{
-            fontFamily: font.body, fontSize: 15, color: C.creamMid,
-            lineHeight: 1.7,
-          }}>
-            {door.description}
-          </div>
-        </div>
-        <span style={{
-          fontFamily: font.mono, fontSize: 18, color: door.color,
-          transform: open ? 'rotate(45deg)' : 'rotate(0)',
-          transition: 'transform 0.2s',
-          flexShrink: 0, marginTop: 4,
-        }}>+</span>
-      </button>
 
-      {/* Expanded content */}
-      {open && (
+      {/* ── HERO ── */}
+      <div style={{
+        maxWidth: 900,
+        margin: '0 auto',
+        padding: '96px 24px 80px',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        textAlign: 'center',
+      }}>
+
+        {/* Wordmark */}
         <div style={{
-          padding: '0 24px 24px',
-          borderTop: `1px solid ${C.border}`,
-          animation: 'doorExpand 0.2s ease',
+          fontFamily: "'JetBrains Mono', monospace",
+          fontSize: '0.65rem',
+          color: C.crimson,
+          letterSpacing: '0.3em',
+          marginBottom: 28,
         }}>
-          <style>{`@keyframes doorExpand { from { opacity:0; max-height:0; } to { opacity:1; max-height:2000px; } }`}</style>
+          DROPDOWN LOGISTICS
+        </div>
 
-          {door.groups.map((group, gi) => (
-            <div key={gi} style={{ marginTop: 20 }}>
+        {/* Primary methodology */}
+        <div style={{
+          fontFamily: "'Space Grotesk', sans-serif",
+          fontWeight: 700,
+          fontSize: 'clamp(2.8rem, 7vw, 5rem)',
+          letterSpacing: '-0.03em',
+          lineHeight: 1.0,
+          marginBottom: 8,
+        }}>
+          Chaos
+        </div>
+        <div style={{
+          fontFamily: "'JetBrains Mono', monospace",
+          fontSize: 'clamp(0.9rem, 2vw, 1.1rem)',
+          color: C.muted,
+          letterSpacing: '0.15em',
+          marginBottom: 8,
+        }}>↓</div>
+        <div style={{
+          fontFamily: "'Space Grotesk', sans-serif",
+          fontWeight: 700,
+          fontSize: 'clamp(2.8rem, 7vw, 5rem)',
+          letterSpacing: '-0.03em',
+          lineHeight: 1.0,
+          marginBottom: 8,
+        }}>
+          Structured
+        </div>
+        <div style={{
+          fontFamily: "'JetBrains Mono', monospace",
+          fontSize: 'clamp(0.9rem, 2vw, 1.1rem)',
+          color: C.muted,
+          letterSpacing: '0.15em',
+          marginBottom: 8,
+        }}>↓</div>
+        <div style={{
+          fontFamily: "'Space Grotesk', sans-serif",
+          fontWeight: 700,
+          fontSize: 'clamp(2.8rem, 7vw, 5rem)',
+          letterSpacing: '-0.03em',
+          lineHeight: 1.0,
+          marginBottom: 40,
+        }}>
+          Automated
+        </div>
+
+        {/* Description */}
+        <div style={{
+          fontFamily: "'Source Serif 4', serif",
+          fontSize: 'clamp(1rem, 2.5vw, 1.15rem)',
+          color: C.dim,
+          maxWidth: 560,
+          lineHeight: 1.8,
+          marginBottom: 16,
+        }}>
+          A one-person operations studio. Tools, governance systems, analytics engines, and a publication platform — built with AI as a collaborator, not a replacement.
+        </div>
+
+        <div style={{
+          fontFamily: "'JetBrains Mono', monospace",
+          fontSize: '0.7rem',
+          color: C.muted,
+          letterSpacing: '0.05em',
+          marginBottom: 48,
+          fontStyle: 'italic',
+        }}>
+          "What are the actual load-bearing elements of a human life?" — Leo Prescott, Seat 1007
+        </div>
+
+        {/* CTAs */}
+        <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'center' }}>
+          <Link href="/ddl" style={{
+            display: 'inline-block',
+            background: C.crimson,
+            color: C.cream,
+            fontFamily: "'Space Grotesk', sans-serif",
+            fontWeight: 600,
+            fontSize: '0.95rem',
+            padding: '13px 32px',
+            borderRadius: 6,
+            textDecoration: 'none',
+            letterSpacing: '0.01em',
+          }}>
+            Enter the Site
+          </Link>
+          <Link href={surpriseHref} style={{
+            display: 'inline-block',
+            background: 'transparent',
+            color: C.cream,
+            fontFamily: "'Space Grotesk', sans-serif",
+            fontWeight: 500,
+            fontSize: '0.95rem',
+            padding: '13px 32px',
+            borderRadius: 6,
+            textDecoration: 'none',
+            border: `1px solid rgba(245,241,235,0.15)`,
+            letterSpacing: '0.01em',
+          }}
+            onMouseEnter={e => {
+              (e.currentTarget as HTMLElement).style.borderColor = 'rgba(245,241,235,0.35)';
+              (e.currentTarget as HTMLElement).style.color = C.cream;
+            }}
+            onMouseLeave={e => {
+              (e.currentTarget as HTMLElement).style.borderColor = 'rgba(245,241,235,0.15)';
+            }}
+          >
+            Surprise Me →
+          </Link>
+        </div>
+      </div>
+
+      {/* ── DIVIDER ── */}
+      <div style={{ height: 1, background: C.border, maxWidth: 960, margin: '0 auto' }} />
+
+      {/* ── STATS ── */}
+      <div style={{ maxWidth: 960, margin: '0 auto', padding: '56px 24px' }}>
+        <div style={{
+          fontFamily: "'JetBrains Mono', monospace",
+          fontSize: '0.58rem',
+          color: C.muted,
+          letterSpacing: '0.2em',
+          textAlign: 'center',
+          marginBottom: 28,
+        }}>
+          BY THE NUMBERS
+        </div>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(7, 1fr)',
+          gap: 2,
+        }}>
+          {stats.map((s, i) => (
+            <div key={i} style={{
+              background: C.card,
+              border: `1px solid ${C.border}`,
+              borderRadius: 6,
+              padding: '20px 12px',
+              textAlign: 'center',
+            }}>
               <div style={{
-                fontFamily: font.mono, fontSize: 10, letterSpacing: '0.12em',
-                textTransform: 'uppercase', color: door.color,
-                marginBottom: 8, opacity: 0.7,
-              }}>
-                {group.name}
-              </div>
-              {group.items.map((item, ii) => (
-                <Link key={ii} href={item.href} style={{
-                  display: 'block', fontFamily: font.display, fontSize: 14,
-                  color: C.creamMid, textDecoration: 'none',
-                  padding: '7px 0', borderBottom: `1px solid ${C.border}`,
-                  transition: 'color 0.12s',
-                }}
-                  onMouseEnter={e => e.currentTarget.style.color = C.cream}
-                  onMouseLeave={e => e.currentTarget.style.color = C.creamMid}
-                >
-                  {item.label}
-                </Link>
-              ))}
+                fontFamily: "'Space Grotesk', sans-serif",
+                fontWeight: 700,
+                fontSize: 'clamp(1.4rem, 3vw, 2rem)',
+                color: C.crimson,
+                lineHeight: 1,
+                marginBottom: 6,
+              }}>{s.n}</div>
+              <div style={{
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: '0.5rem',
+                color: C.muted,
+                letterSpacing: '0.08em',
+                lineHeight: 1.3,
+              }}>{s.label}</div>
             </div>
           ))}
-
-          <Link href={door.hub} style={{
-            display: 'inline-flex', alignItems: 'center', gap: 6,
-            fontFamily: font.mono, fontSize: 11, color: door.color,
-            textDecoration: 'none', marginTop: 20,
-            letterSpacing: '0.05em',
-          }}>
-            Enter {door.label} →
-          </Link>
         </div>
-      )}
-    </div>
-  );
-}
-
-// ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?
-// Main Page
-// ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?
-
-export default function FrontDoor() {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
-
-  return (
-    <div style={{
-      minHeight: '100vh',
-      background: `linear-gradient(180deg, ${C.navyDeep} 0%, ${C.navy} 40%, ${C.navy} 100%)`,
-      color: C.cream,
-      fontFamily: font.body,
-    }}>
-      <div aria-hidden style={{
-        position: 'fixed', inset: 0, zIndex: 0, pointerEvents: 'none', opacity: 0.03,
-        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-        backgroundRepeat: 'repeat', backgroundSize: '128px 128px',
-      }} />
-
-      <div style={{ position: 'relative', zIndex: 1 }}>
-
-        {/* â”€â”€â”€ HERO â”€â”€â”€ */}
-        <section style={{
-          maxWidth: 720, margin: '0 auto', padding: '80px 24px 48px',
-          textAlign: 'center',
-          opacity: mounted ? 1 : 0,
-          transform: mounted ? 'translateY(0)' : 'translateY(12px)',
-          transition: 'all 0.8s ease',
-        }}>
-          <Link href="/about" style={{ display: 'inline-block', marginBottom: 24 }}>
-            <img
-              src="/images/operator-headshot.jpg"
-              alt="Dave Kitchens"
-              style={{
-                width: 80, height: 80, borderRadius: '50%',
-                border: `2px solid ${C.amber}40`,
-                objectFit: 'cover',
-              }}
-            />
-          </Link>
-
-          <div style={{
-            fontFamily: font.display, fontSize: 15, fontWeight: 500,
-            color: C.creamDim, marginBottom: 24,
-          }}>
-            <Link href="/about" style={{ color: C.creamMid, textDecoration: 'none' }}>
-              Dave Kitchens
-            </Link>
-            <span style={{ margin: '0 8px', color: C.creamGhost }}>·</span>
-            CPA · Builder · One-Person Studio
-          </div>
-
-          <div style={{
-            fontFamily: font.body, fontSize: 21, fontStyle: 'italic',
-            color: C.creamHigh, lineHeight: 1.6, maxWidth: 540,
-            margin: '0 auto 32px',
-          }}>
-            "You build cathedrals and then whisper<br />
-            'cottage humble' on the door."
-          </div>
-
-          <div style={{
-            width: 40, height: 1, background: C.crimson + '40',
-            margin: '0 auto 32px',
-          }} />
-
-          <div style={{
-            fontFamily: font.body, fontSize: 17, color: C.creamMid,
-            lineHeight: 1.8, maxWidth: 560, margin: '0 auto',
-          }}>
-            Dropdown Logistics is a one-person studio that builds tools,
-            analytics engines, and governance systems — using AI as a
-            collaborator, not a replacement.
-          </div>
-          <div style={{
-            fontFamily: font.body, fontSize: 17, color: C.creamMid,
-            lineHeight: 1.8, maxWidth: 560, margin: '16px auto 0',
-          }}>
-            Everything here was built by one person with a methodology:
-            take something messy, find the structure inside it, and make
-            it repeatable.
-          </div>
-        </section>
-
-        {/* â”€â”€â”€ ENTER SITE CTA â”€â”€â”€ */}
-        <section style={{
-          maxWidth: 720, margin: '0 auto', padding: '8px 24px 48px',
-          textAlign: 'center',
-          opacity: mounted ? 1 : 0,
-          transition: 'all 0.8s ease 0.15s',
-        }}>
-          <Link href="/ddl" style={{
-            display: 'inline-flex', alignItems: 'center', gap: 10,
-            fontFamily: font.display, fontSize: 16, fontWeight: 600,
-            color: C.cream, textDecoration: 'none',
-            padding: '14px 36px',
-            background: C.crimson,
-            borderRadius: 8,
-            transition: 'all 0.2s',
-            boxShadow: `0 4px 20px ${C.crimson}30`,
-          }}
-            onMouseEnter={e => { e.currentTarget.style.background = '#9a2d2a'; e.currentTarget.style.boxShadow = `0 6px 28px ${C.crimson}50`; }}
-            onMouseLeave={e => { e.currentTarget.style.background = C.crimson; e.currentTarget.style.boxShadow = `0 4px 20px ${C.crimson}30`; }}
-          >
-            Enter the Site →
-          </Link>
-        </section>
-
-        {/* â”€â”€â”€ EXPANDABLE DOORS â”€â”€â”€ */}
-        <section style={{
-          maxWidth: 1000, margin: '0 auto', padding: '20px 24px 48px',
-          opacity: mounted ? 1 : 0,
-          transform: mounted ? 'translateY(0)' : 'translateY(12px)',
-          transition: 'all 0.8s ease 0.25s',
-        }}>
-          <div style={{
-            fontFamily: font.mono, fontSize: 9, letterSpacing: '0.2em',
-            textTransform: 'uppercase', color: C.creamDim,
-            textAlign: 'center', marginBottom: 28,
-          }}>
-            Or explore by section
-          </div>
-
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: 14,
-          }}>
-            {doors.map((door, i) => (
-              <DoorCard key={i} door={door} />
-            ))}
-          </div>
-        </section>
-
-        {/* â”€â”€â”€ BY THE NUMBERS â”€â”€â”€ */}
-        <section style={{
-          maxWidth: 900, margin: '0 auto', padding: '20px 24px 40px',
-          opacity: mounted ? 1 : 0,
-          transition: 'all 0.8s ease 0.4s',
-        }}>
-          <div style={{
-            background: C.card, border: `1px solid ${C.border}`,
-            borderRadius: 8, padding: '28px 24px',
-          }}>
-            <div style={{
-              fontFamily: font.mono, fontSize: 9, letterSpacing: '0.2em',
-              textTransform: 'uppercase', color: C.creamDim,
-              textAlign: 'center', marginBottom: 20,
-            }}>
-              By the numbers
-            </div>
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))',
-              gap: 16,
-            }}>
-              {[
-                { value: 155, suffix: '+', label: 'Pages' },
-                { value: 44, suffix: '', label: 'Systems' },
-                { value: 65, suffix: '', label: 'Standards' },
-                { value: 9, suffix: '', label: 'AI Models' },
-                { value: 1, suffix: '', label: 'Person' },
-              ].map((stat, i) => (
-                <div key={i} style={{ textAlign: 'center' }}>
-                  <div style={{
-                    fontFamily: font.display, fontSize: 26, fontWeight: 700,
-                    color: C.cream, lineHeight: 1,
-                  }}>
-                    {mounted ? <Counter end={stat.value} suffix={stat.suffix} /> : '0'}
-                  </div>
-                  <div style={{
-                    fontFamily: font.mono, fontSize: 10, color: C.creamDim,
-                    marginTop: 6, letterSpacing: '0.05em',
-                  }}>
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div style={{
-              fontFamily: font.body, fontSize: 14, fontStyle: 'italic',
-              color: C.creamDim, textAlign: 'center', marginTop: 20,
-            }}>
-              Built by one person. Governed by nine AI models. Running locally and in the cloud.
-            </div>
-          </div>
-        </section>
-
       </div>
+
+      {/* ── DIVIDER ── */}
+      <div style={{ height: 1, background: C.border, maxWidth: 960, margin: '0 auto' }} />
+
+      {/* ── WINGS ── */}
+      <div style={{ maxWidth: 960, margin: '0 auto', padding: '56px 24px' }}>
+        <div style={{
+          fontFamily: "'JetBrains Mono', monospace",
+          fontSize: '0.58rem',
+          color: C.muted,
+          letterSpacing: '0.2em',
+          marginBottom: 28,
+          textAlign: 'center',
+        }}>
+          EIGHT WINGS
+        </div>
+
+        {/* Two rows of four */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(4, 1fr)',
+          gap: 12,
+          marginBottom: 12,
+        }}>
+          {wings.slice(0, 4).map((wing) => (
+            <WingCard key={wing.id} wing={wing} hovered={hovered} setHovered={setHovered} />
+          ))}
+        </div>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(4, 1fr)',
+          gap: 12,
+        }}>
+          {wings.slice(4).map((wing) => (
+            <WingCard key={wing.id} wing={wing} hovered={hovered} setHovered={setHovered} />
+          ))}
+        </div>
+      </div>
+
+      {/* ── DIVIDER ── */}
+      <div style={{ height: 1, background: C.border, maxWidth: 960, margin: '0 auto' }} />
+
+      {/* ── FOOTER ── */}
+      <div style={{
+        maxWidth: 960,
+        margin: '0 auto',
+        padding: '40px 24px',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        flexWrap: 'wrap',
+        gap: 16,
+      }}>
+        <div style={{
+          fontFamily: "'JetBrains Mono', monospace",
+          fontSize: '0.55rem',
+          color: C.muted,
+          letterSpacing: '0.1em',
+        }}>
+          DROPDOWN LOGISTICS · D.K. HALE · CPA
+        </div>
+        <div style={{ display: 'flex', gap: 20 }}>
+          {[
+            { label: 'llms.txt', href: '/llms.txt' },
+            { label: 'Backend', href: '/backend' },
+            { label: 'Sitemap', href: '/sitemap' },
+          ].map(l => (
+            <Link key={l.href} href={l.href} style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: '0.6rem',
+              color: C.muted,
+              textDecoration: 'none',
+              letterSpacing: '0.05em',
+            }}
+              onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = C.cream}
+              onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = C.muted}
+            >
+              {l.label}
+            </Link>
+          ))}
+        </div>
+      </div>
+
     </div>
   );
 }
 
+function WingCard({ wing, hovered, setHovered }: {
+  wing: typeof wings[0];
+  hovered: string | null;
+  setHovered: (id: string | null) => void;
+}) {
+  const isHov = hovered === wing.id;
+  return (
+    <Link
+      href={wing.href}
+      onMouseEnter={() => setHovered(wing.id)}
+      onMouseLeave={() => setHovered(null)}
+      style={{
+        display: 'block',
+        background: isHov ? C.cardHi : C.card,
+        border: `1px solid ${isHov ? wing.color + '40' : C.border}`,
+        borderTop: `2px solid ${isHov ? wing.color : 'transparent'}`,
+        borderRadius: 8,
+        padding: '20px 18px',
+        textDecoration: 'none',
+        transition: 'all 0.15s ease',
+        cursor: 'pointer',
+      }}
+    >
+      <div style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'flex-start',
+        marginBottom: 10,
+      }}>
+        <div style={{
+          fontFamily: "'Space Grotesk', sans-serif",
+          fontWeight: 700,
+          fontSize: '1rem',
+          color: isHov ? wing.color : C.cream,
+          letterSpacing: '-0.01em',
+          transition: 'color 0.15s',
+        }}>
+          {wing.name}
+        </div>
+        <div style={{
+          fontFamily: "'JetBrains Mono', monospace",
+          fontSize: '0.5rem',
+          color: wing.color,
+          background: `${wing.color}15`,
+          padding: '3px 7px',
+          borderRadius: 3,
+          letterSpacing: '0.08em',
+          opacity: isHov ? 1 : 0.7,
+        }}>
+          {wing.tag}
+        </div>
+      </div>
+      <div style={{
+        fontFamily: "'Source Serif 4', serif",
+        fontSize: '0.78rem',
+        color: isHov ? 'rgba(245,241,235,0.65)' : 'rgba(245,241,235,0.4)',
+        lineHeight: 1.5,
+        transition: 'color 0.15s',
+      }}>
+        {wing.tagline}
+      </div>
+    </Link>
+  );
+}
