@@ -119,7 +119,7 @@ const surpriseRoutes = [
 ];
 
 export default function DDLLanding() {
-  const [hovered, setHovered] = useState<string | null>(null);
+  const [hovered, setHovered] = useState(null);
   const [surpriseHref, setSurpriseHref] = useState('/excelligence');
 
   useEffect(() => {
@@ -173,7 +173,7 @@ export default function DDLLanding() {
           color: C.muted,
           letterSpacing: '0.15em',
           marginBottom: 8,
-        }}>↓</div>
+        }}>&#x2193;</div>
         <div style={{
           fontFamily: "'Space Grotesk', sans-serif",
           fontWeight: 700,
@@ -190,7 +190,7 @@ export default function DDLLanding() {
           color: C.muted,
           letterSpacing: '0.15em',
           marginBottom: 8,
-        }}>↓</div>
+        }}>&#x2193;</div>
         <div style={{
           fontFamily: "'Space Grotesk', sans-serif",
           fontWeight: 700,
@@ -211,7 +211,7 @@ export default function DDLLanding() {
           lineHeight: 1.8,
           marginBottom: 16,
         }}>
-          A one-person operations studio. Tools, governance systems, analytics engines, and a publication platform — built with AI as a collaborator, not a replacement.
+          A one-person operations studio. Tools, governance systems, analytics engines, and a publication platform &#x2014; built with AI as a collaborator, not a replacement.
         </div>
 
         <div style={{
@@ -222,7 +222,7 @@ export default function DDLLanding() {
           marginBottom: 48,
           fontStyle: 'italic',
         }}>
-          "What are the actual load-bearing elements of a human life?" — Leo Prescott, Seat 1007
+          "What are the actual load-bearing elements of a human life?" &#x2014; Leo Prescott, Seat 1007
         </div>
 
         {/* CTAs */}
@@ -255,11 +255,11 @@ export default function DDLLanding() {
             letterSpacing: '0.01em',
           }}
             onMouseEnter={e => {
-              (e.currentTarget as HTMLElement).style.borderColor = 'rgba(245,241,235,0.35)';
-              (e.currentTarget as HTMLElement).style.color = C.cream;
+              e.currentTarget.style.borderColor = 'rgba(245,241,235,0.35)';
+              e.currentTarget.style.color = C.cream;
             }}
             onMouseLeave={e => {
-              (e.currentTarget as HTMLElement).style.borderColor = 'rgba(245,241,235,0.15)';
+              e.currentTarget.style.borderColor = 'rgba(245,241,235,0.15)';
             }}
           >
             Surprise Me →
@@ -388,8 +388,8 @@ export default function DDLLanding() {
               textDecoration: 'none',
               letterSpacing: '0.05em',
             }}
-              onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = C.cream}
-              onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = C.muted}
+              onMouseEnter={e => e.currentTarget.style.color = C.cream}
+              onMouseLeave={e => e.currentTarget.style.color = C.muted}
             >
               {l.label}
             </Link>
@@ -401,11 +401,7 @@ export default function DDLLanding() {
   );
 }
 
-function WingCard({ wing, hovered, setHovered }: {
-  wing: typeof wings[0];
-  hovered: string | null;
-  setHovered: (id: string | null) => void;
-}) {
+function WingCard({ wing, hovered, setHovered }) {
   const isHov = hovered === wing.id;
   return (
     <Link
