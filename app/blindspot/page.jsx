@@ -71,14 +71,36 @@ export default function BlindSpotHub() {
         </div>
 
         <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, color: 'var(--slate)', marginTop: 16 }}>
-          EARLY ACCESS OPEN &middot; SCHEMA IN PROGRESS &middot; FIRST BUILD SHIPS SOON
+          LIVE &middot; SCHEMA ON NEON &middot; WAITLIST OPEN &middot; blindspot.bet
         </div>
       </div>
 
       <div className="divider" />
 
+      {/* ── WHAT'S LIVE ── */}
+      <div style={{ maxWidth: 900, margin: '0 auto', padding: '48px 24px 0' }}>
+        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, color: 'var(--green)', letterSpacing: '0.2em', marginBottom: 20 }}>
+          WHAT’S LIVE
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 8, marginBottom: 48 }}>
+          {[
+            { label: 'Fact_Bets Schema', desc: 'Star schema on Neon PostgreSQL' },
+            { label: 'Bet Log API', desc: 'Full CRUD with audit trail' },
+            { label: 'Token Economy', desc: 'Tokens, not money. Governed.' },
+            { label: 'Scope Declaration', desc: 'Non-prediction boundary ratified' },
+            { label: 'Clerk Auth', desc: 'Session-based, RBAC' },
+            { label: 'Waitlist', desc: 'Collecting early access requests' },
+          ].map((f, i) => (
+            <div key={i} style={{ background: 'var(--card)', border: '1px solid var(--border)', borderRadius: 6, padding: '14px 16px' }}>
+              <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, color: 'var(--green)', marginBottom: 4 }}>{f.label}</div>
+              <div style={{ fontFamily: "'Source Serif 4', serif", fontSize: '0.75rem', color: 'rgba(245,241,235,0.4)', lineHeight: 1.5 }}>{f.desc}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* ── OTHER MODULES ── */}
-      <div style={{ maxWidth: 900, margin: '0 auto', padding: '56px 24px 80px' }}>
+      <div style={{ maxWidth: 900, margin: '0 auto', padding: '0 24px 80px' }}>
         <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, color: 'var(--amber)', letterSpacing: '0.2em', marginBottom: 28 }}>
           MORE FROM BLINDSPOT
         </div>
