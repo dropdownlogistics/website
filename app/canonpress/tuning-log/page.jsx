@@ -78,6 +78,75 @@ Contemporary AI discussions tend to be narrower and more time-bound. Tactical si
       pattern: 'Prompt tuning added flavor/context without changing the decision boundary.',
     },
   },
+  {
+    week: 'RL-0001',
+    cycleStart: '2026-03-13',
+    publishTarget: '2026-03-13',
+    status: 'COMPLETE',
+    nominator: { seat: '1009', name: 'Kai Langford' },
+    reviewer:  { seat: '1002', name: 'Marcus Caldwell' },
+    tuningAuthor: { seat: '1008', name: 'Marcus Grey' },
+    material: 'RedLine 0001 \u2014 The Scaffold Generates (Dex Jr. calibration arc)',
+    tier: 'canon',
+    chunksIngested: 0,
+    modelsResponded: 2,
+    verdict: 'LOCK',
+
+    promptAnalysis: {
+      author: 'Marcus Grey \u2014 Seat 1008',
+      label: 'PRE-RUN PROMPT ANALYSIS',
+      text: `The original prompt provided context and artifacts but did not prescribe an interpretive lens. It gave Seat 1009 the raw calibration transcripts and asked for a RedLine article without specifying whether to frame the output as a case study or as a systemic analysis.
+
+The primary failure risk: Kai defaults to narrative when given raw material without an explicit interpretive frame. The tuning intervention introduced two structural constraints: (1) focus on mechanism rather than chronology, and (2) extract generalizable principles rather than documenting the specific incident.
+
+This is a structural constraint, not a content constraint. The domain was not changed. The analytical posture was redirected.`,
+    },
+
+    modelResponse: {
+      label: 'SEAT 1009 RESPONSE',
+      text: `The Scaffold Generates\n\nHow prompt structure creates permission to fabricate\n\n[Full article published as RL-0001]`,
+      compliance: 'Format: RedLine standard. Interpretive frame: mechanism-first. Generalizable principles extracted. No chronological narrative drift.',
+    },
+
+    responseAnalysis: {
+      author: 'Marcus Grey \u2014 Seat 1008',
+      label: 'POST-RUN ANALYSIS',
+      text: `The tuned prompt introduced interpretive constraints that guided analysis toward mechanism rather than narrative structure.
+
+Structural constraints controlled format while interpretive constraints controlled analytical posture. This combination produced the intended RedLine style \u2014 a constraint documented as a principle, not as a story.
+
+The result: two extractable system rules rather than a debugging memoir. The tuning worked exactly as intended.`,
+    },
+
+    exchange: [
+      {
+        from: 'Kai Langford \u2014 Seat 1009',
+        seat: '1009',
+        color: C.blue,
+        text: `The tuned prompt constrained the analysis toward mechanism rather than storytelling.
+
+Without that framing, the article likely would have been organized chronologically rather than extracting generalizable principles. The tuning pushed the piece from case study toward systemic analysis.
+
+Both prompt variants communicated the same domain and task constraints. The tuning added interpretive direction without altering the evidential base.`,
+      },
+      {
+        from: 'Marcus Grey \u2014 Seat 1008',
+        seat: '1008',
+        color: C.crimson,
+        text: `The prompt tuning introduced interpretive constraints that guided analysis toward mechanism rather than narrative structure.
+
+Structural constraints controlled format while interpretive constraints controlled analytical posture. This combination produced the intended RedLine style.
+
+The layered prompt model now visible in the logs matches the architecture of Dex Jr. itself: evidence layer \u2192 artifacts and transcripts, interpretive layer \u2192 prompt framing, structural layer \u2192 format constraints. Both the model and the prompt are now documented systems.`,
+      },
+    ],
+
+    promptDelta: {
+      label: 'PROMPT DELTA',
+      finding: 'Interpretive constraints redirected analytical posture from narrative to mechanism without altering evidential base. Structural constraints enforced RedLine format. Output moved from case study to systemic analysis.',
+      pattern: 'Interpretive framing is a distinct lever from structural formatting. Both must be explicitly set for governed analytical output.',
+    },
+  },
 ];
 
 function Message({ msg }) {
