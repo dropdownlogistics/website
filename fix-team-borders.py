@@ -1,7 +1,4 @@
-﻿import re
-content = open('src/app/page.js', 'r', encoding='utf-8').read()
-
-# Find the team section and fix borders
+﻿content = open('src/app/page.js', 'r', encoding='utf-8').read()
 content = content.replace(
     "border: 1px solid , borderRadius: 8, overflow: 'hidden'",
     "border: '1px solid rgba(245,241,235,0.07)', borderRadius: 8, overflow: 'hidden'"
