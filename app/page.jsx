@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
@@ -105,7 +105,7 @@ function RadialHero({ visible }) {
           );
         })}
 
-        {/* Center stamp — DD */}
+        {/* Center stamp â€” DD */}
         <circle cx={CX} cy={CY} r={STAMP_R + 10} fill="none" stroke={C.cream} strokeWidth="1" strokeOpacity="0.08" />
         <circle cx={CX} cy={CY} r={STAMP_R + 4}  fill="none" stroke={C.cream} strokeWidth="1.5" strokeOpacity="0.15" />
         <circle cx={CX} cy={CY} r={STAMP_R}       fill={C.crimson} />
@@ -144,9 +144,9 @@ export default function DDLLanding() {
 
       {/* HERO */}
       <div style={{ maxWidth: 1100, margin: '0 auto', padding: '64px 24px 40px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 48, alignItems: 'center' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))', gap: 48, alignItems: 'center' }}>
 
-          {/* Left — text */}
+          {/* Left â€” text */}
           <div style={{ opacity: visible ? 1 : 0, transition: 'opacity 0.8s ease 0.2s' }}>
             <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, color: C.amber, letterSpacing: '0.2em', marginBottom: 20 }}>
               DROPDOWN LOGISTICS
@@ -175,7 +175,7 @@ export default function DDLLanding() {
             </div>
           </div>
 
-          {/* Right — radial */}
+          {/* Right â€” radial */}
           <RadialHero visible={visible} />
         </div>
       </div>
@@ -244,3 +244,4 @@ export default function DDLLanding() {
     </div>
   );
 }
+
