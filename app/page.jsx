@@ -62,7 +62,7 @@ function RadialHero({ visible }) {
   const CY = 260;
 
   return (
-    <div style={{ position: 'relative', width: '100%', maxWidth: 560, margin: '0 auto', opacity: visible ? 1 : 0, transition: 'opacity 1s ease 0.3s' }}>
+    <div className="radial-hero" style={{ position: 'relative', width: '100%', maxWidth: 560, margin: '0 auto', opacity: visible ? 1 : 0, transition: 'opacity 1s ease 0.3s' }}>
       <svg viewBox="0 0 520 520" style={{ width: '100%', height: 'auto' }}>
         {/* Orbit rings */}
         <circle cx={CX} cy={CY} r={ARM_LEN + 56} fill="none" stroke={C.crimson} strokeWidth="0.3" strokeOpacity="0.06" />
@@ -123,6 +123,8 @@ function RadialHero({ visible }) {
         @keyframes armIn   { from { opacity: 0 } to { opacity: 1 } }
         @keyframes fadeIn  { from { opacity: 0 } to { opacity: 1 } }
         @keyframes fadeUp  { from { opacity: 0; transform: translateY(20px) } to { opacity: 1; transform: translateY(0) } }
+        .radial-hero { display: block; }
+        @media (max-width: 700px) { .radial-hero { display: none; } }
       `}</style>
     </div>
   );
@@ -144,7 +146,7 @@ export default function DDLLanding() {
 
       {/* HERO */}
       <div style={{ maxWidth: 1100, margin: '0 auto', padding: '64px 24px 40px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))', gap: 48, alignItems: 'center' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 48, alignItems: 'center' }}>
 
           {/* Left â€” text */}
           <div style={{ opacity: visible ? 1 : 0, transition: 'opacity 0.8s ease 0.2s' }}>
