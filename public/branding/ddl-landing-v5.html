@@ -827,10 +827,8 @@ footer{
 
     // ── LABEL ──
     const lp = makeLabelPos(midDeg, EXPLODE);
-    const anchor = lp.midDeg > 90 && lp.midDeg < 270 ? 'end' : 'start';
-    // For top/bottom quadrants, center-align
-    const isTopBottom = (lp.midDeg < 30 || lp.midDeg > 330 || (lp.midDeg > 150 && lp.midDeg < 210));
-    const textAnchor  = isTopBottom ? 'middle' : anchor;
+    // Use actual x position — reliable regardless of angle edge cases
+    const textAnchor = lp.x < -12 ? 'end' : lp.x > 12 ? 'start' : 'middle';
 
     const labelG = document.createElementNS('http://www.w3.org/2000/svg', 'g');
     labelG.style.animation = `fadeIn 0.4s ease ${delay + 0.25}s both`;
