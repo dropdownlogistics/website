@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DDL Brand System — Dropdown Logistics</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0D1B2A;--card:#10202F;--cream:#F5F1EB;--steel:#6B7B8D;
+  --border:rgba(245,241,235,0.07);--borderlt:rgba(245,241,235,0.13);
+  --crimson:#B23531;--copper:#C49A3C;--teal:#2C7A7B;
+  --violet:#8A6CC9;--blue:#6B9DC2;--green:#22C55E;--gold:#D4A843;
+}
+@keyframes orbit{from{transform:translate(-50%,-50%) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(360deg)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes armIn{from{stroke-dashoffset:220;opacity:0}to{stroke-dashoffset:0;opacity:1}}
+@keyframes nodePop{from{opacity:0;transform:scale(0.3)}to{opacity:1;transform:scale(1)}}
+@keyframes labelIn{from{opacity:0}to{opacity:1}}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--cream);font-family:'Source Serif 4',Georgia,serif;min-height:100vh;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;background:rgba(13,27,42,0.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo span{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:0.92rem;color:var(--cream);letter-spacing:-0.01em}
+.nav-accent{color:var(--crimson)}
+.nav-links{display:flex;gap:24px}
+.nav-links a{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--steel);text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s}
+.nav-links a:hover{color:var(--cream)}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:64px;padding:80px 64px 64px;max-width:1200px;margin:0 auto;position:relative}
+.hero-bg{position:fixed;inset:0;background:radial-gradient(ellipse 600px 400px at 65% 45%,rgba(178,53,49,0.04) 0%,transparent 70%);pointer-events:none}
+.hero-grid{position:fixed;inset:0;background-image:linear-gradient(rgba(178,53,49,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(178,53,49,0.02) 1px,transparent 1px);background-size:56px 56px;pointer-events:none}
+
+.hero-left{animation:fadeUp 0.7s ease 0.1s both}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--crimson);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:'';display:block;width:28px;height:1px;background:var(--crimson)}
+.hero-h1{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(2.4rem,4vw,3.6rem);letter-spacing:-0.03em;line-height:1.0;margin-bottom:16px}
+.hero-h1 span{color:var(--crimson)}
+.hero-desc{font-family:'Source Serif 4',serif;font-size:1rem;line-height:1.8;color:rgba(245,241,235,0.65);margin-bottom:36px;max-width:440px}
+.hero-desc em{color:var(--cream);font-style:italic}
+.hero-stats{display:flex;gap:24px;flex-wrap:wrap;margin-bottom:40px}
+.hstat{display:flex;flex-direction:column;gap:3px}
+.hstat-val{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.5rem;letter-spacing:-0.02em;color:var(--crimson)}
+.hstat-lbl{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--steel);letter-spacing:0.12em;text-transform:uppercase}
+
+/* ORBITAL HUB */
+.orbital-wrap{position:relative;height:540px;display:flex;align-items:center;justify-content:center;animation:fadeUp 0.7s ease 0.3s both}
+.orbital-svg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);overflow:visible}
+.ring-rotate{animation:orbit 18s linear infinite;transform-origin:0 0}
+.anim-stamp{animation:fadeUp 0.5s ease 0.3s both}
+.a1{animation:armIn 0.4s ease 0.9s both;stroke-dasharray:220}
+.a2{animation:armIn 0.4s ease 1.05s both;stroke-dasharray:220}
+.a3{animation:armIn 0.4s ease 1.2s both;stroke-dasharray:220}
+.a4{animation:armIn 0.4s ease 1.35s both;stroke-dasharray:220}
+.n1{animation:nodePop 0.3s ease 1.55s both}
+.n2{animation:nodePop 0.3s ease 1.7s both}
+.n3{animation:nodePop 0.3s ease 1.85s both}
+.n4{animation:nodePop 0.3s ease 2.0s both}
+.l1{animation:labelIn 0.4s ease 2.2s both}
+.l2{animation:labelIn 0.4s ease 2.35s both}
+.l3{animation:labelIn 0.4s ease 2.5s both}
+.l4{animation:labelIn 0.4s ease 2.65s both}
+.receipt{animation:labelIn 0.5s ease 3.0s both}
+
+/* PRODUCT GRID */
+main{max-width:1100px;margin:0 auto;padding:0 40px 80px}
+.section-head{display:flex;align-items:center;gap:16px;margin:80px 0 36px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+.section-num{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--crimson);letter-spacing:0.12em;min-width:32px}
+.section-title{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:700;letter-spacing:-0.01em}
+.section-sub{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--steel);letter-spacing:0.06em;margin-left:auto}
+
+.product-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.product-card{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;text-decoration:none;color:inherit;transition:border-color 0.2s,transform 0.2s;display:block}
+.product-card:hover{transform:translateY(-3px)}
+.product-card-top{padding:28px 24px 20px;display:flex;align-items:center;gap:16px;border-bottom:1px solid var(--border)}
+.product-card-meta{flex:1}
+.product-card-name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.05rem;letter-spacing:-0.01em;margin-bottom:4px}
+.product-card-url{font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--steel);letter-spacing:0.04em}
+.product-card-body{padding:16px 24px 20px}
+.product-card-tagline{font-family:'Source Serif 4',serif;font-style:italic;font-size:0.85rem;color:rgba(245,241,235,0.65);line-height:1.5;margin-bottom:14px}
+.product-card-footer{display:flex;align-items:center;justify-content:space-between}
+.accent-chip{display:flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--steel)}
+.accent-dot{width:10px;height:10px;border-radius:50%}
+.price-chip{font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.04em;padding:4px 10px;border-radius:4px;background:rgba(245,241,235,0.06);color:var(--cream)}
+
+/* TOKEN REF */
+.token-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px}
+.token-swatch{width:48px;height:48px;border-radius:6px;border:1px solid var(--border)}
+.token-label{font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--steel);margin-top:4px;text-align:center}
+
+/* FOOTER */
+.page-footer{border-top:1px solid var(--border);padding:32px 40px;text-align:center}
+.footer-rule{height:1px;background:linear-gradient(90deg,transparent,var(--crimson),var(--copper),var(--teal),var(--violet),transparent);opacity:0.25;margin-bottom:20px;max-width:1100px;margin-left:auto;margin-right:auto}
+.footer-text{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--steel);letter-spacing:0.06em;line-height:1.9}
+.footer-motto{font-family:'Source Serif 4',serif;font-style:italic;font-size:0.95rem;color:var(--crimson);margin-bottom:6px}
+
+@media(max-width:900px){.hero{grid-template-columns:1fr;padding:80px 24px 48px}.orbital-wrap{height:420px}.product-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="hero-bg"></div>
+<div class="hero-grid"></div>
+
+<nav>
+  <a class="nav-logo" href="/">
+    <svg viewBox="0 0 32 32" width="22" height="22"><circle cx="16" cy="16" r="14" fill="none" stroke="#B23531" stroke-width="1.5"/><circle cx="16" cy="16" r="11" fill="#0D1B2A"/><text x="16" y="20" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="10" fill="#B23531" letter-spacing="-1">DD</text></svg>
+    <span>Dropdown <span class="nav-accent">Logistics</span></span>
+  </a>
+  <div class="nav-links">
+    <a href="#products">Products</a>
+    <a href="#tokens">Tokens</a>
+    <a href="/llms.txt">llms.txt</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="eyebrow">DDL Brand System · CottageHumble</div>
+    <h1 class="hero-h1">Humble surface.<br><span>Cathedral underneath.</span></h1>
+    <p class="hero-desc">Every DDL product has a mark, a color, a tagline, and a price. <em>The architecture doesn't change between domains. The data does.</em></p>
+    <div class="hero-stats">
+      <div class="hstat"><span class="hstat-val">4</span><span class="hstat-lbl">Products</span></div>
+      <div class="hstat"><span class="hstat-val">6</span><span class="hstat-lbl">Marks</span></div>
+      <div class="hstat"><span class="hstat-val">3</span><span class="hstat-lbl">Fonts</span></div>
+      <div class="hstat"><span class="hstat-val">1</span><span class="hstat-lbl">System</span></div>
+    </div>
+  </div>
+
+  <!-- ORBITAL HUB -->
+  <div class="orbital-wrap">
+    <svg class="orbital-svg" viewBox="-260 -260 520 520" width="520" height="520">
+      <defs>
+        <path id="orbRing" d="M 0,0 m -215,0 a 215,215 0 1,1 430,0 a 215,215 0 1,1 -430,0"/>
+      </defs>
+      <!-- Background rings -->
+      <circle cx="0" cy="0" r="215" fill="none" stroke="rgba(178,53,49,0.07)" stroke-width="1"/>
+      <circle cx="0" cy="0" r="160" fill="none" stroke="rgba(178,53,49,0.04)" stroke-width="1" stroke-dasharray="3 6"/>
+      <circle cx="0" cy="0" r="105" fill="none" stroke="rgba(178,53,49,0.05)" stroke-width="1"/>
+      <!-- Rotating arc -->
+      <g class="ring-rotate" style="transform-origin:0 0">
+        <path d="M 0,-215 A 215,215 0 0,1 108,-188" fill="none" stroke="#B23531" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+      </g>
+      <!-- Ring text -->
+      <text font-family="JetBrains Mono,monospace" font-size="8.5" fill="rgba(178,53,49,0.18)" letter-spacing="5">
+        <textPath href="#orbRing">DROPDOWN LOGISTICS · COTTAGEHUMBLE · CHAOS → STRUCTURED → AUTOMATED · </textPath>
+      </text>
+
+      <!-- ARMS -->
+      <line class="a1" x1="0" y1="0" x2="-148" y2="-130" stroke="rgba(178,53,49,0.4)" stroke-width="1" stroke-dasharray="220"/>
+      <line class="a2" x1="0" y1="0" x2="155" y2="-110" stroke="rgba(34,197,94,0.4)" stroke-width="1" stroke-dasharray="220"/>
+      <line class="a3" x1="0" y1="0" x2="150" y2="120" stroke="rgba(212,168,67,0.4)" stroke-width="1" stroke-dasharray="220"/>
+      <line class="a4" x1="0" y1="0" x2="-130" y2="150" stroke="rgba(44,122,123,0.4)" stroke-width="1" stroke-dasharray="220"/>
+
+      <!-- NODE DOTS -->
+      <circle class="n1" cx="-148" cy="-130" r="6" fill="#B23531"/>
+      <circle class="n2" cx="155"  cy="-110" r="6" fill="#22C55E"/>
+      <circle class="n3" cx="150"  cy="120"  r="6" fill="#D4A843"/>
+      <circle class="n4" cx="-130" cy="150"  r="6" fill="#2C7A7B"/>
+
+      <!-- LABEL CARDS -->
+      <g class="l1">
+        <rect x="-240" y="-155" width="86" height="40" rx="4" fill="#10202F" stroke="rgba(178,53,49,0.25)" stroke-width="1"/>
+        <text x="-197" y="-139" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="9" fill="#F5F1EB">AuditForge</text>
+        <text x="-197" y="-128" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#B23531">$99–$799/mo</text>
+      </g>
+      <g class="l2">
+        <rect x="165" y="-132" width="82" height="40" rx="4" fill="#10202F" stroke="rgba(34,197,94,0.25)" stroke-width="1"/>
+        <text x="206" y="-116" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="9" fill="#F5F1EB">BlindSpot</text>
+        <text x="206" y="-105" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#22C55E">$9–$49/mo</text>
+      </g>
+      <g class="l3">
+        <rect x="160" y="98" width="88" height="40" rx="4" fill="#10202F" stroke="rgba(212,168,67,0.25)" stroke-width="1"/>
+        <text x="204" y="114" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="9" fill="#F5F1EB">Excelligence</text>
+        <text x="204" y="125" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#D4A843">Free–$500/mo</text>
+      </g>
+      <g class="l4">
+        <rect x="-222" y="125" width="86" height="40" rx="4" fill="#10202F" stroke="rgba(44,122,123,0.25)" stroke-width="1"/>
+        <text x="-179" y="141" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="9" fill="#F5F1EB">Knowledge Vault</text>
+        <text x="-179" y="152" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#2C7A7B">$75–Custom</text>
+      </g>
+
+      <!-- CENTER DD STAMP -->
+      <g class="anim-stamp">
+        <defs>
+          <path id="cta" d="M -48,0 A 48,48 0 0,1 48,0"/>
+          <path id="cba" d="M -48,0 A 48,48 0 0,0 48,0"/>
+        </defs>
+        <circle cx="0" cy="0" r="68" fill="rgba(178,53,49,0.05)"/>
+        <circle cx="0" cy="0" r="62" fill="none" stroke="#B23531" stroke-width="2.5"/>
+        <circle cx="0" cy="0" r="53" fill="none" stroke="#B23531" stroke-width="0.75" stroke-dasharray="3 4"/>
+        <circle cx="0" cy="0" r="58" fill="#0D1B2A"/>
+        <text x="0" y="8" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="32" fill="#B23531" letter-spacing="-3">DD</text>
+        <text font-family="JetBrains Mono,monospace" font-size="6" fill="#F5F1EB" letter-spacing="3.5"><textPath href="#cta" startOffset="50%" text-anchor="middle">DROPDOWN</textPath></text>
+        <text font-family="JetBrains Mono,monospace" font-size="6" fill="#6B7B8D" letter-spacing="3.5"><textPath href="#cba" startOffset="50%" text-anchor="middle">LOGISTICS</textPath></text>
+        <line x1="0" y1="-62" x2="0" y2="-56" stroke="#B23531" stroke-width="1.5"/>
+        <line x1="0" y1="56" x2="0" y2="62" stroke="#B23531" stroke-width="1.5"/>
+        <line x1="-62" y1="0" x2="-56" y2="0" stroke="#B23531" stroke-width="1.5"/>
+        <line x1="56" y1="0" x2="62" y2="0" stroke="#B23531" stroke-width="1.5"/>
+        <circle cx="-62" cy="0" r="2.5" fill="#C49A3C"/>
+        <circle cx="62"  cy="0" r="2.5" fill="#C49A3C"/>
+      </g>
+      <text class="receipt" x="0" y="244" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="rgba(107,123,141,0.45)" letter-spacing="2">THE COTTAGE SHIPS CATHEDRALS</text>
+    </svg>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main>
+  <div class="section-head" id="products">
+    <span class="section-num">01</span>
+    <span class="section-title">Products</span>
+    <span class="section-sub">Each product. One mark. One price.</span>
+  </div>
+
+  <div class="product-grid">
+    <!-- AuditForge -->
+    <a class="product-card" href="auditforge.html" style="--hover-color:#B23531" onmouseover="this.style.borderColor='rgba(178,53,49,0.3)'" onmouseout="this.style.borderColor='rgba(245,241,235,0.07)'">
+      <div class="product-card-top">
+        <svg viewBox="0 0 140 140" width="44" height="44" style="flex-shrink:0">
+          <circle cx="70" cy="70" r="66" fill="none" stroke="#F5F1EB" stroke-width="2"/>
+          <circle cx="70" cy="70" r="62" fill="#0D1B2A"/>
+          <text x="70" y="82" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="40" fill="#B23531" letter-spacing="-2">AF</text>
+          <circle cx="8" cy="70" r="2.5" fill="#C49A3C"/>
+          <circle cx="132" cy="70" r="2.5" fill="#C49A3C"/>
+        </svg>
+        <div class="product-card-meta">
+          <div class="product-card-name">AuditForge</div>
+          <div class="product-card-url">auditforge.dev</div>
+        </div>
+      </div>
+      <div class="product-card-body">
+        <div class="product-card-tagline">The audit package generates itself.</div>
+        <div class="product-card-footer">
+          <div class="accent-chip"><div class="accent-dot" style="background:#B23531"></div>#B23531 Crimson</div>
+          <span class="price-chip">$99 – $799/mo</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- BlindSpot -->
+    <a class="product-card" href="blindspot.html" onmouseover="this.style.borderColor='rgba(34,197,94,0.3)'" onmouseout="this.style.borderColor='rgba(245,241,235,0.07)'">
+      <div class="product-card-top">
+        <svg viewBox="0 0 26 26" width="44" height="44" style="flex-shrink:0">
+          <rect width="26" height="26" rx="6" fill="#0F2237"/>
+          <path d="M9 3C9 3 17 7 17 10.5C17 14 9 16 9 19.5C9 23 17 24 17 24" stroke="#22C55E" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path d="M17 3C17 3 9 7 9 10.5C9 14 17 16 17 19.5C17 23 9 24 9 24" stroke="#86EFAC" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <line x1="9" y1="7.5" x2="17" y2="7.5" stroke="#E2E8F0" stroke-width="1.2"/>
+          <line x1="9" y1="13" x2="17" y2="13" stroke="#E2E8F0" stroke-width="1.2"/>
+          <line x1="9" y1="18.5" x2="17" y2="18.5" stroke="#E2E8F0" stroke-width="1.2"/>
+        </svg>
+        <div class="product-card-meta">
+          <div class="product-card-name">BlindSpot</div>
+          <div class="product-card-url">blindspot.bet</div>
+        </div>
+      </div>
+      <div class="product-card-body">
+        <div class="product-card-tagline">signal → structure → edge</div>
+        <div class="product-card-footer">
+          <div class="accent-chip"><div class="accent-dot" style="background:#22C55E"></div>#22C55E Dave Green</div>
+          <span class="price-chip">$9 – $49/mo</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Excelligence -->
+    <a class="product-card" href="excelligence.html" onmouseover="this.style.borderColor='rgba(212,168,67,0.3)'" onmouseout="this.style.borderColor='rgba(245,241,235,0.07)'">
+      <div class="product-card-top">
+        <svg viewBox="0 0 140 140" width="44" height="44" style="flex-shrink:0">
+          <circle cx="70" cy="70" r="66" fill="none" stroke="#D4A843" stroke-width="3"/>
+          <circle cx="70" cy="70" r="62" fill="#0D1B2A"/>
+          <text x="70" y="82" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="40" fill="#D4A843" letter-spacing="-2">EX</text>
+        </svg>
+        <div class="product-card-meta">
+          <div class="product-card-name">Excelligence</div>
+          <div class="product-card-url">dropdownlogistics.com/excelligence</div>
+        </div>
+      </div>
+      <div class="product-card-body">
+        <div class="product-card-tagline">Every Excel technique, governed.</div>
+        <div class="product-card-footer">
+          <div class="accent-chip"><div class="accent-dot" style="background:#D4A843"></div>#D4A843 Gold</div>
+          <span class="price-chip">Free – $500/mo</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Knowledge Vault -->
+    <a class="product-card" href="knowledge-vault.html" onmouseover="this.style.borderColor='rgba(44,122,123,0.3)'" onmouseout="this.style.borderColor='rgba(245,241,235,0.07)'">
+      <div class="product-card-top">
+        <svg viewBox="0 0 140 140" width="44" height="44" style="flex-shrink:0">
+          <circle cx="70" cy="70" r="66" fill="none" stroke="#2C7A7B" stroke-width="3"/>
+          <circle cx="70" cy="70" r="62" fill="#0D1B2A"/>
+          <text x="70" y="82" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="40" fill="#2C7A7B" letter-spacing="-2">KV</text>
+        </svg>
+        <div class="product-card-meta">
+          <div class="product-card-name">DDL Knowledge Vault</div>
+          <div class="product-card-url">dropdownlogistics.github.io/knowledge-vault</div>
+        </div>
+      </div>
+      <div class="product-card-body">
+        <div class="product-card-tagline">The corpus has a front door now.</div>
+        <div class="product-card-footer">
+          <div class="accent-chip"><div class="accent-dot" style="background:#2C7A7B"></div>#2C7A7B Teal</div>
+          <span class="price-chip">$75 – Custom</span>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <!-- TOKEN REFERENCE -->
+  <div class="section-head" id="tokens">
+    <span class="section-num">02</span>
+    <span class="section-title">Global Token Reference</span>
+    <span class="section-sub">brand-tokens.json · v1.0.1</span>
+  </div>
+
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:28px 32px;margin-bottom:16px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--steel);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:16px">Backgrounds · Never Change</div>
+    <div class="token-row">
+      <div><div class="token-swatch" style="background:#0D1B2A"></div><div class="token-label">Navy</div></div>
+      <div><div class="token-swatch" style="background:#10202F"></div><div class="token-label">Card</div></div>
+      <div><div class="token-swatch" style="background:#F5F1EB;border:1px solid rgba(0,0,0,0.1)"></div><div class="token-label">Cream</div></div>
+      <div><div class="token-swatch" style="background:#6B7B8D"></div><div class="token-label">Steel</div></div>
+    </div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--steel);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:16px;margin-top:20px">Product Accents</div>
+    <div class="token-row">
+      <div><div class="token-swatch" style="background:#B23531"></div><div class="token-label">Crimson</div></div>
+      <div><div class="token-swatch" style="background:#22C55E"></div><div class="token-label">Green</div></div>
+      <div><div class="token-swatch" style="background:#C49A3C"></div><div class="token-label">Amber</div></div>
+      <div><div class="token-swatch" style="background:#2C7A7B"></div><div class="token-label">Teal</div></div>
+      <div><div class="token-swatch" style="background:#8A6CC9"></div><div class="token-label">Violet</div></div>
+      <div><div class="token-swatch" style="background:#6B9DC2"></div><div class="token-label">Blue</div></div>
+      <div><div class="token-swatch" style="background:#D4A843"></div><div class="token-label">Gold</div></div>
+    </div>
+  </div>
+  <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--steel);line-height:1.8;padding:0 4px">
+    Typography: Space Grotesk (display) · JetBrains Mono (data) · Source Serif 4 (body) · No Inter. No exceptions.
+  </div>
+</main>
+
+<div class="footer-rule"></div>
+<footer class="page-footer">
+  <div class="footer-motto">Humble surface. Cathedral underneath.</div>
+  <div class="footer-text">DDL Brand System · CottageHumble · PRO-BRANDING-001 · v1.0.1 · 2026-03-15<br>Dropdown Logistics · Dave Kitchens · Chaos → Structured → Automated</div>
+</footer>
+</body>
+</html>

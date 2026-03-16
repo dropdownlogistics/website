@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strategan — Strategic Vegan. Not Stupid Vegan.</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=DM+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --soil:   #1C1408;
+  --bark:   #2A1F0E;
+  --moss:   #2D3B1F;
+  --fern:   #4A6741;
+  --sage:   #7A9E6E;
+  --leaf:   #A8C896;
+  --cream:  #F5EFE0;
+  --cream2: #EDE4CF;
+  --wheat:  #D4B896;
+  --gold:   #C49A3C;
+  --rust:   #B23531;
+  --border: rgba(168,200,150,0.12);
+  --borderl: rgba(168,200,150,0.22);
+}
+
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(20px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+@keyframes sway {
+  0%,100% { transform: rotate(-1deg); }
+  50%      { transform: rotate(1deg); }
+}
+@keyframes grow {
+  from { transform: scaleY(0); transform-origin: bottom; }
+  to   { transform: scaleY(1); transform-origin: bottom; }
+}
+@keyframes shimmer {
+  0%,100% { opacity:0.6; }
+  50%      { opacity:1; }
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--soil);
+  color: var(--cream);
+  font-family: 'Lora', Georgia, serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── TEXTURE OVERLAY ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px 64px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Background botanical shapes */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 700px 500px at 15% 60%, rgba(74,103,65,0.15) 0%, transparent 70%),
+    radial-gradient(ellipse 500px 700px at 85% 30%, rgba(45,59,31,0.2) 0%, transparent 70%),
+    radial-gradient(ellipse 300px 300px at 50% 90%, rgba(45,59,31,0.25) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* SVG botanical background elements */
+.botanicals {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 800px;
+  animation: fadeUp 0.8s ease 0.1s both;
+}
+
+.hero-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.hero-eyebrow::before,
+.hero-eyebrow::after {
+  content: '✦';
+  font-size: 8px;
+  color: var(--fern);
+}
+
+.hero-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(4rem, 10vw, 8rem);
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+  color: var(--cream);
+  margin-bottom: 12px;
+}
+.hero-title span {
+  color: var(--leaf);
+  display: block;
+}
+
+.hero-tagline {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  font-style: italic;
+  color: var(--wheat);
+  margin-bottom: 36px;
+  letter-spacing: 0.02em;
+}
+
+.hero-definition {
+  max-width: 560px;
+  margin: 0 auto 48px;
+  background: rgba(42,31,14,0.6);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px 32px;
+  backdrop-filter: blur(8px);
+}
+.hero-definition dt {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--sage);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.hero-definition dd {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 1rem;
+  color: rgba(245,239,224,0.82);
+  line-height: 1.8;
+}
+.hero-definition dd em { color: var(--leaf); font-style: italic; }
+.hero-definition dd strong { color: var(--cream); }
+
+.hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 48px;
+}
+.badge {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  padding: 6px 14px;
+  border-radius: 100px;
+  border: 1px solid;
+}
+.badge-green { color: var(--leaf); border-color: rgba(168,200,150,0.35); background: rgba(74,103,65,0.15); }
+.badge-gold  { color: var(--gold);  border-color: rgba(196,154,60,0.35);  background: rgba(196,154,60,0.08); }
+.badge-rust  { color: #D4786A;      border-color: rgba(178,53,49,0.35);   background: rgba(178,53,49,0.08); }
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: var(--soil);
+  background: var(--leaf);
+  padding: 14px 28px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s;
+  font-weight: 500;
+}
+.hero-cta:hover { background: var(--cream); transform: translateY(-2px); }
+
+/* ── SECTION LAYOUT ── */
+section {
+  position: relative;
+  z-index: 1;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section-divider {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 64px 24px 0;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.divider-line { flex: 1; height: 1px; background: var(--border); }
+.divider-leaf {
+  font-size: 18px;
+  animation: sway 4s ease-in-out infinite;
+  display: inline-block;
+}
+.divider-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--sage);
+}
+
+/* ── THE PHILOSOPHY ── */
+.philosophy {
+  padding: 48px 0 64px;
+}
+
+.philosophy-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 32px;
+}
+.phil-cell {
+  background: var(--bark);
+  padding: 32px 28px;
+  border: 1px solid var(--border);
+}
+.phil-cell.featured {
+  background: var(--moss);
+  border-color: rgba(168,200,150,0.2);
+}
+.phil-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--fern);
+  line-height: 1;
+  margin-bottom: 8px;
+  opacity: 0.5;
+}
+.phil-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--cream);
+}
+.phil-body {
+  font-family: 'Lora', serif;
+  font-size: 0.9rem;
+  color: rgba(245,239,224,0.65);
+  line-height: 1.75;
+}
+.phil-body strong { color: var(--leaf); }
+
+/* ── THE FRAMEWORK ── */
+.framework {
+  padding: 48px 0 64px;
+}
+
+.framework-intro {
+  max-width: 640px;
+  margin-bottom: 40px;
+}
+.framework-intro p {
+  font-family: 'Lora', serif;
+  font-size: 1.05rem;
+  color: rgba(245,239,224,0.72);
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+.framework-intro p strong { color: var(--cream); }
+.framework-intro p em { color: var(--leaf); }
+
+.decision-tree {
+  background: var(--bark);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 32px;
+  margin-bottom: 24px;
+}
+.decision-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--leaf);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.decision-title::before { content: '⬡'; font-size: 14px; }
+
+.decision-row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.decision-item {
+  background: var(--moss);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 12px 16px;
+}
+.decision-food {
+  font-family: 'Lora', serif;
+  font-size: 0.9rem;
+  color: var(--cream);
+  margin-bottom: 3px;
+}
+.decision-note {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.06em;
+}
+.decision-note.eat { color: var(--leaf); }
+.decision-note.skip { color: var(--wheat); opacity: 0.6; }
+.decision-arrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--sage);
+  text-align: center;
+}
+
+/* ── THE COMPOUND ── */
+.compound {
+  padding: 48px 0 64px;
+}
+
+.compound-header {
+  margin-bottom: 32px;
+}
+.compound-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 900;
+  font-style: italic;
+  color: var(--cream);
+  margin-bottom: 8px;
+}
+.compound-sub {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sage);
+}
+
+.compound-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+.compound-card {
+  background: var(--bark);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px 18px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.compound-card:hover {
+  border-color: var(--borderl);
+  transform: translateY(-2px);
+}
+.compound-role {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-bottom: 8px;
+}
+.compound-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--cream);
+  margin-bottom: 6px;
+}
+.compound-desc {
+  font-family: 'Lora', serif;
+  font-size: 0.8rem;
+  color: rgba(245,239,224,0.55);
+  line-height: 1.6;
+}
+.compound-desc em { color: var(--leaf); font-style: italic; }
+
+/* ── MANIFESTO QUOTE ── */
+.manifesto {
+  padding: 48px 0 80px;
+}
+.manifesto-block {
+  background: var(--moss);
+  border: 1px solid rgba(168,200,150,0.2);
+  border-radius: 12px;
+  padding: 56px 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.manifesto-block::before {
+  content: '"';
+  position: absolute;
+  top: -20px;
+  left: 32px;
+  font-family: 'Playfair Display', serif;
+  font-size: 200px;
+  color: var(--fern);
+  opacity: 0.12;
+  line-height: 1;
+  pointer-events: none;
+}
+.manifesto-text {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.3rem, 3vw, 2rem);
+  font-style: italic;
+  font-weight: 700;
+  color: var(--cream);
+  line-height: 1.5;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+}
+.manifesto-text span { color: var(--leaf); }
+.manifesto-source {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sage);
+}
+
+/* ── RULES ── */
+.rules {
+  padding: 48px 0 64px;
+}
+.rules-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.rule-card {
+  border-radius: 8px;
+  padding: 24px;
+  border: 1px solid;
+}
+.rule-card.eat {
+  background: rgba(74,103,65,0.12);
+  border-color: rgba(168,200,150,0.2);
+}
+.rule-card.skip {
+  background: rgba(42,31,14,0.4);
+  border-color: var(--border);
+}
+.rule-card-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.eat .rule-card-label { color: var(--leaf); }
+.skip .rule-card-label { color: var(--wheat); opacity: 0.6; }
+.rule-list { list-style: none; }
+.rule-list li {
+  font-family: 'Lora', serif;
+  font-size: 0.88rem;
+  color: rgba(245,239,224,0.72);
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+  line-height: 1.5;
+}
+.rule-list li:last-child { border-bottom: none; }
+.rule-list li strong { color: var(--cream); }
+
+/* ── FOOTER ── */
+footer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 32px 24px 48px;
+  border-top: 1px solid var(--border);
+}
+.footer-motto {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--leaf);
+  margin-bottom: 8px;
+}
+.footer-meta {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: rgba(122,158,110,0.45);
+  line-height: 1.9;
+}
+
+/* ── BOTANICAL SVGs ── */
+.botanical-left {
+  position: absolute;
+  left: -20px;
+  bottom: 60px;
+  opacity: 0.12;
+  transform: scaleX(-1);
+  animation: sway 6s ease-in-out infinite;
+}
+.botanical-right {
+  position: absolute;
+  right: -20px;
+  top: 80px;
+  opacity: 0.1;
+  animation: sway 5s ease-in-out 1s infinite;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+  .philosophy-grid { grid-template-columns: 1fr; }
+  .rules-grid { grid-template-columns: 1fr; }
+  .decision-row { grid-template-columns: 1fr; }
+  .decision-arrow { display: none; }
+  .manifesto-block { padding: 40px 24px; }
+  .hero-title { font-size: 4rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <svg class="botanicals" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+    <!-- Left branch -->
+    <g opacity="0.07" fill="none" stroke="#7A9E6E" stroke-width="1.5">
+      <path d="M 60 800 Q 80 600 120 400 Q 140 300 100 200"/>
+      <path d="M 100 500 Q 160 460 200 400"/>
+      <path d="M 90 420 Q 50 370 80 310"/>
+      <path d="M 110 350 Q 170 320 190 260"/>
+      <path d="M 105 280 Q 60 250 70 190"/>
+      <ellipse cx="205" cy="398" rx="18" ry="10" transform="rotate(-20 205 398)" fill="#4A6741" stroke="none" opacity="0.6"/>
+      <ellipse cx="193" cy="258" rx="16" ry="9" transform="rotate(15 193 258)" fill="#4A6741" stroke="none" opacity="0.6"/>
+      <ellipse cx="72" cy="190" rx="14" ry="8" transform="rotate(-30 72 190)" fill="#4A6741" stroke="none" opacity="0.5"/>
+    </g>
+    <!-- Right branch -->
+    <g opacity="0.06" fill="none" stroke="#7A9E6E" stroke-width="1.5">
+      <path d="M 1140 0 Q 1120 200 1080 400 Q 1060 500 1100 600"/>
+      <path d="M 1100 250 Q 1040 280 1000 340"/>
+      <path d="M 1090 330 Q 1130 380 1110 440"/>
+      <path d="M 1080 410 Q 1020 430 1000 490"/>
+      <ellipse cx="997" cy="341" rx="18" ry="10" transform="rotate(25 997 341)" fill="#4A6741" stroke="none" opacity="0.5"/>
+      <ellipse cx="998" cy="492" rx="16" ry="9" transform="rotate(-15 998 492)" fill="#4A6741" stroke="none" opacity="0.5"/>
+    </g>
+    <!-- Scattered leaves -->
+    <g opacity="0.05" fill="#A8C896">
+      <ellipse cx="300" cy="150" rx="20" ry="10" transform="rotate(-35 300 150)"/>
+      <ellipse cx="900" cy="650" rx="18" ry="8" transform="rotate(20 900 650)"/>
+      <ellipse cx="500" cy="720" rx="15" ry="7" transform="rotate(-10 500 720)"/>
+    </g>
+  </svg>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">A dietary philosophy for people who think</div>
+
+    <h1 class="hero-title">
+      Strate<span>gan.</span>
+    </h1>
+
+    <p class="hero-tagline">Strategic vegan. Not stupid vegan.</p>
+
+    <dl class="hero-definition">
+      <dt>stra · te · gan</dt>
+      <dd>
+        <em>/ˈstratəɡən/ · noun</em><br><br>
+        A dietary philosophy where veganism is applied <strong>strategically, not categorically.</strong> You optimize around plants. You govern what matters. You don't refuse the Michelin-star short rib when it's in front of you. <em>The strategy is the point. The rigidity is the enemy.</em>
+      </dd>
+    </dl>
+
+    <div class="hero-badges">
+      <span class="badge badge-green">🌿 Plant-Forward</span>
+      <span class="badge badge-gold">✦ Context-Aware</span>
+      <span class="badge badge-rust">🥩 Exception-Tolerant</span>
+      <span class="badge badge-green">⬡ Anti-Dogma</span>
+      <span class="badge badge-gold">📊 Optimized, Not Restricted</span>
+    </div>
+
+    <a href="#philosophy" class="hero-cta">Read the Philosophy ↓</a>
+  </div>
+</div>
+
+<!-- ── PHILOSOPHY ── -->
+<div class="section-divider">
+  <div class="divider-line"></div>
+  <span class="divider-leaf">🌿</span>
+  <span class="divider-label">The Philosophy</span>
+  <span class="divider-leaf">🌿</span>
+  <div class="divider-line"></div>
+</div>
+
+<section class="philosophy" id="philosophy">
+  <div class="philosophy-grid">
+    <div class="phil-cell featured">
+      <div class="phil-num">01</div>
+      <div class="phil-title">You are not a religion.</div>
+      <p class="phil-body">Veganism as identity politics has failed everyone who ever tried it at a family dinner. <strong>Strategan is not an identity.</strong> It is an operating system. You eat with intention, not with a manifesto.</p>
+    </div>
+    <div class="phil-cell">
+      <div class="phil-num">02</div>
+      <div class="phil-title">The context matters more than the category.</div>
+      <p class="phil-body">Factory-farmed anything is a skip. <strong>A heritage-breed lamb chop from a farm you trust</strong> is not an ethical failure. It is a strategic choice. Read the room. Know your source.</p>
+    </div>
+    <div class="phil-cell">
+      <div class="phil-num">03</div>
+      <div class="phil-title">Optimization over elimination.</div>
+      <p class="phil-body">The goal is to eat more plants, fewer things that required suffering to produce, and <strong>zero things that are just bad because they're convenient.</strong> That's the whole framework.</p>
+    </div>
+    <div class="phil-cell featured">
+      <div class="phil-num">04</div>
+      <div class="phil-title">The Michelin Clause.</div>
+      <p class="phil-body">If a Michelin-star chef put it in front of you, and they sourced it with intention — <strong>eat it.</strong> Refusing on principle in that context isn't integrity. It's waste dressed up as virtue.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── FRAMEWORK ── -->
+<div class="section-divider">
+  <div class="divider-line"></div>
+  <span class="divider-leaf">⬡</span>
+  <span class="divider-label">The Decision Framework</span>
+  <span class="divider-leaf">⬡</span>
+  <div class="divider-line"></div>
+</div>
+
+<section class="framework">
+  <div class="framework-intro">
+    <p><strong>Every food decision runs through the same filter.</strong> Not "is this vegan?" — that's a binary that collapses under any real-world pressure. The Strategan filter is: <em>is this intentional?</em></p>
+    <p>You eat plants by default. You eat animals by exception. You make the exception count.</p>
+  </div>
+
+  <div class="decision-tree">
+    <div class="decision-title">The Strategan Filter — Applied</div>
+
+    <div class="decision-row">
+      <div class="decision-item">
+        <div class="decision-food">Farmers market vegetables</div>
+        <div class="decision-note eat">✓ EAT — default mode</div>
+      </div>
+      <div class="decision-arrow">→</div>
+      <div class="decision-item">
+        <div class="decision-food">Local, sourced, intentional</div>
+        <div class="decision-note eat">Strategic eat. No question.</div>
+      </div>
+    </div>
+
+    <div class="decision-row">
+      <div class="decision-item">
+        <div class="decision-food">Michelin-star tasting menu</div>
+        <div class="decision-note eat">✓ EAT — Michelin Clause</div>
+      </div>
+      <div class="decision-arrow">→</div>
+      <div class="decision-item">
+        <div class="decision-food">Chef sourced it with care</div>
+        <div class="decision-note eat">Refusing is waste. Eat it.</div>
+      </div>
+    </div>
+
+    <div class="decision-row">
+      <div class="decision-item">
+        <div class="decision-food">Grass-fed heritage beef</div>
+        <div class="decision-note eat">✓ EAT — exception, earned</div>
+      </div>
+      <div class="decision-arrow">→</div>
+      <div class="decision-item">
+        <div class="decision-food">Know the source, make it count</div>
+        <div class="decision-note eat">Strategic exception. Intentional.</div>
+      </div>
+    </div>
+
+    <div class="decision-row">
+      <div class="decision-item">
+        <div class="decision-food">Fast food chicken nuggets</div>
+        <div class="decision-note skip">✗ SKIP — factory, no intention</div>
+      </div>
+      <div class="decision-arrow">→</div>
+      <div class="decision-item">
+        <div class="decision-food">Convenience dressed as food</div>
+        <div class="decision-note skip">Not a strategic exception. Skip.</div>
+      </div>
+    </div>
+
+    <div class="decision-row">
+      <div class="decision-item">
+        <div class="decision-food">Gas station "vegan" snack bar</div>
+        <div class="decision-note skip">✗ SKIP — technically vegan, actually trash</div>
+      </div>
+      <div class="decision-arrow">→</div>
+      <div class="decision-item">
+        <div class="decision-food">The label lies. The ingredients don't.</div>
+        <div class="decision-note skip">Strategan skips the label. Reads the list.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MANIFESTO ── -->
+<div class="section-divider">
+  <div class="divider-line"></div>
+  <span class="divider-leaf">✦</span>
+  <span class="divider-label">The Manifesto</span>
+  <span class="divider-leaf">✦</span>
+  <div class="divider-line"></div>
+</div>
+
+<section class="manifesto">
+  <div class="manifesto-block">
+    <p class="manifesto-text">
+      "Eat plants by default.<br>
+      Eat animals <span>by exception.</span><br>
+      Make the exception count.<br>
+      And never refuse the short rib."
+    </p>
+    <div class="manifesto-source">The Strategan Manifesto · Coined March 15, 2026 · The Compound</div>
+  </div>
+</section>
+
+<!-- ── THE RULES ── -->
+<div class="section-divider">
+  <div class="divider-line"></div>
+  <span class="divider-leaf">🌿</span>
+  <span class="divider-label">Eat / Skip</span>
+  <span class="divider-leaf">🌿</span>
+  <div class="divider-line"></div>
+</div>
+
+<section class="rules">
+  <div class="rules-grid">
+    <div class="rule-card eat">
+      <div class="rule-card-label">✓ Strategic Eats</div>
+      <ul class="rule-list">
+        <li><strong>All vegetables</strong> — always, no exception, this is the whole point</li>
+        <li><strong>Legumes, grains, seeds</strong> — default fuel, no apology needed</li>
+        <li><strong>Heritage / pasture-raised meat</strong> — sourced, intentional, earned</li>
+        <li><strong>Wild-caught fish</strong> — context matters, source matters</li>
+        <li><strong>Anything a trusted chef sourced</strong> — Michelin Clause, full stop</li>
+        <li><strong>Fermented everything</strong> — your roommate who farms knows why</li>
+        <li><strong>Eggs from birds you've met</strong> — or at least from birds that saw the sun</li>
+      </ul>
+    </div>
+    <div class="rule-card skip">
+      <div class="rule-card-label">✗ Strategic Skips</div>
+      <ul class="rule-list">
+        <li><strong>Factory-farmed anything</strong> — not a strategic exception, just a bad habit</li>
+        <li><strong>Ultra-processed "vegan" products</strong> — the label doesn't make it food</li>
+        <li><strong>Convenience meat</strong> — fast food, gas station, parking lot decisions</li>
+        <li><strong>Dairy from operations you can't picture</strong> — if you don't know, skip</li>
+        <li><strong>Dogma</strong> — refusing food on principle at someone's table is its own kind of bad</li>
+        <li><strong>Virtue signaling disguised as diet</strong> — no one is impressed, eat your vegetables</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ── THE COMPOUND ── -->
+<div class="section-divider">
+  <div class="divider-line"></div>
+  <span class="divider-leaf">⬡</span>
+  <span class="divider-label">The Compound</span>
+  <span class="divider-leaf">⬡</span>
+  <div class="divider-line"></div>
+</div>
+
+<section class="compound">
+  <div class="compound-header">
+    <div class="compound-title">The Origin Story</div>
+    <div class="compound-sub">Where Strategan was coined · March 2026</div>
+  </div>
+  <p style="font-family:'Lora',serif;font-size:0.95rem;color:rgba(245,239,224,0.65);line-height:1.8;max-width:640px;margin-bottom:32px;">
+    Two guys. One building AI governance systems. One working for a Michelin-star chef, obsessed with food science and fermentation. They started joking about a compound where they'd all live if one of the ideas paid off. The food guy would run the farm. The systems guy would run the spreadsheets. And together they'd invent the diet that doesn't require you to be miserable.
+  </p>
+
+  <div class="compound-grid">
+    <div class="compound-card">
+      <div class="compound-role">The Farmer</div>
+      <div class="compound-name">The Roommate</div>
+      <p class="compound-desc">Food science. Bartender. Michelin-star kitchen. <em>Runs the compound farm.</em> Knows why fermentation matters more than any supplement.</p>
+    </div>
+    <div class="compound-card">
+      <div class="compound-role">The Architect</div>
+      <div class="compound-name">Dave</div>
+      <p class="compound-desc">CPA. Systems builder. Runs the spreadsheets. <em>Coined the term Strategan</em> in the same conversation he coined AccidentalIntelligence. Productive evening.</p>
+    </div>
+    <div class="compound-card">
+      <div class="compound-role">The Philosophy</div>
+      <div class="compound-name">Strategan</div>
+      <p class="compound-desc">Born March 15, 2026. <em>Strategic vegan. Not stupid vegan.</em> The dietary equivalent of the DDL methodology: govern what matters, let the rest flex.</p>
+    </div>
+    <div class="compound-card">
+      <div class="compound-role">The Governance</div>
+      <div class="compound-name">Hal</div>
+      <p class="compound-desc">The compound's tiny green governance goblin. <em>Holds a sign.</em> The sign says "STRATEGAN COMPLIANT." The sign is always accurate.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-motto">"Eat plants by default. Make the exception count."</div>
+  <div class="footer-meta">
+    Strategan · Strategic Vegan · Not Stupid Vegan<br>
+    Coined March 15, 2026 · The Compound · A very productive conversation<br>
+    Chaos → Structured → Automated → Fed
+  </div>
+</footer>
+
+</body>
+</html>

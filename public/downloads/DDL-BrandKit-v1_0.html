@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dropdown Logistics — Brand Kit v1.0</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --navy:    #0D1B2A;
+  --card:    #10202F;
+  --card2:   #0F1D2A;
+  --cream:   #F5F1EB;
+  --crimson: #B23531;
+  --copper:  #C49A3C;
+  --steel:   #6B7B8D;
+  --border:  rgba(245,241,235,0.07);
+  --border-lt: rgba(245,241,235,0.12);
+  /* Product accents — full token registry */
+  --teal:    #2C7A7B;
+  --violet:  #8A6CC9;
+  --blue:    #6B9DC2;
+  --green:   #22C55E;
+  --amber:   #C49A3C;
+  --gold:    #D4A843;
+}
+
+body {
+  background: var(--navy);
+  color: var(--cream);
+  font-family: 'Source Serif 4', Georgia, serif;
+  min-height: 100vh;
+  padding: 60px 24px 80px;
+}
+
+.page { max-width: 1100px; margin: 0 auto; }
+
+/* ── HEADER ── */
+.brand-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 72px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.brand-header-left h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+.brand-header-left h1 span { color: var(--crimson); }
+.brand-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--steel);
+  letter-spacing: 0.04em;
+  line-height: 1.9;
+}
+
+/* ── SECTIONS ── */
+.section { margin-bottom: 72px; }
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--crimson);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+.section-desc {
+  font-size: 0.9rem;
+  color: var(--steel);
+  line-height: 1.6;
+  margin-bottom: 32px;
+  max-width: 640px;
+}
+.divider {
+  width: 100%;
+  height: 1px;
+  background: var(--border);
+  margin-bottom: 72px;
+}
+
+/* ── LOGO GRID ── */
+.logo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.logo-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px 20px;
+  min-height: 200px;
+  gap: 16px;
+}
+.logo-cell-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.58rem;
+  color: var(--steel);
+  letter-spacing: 0.06em;
+}
+.on-navy  { background: var(--navy); }
+.on-card  { background: var(--card); }
+.on-dark  { background: #060E17; }
+.on-cream { background: var(--cream); }
+.on-crimson { background: var(--crimson); }
+
+/* ── MARK SIZES ── */
+.mark-lg { width: 120px; height: 120px; }
+.mark-md { width: 80px; height: 80px; }
+.mark-sm { width: 48px; height: 48px; }
+.mark-xs { width: 32px; height: 32px; }
+
+/* ── WORDMARK ── */
+.wordmark-block {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.wordmark-text h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 1.6rem;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.wordmark-text .sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  color: var(--crimson);
+  text-transform: uppercase;
+}
+
+/* ── PALETTE ── */
+.palette-section { margin-bottom: 48px; }
+.palette-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  color: var(--steel);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.swatch-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.swatch {
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  width: 120px;
+}
+.swatch-block { height: 72px; }
+.swatch-info {
+  padding: 8px 10px 10px;
+  background: var(--card);
+}
+.swatch-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+.swatch-hex {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  color: var(--steel);
+}
+.swatch-role {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.57rem;
+  color: var(--crimson);
+  margin-top: 3px;
+}
+
+/* ── PRODUCT ACCENT TABLE ── */
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 32px;
+}
+.product-table th {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  color: var(--steel);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: left;
+  padding: 0 16px 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+.product-table td {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem;
+  padding: 12px 16px 12px 0;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+.product-table td:last-child { padding-right: 0; }
+.accent-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.accent-dot {
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.mono { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--steel); }
+
+/* ── TYPOGRAPHY ── */
+.type-samples { display: flex; flex-direction: column; gap: 24px; }
+.type-sample {
+  padding: 28px 32px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.type-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--crimson);
+  letter-spacing: 0.06em;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+.type-display {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.type-display span { color: var(--crimson); }
+.type-body {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: rgba(245,241,235,0.85);
+}
+.type-body em { color: var(--steel); }
+.type-mono {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  line-height: 1.8;
+  color: var(--steel);
+}
+
+/* ── RULES ── */
+.rules-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.rule-card {
+  padding: 24px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+.rule-card.do { border-color: rgba(74,158,107,0.3); background: rgba(74,158,107,0.04); }
+.rule-card.dont { border-color: rgba(178,53,49,0.3); background: rgba(178,53,49,0.04); }
+.rule-card-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.rule-card.do .rule-card-label { color: #4A9E6B; }
+.rule-card.dont .rule-card-label { color: var(--crimson); }
+.rule-list { list-style: none; }
+.rule-list li {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: rgba(245,241,235,0.75);
+  padding: 4px 0;
+  border-bottom: 1px solid var(--border);
+}
+.rule-list li:last-child { border-bottom: none; }
+
+/* ── STAMP ANATOMY ── */
+.anatomy-block {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 32px;
+  display: flex;
+  gap: 48px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.anatomy-stamp { flex-shrink: 0; }
+.anatomy-legend { flex: 1; min-width: 280px; }
+.anatomy-legend h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.anatomy-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+.anatomy-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+.anatomy-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--steel);
+  line-height: 1.6;
+}
+.anatomy-text strong {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.75rem;
+  color: var(--cream);
+  display: block;
+  margin-bottom: 1px;
+}
+
+/* ── FAVICON STRIP ── */
+.favicon-strip {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 32px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  flex-wrap: wrap;
+}
+.fav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.fav-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.58rem;
+  color: var(--steel);
+  letter-spacing: 0.04em;
+}
+
+/* ── DROPDOWN MARK ── */
+.dropdown-mark-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+/* ── FOOTER ── */
+.brand-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-top: 48px;
+  border-top: 1px solid var(--border);
+  margin-top: 48px;
+}
+.brand-footer-left {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--steel);
+  line-height: 1.8;
+}
+.brand-footer-right {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--crimson);
+  letter-spacing: 0.06em;
+  text-align: right;
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ═══ HEADER ═══ -->
+  <div class="brand-header">
+    <div class="brand-header-left">
+      <h1>Dropdown <span>Logistics</span></h1>
+      <p class="brand-meta">
+        Brand Kit v1.0 · 2026-03-15<br>
+        Design System: CottageHumble<br>
+        Operator: Dave Kitchens · CPA<br>
+        Studio: Dropdown Logistics (DDL)
+      </p>
+    </div>
+    <svg viewBox="0 0 140 140" width="80" height="80">
+      <defs>
+        <path id="ta" d="M 20,70 A 50,50 0 0,1 120,70"/>
+        <path id="ba" d="M 20,70 A 50,50 0 0,0 120,70"/>
+      </defs>
+      <circle cx="70" cy="70" r="66" fill="none" stroke="#B23531" stroke-width="2.5"/>
+      <circle cx="70" cy="70" r="56" fill="none" stroke="#B23531" stroke-width="0.75" stroke-dasharray="3 4"/>
+      <circle cx="70" cy="70" r="62" fill="#0D1B2A"/>
+      <text x="70" y="80" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="36" fill="#B23531" letter-spacing="-3">DD</text>
+      <text font-family="JetBrains Mono, monospace" font-size="6.5" fill="#F5F1EB" letter-spacing="3"><textPath href="#ta" startOffset="50%" text-anchor="middle">DROPDOWN</textPath></text>
+      <text font-family="JetBrains Mono, monospace" font-size="6.5" fill="#6B7B8D" letter-spacing="3"><textPath href="#ba" startOffset="50%" text-anchor="middle">LOGISTICS</textPath></text>
+      <line x1="70" y1="4"   x2="70" y2="11"  stroke="#B23531" stroke-width="1.5"/>
+      <line x1="70" y1="129" x2="70" y2="136" stroke="#B23531" stroke-width="1.5"/>
+      <line x1="4"  y1="70"  x2="11" y2="70"  stroke="#B23531" stroke-width="1.5"/>
+      <line x1="129" y1="70" x2="136" y2="70" stroke="#B23531" stroke-width="1.5"/>
+      <circle cx="8"   cy="70" r="2.5" fill="#C49A3C"/>
+      <circle cx="132" cy="70" r="2.5" fill="#C49A3C"/>
+    </svg>
+  </div>
+
+  <!-- ═══ 01 — DD STAMP MARK ═══ -->
+  <div class="section">
+    <div class="section-label">01 — Primary Mark</div>
+    <div class="section-title">The DD Stamp</div>
+    <p class="section-desc">The canonical DDL identity mark. Crimson ring on navy. DD monogram in crimson cream. Copper dots at 9 and 3 o'clock. Scales from favicon to hero.</p>
+
+    <div class="logo-grid">
+      <div class="logo-cell on-navy">
+        <svg viewBox="0 0 140 140" class="mark-lg">
+          <defs>
+            <path id="ta1" d="M 20,70 A 50,50 0 0,1 120,70"/>
+            <path id="ba1" d="M 20,70 A 50,50 0 0,0 120,70"/>
+          </defs>
+          <circle cx="70" cy="70" r="66" fill="none" stroke="#B23531" stroke-width="2.5"/>
+          <circle cx="70" cy="70" r="56" fill="none" stroke="#B23531" stroke-width="0.75" stroke-dasharray="3 4"/>
+          <circle cx="70" cy="70" r="62" fill="#0D1B2A"/>
+          <text x="70" y="80" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="36" fill="#B23531" letter-spacing="-3">DD</text>
+          <text font-family="JetBrains Mono, monospace" font-size="6.5" fill="#F5F1EB" letter-spacing="3"><textPath href="#ta1" startOffset="50%" text-anchor="middle">DROPDOWN</textPath></text>
+          <text font-family="JetBrains Mono, monospace" font-size="6.5" fill="#6B7B8D" letter-spacing="3"><textPath href="#ba1" startOffset="50%" text-anchor="middle">LOGISTICS</textPath></text>
+          <line x1="70" y1="4" x2="70" y2="11" stroke="#B23531" stroke-width="1.5"/>
+          <line x1="70" y1="129" x2="70" y2="136" stroke="#B23531" stroke-width="1.5"/>
+          <line x1="4" y1="70" x2="11" y2="70" stroke="#B23531" stroke-width="1.5"/>
+          <line x1="129" y1="70" x2="136" y2="70" stroke="#B23531" stroke-width="1.5"/>
+          <circle cx="8" cy="70" r="2.5" fill="#C49A3C"/>
+          <circle cx="132" cy="70" r="2.5" fill="#C49A3C"/>
+        </svg>
+        <div class="logo-cell-label">ON NAVY · PRIMARY</div>
+      </div>
+      <div class="logo-cell on-card">
+        <svg viewBox="0 0 140 140" class="mark-lg">
+          <defs>
+            <path id="ta2" d="M 20,70 A 50,50 0 0,1 120,70"/>
+            <path id="ba2" d="M 20,70 A 50,50 0 0,0 120,70"/>
+          </defs>
+          <circle cx="70" cy="70" r="66" fill="none" stroke="#B23531" stroke-width="2.5"/>
+          <circle cx="70" cy="70" r="56" fill="none" stroke="#B23531" stroke-width="0.75" stroke-dasharray="3 4"/>
+          <circle cx="70" cy="70" r="62" fill="#10202F"/>
+          <text x="70" y="80" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="36" fill="#B23531" letter-spacing="-3">DD</text>
+          <text font-family="JetBrains Mono, monospace" font-size="6.5" fill="#F5F1EB" letter-spacing="3"><textPath href="#ta2" startOffset="50%" text-anchor="middle">DROPDOWN</textPath></text>
+          <text font-family="JetBrains Mono, monospace" font-size="6.5" fill="#6B7B8D" letter-spacing="3"><textPath href="#ba2" startOffset="50%" text-anchor="middle">LOGISTICS</textPath></text>
+          <line x1="70" y1="4" x2="70" y2="11" stroke="#B23531" stroke-width="1.5"/>
+          <line x1="70" y1="129" x2="70" y2="136" stroke="#B23531" stroke-width="1.5"/>
+          <line x1="4" y1="70" x2="11" y2="70" stroke="#B23531" stroke-width="1.5"/>
+          <line x1="129" y1="70" x2="136" y2="70" stroke="#B23531" stroke-width="1.5"/>
+          <circle cx="8" cy="70" r="2.5" fill="#C49A3C"/>
+          <circle cx="132" cy="70" r="2.5" fill="#C49A3C"/>
+        </svg>
+        <div class="logo-cell-label">ON CARD</div>
+      </div>
+      <div class="logo-cell on-cream">
+        <svg viewBox="0 0 140 140" class="mark-lg">
+          <defs>
+            <path id="ta3" d="M 20,70 A 50,50 0 0,1 120,70"/>
+            <path id="ba3" d="M 20,70 A 50,50 0 0,0 120,70"/>
+          </defs>
+          <circle cx="70" cy="70" r="66" fill="none" stroke="#B23531" stroke-width="2.5"/>
+          <circle cx="70" cy="70" r="56" fill="none" stroke="#0D1B2A" stroke-width="0.75" stroke-dasharray="3 4"/>
+          <circle cx="70" cy="70" r="62" fill="#F5F1EB"/>
+          <text x="70" y="80" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="36" fill="#B23531" letter-spacing="-3">DD</text>
+          <text font-family="JetBrains Mono, monospace" font-size="6.5" fill="#0D1B2A" letter-spacing="3"><textPath href="#ta3" startOffset="50%" text-anchor="middle">DROPDOWN</textPath></text>
+          <text font-family="JetBrains Mono, monospace" font-size="6.5" fill="#6B7B8D" letter-spacing="3"><textPath href="#ba3" startOffset="50%" text-anchor="middle">LOGISTICS</textPath></text>
+          <line x1="70" y1="4" x2="70" y2="11" stroke="#B23531" stroke-width="1.5"/>
+          <line x1="70" y1="129" x2="70" y2="136" stroke="#B23531" stroke-width="1.5"/>
+          <line x1="4" y1="70" x2="11" y2="70" stroke="#B23531" stroke-width="1.5"/>
+          <line x1="129" y1="70" x2="136" y2="70" stroke="#B23531" stroke-width="1.5"/>
+          <circle cx="8" cy="70" r="2.5" fill="#C49A3C"/>
+          <circle cx="132" cy="70" r="2.5" fill="#C49A3C"/>
+        </svg>
+        <div class="logo-cell-label" style="color:#6B7B8D">ON CREAM · DOCUMENT USE</div>
+      </div>
+    </div>
+
+    <!-- Stamp anatomy -->
+    <div class="anatomy-block" style="margin-top:16px;">
+      <div class="anatomy-stamp">
+        <svg viewBox="0 0 140 140" width="140" height="140">
+          <defs>
+            <path id="ta4" d="M 20,70 A 50,50 0 0,1 120,70"/>
+            <path id="ba4" d="M 20,70 A 50,50 0 0,0 120,70"/>
+          </defs>
+          <circle cx="70" cy="70" r="66" fill="none" stroke="#B23531" stroke-width="2.5"/>
+          <circle cx="70" cy="70" r="56" fill="none" stroke="#B23531" stroke-width="0.75" stroke-dasharray="3 4"/>
+          <circle cx="70" cy="70" r="62" fill="#0D1B2A"/>
+          <text x="70" y="80" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="36" fill="#B23531" letter-spacing="-3">DD</text>
+          <text font-family="JetBrains Mono, monospace" font-size="6.5" fill="#F5F1EB" letter-spacing="3"><textPath href="#ta4" startOffset="50%" text-anchor="middle">DROPDOWN</textPath></text>
+          <text font-family="JetBrains Mono, monospace" font-size="6.5" fill="#6B7B8D" letter-spacing="3"><textPath href="#ba4" startOffset="50%" text-anchor="middle">LOGISTICS</textPath></text>
+          <line x1="70" y1="4" x2="70" y2="11" stroke="#B23531" stroke-width="1.5"/>
+          <line x1="70" y1="129" x2="70" y2="136" stroke="#B23531" stroke-width="1.5"/>
+          <line x1="4" y1="70" x2="11" y2="70" stroke="#B23531" stroke-width="1.5"/>
+          <line x1="129" y1="70" x2="136" y2="70" stroke="#B23531" stroke-width="1.5"/>
+          <circle cx="8" cy="70" r="2.5" fill="#C49A3C"/>
+          <circle cx="132" cy="70" r="2.5" fill="#C49A3C"/>
+        </svg>
+      </div>
+      <div class="anatomy-legend">
+        <h4>Stamp Anatomy</h4>
+        <div class="anatomy-item">
+          <div class="anatomy-dot" style="background:#B23531"></div>
+          <div class="anatomy-text"><strong>Outer ring</strong>Solid stroke, 2.5px, crimson #B23531</div>
+        </div>
+        <div class="anatomy-item">
+          <div class="anatomy-dot" style="background:#B23531; opacity:0.5"></div>
+          <div class="anatomy-text"><strong>Dashed inner ring</strong>0.75px, crimson, stroke-dasharray: 3 4</div>
+        </div>
+        <div class="anatomy-item">
+          <div class="anatomy-dot" style="background:#B23531"></div>
+          <div class="anatomy-text"><strong>Monogram DD</strong>Space Grotesk 700, crimson, 36px, letter-spacing: -3</div>
+        </div>
+        <div class="anatomy-item">
+          <div class="anatomy-dot" style="background:#F5F1EB"></div>
+          <div class="anatomy-text"><strong>Arc text top</strong>"DROPDOWN" — JetBrains Mono, 6.5px, cream, letter-spacing: 3</div>
+        </div>
+        <div class="anatomy-item">
+          <div class="anatomy-dot" style="background:#6B7B8D"></div>
+          <div class="anatomy-text"><strong>Arc text bottom</strong>"LOGISTICS" — JetBrains Mono, 6.5px, steel</div>
+        </div>
+        <div class="anatomy-item">
+          <div class="anatomy-dot" style="background:#B23531"></div>
+          <div class="anatomy-text"><strong>Cardinal marks</strong>4 tick marks N/S/E/W, 1.5px, crimson</div>
+        </div>
+        <div class="anatomy-item">
+          <div class="anatomy-dot" style="background:#C49A3C"></div>
+          <div class="anatomy-text"><strong>Copper dots</strong>At 9 o'clock and 3 o'clock, r=2.5, copper #C49A3C</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══ 02 — FAVICON / REDUCTION MARK ═══ -->
+  <div class="section">
+    <div class="section-label">02 — Reduction Mark</div>
+    <div class="section-title">Favicon & Small Sizes</div>
+    <p class="section-desc">At 32px and below, the arc text and cardinal marks are dropped. Monogram only with single outer ring. Legible at every scale.</p>
+
+    <div class="favicon-strip">
+      <div class="fav-item">
+        <svg viewBox="0 0 140 140" width="128" height="128">
+          <circle cx="70" cy="70" r="66" fill="none" stroke="#B23531" stroke-width="2.5"/>
+          <circle cx="70" cy="70" r="56" fill="none" stroke="#B23531" stroke-width="0.75" stroke-dasharray="3 4"/>
+          <circle cx="70" cy="70" r="62" fill="#0D1B2A"/>
+          <text x="70" y="80" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="36" fill="#B23531" letter-spacing="-3">DD</text>
+          <line x1="70" y1="4" x2="70" y2="11" stroke="#B23531" stroke-width="1.5"/>
+          <line x1="70" y1="129" x2="70" y2="136" stroke="#B23531" stroke-width="1.5"/>
+          <line x1="4" y1="70" x2="11" y2="70" stroke="#B23531" stroke-width="1.5"/>
+          <line x1="129" y1="70" x2="136" y2="70" stroke="#B23531" stroke-width="1.5"/>
+          <circle cx="8" cy="70" r="2.5" fill="#C49A3C"/>
+          <circle cx="132" cy="70" r="2.5" fill="#C49A3C"/>
+        </svg>
+        <div class="fav-label">128×128</div>
+      </div>
+      <div class="fav-item">
+        <svg viewBox="0 0 140 140" width="64" height="64">
+          <circle cx="70" cy="70" r="66" fill="none" stroke="#B23531" stroke-width="2.5"/>
+          <circle cx="70" cy="70" r="62" fill="#0D1B2A"/>
+          <text x="70" y="80" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="36" fill="#B23531" letter-spacing="-3">DD</text>
+          <circle cx="8" cy="70" r="2.5" fill="#C49A3C"/>
+          <circle cx="132" cy="70" r="2.5" fill="#C49A3C"/>
+        </svg>
+        <div class="fav-label">64×64</div>
+      </div>
+      <div class="fav-item">
+        <svg viewBox="0 0 140 140" width="48" height="48">
+          <circle cx="70" cy="70" r="66" fill="none" stroke="#B23531" stroke-width="3"/>
+          <circle cx="70" cy="70" r="62" fill="#0D1B2A"/>
+          <text x="70" y="80" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="36" fill="#B23531" letter-spacing="-3">DD</text>
+        </svg>
+        <div class="fav-label">48×48</div>
+      </div>
+      <div class="fav-item">
+        <svg viewBox="0 0 140 140" width="32" height="32">
+          <circle cx="70" cy="70" r="66" fill="none" stroke="#B23531" stroke-width="4"/>
+          <circle cx="70" cy="70" r="62" fill="#0D1B2A"/>
+          <text x="70" y="82" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="40" fill="#B23531" letter-spacing="-3">DD</text>
+        </svg>
+        <div class="fav-label">32×32</div>
+      </div>
+      <div class="fav-item">
+        <svg viewBox="0 0 140 140" width="16" height="16">
+          <circle cx="70" cy="70" r="68" fill="#B23531"/>
+          <text x="70" y="82" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="50" fill="#0D1B2A" letter-spacing="-3">D</text>
+        </svg>
+        <div class="fav-label">16×16</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══ 03 — DROPDOWN SELECTOR MARK ═══ -->
+  <div class="section">
+    <div class="section-label">03 — Secondary Mark</div>
+    <div class="section-title">The Dropdown Selector</div>
+    <p class="section-desc">The original DDL mark. A graphical dropdown menu — Drop / Down / Logistics stacked with crimson fill on the active row. Used for friendly, conversational, and UI-adjacent contexts. Not for formal brand expressions.</p>
+
+    <div class="dropdown-mark-grid">
+      <div class="logo-cell on-navy">
+        <svg viewBox="0 0 240 200" width="200" height="160">
+          <rect x="20" y="12" width="200" height="176" rx="12" fill="#F5F1EB"/>
+          <line x1="20" y1="72" x2="220" y2="72" stroke="#D0D5DD" stroke-width="1"/>
+          <line x1="20" y1="128" x2="220" y2="128" stroke="#D0D5DD" stroke-width="1"/>
+          <rect x="21" y="128" width="198" height="59" fill="#B23531"/>
+          <rect x="214" y="140" width="0" height="0"/>
+          <!-- Chevron on active row -->
+          <polygon points="196,152 208,152 202,162" fill="#F5F1EB"/>
+          <text x="40" y="52" font-family="Space Grotesk, sans-serif" font-weight="600" font-size="18" fill="#0D1B2A">Drop</text>
+          <text x="40" y="108" font-family="Space Grotesk, sans-serif" font-weight="600" font-size="18" fill="#0D1B2A">Down</text>
+          <text x="40" y="166" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="18" fill="#F5F1EB">Logistics</text>
+          <!-- Cursor -->
+          <polygon points="184,155 184,175 189,170 192,178 195,777 192,770 196,777" fill="#0D1B2A" opacity="0"/>
+          <line x1="184" y1="154" x2="184" y2="178" stroke="#0D1B2A" stroke-width="2"/>
+          <line x1="184" y1="154" x2="196" y2="162" stroke="#0D1B2A" stroke-width="2"/>
+          <line x1="196" y1="162" x2="191" y2="162" stroke="#0D1B2A" stroke-width="2"/>
+          <line x1="191" y1="162" x2="196" y2="178" stroke="#0D1B2A" stroke-width="2"/>
+        </svg>
+        <div class="logo-cell-label">ON NAVY</div>
+      </div>
+      <div class="logo-cell on-card">
+        <div style="display:flex;align-items:center;gap:16px;">
+          <svg viewBox="0 0 240 200" width="120" height="96">
+            <rect x="20" y="12" width="200" height="176" rx="12" fill="#F5F1EB"/>
+            <line x1="20" y1="72" x2="220" y2="72" stroke="#D0D5DD" stroke-width="1"/>
+            <line x1="20" y1="128" x2="220" y2="128" stroke="#D0D5DD" stroke-width="1"/>
+            <rect x="21" y="128" width="198" height="59" fill="#B23531"/>
+            <text x="40" y="52" font-family="Space Grotesk, sans-serif" font-weight="600" font-size="18" fill="#0D1B2A">Drop</text>
+            <text x="40" y="108" font-family="Space Grotesk, sans-serif" font-weight="600" font-size="18" fill="#0D1B2A">Down</text>
+            <text x="40" y="166" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="18" fill="#F5F1EB">Logistics</text>
+          </svg>
+          <div>
+            <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.4rem;letter-spacing:-0.02em;color:#F5F1EB;">Dropdown Logistics</div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:#B23531;letter-spacing:0.1em;margin-top:4px;">CHAOS → STRUCTURED → AUTOMATED</div>
+          </div>
+        </div>
+        <div class="logo-cell-label">HORIZONTAL LOCKUP</div>
+      </div>
+      <div class="logo-cell on-dark">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+          <svg viewBox="0 0 240 200" width="80" height="64">
+            <rect x="20" y="12" width="200" height="176" rx="12" fill="#F5F1EB"/>
+            <line x1="20" y1="72" x2="220" y2="72" stroke="#D0D5DD" stroke-width="1"/>
+            <line x1="20" y1="128" x2="220" y2="128" stroke="#D0D5DD" stroke-width="1"/>
+            <rect x="21" y="128" width="198" height="59" fill="#B23531"/>
+            <text x="40" y="52" font-family="Space Grotesk, sans-serif" font-weight="600" font-size="18" fill="#0D1B2A">Drop</text>
+            <text x="40" y="108" font-family="Space Grotesk, sans-serif" font-weight="600" font-size="18" fill="#0D1B2A">Down</text>
+            <text x="40" y="166" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="18" fill="#F5F1EB">Logistics</text>
+          </svg>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:#6B7B8D;letter-spacing:0.06em;text-align:center;">FRIENDLY CONTEXTS<br>EDUCATIONAL · UI</div>
+        </div>
+        <div class="logo-cell-label">STANDALONE ICON</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══ 04 — COLOR SYSTEM ═══ -->
+  <div class="section">
+    <div class="section-label">04 — Color System</div>
+    <div class="section-title">CottageHumble Tokens</div>
+
+    <div class="palette-section">
+      <div class="palette-label">Global — Never Change</div>
+      <div class="swatch-row">
+        <div class="swatch">
+          <div class="swatch-block" style="background:#0D1B2A"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Navy</div>
+            <div class="swatch-hex">#0D1B2A</div>
+            <div class="swatch-role">Primary bg · The floor</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#10202F"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Card</div>
+            <div class="swatch-hex">#10202F</div>
+            <div class="swatch-role">Surface · Cards</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#F5F1EB; border:1px solid rgba(0,0,0,0.08)"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Cream</div>
+            <div class="swatch-hex">#F5F1EB</div>
+            <div class="swatch-role">Primary text</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#6B7B8D"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Steel</div>
+            <div class="swatch-hex">#6B7B8D</div>
+            <div class="swatch-role">Secondary text</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#B23531"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Crimson</div>
+            <div class="swatch-hex">#B23531</div>
+            <div class="swatch-role">DDL · AuditForge</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#C49A3C"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Copper</div>
+            <div class="swatch-hex">#C49A3C</div>
+            <div class="swatch-role">D&A · Stamp dots</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="palette-section">
+      <div class="palette-label">Product Accents — One Per Product</div>
+      <table class="product-table">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Accent</th>
+            <th>Hex</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Dropdown Logistics</td>
+            <td><div class="accent-chip"><div class="accent-dot" style="background:#B23531"></div>Crimson</div></td>
+            <td class="mono">#B23531</td>
+            <td><span style="color:#4A9E6B;font-family:'JetBrains Mono',monospace;font-size:0.7rem;">LOCKED</span></td>
+          </tr>
+          <tr>
+            <td>AuditForge</td>
+            <td><div class="accent-chip"><div class="accent-dot" style="background:#B23531"></div>Crimson</div></td>
+            <td class="mono">#B23531</td>
+            <td><span style="color:#4A9E6B;font-family:'JetBrains Mono',monospace;font-size:0.7rem;">LOCKED</span></td>
+          </tr>
+          <tr>
+            <td>BlindSpot (product)</td>
+            <td><div class="accent-chip"><div class="accent-dot" style="background:#22C55E"></div>Dave Green</div></td>
+            <td class="mono">#22C55E</td>
+            <td><span style="color:#4A9E6B;font-family:'JetBrains Mono',monospace;font-size:0.7rem;">LOCKED</span></td>
+          </tr>
+          <tr>
+            <td>D&A Analytics (studio ref)</td>
+            <td><div class="accent-chip"><div class="accent-dot" style="background:#C49A3C"></div>Amber</div></td>
+            <td class="mono">#C49A3C</td>
+            <td><span style="color:#4A9E6B;font-family:'JetBrains Mono',monospace;font-size:0.7rem;">LOCKED</span></td>
+          </tr>
+          <tr>
+            <td>Knowledge Vault</td>
+            <td><div class="accent-chip"><div class="accent-dot" style="background:#2C7A7B"></div>Teal</div></td>
+            <td class="mono">#2C7A7B</td>
+            <td><span style="color:#4A9E6B;font-family:'JetBrains Mono',monospace;font-size:0.7rem;">LOCKED</span></td>
+          </tr>
+          <tr>
+            <td>DexVerse / Dex Jr.</td>
+            <td><div class="accent-chip"><div class="accent-dot" style="background:#8A6CC9"></div>Violet</div></td>
+            <td class="mono">#8A6CC9</td>
+            <td><span style="color:#4A9E6B;font-family:'JetBrains Mono',monospace;font-size:0.7rem;">LOCKED</span></td>
+          </tr>
+          <tr>
+            <td>The Bench</td>
+            <td><div class="accent-chip"><div class="accent-dot" style="background:#6B9DC2"></div>Blue</div></td>
+            <td class="mono">#6B9DC2</td>
+            <td><span style="color:#4A9E6B;font-family:'JetBrains Mono',monospace;font-size:0.7rem;">LOCKED</span></td>
+          </tr>
+          <tr>
+            <td>CanonPress</td>
+            <td><div class="accent-chip"><div class="accent-dot" style="background:#B23531"></div>Crimson</div></td>
+            <td class="mono">#B23531</td>
+            <td><span style="color:#4A9E6B;font-family:'JetBrains Mono',monospace;font-size:0.7rem;">LOCKED</span></td>
+          </tr>
+          <tr>
+            <td>Excelligence</td>
+            <td><div class="accent-chip"><div class="accent-dot" style="background:#D4A843"></div>Gold</div></td>
+            <td class="mono">#D4A843</td>
+            <td><span style="color:#C49A3C;font-family:'JetBrains Mono',monospace;font-size:0.7rem;">NEW — 2026-03-15</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--steel);line-height:1.7;">
+        Rule: BlindSpot green (#22C55E) = you are inside the product. D&A amber (#C49A3C) = DDL is referencing BlindSpot from outside.<br>
+        Excelligence gold (#D4A843) is differentiated from D&A amber (#C49A3C) — brighter, more yellow, Excel/knowledge connotation.
+      </p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══ 05 — TYPOGRAPHY ═══ -->
+  <div class="section">
+    <div class="section-label">05 — Typography</div>
+    <div class="section-title">Three Fonts. No Exceptions.</div>
+
+    <div class="type-samples">
+      <div class="type-sample">
+        <div class="type-meta">Display / UI — Space Grotesk 400 · 500 · 600 · 700</div>
+        <div class="type-display">Dropdown Logistics<br><span>Chaos → Structured → Automated</span></div>
+      </div>
+      <div class="type-sample">
+        <div class="type-meta">Body / Prose — Source Serif 4 · 400 · 400i · 600</div>
+        <div class="type-body">
+          The DDL brand system is not cosmetic. It is the surface of a cathedral. Every color has a reason. Every font has a job. Every mark has a home.<em> The architecture does not change between domains. The data does.</em>
+        </div>
+      </div>
+      <div class="type-sample">
+        <div class="type-meta">Data / Code — JetBrains Mono · 400 · 500</div>
+        <div class="type-mono">
+          BRAND-TOKENS-001 · v1.0.0 · 2026-03-15<br>
+          --crimson: #B23531  · --amber: #C49A3C<br>
+          --violet:  #8A6CC9  · --teal:  #2C7A7B<br>
+          corpus: 497,941 chunks · council: 10 seats
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══ 06 — USAGE RULES ═══ -->
+  <div class="section">
+    <div class="section-label">06 — Usage Rules</div>
+    <div class="section-title">Do / Never</div>
+
+    <div class="rules-grid">
+      <div class="rule-card do">
+        <div class="rule-card-label">✓ Always</div>
+        <ul class="rule-list">
+          <li>Navy #0D1B2A as the primary background — always</li>
+          <li>Space Grotesk for all UI, navigation, headings, labels</li>
+          <li>JetBrains Mono for all IDs, data, timestamps, code</li>
+          <li>Source Serif 4 for all long-form prose and memoir</li>
+          <li>Reference brand-tokens.json before adding any new color</li>
+          <li>"DD" as the stamp monogram — two letters, not three</li>
+          <li>Copper dots at 9 and 3 o'clock on the stamp</li>
+          <li>Product accent color per context — green inside BlindSpot, amber outside</li>
+        </ul>
+      </div>
+      <div class="rule-card dont">
+        <div class="rule-card-label">✗ Never</div>
+        <ul class="rule-list">
+          <li>White backgrounds — ever, on any DDL surface</li>
+          <li>Inter, Roboto, system-ui, -apple-system — any of them</li>
+          <li>Light mode — dark is not a mode, it is the default</li>
+          <li>Hardcode a color that exists in brand-tokens.json</li>
+          <li>Use two product accents interchangeably without context rule</li>
+          <li>Stretch, distort, or recolor the DD stamp arbitrarily</li>
+          <li>Apply a stamp mark when the product demands a different visual register — document the exception instead</li>
+          <li>Use "D.K. Hale" in any DDL, council, or product context — memoir persona only</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ FOOTER ═══ -->
+  <div class="brand-footer">
+    <div class="brand-footer-left">
+      Dropdown Logistics · Brand Kit v1.0 · 2026-03-15<br>
+      Design System: CottageHumble · "Humble surface. Cathedral underneath."<br>
+      Operator: Dave Kitchens · Chaos → Structured → Automated
+    </div>
+    <div class="brand-footer-right">
+      brand-tokens.json · v1.0.0<br>
+      ASSEMBLED BY MARCUS CALDWELL · SEAT 1002
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

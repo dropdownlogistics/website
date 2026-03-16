@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dropdown Logistics — Chaos → Structured → Automated</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --navy:    #0D1B2A;
+  --card:    #10202F;
+  --card2:   #0B1825;
+  --cream:   #F5F1EB;
+  --steel:   #6B7B8D;
+  --border:  rgba(245,241,235,0.06);
+  --borderlt:rgba(245,241,235,0.12);
+  --crimson: #B23531;
+  --copper:  #C49A3C;
+  --teal:    #2C7A7B;
+  --violet:  #8A6CC9;
+  --blue:    #6B9DC2;
+  --green:   #22C55E;
+  --amber:   #C49A3C;
+  --gold:    #D4A843;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes fadeIn{
+  from{opacity:0}to{opacity:1}
+}
+@keyframes sliceIn{
+  from{opacity:0;transform:translate(var(--sx,0),var(--sy,0)) scale(0.92)}
+  to{opacity:1;transform:translate(0,0) scale(1)}
+}
+@keyframes stampReveal{
+  from{opacity:0;transform:scale(0.8) rotate(-5deg)}
+  to{opacity:1;transform:scale(1) rotate(0deg)}
+}
+@keyframes ticker{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+@keyframes lineGrow{
+  from{stroke-dashoffset:200;opacity:0}
+  to{stroke-dashoffset:0;opacity:1}
+}
+
+html{scroll-behavior:smooth}
+
+body{
+  background:var(--navy);
+  color:var(--cream);
+  font-family:'Source Serif 4',Georgia,serif;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* Noise texture */
+body::after{
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E");
+  pointer-events:none;
+  z-index:1000;
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  height:52px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 48px;
+  background:rgba(13,27,42,0.95);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo-text{
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:700;font-size:0.9rem;
+  color:var(--cream);letter-spacing:-0.01em
+}
+.nav-logo-text em{color:var(--crimson);font-style:normal}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.6rem;color:var(--steel);
+  text-decoration:none;letter-spacing:0.08em;
+  text-transform:uppercase;transition:color 0.2s
+}
+.nav-links a:hover{color:var(--cream)}
+.nav-cta{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.6rem;color:var(--navy) !important;
+  background:var(--cream);
+  padding:6px 14px;border-radius:3px;
+  letter-spacing:0.08em;text-transform:uppercase;
+  transition:opacity 0.2s !important
+}
+.nav-cta:hover{opacity:0.85}
+
+/* ── HERO ── */
+.hero{
+  position:relative;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:100px 48px 80px;
+  overflow:hidden;
+}
+
+/* Atmospheric glow */
+.hero-glow-1{
+  position:absolute;
+  width:900px;height:900px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(178,53,49,0.04) 0%,transparent 65%);
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  pointer-events:none;
+}
+.hero-glow-2{
+  position:absolute;
+  width:600px;height:400px;
+  background:radial-gradient(ellipse,rgba(196,154,60,0.025) 0%,transparent 70%);
+  top:20%;right:10%;
+  pointer-events:none;
+}
+
+/* ── EXPLODING PIE ── */
+.pie-wrap{
+  position:relative;
+  width:600px;height:600px;
+  margin-bottom:16px;
+  flex-shrink:0;
+}
+
+.pie-svg{
+  position:absolute;
+  top:0;left:0;
+  width:100%;height:100%;
+  overflow:visible;
+}
+
+/* Each slice animates in from its explosion direction */
+.slice{cursor:pointer;transition:filter 0.3s}
+.slice:hover{filter:brightness(1.2)}
+
+/* Connection lines from stamp to slice */
+.conn-line{
+  stroke-dasharray:200;
+  animation:lineGrow 0.6s ease forwards;
+  opacity:0;
+}
+
+/* Center stamp */
+.stamp-center{
+  animation:stampReveal 0.6s cubic-bezier(0.34,1.56,0.64,1) 0.2s both;
+}
+
+/* Slice labels */
+.slice-label{
+  animation:fadeIn 0.5s ease forwards;
+  opacity:0;
+}
+
+/* ── EDITORIAL TYPE ── */
+.hero-editorial{
+  text-align:center;
+  max-width:760px;
+  animation:fadeUp 0.8s ease 1.4s both;
+}
+
+.hero-kicker{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.62rem;
+  color:var(--crimson);
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  margin-bottom:20px;
+  display:flex;align-items:center;justify-content:center;gap:12px;
+}
+.hero-kicker::before,.hero-kicker::after{
+  content:'';display:block;
+  width:24px;height:1px;background:var(--crimson);
+}
+
+.hero-h1{
+  font-family:'Source Serif 4',Georgia,serif;
+  font-size:clamp(2.4rem,4.5vw,4rem);
+  font-weight:700;
+  font-style:italic;
+  letter-spacing:-0.02em;
+  line-height:1.05;
+  margin-bottom:20px;
+  color:var(--cream);
+}
+.hero-h1 span{color:var(--crimson);font-style:normal}
+.hero-h1 em{
+  font-family:'Space Grotesk',sans-serif;
+  font-style:normal;
+  font-weight:300;
+  color:rgba(245,241,235,0.4);
+  display:block;
+  font-size:0.7em;
+  letter-spacing:0.1em;
+  margin-top:6px;
+}
+
+.hero-sub{
+  font-family:'Source Serif 4',serif;
+  font-size:1.05rem;
+  font-style:italic;
+  color:rgba(245,241,235,0.5);
+  line-height:1.75;
+  max-width:560px;
+  margin:0 auto 36px;
+}
+.hero-sub strong{color:rgba(245,241,235,0.8);font-style:normal}
+
+/* Methodology line */
+.methodology{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:0;
+  margin-bottom:0;
+}
+.method-step{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.7rem;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  padding:8px 20px;
+  border:1px solid var(--border);
+  background:var(--card);
+  color:var(--steel);
+  position:relative;
+  transition:all 0.2s;
+}
+.method-step:first-child{border-radius:4px 0 0 4px}
+.method-step:last-child{border-radius:0 4px 4px 0}
+.method-step.active{color:var(--cream);border-color:var(--borderlt)}
+.method-arrow{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.65rem;
+  color:var(--crimson);
+  padding:8px 6px;
+  background:var(--card);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+}
+
+/* ── TICKER ── */
+.ticker{
+  width:100%;
+  overflow:hidden;
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  padding:12px 0;
+  background:var(--card2);
+  margin:64px 0 0;
+}
+.ticker-inner{
+  display:flex;gap:0;
+  white-space:nowrap;
+  animation:ticker 40s linear infinite;
+}
+.ticker-item{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.6rem;letter-spacing:0.1em;
+  color:var(--steel);
+  padding:0 32px;
+  border-right:1px solid var(--border);
+  white-space:nowrap;
+}
+.ticker-item strong{color:var(--cream)}
+.ticker-item .dot{
+  width:5px;height:5px;border-radius:50%;
+  flex-shrink:0;
+}
+
+/* ── MANIFEST SECTION ── */
+.manifest{
+  max-width:1100px;
+  margin:0 auto;
+  padding:80px 48px;
+}
+
+.manifest-header{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  padding-bottom:16px;
+  border-bottom:1px solid var(--border);
+  margin-bottom:48px;
+}
+.manifest-title{
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:700;font-size:0.8rem;
+  letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--cream);
+}
+.manifest-date{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.6rem;color:var(--steel);
+  letter-spacing:0.08em;
+}
+
+/* Stats row */
+.stats-manifest{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:1px;
+  background:var(--border);
+  border:1px solid var(--border);
+  border-radius:6px;
+  overflow:hidden;
+  margin-bottom:64px;
+}
+.stat-m{
+  background:var(--card);
+  padding:20px 16px;
+  text-align:center;
+}
+.stat-m-num{
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:700;font-size:1.6rem;
+  letter-spacing:-0.03em;line-height:1;
+  color:var(--crimson);
+  margin-bottom:6px;
+}
+.stat-m-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.58rem;color:var(--steel);
+  letter-spacing:0.1em;text-transform:uppercase;
+  line-height:1.4;
+}
+
+/* ── WINGS GRID ── */
+.wings-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.6rem;color:var(--steel);
+  letter-spacing:0.14em;text-transform:uppercase;
+  margin-bottom:20px;
+}
+.wings-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1px;
+  background:var(--border);
+  border:1px solid var(--border);
+  border-radius:8px;
+  overflow:hidden;
+  margin-bottom:64px;
+}
+.wing-cell{
+  background:var(--card);
+  padding:24px 22px;
+  text-decoration:none;
+  color:inherit;
+  transition:background 0.2s;
+  display:block;
+  position:relative;
+  overflow:hidden;
+}
+.wing-cell::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:2px;
+  background:var(--wing-color,var(--crimson));
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform 0.3s;
+}
+.wing-cell:hover{background:var(--card2)}
+.wing-cell:hover::before{transform:scaleX(1)}
+.wing-tag{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.58rem;
+  letter-spacing:0.1em;text-transform:uppercase;
+  margin-bottom:8px;
+}
+.wing-name{
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:700;font-size:1rem;
+  letter-spacing:-0.01em;margin-bottom:6px;
+}
+.wing-desc{
+  font-family:'Source Serif 4',serif;
+  font-style:italic;font-size:0.8rem;
+  color:var(--steel);line-height:1.5;
+}
+
+/* ── IDENTITY BLOCK ── */
+.identity{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1px;
+  background:var(--border);
+  border:1px solid var(--border);
+  border-radius:8px;
+  overflow:hidden;
+  margin-bottom:64px;
+}
+.identity-cell{
+  background:var(--card);
+  padding:36px 32px;
+}
+.identity-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.6rem;color:var(--crimson);
+  letter-spacing:0.14em;text-transform:uppercase;
+  margin-bottom:14px;
+}
+.identity-value{
+  font-family:'Source Serif 4',serif;
+  font-style:italic;font-size:1.15rem;
+  color:var(--cream);line-height:1.65;
+}
+.identity-value strong{
+  font-style:normal;color:var(--crimson);
+}
+.identity-mono{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.78rem;color:var(--steel);
+  line-height:1.9;
+}
+.identity-mono span{color:var(--cream)}
+
+/* ── FOOTER ── */
+footer{
+  border-top:1px solid var(--border);
+  padding:28px 48px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.footer-left{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.6rem;color:var(--steel);
+  letter-spacing:0.06em;line-height:1.9;
+}
+.footer-left a{color:var(--steel);text-decoration:none;transition:color 0.2s}
+.footer-left a:hover{color:var(--cream)}
+.footer-center{
+  font-family:'Source Serif 4',serif;
+  font-style:italic;font-size:0.9rem;
+  color:rgba(245,241,235,0.3);
+}
+.footer-right{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.6rem;color:var(--steel);
+  letter-spacing:0.06em;text-align:right;
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .pie-wrap{width:440px;height:440px}
+  .stats-manifest{grid-template-columns:repeat(4,1fr)}
+  .wings-grid{grid-template-columns:repeat(2,1fr)}
+  .identity{grid-template-columns:1fr}
+  nav{padding:0 24px}
+  .manifest{padding:64px 24px}
+  .hero{padding:80px 24px 60px}
+  footer{flex-direction:column;gap:16px;text-align:center;padding:24px}
+}
+@media(max-width:560px){
+  .pie-wrap{width:320px;height:320px}
+  .stats-manifest{grid-template-columns:repeat(2,1fr)}
+  .wings-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a class="nav-logo" href="/">
+    <svg viewBox="0 0 28 28" width="22" height="22">
+      <circle cx="14" cy="14" r="13" fill="none" stroke="#B23531" stroke-width="1.5"/>
+      <circle cx="14" cy="14" r="10" fill="#0D1B2A"/>
+      <text x="14" y="18" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="9" fill="#B23531" letter-spacing="-0.5">DD</text>
+    </svg>
+    <span class="nav-logo-text">Dropdown <em>Logistics</em></span>
+  </a>
+  <div class="nav-links">
+    <a href="/council">Council</a>
+    <a href="/standards">Standards</a>
+    <a href="/canonpress">CanonPress</a>
+    <a href="/branding">Branding</a>
+    <a href="/llms.txt">llms.txt</a>
+    <a href="/backend" class="nav-cta">Backend →</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="hero-glow-1"></div>
+  <div class="hero-glow-2"></div>
+
+  <!-- EXPLODING PIE -->
+  <div class="pie-wrap">
+    <svg class="pie-svg" viewBox="-300 -300 600 600" id="pieSvg">
+      <defs>
+        <!-- Radial gradient per slice -->
+        <radialGradient id="gCrimson" cx="50%" cy="50%" r="80%">
+          <stop offset="0%" stop-color="#B23531" stop-opacity="0.25"/>
+          <stop offset="100%" stop-color="#B23531" stop-opacity="0.06"/>
+        </radialGradient>
+        <radialGradient id="gAmber" cx="50%" cy="50%" r="80%">
+          <stop offset="0%" stop-color="#C49A3C" stop-opacity="0.25"/>
+          <stop offset="100%" stop-color="#C49A3C" stop-opacity="0.06"/>
+        </radialGradient>
+        <radialGradient id="gGreen" cx="50%" cy="50%" r="80%">
+          <stop offset="0%" stop-color="#22C55E" stop-opacity="0.25"/>
+          <stop offset="100%" stop-color="#22C55E" stop-opacity="0.06"/>
+        </radialGradient>
+        <radialGradient id="gViolet" cx="50%" cy="50%" r="80%">
+          <stop offset="0%" stop-color="#8A6CC9" stop-opacity="0.25"/>
+          <stop offset="100%" stop-color="#8A6CC9" stop-opacity="0.06"/>
+        </radialGradient>
+        <radialGradient id="gTeal" cx="50%" cy="50%" r="80%">
+          <stop offset="0%" stop-color="#2C7A7B" stop-opacity="0.25"/>
+          <stop offset="100%" stop-color="#2C7A7B" stop-opacity="0.06"/>
+        </radialGradient>
+        <radialGradient id="gBlue" cx="50%" cy="50%" r="80%">
+          <stop offset="0%" stop-color="#6B9DC2" stop-opacity="0.25"/>
+          <stop offset="100%" stop-color="#6B9DC2" stop-opacity="0.06"/>
+        </radialGradient>
+        <radialGradient id="gCopperA" cx="50%" cy="50%" r="80%">
+          <stop offset="0%" stop-color="#C49A3C" stop-opacity="0.2"/>
+          <stop offset="100%" stop-color="#C49A3C" stop-opacity="0.05"/>
+        </radialGradient>
+        <radialGradient id="gCrimsonB" cx="50%" cy="50%" r="80%">
+          <stop offset="0%" stop-color="#B23531" stop-opacity="0.2"/>
+          <stop offset="100%" stop-color="#B23531" stop-opacity="0.05"/>
+        </radialGradient>
+      </defs>
+    </svg>
+  </div>
+
+  <!-- EDITORIAL TYPE -->
+  <div class="hero-editorial">
+    <div class="hero-kicker">Dropdown Logistics · One Operator · One System</div>
+    <h1 class="hero-h1">
+      One person.<br>
+      <span>Eight wings.</span>
+      <em>The work is the proof.</em>
+    </h1>
+    <p class="hero-sub">
+      A one-person governed AI studio. Tools, systems, analytics, and a publication platform — built with AI as a collaborator, not a replacement. <strong>Chaos → Structured → Automated.</strong>
+    </p>
+    <div class="methodology">
+      <div class="method-step active">Chaos</div>
+      <div class="method-arrow">→</div>
+      <div class="method-step active">Structured</div>
+      <div class="method-arrow">→</div>
+      <div class="method-step active">Automated</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── TICKER ── -->
+<div class="ticker">
+  <div class="ticker-inner" id="tickerInner">
+    <div class="ticker-item"><div class="dot" style="background:#B23531"></div><strong>DDL</strong> · 203 routes · 8 wings</div>
+    <div class="ticker-item"><div class="dot" style="background:#B23531"></div><strong>AuditForge</strong> · v0.3 · governed audit docs</div>
+    <div class="ticker-item"><div class="dot" style="background:#22C55E"></div><strong>BlindSpot</strong> · signal → structure → edge</div>
+    <div class="ticker-item"><div class="dot" style="background:#2C7A7B"></div><strong>Knowledge Vault</strong> · 497K chunks · 9 collections</div>
+    <div class="ticker-item"><div class="dot" style="background:#8A6CC9"></div><strong>DexVerse</strong> · 10 council seats · 1 local rig</div>
+    <div class="ticker-item"><div class="dot" style="background:#D4A843"></div><strong>Excelligence</strong> · #1 r/excel · 13K+ views</div>
+    <div class="ticker-item"><div class="dot" style="background:#B23531"></div><strong>CanonPress</strong> · 4 series · governed publication</div>
+    <div class="ticker-item"><div class="dot" style="background:#6B9DC2"></div><strong>The Bench</strong> · software tips · 48 queued</div>
+    <div class="ticker-item"><div class="dot" style="background:#C49A3C"></div><strong>Standards</strong> · 65 standards · 44 systems</div>
+    <div class="ticker-item"><div class="dot" style="background:#8A6CC9"></div><strong>Dex Jr.</strong> · qwen2.5-coder:7b · RTX 3070 · Judgment-Ready</div>
+    <!-- Duplicate for seamless loop -->
+    <div class="ticker-item"><div class="dot" style="background:#B23531"></div><strong>DDL</strong> · 203 routes · 8 wings</div>
+    <div class="ticker-item"><div class="dot" style="background:#B23531"></div><strong>AuditForge</strong> · v0.3 · governed audit docs</div>
+    <div class="ticker-item"><div class="dot" style="background:#22C55E"></div><strong>BlindSpot</strong> · signal → structure → edge</div>
+    <div class="ticker-item"><div class="dot" style="background:#2C7A7B"></div><strong>Knowledge Vault</strong> · 497K chunks · 9 collections</div>
+    <div class="ticker-item"><div class="dot" style="background:#8A6CC9"></div><strong>DexVerse</strong> · 10 council seats · 1 local rig</div>
+    <div class="ticker-item"><div class="dot" style="background:#D4A843"></div><strong>Excelligence</strong> · #1 r/excel · 13K+ views</div>
+    <div class="ticker-item"><div class="dot" style="background:#B23531"></div><strong>CanonPress</strong> · 4 series · governed publication</div>
+    <div class="ticker-item"><div class="dot" style="background:#6B9DC2"></div><strong>The Bench</strong> · software tips · 48 queued</div>
+    <div class="ticker-item"><div class="dot" style="background:#C49A3C"></div><strong>Standards</strong> · 65 standards · 44 systems</div>
+    <div class="ticker-item"><div class="dot" style="background:#8A6CC9"></div><strong>Dex Jr.</strong> · qwen2.5-coder:7b · RTX 3070 · Judgment-Ready</div>
+  </div>
+</div>
+
+<!-- ── MANIFEST ── -->
+<div class="manifest">
+
+  <div class="manifest-header">
+    <div class="manifest-title">Operator Manifest — Dropdown Logistics</div>
+    <div class="manifest-date">2026-03-15 · Dave Kitchens · CPA</div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-manifest">
+    <div class="stat-m"><div class="stat-m-num">203</div><div class="stat-m-label">Routes</div></div>
+    <div class="stat-m"><div class="stat-m-num">8</div><div class="stat-m-label">Wings</div></div>
+    <div class="stat-m"><div class="stat-m-num">44</div><div class="stat-m-label">Systems</div></div>
+    <div class="stat-m"><div class="stat-m-num">65</div><div class="stat-m-label">Standards</div></div>
+    <div class="stat-m"><div class="stat-m-num">10</div><div class="stat-m-label">Council Seats</div></div>
+    <div class="stat-m"><div class="stat-m-num">497K</div><div class="stat-m-label">RAG Chunks</div></div>
+    <div class="stat-m"><div class="stat-m-num">1</div><div class="stat-m-label">Operator</div></div>
+  </div>
+
+  <!-- Wings -->
+  <div class="wings-label">Eight Wings</div>
+  <div class="wings-grid">
+    <a class="wing-cell" href="/ddl" style="--wing-color:#B23531">
+      <div class="wing-tag" style="color:#B23531">Framework</div>
+      <div class="wing-name">DDL</div>
+      <div class="wing-desc">Governance, methodology, council, memoir.</div>
+    </a>
+    <a class="wing-cell" href="/blindspot" style="--wing-color:#C49A3C">
+      <div class="wing-tag" style="color:#C49A3C">Analytics</div>
+      <div class="wing-name">D&amp;A</div>
+      <div class="wing-desc">BlindSpot analytics, dashboards, recaps.</div>
+    </a>
+    <a class="wing-cell" href="/blindspot" style="--wing-color:#22C55E">
+      <div class="wing-tag" style="color:#22C55E">Product</div>
+      <div class="wing-name">BlindSpot</div>
+      <div class="wing-desc">signal → structure → edge</div>
+    </a>
+    <a class="wing-cell" href="/dexverse" style="--wing-color:#8A6CC9">
+      <div class="wing-tag" style="color:#8A6CC9">Lore</div>
+      <div class="wing-name">DexVerse</div>
+      <div class="wing-desc">Origin stories, companions, lore, glossary.</div>
+    </a>
+    <a class="wing-cell" href="/dossiers" style="--wing-color:#4A9E6B">
+      <div class="wing-tag" style="color:#4A9E6B">Characters</div>
+      <div class="wing-name">Dossiers</div>
+      <div class="wing-desc">Character archive across three universes.</div>
+    </a>
+    <a class="wing-cell" href="/bench" style="--wing-color:#6B9DC2">
+      <div class="wing-tag" style="color:#6B9DC2">Tools</div>
+      <div class="wing-name">The Bench</div>
+      <div class="wing-desc">Software tips. OneNote to PowerShell.</div>
+    </a>
+    <a class="wing-cell" href="/canonpress" style="--wing-color:#B23531">
+      <div class="wing-tag" style="color:#B23531">Publication</div>
+      <div class="wing-name">CanonPress</div>
+      <div class="wing-desc">Governed publication. Four series.</div>
+    </a>
+    <a class="wing-cell" href="/auditforge" style="--wing-color:#B23531">
+      <div class="wing-tag" style="color:#B23531">Product</div>
+      <div class="wing-name">AuditForge</div>
+      <div class="wing-desc">Governed audit document generation.</div>
+    </a>
+  </div>
+
+  <!-- Identity -->
+  <div class="identity">
+    <div class="identity-cell">
+      <div class="identity-label">The Operating Principle</div>
+      <div class="identity-value">
+        <strong>"Humble surface. Cathedral underneath."</strong><br>
+        Every DDL output is governed, traceable, and auditable. The methodology doesn't change between domains. The data does.
+      </div>
+    </div>
+    <div class="identity-cell">
+      <div class="identity-label">System Manifest</div>
+      <div class="identity-mono">
+        <span>OPERATOR</span>    Dave Kitchens · CPA<br>
+        <span>STUDIO</span>      Dropdown Logistics<br>
+        <span>METHOD</span>      Chaos → Structured → Automated<br>
+        <span>COUNCIL</span>     10 seats · 9 cloud · 1 local<br>
+        <span>LOCAL AI</span>    Dex Jr. · RTX 3070 · Judgment-Ready<br>
+        <span>CORPUS</span>      497,941 chunks · nightly ingest<br>
+        <span>DESIGN</span>      CottageHumble · No white. No Inter.
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-left">
+    <a href="/llms.txt">llms.txt</a> · <a href="/backend">Backend</a> · <a href="/sitemap">Sitemap</a><br>
+    Dropdown Logistics · Dave Kitchens · CPA
+  </div>
+  <div class="footer-center">Chaos → Structured → Automated</div>
+  <div class="footer-right">
+    dropdownlogistics.com<br>
+    v1.0 · 2026-03-15
+  </div>
+</footer>
+
+<!-- ── PIE ENGINE ── -->
+<script>
+(function() {
+
+  const CX = 0, CY = 0;
+  const R_INNER = 52;   // gap from center to slice start
+  const R_OUTER = 220;  // slice outer radius
+  const EXPLODE = 28;   // how far each slice drifts outward
+  const GAP_DEG = 3.5;  // gap between slices in degrees
+
+  // 8 wings — color, name, tag, href
+  const wings = [
+    { color:'#B23531', name:'DDL',        tag:'Framework',  href:'/ddl',        desc:'Governance · Methodology' },
+    { color:'#C49A3C', name:'D&A',         tag:'Analytics',  href:'/blindspot',  desc:'BlindSpot Analytics' },
+    { color:'#22C55E', name:'BlindSpot',   tag:'Product',    href:'/blindspot',  desc:'signal → structure' },
+    { color:'#8A6CC9', name:'DexVerse',    tag:'Lore',       href:'/dexverse',   desc:'AI Council · Corpus' },
+    { color:'#4A9E6B', name:'Dossiers',    tag:'Characters', href:'/dossiers',   desc:'Three Universes' },
+    { color:'#6B9DC2', name:'The Bench',   tag:'Tools',      href:'/bench',      desc:'Software Tips' },
+    { color:'#B23531', name:'CanonPress',  tag:'Publication',href:'/canonpress', desc:'Four Series' },
+    { color:'#D4A843', name:'AuditForge',  tag:'Product',    href:'/auditforge', desc:'Governed Docs' },
+  ];
+
+  const svg = document.getElementById('pieSvg');
+  const total = wings.length;
+  const segDeg = 360 / total;
+
+  function toRad(d) { return d * Math.PI / 180; }
+
+  function polarToXY(angleDeg, r) {
+    const a = toRad(angleDeg - 90); // start from top
+    return { x: r * Math.cos(a), y: r * Math.sin(a) };
+  }
+
+  function makeArcPath(startDeg, endDeg, rInner, rOuter, explodeDist) {
+    const midDeg = (startDeg + endDeg) / 2;
+    const ex = explodeDist * Math.cos(toRad(midDeg - 90));
+    const ey = explodeDist * Math.sin(toRad(midDeg - 90));
+
+    const p1 = polarToXY(startDeg, rOuter);
+    const p2 = polarToXY(endDeg, rOuter);
+    const p3 = polarToXY(endDeg, rInner);
+    const p4 = polarToXY(startDeg, rInner);
+
+    const largeArc = (endDeg - startDeg) > 180 ? 1 : 0;
+
+    return {
+      d: `M ${p1.x + ex} ${p1.y + ey}
+          A ${rOuter} ${rOuter} 0 ${largeArc} 1 ${p2.x + ex} ${p2.y + ey}
+          L ${p3.x + ex} ${p3.y + ey}
+          A ${rInner} ${rInner} 0 ${largeArc} 0 ${p4.x + ex} ${p4.y + ey}
+          Z`,
+      cx: ex,
+      cy: ey,
+      midDeg,
+    };
+  }
+
+  function makeLabelPos(midDeg, explodeDist) {
+    const r = R_OUTER + 26;
+    const ex = explodeDist * Math.cos(toRad(midDeg - 90));
+    const ey = explodeDist * Math.sin(toRad(midDeg - 90));
+    const base = polarToXY(midDeg, r);
+    return { x: base.x + ex, y: base.y + ey, midDeg };
+  }
+
+  wings.forEach((wing, i) => {
+    const startDeg = i * segDeg + GAP_DEG / 2;
+    const endDeg   = (i + 1) * segDeg - GAP_DEG / 2;
+
+    const { d, cx, cy, midDeg } = makeArcPath(startDeg, endDeg, R_INNER, R_OUTER, EXPLODE);
+
+    // Delay stagger
+    const delay = 0.5 + i * 0.08;
+
+    // ── SLICE GROUP ──
+    const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    g.setAttribute('class', 'slice');
+    g.style.animationDelay = `${delay}s`;
+    g.style.animation = `sliceIn 0.55s cubic-bezier(0.34,1.4,0.64,1) ${delay}s both`;
+    g.style.cursor = 'pointer';
+    g.onclick = () => { window.location.href = wing.href; };
+
+    // Slice fill
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', d);
+    path.setAttribute('fill', wing.color);
+    path.setAttribute('fill-opacity', '0.12');
+    path.setAttribute('stroke', wing.color);
+    path.setAttribute('stroke-width', '0.75');
+    path.setAttribute('stroke-opacity', '0.4');
+
+    // Hover fill
+    path.addEventListener('mouseenter', () => {
+      path.setAttribute('fill-opacity', '0.22');
+      path.setAttribute('stroke-opacity', '0.8');
+    });
+    path.addEventListener('mouseleave', () => {
+      path.setAttribute('fill-opacity', '0.12');
+      path.setAttribute('stroke-opacity', '0.4');
+    });
+
+    g.appendChild(path);
+
+    // ── CONNECTION LINE from center to inner edge of slice ──
+    const connMid = polarToXY(midDeg, R_INNER - 4);
+    const connEx  = EXPLODE * Math.cos(toRad(midDeg - 90));
+    const connEy  = EXPLODE * Math.sin(toRad(midDeg - 90));
+
+    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    line.setAttribute('x1', '0');
+    line.setAttribute('y1', '0');
+    line.setAttribute('x2', String(connMid.x + connEx));
+    line.setAttribute('y2', String(connMid.y + connEy));
+    line.setAttribute('stroke', wing.color);
+    line.setAttribute('stroke-width', '0.75');
+    line.setAttribute('stroke-opacity', '0.35');
+    line.setAttribute('stroke-dasharray', '200');
+    line.setAttribute('stroke-dashoffset', '200');
+    line.style.animation = `lineGrow 0.5s ease ${delay + 0.1}s forwards`;
+    svg.appendChild(line); // add lines below slices
+
+    svg.appendChild(g);
+
+    // ── LABEL ──
+    const lp = makeLabelPos(midDeg, EXPLODE);
+    const anchor = lp.midDeg > 90 && lp.midDeg < 270 ? 'end' : 'start';
+    // For top/bottom quadrants, center-align
+    const isTopBottom = (lp.midDeg < 30 || lp.midDeg > 330 || (lp.midDeg > 150 && lp.midDeg < 210));
+    const textAnchor  = isTopBottom ? 'middle' : anchor;
+
+    const labelG = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    labelG.style.animation = `fadeIn 0.4s ease ${delay + 0.25}s both`;
+    labelG.style.opacity = '0';
+
+    const name = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    name.setAttribute('x', String(lp.x));
+    name.setAttribute('y', String(lp.y + 4));
+    name.setAttribute('text-anchor', textAnchor);
+    name.setAttribute('font-family', 'JetBrains Mono, monospace');
+    name.setAttribute('font-weight', '500');
+    name.setAttribute('font-size', '10');
+    name.setAttribute('fill', wing.color);
+    name.setAttribute('letter-spacing', '0.5');
+    name.textContent = wing.name;
+
+    labelG.appendChild(name);
+    svg.appendChild(labelG);
+  });
+
+  // ── CENTER STAMP ──
+  const stamp = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+  stamp.setAttribute('class', 'stamp-center');
+
+  // Outer ring
+  const outerRing = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+  outerRing.setAttribute('cx', '0'); outerRing.setAttribute('cy', '0');
+  outerRing.setAttribute('r', String(R_INNER - 4));
+  outerRing.setAttribute('fill', '#0D1B2A');
+  outerRing.setAttribute('stroke', '#B23531');
+  outerRing.setAttribute('stroke-width', '2');
+
+  const innerRing = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+  innerRing.setAttribute('cx', '0'); innerRing.setAttribute('cy', '0');
+  innerRing.setAttribute('r', String(R_INNER - 12));
+  innerRing.setAttribute('fill', 'none');
+  innerRing.setAttribute('stroke', '#B23531');
+  innerRing.setAttribute('stroke-width', '0.75');
+  innerRing.setAttribute('stroke-dasharray', '3 4');
+  innerRing.setAttribute('opacity', '0.6');
+
+  // DD monogram
+  const mono = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+  mono.setAttribute('x', '0'); mono.setAttribute('y', '6');
+  mono.setAttribute('text-anchor', 'middle');
+  mono.setAttribute('font-family', 'Space Grotesk, sans-serif');
+  mono.setAttribute('font-weight', '700');
+  mono.setAttribute('font-size', '22');
+  mono.setAttribute('fill', '#B23531');
+  mono.setAttribute('letter-spacing', '-2');
+  mono.textContent = 'DD';
+
+  // Cardinal marks
+  [0, 90, 180, 270].forEach(deg => {
+    const a = toRad(deg);
+    const r1 = R_INNER - 5;
+    const r2 = R_INNER - 11;
+    const x1 = r1 * Math.cos(a), y1 = r1 * Math.sin(a);
+    const x2 = r2 * Math.cos(a), y2 = r2 * Math.sin(a);
+    const tick = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    tick.setAttribute('x1', String(x1)); tick.setAttribute('y1', String(y1));
+    tick.setAttribute('x2', String(x2)); tick.setAttribute('y2', String(y2));
+    tick.setAttribute('stroke', '#B23531'); tick.setAttribute('stroke-width', '1.5');
+    stamp.appendChild(tick);
+  });
+
+  // Copper dots
+  [-1, 1].forEach(side => {
+    const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    dot.setAttribute('cx', String(side * (R_INNER - 4)));
+    dot.setAttribute('cy', '0');
+    dot.setAttribute('r', '2');
+    dot.setAttribute('fill', '#C49A3C');
+    stamp.appendChild(dot);
+  });
+
+  stamp.appendChild(outerRing);
+  stamp.appendChild(innerRing);
+  stamp.appendChild(mono);
+  svg.appendChild(stamp);
+
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DDL OG Image</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  width: 1200px;
+  height: 630px;
+  overflow: hidden;
+  background: #0D1B2A;
+  font-family: 'Space Grotesk', sans-serif;
+  position: relative;
+}
+
+/* Background grid */
+.bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(178,53,49,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(178,53,49,0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Radial glow */
+.bg-glow {
+  position: absolute;
+  width: 700px; height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(178,53,49,0.06) 0%, transparent 70%);
+  top: 50%; left: 62%;
+  transform: translate(-50%, -50%);
+}
+
+/* Orbital rings */
+.ring {
+  position: absolute;
+  border-radius: 50%;
+  top: 50%; left: 65%;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(178,53,49,0.10);
+}
+.ring-1 { width: 500px; height: 500px; }
+.ring-2 { width: 380px; height: 380px; border-style: dashed; border-color: rgba(178,53,49,0.07); }
+.ring-3 { width: 260px; height: 260px; }
+
+/* Rotating ring text */
+.ring-text {
+  position: absolute;
+  top: 50%; left: 65%;
+  width: 500px; height: 500px;
+  transform: translate(-50%, -50%);
+}
+
+/* Orbit dots */
+.orbit-dot {
+  position: absolute;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  top: 50%; left: 65%;
+}
+.orbit-dot-1 { background: #B23531; margin-top: -250px; margin-left: -4px; box-shadow: 0 0 10px 3px rgba(178,53,49,0.4); }
+.orbit-dot-2 { background: #C49A3C; margin-top: -80px; margin-left: 188px; box-shadow: 0 0 8px 2px rgba(196,154,60,0.4); }
+.orbit-dot-3 { background: #8A6CC9; margin-top: 100px; margin-left: 178px; box-shadow: 0 0 8px 2px rgba(138,108,201,0.4); }
+.orbit-dot-4 { background: #2C7A7B; margin-top: 200px; margin-left: -4px; box-shadow: 0 0 8px 2px rgba(44,122,123,0.4); }
+
+/* Center DD seal */
+.seal {
+  position: absolute;
+  top: 50%; left: 65%;
+  transform: translate(-50%, -50%);
+  width: 130px; height: 130px;
+}
+
+/* Left content */
+.content {
+  position: absolute;
+  left: 64px;
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: 490px;
+}
+
+.eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: #B23531;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.eyebrow::before {
+  content: '';
+  display: block;
+  width: 24px; height: 1px;
+  background: #B23531;
+}
+
+h1 {
+  font-size: 56px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.0;
+  color: #F5F1EB;
+  margin-bottom: 14px;
+}
+h1 span {
+  color: #B23531;
+}
+
+.methodology {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  color: rgba(245,241,235,0.5);
+  letter-spacing: 0.08em;
+  margin-bottom: 32px;
+}
+.methodology span {
+  color: #B23531;
+  margin: 0 6px;
+}
+
+/* Stats row */
+.stats {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.stat-val {
+  font-size: 22px;
+  font-weight: 700;
+  color: #B23531;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.stat-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: rgba(107,123,141,0.7);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Bottom bar */
+.bottom-bar {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 48px;
+  border-top: 1px solid rgba(245,241,235,0.06);
+  background: rgba(13,27,42,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 64px;
+}
+.bottom-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.bottom-logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(245,241,235,0.5);
+}
+.bottom-sep {
+  width: 1px; height: 14px;
+  background: rgba(245,241,235,0.1);
+}
+.bottom-url {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: rgba(178,53,49,0.6);
+  letter-spacing: 0.06em;
+}
+.bottom-right {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: rgba(107,123,141,0.5);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+</style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+<div class="bg-glow"></div>
+
+<!-- Orbital rings -->
+<div class="ring ring-1"></div>
+<div class="ring ring-2"></div>
+<div class="ring ring-3"></div>
+
+<!-- Rotating ring text -->
+<svg class="ring-text" viewBox="0 0 500 500">
+  <defs>
+    <path id="rp" d="M 250,250 m -235,0 a 235,235 0 1,1 470,0 a 235,235 0 1,1 -470,0"/>
+  </defs>
+  <text font-family="JetBrains Mono, monospace" font-size="9" fill="rgba(178,53,49,0.25)" letter-spacing="5">
+    <textPath href="#rp">DROPDOWN LOGISTICS · CHAOS → STRUCTURED → AUTOMATED · 203 ROUTES · 8 WINGS · 44 SYSTEMS · </textPath>
+  </text>
+</svg>
+
+<!-- Orbit dots -->
+<div class="orbit-dot orbit-dot-1"></div>
+<div class="orbit-dot orbit-dot-2"></div>
+<div class="orbit-dot orbit-dot-3"></div>
+<div class="orbit-dot orbit-dot-4"></div>
+
+<!-- Center DD seal -->
+<div class="seal">
+  <svg viewBox="0 0 140 140">
+    <defs>
+      <path id="topArc" d="M 20,70 A 50,50 0 0,1 120,70"/>
+      <path id="botArc" d="M 20,70 A 50,50 0 0,0 120,70"/>
+    </defs>
+    <!-- Outer ring -->
+    <circle cx="70" cy="70" r="66" fill="none" stroke="#B23531" stroke-width="2.5"/>
+    <!-- Dashed inner ring -->
+    <circle cx="70" cy="70" r="56" fill="none" stroke="#B23531" stroke-width="0.75" stroke-dasharray="3 4"/>
+    <!-- Navy fill -->
+    <circle cx="70" cy="70" r="62" fill="#0D1B2A"/>
+    <!-- Monogram -->
+    <text x="70" y="80" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="36" fill="#B23531" letter-spacing="-3">DD</text>
+    <!-- Arc text top -->
+    <text font-family="JetBrains Mono, monospace" font-size="6.5" fill="#F5F1EB" letter-spacing="3">
+      <textPath href="#topArc" startOffset="50%" text-anchor="middle">DROPDOWN</textPath>
+    </text>
+    <!-- Arc text bottom -->
+    <text font-family="JetBrains Mono, monospace" font-size="6.5" fill="#6B7B8D" letter-spacing="3">
+      <textPath href="#botArc" startOffset="50%" text-anchor="middle">LOGISTICS</textPath>
+    </text>
+    <!-- Cardinal marks -->
+    <line x1="70" y1="4"   x2="70" y2="11"  stroke="#B23531" stroke-width="1.5"/>
+    <line x1="70" y1="129" x2="70" y2="136" stroke="#B23531" stroke-width="1.5"/>
+    <line x1="4"  y1="70"  x2="11" y2="70"  stroke="#B23531" stroke-width="1.5"/>
+    <line x1="129" y1="70" x2="136" y2="70" stroke="#B23531" stroke-width="1.5"/>
+    <!-- Copper dots -->
+    <circle cx="8"   cy="70" r="2.5" fill="#C49A3C"/>
+    <circle cx="132" cy="70" r="2.5" fill="#C49A3C"/>
+  </svg>
+</div>
+
+<!-- Left content -->
+<div class="content">
+  <div class="eyebrow">Dropdown Logistics</div>
+  <h1>One person.<br><span>One rig.</span></h1>
+  <p class="methodology">
+    Chaos <span>→</span> Structured <span>→</span> Automated
+  </p>
+  <div class="stats">
+    <div class="stat">
+      <span class="stat-val">203</span>
+      <span class="stat-label">Routes</span>
+    </div>
+    <div class="stat">
+      <span class="stat-val">8</span>
+      <span class="stat-label">Wings</span>
+    </div>
+    <div class="stat">
+      <span class="stat-val">44</span>
+      <span class="stat-label">Systems</span>
+    </div>
+    <div class="stat">
+      <span class="stat-val">65</span>
+      <span class="stat-label">Standards</span>
+    </div>
+    <div class="stat">
+      <span class="stat-val">10</span>
+      <span class="stat-label">Council Seats</span>
+    </div>
+    <div class="stat">
+      <span class="stat-val">497K</span>
+      <span class="stat-label">RAG Chunks</span>
+    </div>
+  </div>
+</div>
+
+<!-- Bottom bar -->
+<div class="bottom-bar">
+  <div class="bottom-left">
+    <span class="bottom-logo">Dropdown Logistics</span>
+    <div class="bottom-sep"></div>
+    <span class="bottom-url">dropdownlogistics.com</span>
+  </div>
+  <span class="bottom-right">Dave Kitchens · CPA</span>
+</div>
+
+</body>
+</html>

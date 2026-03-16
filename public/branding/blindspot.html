@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BlindSpot — Brand + Pricing · DDL</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0D1B2A;--card:#10202F;--bg:#0D2137;--cream:#F5F1EB;--steel:#6B7B8D;
+  --border:rgba(245,241,235,0.07);--borderlt:rgba(245,241,235,0.13);
+  --accent:#22C55E;--accent2:#86EFAC;--accent-dim:rgba(34,197,94,0.06);--accent-border:rgba(34,197,94,0.2);
+  --amber:#C49A3C;--teal:#2C7A7B;
+}
+body{background:var(--bg);color:var(--cream);font-family:'Space Grotesk',sans-serif;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;background:rgba(13,33,55,0.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-back{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--steel);text-decoration:none;letter-spacing:0.06em;transition:color 0.2s}
+.nav-back:hover{color:var(--cream)}
+.nav-product{display:flex;align-items:center;gap:10px}
+.nav-product-name{font-weight:700;font-size:0.92rem;color:var(--cream)}
+.nav-product-name span{color:var(--accent)}
+.page{position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:80px 40px}
+
+/* HERO */
+.hero-glow{position:fixed;width:800px;height:800px;background:radial-gradient(circle,rgba(34,197,94,0.06) 0%,transparent 65%);top:-300px;right:-200px;pointer-events:none;z-index:0}
+.product-hero{display:grid;grid-template-columns:1fr 280px;gap:64px;align-items:center;padding:64px 0 80px;border-bottom:1px solid var(--border);position:relative;z-index:1}
+.hero-eyebrow{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--accent);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.hero-eyebrow::before{content:'';display:block;width:28px;height:1px;background:var(--accent)}
+.hero-name{font-size:clamp(2.4rem,4vw,3.8rem);font-weight:700;letter-spacing:-0.04em;line-height:1.0;margin-bottom:12px}
+.hero-name em{font-family:'Source Serif 4',serif;font-style:italic;font-weight:400;color:var(--accent)}
+.hero-tagline{font-family:'Source Serif 4',serif;font-style:italic;font-size:1.1rem;color:var(--steel);margin-bottom:28px;line-height:1.6}
+.hero-badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+.badge{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.08em;padding:5px 12px;border-radius:3px;border:1px solid}
+.badge-green{color:var(--accent);background:var(--accent-dim);border-color:var(--accent-border)}
+.badge-amber{color:var(--amber);background:rgba(196,154,60,0.06);border-color:rgba(196,154,60,0.2)}
+.badge-steel{color:var(--steel);background:rgba(107,123,141,0.08);border-color:rgba(107,123,141,0.2)}
+.hero-desc{font-family:'Source Serif 4',serif;font-size:0.95rem;color:rgba(245,241,235,0.65);line-height:1.8}
+.hero-desc strong{color:var(--cream)}
+
+/* HELIX DISPLAY */
+.helix-display{display:flex;flex-direction:column;align-items:center;gap:16px}
+.helix-bg{background:var(--card);border:1px solid var(--accent-border);border-radius:12px;padding:36px 32px;display:flex;align-items:center;justify-content:center;width:100%}
+
+/* SECTIONS */
+.section{margin:64px 0;position:relative;z-index:1}
+.section-head{display:flex;align-items:center;gap:14px;margin-bottom:28px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.section-num{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--accent);letter-spacing:0.12em;min-width:28px}
+.section-title{font-size:1.05rem;font-weight:700}
+
+/* COLOR RULE CALLOUT */
+.color-rule{background:var(--card);border:1px solid var(--accent-border);border-left:2px solid var(--accent);border-radius:0 8px 8px 0;padding:18px 22px;margin-bottom:20px}
+.color-rule p{font-family:'Source Serif 4',serif;font-size:0.9rem;color:rgba(245,241,235,0.8);line-height:1.7}
+.color-rule strong{color:var(--accent)}
+.color-rule em{color:var(--amber);font-style:italic}
+
+/* TOKEN GRID */
+.token-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;margin-bottom:12px}
+.token-card{background:var(--card);border:1px solid var(--border);border-radius:6px;overflow:hidden}
+.token-swatch{height:56px}
+.token-info{padding:8px 10px 10px}
+.token-name{font-size:0.78rem;font-weight:600;margin-bottom:2px}
+.token-hex{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--steel)}
+.token-role{font-family:'JetBrains Mono',monospace;font-size:0.56rem;color:var(--accent);margin-top:2px}
+
+/* MARK CONTEXTS */
+.mark-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;border-radius:8px;overflow:hidden;margin-bottom:16px}
+.mark-cell{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 16px 14px;gap:10px;min-height:140px}
+.mark-cell-label{font-family:'JetBrains Mono',monospace;font-size:0.56rem;color:var(--steel);letter-spacing:0.06em}
+
+/* RULES */
+.rules-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.rule-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:20px 22px}
+.rule-card.do{border-color:rgba(34,197,94,0.25);background:rgba(34,197,94,0.04)}
+.rule-card.dont{border-color:rgba(178,53,49,0.2);background:rgba(178,53,49,0.04)}
+.rule-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px}
+.do .rule-label{color:var(--accent)}
+.dont .rule-label{color:#B23531}
+.rule-list{list-style:none}
+.rule-list li{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:rgba(245,241,235,0.65);padding:5px 0;border-bottom:1px solid var(--border);line-height:1.5}
+.rule-list li:last-child{border-bottom:none}
+
+/* PRICING */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:28px}
+.tier{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;position:relative;transition:transform 0.2s}
+.tier:hover{transform:translateY(-3px)}
+.tier.featured{border-color:rgba(44,122,123,0.4)}
+.tier-accent-bar{height:2px;background:var(--border)}
+.tier.tracker .tier-accent-bar{background:rgba(34,197,94,0.4)}
+.tier.featured .tier-accent-bar{background:var(--teal)}
+.tier.edge .tier-accent-bar{background:rgba(134,239,172,0.5)}
+.tier-inner{padding:28px 24px 24px}
+.tier-badge{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);border:1px solid rgba(44,122,123,0.3);padding:3px 10px;border-radius:20px;display:inline-block;margin-bottom:12px}
+.tier-name{font-size:1.1rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:4px}
+.tier-target{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--steel);letter-spacing:0.06em;margin-bottom:20px}
+.tier-price-wrap{margin-bottom:6px}
+.tier-price-num{font-size:2.4rem;font-weight:700;letter-spacing:-0.04em;line-height:1}
+.tier-price-period{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--steel);margin-left:3px}
+.tier-setup{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--steel);margin-bottom:20px}
+.tier-divider{border:none;border-top:1px solid var(--border);margin-bottom:20px}
+.tier-features{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
+.tier-features li{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--steel);padding-left:16px;position:relative;line-height:1.5}
+.tier-features li::before{content:'→';position:absolute;left:0;color:var(--accent);font-size:9px}
+.tier-cta{display:block;text-align:center;background:transparent;border:1px solid var(--border);color:var(--cream);font-weight:600;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;padding:12px 20px;border-radius:6px;cursor:pointer;transition:all 0.2s;text-decoration:none}
+.tier.featured .tier-cta{background:var(--teal);border-color:var(--teal)}
+.tier-cta:hover{border-color:var(--accent);color:var(--accent)}
+.tier.featured .tier-cta:hover{opacity:0.88}
+
+.addon-block{background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.addon-header{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--steel);letter-spacing:0.14em;text-transform:uppercase;padding:14px 22px;border-bottom:1px solid var(--border)}
+.addon-row{display:grid;grid-template-columns:160px 80px 1fr;padding:14px 22px;border-bottom:1px solid var(--border);align-items:start}
+.addon-row:last-child{border-bottom:none}
+.addon-name{font-size:0.85rem;font-weight:600}
+.addon-price{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--teal)}
+.addon-desc{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--steel);line-height:1.6}
+
+.page-footer{border-top:1px solid var(--border);padding:28px 0 16px;margin-top:64px;display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1}
+.footer-left{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--steel);line-height:1.8}
+.footer-right{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--accent);text-align:right;letter-spacing:0.04em}
+
+@media(max-width:700px){.product-hero{grid-template-columns:1fr}.pricing-grid{grid-template-columns:1fr}.rules-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="hero-glow"></div>
+
+<nav>
+  <a class="nav-back" href="index.html">← Branding Hub</a>
+  <div class="nav-product">
+    <svg viewBox="0 0 26 26" width="20" height="20"><rect width="26" height="26" rx="5" fill="#0F2237"/><path d="M9 3C9 3 17 7 17 10.5C17 14 9 16 9 19.5C9 23 17 24 17 24" stroke="#22C55E" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M17 3C17 3 9 7 9 10.5C9 14 17 16 17 19.5C17 23 9 24 9 24" stroke="#86EFAC" stroke-width="2" fill="none" stroke-linecap="round"/><line x1="9" y1="7.5" x2="17" y2="7.5" stroke="#E2E8F0" stroke-width="1.2"/><line x1="9" y1="13" x2="17" y2="13" stroke="#E2E8F0" stroke-width="1.2"/><line x1="9" y1="18.5" x2="17" y2="18.5" stroke="#E2E8F0" stroke-width="1.2"/></svg>
+    <div class="nav-product-name">blind<span>spot</span>.bet</div>
+  </div>
+</nav>
+
+<div class="page">
+  <div class="product-hero">
+    <div>
+      <div class="hero-eyebrow">Brand + Pricing · BlindSpot</div>
+      <h1 class="hero-name">Blind<em>spot.</em></h1>
+      <p class="hero-tagline">signal → structure → edge</p>
+      <div class="hero-badges">
+        <span class="badge badge-green">Dave Green #22C55E</span>
+        <span class="badge badge-amber">D&A Amber #C49A3C</span>
+        <span class="badge badge-steel">Helix Mark · Ratified Exception</span>
+      </div>
+      <p class="hero-desc">
+        <strong>The house has a data advantage. Now so do you.</strong> BlindSpot is sports betting analytics — decision forensics for the bettor. Signal without bias. Structure without noise. Edge without luck. Built by D&A Analytics. <em>Two people who share actual DNA.</em>
+      </p>
+    </div>
+    <div class="helix-display">
+      <div class="helix-bg">
+        <svg viewBox="0 0 80 80" width="120" height="120">
+          <rect width="80" height="80" rx="16" fill="#0F2237"/>
+          <path d="M27 8C27 8 53 22 53 32C53 43 27 49 27 60C27 70 53 73 53 73" stroke="#22C55E" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+          <path d="M53 8C53 8 27 22 27 32C27 43 53 49 53 60C53 70 27 73 27 73" stroke="#86EFAC" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+          <line x1="27" y1="22" x2="53" y2="22" stroke="#E2E8F0" stroke-width="2.5"/>
+          <line x1="27" y1="40" x2="53" y2="40" stroke="#E2E8F0" stroke-width="2.5"/>
+          <line x1="27" y1="57" x2="53" y2="57" stroke="#E2E8F0" stroke-width="2.5"/>
+        </svg>
+      </div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--steel);text-align:center;letter-spacing:0.06em">Helix Mark · Documented exception<br>to the DDL stamp system</div>
+    </div>
+  </div>
+
+  <!-- COLOR SYSTEM -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <span class="section-title">Color System</span>
+    </div>
+    <div class="color-rule">
+      <p><strong>Green = you are inside the product.</strong> Dave Green (#22C55E) is used in product UI, OrbitalHero, and all interactive elements. <em>Amber = DDL is referencing BlindSpot from outside.</em> D&A Analytics amber (#C49A3C) is used when the DDL site references BlindSpot. This distinction is intentional. Do not flatten it.</p>
+    </div>
+    <div class="token-grid">
+      <div class="token-card"><div class="token-swatch" style="background:#22C55E"></div><div class="token-info"><div class="token-name">Dave Green</div><div class="token-hex">#22C55E</div><div class="token-role">Inside product</div></div></div>
+      <div class="token-card"><div class="token-swatch" style="background:#86EFAC"></div><div class="token-info"><div class="token-name">Alex Green</div><div class="token-hex">#86EFAC</div><div class="token-role">Helix strand 2</div></div></div>
+      <div class="token-card"><div class="token-swatch" style="background:#C49A3C"></div><div class="token-info"><div class="token-name">D&A Amber</div><div class="token-hex">#C49A3C</div><div class="token-role">External ref</div></div></div>
+      <div class="token-card"><div class="token-swatch" style="background:#0D2137"></div><div class="token-info"><div class="token-name">D&A Navy</div><div class="token-hex">#0D2137</div><div class="token-role">Product bg</div></div></div>
+      <div class="token-card"><div class="token-swatch" style="background:#F5F1EB"></div><div class="token-info"><div class="token-name">Cream</div><div class="token-hex">#F5F1EB</div><div class="token-role">Primary text</div></div></div>
+      <div class="token-card"><div class="token-swatch" style="background:#6B7B8D"></div><div class="token-info"><div class="token-name">Steel</div><div class="token-hex">#6B7B8D</div><div class="token-role">Secondary text</div></div></div>
+    </div>
+    <p style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--steel)">D&A Navy (#0D2137) is darker than DDL Navy (#0D1B2A). The product is a data terminal, not a studio site. Do not normalize these values.</p>
+  </div>
+
+  <!-- MARK CONTEXTS -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <span class="section-title">The Helix Mark</span>
+    </div>
+    <div class="mark-grid">
+      <div class="mark-cell" style="background:#0D2137">
+        <svg viewBox="0 0 80 80" width="72" height="72"><rect width="80" height="80" rx="14" fill="#0F2237"/><path d="M27 8C27 8 53 22 53 32C53 43 27 49 27 60C27 70 53 73 53 73" stroke="#22C55E" stroke-width="4.5" fill="none" stroke-linecap="round"/><path d="M53 8C53 8 27 22 27 32C27 43 53 49 53 60C53 70 27 73 27 73" stroke="#86EFAC" stroke-width="4.5" fill="none" stroke-linecap="round"/><line x1="27" y1="22" x2="53" y2="22" stroke="#E2E8F0" stroke-width="2.5"/><line x1="27" y1="40" x2="53" y2="40" stroke="#E2E8F0" stroke-width="2.5"/><line x1="27" y1="57" x2="53" y2="57" stroke="#E2E8F0" stroke-width="2.5"/></svg>
+        <div class="mark-cell-label">PRODUCT · PRIMARY</div>
+      </div>
+      <div class="mark-cell" style="background:#10202F">
+        <svg viewBox="0 0 26 26" width="52" height="52"><rect width="26" height="26" rx="6" fill="#0F2237"/><path d="M9 3C9 3 17 7 17 10.5C17 14 9 16 9 19.5C9 23 17 24 17 24" stroke="#22C55E" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M17 3C17 3 9 7 9 10.5C9 14 17 16 17 19.5C17 23 9 24 9 24" stroke="#86EFAC" stroke-width="2" fill="none" stroke-linecap="round"/><line x1="9" y1="7.5" x2="17" y2="7.5" stroke="#E2E8F0" stroke-width="1.2"/><line x1="9" y1="13" x2="17" y2="13" stroke="#E2E8F0" stroke-width="1.2"/><line x1="9" y1="18.5" x2="17" y2="18.5" stroke="#E2E8F0" stroke-width="1.2"/></svg>
+        <div class="mark-cell-label">NAV · FAVICON SIZE</div>
+      </div>
+      <div class="mark-cell" style="background:#0D1B2A">
+        <div style="display:flex;align-items:center;gap:12px">
+          <svg viewBox="0 0 26 26" width="36" height="36"><rect width="26" height="26" rx="6" fill="#0F2237"/><path d="M9 3C9 3 17 7 17 10.5C17 14 9 16 9 19.5C9 23 17 24 17 24" stroke="#22C55E" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M17 3C17 3 9 7 9 10.5C9 14 17 16 17 19.5C17 23 9 24 9 24" stroke="#86EFAC" stroke-width="2" fill="none" stroke-linecap="round"/><line x1="9" y1="7.5" x2="17" y2="7.5" stroke="#E2E8F0" stroke-width="1.2"/><line x1="9" y1="13" x2="17" y2="13" stroke="#E2E8F0" stroke-width="1.2"/><line x1="9" y1="18.5" x2="17" y2="18.5" stroke="#E2E8F0" stroke-width="1.2"/></svg>
+          <div><div style="font-size:0.88rem;font-weight:700">blindspot<span style="color:#22C55E">.bet</span></div><div style="font-family:'JetBrains Mono',monospace;font-size:0.55rem;color:var(--steel)">signal → structure → edge</div></div>
+        </div>
+        <div class="mark-cell-label">DDL SITE REF · AMBER</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- USAGE RULES -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <span class="section-title">Usage Rules</span>
+    </div>
+    <div class="rules-grid">
+      <div class="rule-card do">
+        <div class="rule-label">✓ Always</div>
+        <ul class="rule-list">
+          <li>Dave Green (#22C55E) inside the product</li>
+          <li>D&A Amber (#C49A3C) when DDL references BlindSpot externally</li>
+          <li>Both green strands in the helix — two cousins, two strands</li>
+          <li>D&A Navy (#0D2137) as product background</li>
+          <li>"blindspot.bet" lowercase in all product contexts</li>
+          <li>Footer canon: "built by two people who share actual DNA"</li>
+        </ul>
+      </div>
+      <div class="rule-card dont">
+        <div class="rule-label">✗ Never</div>
+        <ul class="rule-list">
+          <li>Flatten Dave Green and Alex Green to a single color</li>
+          <li>Replace the helix with a stamp mark — exception is ratified</li>
+          <li>White backgrounds — ever</li>
+          <li>Normalize D&A Navy to DDL Navy — they are intentionally different</li>
+          <li>Apply the helix to non-D&A products — it is BlindSpot's exclusive mark</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRICING -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <span class="section-title">Pricing</span>
+    </div>
+    <div class="pricing-grid">
+      <!-- Tracker -->
+      <div class="tier tracker">
+        <div class="tier-accent-bar"></div>
+        <div class="tier-inner">
+          <div class="tier-name">Tracker</div>
+          <div class="tier-target">Casual bettors · Getting started</div>
+          <div class="tier-price-wrap"><span class="tier-price-num">$9</span><span class="tier-price-period">/mo</span></div>
+          <div class="tier-setup">billed annually · $12 month-to-month</div>
+          <hr class="tier-divider">
+          <ul class="tier-features">
+            <li>Bet log — up to 200 entries/mo</li>
+            <li>Win/loss tracking + ROI dashboard</li>
+            <li>Basic tilt detection flags</li>
+            <li>Manual entry only</li>
+            <li>1 sport</li>
+          </ul>
+          <a href="#" class="tier-cta">Start Free Trial</a>
+        </div>
+      </div>
+
+      <!-- Analyst — FEATURED -->
+      <div class="tier featured">
+        <div class="tier-accent-bar"></div>
+        <div class="tier-inner">
+          <span class="tier-badge">Most Popular</span>
+          <div class="tier-name">Analyst</div>
+          <div class="tier-target">Serious bettors · System builders</div>
+          <div class="tier-price-wrap"><span class="tier-price-num">$29</span><span class="tier-price-period">/mo</span></div>
+          <div class="tier-setup">billed annually · $35 month-to-month</div>
+          <hr class="tier-divider">
+          <ul class="tier-features">
+            <li>Unlimited bet log entries</li>
+            <li>Full ROI dashboard by split (sport, league, bet type)</li>
+            <li>Tilt Detection — behavioral flag engine</li>
+            <li>Token Economy — virtual tracking, no real money</li>
+            <li>Decision Forensics — replay your reasoning</li>
+            <li>All sports</li>
+            <li>Data export (CSV)</li>
+          </ul>
+          <a href="#" class="tier-cta">Start Free Trial</a>
+        </div>
+      </div>
+
+      <!-- Edge -->
+      <div class="tier edge">
+        <div class="tier-accent-bar"></div>
+        <div class="tier-inner">
+          <div class="tier-name">Edge</div>
+          <div class="tier-target">High-volume bettors · Data-first operators</div>
+          <div class="tier-price-wrap"><span class="tier-price-num">$49</span><span class="tier-price-period">/mo</span></div>
+          <div class="tier-setup">billed annually · $59 month-to-month</div>
+          <hr class="tier-divider">
+          <ul class="tier-features">
+            <li>Everything in Analyst</li>
+            <li>Outcome Reconciliation — prediction vs. result audit</li>
+            <li>Decision Log Protocol — full governance trail</li>
+            <li>D&A Analytics engine access</li>
+            <li>API access (beta)</li>
+            <li>Priority support</li>
+            <li>Early access to new modules</li>
+          </ul>
+          <a href="#" class="tier-cta">Start Free Trial</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="addon-block">
+      <div class="addon-header">Add-ons</div>
+      <div class="addon-row">
+        <div class="addon-name">FantasyForge Module</div>
+        <div class="addon-price">Coming Q3</div>
+        <div class="addon-desc">DFS analytics layer. Lineup optimization scored against your personal edge profile, not generic projections.</div>
+      </div>
+      <div class="addon-row">
+        <div class="addon-name">Trading Module</div>
+        <div class="addon-price">Coming soon</div>
+        <div class="addon-desc">BlindSpot signal engine applied to equity/options trading. Same architecture, different domain. D&A Analytics family.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <div class="footer-left">BlindSpot · D&A Analytics · Brand Kit v1.0 · 2026-03-15<br>Helix mark exception ratified by operator · Dropdown Logistics</div>
+    <div class="footer-right">built by two people<br>who share actual DNA</div>
+  </div>
+</div>
+</body>
+</html>
