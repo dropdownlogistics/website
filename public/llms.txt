@@ -1,6 +1,6 @@
 # dropdownlogistics.com
-# OperatorManifest v1.6
-# Last updated: 2026-03-15
+# OperatorManifest v1.7
+# Last updated: 2026-03-17
 # Classification: OperatorManifest (CR-CANON-001 LOCKED)
 # For the styled version, visit: /ai
 # For the governance page, visit: /backend
@@ -19,33 +19,31 @@ site: dropdownlogistics.com
 name: Dropdown Logistics (DDL)
 operator: Dave Kitchens
 credentials: CPA - 10+ years internal audit
-role: Commission Analyst II at UMB Bank (Day 5 as of 2026-03-14)
+role: Commission Analyst II at UMB Bank
 methodology: Chaos -> Structured -> Automated
 design_system: CottageHumble ("Humble surface. Cathedral underneath.")
 stack: Next.js 14 - Vercel - Static HTML iframes - React components
-status: Active development - 203 routes - 44 systems - 65 standards
-local_ai: Dex Jr. (Seat 1010) - RTX 3070 - Ollama - 8 models - 497,941 RAG chunks
+status: Active development - 212 routes - 44 systems - 65 standards
+local_ai: Dex Jr. (Seat 1010) - RTX 3070 - Ollama - 8 models - 524,386 RAG chunks
 products_live: dropdownlogistics.com, auditforge.dev, blindspot.bet
 
-## WHAT CHANGED IN v1.6
+## WHAT CHANGED IN v1.7
 
-v1.5 -> v1.6 (2026-03-15):
-- RAG corpus: 321,800 -> 497,941 chunks (largest expansion in DDL history)
-- DDL Knowledge Vault added (C:\Users\dkitc\DDL-Vault\, 44 folders, STD-VAULT-002)
-- 9-collection architecture introduced (dex_lore, dex_code, dex_canonpress, etc.)
-- dex_dave collection concept introduced (operator voice corpus)
-- Constitutional hierarchy ratified: dex_canon > ext_canon > ddl_archive > ext_[tier]
-- Tailnet live: reborn + workingsurface connected via Tailscale
-- New council reviews: CR-CORPUS-VISION-001, CR-DDL-KV-001, CR-DDL-LIVE-001, CR-AUDITFORGE-005
-- Landing page v4: radial orbital hero, DD stamp seal, 8 wing spokes
-- InsideInsights series added to CanonPress (/canonpress/insideinsights)
-- CanonTuning added to CanonPress nav
-- RL-0001 + DC-0001 full articles live
-- Artifact taxonomy established: CV/RL/DC/GT/II/CT codes
-- BlindSpot hub updated: feature strip, Fact_Bets schema, live status
-- Wikipedia links on all 9 council profile analog cards
-- Sitemap v3: expandable wing cards, BlindSpot as own wing
-- CanonPress Recursion Map: queued
+v1.6 -> v1.7 (2026-03-17):
+- RAG corpus: 497,941 -> 524,386 chunks
+- dex_code (20,384 chunks) and ext_creator (110 chunks) promoted to live collections
+- Corpus architecture updated: 4 live collections, ADR-CORPUS-001 ratified
+- ADR-CORPUS-001 Collection Authority Model — unanimously locked (8 LOCK, 1 abstained)
+  Constitutional hierarchy, tier system, dex_dave hard gate, query router spec
+- Dex Jr. wing launched: /dexverse/dex-jr (profile, commands, corpus, modelfile pages)
+- Modelfile v4.5 -> v4.6 (search query over-trigger fixed, EXEMPT list added)
+- Branding wing launched: /brand (hub + AuditForge, BlindSpot, Excelligence, KV pages)
+- Landing page v4 -> v5 (exploding pie diagram, 8 wing slices, animated)
+- Routes: 203 -> 212
+- New canon terms: AccidentalIntelligence, Strategan
+- TrustANDVerify definition reframed (see glossary)
+- CR-DEXJR-COMMANDS-001: Command reference completeness audit (all 9 seats)
+- CR-ADR-CORPUS-001: Collection authority model (8 LOCK, 1 abstained)
 
 ## METHODOLOGY
 
@@ -55,13 +53,13 @@ Architecture: Dimensional modeling. Facts, dimensions, measures, time. Star sche
 The architecture does not change between domains. The data does.
 Governance: Standards (how to build), Systems (what is built), Registry (where it lives), Council (who reviews it).
 Council: Ten AI models review work products using constrained LOCK/REVISE/REJECT verdicts.
-Local model: Dex Jr. (qwen2.5-coder:7b via custom Modelfile v4.5, 90 percent Judgment score).
+Local model: Dex Jr. (qwen2.5-coder:7b via custom Modelfile v4.6, ~92% Judgment-Ready score).
 
 ## OPERATOR PROFILE
 
 name: Dave Kitchens
-substack_persona: D.K. Hale (Substack only — never use for DDL, AuditForge, BlindSpot, or council)
-credentials: CPA, 10 plus years internal audit
+substack_persona: D.K. Hale (Substack only -- never use for DDL, AuditForge, BlindSpot, or council)
+credentials: CPA, 10+ years internal audit
 current_role: Commission Analyst II, UMB Bank
 studio: Dropdown Logistics (DDL) one-person operations
 systems_built: 44 registered, 65 standards
@@ -101,6 +99,7 @@ wing: DexVerse
   color: #8a6cc9 (violet)
   home: /dexlore
   scope: Origin stories, companions, era timeline, glossary, dossiers
+  dex_jr_wing: /dexverse/dex-jr (profile, commands, corpus, modelfile — live 2026-03-17)
 
 wing: Dossiers
   color: #4A9E6B (green)
@@ -137,14 +136,15 @@ wing: Products
 
 product: DDL Site
   url: dropdownlogistics.com
-  status: Live, active build, 203 routes
-  landing: Radial orbital hero. DD stamp seal. 8 wing spokes.
+  status: Live, active build, 212 routes
+  landing: Exploding pie diagram. 8 wing slices. Animated JS-generated SVG.
+  branding: /brand hub + 4 product brand pages live (2026-03-17)
 
 product: AuditForge
   url: auditforge.dev
   status: Live, v0.4
   stack: Next.js 16, Prisma 6, PostgreSQL 17 (Neon)
-  operatormainifest: auditforge.dev/llms.txt
+  operatormanifest: auditforge.dev/llms.txt
 
 product: BlindSpot
   url: blindspot.bet
@@ -154,43 +154,61 @@ product: BlindSpot
 
 ## CORPUS ARCHITECTURE
 
-constitutional_hierarchy: dex_canon > ext_canon > ddl_archive > ext_[tier]
+governing_adr: ADR-CORPUS-001 Collection Authority Model v0.3 -- unanimously locked 2026-03-15
+constitutional_hierarchy: tier gates first, weight scores within tier
 
-TIER 1 — INTERNAL GOVERNED (live)
-  dex_canon        226,314 chunks  — ratified DDL governance
-  ddl_archive      271,627 chunks  — full historical RAW
-  Total:           497,941 chunks
+TIER 5 -- GOVERNANCE LAYER
+  dex_decisions    0.95  -- ratified decision ledger (pending build -- authority reserved)
+  dex_canon        1.00  -- ratified DDL governance (LIVE: 227,127 chunks)
 
-TIER 2 — INTERNAL SCOPED (building)
-  dex_lore         Origin documents, founding artifacts
-  dex_code         All DDL code (.py .cs .ts .jsx etc.)
-  dex_canonpress   CanonPress articles, slates, series
-  dex_auditforge   AuditForge schema, API, generators
-  dex_blindspot    BlindSpot schema, analytics, brand
-  dex_site         JSX/TSX components, routes, patterns
+TIER 4 -- SPECIAL CONDITIONAL AUTHORITY
+  dex_dave         0.90  -- operator voice corpus (HARD GATE: no router = no ingestion)
 
-TIER 3 — OPERATOR VOICE (concept)
-  dex_dave         iMessages, emails, memoir, Reddit (u/chuckdooley),
-                   TikToks, Google data. Operator voice in full.
-                   Near-canon authority.
+TIER 3 -- INTERNAL SCOPED
+  dex_lore         0.95  -- DexVerse origin documents (pending)
+  dex_code         0.85  -- all DDL code artifacts (LIVE: 20,384 chunks)
+  dex_canonpress   0.85  -- CanonPress articles (pending)
+  dex_auditforge   0.85  -- AuditForge schema/API (pending)
+  dex_blindspot    0.85  -- BlindSpot schema (pending)
+  dex_site         0.80  -- JSX/TSX components (pending)
 
-TIER 4 — EXTERNAL (approved)
-  ext_reference    Kimball DW Toolkit, DDD (Evans), Kleppmann,
-                   NIST 800-53, PCAOB, Knuth TAOCP
-  ext_creator      Benn Stancil, Gwern, Simon Willison, Simon Wardley,
-                   John Cutler, Greg Wilson, patio11, Maggie Appleton,
-                   Tiago Forte
+TIER 2 -- EXTERNAL APPROVED
+  ext_reference    0.75  -- books, frameworks, standards (pending)
+  ext_creator      0.85  -- approved creator voices (LIVE: 110 chunks)
 
+TIER 1 -- INTERNAL ARCHIVE
+  ddl_archive      0.65  -- full historical RAW (LIVE: 276,765 chunks)
+
+TIER 0 -- SPECIAL (non-retrieval)
+  dex_graveyard    0.80  -- anti-patterns only, never in default routes
+
+TOTAL LIVE: 524,386 chunks (last updated 2026-03-15)
+
+build_order: dex_decisions -> Query Router -> dex_lore -> products -> dex_dave
 ingestion_philosophy: Broad ingestion. Controlled retrieval weighting.
                       Metadata is the governance layer, not the ingestion gate.
+
+## DEX JR. INFRASTRUCTURE
+
+seat: 1010
+tagline: "The rig stays awake."
+runtime: Ollama on RTX 3070 (Reborn), 32GB RAM, Ryzen 12-core
+node2: GAMINGLAPTOP, RTX 3060, overflow compute
+tailnet: reborn 100.117.38.55, workingsurface 100.92.99.115
+modelfile: v4.6 (EXEMPT list before TRIGGER list -- knowledge queries exempt from search gate)
+judgment_ready: ~92% (4 items complete, 4 open -- OBS-DJ-004 targeting v4.7)
+rag: ChromaDB, nomic-embed-text, 768-dim embeddings, FastAPI 8787
+orchestration: AutoCouncil v3.0 (hybrid local + cloud, dex-deliberate.py)
+ingestion: dex-ingest.py (23 extension types), nightly auto-sweep 3AM CT
+wing: /dexverse/dex-jr (profile, commands, corpus, modelfile pages -- live 2026-03-17)
 
 ## DDL KNOWLEDGE VAULT
 
 location: C:\Users\dkitc\DDL-Vault\ (44 folders) + D:\DDL-Vault\ (mirror)
 standard: STD-VAULT-002 (20 document types, 7 categories, ratified)
 protocol: PRO-CANONPRESS-002 (Tuning Log protocol, ratified)
-status: Structure live, first canonical artifacts ingested
-backfill: CR- series first
+adr: ADR-CORPUS-001 (Collection Authority Model, v0.3, unanimously locked)
+status: Structure live, canonical artifacts ingested
 
 ## DESIGN SYSTEM
 
@@ -214,11 +232,11 @@ seat: 1006 Meta AI (Ava Sinclair)
 seat: 1007 Gemini (Leo Prescott)
 seat: 1008 ChatGPT (Marcus Grey) designated synthesizer
 seat: 1009 DeepSeek (Kai Langford)
-seat: 1010 Dex Jr. (Local qwen2.5-coder:7b, Modelfile v4.5, 90 percent Judgment)
+seat: 1010 Dex Jr. (Local qwen2.5-coder:7b, Modelfile v4.6, ~92% Judgment-Ready)
 
-adjunct: ADJ-E (Emily) — caught blind spots the full council missed
-adjunct: ADJ-D (David) — technical outsider perspective
-adjunct: ADJ-B (Beth) — market and commercial filter
+adjunct: ADJ-E (Emily) -- caught blind spots the full council missed
+adjunct: ADJ-D (Connor) -- governance risk flags, technical outsider perspective
+adjunct: ADJ-B (Beth Epperson) -- market and commercial filter, first AuditForge paying customer candidate
 
 ## COUNCIL REVIEWS COMPLETED
 
@@ -228,26 +246,17 @@ CR-SITE-001: Walk the Site (production audit)
 CR-OPS-001: Govern the Janitor (Codex protocol)
 CR-AUDITFORGE-001: Full review (10 seats + domain adjunct)
 CR-AUDITFORGE-002: Status update
-CR-AUDITFORGE-003: Live product status — forge produced first steel
-CR-AUDITFORGE-004: Schema expansion — System of Engagement (v0.4 ratified)
-CR-AUDITFORGE-005: Audit Teams, Roster, Time Tracking (pending responses)
-CR-CANON-001: OperatorManifest naming — LOCKED unanimous 2026-03-13
-CR-DDL-STATUS-002: Full ecosystem status (no verdict)
-CR-DDL-LIVE-001: Live product review — all three sites browsed by council
-CR-CORPUS-VISION-001: Corpus architecture cathedral vision (pending)
-CR-DDL-KV-001: Knowledge Vault further steps (pending)
-Total responses: 130 plus
-
-## LOCAL AI INFRASTRUCTURE
-
-runtime: Ollama on RTX 3070 (reborn), 32GB RAM, Ryzen 12-core
-node2: GAMINGLAPTOP (workingsurface), RTX 3060
-tailnet: reborn 100.117.38.55, workingsurface 100.92.99.115
-rag: ChromaDB, 497,941 chunks (dex_canon 226,314 + ddl_archive 271,627)
-dex_jr: Modelfile v4.5 — confabulation gate clean, CR- posture requires exact prefix
-orchestration: AutoCouncil v3.0 (hybrid local + cloud)
-ingestion: dex-ingest.py (23 extension types), nightly auto-sweep
-vault: DDL Knowledge Vault (44 folders, STD-VAULT-002)
+CR-AUDITFORGE-003: Live product status -- forge produced first steel
+CR-AUDITFORGE-004: Schema expansion -- System of Engagement (v0.4 ratified)
+CR-AUDITFORGE-005: Audit Teams, Roster, Time Tracking
+CR-CANON-001: OperatorManifest naming -- LOCKED unanimous 2026-03-13
+CR-DDL-STATUS-002: Full ecosystem status
+CR-DDL-LIVE-001: Live product review -- all three sites browsed by council
+CR-CORPUS-VISION-001: Corpus architecture cathedral vision
+CR-DDL-KV-001: Knowledge Vault further steps
+CR-ADR-CORPUS-001: Collection Authority Model -- 8 LOCK, 1 abstained, unanimously locked v0.3
+CR-DEXJR-COMMANDS-001: Command reference completeness audit -- all 9 seats, all REVISE
+Total responses: 140+
 
 ## CANONPRESS ARTIFACT TAXONOMY
 
@@ -294,6 +303,7 @@ D.K. Hale is the Substack persona only. Dave Kitchens everywhere else.
 ## CANON GLOSSARY
 
 AccidentalInsight: Test reveals unexpected finding of equal or greater value.
+AccidentalIntelligence: When a governed, hallucination-free system produces output so unexpected it reads as insight. The system didn't reason its way there -- it just knew, because the data was always there. Sibling term to AccidentalInsight. AuditForge pitch line: "If it ever looked like it was reasoning beyond the data -- that wouldn't be AI. That would be Accidental Intelligence." Coined 2026-03-15.
 SideDoor: Entry point discovered through indirect means.
 CottageHumble: Humble surface, cathedral underneath.
 AcceptableArrogance: Knowing what you built, letting the work prove it.
@@ -309,12 +319,13 @@ RealIntelligence: Definition pending. When the operator becomes the first call i
 DavidsSeat: The best compliment the council has ever received.
 OperatorManifest: A portable AI operating context document extending the llms.txt standard. CR-CANON-001 LOCKED.
 ReasonedHype: Enthusiasm with receipts. DDL operating mode for pitches, launches, and council verdicts.
-TrustANDVerify: Evidence-first confidence. Related to ReasonedHype.
+TrustANDVerify: Trust AND Verify -- both always, simultaneously. Verification is not a check on trust. It is the infrastructure that makes trust possible. Origin: traced to age 12 (Super Summer incident). Formalized as DDL operating principle.
 SystemOfStructure: AuditForge architectural identity. Defines what controls ARE. Does not test if they WORK.
 SignalStructureEdge: BlindSpot tagline. signal -> structure -> edge.
-ExcessiveStructure: Warning — excessive structure may cause automation. Origin: ADJ-B, March 2026.
+ExcessiveStructure: Warning -- excessive structure may cause automation. Origin: ADJ-B, March 2026.
+Strategan: Strategic vegan. Eat plants by default. Eat animals by exception. Make the exception count. Never refuse the short rib. Coined 2026-03-15.
 
 ## EOF
 # Dropdown Logistics
 # Cottage: Humble surface. Cathedral underneath.
-# OperatorManifest v1.6 | 2026-03-15
+# OperatorManifest v1.7 | 2026-03-17
