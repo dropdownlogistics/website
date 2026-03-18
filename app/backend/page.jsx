@@ -141,7 +141,7 @@ export default function BackEnd() {
         <GovCard color={C.violet} icon="&#x1F4D1;" title="Content Types" stat={20}
           desc="Document types across 7 categories with governed templates."
           href="/registry" />
-        <GovCard color={C.green} icon="&#x1F50D;" title="RAG Chunks" stat={321800}
+        <GovCard color={C.green} icon="&#x1F50D;" title="RAG Chunks" stat="500K+"
           desc="Searchable knowledge chunks in Dex Jr.'s local vector database."
           href="/council/1010" />
       </div>
@@ -282,7 +282,7 @@ Primary:      qwen2.5-coder:7b @ 87 tok/sec
 Reasoning:    deepseek-r1:8b
 Vision:       gemma3:4b
 Embeddings:   nomic-embed-text (768 dim)
-RAG:          ChromaDB / 321,800 chunks
+RAG:          ChromaDB / 500K+ chunks
 AutoCouncil:  v3.0 (hybrid local+cloud)
 Auto-Sweep:   nightly 3 AM ingestion
 Judgment:     90% on CR-LLMS-011 (60 questions)

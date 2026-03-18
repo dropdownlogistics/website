@@ -8,13 +8,14 @@ export default function SearchProvider() {
 
   useEffect(() => {
     const handler = (e) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k' || e.type === 'ddl-open-search') {
         e.preventDefault();
         setOpen(o => !o);
       }
     };
     window.addEventListener('keydown', handler);
-    return () => window.removeEventListener('keydown', handler);
+    window.addEventListener('ddl-open-search', handler);
+    return () => { window.removeEventListener('keydown', handler); window.removeEventListener('ddl-open-search', handler); };
   }, []);
 
   return <SearchModal isOpen={open} onClose={() => setOpen(false)} />;

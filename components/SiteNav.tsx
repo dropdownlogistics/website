@@ -389,7 +389,7 @@ export default function SiteNav() {
         .ddl-desktop { display: flex; align-items: center; gap: 12px; flex: 1; overflow: visible; }
         .ddl-sep { width: 1px; height: 20px; background: rgba(245,241,235,0.08); flex-shrink: 0; }
         .ddl-groups { display: flex; align-items: center; gap: 2px; flex-wrap: nowrap; }
-        .ddl-mob-btn { display: none; background: transparent; border: none; cursor: pointer; padding: 8px; color: rgba(245,241,235,0.6); font-size: 20px; line-height: 1; }
+         background: transparent; border: none; cursor: pointer; padding: 8px; color: rgba(245,241,235,0.6); font-size: 20px; line-height: 1; }
         .ddl-mobile-menu { position: fixed; inset: 56px 0 0 0; background: #0D1B2A; z-index: 49; overflow-y: auto; padding: 24px 20px; display: flex; flex-direction: column; gap: 24px; }
         .ddl-mob-wing { display: flex; flex-direction: column; gap: 8px; }
         .ddl-mob-wing-label { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 13px; padding: 4px 0; border-bottom: 1px solid rgba(245,241,235,0.06); padding-bottom: 8px; }
@@ -427,7 +427,8 @@ export default function SiteNav() {
             </div>
           </div>
 
-          {/* Mobile button */}
+          
+          <div className="ddl-search-wrap" style={{display:"flex",alignItems:"center",marginLeft:"8px",flexShrink:0}}><input className="ddl-search-input" type="text" placeholder="Search..." style={{background:"rgba(245,241,235,0.05)",border:"1px solid rgba(245,241,235,0.08)",borderRadius:"6px",padding:"6px 12px",fontFamily:"JetBrains Mono,monospace",fontSize:"11px",color:"rgba(245,241,235,0.5)",width:"160px",outline:"none"}} onFocus={()=>{ window.dispatchEvent(new Event("ddl-open-search")); (document.activeElement as HTMLElement).blur(); }} readOnly placeholder="Search..." /></div>
           <button className="ddl-mob-btn" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle menu">
             {mobileOpen ? '✕' : '☰'}
           </button>
