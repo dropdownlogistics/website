@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dex Jr. — Corpus State · DDL</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0D1B2A;--card:#10202F;--card2:#0B1825;
+  --cream:#F5F1EB;--steel:#6B7B8D;
+  --border:rgba(245,241,235,0.06);--borderlt:rgba(245,241,235,0.12);
+  --violet:#8A6CC9;--violet-lt:#A98FE0;--violet-dk:#6450A0;
+  --violet-xs:rgba(138,108,201,0.1);--violet-sm:rgba(138,108,201,0.18);
+  --crimson:#B23531;--amber:#C49A3C;--green:#22C55E;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes countUp{from{opacity:0}to{opacity:1}}
+@keyframes barGrow{from{width:0}to{width:var(--bar-w)}}
+
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--cream);font-family:'Source Serif 4',Georgia,serif;min-height:100vh}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;background:rgba(13,27,42,0.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-back{display:flex;align-items:center;gap:8px;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--steel);letter-spacing:0.06em;transition:color 0.2s}
+.nav-back:hover{color:var(--cream)}
+.nav-links a{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--steel);text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s;margin-left:20px}
+.nav-links a:hover{color:var(--violet-lt)}
+.nav-links a.active{color:var(--violet-lt)}
+
+/* LAYOUT */
+.layout{display:grid;grid-template-columns:220px 1fr;min-height:100vh;padding-top:52px}
+
+/* SIDEBAR */
+.sidebar{background:var(--card2);border-right:1px solid var(--border);padding:32px 0;position:sticky;top:52px;height:calc(100vh - 52px);overflow-y:auto}
+.sidebar-label{font-family:'JetBrains Mono',monospace;font-size:0.55rem;color:var(--steel);letter-spacing:0.14em;text-transform:uppercase;padding:0 20px;margin-bottom:8px}
+.sidebar-link{display:block;font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--steel);text-decoration:none;padding:7px 20px;letter-spacing:0.03em;border-left:2px solid transparent;transition:all 0.15s}
+.sidebar-link:hover{color:var(--cream);background:rgba(138,108,201,0.06);border-left-color:rgba(138,108,201,0.4)}
+.sidebar-link.active{color:var(--violet-lt);border-left-color:var(--violet);background:var(--violet-xs)}
+.sidebar-divider{height:1px;background:var(--border);margin:12px 20px}
+
+/* CONTENT */
+.content{padding:48px 56px 80px;max-width:900px;animation:fadeUp 0.5s ease both}
+.content-header{margin-bottom:40px;padding-bottom:24px;border-bottom:1px solid var(--border)}
+.content-eyebrow{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--violet);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.content-eyebrow::before{content:'';display:block;width:20px;height:1px;background:var(--violet)}
+.content-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:2rem;letter-spacing:-0.02em;margin-bottom:8px}
+.content-sub{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--steel);letter-spacing:0.06em;line-height:1.8}
+
+/* TOTAL BLOCK */
+.total-block{background:var(--violet-xs);border:1px solid rgba(138,108,201,0.25);border-radius:10px;padding:28px 32px;margin-bottom:32px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:24px}
+.total-label{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--violet);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:8px}
+.total-count{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:3rem;letter-spacing:-0.04em;color:var(--cream);line-height:1}
+.total-sub{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--steel);letter-spacing:0.06em;margin-top:6px}
+.total-right{text-align:right}
+.total-updated{font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--steel);letter-spacing:0.06em;margin-bottom:6px}
+.total-badge{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--green);background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.25);padding:5px 12px;border-radius:3px;letter-spacing:0.06em}
+
+/* LIVE COLLECTIONS */
+.collection-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:32px}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:20px 22px;position:relative;overflow:hidden}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.stat-card.live::before{background:var(--green)}
+.stat-card.pending::before{background:var(--steel);opacity:0.4}
+.stat-collection{font-family:'JetBrains Mono',monospace;font-size:0.68rem;font-weight:500;color:var(--violet-lt);margin-bottom:10px;letter-spacing:0.04em}
+.stat-count{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:2rem;letter-spacing:-0.03em;margin-bottom:6px}
+.stat-bar-wrap{height:3px;background:rgba(245,241,235,0.06);border-radius:2px;margin-bottom:10px;overflow:hidden}
+.stat-bar{height:100%;border-radius:2px;animation:barGrow 1s ease 0.3s both;width:var(--bar-w)}
+.stat-bar.live{background:var(--violet)}
+.stat-bar.pending{background:var(--steel);opacity:0.4}
+.stat-meta{display:flex;justify-content:space-between;align-items:center}
+.stat-weight{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--steel);letter-spacing:0.06em}
+.stat-status{font-family:'JetBrains Mono',monospace;font-size:0.58rem;font-weight:600;letter-spacing:0.06em}
+.status-live{color:var(--green)}
+.status-pending{color:var(--steel)}
+.stat-desc{font-family:'Source Serif 4',serif;font-size:0.78rem;color:rgba(245,241,235,0.5);margin-top:8px;line-height:1.5}
+
+/* SECTION HEADS */
+.section-head{display:flex;align-items:center;gap:14px;margin:48px 0 20px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+.section-num{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--violet);letter-spacing:0.12em}
+.section-title{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:700;letter-spacing:-0.01em}
+.section-sub{font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--steel);margin-left:auto;letter-spacing:0.04em}
+
+/* TIER HIERARCHY */
+.tier-stack{display:flex;flex-direction:column;gap:2px;margin-bottom:24px}
+.tier-row{display:grid;grid-template-columns:120px 90px 80px 1fr;align-items:start;padding:14px 18px;background:var(--card);border:1px solid var(--border);transition:background 0.15s}
+.tier-row:first-child{border-radius:8px 8px 0 0}
+.tier-row:last-child{border-radius:0 0 8px 8px}
+.tier-row:hover{background:rgba(138,108,201,0.04)}
+.tier-row.tier5{border-left:2px solid var(--violet)}
+.tier-row.tier4{border-left:2px solid var(--amber)}
+.tier-row.tier3{border-left:2px solid rgba(138,108,201,0.4)}
+.tier-row.tier2{border-left:2px solid rgba(107,123,141,0.5)}
+.tier-row.tier1{border-left:2px solid rgba(107,123,141,0.3)}
+.tier-row.tier0{border-left:2px solid rgba(178,53,49,0.4)}
+.tier-label{font-family:'JetBrains Mono',monospace;font-size:0.6rem;letter-spacing:0.06em;font-weight:600}
+.tier5 .tier-label{color:var(--violet-lt)}
+.tier4 .tier-label{color:var(--amber)}
+.tier3 .tier-label{color:rgba(138,108,201,0.7)}
+.tier2 .tier-label,.tier1 .tier-label{color:var(--steel)}
+.tier0 .tier-label{color:rgba(178,53,49,0.8)}
+.tier-collections{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--cream);font-weight:500;line-height:1.7}
+.tier-weights{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--steel);line-height:1.7}
+.tier-desc{font-family:'Source Serif 4',serif;font-size:0.78rem;color:rgba(245,241,235,0.55);line-height:1.6;padding-left:8px}
+.tier-header-row{display:grid;grid-template-columns:120px 90px 80px 1fr;padding:8px 18px;background:var(--card2);border:1px solid var(--border);border-radius:8px 8px 0 0;border-bottom:none}
+.tier-header-row span{font-family:'JetBrains Mono',monospace;font-size:0.55rem;color:var(--steel);letter-spacing:0.1em;text-transform:uppercase}
+
+/* PHILOSOPHY BLOCK */
+.philosophy-block{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:24px 28px;margin-bottom:12px}
+.philosophy-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:0.9rem;margin-bottom:10px;letter-spacing:-0.01em}
+.philosophy-body{font-family:'Source Serif 4',serif;font-size:0.9rem;line-height:1.8;color:rgba(245,241,235,0.72)}
+.philosophy-body strong{color:var(--cream)}
+.philosophy-body em{color:var(--violet-lt);font-style:italic}
+
+/* BUILD QUEUE */
+.build-queue{display:flex;flex-direction:column;gap:2px;margin-bottom:20px}
+.bq-row{display:grid;grid-template-columns:28px 60px 120px 1fr;gap:0;align-items:center;padding:12px 18px;background:var(--card);border:1px solid var(--border);transition:background 0.15s}
+.bq-row:first-child{border-radius:8px 8px 0 0}
+.bq-row:last-child{border-radius:0 0 8px 8px}
+.bq-row:hover{background:rgba(138,108,201,0.04)}
+.bq-row.complete{opacity:0.6}
+.bq-step{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--steel);letter-spacing:0.06em}
+.bq-step.done{color:var(--green)}
+.bq-order{font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--steel);letter-spacing:0.06em}
+.bq-name{font-family:'JetBrains Mono',monospace;font-size:0.7rem;font-weight:500;color:var(--violet-lt)}
+.bq-name.done{color:var(--green)}
+.bq-desc{font-family:'Source Serif 4',serif;font-size:0.8rem;color:rgba(245,241,235,0.55);padding-left:12px;line-height:1.5}
+.bq-gate{font-family:'JetBrains Mono',monospace;font-size:0.56rem;color:var(--amber);background:rgba(196,154,60,0.08);border:1px solid rgba(196,154,60,0.2);padding:2px 8px;border-radius:3px;margin-left:8px;letter-spacing:0.04em;white-space:nowrap}
+
+/* EXT SOURCES */
+.ext-table{background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.ext-header{display:grid;grid-template-columns:180px 80px 1fr;padding:10px 18px;border-bottom:1px solid var(--border);background:var(--card2)}
+.ext-header span{font-family:'JetBrains Mono',monospace;font-size:0.55rem;color:var(--steel);letter-spacing:0.1em;text-transform:uppercase}
+.ext-row{display:grid;grid-template-columns:180px 80px 1fr;padding:12px 18px;border-bottom:1px solid var(--border)}
+.ext-row:last-child{border-bottom:none}
+.ext-name{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--violet-lt);font-weight:500}
+.ext-status{font-family:'JetBrains Mono',monospace;font-size:0.6rem}
+.ext-live{color:var(--green)}
+.ext-queued{color:var(--steel)}
+.ext-desc{font-family:'Source Serif 4',serif;font-size:0.78rem;color:rgba(245,241,235,0.55);padding-left:8px}
+
+/* ADR CALLOUT */
+.adr-callout{background:var(--card2);border:1px solid rgba(138,108,201,0.2);border-radius:8px;padding:20px 24px;margin-top:32px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.adr-left{}
+.adr-label{font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--violet);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px}
+.adr-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:0.9rem;margin-bottom:4px}
+.adr-desc{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--steel);letter-spacing:0.04em}
+.adr-link{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--violet-lt);text-decoration:none;border:1px solid rgba(138,108,201,0.3);background:var(--violet-xs);padding:8px 16px;border-radius:4px;transition:all 0.2s;white-space:nowrap}
+.adr-link:hover{background:var(--violet-sm);border-color:rgba(138,108,201,0.6);color:var(--cream)}
+
+/* footer */
+.page-footer{border-top:1px solid var(--border);padding:24px 56px;display:flex;justify-content:space-between;align-items:center}
+.footer-text{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--steel);line-height:1.8}
+.footer-right{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--violet);letter-spacing:0.06em}
+
+@media(max-width:900px){.layout{grid-template-columns:1fr}.sidebar{display:none}.content{padding:32px 24px 64px}.collection-stats{grid-template-columns:1fr}.total-block{grid-template-columns:1fr}.total-right{text-align:left}.tier-row,.tier-header-row{grid-template-columns:100px 70px 60px 1fr}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-back" href="../">
+    <svg viewBox="0 0 120 120" width="16" height="16" fill="none"><circle cx="60" cy="60" r="54" stroke="#8A6CC9" stroke-width="2" stroke-dasharray="4 3" opacity="0.5"/><circle cx="60" cy="60" r="22" fill="rgba(138,108,201,0.15)" stroke="#8A6CC9" stroke-width="2"/><circle cx="60" cy="60" r="7" fill="#8A6CC9"/></svg>
+    Dex Jr.
+  </a>
+  <div class="nav-links">
+    <a href="../commands">Commands</a>
+    <a href="." class="active">Corpus</a>
+    <a href="../modelfile">Modelfile</a>
+    <a href="../calibration">Calibration</a>
+  </div>
+</nav>
+
+<div class="layout">
+  <div class="sidebar">
+    <div style="margin-bottom:20px">
+      <div class="sidebar-label">Live State</div>
+      <a class="sidebar-link active" href="#live">Live Collections</a>
+      <a class="sidebar-link" href="#total">Total Count</a>
+    </div>
+    <div class="sidebar-divider"></div>
+    <div style="margin-bottom:20px">
+      <div class="sidebar-label">Architecture</div>
+      <a class="sidebar-link" href="#hierarchy">Tier Hierarchy</a>
+      <a class="sidebar-link" href="#philosophy">Philosophy</a>
+      <a class="sidebar-link" href="#build-order">Build Order</a>
+    </div>
+    <div class="sidebar-divider"></div>
+    <div>
+      <div class="sidebar-label">External</div>
+      <a class="sidebar-link" href="#ext-sources">Approved Sources</a>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="content-header">
+      <div class="content-eyebrow">Dex Jr. · Corpus State</div>
+      <div class="content-title">Corpus</div>
+      <div class="content-sub">
+        Current collection counts · Constitutional hierarchy · Build queue<br>
+        Governing document: <a href="/knowledge-vault/decisions/adr-corpus-001" style="color:var(--violet);text-decoration:none">ADR-CORPUS-001</a> · Collection Authority Model · v0.3 · Unanimously locked
+      </div>
+    </div>
+
+    <!-- TOTAL -->
+    <div id="total" class="total-block">
+      <div>
+        <div class="total-label">Total Corpus</div>
+        <div class="total-count">524,386</div>
+        <div class="total-sub">chunks · 4 live collections · nomic-embed-text · 768-dim</div>
+      </div>
+      <div class="total-right">
+        <div class="total-updated">Last updated: 2026-03-15</div>
+        <div class="total-badge">REBORN · localhost:11434</div>
+      </div>
+    </div>
+
+    <!-- LIVE COLLECTIONS -->
+    <div id="live">
+      <div class="collection-stats">
+        <div class="stat-card live">
+          <div class="stat-collection">dex_canon</div>
+          <div class="stat-count">227,127</div>
+          <div class="stat-bar-wrap"><div class="stat-bar live" style="--bar-w:43%"></div></div>
+          <div class="stat-meta">
+            <div class="stat-weight">Weight 1.00 · Tier 5</div>
+            <div class="stat-status status-live">● Live</div>
+          </div>
+          <div class="stat-desc">Ratified governance artifacts. Standards, ADRs, council verdicts with LOCK status. Primary source of truth. Unconditional trust.</div>
+        </div>
+        <div class="stat-card live">
+          <div class="stat-collection">ddl_archive</div>
+          <div class="stat-count">276,765</div>
+          <div class="stat-bar-wrap"><div class="stat-bar live" style="--bar-w:53%"></div></div>
+          <div class="stat-meta">
+            <div class="stat-weight">Weight 0.65 · Tier 1</div>
+            <div class="stat-status status-live">● Live</div>
+          </div>
+          <div class="stat-desc">Complete historical record. iMessage exports, notes, session artifacts, ChatGPT exports, iPhone notes. No decay. Penalized 35% vs canon.</div>
+        </div>
+        <div class="stat-card live">
+          <div class="stat-collection">dex_code</div>
+          <div class="stat-count">20,384</div>
+          <div class="stat-bar-wrap"><div class="stat-bar live" style="--bar-w:4%"></div></div>
+          <div class="stat-meta">
+            <div class="stat-weight">Weight 0.85 · Tier 3</div>
+            <div class="stat-status status-live">● Live · 2026-03-14</div>
+          </div>
+          <div class="stat-desc">All DDL code artifacts. Scripts, site components, tools. Scoped retrieval without pulling from raw archive.</div>
+        </div>
+        <div class="stat-card live">
+          <div class="stat-collection">ext_creator</div>
+          <div class="stat-count">110</div>
+          <div class="stat-bar-wrap"><div class="stat-bar live" style="--bar-w:0.5%"></div></div>
+          <div class="stat-meta">
+            <div class="stat-weight">Weight 0.85 · Tier 2</div>
+            <div class="stat-status status-live">● Live · 2026-03-14</div>
+          </div>
+          <div class="stat-desc">Council-approved external creator voices. StaaS (Status as a Service framework) live. 8 additional sources approved, build queue.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIER HIERARCHY -->
+    <div id="hierarchy">
+      <div class="section-head">
+        <span class="section-num">01</span>
+        <span class="section-title">Constitutional Hierarchy</span>
+        <span class="section-sub">ADR-CORPUS-001 · Rule 1</span>
+      </div>
+
+      <div class="tier-stack">
+        <div class="tier-header-row">
+          <span>Tier</span><span>Collection</span><span>Weight</span><span style="padding-left:8px">Authority</span>
+        </div>
+        <div class="tier-row tier5">
+          <div class="tier-label">TIER 5<br>Governance</div>
+          <div class="tier-collections">dex_decisions<br>dex_canon</div>
+          <div class="tier-weights">0.95<br>1.00</div>
+          <div class="tier-desc">Highest authority. dex_canon wins within Tier 5. dex_decisions not yet built — authority reserved. First artifact: ADR-CORPUS-001.</div>
+        </div>
+        <div class="tier-row tier4">
+          <div class="tier-label">TIER 4<br>Special Conditional</div>
+          <div class="tier-collections">dex_dave</div>
+          <div class="tier-weights">0.90</div>
+          <div class="tier-desc">Opt-in only. No general precedence over product collections. Router-conditional — OPERATOR INTENT queries only. Hard gate: no router = no dex_dave. Never in DEFAULT.</div>
+        </div>
+        <div class="tier-row tier3">
+          <div class="tier-label">TIER 3<br>Internal Scoped</div>
+          <div class="tier-collections">dex_lore<br>dex_code<br>dex_canonpress<br>dex_auditforge<br>dex_blindspot<br>dex_site</div>
+          <div class="tier-weights">0.95<br>0.85<br>0.85<br>0.85<br>0.85<br>0.80</div>
+          <div class="tier-desc">Scoped product and infrastructure collections. dex_code live. All others pending build. Each powered by its own product PM thread.</div>
+        </div>
+        <div class="tier-row tier2">
+          <div class="tier-label">TIER 2<br>External Approved</div>
+          <div class="tier-collections">ext_creator<br>ext_reference</div>
+          <div class="tier-weights">0.85<br>0.75</div>
+          <div class="tier-desc">Council-approved external content. ext_creator live at 110 chunks. ext_reference pending — books, frameworks, standards.</div>
+        </div>
+        <div class="tier-row tier1">
+          <div class="tier-label">TIER 1<br>Archive</div>
+          <div class="tier-collections">ddl_archive</div>
+          <div class="tier-weights">0.65</div>
+          <div class="tier-desc">Complete historical record. Live. Lower confidence than canon. Consulted when higher tiers return insufficient results. 35% weight penalty.</div>
+        </div>
+        <div class="tier-row tier0">
+          <div class="tier-label">TIER 0<br>Special</div>
+          <div class="tier-collections">dex_graveyard</div>
+          <div class="tier-weights">0.80</div>
+          <div class="tier-desc">Anti-patterns and dead ends only. Never in default routes. Manual --collection flag required. Router excludes automatically.</div>
+        </div>
+      </div>
+
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--steel);padding:12px 4px;line-height:1.8">
+        Implementation contract (ADR-CORPUS-001 Rule 1): <span style="color:var(--cream)">Tier is a metadata pre-filter applied before similarity scoring. Weight is a post-filter multiplier within the eligible tier. A Tier 3 chunk at 0.95 does not outrank a Tier 4 chunk at 0.90 — tier gates first, weight scores within.</span>
+      </div>
+    </div>
+
+    <!-- PHILOSOPHY -->
+    <div id="philosophy">
+      <div class="section-head">
+        <span class="section-num">02</span>
+        <span class="section-title">Ingestion Philosophy</span>
+      </div>
+      <div class="philosophy-block">
+        <div class="philosophy-title">Broad ingestion. Controlled retrieval weighting.</div>
+        <div class="philosophy-body">
+          The corpus does not gatekeep at ingestion time. <strong>Metadata is the governance layer — not the ingestion gate.</strong> A wide archive at low weight is better than a narrow archive at high weight. The 271K-chunk ddl_archive at 0.65 provides necessary historical context that a filtered archive would have permanently excluded.
+          <br><br>
+          Retrieval precision comes from the tier system, the weight table, and the query router — not from what you chose not to ingest. <em>When uncertain whether something belongs in the corpus, ingest it into the archive tier and let the weights handle the rest.</em>
+          <br><br>
+          The one exception is <strong>dex_dave</strong> — the operator voice corpus. It is subject to a hard ingestion gate until the query router is live, because unrouted operator voice at 0.90 weight in the default pool introduces confabulation risk for governance queries. The gate is architectural, not a statement about the corpus's value.
+        </div>
+      </div>
+    </div>
+
+    <!-- BUILD ORDER -->
+    <div id="build-order">
+      <div class="section-head">
+        <span class="section-num">03</span>
+        <span class="section-title">Build Order</span>
+        <span class="section-sub">ADR-CORPUS-001 · Ratified</span>
+      </div>
+      <div class="build-queue">
+        <div class="bq-row complete">
+          <div class="bq-step done">✓</div>
+          <div class="bq-order" style="color:var(--green);font-size:0.58rem">COMPLETE</div>
+          <div class="bq-name done">dex_code</div>
+          <div class="bq-desc">All DDL code artifacts. Live 2026-03-14. 20,384 chunks.</div>
+        </div>
+        <div class="bq-row complete">
+          <div class="bq-step done">✓</div>
+          <div class="bq-order" style="color:var(--green);font-size:0.58rem">COMPLETE</div>
+          <div class="bq-name done">ext_creator</div>
+          <div class="bq-desc">External creator voices. Live 2026-03-14. 110 chunks. StaaS corpus live.</div>
+        </div>
+        <div class="bq-row">
+          <div class="bq-step" style="color:var(--amber)">1</div>
+          <div class="bq-order">NEXT</div>
+          <div class="bq-name">dex_decisions</div>
+          <div class="bq-desc">Decision ledger. Transforms Dex Jr. from archivist to advisor. First artifact: ADR-CORPUS-001. Source: 01_GOVERNANCE/decisions/</div>
+        </div>
+        <div class="bq-row">
+          <div class="bq-step" style="color:var(--steel)">2</div>
+          <div class="bq-order">QUEUED</div>
+          <div class="bq-name">Query Router</div>
+          <div class="bq-desc">Keyword-based MVP. Gates all subsequent collections. One session to build. Routing table in ADR-CORPUS-001 Rule 4. <span class="bq-gate">GATES dex_dave</span></div>
+        </div>
+        <div class="bq-row">
+          <div class="bq-step" style="color:var(--steel)">3</div>
+          <div class="bq-order">QUEUED</div>
+          <div class="bq-name">dex_lore</div>
+          <div class="bq-desc">DexVerse origin documents. ~50–100 chunks. High signal, small volume. Safe once router live.</div>
+        </div>
+        <div class="bq-row">
+          <div class="bq-step" style="color:var(--steel)">4</div>
+          <div class="bq-order">QUEUED</div>
+          <div class="bq-name">Product collections</div>
+          <div class="bq-desc">dex_auditforge · dex_blindspot · dex_canonpress · dex_site — parallel builds, each powered by its product PM thread.</div>
+        </div>
+        <div class="bq-row">
+          <div class="bq-step" style="color:var(--crimson)">5</div>
+          <div class="bq-order">GATED</div>
+          <div class="bq-name">dex_dave</div>
+          <div class="bq-desc">Operator voice corpus. 26+ months of voice, tone, and reasoning. <span class="bq-gate">REQUIRES: router live + dex_decisions live + operator decides which exports go first</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXT SOURCES -->
+    <div id="ext-sources">
+      <div class="section-head">
+        <span class="section-num">04</span>
+        <span class="section-title">External Corpus — Approved Sources</span>
+        <span class="section-sub">ext_creator · ext_reference</span>
+      </div>
+      <div class="ext-table">
+        <div class="ext-header">
+          <span>Source</span><span>Status</span><span style="padding-left:8px">Notes</span>
+        </div>
+        <div class="ext-row">
+          <div class="ext-name">StaaS (Eugene Wei)</div>
+          <div class="ext-status ext-live">● Live</div>
+          <div class="ext-desc" style="padding-left:8px">Status as a Service framework. 110 chunks. Weight raised from 0.60 → 0.85 after retrieval testing confirmed canon dominance at 0.60.</div>
+        </div>
+        <div class="ext-row">
+          <div class="ext-name">ext_creator queue</div>
+          <div class="ext-status ext-queued">Approved · 8 sources</div>
+          <div class="ext-desc" style="padding-left:8px">8 creator sources approved by council nomination. Build queue. Each requires nominated-by tag on ingestion.</div>
+        </div>
+        <div class="ext-row">
+          <div class="ext-name">ext_reference queue</div>
+          <div class="ext-status ext-queued">Approved · 6 sources</div>
+          <div class="ext-desc" style="padding-left:8px">Books, frameworks, standards. 6 approved sources pending ingestion. Collection not yet built.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADR CALLOUT -->
+    <div class="adr-callout">
+      <div class="adr-left">
+        <div class="adr-label">Governing Document</div>
+        <div class="adr-title">ADR-CORPUS-001 — Collection Authority Model</div>
+        <div class="adr-desc">v0.3 · Unanimously locked · 8 LOCK · 1 abstained · 2026-03-15 · The gate is now written.</div>
+      </div>
+      <a class="adr-link" href="/knowledge-vault/decisions/adr-corpus-001">View ADR →</a>
+    </div>
+
+  </div>
+</div>
+
+<div class="page-footer">
+  <div class="footer-text">Dex Jr. Corpus State · 524,386 chunks · Updated 2026-03-15<br>Governed by ADR-CORPUS-001 · Collection Authority Model</div>
+  <div class="footer-right">SEAT 1010 · THE RIG STAYS AWAKE.</div>
+</div>
+
+<script>
+const links = document.querySelectorAll('.sidebar-link');
+const sections = ['live','total','hierarchy','philosophy','build-order','ext-sources'];
+window.addEventListener('scroll',()=>{
+  let cur='';
+  sections.forEach(id=>{
+    const el=document.getElementById(id);
+    if(el&&window.scrollY>=el.offsetTop-80)cur=id;
+  });
+  links.forEach(l=>{
+    l.classList.remove('active');
+    const href=l.getAttribute('href').replace('#','');
+    if(href===cur)l.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

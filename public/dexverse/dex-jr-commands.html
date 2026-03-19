@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dex Jr. — Command Reference · DDL</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0D1B2A;--card:#10202F;--card2:#0B1825;
+  --cream:#F5F1EB;--steel:#6B7B8D;
+  --border:rgba(245,241,235,0.06);--borderlt:rgba(245,241,235,0.12);
+  --violet:#8A6CC9;--violet-lt:#A98FE0;--violet-dk:#6450A0;
+  --violet-xs:rgba(138,108,201,0.1);
+  --crimson:#B23531;--amber:#C49A3C;--green:#22C55E;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes copyPop{0%{transform:scale(1)}50%{transform:scale(0.92)}100%{transform:scale(1)}}
+
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--cream);font-family:'Source Serif 4',Georgia,serif;min-height:100vh;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;background:rgba(13,27,42,0.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-back{display:flex;align-items:center;gap:8px;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--steel);letter-spacing:0.06em;transition:color 0.2s}
+.nav-back:hover{color:var(--cream)}
+.nav-right{display:flex;gap:20px;align-items:center}
+.nav-links a{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--steel);text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s;margin-left:20px}
+.nav-links a:hover{color:var(--violet-lt)}
+.nav-links a.active{color:var(--violet-lt)}
+
+/* LAYOUT */
+.layout{display:grid;grid-template-columns:220px 1fr;min-height:100vh;padding-top:52px}
+
+/* SIDEBAR */
+.sidebar{background:var(--card2);border-right:1px solid var(--border);padding:32px 0;position:sticky;top:52px;height:calc(100vh - 52px);overflow-y:auto}
+.sidebar-section{margin-bottom:24px}
+.sidebar-label{font-family:'JetBrains Mono',monospace;font-size:0.55rem;color:var(--steel);letter-spacing:0.14em;text-transform:uppercase;padding:0 20px;margin-bottom:8px}
+.sidebar-link{display:block;font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--steel);text-decoration:none;padding:7px 20px;letter-spacing:0.03em;border-left:2px solid transparent;transition:all 0.15s}
+.sidebar-link:hover{color:var(--cream);background:rgba(138,108,201,0.06);border-left-color:rgba(138,108,201,0.4)}
+.sidebar-link.active{color:var(--violet-lt);border-left-color:var(--violet);background:var(--violet-xs)}
+.sidebar-divider{height:1px;background:var(--border);margin:12px 20px}
+.sidebar-sub{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--steel);text-decoration:none;display:block;padding:5px 20px 5px 30px;letter-spacing:0.02em;border-left:2px solid transparent;transition:all 0.15s}
+.sidebar-sub:hover{color:var(--violet-lt);border-left-color:rgba(138,108,201,0.3)}
+
+/* CONTENT */
+.content{padding:48px 56px 80px;max-width:860px}
+.content-header{margin-bottom:40px;padding-bottom:24px;border-bottom:1px solid var(--border);animation:fadeUp 0.5s ease 0.1s both}
+.content-eyebrow{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--violet);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.content-eyebrow::before{content:'';display:block;width:20px;height:1px;background:var(--violet)}
+.content-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:2rem;letter-spacing:-0.02em;margin-bottom:8px}
+.content-sub{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--steel);letter-spacing:0.06em;line-height:1.8}
+
+/* Quick reference section headers */
+.cmd-section{margin-bottom:48px;animation:fadeUp 0.5s ease both}
+.cmd-section-head{display:flex;align-items:center;gap:12px;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+.cmd-section-label{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--violet);letter-spacing:0.12em;text-transform:uppercase}
+.cmd-section-file{font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--steel);margin-left:auto;letter-spacing:0.04em}
+
+/* Code blocks */
+.code-block{position:relative;background:var(--card2);border:1px solid var(--border);border-radius:6px;margin-bottom:8px}
+.code-block:hover{border-color:rgba(138,108,201,0.2)}
+.code-comment{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--steel);padding:10px 16px 4px;letter-spacing:0.02em}
+.code-body{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--violet-lt);padding:4px 16px 12px;line-height:1.7;white-space:pre;overflow-x:auto}
+.code-block.has-comment .code-body{padding-top:0}
+.copy-btn{position:absolute;top:8px;right:10px;background:transparent;border:1px solid var(--border);border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:0.55rem;color:var(--steel);padding:3px 8px;cursor:pointer;transition:all 0.2s;letter-spacing:0.04em}
+.copy-btn:hover{border-color:rgba(138,108,201,0.4);color:var(--violet-lt);background:var(--violet-xs)}
+.copy-btn.copied{color:var(--green);border-color:rgba(34,197,94,0.4)}
+
+/* Nav section cards */
+.nav-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:40px}
+.nav-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:20px 22px;text-decoration:none;color:inherit;transition:border-color 0.2s,transform 0.2s;display:block}
+.nav-card:hover{border-color:rgba(138,108,201,0.3);transform:translateY(-2px)}
+.nav-card-label{font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--violet);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:7px}
+.nav-card-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:0.95rem;letter-spacing:-0.01em;margin-bottom:5px}
+.nav-card-files{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--steel);letter-spacing:0.03em;margin-bottom:8px}
+.nav-card-desc{font-family:'Source Serif 4',serif;font-style:italic;font-size:0.78rem;color:rgba(245,241,235,0.5);line-height:1.5}
+.nav-card-pending{font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--amber);margin-top:8px;letter-spacing:0.04em}
+
+/* Paths block */
+.paths-block{background:var(--card2);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.paths-row{display:grid;grid-template-columns:200px 1fr;gap:0;padding:10px 18px;border-bottom:1px solid var(--border)}
+.paths-row:last-child{border-bottom:none}
+.path-key{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--violet-lt);letter-spacing:0.03em}
+.path-val{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--steel);word-break:break-all;letter-spacing:0.02em}
+
+/* Footer */
+.page-footer{border-top:1px solid var(--border);padding:24px 56px;display:flex;justify-content:space-between;align-items:center}
+.footer-text{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--steel);line-height:1.8}
+.footer-right{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--violet);letter-spacing:0.06em}
+
+@media(max-width:900px){.layout{grid-template-columns:1fr}.sidebar{display:none}.content{padding:32px 24px 64px}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-back" href="../">
+    <svg viewBox="0 0 120 120" width="16" height="16" fill="none"><circle cx="60" cy="60" r="54" stroke="#8A6CC9" stroke-width="2" stroke-dasharray="4 3" opacity="0.5"/><circle cx="60" cy="60" r="22" fill="rgba(138,108,201,0.15)" stroke="#8A6CC9" stroke-width="2"/><circle cx="60" cy="60" r="7" fill="#8A6CC9"/></svg>
+    Dex Jr.
+  </a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="../corpus">Corpus</a>
+      <a href="../modelfile">Modelfile</a>
+      <a href="../calibration">Calibration</a>
+      <a href="." class="active">Commands</a>
+    </div>
+  </div>
+</nav>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-label">Quick Reference</div>
+      <a class="sidebar-link active" href="#quick">Most Used</a>
+      <a class="sidebar-link" href="#rebuild">Rebuild Dex Jr.</a>
+      <a class="sidebar-link" href="#corpus-check">Corpus Count</a>
+    </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Scripts</div>
+      <a class="sidebar-link" href="#bridge">RAG Bridge</a>
+      <a class="sidebar-sub" href="#bridge">dex-bridge.py</a>
+      <a class="sidebar-sub" href="#weights">dex_weights.py</a>
+      <a class="sidebar-link" href="#ingest">Ingestion</a>
+      <a class="sidebar-sub" href="#ingest">dex-ingest.py</a>
+      <a class="sidebar-link" href="#council">Council</a>
+      <a class="sidebar-sub" href="#council">dex-council.py</a>
+      <a class="sidebar-sub" href="#deliberate">dex-deliberate.py</a>
+      <a class="sidebar-link" href="#sweep">Sweep</a>
+      <a class="sidebar-sub" href="#sweep">dex-sweep.py</a>
+    </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Infrastructure</div>
+      <a class="sidebar-link" href="#chromadb">ChromaDB</a>
+      <a class="sidebar-link" href="#ollama">Ollama</a>
+      <a class="sidebar-link" href="#git">Git</a>
+      <a class="sidebar-link" href="#paths">Paths</a>
+    </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Deep Dives</div>
+      <a class="sidebar-link" href="ingest">→ Ingest Reference</a>
+      <a class="sidebar-link" href="council">→ Council Reference</a>
+      <a class="sidebar-link" href="bridge">→ Bridge Reference</a>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+    <div class="content-header">
+      <div class="content-eyebrow">Dex Jr. · Command Reference</div>
+      <div class="content-title">Commands</div>
+      <div class="content-sub">
+        All operational commands for the Dex Jr. intelligence stack.<br>
+        Source of truth: <a href="https://github.com/dropdownlogistics/dex-rag" style="color:var(--violet);text-decoration:none">github.com/dropdownlogistics/dex-rag</a> · Updated per session.
+      </div>
+    </div>
+
+    <!-- SUB-PAGE CARDS -->
+    <div class="nav-cards">
+      <a class="nav-card" href="ingest">
+        <div class="nav-card-label">Deep Dive</div>
+        <div class="nav-card-title">Ingestion</div>
+        <div class="nav-card-files">dex-ingest.py</div>
+        <div class="nav-card-desc">All modes, all flags, extension list, tier classification, recipes.</div>
+      </a>
+      <a class="nav-card" href="council">
+        <div class="nav-card-label">Deep Dive</div>
+        <div class="nav-card-title">Council</div>
+        <div class="nav-card-files">dex-council.py · dex-deliberate.py</div>
+        <div class="nav-card-desc">AutoCouncil v3.0 model roster, all flags, prompt authoring guide, output explained.</div>
+      </a>
+      <a class="nav-card" href="bridge">
+        <div class="nav-card-label">Deep Dive</div>
+        <div class="nav-card-title">Bridge + Weights</div>
+        <div class="nav-card-files">dex-bridge.py · dex_weights.py</div>
+        <div class="nav-card-desc">Query patterns, weight configuration, collection routing, auto-ingest behavior.</div>
+      </a>
+      <a class="nav-card" href="sweep">
+        <div class="nav-card-label">Deep Dive · Council Review Pending</div>
+        <div class="nav-card-title">Sweep + Utilities</div>
+        <div class="nav-card-files">dex-sweep.py · dex-query · dex-ocr · dex-xlsx · dex-whisper · dex-fetch</div>
+        <div class="nav-card-desc">Sweep workflow, utility scripts.</div>
+        <div class="nav-card-pending">⊡ Council review in progress · Expanded reference coming</div>
+      </a>
+    </div>
+
+    <!-- QUICK REFERENCE -->
+    <div id="quick" class="cmd-section" style="animation-delay:0.15s">
+      <div class="cmd-section-head">
+        <span class="cmd-section-label">Most Used Commands</span>
+      </div>
+
+      <div id="rebuild">
+        <div class="code-block has-comment">
+          <div class="code-comment"># Rebuild Dex Jr. from Modelfile</div>
+          <div class="code-body">ollama create dexjr -f C:\Users\dexjr\dex-rag\Modelfile.dexjr-v4.6</div>
+          <button class="copy-btn" onclick="copyCmd(this)">copy</button>
+        </div>
+      </div>
+
+      <div id="corpus-check">
+        <div class="code-block has-comment">
+          <div class="code-comment"># Corpus count — all collections</div>
+          <div class="code-body">python -c "
+import chromadb
+c = chromadb.PersistentClient(path=r'C:\Users\dkitc\.dex-jr\chromadb')
+for col in c.list_collections():
+    print(f'{col.name}: {col.count()}')"</div>
+          <button class="copy-btn" onclick="copyCmd(this)">copy</button>
+        </div>
+
+        <div class="code-block has-comment">
+          <div class="code-comment"># Quick canon + archive check</div>
+          <div class="code-body">python -c "import chromadb; c=chromadb.PersistentClient(path=r'C:\Users\dkitc\.dex-jr\chromadb'); print('canon:', c.get_collection('dex_canon').count()); print('archive:', c.get_collection('ddl_archive').count())"</div>
+          <button class="copy-btn" onclick="copyCmd(this)">copy</button>
+        </div>
+      </div>
+
+      <div class="code-block has-comment">
+        <div class="code-comment"># Standard RAG query</div>
+        <div class="code-body">python dex-bridge.py "your query here"</div>
+        <button class="copy-btn" onclick="copyCmd(this)">copy</button>
+      </div>
+
+      <div class="code-block has-comment">
+        <div class="code-comment"># Council run — all models + RAG + save + ingest</div>
+        <div class="code-body">python dex-council.py --from-file "C:\Users\dexjr\dex-rag\prompts\PROMPT.txt" --all --rag --save council-runs/NAME --ingest</div>
+        <button class="copy-btn" onclick="copyCmd(this)">copy</button>
+      </div>
+
+      <div class="code-block has-comment">
+        <div class="code-comment"># Ingest to canon</div>
+        <div class="code-body">python dex-ingest.py --path "C:\path\to\folder" --build-canon</div>
+        <button class="copy-btn" onclick="copyCmd(this)">copy</button>
+      </div>
+
+      <div class="code-block has-comment">
+        <div class="code-comment"># ChromaDB backup</div>
+        <div class="code-body">xcopy "C:\Users\dkitc\.dex-jr\chromadb" "D:\DDL_Backup\chromadb" /E /H /Y</div>
+        <button class="copy-btn" onclick="copyCmd(this)">copy</button>
+      </div>
+    </div>
+
+    <!-- BRIDGE -->
+    <div id="bridge" class="cmd-section" style="animation-delay:0.2s">
+      <div class="cmd-section-head">
+        <span class="cmd-section-label">RAG Bridge</span>
+        <span class="cmd-section-file">dex-bridge.py</span>
+      </div>
+      <div class="code-block has-comment"><div class="code-comment"># Standard query</div><div class="code-body">python dex-bridge.py "your query here"</div><button class="copy-btn" onclick="copyCmd(this)">copy</button></div>
+      <div class="code-block has-comment"><div class="code-comment"># More chunks</div><div class="code-body">python dex-bridge.py "your query here" --top 10</div><button class="copy-btn" onclick="copyCmd(this)">copy</button></div>
+      <div class="code-block has-comment"><div class="code-comment"># Search RAW archive instead of canon</div><div class="code-body">python dex-bridge.py "your query here" --raw</div><button class="copy-btn" onclick="copyCmd(this)">copy</button></div>
+      <div class="code-block has-comment"><div class="code-comment"># Include external collections</div><div class="code-body">python dex-bridge.py "your query here" --external</div><button class="copy-btn" onclick="copyCmd(this)">copy</button></div>
+      <div class="code-block has-comment"><div class="code-comment"># Specific model</div><div class="code-body">python dex-bridge.py "your query here" --model llama3.1:8b</div><button class="copy-btn" onclick="copyCmd(this)">copy</button></div>
+      <div class="code-block has-comment"><div class="code-comment"># Verbose — show retrieved chunks with scores</div><div class="code-body">python dex-bridge.py "your query here" --verbose</div><button class="copy-btn" onclick="copyCmd(this)">copy</button></div>
+      <div class="code-block has-comment"><div class="code-comment"># Route to laptop node</div><div class="code-body">python dex-bridge.py "your query here" --node laptop</div><button class="copy-btn" onclick="copyCmd(this)">copy</button></div>
+      <div class="code-block has-comment"><div class="code-comment"># Skip auto-ingest (calibration runs)</div><div class="code-body">python dex-bridge.py "your query here" --no-ingest</div><button class="copy-btn" onclick="copyCmd(this)">copy</button></div>
+      <div class="code-block has-comment"><div class="code-comment"># Interactive mode</div><div class="code-body">python dex-bridge.py --interactive</div><button class="copy-btn" onclick="copyCmd(this)">copy</button></div>
+    </div>
+
+    <!-- WEIGHTS -->
+    <div id="weights" class="cmd-section" style="animation-delay:0.22s">
+      <div class="cmd-section-head">
+        <span class="cmd-section-label">Weighted Query</span>
+        <span class="cmd-section-file">dex_weights.py</span>
+      </div>
+      <div class="code-block has-comment"><div class="code-comment"># Query with weights</div><div class="code-body">python dex_weights.py "your query here"</div><button class="copy-btn" onclick="copyCmd(this)">copy</button></div>
+      <div class="code-block has-comment"><div class="code-comment"># More results</div><div class="code-body">python dex_weights.py "your query here" --n 10</div><button class="copy-btn" onclick="copyCmd(this)">copy</button></div>
+      <div class="code-block has-comment"><div class="code-comment"># Include external collections</div><div class="code-body">python dex_weights.py "your query here" --external</div><button class="copy-btn" onclick="copyCmd(this)">copy</button></div>
+      <div class="code-block has-comment"><div class="code-comment"># Show weight table</div><div class="code-body">python dex_weights.py --stats</div><button class="copy-btn" onclick="copyCmd(this)">copy</button></div>
+    </div>
+
+    <!-- INGEST -->
+    <div id="ingest" class="cmd-section" style="animation-delay:0.24s">
+      <div class="cmd-section-head">
+        <span class="cmd-section-label">Ingestion</span>
+        <span class="cmd-section-file">dex-ingest.py</span>
+      </div>
+      <div class="code-block has-comment"><div class="code-comment"># Standard ingest — RAW + CANON routing</div><div class="code-body">python dex-ingest.py --path "C:\path\to\folder"</div><button class="copy-btn" onclick="copyCmd(this)">copy</button></div>
+      <div class="code-block has-comment"><div class="code-comment"># Canon only (does not expand RAW)</div><div class="code-body">python dex-ingest.py --path "C:\path\to\folder" --build-canon</div><button class="copy-btn" onclick="copyCmd(this)">copy</button></div>
+      <div class="code-block has-comment"><div class="code-comment"># Scoped collection</div><div class="code-body">python dex-ingest.py --path "C:\path\to\folder" --collection dex_code</div><button class="copy-btn" onclick="copyCmd(this)">copy</button></div>
+      <div class="code-block has-comment"><div class="code-comment"># Extension filter</div><div class="code-body">python dex-ingest.py --path "C:\path\to\folder" --ext-filter .py .cs .ts</div><button class="copy-btn" onclick="copyCmd(this)">copy</button></div>
+      <div class="code-block has-comment"><div class="code-comment"># Tag nominating seat</div><div class="code-body">python dex-ingest.py --path "C:\path\to\folder" --collection ext_creator --nominated-by "1006"</div><button class="copy-btn" onclick="copyCmd(this)">copy</button></div>
+      <div class="code-block has-comment"><div class="code-comment"># Fast mode (skip ID load — for auto-ingest paths)</div><div class="code-body">python dex-ingest.py --path "C:\path\to\folder" --build-canon --fast</div><button class="copy-btn" onclick="copyCmd(this)">copy</button></div>
+      <div class="code-block has-comment"><div class="code-comment"># Reset collections (destructive)</div><div class="code-body">python dex-ingest.py --path "C:\path\to\folder" --reset</div><button class="copy-btn" onclick="copyCmd(this)">copy</button></div>
+      <div class="code-block has-comment"><div class="code-comment"># Single file ingest</div><div class="code-body">Copy-Item "C:\path\to\file.txt" "C:\Users\dexjr\dex-rag\ingest-single\"
+python dex-ingest.py --path "C:\Users\dexjr\dex-rag\ingest-single" --build-canon</div><button class="copy-btn" onclick="copyCmd(this)">copy</button></div>
+    </div>
+
+    <!-- COUNCIL -->
+    <div id="council" class="cmd-section" style="animation-delay:0.26s">
+      <div class="cmd-section-head">
+        <span class="cmd-section-label">Council</span>
+        <span class="cmd-section-file">dex-council.py</span>
+      </div>
+      <div class="code-block has-comment"><div class="code-comment"># All models + RAG + save + ingest</div><div class="code-body">python dex-council.py --from-file "C:\Users\dexjr\dex-rag\prompts\PROMPT.txt" --all --rag --save council-runs/NAME --ingest</div><button class="copy-btn" onclick="copyCmd(this)">copy</button></div>
+      <div class="code-block has-comment"><div class="code-comment"># Local models only + RAG</div><div class="code-body">python dex-council.py "prompt text here" --rag</div><button class="copy-btn" onclick="copyCmd(this)">copy</button></div>
+      <div class="code-block has-comment"><div class="code-comment"># Cloud models only</div><div class="code-body">python dex-council.py --from-file "prompt.txt" --cloud-only --rag</div><button class="copy-btn" onclick="copyCmd(this)">copy</button></div>
+      <div class="code-block has-comment"><div class="code-comment"># Custom timeout</div><div class="code-body">python dex-council.py --from-file "prompt.txt" --all --rag --timeout 240</div><button class="copy-btn" onclick="copyCmd(this)">copy</button></div>
+      <div class="code-block has-comment"><div class="code-comment"># Re-synthesize from saved folder</div><div class="code-body">python dex-council.py --synthesize council-runs/NAME</div><button class="copy-btn" onclick="copyCmd(this)">copy</button></div>
+      <div class="code-block has-comment"><div class="code-comment"># Retry failed models + verbose</div><div class="code-body">python dex-council.py --from-file "prompt.txt" --all --rag --retry --verbose</div><button class="copy-btn" onclick="copyCmd(this)">copy</button></div>
+    </div>
+
+    <!-- DELIBERATION -->
+    <div id="deliberate" class="cmd-section" style="animation-delay:0.27s">
+      <div class="cmd-section-head">
+        <span class="cmd-section-label">Deliberation</span>
+        <span class="cmd-section-file">dex-deliberate.py</span>
+      </div>
+      <div class="code-block"><div class="code-body">python dex-deliberate.py "debate topic here"</div><button class="copy-btn" onclick="copyCmd(this)">copy</button></div>
+    </div>
+
+    <!-- SWEEP -->
+    <div id="sweep" class="cmd-section" style="animation-delay:0.28s">
+      <div class="cmd-section-head">
+        <span class="cmd-section-label">Sweep</span>
+        <span class="cmd-section-file">dex-sweep.py</span>
+      </div>
+      <div class="code-block has-comment"><div class="code-comment"># Run once</div><div class="code-body">python dex-sweep.py</div><button class="copy-btn" onclick="copyCmd(this)">copy</button></div>
+      <div class="code-block has-comment"><div class="code-comment"># Dry run (preview without acting)</div><div class="code-body">python dex-sweep.py --dry-run</div><button class="copy-btn" onclick="copyCmd(this)">copy</button></div>
+      <div class="code-block has-comment"><div class="code-comment"># Watch mode (continuous)</div><div class="code-body">python dex-sweep.py --watch</div><button class="copy-btn" onclick="copyCmd(this)">copy</button></div>
+      <div class="code-block has-comment"><div class="code-comment"># Custom interval (minutes)</div><div class="code-body">python dex-sweep.py --watch --interval 30</div><button class="copy-btn" onclick="copyCmd(this)">copy</button></div>
+    </div>
+
+    <!-- CHROMADB -->
+    <div id="chromadb" class="cmd-section" style="animation-delay:0.29s">
+      <div class="cmd-section-head">
+        <span class="cmd-section-label">ChromaDB</span>
+      </div>
+      <div class="code-block has-comment"><div class="code-comment"># Backup</div><div class="code-body">xcopy "C:\Users\dkitc\.dex-jr\chromadb" "D:\DDL_Backup\chromadb" /E /H /Y</div><button class="copy-btn" onclick="copyCmd(this)">copy</button></div>
+      <div class="code-block has-comment"><div class="code-comment"># Inspect first chunk of collection</div><div class="code-body">python -c "import chromadb; c=chromadb.PersistentClient(path=r'C:\Users\dkitc\.dex-jr\chromadb'); col=c.get_collection('dex_canon'); r=col.get(limit=1,include=['documents']); print(r['documents'][0][:300])"</div><button class="copy-btn" onclick="copyCmd(this)">copy</button></div>
+      <div class="code-block has-comment"><div class="code-comment"># Delete collection (destructive)</div><div class="code-body">python -c "import chromadb; c=chromadb.PersistentClient(path=r'C:\Users\dkitc\.dex-jr\chromadb'); c.delete_collection('collection_name'); print('Deleted')"</div><button class="copy-btn" onclick="copyCmd(this)">copy</button></div>
+    </div>
+
+    <!-- OLLAMA -->
+    <div id="ollama" class="cmd-section" style="animation-delay:0.3s">
+      <div class="cmd-section-head">
+        <span class="cmd-section-label">Ollama</span>
+      </div>
+      <div class="code-block has-comment"><div class="code-comment"># List models</div><div class="code-body">ollama list</div><button class="copy-btn" onclick="copyCmd(this)">copy</button></div>
+      <div class="code-block has-comment"><div class="code-comment"># Check health</div><div class="code-body">Invoke-WebRequest -Uri "http://localhost:11434/api/tags" -UseBasicParsing | Select-Object -ExpandProperty Content</div><button class="copy-btn" onclick="copyCmd(this)">copy</button></div>
+      <div class="code-block has-comment"><div class="code-comment"># Check running models</div><div class="code-body">Get-Process ollama</div><button class="copy-btn" onclick="copyCmd(this)">copy</button></div>
+      <div class="code-block has-comment"><div class="code-comment"># Pull a model</div><div class="code-body">ollama pull modelname</div><button class="copy-btn" onclick="copyCmd(this)">copy</button></div>
+    </div>
+
+    <!-- GIT -->
+    <div id="git" class="cmd-section" style="animation-delay:0.31s">
+      <div class="cmd-section-head">
+        <span class="cmd-section-label">Git — dex-rag repo</span>
+      </div>
+      <div class="code-block has-comment"><div class="code-comment"># Pull latest to rig (Reborn)</div><div class="code-body">cd C:\Users\dexjr\dex-rag
+git pull</div><button class="copy-btn" onclick="copyCmd(this)">copy</button></div>
+      <div class="code-block has-comment"><div class="code-comment"># Push changes from Surface</div><div class="code-body">cd C:\Users\dkitc\dex-rag
+git add .
+git commit -m "your message"
+git push</div><button class="copy-btn" onclick="copyCmd(this)">copy</button></div>
+      <div class="code-block has-comment"><div class="code-comment"># Status + prune</div><div class="code-body">git status
+git prune</div><button class="copy-btn" onclick="copyCmd(this)">copy</button></div>
+    </div>
+
+    <!-- PATHS -->
+    <div id="paths" class="cmd-section" style="animation-delay:0.32s">
+      <div class="cmd-section-head">
+        <span class="cmd-section-label">Paths — Quick Reference</span>
+      </div>
+      <div class="paths-block">
+        <div class="paths-row"><div class="path-key">Scripts</div><div class="path-val">C:\Users\dexjr\dex-rag\</div></div>
+        <div class="paths-row"><div class="path-key">Prompts</div><div class="path-val">C:\Users\dexjr\dex-rag\prompts\</div></div>
+        <div class="paths-row"><div class="path-key">Council runs</div><div class="path-val">C:\Users\dexjr\dex-rag\council-runs\</div></div>
+        <div class="paths-row"><div class="path-key">Sweep reports</div><div class="path-val">C:\Users\dexjr\dex-rag\sweep-reports\</div></div>
+        <div class="paths-row"><div class="path-key">Bridge ingest</div><div class="path-val">C:\Users\dexjr\dex-rag\bridge-ingest\</div></div>
+        <div class="paths-row"><div class="path-key">ChromaDB</div><div class="path-val">C:\Users\dkitc\.dex-jr\chromadb\</div></div>
+        <div class="paths-row"><div class="path-key">Backup</div><div class="path-val">D:\DDL_Backup\chromadb\</div></div>
+        <div class="paths-row"><div class="path-key">Archive</div><div class="path-val">C:\Users\dexjr\99_DexUniverseArchive\</div></div>
+        <div class="paths-row"><div class="path-key">Ingest drop</div><div class="path-val">C:\Users\dkitc\Downloads\DDL_Ingest\</div></div>
+        <div class="paths-row"><div class="path-key">iCloud drop</div><div class="path-val">C:\Users\dkitc\iCloudDrive\Documents\04_DDL_Ingest\</div></div>
+        <div class="paths-row"><div class="path-key">OneDrive drop</div><div class="path-val">C:\Users\dkitc\OneDrive\DDL_Ingest\</div></div>
+        <div class="paths-row"><div class="path-key">GitHub repo</div><div class="path-val">https://github.com/dropdownlogistics/dex-rag</div></div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /layout -->
+
+<div class="page-footer">
+  <div class="footer-text">Dex Jr. Command Reference · Updated 2026-03-14<br>Source of truth: github.com/dropdownlogistics/dex-rag</div>
+  <div class="footer-right">SEAT 1010 · THE RIG STAYS AWAKE.</div>
+</div>
+
+<script>
+function copyCmd(btn) {
+  const block = btn.closest('.code-block');
+  const text = block.querySelector('.code-body').textContent.trim();
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'copied';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'copy'; btn.classList.remove('copied'); }, 1800);
+  });
+}
+
+// Sidebar scroll spy
+const sections = document.querySelectorAll('[id]');
+const links = document.querySelectorAll('.sidebar-link, .sidebar-sub');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) current = s.id; });
+  links.forEach(l => {
+    l.classList.remove('active');
+    if (l.getAttribute('href') === '#' + current) l.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

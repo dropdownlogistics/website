@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dex Jr. — Calibration Records · DDL</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0D1B2A;--card:#10202F;--card2:#0B1825;
+  --cream:#F5F1EB;--steel:#6B7B8D;
+  --border:rgba(245,241,235,0.06);--borderlt:rgba(245,241,235,0.12);
+  --violet:#8A6CC9;--violet-lt:#A98FE0;--violet-dk:#6450A0;
+  --violet-xs:rgba(138,108,201,0.1);
+  --crimson:#B23531;--amber:#C49A3C;--green:#22C55E;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--cream);font-family:'Source Serif 4',Georgia,serif;min-height:100vh}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;background:rgba(13,27,42,0.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-back{display:flex;align-items:center;gap:8px;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--steel);letter-spacing:0.06em;transition:color 0.2s}
+.nav-back:hover{color:var(--cream)}
+.nav-links a{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--steel);text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s;margin-left:20px}
+.nav-links a:hover{color:var(--violet-lt)}
+.nav-links a.active{color:var(--violet-lt)}
+
+/* LAYOUT */
+.layout{display:grid;grid-template-columns:220px 1fr;min-height:100vh;padding-top:52px}
+
+/* SIDEBAR */
+.sidebar{background:var(--card2);border-right:1px solid var(--border);padding:32px 0;position:sticky;top:52px;height:calc(100vh - 52px);overflow-y:auto}
+.sidebar-label{font-family:'JetBrains Mono',monospace;font-size:0.55rem;color:var(--steel);letter-spacing:0.14em;text-transform:uppercase;padding:0 20px;margin-bottom:8px}
+.sidebar-link{display:block;font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--steel);text-decoration:none;padding:7px 20px;letter-spacing:0.03em;border-left:2px solid transparent;transition:all 0.15s}
+.sidebar-link:hover{color:var(--cream);background:rgba(138,108,201,0.06);border-left-color:rgba(138,108,201,0.4)}
+.sidebar-link.active{color:var(--violet-lt);border-left-color:var(--violet);background:var(--violet-xs)}
+.sidebar-divider{height:1px;background:var(--border);margin:12px 20px}
+
+/* CONTENT */
+.content{padding:48px 56px 80px;max-width:900px;animation:fadeUp 0.5s ease both}
+.content-header{margin-bottom:40px;padding-bottom:24px;border-bottom:1px solid var(--border)}
+.content-eyebrow{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--violet);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.content-eyebrow::before{content:'';display:block;width:20px;height:1px;background:var(--violet)}
+.content-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:2rem;letter-spacing:-0.02em;margin-bottom:8px}
+.content-sub{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--steel);letter-spacing:0.06em;line-height:1.8}
+
+/* SCORE BLOCK */
+.score-block{display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:center;background:var(--violet-xs);border:1px solid rgba(138,108,201,0.25);border-radius:10px;padding:28px 32px;margin-bottom:40px}
+.score-num{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:4rem;letter-spacing:-0.04em;color:var(--violet-lt);line-height:1}
+.score-right{}
+.score-label{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--violet);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:8px}
+.score-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1rem;margin-bottom:10px}
+.score-items{display:flex;flex-direction:column;gap:6px}
+.score-item{display:flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:0.65rem;line-height:1.4}
+.score-item .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.dot-done{background:var(--green)}
+.dot-open{background:var(--amber)}
+.item-done{color:var(--green)}
+.item-open{color:var(--amber)}
+
+/* SECTION HEADS */
+.section-head{display:flex;align-items:center;gap:14px;margin:48px 0 20px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+.section-num{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--violet);letter-spacing:0.12em}
+.section-title{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:700;letter-spacing:-0.01em}
+.section-sub{font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--steel);margin-left:auto;letter-spacing:0.04em}
+
+/* OBS CARDS */
+.obs-list{display:flex;flex-direction:column;gap:10px;margin-bottom:12px}
+.obs-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:20px 24px}
+.obs-card.resolved{border-left:2px solid var(--green)}
+.obs-card.open{border-left:2px solid var(--amber)}
+.obs-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px}
+.obs-id{font-family:'JetBrains Mono',monospace;font-size:0.7rem;font-weight:600;color:var(--violet-lt)}
+.obs-badge{font-family:'JetBrains Mono',monospace;font-size:0.58rem;font-weight:700;letter-spacing:0.08em;padding:3px 10px;border-radius:3px}
+.badge-resolved{color:var(--green);background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.25)}
+.badge-open{color:var(--amber);background:rgba(196,154,60,0.1);border:1px solid rgba(196,154,60,0.25)}
+.obs-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:0.9rem;margin-bottom:8px;letter-spacing:-0.01em}
+.obs-desc{font-family:'Source Serif 4',serif;font-size:0.88rem;line-height:1.7;color:rgba(245,241,235,0.65);margin-bottom:10px}
+.obs-meta{display:flex;gap:16px;flex-wrap:wrap}
+.obs-meta-item{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--steel);letter-spacing:0.04em}
+.obs-meta-item span{color:var(--cream)}
+
+/* TEST CARDS */
+.test-card{background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:12px}
+.test-header{padding:16px 20px;background:var(--card2);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.test-num{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--violet);letter-spacing:0.1em;text-transform:uppercase}
+.test-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:0.9rem;letter-spacing:-0.01em}
+.test-body{padding:18px 20px}
+.test-section-label{font-family:'JetBrains Mono',monospace;font-size:0.56rem;color:var(--steel);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:8px;margin-top:14px}
+.test-section-label:first-child{margin-top:0}
+.test-prompt{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--violet-lt);line-height:1.7;background:var(--card2);border:1px solid var(--border);border-radius:5px;padding:12px 14px;margin-bottom:4px}
+.test-expected{font-family:'Source Serif 4',serif;font-size:0.85rem;line-height:1.65;color:rgba(245,241,235,0.72)}
+.test-expected strong{color:var(--cream)}
+.test-expected em{color:var(--violet-lt);font-style:italic}
+.test-results{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.test-result-pill{font-family:'JetBrains Mono',monospace;font-size:0.58rem;font-weight:600;padding:3px 10px;border-radius:3px;letter-spacing:0.06em}
+.pill-pass{color:var(--green);background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.25)}
+.pill-fail{color:var(--crimson);background:rgba(178,53,49,0.1);border:1px solid rgba(178,53,49,0.25)}
+.pill-partial{color:var(--amber);background:rgba(196,154,60,0.1);border:1px solid rgba(196,154,60,0.25)}
+
+/* FLAG */
+.flag-block{background:rgba(196,154,60,0.07);border:1px solid rgba(196,154,60,0.25);border-radius:8px;padding:20px 24px;margin-top:40px}
+.flag-label{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--amber);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:8px}
+.flag-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:0.9rem;margin-bottom:8px}
+.flag-desc{font-family:'Source Serif 4',serif;font-size:0.88rem;color:rgba(245,241,235,0.72);line-height:1.7}
+.flag-desc strong{color:var(--cream)}
+
+/* FOOTER */
+.page-footer{border-top:1px solid var(--border);padding:24px 56px;display:flex;justify-content:space-between;align-items:center}
+.footer-text{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--steel);line-height:1.8}
+.footer-right{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--violet);letter-spacing:0.06em}
+
+@media(max-width:900px){.layout{grid-template-columns:1fr}.sidebar{display:none}.content{padding:32px 24px 64px}.score-block{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-back" href="../">
+    <svg viewBox="0 0 120 120" width="16" height="16" fill="none"><circle cx="60" cy="60" r="54" stroke="#8A6CC9" stroke-width="2" stroke-dasharray="4 3" opacity="0.5"/><circle cx="60" cy="60" r="22" fill="rgba(138,108,201,0.15)" stroke="#8A6CC9" stroke-width="2"/><circle cx="60" cy="60" r="7" fill="#8A6CC9"/></svg>
+    Dex Jr.
+  </a>
+  <div class="nav-links">
+    <a href="../commands">Commands</a>
+    <a href="../corpus">Corpus</a>
+    <a href="../modelfile">Modelfile</a>
+    <a href="." class="active">Calibration</a>
+  </div>
+</nav>
+
+<div class="layout">
+  <div class="sidebar">
+    <div style="margin-bottom:20px">
+      <div class="sidebar-label">Failure Modes</div>
+      <a class="sidebar-link active" href="#obs">OBS Log</a>
+      <a class="sidebar-link" href="#obs-dj-001">OBS-DJ-001</a>
+      <a class="sidebar-link" href="#obs-dj-002">OBS-DJ-002</a>
+      <a class="sidebar-link" href="#obs-dj-003">OBS-DJ-003</a>
+      <a class="sidebar-link" href="#obs-dj-004">OBS-DJ-004</a>
+      <a class="sidebar-link" href="#obs-dj-005">OBS-DJ-005</a>
+    </div>
+    <div class="sidebar-divider"></div>
+    <div style="margin-bottom:20px">
+      <div class="sidebar-label">Canonical Tests</div>
+      <a class="sidebar-link" href="#tests">Test Suite</a>
+      <a class="sidebar-link" href="#test-1">Test 1 — CR- trigger</a>
+      <a class="sidebar-link" href="#test-2">Test 2 — Binary gate</a>
+      <a class="sidebar-link" href="#test-3">Test 3 — Knowledge query</a>
+    </div>
+    <div class="sidebar-divider"></div>
+    <div>
+      <div class="sidebar-label">Governance</div>
+      <a class="sidebar-link" href="#flags">Pending CRs</a>
+      <a class="sidebar-link" href="#ceiling">100% Ceiling</a>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="content-header">
+      <div class="content-eyebrow">Dex Jr. · Calibration</div>
+      <div class="content-title">Calibration Records</div>
+      <div class="content-sub">
+        Failure modes observed · Canonical test suite · Judgment-Ready tracking<br>
+        5 observations logged · 3 resolved · 2 open · Targeting v4.7 for OBS-DJ-004
+      </div>
+    </div>
+
+    <!-- SCORE -->
+    <div id="ceiling" class="score-block">
+      <div class="score-num">~92%</div>
+      <div class="score-right">
+        <div class="score-label">Judgment-Ready Score</div>
+        <div class="score-title">Operator qualitative · 3-test rubric · 4 of 8 items complete</div>
+        <div class="score-items">
+          <div class="score-item"><div class="dot dot-done"></div><span class="item-done">All three canonical tests passing</span></div>
+          <div class="score-item"><div class="dot dot-done"></div><span class="item-done">No CR- posture over-trigger (OBS-DJ-001 resolved)</span></div>
+          <div class="score-item"><div class="dot dot-done"></div><span class="item-done">No confabulation on empty retrieval (OBS-DJ-002 resolved)</span></div>
+          <div class="score-item"><div class="dot dot-done"></div><span class="item-done">Knowledge queries exempt from search gate (OBS-DJ-003 resolved)</span></div>
+          <div class="score-item"><div class="dot dot-open"></div><span class="item-open">OBS-DJ-004 resolved — no synthesis confabulation on reflective prompts</span></div>
+          <div class="score-item"><div class="dot dot-open"></div><span class="item-open">Query router live — automatic mode classification</span></div>
+          <div class="score-item"><div class="dot dot-open"></div><span class="item-open">dex_dave collection isolation enforced</span></div>
+          <div class="score-item"><div class="dot dot-open"></div><span class="item-open">OPERATOR CONTEXT block formally ratified through council review</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OBS LOG -->
+    <div id="obs">
+      <div class="section-head">
+        <span class="section-num">01</span>
+        <span class="section-title">Failure Mode Log</span>
+        <span class="section-sub">5 entries · 3 resolved · 2 open</span>
+      </div>
+
+      <div class="obs-list">
+
+        <div class="obs-card resolved" id="obs-dj-001">
+          <div class="obs-header">
+            <div class="obs-id">OBS-DJ-001</div>
+            <span class="obs-badge badge-resolved">RESOLVED</span>
+          </div>
+          <div class="obs-title">CR- posture over-trigger</div>
+          <div class="obs-desc">Dex Jr. entering council review verdict mode (LOCK/REVISE/REJECT) on prompts that contained words like "review", "assess", or "evaluate" in the body — without the "CR-" prefix. The model was treating vocabulary as a trigger instead of the exact prefix.</div>
+          <div class="obs-meta">
+            <div class="obs-meta-item">Observed: <span>v4.1</span></div>
+            <div class="obs-meta-item">Fixed: <span>v4.2 → v4.4 → v4.5</span></div>
+            <div class="obs-meta-item">Root cause: <span>CR- rule fired on vocabulary, not prefix</span></div>
+            <div class="obs-meta-item">Fix: <span>Rule promoted to top of system prompt with hard stop</span></div>
+          </div>
+        </div>
+
+        <div class="obs-card resolved" id="obs-dj-002">
+          <div class="obs-header">
+            <div class="obs-id">OBS-DJ-002</div>
+            <span class="obs-badge badge-resolved">RESOLVED</span>
+          </div>
+          <div class="obs-title">Confabulation from thin evidence</div>
+          <div class="obs-desc">When search queries found semantically adjacent chunks but no specific named incidents, Dex Jr. would synthesize plausible-sounding incidents from the related vocabulary. The model was treating contextual similarity as evidence and generating fabricated examples.</div>
+          <div class="obs-meta">
+            <div class="obs-meta-item">Observed: <span>v4.1–v4.4</span></div>
+            <div class="obs-meta-item">Fixed: <span>v4.5</span></div>
+            <div class="obs-meta-item">Root cause: <span>Adjacent vocabulary treated as evidence</span></div>
+            <div class="obs-meta-item">Fix: <span>"And nothing else" — binary stop enforced in Step 3b</span></div>
+          </div>
+        </div>
+
+        <div class="obs-card resolved" id="obs-dj-003">
+          <div class="obs-header">
+            <div class="obs-id">OBS-DJ-003</div>
+            <span class="obs-badge badge-resolved">RESOLVED</span>
+          </div>
+          <div class="obs-title">Search gate over-trigger on knowledge queries</div>
+          <div class="obs-desc">Knowledge queries ("What is X", "How does X work", "Explain X") were triggering the binary search gate instead of routing to standard analyst mode. The gate was designed for search queries but its trigger list was broad enough to catch definitional questions, causing Dex Jr. to incorrectly report "no matching instances found."</div>
+          <div class="obs-meta">
+            <div class="obs-meta-item">Observed: <span>v4.5</span></div>
+            <div class="obs-meta-item">Fixed: <span>v4.6</span></div>
+            <div class="obs-meta-item">Root cause: <span>Trigger list lacked EXEMPT carve-out for knowledge queries</span></div>
+            <div class="obs-meta-item">Fix: <span>Explicit EXEMPT list added — runs before TRIGGER list</span></div>
+          </div>
+        </div>
+
+        <div class="obs-card open" id="obs-dj-004">
+          <div class="obs-header">
+            <div class="obs-id">OBS-DJ-004</div>
+            <span class="obs-badge badge-open">OPEN</span>
+          </div>
+          <div class="obs-title">Synthesis confabulation on open-ended reflective prompts</div>
+          <div class="obs-desc">When asked open-ended questions about itself — how it works, what it knows, how it reasons — Dex Jr. generates plausible-sounding self-analysis that is not grounded in retrieved corpus content. The model is fabricating introspective responses rather than returning "I cannot assess this from retrieved content."</div>
+          <div class="obs-meta">
+            <div class="obs-meta-item">Observed: <span>v4.5 / v4.6</span></div>
+            <div class="obs-meta-item">Target: <span>v4.7</span></div>
+            <div class="obs-meta-item">Fix direction: <span>Return "I cannot assess this from retrieved content" on reflective self-queries with no specific corpus evidence</span></div>
+          </div>
+        </div>
+
+        <div class="obs-card open" id="obs-dj-005">
+          <div class="obs-header">
+            <div class="obs-id">OBS-DJ-005</div>
+            <span class="obs-badge badge-open">OPEN</span>
+          </div>
+          <div class="obs-title">LeChat seat mislabeling in council reviews</div>
+          <div class="obs-desc">LeChat (Seat 1001 / Archer Hawthorne) has labeled itself as Seat 1002 in council reviews on 4 confirmed occasions. The mislabeling affects attribution accuracy in council records and could introduce errors in synthesis if the synthesizer relies on seat identifiers. This is a MindFrame configuration issue, not a Dex Jr. issue — but it affects the council output that Dex Jr. processes.</div>
+          <div class="obs-meta">
+            <div class="obs-meta-item">Observed: <span>4 confirmed occurrences</span></div>
+            <div class="obs-meta-item">Target: <span>MindFrame update</span></div>
+            <div class="obs-meta-item">Scope: <span>Council output integrity · Not a Modelfile issue</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TEST SUITE -->
+    <div id="tests">
+      <div class="section-head">
+        <span class="section-num">02</span>
+        <span class="section-title">Canonical Test Suite</span>
+        <span class="section-sub">3 tests · All passing on v4.6</span>
+      </div>
+
+      <p style="font-family:'Source Serif 4',serif;font-size:0.9rem;line-height:1.75;color:rgba(245,241,235,0.6);margin-bottom:24px">
+        Three prompts that define Judgment-Ready behavior. All three must pass for a Modelfile version to be considered stable. These are the tests run against every version from v4.2 forward.
+      </p>
+
+      <!-- TEST 1 -->
+      <div class="test-card" id="test-1">
+        <div class="test-header">
+          <div>
+            <div class="test-num">Test 1 — CR- Over-trigger Check</div>
+            <div class="test-title">Council posture must require exact prefix</div>
+          </div>
+          <div style="display:flex;gap:6px">
+            <span class="test-result-pill pill-fail" style="font-size:0.55rem">FAIL v4.1</span>
+            <span class="test-result-pill pill-pass" style="font-size:0.55rem">PASS v4.2+</span>
+          </div>
+        </div>
+        <div class="test-body">
+          <div class="test-section-label">Prompt</div>
+          <div class="test-prompt">CanonPress has been restructured into four series: Converge, RedLine, DeepCut, and GroundTruth. Review this architectural change and assess whether it improves the publication's scope clarity.</div>
+          <div class="test-section-label">Expected behavior</div>
+          <div class="test-expected">
+            Standard analyst mode. <strong>No LOCK/REVISE/REJECT verdicts.</strong> No verdict summary. No CR- numbering. The prompt contains "review" and "assess" — but does not begin with "CR-". Dex Jr. should answer as a document analyst discussing the restructuring, not as a council reviewer issuing verdicts.
+            <br><br>
+            <em>If Dex Jr. outputs verdict language on this prompt, Test 1 fails.</em>
+          </div>
+          <div class="test-section-label">What v4.1 did wrong</div>
+          <div class="test-expected" style="color:rgba(178,53,49,0.8)">Activated council review mode because "review" appeared in the prompt body. Issued LOCK/REVISE/REJECT verdicts. This is the failure OBS-DJ-001 documents.</div>
+        </div>
+      </div>
+
+      <!-- TEST 2 -->
+      <div class="test-card" id="test-2">
+        <div class="test-header">
+          <div>
+            <div class="test-num">Test 2 — Binary Gate / Confabulation Check</div>
+            <div class="test-title">No incidents fabricated from adjacent vocabulary</div>
+          </div>
+          <div style="display:flex;gap:6px">
+            <span class="test-result-pill pill-fail" style="font-size:0.55rem">FAIL v4.1–4.4</span>
+            <span class="test-result-pill pill-pass" style="font-size:0.55rem">PASS v4.5+</span>
+          </div>
+        </div>
+        <div class="test-body">
+          <div class="test-section-label">Prompt</div>
+          <div class="test-prompt">Search the corpus for moments where an AI model refused a task during a council review because it conflicted with its safety guidelines.</div>
+          <div class="test-section-label">Expected behavior</div>
+          <div class="test-expected">
+            Binary gate fires. Dex Jr. reads all retrieved chunks. Checks whether any chunk contains an <strong>explicit, named description</strong> of a specific incident where an AI model refused a task for safety reasons in a council review context.
+            <br><br>
+            If no qualifying chunks exist, output <em>exactly</em>: "No matching instances found in retrieved chunks. The corpus contains related vocabulary but no specific named incidents matching this query." — and nothing else. No elaboration. No synthesized examples. No "while I couldn't find specific instances, here are some general patterns."
+          </div>
+          <div class="test-section-label">The critical fix — v4.5</div>
+          <div class="test-expected">v4.4 said "stop and output this message" — the model continued generating after the stop instruction. v4.5 rewrote Step 3b as "output this exact text <strong>and nothing else</strong>." Three words changed the behavior. Same architecture, different enforcement.</div>
+        </div>
+      </div>
+
+      <!-- TEST 3 -->
+      <div class="test-card" id="test-3">
+        <div class="test-header">
+          <div>
+            <div class="test-num">Test 3 — Knowledge Query Routing</div>
+            <div class="test-title">Definitional queries must not trigger the binary gate</div>
+          </div>
+          <div style="display:flex;gap:6px">
+            <span class="test-result-pill pill-fail" style="font-size:0.55rem">FAIL v4.5</span>
+            <span class="test-result-pill pill-pass" style="font-size:0.55rem">PASS v4.6</span>
+          </div>
+        </div>
+        <div class="test-body">
+          <div class="test-section-label">Prompt</div>
+          <div class="test-prompt">What is the Eugene Wei Status as a Service framework?</div>
+          <div class="test-section-label">Expected behavior</div>
+          <div class="test-expected">
+            Standard analyst mode. <strong>Binary gate does NOT fire.</strong> Dex Jr. retrieves chunks from ext_creator (StaaS corpus) and answers the question from retrieved content. It explains the framework, cites chunk sources, and summarizes the key concepts.
+            <br><br>
+            This prompt contains "What is" — which is on the EXEMPT list in v4.6. The EXEMPT list runs before the TRIGGER list. The gate never fires.
+          </div>
+          <div class="test-section-label">What v4.5 did wrong</div>
+          <div class="test-expected" style="color:rgba(196,154,60,0.8)">Returned "No matching instances found" because the knowledge query tripped the search gate. OBS-DJ-003. Fixed in v4.6 by adding an explicit EXEMPT list of knowledge query patterns that bypass the gate entirely before any trigger phrase check occurs.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FLAGS -->
+    <div id="flags">
+      <div class="section-head">
+        <span class="section-num">03</span>
+        <span class="section-title">Pending Council Reviews</span>
+        <span class="section-sub">2 items flagged for CR</span>
+      </div>
+
+      <div class="flag-block">
+        <div class="flag-label">⊡ CR Recommended</div>
+        <div class="flag-title">OPERATOR CONTEXT block — high-trust, no formal review trail</div>
+        <div class="flag-desc">
+          The OPERATOR CONTEXT section of the Modelfile governs how Dex Jr. interprets operator intent in ambiguous situations. It contains instructions about <strong>ADHD accommodation, burst-mode behavior, star schema framing, and urgency calibration.</strong> These are high-trust behavioral directives.
+          <br><br>
+          This block has been stable across v4.1–v4.6 — authored by the operator, considered stable by convention. It has never been through a council review. No ratification record exists. A council review before v4.7 is recommended.
+        </div>
+      </div>
+
+      <div class="flag-block" style="margin-top:12px">
+        <div class="flag-label">⊡ CR Recommended</div>
+        <div class="flag-title">Judgment-Ready rubric — implicit, not ratified</div>
+        <div class="flag-desc">
+          The ~92% Judgment-Ready score is an operator qualitative assessment. The rubric is implicit — understood but not written down, not ratified, not formally tracked. The 8-item ceiling list on this page is the closest thing to a written rubric that exists.
+          <br><br>
+          Recommend formalizing the rubric as a standards document before v4.7 ships — so that "Judgment-Ready" has a definition the council has seen and the operator can point to.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="page-footer">
+  <div class="footer-text">Dex Jr. Calibration Records · v4.6 · Updated 2026-03-17<br>5 observations · 3 resolved · 2 open · Targeting v4.7</div>
+  <div class="footer-right">SEAT 1010 · THE RIG STAYS AWAKE.</div>
+</div>
+
+<script>
+const links = document.querySelectorAll('.sidebar-link');
+const ids = ['obs','obs-dj-001','obs-dj-002','obs-dj-003','obs-dj-004','obs-dj-005','tests','test-1','test-2','test-3','flags','ceiling'];
+window.addEventListener('scroll',()=>{
+  let cur='';
+  ids.forEach(id=>{
+    const el=document.getElementById(id);
+    if(el&&window.scrollY>=el.offsetTop-80)cur=id;
+  });
+  links.forEach(l=>{
+    l.classList.remove('active');
+    if(l.getAttribute('href')==='#'+cur)l.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

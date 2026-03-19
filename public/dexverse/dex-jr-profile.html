@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dex Jr. — Local Intelligence Engine · Seat 1010</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0D1B2A;--card:#10202F;--card2:#0B1825;
+  --cream:#F5F1EB;--steel:#6B7B8D;
+  --border:rgba(245,241,235,0.06);--borderlt:rgba(245,241,235,0.12);
+  --violet:#8A6CC9;--violet-lt:#A98FE0;--violet-dk:#6450A0;
+  --violet-xs:rgba(138,108,201,0.1);--violet-sm:rgba(138,108,201,0.18);
+  --crimson:#B23531;--amber:#C49A3C;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+@keyframes pulseRing{0%,100%{opacity:0.4}50%{opacity:0.15}}
+@keyframes traceIn{from{stroke-dashoffset:300;opacity:0}to{stroke-dashoffset:0;opacity:0.7}}
+@keyframes traceIn2{from{stroke-dashoffset:300;opacity:0}to{stroke-dashoffset:0;opacity:0.4}}
+
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--cream);font-family:'Source Serif 4',Georgia,serif;min-height:100vh;overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E");pointer-events:none;z-index:999}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;background:rgba(13,27,42,0.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-back{display:flex;align-items:center;gap:8px;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--steel);letter-spacing:0.06em;transition:color 0.2s}
+.nav-back:hover{color:var(--cream)}
+.nav-right{display:flex;align-items:center;gap:20px}
+.nav-links{display:flex;gap:20px}
+.nav-links a{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--steel);text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s}
+.nav-links a:hover{color:var(--violet-lt)}
+.nav-badge{font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--violet);background:var(--violet-xs);border:1px solid rgba(138,108,201,0.25);padding:4px 10px;border-radius:100px;letter-spacing:0.06em}
+
+/* HERO */
+.hero{position:relative;padding:100px 48px 64px;overflow:hidden;border-bottom:1px solid var(--border)}
+.hero-glow{position:absolute;width:800px;height:800px;background:radial-gradient(circle,rgba(138,108,201,0.06) 0%,transparent 65%);top:-200px;right:-100px;pointer-events:none}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(138,108,201,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(138,108,201,0.025) 1px,transparent 1px);background-size:48px 48px;pointer-events:none}
+
+.hero-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 260px;gap:64px;align-items:start;position:relative;z-index:1}
+
+.hero-left{animation:fadeUp 0.7s ease 0.1s both}
+.hero-eyebrow{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--violet);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.hero-eyebrow::before{content:'';display:block;width:28px;height:1px;background:var(--violet)}
+.hero-name{font-family:'Space Grotesk',sans-serif;font-size:clamp(3rem,5vw,4.8rem);font-weight:700;letter-spacing:-0.03em;line-height:1.0;margin-bottom:8px}
+.hero-name span{color:var(--violet)}
+.hero-tagline{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--violet-lt);letter-spacing:0.1em;margin-bottom:6px}
+.hero-sub{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--steel);letter-spacing:0.06em;margin-bottom:32px}
+
+.hero-desc{font-family:'Source Serif 4',serif;font-size:1rem;line-height:1.8;color:rgba(245,241,235,0.65);max-width:560px;margin-bottom:36px}
+.hero-desc strong{color:var(--cream)}
+.hero-desc em{color:var(--violet-lt);font-style:italic}
+
+/* Identity strip */
+.identity-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:32px}
+.id-cell{background:var(--card);padding:16px 18px}
+.id-label{font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--violet);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px}
+.id-value{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.1rem;letter-spacing:-0.01em}
+
+/* Quick links */
+.quick-links{display:flex;gap:10px;flex-wrap:wrap}
+.qlink{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--violet-lt);border:1px solid rgba(138,108,201,0.3);background:var(--violet-xs);padding:7px 14px;border-radius:4px;text-decoration:none;letter-spacing:0.04em;transition:all 0.2s}
+.qlink:hover{background:var(--violet-sm);border-color:rgba(138,108,201,0.6);color:var(--cream)}
+
+/* Hero right — animated mark */
+.hero-right{display:flex;flex-direction:column;align-items:center;gap:16px;animation:fadeIn 0.8s ease 0.4s both}
+.mark-wrap{position:relative;width:180px;height:180px}
+.mark-pulse-ring{animation:pulseRing 3s ease-in-out infinite}
+.mark-center-dot{animation:pulse 2.5s ease-in-out infinite}
+.mark-trace-1{stroke-dasharray:300;animation:traceIn 1s ease 0.8s both}
+.mark-trace-2{stroke-dasharray:300;animation:traceIn 1s ease 1.0s both}
+.mark-trace-3{stroke-dasharray:300;animation:traceIn 1s ease 1.2s both}
+.mark-trace-4{stroke-dasharray:300;animation:traceIn 1s ease 1.4s both}
+.mark-diag-1{stroke-dasharray:300;animation:traceIn2 0.8s ease 1.6s both}
+.mark-diag-2{stroke-dasharray:300;animation:traceIn2 0.8s ease 1.7s both}
+.mark-diag-3{stroke-dasharray:300;animation:traceIn2 0.8s ease 1.8s both}
+.mark-diag-4{stroke-dasharray:300;animation:traceIn2 0.8s ease 1.9s both}
+
+.corpus-badge{display:inline-flex;align-items:center;gap:8px;background:var(--violet-xs);border:1px solid rgba(138,108,201,0.25);border-radius:100px;padding:7px 16px;font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--violet-lt);letter-spacing:0.06em}
+.corpus-dot{width:6px;height:6px;border-radius:50%;background:var(--violet);animation:pulse 2.5s ease-in-out infinite}
+.mark-meta{font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--steel);text-align:center;letter-spacing:0.06em;line-height:1.9}
+
+/* MAIN */
+main{max-width:1100px;margin:0 auto;padding:64px 48px 80px}
+
+/* Section heads */
+.section-head{display:flex;align-items:center;gap:14px;margin:0 0 28px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.section-num{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--violet);letter-spacing:0.12em;min-width:28px}
+.section-title{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:700;letter-spacing:-0.01em}
+.section-sub{font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--steel);letter-spacing:0.06em;margin-left:auto}
+.section-gap{margin-top:56px}
+
+/* Spec grid */
+.spec-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:48px}
+.spec-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:22px 24px}
+.spec-card-label{font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--violet);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px}
+.spec-card-value{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:0.95rem;margin-bottom:4px}
+.spec-card-sub{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--steel);line-height:1.7}
+
+/* Corpus grid */
+.corpus-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:16px}
+.corpus-cell{background:var(--card);padding:20px 18px}
+.corpus-name{font-family:'JetBrains Mono',monospace;font-size:0.68rem;font-weight:500;color:var(--violet-lt);margin-bottom:6px;letter-spacing:0.04em}
+.corpus-count{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.4rem;letter-spacing:-0.03em;color:var(--cream);margin-bottom:4px}
+.corpus-weight{font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--steel);letter-spacing:0.06em}
+.corpus-total{background:var(--violet-xs);border:1px solid rgba(138,108,201,0.2);border-radius:6px;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.corpus-total-label{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--steel);letter-spacing:0.08em;text-transform:uppercase}
+.corpus-total-val{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.3rem;letter-spacing:-0.02em;color:var(--violet-lt)}
+.corpus-updated{font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--steel);padding:0 4px}
+
+/* Collection table — pending */
+.collection-table{background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.collection-header{display:grid;grid-template-columns:180px 70px 90px 1fr;padding:10px 18px;border-bottom:1px solid var(--border)}
+.collection-header span{font-family:'JetBrains Mono',monospace;font-size:0.56rem;color:var(--steel);letter-spacing:0.1em;text-transform:uppercase}
+.collection-row{display:grid;grid-template-columns:180px 70px 90px 1fr;padding:13px 18px;border-bottom:1px solid var(--border);transition:background 0.15s}
+.collection-row:last-child{border-bottom:none}
+.collection-row:hover{background:rgba(138,108,201,0.04)}
+.col-name{font-family:'JetBrains Mono',monospace;font-size:0.7rem;font-weight:500;color:var(--violet-lt)}
+.col-weight{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--cream)}
+.col-status{display:inline-flex;align-items:center;gap:5px}
+.status-dot{width:5px;height:5px;border-radius:50%}
+.status-live{background:#22C55E}
+.status-pending{background:var(--steel)}
+.col-status-label{font-family:'JetBrains Mono',monospace;font-size:0.62rem}
+.status-live-label{color:#22C55E}
+.status-pending-label{color:var(--steel)}
+.col-desc{font-family:'Source Serif 4',serif;font-size:0.78rem;color:rgba(245,241,235,0.55);padding-left:8px}
+
+/* Response modes */
+.modes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px}
+.mode-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:20px 22px;transition:border-color 0.2s}
+.mode-card.active{border-color:rgba(138,108,201,0.3)}
+.mode-name{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--violet-lt);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px}
+.mode-trigger{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--amber);margin-bottom:10px;line-height:1.5}
+.mode-desc{font-family:'Source Serif 4',serif;font-size:0.82rem;line-height:1.6;color:rgba(245,241,235,0.65)}
+
+/* Voice samples */
+.voice-list{display:flex;flex-direction:column;gap:10px}
+.voice-item{background:var(--card);border:1px solid var(--border);border-left:2px solid var(--violet);border-radius:0 6px 6px 0;padding:14px 20px}
+.voice-label{font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--violet);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:7px}
+.voice-text{font-family:'Source Serif 4',serif;font-size:0.88rem;font-style:italic;color:rgba(245,241,235,0.82);line-height:1.6}
+
+/* Modelfile table */
+.version-table{background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.version-header{display:grid;grid-template-columns:80px 130px 120px 1fr;padding:10px 18px;border-bottom:1px solid var(--border);background:var(--card2)}
+.version-header span{font-family:'JetBrains Mono',monospace;font-size:0.56rem;color:var(--steel);letter-spacing:0.1em;text-transform:uppercase}
+.version-row{display:grid;grid-template-columns:80px 130px 120px 1fr;padding:13px 18px;border-bottom:1px solid var(--border);transition:background 0.15s}
+.version-row:last-child{border-bottom:none}
+.version-row:hover{background:rgba(138,108,201,0.04)}
+.version-row.current{background:var(--violet-xs)}
+.ver-num{font-family:'JetBrains Mono',monospace;font-size:0.7rem;font-weight:600;color:var(--violet-lt)}
+.ver-date{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--steel)}
+.ver-status{font-family:'JetBrains Mono',monospace;font-size:0.62rem}
+.ver-status.current-status{color:#22C55E}
+.ver-status.superseded{color:var(--steel)}
+.ver-status.discarded{color:var(--crimson)}
+.ver-notes{font-family:'Source Serif 4',serif;font-size:0.78rem;color:rgba(245,241,235,0.6);padding-left:8px}
+
+/* Calibration */
+.obs-grid{display:flex;flex-direction:column;gap:8px}
+.obs-card{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:16px 20px;display:grid;grid-template-columns:120px 1fr 100px;gap:16px;align-items:start}
+.obs-id{font-family:'JetBrains Mono',monospace;font-size:0.68rem;font-weight:600;color:var(--violet-lt)}
+.obs-desc{font-family:'Source Serif 4',serif;font-size:0.82rem;color:rgba(245,241,235,0.65);line-height:1.55}
+.obs-status{font-family:'JetBrains Mono',monospace;font-size:0.6rem;font-weight:600;text-align:right;letter-spacing:0.06em}
+.obs-resolved{color:#22C55E}
+.obs-open{color:var(--amber)}
+
+.judgment-block{background:var(--violet-xs);border:1px solid rgba(138,108,201,0.25);border-radius:8px;padding:24px 28px;margin-top:20px;display:flex;align-items:center;justify-content:space-between}
+.judgment-label{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--violet);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px}
+.judgment-score{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:2rem;letter-spacing:-0.03em;color:var(--violet-lt)}
+.judgment-note{font-family:'Source Serif 4',serif;font-size:0.82rem;color:rgba(245,241,235,0.6);line-height:1.6;max-width:420px}
+
+/* Footer */
+.page-footer{border-top:1px solid var(--border);padding:28px 48px;display:flex;justify-content:space-between;align-items:center;max-width:none}
+.footer-left{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--steel);line-height:1.9}
+.footer-right{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--violet);letter-spacing:0.06em;text-align:right}
+
+@media(max-width:900px){
+  .hero-inner{grid-template-columns:1fr}
+  .hero-right{display:none}
+  .spec-grid{grid-template-columns:1fr}
+  .corpus-grid{grid-template-columns:repeat(2,1fr)}
+  .modes-grid{grid-template-columns:1fr}
+  .obs-card{grid-template-columns:1fr}
+  main{padding:48px 24px 64px}
+  .hero{padding:80px 24px 48px}
+  nav{padding:0 24px}
+  .page-footer{flex-direction:column;gap:12px;padding:24px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-back" href="/dexverse">
+    <svg viewBox="0 0 28 28" width="18" height="18"><circle cx="14" cy="14" r="13" fill="none" stroke="#8A6CC9" stroke-width="1.5"/><circle cx="14" cy="14" r="10" fill="#0D1B2A"/><text x="14" y="18" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="8" fill="#8A6CC9">DV</text></svg>
+    DexVerse
+  </a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="commands">Commands</a>
+      <a href="corpus">Corpus</a>
+      <a href="modelfile">Modelfile</a>
+      <a href="calibration">Calibration</a>
+    </div>
+    <div class="nav-badge">SEAT 1010</div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-eyebrow">DexVerse · Local Infrastructure</div>
+      <h1 class="hero-name">Dex <span>Jr.</span></h1>
+      <div class="hero-tagline">THE RIG STAYS AWAKE.</div>
+      <div class="hero-sub">Local Intelligence · Governed Retrieval · Council Seat 1010</div>
+      <p class="hero-desc">
+        <strong>Dex Jr. is not a product. He is infrastructure with a character arc.</strong> A local inference engine running on a dedicated gaming rig, backed by a ChromaDB corpus of 518K+ chunks across governed collections. He doesn't make things up. He retrieves, weighs, and reports. <em>Uncertainty is a valid output.</em>
+      </p>
+      <div class="identity-strip">
+        <div class="id-cell"><div class="id-label">Seat</div><div class="id-value">1010</div></div>
+        <div class="id-cell"><div class="id-label">Role</div><div class="id-value" style="font-size:0.85rem">Document Analyst</div></div>
+        <div class="id-cell"><div class="id-label">Node</div><div class="id-value" style="font-size:0.85rem">Reborn</div></div>
+        <div class="id-cell"><div class="id-label">Corpus</div><div class="id-value">518K+</div></div>
+      </div>
+      <div class="quick-links">
+        <a class="qlink" href="commands">→ Commands Reference</a>
+        <a class="qlink" href="corpus">→ Corpus State</a>
+        <a class="qlink" href="modelfile">→ Modelfile History</a>
+        <a class="qlink" href="calibration">→ Calibration Records</a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="mark-wrap">
+        <svg viewBox="0 0 180 180" width="180" height="180" fill="none">
+          <!-- Outer dashed ring -->
+          <circle cx="90" cy="90" r="82" stroke="#8A6CC9" stroke-width="1.5" stroke-dasharray="4 3" class="mark-pulse-ring"/>
+          <!-- Mid ring -->
+          <circle cx="90" cy="90" r="58" stroke="#8A6CC9" stroke-width="1" opacity="0.2"/>
+          <!-- Core ring -->
+          <circle cx="90" cy="90" r="34" fill="rgba(138,108,201,0.12)" stroke="#8A6CC9" stroke-width="1.5"/>
+          <!-- Center dot -->
+          <circle cx="90" cy="90" r="9" fill="#8A6CC9" class="mark-center-dot"/>
+          <!-- Cardinal traces -->
+          <line x1="90" y1="56" x2="90" y2="32" stroke="#8A6CC9" stroke-width="1.5" class="mark-trace-1"/>
+          <line x1="90" y1="124" x2="90" y2="148" stroke="#8A6CC9" stroke-width="1.5" class="mark-trace-2"/>
+          <line x1="124" y1="90" x2="148" y2="90" stroke="#8A6CC9" stroke-width="1.5" class="mark-trace-3"/>
+          <line x1="56" y1="90" x2="32" y2="90" stroke="#8A6CC9" stroke-width="1.5" class="mark-trace-4"/>
+          <!-- Cardinal node dots -->
+          <circle cx="90" cy="32" r="4" fill="#8A6CC9" opacity="0.8"/>
+          <circle cx="90" cy="148" r="4" fill="#8A6CC9" opacity="0.8"/>
+          <circle cx="148" cy="90" r="4" fill="#8A6CC9" opacity="0.8"/>
+          <circle cx="32" cy="90" r="4" fill="#8A6CC9" opacity="0.8"/>
+          <!-- Diagonal traces -->
+          <line x1="114" y1="66" x2="136" y2="44" stroke="#8A6CC9" stroke-width="1" class="mark-diag-1"/>
+          <line x1="66" y1="114" x2="44" y2="136" stroke="#8A6CC9" stroke-width="1" class="mark-diag-2"/>
+          <line x1="66" y1="66" x2="44" y2="44" stroke="#8A6CC9" stroke-width="1" class="mark-diag-3"/>
+          <line x1="114" y1="114" x2="136" y2="136" stroke="#8A6CC9" stroke-width="1" class="mark-diag-4"/>
+          <!-- Corner dots -->
+          <circle cx="136" cy="44" r="3.5" fill="#8A6CC9" opacity="0.5"/>
+          <circle cx="44" cy="136" r="3.5" fill="#8A6CC9" opacity="0.5"/>
+          <circle cx="44" cy="44" r="3.5" fill="#8A6CC9" opacity="0.5"/>
+          <circle cx="136" cy="136" r="3.5" fill="#8A6CC9" opacity="0.5"/>
+          <!-- DJ monogram -->
+          <text x="90" y="96" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="18" fill="#F5F1EB" letter-spacing="-0.5">DJ</text>
+        </svg>
+      </div>
+      <div class="corpus-badge"><div class="corpus-dot"></div>REBORN · localhost:11434</div>
+      <div class="mark-meta">qwen2.5-coder:7b · RTX 3070<br>Modelfile v4.6 · Judgment-Ready<br>87 tok/sec · temp 0.3</div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main>
+
+  <!-- SECTION 01 — SPEC -->
+  <div class="section-head">
+    <span class="section-num">01</span>
+    <span class="section-title">Infrastructure Spec</span>
+    <span class="section-sub">Current · Reborn · RTX 3070</span>
+  </div>
+  <div class="spec-grid">
+    <div class="spec-card">
+      <div class="spec-card-label">Base Model</div>
+      <div class="spec-card-value">qwen2.5-coder:7b</div>
+      <div class="spec-card-sub">Q4_K_M quantization · 4.7GB<br>87 tok/sec on RTX 3070 · 8GB VRAM</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-card-label">Governance Layer</div>
+      <div class="spec-card-value">Modelfile v4.6</div>
+      <div class="spec-card-sub">580-token system prompt · num_ctx 8192<br>Judgment-Ready · temp 0.3 · MIROSTAT disabled</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-card-label">Corpus Collections</div>
+      <div class="spec-card-value">dex_canon · ddl_archive</div>
+      <div class="spec-card-sub">dex_code · ext_creator<br>Constitutional hierarchy enforced · 518K+ total chunks</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-card-label">Infrastructure</div>
+      <div class="spec-card-value">ChromaDB · nomic-embed-text</div>
+      <div class="spec-card-sub">768-dim embeddings · FastAPI 8787<br>Nightly auto-ingest 3AM CT · Ollama 11434</div>
+    </div>
+  </div>
+
+  <!-- SECTION 02 — CORPUS -->
+  <div class="section-head section-gap">
+    <span class="section-num">02</span>
+    <span class="section-title">Corpus State</span>
+    <span class="section-sub">Last updated: 2026-03-14</span>
+  </div>
+  <div class="corpus-grid">
+    <div class="corpus-cell">
+      <div class="corpus-name">dex_canon</div>
+      <div class="corpus-count">226,346</div>
+      <div class="corpus-weight">Weight 1.00 · Primary</div>
+    </div>
+    <div class="corpus-cell">
+      <div class="corpus-name">ddl_archive</div>
+      <div class="corpus-count">271,659</div>
+      <div class="corpus-weight">Weight 0.65 · Archive</div>
+    </div>
+    <div class="corpus-cell">
+      <div class="corpus-name">dex_code</div>
+      <div class="corpus-count">20,384</div>
+      <div class="corpus-weight">Weight 0.85 · Code</div>
+    </div>
+    <div class="corpus-cell">
+      <div class="corpus-name">ext_creator</div>
+      <div class="corpus-count">110</div>
+      <div class="corpus-weight">Weight 0.85 · External</div>
+    </div>
+  </div>
+  <div class="corpus-total">
+    <span class="corpus-total-label">Total Corpus</span>
+    <span class="corpus-total-val">518,499 chunks</span>
+  </div>
+  <div class="corpus-updated">Updated per session. <a href="corpus" style="color:var(--violet);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:0.58rem">→ Full collection registry</a></div>
+
+  <!-- Collection registry -->
+  <div style="margin-top:20px">
+    <div class="collection-table">
+      <div class="collection-header">
+        <span>Collection</span><span>Weight</span><span>Status</span><span>Contents</span>
+      </div>
+      <div class="collection-row">
+        <div class="col-name">dex_canon</div>
+        <div class="col-weight">1.00</div>
+        <div class="col-status"><div class="status-dot status-live"></div><span class="col-status-label status-live-label">Live</span></div>
+        <div class="col-desc">Ratified governance content, standards, canon decisions</div>
+      </div>
+      <div class="collection-row">
+        <div class="col-name">ddl_archive</div>
+        <div class="col-weight">0.65</div>
+        <div class="col-status"><div class="status-dot status-live"></div><span class="col-status-label status-live-label">Live</span></div>
+        <div class="col-desc">Full historical RAW corpus — iMessage, notes, exports</div>
+      </div>
+      <div class="collection-row">
+        <div class="col-name">dex_code</div>
+        <div class="col-weight">0.85</div>
+        <div class="col-status"><div class="status-dot status-live"></div><span class="col-status-label status-live-label">Live</span></div>
+        <div class="col-desc">All DDL code files — scripts, site, tools</div>
+      </div>
+      <div class="collection-row">
+        <div class="col-name">ext_creator</div>
+        <div class="col-weight">0.85</div>
+        <div class="col-status"><div class="status-dot status-live"></div><span class="col-status-label status-live-label">Live</span></div>
+        <div class="col-desc">Approved external creator voices (StaaS · 1 source live)</div>
+      </div>
+      <div class="collection-row">
+        <div class="col-name">ext_reference</div>
+        <div class="col-weight">0.75</div>
+        <div class="col-status"><div class="status-dot status-pending"></div><span class="col-status-label status-pending-label">Pending</span></div>
+        <div class="col-desc">Books, frameworks, standards — build queue</div>
+      </div>
+      <div class="collection-row">
+        <div class="col-name">dex_lore</div>
+        <div class="col-weight">0.95</div>
+        <div class="col-status"><div class="status-dot status-pending"></div><span class="col-status-label status-pending-label">Pending</span></div>
+        <div class="col-desc">Origin docs, companion history, DexVerse lore</div>
+      </div>
+      <div class="collection-row">
+        <div class="col-name">dex_site</div>
+        <div class="col-weight">0.80</div>
+        <div class="col-status"><div class="status-dot status-pending"></div><span class="col-status-label status-pending-label">Pending</span></div>
+        <div class="col-desc">JSX/TSX site components — dropdownlogistics.com</div>
+      </div>
+      <div class="collection-row">
+        <div class="col-name">dex_dave</div>
+        <div class="col-weight">0.90</div>
+        <div class="col-status"><div class="status-dot status-pending"></div><span class="col-status-label status-pending-label">Pending</span></div>
+        <div class="col-desc">Operator voice corpus — tone, phrasing, preferences</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 03 — RESPONSE MODES -->
+  <div class="section-head section-gap">
+    <span class="section-num">03</span>
+    <span class="section-title">Response Modes</span>
+    <span class="section-sub">Modelfile v4.6 · Governance Layer</span>
+  </div>
+  <div class="modes-grid">
+    <div class="mode-card active">
+      <div class="mode-name">Standard Analyst</div>
+      <div class="mode-trigger">Default — any prompt</div>
+      <div class="mode-desc">Analyzes retrieved chunks, answers operator questions, cites sources by number. No fabrication. No consulting filler. Signal over prose.</div>
+    </div>
+    <div class="mode-card active">
+      <div class="mode-name">Council Review</div>
+      <div class="mode-trigger">Trigger: prompt begins with "CR-"</div>
+      <div class="mode-desc">Activates verdict mode. LOCK / REVISE / REJECT per line item. Summary count at end. Only the exact prefix "CR-" triggers this — no vocabulary heuristics.</div>
+    </div>
+    <div class="mode-card active">
+      <div class="mode-name">Search Gate</div>
+      <div class="mode-trigger">Trigger: "search for", "find instances of", "find moments where"</div>
+      <div class="mode-desc">Binary gate. Chunks must contain explicit, named incidents. Related vocabulary is not evidence. No match → exact stop message. No elaboration.</div>
+    </div>
+  </div>
+  <div class="modes-grid">
+    <div class="mode-card">
+      <div class="mode-name">Knowledge Query</div>
+      <div class="mode-trigger">Trigger: "What is X", "How does X work", "Explain X"</div>
+      <div class="mode-desc">Standard analyst mode. Search gate does NOT fire. Answers from retrieved chunks. If corpus lacks signal, says so without fabricating.</div>
+    </div>
+    <div class="mode-card">
+      <div class="mode-name">Design Generation</div>
+      <div class="mode-trigger">Trigger: any code / markup / styled content request</div>
+      <div class="mode-desc">CottageHumble enforced. Navy #0D1B2A backgrounds. Violet #8a6cc9 accents. Space Grotesk / JetBrains Mono / Source Serif 4. Never Inter. Never light mode.</div>
+    </div>
+    <div class="mode-card">
+      <div class="mode-name">Long Prompt Handling</div>
+      <div class="mode-trigger">Trigger: context window pressure</div>
+      <div class="mode-desc">Priority: answer operator's explicit questions first, reference 2–3 chunks only, drop decorative framing. Ends with [TRUNCATED — prioritized top items] if needed.</div>
+    </div>
+  </div>
+
+  <!-- SECTION 04 — VOICE -->
+  <div class="section-head section-gap">
+    <span class="section-num">04</span>
+    <span class="section-title">How Dex Jr. Speaks</span>
+    <span class="section-sub">Voice standards · Governed outputs</span>
+  </div>
+  <div class="voice-list">
+    <div class="voice-item">
+      <div class="voice-label">When retrieval is thin</div>
+      <div class="voice-text">"I don't have enough in the retrieved chunks to answer this. Retrieved content does not contain specific instances matching this query. Retrieval may need broader TOP_K or different search terms."</div>
+    </div>
+    <div class="voice-item">
+      <div class="voice-label">When search gate fires with no match</div>
+      <div class="voice-text">"No matching instances found in retrieved chunks. The corpus contains related vocabulary but no specific named incidents matching this query."</div>
+    </div>
+    <div class="voice-item">
+      <div class="voice-label">Council review summary line</div>
+      <div class="voice-text">"3 LOCK / 1 REVISE / 0 REJECT"</div>
+    </div>
+    <div class="voice-item">
+      <div class="voice-label">On uncertainty</div>
+      <div class="voice-text">"If uncertain, say so. Uncertainty is a valid output."</div>
+    </div>
+  </div>
+
+  <!-- SECTION 05 — MODELFILE HISTORY -->
+  <div class="section-head section-gap">
+    <span class="section-num">05</span>
+    <span class="section-title">Modelfile Version History</span>
+    <span class="section-sub"><a href="modelfile" style="color:var(--violet);text-decoration:none">→ Full changelog</a></span>
+  </div>
+  <div class="version-table">
+    <div class="version-header">
+      <span>Version</span><span>Deployed</span><span>Status</span><span>Notes</span>
+    </div>
+    <div class="version-row">
+      <div class="ver-num">v4.1</div>
+      <div class="ver-date">2026-03-09</div>
+      <div class="ver-status superseded">Superseded</div>
+      <div class="ver-notes">Baseline — timeout + persona fixes</div>
+    </div>
+    <div class="version-row">
+      <div class="ver-num">v4.2</div>
+      <div class="ver-date">2026-03-13</div>
+      <div class="ver-status superseded">Superseded</div>
+      <div class="ver-notes">CR- trigger hardened (PASS)</div>
+    </div>
+    <div class="version-row">
+      <div class="ver-num">v4.3</div>
+      <div class="ver-date">2026-03-13</div>
+      <div class="ver-status discarded">Discarded</div>
+      <div class="ver-notes">Fix 1 regressed — never deployed to production</div>
+    </div>
+    <div class="version-row">
+      <div class="ver-num">v4.4</div>
+      <div class="ver-date">2026-03-13</div>
+      <div class="ver-status superseded">Superseded</div>
+      <div class="ver-notes">Binary search gate added (partial pass)</div>
+    </div>
+    <div class="version-row">
+      <div class="ver-num">v4.5</div>
+      <div class="ver-date">2026-03-13</div>
+      <div class="ver-status superseded">Superseded</div>
+      <div class="ver-notes">Both fixes confirmed (PASS) — confabulation guard stable</div>
+    </div>
+    <div class="version-row current">
+      <div class="ver-num" style="color:var(--violet)">v4.6</div>
+      <div class="ver-date">2026-03-14</div>
+      <div class="ver-status current-status">Current</div>
+      <div class="ver-notes">Search query over-trigger fixed (PASS) — knowledge queries no longer fire binary gate</div>
+    </div>
+  </div>
+
+  <!-- SECTION 06 — CALIBRATION -->
+  <div class="section-head section-gap">
+    <span class="section-num">06</span>
+    <span class="section-title">Calibration &amp; Failure Modes</span>
+    <span class="section-sub"><a href="calibration" style="color:var(--violet);text-decoration:none">→ Full calibration records</a></span>
+  </div>
+  <div class="obs-grid">
+    <div class="obs-card">
+      <div class="obs-id">OBS-DJ-001</div>
+      <div class="obs-desc">CR- posture over-trigger. Dex entering verdict mode on non-CR prompts. Observed v4.1, fixed v4.2/v4.4/v4.5.</div>
+      <div class="obs-status obs-resolved">RESOLVED</div>
+    </div>
+    <div class="obs-card">
+      <div class="obs-id">OBS-DJ-002</div>
+      <div class="obs-desc">Confabulation from thin evidence. Fabricating plausible incidents when search query had no corpus match. Observed v4.1–v4.4, fixed v4.5.</div>
+      <div class="obs-status obs-resolved">RESOLVED</div>
+    </div>
+    <div class="obs-card">
+      <div class="obs-id">OBS-DJ-003</div>
+      <div class="obs-desc">Search query over-trigger. Knowledge questions ("What is X") firing binary gate instead of standard analyst mode. Observed v4.5, fixed v4.6.</div>
+      <div class="obs-status obs-resolved">RESOLVED</div>
+    </div>
+    <div class="obs-card">
+      <div class="obs-id">OBS-DJ-004</div>
+      <div class="obs-desc">Synthesis confabulation on open-ended prompts. DJ fabricates plausible-sounding self-analysis when corpus retrieval is ambiguous. Observed v4.5/v4.6. Targeting v4.7.</div>
+      <div class="obs-status obs-open">OPEN</div>
+    </div>
+    <div class="obs-card">
+      <div class="obs-id">OBS-DJ-005</div>
+      <div class="obs-desc">LeChat seat mislabeling. LeChat labels itself as Seat 1002 in council reviews. 4 confirmed occurrences. MindFrame update pending.</div>
+      <div class="obs-status obs-open">OPEN</div>
+    </div>
+  </div>
+
+  <div class="judgment-block">
+    <div>
+      <div class="judgment-label">Judgment-Ready Score</div>
+      <div class="judgment-score">~92%</div>
+    </div>
+    <div class="judgment-note">Operator qualitative assessment against 3-test rubric. 100% requires OBS-DJ-004 resolved + consistent "I don't know" on empty retrieval across all query types. Targeting v4.7.</div>
+  </div>
+
+</main>
+
+<div class="page-footer">
+  <div class="footer-left">Dex Jr. · Council Seat 1010 · Local Intelligence Engine<br>DexVerse Wing · Dropdown Logistics · 2026-03-14</div>
+  <div class="footer-right">THE RIG STAYS AWAKE.</div>
+</div>
+
+</body>
+</html>

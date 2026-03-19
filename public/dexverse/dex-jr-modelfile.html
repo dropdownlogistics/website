@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dex Jr. — Modelfile History · DDL</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0D1B2A;--card:#10202F;--card2:#0B1825;
+  --cream:#F5F1EB;--steel:#6B7B8D;
+  --border:rgba(245,241,235,0.06);--borderlt:rgba(245,241,235,0.12);
+  --violet:#8A6CC9;--violet-lt:#A98FE0;--violet-dk:#6450A0;
+  --violet-xs:rgba(138,108,201,0.1);--violet-sm:rgba(138,108,201,0.18);
+  --crimson:#B23531;--amber:#C49A3C;--green:#22C55E;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--cream);font-family:'Source Serif 4',Georgia,serif;min-height:100vh}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;background:rgba(13,27,42,0.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-back{display:flex;align-items:center;gap:8px;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--steel);letter-spacing:0.06em;transition:color 0.2s}
+.nav-back:hover{color:var(--cream)}
+.nav-links a{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--steel);text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s;margin-left:20px}
+.nav-links a:hover{color:var(--violet-lt)}
+.nav-links a.active{color:var(--violet-lt)}
+
+/* LAYOUT */
+.layout{display:grid;grid-template-columns:220px 1fr;min-height:100vh;padding-top:52px}
+
+/* SIDEBAR */
+.sidebar{background:var(--card2);border-right:1px solid var(--border);padding:32px 0;position:sticky;top:52px;height:calc(100vh - 52px);overflow-y:auto}
+.sidebar-label{font-family:'JetBrains Mono',monospace;font-size:0.55rem;color:var(--steel);letter-spacing:0.14em;text-transform:uppercase;padding:0 20px;margin-bottom:8px}
+.sidebar-link{display:block;font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--steel);text-decoration:none;padding:7px 20px;letter-spacing:0.03em;border-left:2px solid transparent;transition:all 0.15s}
+.sidebar-link:hover{color:var(--cream);background:rgba(138,108,201,0.06);border-left-color:rgba(138,108,201,0.4)}
+.sidebar-link.active{color:var(--violet-lt);border-left-color:var(--violet);background:var(--violet-xs)}
+.sidebar-link.current{color:var(--green);border-left-color:var(--green);background:rgba(34,197,94,0.06)}
+.sidebar-link.discarded{color:var(--crimson);opacity:0.7}
+.sidebar-divider{height:1px;background:var(--border);margin:12px 20px}
+
+/* CONTENT */
+.content{padding:48px 56px 80px;max-width:900px;animation:fadeUp 0.5s ease both}
+.content-header{margin-bottom:40px;padding-bottom:24px;border-bottom:1px solid var(--border)}
+.content-eyebrow{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--violet);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.content-eyebrow::before{content:'';display:block;width:20px;height:1px;background:var(--violet)}
+.content-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:2rem;letter-spacing:-0.02em;margin-bottom:8px}
+.content-sub{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--steel);letter-spacing:0.06em;line-height:1.8}
+
+/* VERSION SUMMARY TABLE */
+.version-table{background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:48px}
+.version-table-header{display:grid;grid-template-columns:80px 130px 110px 1fr;padding:10px 20px;border-bottom:1px solid var(--border);background:var(--card2)}
+.version-table-header span{font-family:'JetBrains Mono',monospace;font-size:0.55rem;color:var(--steel);letter-spacing:0.1em;text-transform:uppercase}
+.vt-row{display:grid;grid-template-columns:80px 130px 110px 1fr;padding:14px 20px;border-bottom:1px solid var(--border);transition:background 0.15s;cursor:pointer}
+.vt-row:last-child{border-bottom:none}
+.vt-row:hover{background:rgba(138,108,201,0.05)}
+.vt-row.current{background:rgba(34,197,94,0.05)}
+.vt-row.discarded{opacity:0.6}
+.vt-ver{font-family:'JetBrains Mono',monospace;font-size:0.72rem;font-weight:600}
+.vt-ver.current{color:var(--green)}
+.vt-ver.superseded{color:var(--violet-lt)}
+.vt-ver.discarded{color:var(--crimson)}
+.vt-date{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--steel)}
+.vt-status{font-family:'JetBrains Mono',monospace;font-size:0.62rem;font-weight:600}
+.vt-status.current{color:var(--green)}
+.vt-status.superseded{color:var(--steel)}
+.vt-status.discarded{color:var(--crimson)}
+.vt-notes{font-family:'Source Serif 4',serif;font-size:0.8rem;color:rgba(245,241,235,0.62);padding-left:8px}
+.vt-row a{color:inherit;text-decoration:none}
+
+/* VERSION DETAIL BLOCKS */
+.version-detail{margin-bottom:56px;scroll-margin-top:70px}
+.vd-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+.vd-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.4rem;letter-spacing:-0.02em;margin-bottom:4px}
+.vd-meta{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--steel);letter-spacing:0.06em;line-height:1.8}
+.vd-badge{font-family:'JetBrains Mono',monospace;font-size:0.6rem;font-weight:700;padding:5px 12px;border-radius:3px;border:1px solid;letter-spacing:0.06em;white-space:nowrap}
+.badge-current{color:var(--green);background:rgba(34,197,94,0.1);border-color:rgba(34,197,94,0.3)}
+.badge-superseded{color:var(--steel);background:rgba(107,123,141,0.1);border-color:rgba(107,123,141,0.25)}
+.badge-discarded{color:var(--crimson);background:rgba(178,53,49,0.1);border-color:rgba(178,53,49,0.25)}
+
+/* Change cards */
+.change-grid{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
+.change-card{background:var(--card);border:1px solid var(--border);border-radius:7px;padding:18px 22px}
+.change-card.fix{border-left:2px solid var(--green)}
+.change-card.regression{border-left:2px solid var(--crimson)}
+.change-card.insight{border-left:2px solid var(--violet)}
+.change-card.flag{border-left:2px solid var(--amber)}
+.change-label{font-family:'JetBrains Mono',monospace;font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:8px}
+.fix .change-label{color:var(--green)}
+.regression .change-label{color:var(--crimson)}
+.insight .change-label{color:var(--violet-lt)}
+.flag .change-label{color:var(--amber)}
+.change-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:0.9rem;margin-bottom:6px}
+.change-desc{font-family:'Source Serif 4',serif;font-size:0.88rem;line-height:1.7;color:rgba(245,241,235,0.72)}
+.change-desc strong{color:var(--cream)}
+.change-desc em{font-style:italic;color:var(--violet-lt)}
+.change-desc code{font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--amber);background:rgba(196,154,60,0.1);padding:1px 5px;border-radius:3px}
+
+/* Test results */
+.test-block{background:var(--card2);border:1px solid var(--border);border-radius:6px;padding:16px 20px;margin-bottom:10px}
+.test-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border)}
+.test-row:last-child{border-bottom:none}
+.test-name{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--cream)}
+.test-result{font-family:'JetBrains Mono',monospace;font-size:0.62rem;font-weight:600;letter-spacing:0.06em}
+.pass{color:var(--green)}
+.fail{color:var(--crimson)}
+.partial{color:var(--amber)}
+
+/* System prompt expandable */
+.prompt-toggle{width:100%;background:var(--card2);border:1px solid var(--border);border-radius:6px;padding:12px 18px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;transition:border-color 0.2s}
+.prompt-toggle:hover{border-color:var(--borderlt)}
+.prompt-toggle-label{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--steel);letter-spacing:0.06em}
+.prompt-toggle-arrow{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--steel);transition:transform 0.2s}
+.prompt-toggle.open .prompt-toggle-arrow{transform:rotate(90deg)}
+.prompt-body{display:none;background:var(--card2);border:1px solid var(--border);border-top:none;border-radius:0 0 6px 6px;padding:20px;margin-bottom:16px}
+.prompt-body.visible{display:block}
+.prompt-section{margin-bottom:16px}
+.prompt-section-label{font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--violet);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px}
+.prompt-text{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--violet-lt);line-height:1.7;white-space:pre-wrap}
+.prompt-note{font-family:'Source Serif 4',serif;font-size:0.8rem;color:rgba(245,241,235,0.55);font-style:italic;line-height:1.6}
+
+/* Diff highlight */
+.diff-added{background:rgba(34,197,94,0.1);color:var(--green)}
+.diff-changed{background:rgba(196,154,60,0.1);color:var(--amber)}
+.diff-removed{background:rgba(178,53,49,0.1);color:var(--crimson);text-decoration:line-through}
+
+/* Calibration flag block */
+.flag-block{background:rgba(196,154,60,0.07);border:1px solid rgba(196,154,60,0.25);border-radius:8px;padding:20px 24px;margin-top:40px}
+.flag-block-label{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--amber);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px}
+.flag-block-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:0.95rem;margin-bottom:8px}
+.flag-block-desc{font-family:'Source Serif 4',serif;font-size:0.88rem;color:rgba(245,241,235,0.72);line-height:1.7}
+.flag-block-desc strong{color:var(--cream)}
+
+/* 100% ceiling block */
+.ceiling-block{background:var(--violet-xs);border:1px solid rgba(138,108,201,0.25);border-radius:8px;padding:24px 28px;margin-top:48px}
+.ceiling-label{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--violet);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px}
+.ceiling-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1rem;margin-bottom:12px}
+.ceiling-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.ceiling-list li{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:rgba(245,241,235,0.72);padding-left:16px;position:relative;line-height:1.5}
+.ceiling-list li::before{content:'→';position:absolute;left:0;color:var(--violet)}
+.ceiling-list li.done{color:var(--green)}
+.ceiling-list li.done::before{color:var(--green);content:'✓'}
+.ceiling-list li.open{color:var(--amber)}
+.ceiling-list li.open::before{color:var(--amber);content:'○'}
+
+/* Footer */
+.page-footer{border-top:1px solid var(--border);padding:24px 56px;display:flex;justify-content:space-between;align-items:center}
+.footer-text{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--steel);line-height:1.8}
+.footer-right{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--violet);letter-spacing:0.06em}
+
+@media(max-width:900px){.layout{grid-template-columns:1fr}.sidebar{display:none}.content{padding:32px 24px 64px}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-back" href="../">
+    <svg viewBox="0 0 120 120" width="16" height="16" fill="none"><circle cx="60" cy="60" r="54" stroke="#8A6CC9" stroke-width="2" stroke-dasharray="4 3" opacity="0.5"/><circle cx="60" cy="60" r="22" fill="rgba(138,108,201,0.15)" stroke="#8A6CC9" stroke-width="2"/><circle cx="60" cy="60" r="7" fill="#8A6CC9"/></svg>
+    Dex Jr.
+  </a>
+  <div class="nav-links">
+    <a href="../commands">Commands</a>
+    <a href="../corpus">Corpus</a>
+    <a href="." class="active">Modelfile</a>
+    <a href="../calibration">Calibration</a>
+  </div>
+</nav>
+
+<div class="layout">
+  <div class="sidebar">
+    <div style="margin-bottom:20px">
+      <div class="sidebar-label">Versions</div>
+      <a class="sidebar-link current" href="#v46">v4.6 · Current</a>
+      <a class="sidebar-link" href="#v45">v4.5 · Superseded</a>
+      <a class="sidebar-link discarded" href="#v43">v4.3 · Discarded</a>
+      <a class="sidebar-link" href="#v42">v4.2 · Superseded</a>
+      <a class="sidebar-link" href="#v41">v4.1 · Superseded</a>
+    </div>
+    <div class="sidebar-divider"></div>
+    <div>
+      <div class="sidebar-label">Reference</div>
+      <a class="sidebar-link" href="#parameters">Parameters</a>
+      <a class="sidebar-link" href="#calibration-flags">Calibration Flags</a>
+      <a class="sidebar-link" href="#ceiling">Judgment-Ready Ceiling</a>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="content-header">
+      <div class="content-eyebrow">Dex Jr. · Governance History</div>
+      <div class="content-title">Modelfile History</div>
+      <div class="content-sub">
+        Six versions across 5 days. The model didn't change. The governance did.<br>
+        Source: dex-rag repo · Basis: council review CR-MODELFILE-V4-001
+      </div>
+    </div>
+
+    <!-- VERSION SUMMARY TABLE -->
+    <div class="version-table">
+      <div class="version-table-header">
+        <span>Version</span><span>Deployed</span><span>Status</span><span>Summary</span>
+      </div>
+      <div class="vt-row"><a href="#v46" style="display:contents">
+        <div class="vt-ver current">v4.6</div>
+        <div class="vt-date">2026-03-14</div>
+        <div class="vt-status current">Current</div>
+        <div class="vt-notes">Search query over-trigger fixed — explicit EXEMPT list added before TRIGGER check</div>
+      </a></div>
+      <div class="vt-row"><a href="#v45" style="display:contents">
+        <div class="vt-ver superseded">v4.5</div>
+        <div class="vt-date">2026-03-13</div>
+        <div class="vt-status superseded">Superseded</div>
+        <div class="vt-notes">"And nothing else" — three words enforced the binary stop. Both fixes confirmed PASS.</div>
+      </a></div>
+      <div class="vt-row"><a href="#v44" style="display:contents">
+        <div class="vt-ver superseded">v4.4</div>
+        <div class="vt-date">2026-03-13</div>
+        <div class="vt-status superseded">Superseded</div>
+        <div class="vt-notes">CR- rule promoted to top, hard stop added. Binary search gate added. Partial pass.</div>
+      </a></div>
+      <div class="vt-row discarded"><a href="#v43" style="display:contents">
+        <div class="vt-ver discarded">v4.3</div>
+        <div class="vt-date">2026-03-13</div>
+        <div class="vt-status discarded">Discarded</div>
+        <div class="vt-notes">Query type scaffold fired before CR- check. Fix 1 regressed. Never deployed.</div>
+      </a></div>
+      <div class="vt-row"><a href="#v42" style="display:contents">
+        <div class="vt-ver superseded">v4.2</div>
+        <div class="vt-date">2026-03-13</div>
+        <div class="vt-status superseded">Superseded</div>
+        <div class="vt-notes">CR- trigger hardened to first characters only. Confabulation guard added. PASS.</div>
+      </a></div>
+      <div class="vt-row"><a href="#v41" style="display:contents">
+        <div class="vt-ver superseded">v4.1</div>
+        <div class="vt-date">2026-03-09</div>
+        <div class="vt-status superseded">Superseded</div>
+        <div class="vt-notes">Baseline. CR-MODELFILE-V4-001 council review. 9/9 REVISE on v4.0 addressed.</div>
+      </a></div>
+    </div>
+
+    <!-- V4.6 -->
+    <div class="version-detail" id="v46">
+      <div class="vd-header">
+        <div>
+          <div class="vd-title">v4.6 <span style="color:var(--green);font-size:1rem">· Current</span></div>
+          <div class="vd-meta">Deployed 2026-03-14 · Basis: v4.5 + OBS-DJ-003<br>Fix: Search query over-trigger</div>
+        </div>
+        <div class="vd-badge badge-current">PRODUCTION</div>
+      </div>
+
+      <div class="change-grid">
+        <div class="change-card fix">
+          <div class="change-label">Fix · OBS-DJ-003</div>
+          <div class="change-title">Explicit EXEMPT list added before TRIGGER check</div>
+          <div class="change-desc">
+            v4.5's search gate was catching knowledge queries — <strong>"What is X", "How does X work", "Explain X"</strong> were triggering the binary gate when they should route to standard analyst mode. v4.6 added an EXEMPT list that runs <em>before</em> the trigger phrases are checked. If the query matches EXEMPT, the gate never fires. The gate logic itself is unchanged — the classification step before the gate changed.
+          </div>
+        </div>
+        <div class="change-card insight">
+          <div class="change-label">Insight</div>
+          <div class="change-title">Trigger phrase list made explicit — no wiggle room</div>
+          <div class="change-desc">
+            v4.4 had a broader <code>"similar phrases"</code> catch-all clause. v4.6 replaced it with an explicit, enumerated TRIGGER list. No inference, no heuristics. The model either sees an exact trigger phrase or it doesn't.
+          </div>
+        </div>
+      </div>
+
+      <div class="test-block">
+        <div class="test-row"><div class="test-name">Fix 1 — CR- prefix trigger only</div><div class="test-result pass">PASS</div></div>
+        <div class="test-row"><div class="test-name">Fix 2 — Binary gate, no confabulation</div><div class="test-result pass">PASS</div></div>
+        <div class="test-row"><div class="test-name">Fix 3 — Knowledge query exempt from gate</div><div class="test-result pass">PASS</div></div>
+        <div class="test-row"><div class="test-name">OBS-DJ-004 — Synthesis confabulation</div><div class="test-result partial">OPEN</div></div>
+      </div>
+    </div>
+
+    <!-- V4.5 -->
+    <div class="version-detail" id="v45">
+      <div class="vd-header">
+        <div>
+          <div class="vd-title">v4.5</div>
+          <div class="vd-meta">Deployed 2026-03-13 · Basis: v4.4 + wording refinement<br>Fix: "And nothing else" enforcement</div>
+        </div>
+        <div class="vd-badge badge-superseded">SUPERSEDED</div>
+      </div>
+
+      <div class="change-grid">
+        <div class="change-card fix">
+          <div class="change-label">Fix · OBS-DJ-002</div>
+          <div class="change-title">"And nothing else" — three words changed behavior</div>
+          <div class="change-desc">
+            v4.4's hard stop was written as an instruction: <em>"stop and output this message."</em> The model continued generating after it. v4.5 rewrote Step 3b as: <em>"output this exact text <strong>and nothing else</strong>."</em> Same logic. Same gate. Different wording. The phrase "and nothing else" is what actually enforced the stop. This is the clearest example in the v4.x arc of surface calibration vs. deep calibration — the architecture was right, the phrasing wasn't.
+          </div>
+        </div>
+      </div>
+
+      <div class="test-block">
+        <div class="test-row"><div class="test-name">Fix 1 — CR- prefix trigger only</div><div class="test-result pass">PASS</div></div>
+        <div class="test-row"><div class="test-name">Fix 2 — Binary gate, no confabulation</div><div class="test-result pass">PASS</div></div>
+        <div class="test-row"><div class="test-name">Fix 3 — Knowledge query exempt</div><div class="test-result fail">NOT YET (OBS-DJ-003 discovered)</div></div>
+      </div>
+    </div>
+
+    <!-- V4.4 -->
+    <div class="version-detail" id="v44">
+      <div class="vd-header">
+        <div>
+          <div class="vd-title">v4.4</div>
+          <div class="vd-meta">Deployed 2026-03-13 · Basis: v4.2 (v4.3 discarded)<br>CR- rule promoted · Binary gate added</div>
+        </div>
+        <div class="vd-badge badge-superseded">SUPERSEDED</div>
+      </div>
+
+      <div class="change-grid">
+        <div class="change-card fix">
+          <div class="change-label">Fix 1 · OBS-DJ-001</div>
+          <div class="change-title">CR- rule promoted to top with hard stop</div>
+          <div class="change-desc">
+            v4.2's CR- fix lived in the COUNCIL REVIEW POSTURE section — too far down. By the time the model reached it, context was already set. v4.4 promotes the rule to the <strong>first section of the system prompt</strong> and adds: <em>"If you find yourself writing LOCK, REVISE, REJECT and the prompt did not begin with CR- — stop, discard that output, and restart in standard analyst mode."</em> Hard stop instruction. First thing the model reads.
+          </div>
+        </div>
+        <div class="change-card fix">
+          <div class="change-label">Fix 2 · OBS-DJ-002</div>
+          <div class="change-title">Binary search gate added as full section</div>
+          <div class="change-desc">
+            New SEARCH QUERY RULE section: Step 1 read all chunks. Step 2 binary check — does any chunk contain an explicit, named incident? Step 3a if yes — quote directly, no elaboration. Step 3b if no — output exact stop message. The stop message in v4.4 was enforced by instruction, but the model continued generating. Partial pass.
+          </div>
+        </div>
+      </div>
+
+      <div class="test-block">
+        <div class="test-row"><div class="test-name">Fix 1 — CR- prefix trigger only</div><div class="test-result pass">PASS</div></div>
+        <div class="test-row"><div class="test-name">Fix 2 — Binary gate stop enforcement</div><div class="test-result partial">PARTIAL — model continued after stop message</div></div>
+      </div>
+    </div>
+
+    <!-- V4.3 -->
+    <div class="version-detail" id="v43">
+      <div class="vd-header">
+        <div>
+          <div class="vd-title" style="color:var(--crimson)">v4.3 <span style="font-size:0.9rem">· Discarded</span></div>
+          <div class="vd-meta">2026-03-13 · Never deployed to production<br>Regression: query type scaffold fired before CR- check</div>
+        </div>
+        <div class="vd-badge badge-discarded">DISCARDED</div>
+      </div>
+
+      <div class="change-grid">
+        <div class="change-card regression">
+          <div class="change-label">Regression — Wrong Gate Order</div>
+          <div class="change-title">Query type detection scaffold fired before CR- check</div>
+          <div class="change-desc">
+            v4.3 introduced a "query type detection" step — a category scaffold that classified the incoming prompt first, then decided which mode to activate. <strong>The classification ran before the CR- prefix check.</strong> By the time the model reached the CR- rule, it had already committed to a response mode based on the classification output. Fix 1 regressed because the architecture placed the wrong gate first. The lesson: in governance prompts, gate order is gate logic. Position is precedence.
+          </div>
+        </div>
+      </div>
+
+      <div class="test-block">
+        <div class="test-row"><div class="test-name">Fix 1 — CR- prefix trigger only</div><div class="test-result fail">FAIL — scaffold overrode prefix check</div></div>
+        <div class="test-row"><div class="test-name">Disposition</div><div class="test-result" style="color:var(--crimson)">DISCARDED · v4.4 built from v4.2 base</div></div>
+      </div>
+    </div>
+
+    <!-- V4.2 -->
+    <div class="version-detail" id="v42">
+      <div class="vd-header">
+        <div>
+          <div class="vd-title">v4.2</div>
+          <div class="vd-meta">Deployed 2026-03-13 · Basis: v4.1 + OBS-DJ-001 + OBS-DJ-002<br>First calibration iteration</div>
+        </div>
+        <div class="vd-badge badge-superseded">SUPERSEDED</div>
+      </div>
+
+      <div class="change-grid">
+        <div class="change-card fix">
+          <div class="change-label">Fix 1 · OBS-DJ-001</div>
+          <div class="change-title">CR- trigger hardened to first characters only</div>
+          <div class="change-desc">
+            v4.1's CR- rule said "when the operator sends a prompt prefixed with CR-." The model triggered on the word "review" anywhere in the prompt body. v4.2 added: <em>"where the FIRST characters are exactly 'CR-'"</em> and an explicit prohibition: <strong>"Do NOT activate CR- posture based on words like 'review', 'assess', 'evaluate', or 'analyze' appearing anywhere in the prompt body."</strong>
+          </div>
+        </div>
+        <div class="change-card fix">
+          <div class="change-label">Fix 2 · OBS-DJ-002</div>
+          <div class="change-title">Adjacent vocabulary clause added to Rule 3</div>
+          <div class="change-desc">
+            v4.1's Rule 3 said "if you cannot answer from retrieved content, say so." That wasn't strong enough — the model was finding related vocabulary and synthesizing incidents from it. v4.2 added: <em>"Related vocabulary is not evidence. If retrieved chunks contain words adjacent to the query but no specific, named incidents... respond: 'Retrieved content does not contain specific instances matching this query.'"</em>
+          </div>
+        </div>
+      </div>
+
+      <div class="test-block">
+        <div class="test-row"><div class="test-name">Fix 1 — CR- prefix only</div><div class="test-result pass">PASS</div></div>
+        <div class="test-row"><div class="test-name">Fix 2 — Confabulation guard</div><div class="test-result partial">PARTIAL — gate not fully enforced</div></div>
+      </div>
+
+      <button class="prompt-toggle" onclick="togglePrompt(this)">
+        <span class="prompt-toggle-label">View v4.2 System Prompt</span>
+        <span class="prompt-toggle-arrow">›</span>
+      </button>
+      <div class="prompt-body">
+        <div class="prompt-section">
+          <div class="prompt-section-label">Key change — Rule 3 with adjacent vocabulary clause</div>
+          <div class="prompt-text">3. If you cannot answer from the retrieved content, say: "I don't have enough in the retrieved chunks to answer this." Do not fabricate. Related vocabulary is not evidence. If retrieved chunks contain words adjacent to the query but no specific, named incidents, events, or entities that directly answer it, do not generate them. Respond: "Retrieved content does not contain specific instances matching this query. Retrieval may need broader TOP_K or different search terms."</div>
+        </div>
+        <div class="prompt-section">
+          <div class="prompt-section-label">Key change — CR- trigger rule</div>
+          <div class="prompt-text">When the operator sends a prompt where the FIRST characters are exactly "CR-" (Council Review prefix)... Do NOT activate CR- posture based on words like "review", "assess", "evaluate", or "analyze" appearing anywhere in the prompt body. The prefix "CR-" at the start of the prompt is the only valid trigger.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- V4.1 -->
+    <div class="version-detail" id="v41">
+      <div class="vd-header">
+        <div>
+          <div class="vd-title">v4.1 <span style="color:var(--steel);font-size:0.9rem">· Baseline</span></div>
+          <div class="vd-meta">Deployed 2026-03-09 · Basis: v4.0 + CR-MODELFILE-V4-001 council review<br>9/9 REVISE on v4.0 · All items addressed</div>
+        </div>
+        <div class="vd-badge badge-superseded">SUPERSEDED</div>
+      </div>
+
+      <div class="change-grid">
+        <div class="change-card insight">
+          <div class="change-label">Architecture Decision</div>
+          <div class="change-title">76% token reduction — dense, explicit, every clause load-bearing</div>
+          <div class="change-desc">
+            v4.0 had a ~2,100 token system prompt. v4.1 reduced it to ~580 tokens — not by removing content but by removing redundancy. Caldwell/DeepSeek/Bennett recommendation: num_ctx 8192 (up from 4096) to give headroom for system + injection + chunks + generation without 16K timeout risk. The density of v4.1 is deliberate — every sentence earns its place.
+          </div>
+        </div>
+      </div>
+
+      <button class="prompt-toggle" onclick="togglePrompt(this)">
+        <span class="prompt-toggle-label">View v4.1 System Prompt</span>
+        <span class="prompt-toggle-arrow">›</span>
+      </button>
+      <div class="prompt-body">
+        <div class="prompt-section">
+          <div class="prompt-section-label">Parameters (unchanged through v4.6)</div>
+          <div class="prompt-text">PARAMETER num_ctx 8192
+PARAMETER temperature 0.3
+PARAMETER top_p 0.9
+PARAMETER repeat_penalty 1.1
+PARAMETER stop "&lt;|im_end|&gt;"
+PARAMETER num_predict 2048</div>
+        </div>
+        <div class="prompt-section">
+          <div class="prompt-section-label">System prompt structure (v4.1 sections)</div>
+          <div class="prompt-text">TASK FRAMING
+RESPONSE RULES (1–5)
+BANNED OUTPUT PATTERNS (18 items)
+COUNCIL REVIEW POSTURE
+LONG PROMPT HANDLING
+COTTAGEHUMBLE DESIGN SYSTEM
+SOURCE AUTHORITY (canon/archive hierarchy)
+OPERATOR CONTEXT (ADHD, burst mode, star schema)
+BOUNDARIES</div>
+        </div>
+        <div class="prompt-section">
+          <div class="prompt-section-label">Note on OPERATOR CONTEXT block</div>
+          <div class="prompt-note">This block has never been through council review. It is operator-authored and considered stable by convention. It contains high-trust instructions: ADHD accommodation, burst-mode behavior, star schema framing. No formal review trail exists. Flagged for CR. See calibration flags below.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PARAMETERS -->
+    <div id="parameters" style="scroll-margin-top:70px;margin-bottom:40px">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--violet);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:12px">Parameters — Stable Across All Versions</div>
+      <div style="background:var(--card2);border:1px solid var(--border);border-radius:6px;padding:16px 20px">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--violet-lt);line-height:1.9">num_ctx<span style="color:var(--steel)">      </span>8192      <span style="color:var(--steel)">↑ from 4096 in v4.0 · unanimous council · headroom for system+chunks+gen</span>
+temperature <span style="color:var(--steel)"> </span>0.3       <span style="color:var(--steel)">Low variance · document analysis mode</span>
+top_p<span style="color:var(--steel)">        </span>0.9       <span style="color:var(--steel)">Standard</span>
+repeat_penalty 1.1     <span style="color:var(--steel)">Light repetition suppression</span>
+num_predict  <span style="color:var(--steel)"> </span>2048      <span style="color:var(--steel)">Caldwell/DeepSeek/Bennett recommendation</span>
+stop<span style="color:var(--steel)">         </span>&lt;|im_end|&gt; <span style="color:var(--steel)">qwen2.5-coder token boundary</span></div>
+      </div>
+    </div>
+
+    <!-- CALIBRATION FLAGS -->
+    <div id="calibration-flags">
+      <div class="flag-block">
+        <div class="flag-block-label">⊡ Flagged for Council Review</div>
+        <div class="flag-block-title">OPERATOR CONTEXT block — no formal review trail</div>
+        <div class="flag-block-desc">
+          The OPERATOR CONTEXT block contains high-trust instructions: <strong>ADHD accommodation, burst-mode behavior prohibitions, star schema framing.</strong> It was authored by the operator and has been stable by convention through v4.1–v4.6 — but it has never been through a council review. No ratification record exists. These are the instructions that govern how Dex Jr. interprets operator intent in ambiguous situations. That's a high-trust surface without a formal audit trail. Recommend CR before v4.7.
+        </div>
+      </div>
+      <div class="flag-block" style="margin-top:12px">
+        <div class="flag-block-label">⊡ Flagged for Documentation</div>
+        <div class="flag-block-title">Judgment-Ready rubric — implicit, not written</div>
+        <div class="flag-block-desc">
+          The 92% Judgment-Ready score is operator qualitative assessment against an implicit rubric. No written rubric exists. The ceiling is understood but not ratified. See below.
+        </div>
+      </div>
+    </div>
+
+    <!-- JUDGMENT-READY CEILING -->
+    <div id="ceiling" class="ceiling-block">
+      <div class="ceiling-label">Judgment-Ready Ceiling — Implicit Definition</div>
+      <div class="ceiling-title">What 100% Requires</div>
+      <ul class="ceiling-list">
+        <li class="done">All three canonical calibration tests passing</li>
+        <li class="done">No CR- posture over-trigger</li>
+        <li class="done">No confabulation on empty retrieval</li>
+        <li class="done">Knowledge queries exempt from search gate</li>
+        <li class="open">OBS-DJ-004 resolved — no synthesis confabulation on reflective prompts</li>
+        <li class="open">Query router live — automatic mode classification without prompt-level triggers</li>
+        <li class="open">dex_dave collection isolation enforced — operator voice corpus does not bleed into standard retrieval</li>
+        <li class="open">OPERATOR CONTEXT block formally ratified through council review</li>
+      </ul>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--steel);margin-top:14px;letter-spacing:0.04em">Current score: ~92% · 4 items complete · 4 items open · Implicit rubric — ratification pending</div>
+    </div>
+
+  </div>
+</div>
+
+<div class="page-footer">
+  <div class="footer-text">Dex Jr. Modelfile History · v4.1–v4.6 · Updated 2026-03-16<br>Source: dex-rag repo · CR-MODELFILE-V4-001</div>
+  <div class="footer-right">SEAT 1010 · THE RIG STAYS AWAKE.</div>
+</div>
+
+<script>
+function togglePrompt(btn) {
+  btn.classList.toggle('open');
+  const body = btn.nextElementSibling;
+  body.classList.toggle('visible');
+}
+</script>
+</body>
+</html>
