@@ -1,3 +1,3 @@
 ﻿export default function LedgerHub() {
-  return <iframe src="/ledger/index.html" style={{ position:'fixed', top:0, left:0, width:'100%', height:'100%', border:'none' }} />
+  return <iframe src="/ledger/ledger-hub.html" style={{ position:'fixed', top:0, left:0, width:'100%', height:'100%', border:'none' }} />
 }
