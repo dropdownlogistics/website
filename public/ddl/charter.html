@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DDL Core Charter — Dropdown Logistics</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0D1B2A;--card:#10202F;--card2:#0B1825;
+  --cream:#F5F1EB;--steel:#6B7B8D;
+  --border:rgba(245,241,235,0.06);--borderlt:rgba(245,241,235,0.1);
+  --crimson:#B23531;--crimson-xs:rgba(178,53,49,0.08);--crimson-sm:rgba(178,53,49,0.15);
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+html{scroll-behavior:smooth}
+body{
+  background:var(--navy);
+  color:var(--cream);
+  font-family:'Source Serif 4',Georgia,serif;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* Subtle ruled paper texture */
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background-image:repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 31px,
+    rgba(245,241,235,0.015) 31px,
+    rgba(245,241,235,0.015) 32px
+  );
+  pointer-events:none;
+  z-index:0;
+}
+
+/* NAV */
+nav{
+  position:sticky;top:0;z-index:100;
+  height:48px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 48px;
+  background:rgba(13,27,42,0.96);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+}
+.nav-back{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;color:var(--steel);
+  text-decoration:none;letter-spacing:0.06em;
+  transition:color 0.2s;
+}
+.nav-back:hover{color:var(--cream)}
+.nav-meta{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;color:rgba(107,123,141,0.6);
+  letter-spacing:0.06em;
+}
+
+/* WRAPPER */
+.doc{
+  position:relative;z-index:1;
+  max-width:680px;
+  margin:0 auto;
+  padding:72px 32px 96px;
+}
+
+/* DOCUMENT HEADER */
+.doc-header{
+  margin-bottom:64px;
+  padding-bottom:40px;
+  border-bottom:1px solid var(--border);
+  animation:fadeUp 0.5s ease 0.1s both;
+}
+.doc-file{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;color:var(--steel);
+  letter-spacing:0.12em;text-transform:uppercase;
+  margin-bottom:20px;
+  display:flex;align-items:center;gap:10px;
+}
+.doc-file::before{
+  content:'';display:block;
+  width:20px;height:1px;
+  background:var(--crimson);
+}
+.doc-title{
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:700;
+  font-size:clamp(2rem,4vw,3.2rem);
+  letter-spacing:-0.04em;
+  line-height:1.0;
+  margin-bottom:8px;
+}
+.doc-title span{color:var(--crimson)}
+.doc-tagline{
+  font-family:'Source Serif 4',serif;
+  font-style:italic;
+  font-size:1.1rem;
+  color:rgba(245,241,235,0.5);
+  letter-spacing:0.01em;
+  margin-bottom:24px;
+}
+.doc-stamps{
+  display:flex;gap:8px;flex-wrap:wrap;
+}
+.stamp{
+  font-family:'JetBrains Mono',monospace;
+  font-size:9px;
+  letter-spacing:0.1em;text-transform:uppercase;
+  padding:3px 10px;border-radius:3px;
+}
+.stamp-v{color:var(--crimson);background:var(--crimson-xs);border:1px solid rgba(178,53,49,0.2)}
+.stamp-d{color:var(--steel);background:rgba(107,123,141,0.08);border:1px solid rgba(107,123,141,0.15)}
+.stamp-o{color:rgba(245,241,235,0.4);background:transparent;border:1px solid var(--border)}
+
+/* SECTIONS */
+.section{
+  margin-bottom:56px;
+  animation:fadeUp 0.5s ease both;
+}
+.section:nth-child(2){animation-delay:0.15s}
+.section:nth-child(3){animation-delay:0.2s}
+.section:nth-child(4){animation-delay:0.25s}
+.section:nth-child(5){animation-delay:0.3s}
+.section:nth-child(6){animation-delay:0.35s}
+.section:nth-child(7){animation-delay:0.4s}
+
+.section-num{
+  font-family:'JetBrains Mono',monospace;
+  font-size:9px;color:var(--crimson);
+  letter-spacing:0.14em;text-transform:uppercase;
+  margin-bottom:4px;
+}
+.section-title{
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:700;font-size:1rem;
+  letter-spacing:-0.01em;
+  margin-bottom:16px;
+  padding-bottom:12px;
+  border-bottom:1px solid var(--border);
+}
+.body{
+  font-size:0.95rem;
+  line-height:1.85;
+  color:rgba(245,241,235,0.72);
+  margin-bottom:14px;
+}
+.body strong{color:var(--cream);font-weight:600}
+.body em{font-style:italic;color:rgba(245,241,235,0.55)}
+
+/* Bullet list */
+.doc-list{
+  list-style:none;
+  margin:12px 0;
+}
+.doc-list li{
+  font-family:'Source Serif 4',serif;
+  font-size:0.92rem;
+  line-height:1.75;
+  color:rgba(245,241,235,0.65);
+  padding:6px 0 6px 20px;
+  position:relative;
+  border-bottom:1px solid rgba(245,241,235,0.04);
+}
+.doc-list li:last-child{border-bottom:none}
+.doc-list li::before{
+  content:'';
+  position:absolute;left:0;top:14px;
+  width:6px;height:6px;border-radius:50%;
+  background:var(--crimson);
+  opacity:0.6;
+}
+
+/* NOT list */
+.not-list li::before{background:var(--steel);opacity:0.4}
+
+/* BUILD SEQUENCE — the centerpiece */
+.sequence{
+  display:flex;flex-direction:column;
+  gap:2px;
+  margin:20px 0;
+}
+.seq-step{
+  display:flex;align-items:stretch;
+  background:var(--card);
+  border:1px solid var(--border);
+  overflow:hidden;
+  transition:border-color 0.2s;
+}
+.seq-step:first-child{border-radius:7px 7px 0 0}
+.seq-step:last-child{border-radius:0 0 7px 7px}
+.seq-step:hover{border-color:rgba(178,53,49,0.2)}
+.seq-num{
+  width:44px;
+  flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--crimson-xs);
+  border-right:1px solid var(--border);
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  color:var(--crimson);
+  font-weight:600;
+  letter-spacing:0.04em;
+}
+.seq-content{
+  padding:14px 18px;
+  flex:1;
+}
+.seq-title{
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:700;
+  font-size:0.88rem;
+  color:var(--cream);
+  margin-bottom:4px;
+  letter-spacing:-0.01em;
+}
+.seq-desc{
+  font-family:'Source Serif 4',serif;
+  font-size:0.82rem;
+  color:rgba(245,241,235,0.5);
+  line-height:1.55;
+}
+
+/* TWO-COLUMN SCOPE */
+.scope-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:2px;
+  margin:16px 0;
+  border-radius:7px;
+  overflow:hidden;
+}
+.scope-col{
+  background:var(--card);
+  padding:18px 20px;
+}
+.scope-col-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:9px;
+  letter-spacing:0.12em;text-transform:uppercase;
+  margin-bottom:10px;
+  padding-bottom:8px;
+  border-bottom:1px solid var(--border);
+}
+.scope-col.applies .scope-col-label{color:var(--crimson)}
+.scope-col.not .scope-col-label{color:var(--steel)}
+
+/* DEXOS INTERFACE */
+.interface-block{
+  background:var(--card2);
+  border:1px solid rgba(178,53,49,0.12);
+  border-radius:7px;
+  padding:24px 28px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:2px;
+  margin:16px 0;
+}
+.interface-half{
+  padding:16px 18px;
+  background:var(--card);
+}
+.interface-half:first-child{border-radius:5px 0 0 5px}
+.interface-half:last-child{border-radius:0 5px 5px 0}
+.interface-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:9px;color:var(--crimson);
+  letter-spacing:0.12em;text-transform:uppercase;
+  margin-bottom:8px;
+}
+.interface-line{
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:700;font-size:0.9rem;
+  color:var(--cream);margin-bottom:4px;
+}
+.interface-sub{
+  font-family:'Source Serif 4',serif;
+  font-size:0.8rem;
+  color:rgba(245,241,235,0.45);
+  line-height:1.5;
+}
+
+/* VERSIONING FOOTER */
+.version-block{
+  margin-top:64px;
+  padding-top:28px;
+  border-top:1px solid var(--border);
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:24px;
+  flex-wrap:wrap;
+}
+.version-left{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;color:var(--steel);
+  line-height:1.9;letter-spacing:0.04em;
+}
+.version-right{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  color:rgba(178,53,49,0.5);
+  letter-spacing:0.06em;
+  text-align:right;
+  line-height:1.9;
+}
+
+@media(max-width:640px){
+  nav{padding:0 20px}
+  .doc{padding:48px 20px 72px}
+  .scope-grid{grid-template-columns:1fr}
+  .interface-block{grid-template-columns:1fr;padding:16px}
+  .interface-half:first-child{border-radius:5px 5px 0 0}
+  .interface-half:last-child{border-radius:0 0 5px 5px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-back" href="/ddl">← DDL</a>
+  <span class="nav-meta">DDL_CoreCharter_v1.0.txt</span>
+</nav>
+
+<div class="doc">
+
+  <!-- HEADER -->
+  <div class="doc-header">
+    <div class="doc-file">DDL-PROP-001 · Origin Document</div>
+    <h1 class="doc-title">Core <span>Charter</span></h1>
+    <div class="doc-tagline">"From scattered to structured."</div>
+    <div class="doc-stamps">
+      <span class="stamp stamp-v">v1.0</span>
+      <span class="stamp stamp-d">Origin</span>
+      <span class="stamp stamp-o">Dropdown Logistics</span>
+      <span class="stamp stamp-o">DDL_CoreCharter_v1.0.txt</span>
+    </div>
+  </div>
+
+  <!-- 1. IDENTITY -->
+  <div class="section">
+    <div class="section-num">01 — Identity</div>
+    <div class="section-title">What DDL Is</div>
+    <p class="body">
+      <strong>Dropdown Logistics (DDL)</strong> is a personal ops studio for building reliable spreadsheets, tools, and systems. It is not a company or a persona — it is the design standard that sits behind everything you ship.
+    </p>
+    <p class="body">
+      The name comes from the dropdown selector — the moment a chaotic input becomes a governed choice. That gesture is the whole philosophy.
+    </p>
+  </div>
+
+  <!-- 2. MISSION -->
+  <div class="section">
+    <div class="section-num">02 — Mission</div>
+    <div class="section-title">What DDL Does</div>
+    <p class="body">Turn messy, scattered work into clean, governed systems that:</p>
+    <ul class="doc-list">
+      <li>make decisions easier</li>
+      <li>make audits cleaner</li>
+      <li>make your future self's life simpler</li>
+    </ul>
+  </div>
+
+  <!-- 3. VISION -->
+  <div class="section">
+    <div class="section-num">03 — Vision</div>
+    <div class="section-title">The Layer</div>
+    <p class="body">DDL is the layer that catches chaos before it leaks into your life, turns it into repeatable structures, and preserves those structures so you can grow instead of constantly rebuilding.</p>
+    <p class="body">If something is important enough to track, DDL's job is to model it, govern it, automate it, and make it look good.</p>
+  </div>
+
+  <!-- 4. BUILD SEQUENCE -->
+  <div class="section">
+    <div class="section-num">04 — Core Tenets</div>
+    <div class="section-title">The DDL Build Sequence</div>
+    <p class="body">Eight steps. In order. Every time.</p>
+    <div class="sequence">
+      <div class="seq-step">
+        <div class="seq-num">01</div>
+        <div class="seq-content">
+          <div class="seq-title">Gather chaos</div>
+          <div class="seq-desc">Collect raw inputs: files, emails, exports, screenshots, notes. No judgment, just capture.</div>
+        </div>
+      </div>
+      <div class="seq-step">
+        <div class="seq-num">02</div>
+        <div class="seq-content">
+          <div class="seq-title">Sort it</div>
+          <div class="seq-desc">Group by domain, project, and intent. Separate reference from events from decisions.</div>
+        </div>
+      </div>
+      <div class="seq-step">
+        <div class="seq-num">03</div>
+        <div class="seq-content">
+          <div class="seq-title">Structure it</div>
+          <div class="seq-desc">Define fact tables, dimension tables, and admin layers. Decide the grain, keys, and relationships.</div>
+        </div>
+      </div>
+      <div class="seq-step">
+        <div class="seq-num">04</div>
+        <div class="seq-content">
+          <div class="seq-title">Encode it</div>
+          <div class="seq-desc">Turn rules into formulas, tables, and validation. Make logic explicit instead of remembered in your head.</div>
+        </div>
+      </div>
+      <div class="seq-step">
+        <div class="seq-num">05</div>
+        <div class="seq-content">
+          <div class="seq-title">Govern it</div>
+          <div class="seq-desc">Add standards, protocols, and guardrails. Protect data integrity and prevent silent drift.</div>
+        </div>
+      </div>
+      <div class="seq-step">
+        <div class="seq-num">06</div>
+        <div class="seq-content">
+          <div class="seq-title">Automate it</div>
+          <div class="seq-desc">Use formulas, spill ranges, and macros to reduce manual work. Design for "click once, update everywhere."</div>
+        </div>
+      </div>
+      <div class="seq-step">
+        <div class="seq-num">07</div>
+        <div class="seq-content">
+          <div class="seq-title">Beautify it</div>
+          <div class="seq-desc">Apply consistent formatting, layouts, and branding. Make tools pleasant enough that people actually use them.</div>
+        </div>
+      </div>
+      <div class="seq-step">
+        <div class="seq-num">08</div>
+        <div class="seq-content">
+          <div class="seq-title">Preserve it</div>
+          <div class="seq-desc">Archive versions, log changes, and capture decisions. Make it easy to restart after a break or hand off to someone else.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. SCOPE -->
+  <div class="section">
+    <div class="section-num">05 — Scope</div>
+    <div class="section-title">What DDL Applies To</div>
+    <div class="scope-grid">
+      <div class="scope-col applies">
+        <div class="scope-col-label">Applies to</div>
+        <ul class="doc-list">
+          <li>Excel workbooks and data models</li>
+          <li>Audit tools and trackers</li>
+          <li>DexOS-aligned projects that need structure and governance</li>
+        </ul>
+      </div>
+      <div class="scope-col not">
+        <div class="scope-col-label">Does not apply to</div>
+        <ul class="doc-list not-list">
+          <li>Creating fictional worlds</li>
+          <li>Managing emotional processing</li>
+          <li>Replacing DexOS governance — it plugs into it</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. DEXOS -->
+  <div class="section">
+    <div class="section-num">06 — Interface</div>
+    <div class="section-title">DDL and DexOS</div>
+    <div class="interface-block">
+      <div class="interface-half">
+        <div class="interface-label">DexOS</div>
+        <div class="interface-line">Thinks clearly.</div>
+        <div class="interface-sub">Defines behavior, modes, and governance on the AI side.</div>
+      </div>
+      <div class="interface-half">
+        <div class="interface-label">DDL</div>
+        <div class="interface-line">Builds clearly.</div>
+        <div class="interface-sub">Defines structure, standards, and file architecture on the spreadsheet side.</div>
+      </div>
+    </div>
+    <p class="body" style="margin-top:16px">Together they form a complete loop. The thinking and the building are governed by the same operator, toward the same end.</p>
+  </div>
+
+  <!-- VERSION FOOTER -->
+  <div class="version-block">
+    <div class="version-left">
+      DDL Core Charter · v1.0 · Origin document<br>
+      Dropdown Logistics · Dave Kitchens · CPA<br>
+      Chaos → Structured → Automated
+    </div>
+    <div class="version-right">
+      DDL_CoreCharter_v1.0.txt<br>
+      DDL-PROP-001<br>
+      Future versions track: tenets · scope · naming
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
