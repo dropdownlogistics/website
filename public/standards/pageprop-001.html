@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STD-DDL-PAGEPROP-001 — Page Proposal Standard</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0D1B2A;--card:#10202F;--card2:#0B1825;
+  --cream:#F5F1EB;--steel:#6B7B8D;
+  --border:rgba(245,241,235,0.06);
+  --crimson:#B23531;--crimson-xs:rgba(178,53,49,0.08);
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+html{scroll-behavior:smooth}
+body{
+  background:var(--navy);color:var(--cream);
+  font-family:'Source Serif 4',Georgia,serif;
+  min-height:100vh;overflow-x:hidden;
+}
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:repeating-linear-gradient(0deg,transparent,transparent 31px,rgba(245,241,235,0.012) 31px,rgba(245,241,235,0.012) 32px);
+  pointer-events:none;z-index:0;
+}
+
+nav{
+  position:sticky;top:0;z-index:100;height:48px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 48px;
+  background:rgba(13,27,42,0.97);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+}
+.nav-back{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--steel);text-decoration:none;letter-spacing:0.06em;transition:color 0.2s}
+.nav-back:hover{color:var(--cream)}
+.nav-badge{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--crimson);background:var(--crimson-xs);border:1px solid rgba(178,53,49,0.2);padding:3px 10px;border-radius:100px;letter-spacing:0.06em}
+
+.doc{position:relative;z-index:1;max-width:700px;margin:0 auto;padding:72px 32px 96px}
+
+/* HEADER */
+.doc-header{margin-bottom:56px;padding-bottom:36px;border-bottom:1px solid var(--border);animation:fadeUp 0.5s ease 0.1s both}
+.doc-file{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--steel);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.doc-file::before{content:'';display:block;width:20px;height:1px;background:var(--crimson)}
+.doc-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(1.8rem,3.5vw,2.8rem);letter-spacing:-0.04em;line-height:1.0;margin-bottom:6px}
+.doc-title span{color:var(--crimson)}
+.doc-sub{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--steel);letter-spacing:0.06em;margin-bottom:20px}
+.stamps{display:flex;gap:8px;flex-wrap:wrap}
+.stamp{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;padding:3px 10px;border-radius:3px}
+.stamp-r{color:var(--crimson);background:var(--crimson-xs);border:1px solid rgba(178,53,49,0.2)}
+.stamp-d{color:var(--steel);background:rgba(107,123,141,0.08);border:1px solid rgba(107,123,141,0.15)}
+.stamp-g{color:#22C55E;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2)}
+
+/* SECTION */
+.section{margin-bottom:48px;animation:fadeUp 0.5s ease both}
+.section:nth-child(2){animation-delay:0.15s}
+.section:nth-child(3){animation-delay:0.2s}
+.section:nth-child(4){animation-delay:0.25s}
+.section:nth-child(5){animation-delay:0.3s}
+.section:nth-child(6){animation-delay:0.35s}
+.sec-num{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--crimson);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:4px}
+.sec-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1rem;letter-spacing:-0.01em;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.body{font-size:0.92rem;line-height:1.85;color:rgba(245,241,235,0.68);margin-bottom:12px}
+.body strong{color:var(--cream)}
+
+/* FIELD TABLE */
+.field-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:0.85rem}
+.field-table th{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--steel);letter-spacing:0.1em;text-transform:uppercase;text-align:left;padding:0 16px 10px 0;border-bottom:1px solid var(--border)}
+.field-table td{padding:10px 16px 10px 0;border-bottom:1px solid rgba(245,241,235,0.04);vertical-align:top}
+.field-table tr:last-child td{border-bottom:none}
+.field-name{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--crimson);font-weight:600;white-space:nowrap}
+.field-type{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--steel)}
+.field-desc{font-family:'Source Serif 4',serif;font-size:0.85rem;color:rgba(245,241,235,0.6);line-height:1.55}
+.field-req{font-family:'JetBrains Mono',monospace;font-size:9px;padding:2px 6px;border-radius:3px;white-space:nowrap}
+.req{color:#22C55E;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2)}
+.opt{color:var(--steel);background:rgba(107,123,141,0.08);border:1px solid rgba(107,123,141,0.15)}
+
+/* CODE BLOCK */
+.code-block{background:var(--card2);border:1px solid var(--border);border-radius:7px;padding:20px 24px;margin:16px 0;font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.8;color:rgba(245,241,235,0.7);overflow-x:auto}
+.code-block .comment{color:rgba(107,123,141,0.6)}
+.code-block .key{color:var(--crimson)}
+.code-block .val{color:rgba(245,241,235,0.5)}
+.code-block .req-marker{color:#22C55E}
+.code-block .opt-marker{color:var(--steel)}
+
+/* COUNCIL SUMMARY */
+.council-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(245,241,235,0.04)}
+.council-row:last-child{border-bottom:none}
+.seat-id{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--steel);width:80px;flex-shrink:0}
+.seat-name{font-family:'Space Grotesk',sans-serif;font-size:0.82rem;font-weight:600;flex:1}
+.verdict-lock{font-family:'JetBrains Mono',monospace;font-size:9px;color:#22C55E;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2);padding:2px 8px;border-radius:3px}
+.verdict-revise{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--crimson);background:var(--crimson-xs);border:1px solid rgba(178,53,49,0.2);padding:2px 8px;border-radius:3px}
+.seat-note{font-family:'Source Serif 4',serif;font-style:italic;font-size:0.78rem;color:rgba(245,241,235,0.4);margin-left:4px;flex-shrink:0;max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* DEX JR RULE */
+.rule-block{background:var(--card);border:1px solid rgba(138,108,201,0.2);border-left:3px solid #8A6CC9;border-radius:0 7px 7px 0;padding:16px 20px;margin:16px 0}
+.rule-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:#8A6CC9;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:8px}
+.rule-text{font-size:0.88rem;line-height:1.7;color:rgba(245,241,235,0.65)}
+
+/* VERSION FOOTER */
+.ver-footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--border);display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.ver-left{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--steel);line-height:1.9}
+.ver-right{font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(178,53,49,0.5);text-align:right;line-height:1.9}
+
+@media(max-width:600px){nav{padding:0 20px}.doc{padding:48px 20px 72px}.field-table .seat-note{display:none}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-back" href="/standards">← Standards</a>
+  <span class="nav-badge">RATIFIED · 2026-03-24</span>
+</nav>
+
+<div class="doc">
+
+  <!-- HEADER -->
+  <div class="doc-header">
+    <div class="doc-file">DDL Standard · Site Governance</div>
+    <h1 class="doc-title">STD-DDL-<span>PAGEPROP</span>-001</h1>
+    <div class="doc-sub">Standard Page Proposal Form · v1.0</div>
+    <div class="stamps">
+      <span class="stamp stamp-g">Ratified</span>
+      <span class="stamp stamp-r">9/9 Council</span>
+      <span class="stamp stamp-d">2026-03-24</span>
+      <span class="stamp stamp-d">5 LOCK · 4 REVISE · 0 REJECT</span>
+    </div>
+  </div>
+
+  <!-- PURPOSE -->
+  <div class="section">
+    <div class="sec-num">01 — Purpose</div>
+    <div class="sec-title">Why This Standard Exists</div>
+    <p class="body">
+      The DDL site has grown to 160+ routes across 8+ wings. Page proposals have been informal — described in conversation, built from context. This works but creates drift. <strong>Dex Jr. cannot reliably generate a page proposal without a governed schema to reference.</strong>
+    </p>
+    <p class="body">
+      This standard defines the form that every new page proposal follows. Lightweight. Functional. Corpus-ready. The proposal form is a capture tool, not a project plan.
+    </p>
+    <p class="body">
+      Any page discussed in a PM thread should generate a DDL-PROP before building begins. The form is not optional for pages that go live.
+    </p>
+  </div>
+
+  <!-- FIELDS -->
+  <div class="section">
+    <div class="sec-num">02 — Field Definitions</div>
+    <div class="sec-title">The Schema</div>
+    <table class="field-table">
+      <thead>
+        <tr>
+          <th>Field</th>
+          <th>Type</th>
+          <th>Req</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="field-name">route</td><td class="field-type">path</td><td><span class="field-req req">REQ</span></td><td class="field-desc">Proposed URL path. e.g. /ddl/charter</td></tr>
+        <tr><td class="field-name">wing</td><td class="field-type">enum</td><td><span class="field-req req">REQ</span></td><td class="field-desc">Which wing this page belongs to. Prevents orphaned pages.</td></tr>
+        <tr><td class="field-name">template</td><td class="field-type">enum</td><td><span class="field-req req">REQ</span></td><td class="field-desc">CONSOLE · CHRONICLE · ATLAS · LEDGER · CODEX · DOSSIER</td></tr>
+        <tr><td class="field-name">accent</td><td class="field-type">token</td><td><span class="field-req req">REQ</span></td><td class="field-desc">CottageHumble token name: crimson · amber · gold · green · teal · violet · steel. Token name only — hex resolves downstream.</td></tr>
+        <tr><td class="field-name">status</td><td class="field-type">enum</td><td><span class="field-req req">REQ</span></td><td class="field-desc">proposed · approved · building · live · legacy</td></tr>
+        <tr><td class="field-name">priority</td><td class="field-type">enum</td><td><span class="field-req req">REQ</span></td><td class="field-desc">P1 immediate · P2 this session · P3 backlog</td></tr>
+        <tr><td class="field-name">trigger</td><td class="field-type">text</td><td><span class="field-req req">REQ</span></td><td class="field-desc">The event that surfaced the need for this page.</td></tr>
+        <tr><td class="field-name">what_it_is</td><td class="field-type">text</td><td><span class="field-req req">REQ</span></td><td class="field-desc">One sentence. Identity. No jargon. What this page is.</td></tr>
+        <tr><td class="field-name">page_goal</td><td class="field-type">text</td><td><span class="field-req req">REQ</span></td><td class="field-desc">One sentence. Job. What the page should accomplish for the visitor.</td></tr>
+        <tr><td class="field-name">hero_treatment</td><td class="field-type">enum</td><td><span class="field-req req">REQ</span></td><td class="field-desc">orbital (animated, full hero) · stamp (mark + text) · quiet (text-first, no animation) · none</td></tr>
+        <tr><td class="field-name">sections</td><td class="field-type">list</td><td><span class="field-req req">REQ</span></td><td class="field-desc">Ordered list of page sections, one line each. This is the build spec.</td></tr>
+        <tr><td class="field-name">tone</td><td class="field-type">enum</td><td><span class="field-req req">REQ</span></td><td class="field-desc">editorial · technical · archival · operational · narrative</td></tr>
+        <tr><td class="field-name">why_now</td><td class="field-type">text</td><td><span class="field-req req">REQ</span></td><td class="field-desc">Strategic justification. Why this page belongs in the current build arc.</td></tr>
+        <tr><td class="field-name">dependencies</td><td class="field-type">list</td><td><span class="field-req req">REQ</span></td><td class="field-desc">Other pages, routes, or systems this page requires to exist.</td></tr>
+        <tr><td class="field-name">open_questions</td><td class="field-type">list</td><td><span class="field-req opt">OPT</span></td><td class="field-desc">Anything unresolved before building begins.</td></tr>
+        <tr><td class="field-name">dex_jr_note</td><td class="field-type">text</td><td><span class="field-req opt">OPT</span></td><td class="field-desc">One short instruction for Dex Jr. execution. e.g. "No orbital. Spare and permanent."</td></tr>
+      </tbody>
+    </table>
+
+    <p class="body" style="margin-top:8px;font-size:0.82rem">
+      <strong>Note on what_it_is vs page_goal:</strong> these are distinct.
+      <em>what_it_is</em> = identity ("The founding document of DDL").
+      <em>page_goal</em> = job ("Give new visitors the governing floor beneath the DDL system").
+      A page can be accurate but purposeless without the second field.
+    </p>
+  </div>
+
+  <!-- NAMING -->
+  <div class="section">
+    <div class="sec-num">03 — Naming Convention</div>
+    <div class="sec-title">DDL-PROP-[NNN]</div>
+    <p class="body">
+      Sequential. Zero-padded. Immutable once assigned. Dex Jr. tracks the index — the operator never has to remember the current number.
+    </p>
+    <p class="body">
+      Proposals are never renumbered, even if rejected. <strong>DDL-PROP-003 REJECTED</strong> stays in the registry as rejected, and the next proposal is DDL-PROP-004. The numbering is a log, not a catalog. This preserves the full decision history.
+    </p>
+    <div class="code-block">
+<span class="comment"># Correct</span>
+<span class="key">DDL-PROP-001</span>    <span class="val">→ /ddl/charter · LIVE</span>
+<span class="key">DDL-PROP-002</span>    <span class="val">→ /system-stack · BUILDING</span>
+<span class="key">DDL-PROP-003</span>    <span class="val">→ [rejected] · preserved in registry</span>
+<span class="key">DDL-PROP-004</span>    <span class="val">→ next proposal</span>
+
+<span class="comment"># Never</span>
+<span class="val">DDL-PROP-003 deleted or renumbered after rejection</span>
+    </div>
+  </div>
+
+  <!-- DEX JR RULE -->
+  <div class="section">
+    <div class="sec-num">04 — Dex Jr. Generation Rule</div>
+    <div class="sec-title">Draft from trigger. Ratify with operator.</div>
+    <div class="rule-block">
+      <div class="rule-label">Dex Jr. Protocol</div>
+      <div class="rule-text">
+        Dex Jr. may generate a draft proposal from a trigger phrase alone.<br>
+        The formal DDL-PROP-### ID requires operator confirmation.<br>
+        Draft proposals are labeled <strong>DRAFT — OPERATOR REVIEW REQUIRED</strong> until confirmed.<br>
+        The operator holds intent. Dex Jr. handles boilerplate.
+      </div>
+    </div>
+    <p class="body">The gate for Dex Jr. generation: the registry schema and CottageHumble token set must be accessible in the generation context. If Dex Jr. doesn't know the current wing list or the active accent tokens, the draft will contain F3 errors. The proposal form is only as good as the reference data behind it.</p>
+  </div>
+
+  <!-- TEMPLATE -->
+  <div class="section">
+    <div class="sec-num">05 — Canonical Template</div>
+    <div class="sec-title">Copy-Paste Form</div>
+    <div class="code-block">
+<span class="comment"># DDL-PROP-[NNN]</span>
+<span class="comment"># STD-DDL-PAGEPROP-001 · v1.0</span>
+
+<span class="req-marker"># REQUIRED</span>
+<span class="key">route:</span>            <span class="val"># /wing/page-name</span>
+<span class="key">wing:</span>             <span class="val"># DDL | AuditForge | Ledger | CanonPress | ...</span>
+<span class="key">template:</span>         <span class="val"># CONSOLE | CHRONICLE | ATLAS | LEDGER | CODEX | DOSSIER</span>
+<span class="key">accent:</span>           <span class="val"># crimson | amber | gold | green | teal | violet | steel</span>
+<span class="key">status:</span>           <span class="val"># proposed | approved | building | live | legacy</span>
+<span class="key">priority:</span>         <span class="val"># P1 | P2 | P3</span>
+<span class="key">trigger:</span>          <span class="val"># what surfaced the need</span>
+<span class="key">what_it_is:</span>       <span class="val"># one sentence — identity</span>
+<span class="key">page_goal:</span>        <span class="val"># one sentence — job</span>
+<span class="key">hero_treatment:</span>   <span class="val"># orbital | stamp | quiet | none</span>
+<span class="key">sections:</span>
+<span class="val">  1. Hero — "..."</span>
+<span class="val">  2. ...</span>
+<span class="key">tone:</span>             <span class="val"># editorial | technical | archival | operational | narrative</span>
+<span class="key">why_now:</span>          <span class="val"># build justification</span>
+<span class="key">dependencies:</span>     <span class="val"># routes/systems required</span>
+
+<span class="opt-marker"># OPTIONAL</span>
+<span class="key">open_questions:</span>   <span class="val"># unresolved items</span>
+<span class="key">dex_jr_note:</span>      <span class="val"># one short instruction</span>
+    </div>
+  </div>
+
+  <!-- EXAMPLE -->
+  <div class="section">
+    <div class="sec-num">06 — Worked Example</div>
+    <div class="sec-title">DDL-PROP-001 · /ddl/charter</div>
+    <div class="code-block">
+<span class="comment"># DDL-PROP-001</span>
+
+<span class="key">route:</span>            <span class="val">/ddl/charter</span>
+<span class="key">wing:</span>             <span class="val">DDL</span>
+<span class="key">template:</span>         <span class="val">CODEX</span>
+<span class="key">accent:</span>           <span class="val">crimson</span>
+<span class="key">status:</span>           <span class="val">live</span>
+<span class="key">priority:</span>         <span class="val">P2</span>
+<span class="key">trigger:</span>          <span class="val">DDL_CoreCharter_v1.0.txt surfaced in session 2026-03-24</span>
+<span class="key">what_it_is:</span>       <span class="val">The founding document of DDL — 8-step build sequence,
+                  mission, scope, and interface with DexOS.</span>
+<span class="key">page_goal:</span>        <span class="val">Give new visitors the governing floor beneath the DDL system.</span>
+<span class="key">hero_treatment:</span>   <span class="val">quiet</span>
+<span class="key">sections:</span>
+<span class="val">  1. Hero — "From scattered to structured." v1.0 origin document</span>
+<span class="val">  2. Identity — Name, tagline, what DDL is and isn't</span>
+<span class="val">  3. Mission — Three bullets, no padding</span>
+<span class="val">  4. Build Sequence — 8 steps, numbered, visual, centerpiece</span>
+<span class="val">  5. Scope — Applies to / does not apply to</span>
+<span class="val">  6. DexOS Interface — Two lines. Clean.</span>
+<span class="val">  7. Footer — v1.0 versioning block, artifact treatment</span>
+<span class="key">tone:</span>             <span class="val">archival</span>
+<span class="key">why_now:</span>          <span class="val">New landing is product OS. System Stack explains coherence.
+                  Charter explains the floor it stands on.</span>
+<span class="key">dependencies:</span>     <span class="val">/ddl wing must exist</span>
+<span class="key">dex_jr_note:</span>      <span class="val">No orbital. No animation. Spare and permanent.</span>
+    </div>
+  </div>
+
+  <!-- COUNCIL -->
+  <div class="section">
+    <div class="sec-num">07 — Council Record</div>
+    <div class="sec-title">Review · 2026-03-24</div>
+    <div style="margin:16px 0">
+      <div class="council-row"><span class="seat-id">1001</span><span class="seat-name">Archer Hawthorne</span><span class="verdict-lock">LOCK</span><span class="seat-note">Field set is MECE. No additions needed.</span></div>
+      <div class="council-row"><span class="seat-id">1002</span><span class="seat-name">Marcus Caldwell</span><span class="verdict-lock">LOCK</span><span class="seat-note">Form is the right weight. Add page_goal.</span></div>
+      <div class="council-row"><span class="seat-id">1003</span><span class="seat-name">Elias Mercer</span><span class="verdict-revise">REVISE</span><span class="seat-note">Add linked_rec + visual_density.</span></div>
+      <div class="council-row"><span class="seat-id">1004</span><span class="seat-name">Max Sullivan</span><span class="verdict-lock">LOCK</span><span class="seat-note">No blocking changes. audience field for v1.1.</span></div>
+      <div class="council-row"><span class="seat-id">1005</span><span class="seat-name">Rowan Bennett</span><span class="verdict-revise">REVISE</span><span class="seat-note">Add owner + acceptance_criteria.</span></div>
+      <div class="council-row"><span class="seat-id">1006</span><span class="seat-name">Ava Sinclair</span><span class="verdict-lock">LOCK</span><span class="seat-note">Translates Chaos → Structured directly.</span></div>
+      <div class="council-row"><span class="seat-id">1007</span><span class="seat-name">Leo Prescott</span><span class="verdict-revise">REVISE</span><span class="seat-note">Merge trigger + why_now. Add corpus_source.</span></div>
+      <div class="council-row"><span class="seat-id">1008</span><span class="seat-name">Marcus Grey</span><span class="verdict-revise">REVISE</span><span class="seat-note">accent must be token, not hex. Add page_goal.</span></div>
+      <div class="council-row"><span class="seat-id">1009</span><span class="seat-name">Kai Langford</span><span class="verdict-lock">LOCK</span><span class="seat-note">accent = token name. Hex resolves downstream.</span></div>
+    </div>
+    <p class="body" style="font-size:0.82rem">
+      Minimum change set applied: <strong>accent → token name</strong> (4 seats), <strong>page_goal added</strong> (Grey + Caldwell). All other REVISE suggestions queued for v1.1. 5 LOCK · 4 REVISE · 0 REJECT.
+    </p>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="ver-footer">
+    <div class="ver-left">
+      STD-DDL-PAGEPROP-001 · v1.0 · Ratified 2026-03-24<br>
+      Dropdown Logistics · Dave Kitchens · CPA<br>
+      Chaos → Structured → Automated
+    </div>
+    <div class="ver-right">
+      Council: 9/9 seats · 5 LOCK · 4 REVISE<br>
+      v1.1 queue: owner · acceptance_criteria · audience<br>
+      The operator decides.
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
