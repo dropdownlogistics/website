@@ -13,6 +13,8 @@ const PRODUCTS = [
 ];
 
 const DDL_LINKS = [
+  { label: 'Governance', href: '/governance' },
+  { label: 'Charter', href: '/ddl/charter' },
   { label: 'DexVerse', href: '/dexverse' },
   { label: 'MDN Tool', href: '/tools/mdn' },
   { label: 'Brand', href: '/brand' },
