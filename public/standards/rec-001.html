@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STD-DDL-REC-001 — Cross-Thread Recommendation Protocol</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0D1B2A;--card:#10202F;--card2:#0B1825;
+  --cream:#F5F1EB;--steel:#6B7B8D;
+  --border:rgba(245,241,235,0.06);
+  --crimson:#B23531;--cxs:rgba(178,53,49,0.08);--csm:rgba(178,53,49,0.15);
+  --green:#22C55E;--gxs:rgba(34,197,94,0.08);
+  --amber:#C49A3C;--axs:rgba(196,154,60,0.08);
+  --violet:#8A6CC9;--vxs:rgba(138,108,201,0.08);
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+html{scroll-behavior:smooth}
+body{
+  background:var(--navy);color:var(--cream);
+  font-family:'Source Serif 4',Georgia,serif;
+  min-height:100vh;overflow-x:hidden;
+}
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:repeating-linear-gradient(0deg,transparent,transparent 31px,rgba(245,241,235,0.012) 31px,rgba(245,241,235,0.012) 32px);
+  pointer-events:none;z-index:0;
+}
+
+nav{
+  position:sticky;top:0;z-index:100;height:48px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 48px;
+  background:rgba(13,27,42,0.97);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+}
+.nav-back{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--steel);text-decoration:none;letter-spacing:0.06em;transition:color 0.2s}
+.nav-back:hover{color:var(--cream)}
+.nav-badge{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--crimson);background:var(--cxs);border:1px solid rgba(178,53,49,0.2);padding:3px 10px;border-radius:100px;letter-spacing:0.06em}
+
+.doc{position:relative;z-index:1;max-width:720px;margin:0 auto;padding:72px 32px 96px}
+
+/* HEADER */
+.doc-header{margin-bottom:56px;padding-bottom:36px;border-bottom:1px solid var(--border);animation:fadeUp 0.5s ease 0.1s both}
+.doc-file{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--steel);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.doc-file::before{content:'';display:block;width:20px;height:1px;background:var(--crimson)}
+.doc-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(1.8rem,3.5vw,2.8rem);letter-spacing:-0.04em;line-height:1.0;margin-bottom:6px}
+.doc-title span{color:var(--crimson)}
+.doc-sub{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--steel);letter-spacing:0.06em;margin-bottom:20px}
+.stamps{display:flex;gap:8px;flex-wrap:wrap}
+.stamp{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;padding:3px 10px;border-radius:3px}
+.stamp-r{color:var(--crimson);background:var(--cxs);border:1px solid rgba(178,53,49,0.2)}
+.stamp-d{color:var(--steel);background:rgba(107,123,141,0.08);border:1px solid rgba(107,123,141,0.15)}
+.stamp-g{color:#22C55E;background:var(--gxs);border:1px solid rgba(34,197,94,0.2)}
+
+/* SECTIONS */
+.section{margin-bottom:48px;animation:fadeUp 0.5s ease both}
+.section:nth-child(2){animation-delay:0.15s}
+.section:nth-child(3){animation-delay:0.2s}
+.section:nth-child(4){animation-delay:0.25s}
+.section:nth-child(5){animation-delay:0.3s}
+.section:nth-child(6){animation-delay:0.35s}
+.section:nth-child(7){animation-delay:0.4s}
+.section:nth-child(8){animation-delay:0.45s}
+.sec-num{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--crimson);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:4px}
+.sec-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1rem;letter-spacing:-0.01em;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.body{font-size:0.92rem;line-height:1.85;color:rgba(245,241,235,0.68);margin-bottom:12px}
+.body strong{color:var(--cream)}
+
+/* AUTHORITY LEVELS */
+.level-grid{display:flex;flex-direction:column;gap:2px;margin:16px 0}
+.level-card{display:flex;align-items:stretch;background:var(--card);border:1px solid var(--border);overflow:hidden}
+.level-card:first-child{border-radius:7px 7px 0 0}
+.level-card:last-child{border-radius:0 0 7px 7px}
+.level-badge{width:140px;flex-shrink:0;display:flex;align-items:center;justify-content:center;padding:14px 12px;border-right:1px solid var(--border)}
+.level-badge-inner{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.08em;text-align:center}
+.level-content{padding:14px 18px;flex:1}
+.level-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:0.88rem;margin-bottom:3px}
+.level-quote{font-family:'Source Serif 4',serif;font-style:italic;font-size:0.8rem;color:rgba(245,241,235,0.45);margin-bottom:5px}
+.level-desc{font-family:'Source Serif 4',serif;font-size:0.82rem;color:rgba(245,241,235,0.55);line-height:1.55}
+
+.obs{background:rgba(107,123,141,0.06);border-color:rgba(107,123,141,0.15)}
+.obs .level-badge{background:rgba(107,123,141,0.08)}
+.obs .level-badge-inner{color:var(--steel)}
+
+.sug{background:rgba(107,157,194,0.04);border-color:rgba(107,157,194,0.15)}
+.sug .level-badge{background:rgba(107,157,194,0.08)}
+.sug .level-badge-inner{color:#6B9DC2}
+
+.rec{background:var(--axs);border-color:rgba(196,154,60,0.2)}
+.rec .level-badge{background:rgba(196,154,60,0.1)}
+.rec .level-badge-inner{color:var(--amber)}
+
+.dir{background:var(--cxs);border-color:rgba(178,53,49,0.2)}
+.dir .level-badge{background:var(--csm)}
+.dir .level-badge-inner{color:var(--crimson)}
+
+/* CODE BLOCK */
+.code-block{background:var(--card2);border:1px solid var(--border);border-left:3px solid var(--crimson);border-radius:0 7px 7px 0;padding:20px 24px;margin:16px 0;font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.9;color:rgba(245,241,235,0.7);overflow-x:auto;white-space:pre}
+.code-block .comment{color:rgba(107,123,141,0.6)}
+.code-block .key{color:var(--crimson)}
+.code-block .val{color:rgba(245,241,235,0.5)}
+.code-block .obs-c{color:var(--steel)}
+.code-block .sug-c{color:#6B9DC2}
+.code-block .rec-c{color:var(--amber)}
+.code-block .dir-c{color:var(--crimson)}
+
+/* BORDER TABLE */
+.border-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:0.85rem}
+.border-table th{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--steel);letter-spacing:0.1em;text-transform:uppercase;text-align:left;padding:0 16px 10px 0;border-bottom:1px solid var(--border)}
+.border-table td{padding:10px 16px 10px 0;border-bottom:1px solid rgba(245,241,235,0.04);vertical-align:top;font-size:0.85rem;color:rgba(245,241,235,0.65);line-height:1.55}
+.border-table tr:last-child td{border-bottom:none}
+.border-table td:first-child{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--crimson);font-weight:600;white-space:nowrap}
+
+/* RULE BLOCK */
+.rule-block{background:var(--card);border:1px solid rgba(178,53,49,0.15);border-left:3px solid var(--crimson);border-radius:0 7px 7px 0;padding:16px 20px;margin:16px 0}
+.rule-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--crimson);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:8px}
+.rule-text{font-size:0.88rem;line-height:1.75;color:rgba(245,241,235,0.65)}
+.rule-text strong{color:var(--cream)}
+
+/* COUNCIL */
+.council-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(245,241,235,0.04)}
+.council-row:last-child{border-bottom:none}
+.seat-id{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--steel);width:80px;flex-shrink:0}
+.seat-name{font-family:'Space Grotesk',sans-serif;font-size:0.82rem;font-weight:600;flex:1}
+.verdict-lock{font-family:'JetBrains Mono',monospace;font-size:9px;color:#22C55E;background:var(--gxs);border:1px solid rgba(34,197,94,0.2);padding:2px 8px;border-radius:3px}
+.verdict-design{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--amber);background:var(--axs);border:1px solid rgba(196,154,60,0.2);padding:2px 8px;border-radius:3px}
+.seat-note{font-family:'Source Serif 4',serif;font-style:italic;font-size:0.75rem;color:rgba(245,241,235,0.35);margin-left:4px;flex-shrink:0;max-width:240px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* FOOTER */
+.ver-footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--border);display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.ver-left{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--steel);line-height:1.9}
+.ver-right{font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(178,53,49,0.5);text-align:right;line-height:1.9}
+
+@media(max-width:600px){nav{padding:0 20px}.doc{padding:48px 20px 72px}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-back" href="/governance">← Governance</a>
+  <span class="nav-badge">RATIFIED · 2026-03-24</span>
+</nav>
+
+<div class="doc">
+
+  <!-- HEADER -->
+  <div class="doc-header">
+    <div class="doc-file">DDL Standard · Cross-Thread Governance</div>
+    <h1 class="doc-title">STD-DDL-<span>REC</span>-001</h1>
+    <div class="doc-sub">Cross-Thread Recommendation Protocol · v1.0</div>
+    <div class="stamps">
+      <span class="stamp stamp-g">Ratified</span>
+      <span class="stamp stamp-r">9/9 Council · Design Pass</span>
+      <span class="stamp stamp-d">2026-03-24</span>
+    </div>
+  </div>
+
+  <!-- PURPOSE -->
+  <div class="section">
+    <div class="sec-num">01 — Purpose</div>
+    <div class="sec-title">The Problem This Solves</div>
+    <p class="body">
+      The DDL ecosystem runs across multiple active PM threads. Cross-thread recommendations happen constantly — a seat in one thread produces a finding that's relevant to work happening in a different thread. Currently this is handled informally. The operator carries it manually.
+    </p>
+    <p class="body">
+      The failure mode: <strong>good insight dying in transit.</strong> A finding produced in the AuditForge thread that should change how the Excelligence registry handles a pattern — read by the operator, meant to carry over, forgotten between sessions. The finding dies in the thread that produced it. The destination thread never knows it existed.
+    </p>
+    <p class="body">
+      This is not a memory failure. It's a routing failure. STD-DDL-REC-001 makes cross-thread signal explicit, routable, and acknowledgeable.
+    </p>
+    <div class="rule-block">
+      <div class="rule-label">Design Constraint</div>
+      <div class="rule-text">This standard must stay light. <strong>If the format takes longer to fill out than the recommendation takes to write, the standard has failed.</strong> The operator works in burst mode. Under 3 minutes to write. Under 30 seconds to route.</div>
+    </div>
+  </div>
+
+  <!-- FORMAT -->
+  <div class="section">
+    <div class="sec-num">02 — Format</div>
+    <div class="sec-title">The Recommendation Block</div>
+    <p class="body">A short structured note. Not an ADR. Not a document block. A copy-pasteable block that takes 30 seconds to read and 2 minutes to write.</p>
+    <p class="body">Body: one paragraph (max 5 sentences) OR 3 bullets. Never both. If it exceeds 5 sentences it is not a recommendation — it is a brief, a review, or an ADR draft. <strong>The length constraint is the format governance.</strong></p>
+    <div class="code-block"><span class="comment"># REC — [subject] — [YYYY-MM-DD]</span>
+<span class="key">From:</span>    <span class="val">[Seat] / [Thread]</span>
+<span class="key">To:</span>      <span class="val">[Destination thread]</span>
+<span class="key">Level:</span>   <span class="val">[Observation / Suggestion / Recommendation / Directive]</span>
+
+<span class="val">[Body — 1 paragraph max 5 sentences OR 3 bullets. Never both.]</span>
+
+<span class="comment"># Body structure (suggested, not required):</span>
+<span class="val">What was seen.</span>
+<span class="val">Why it matters in the destination thread.</span>
+<span class="val">What should happen next (if Recommendation or Directive).</span>
+
+<span class="comment"># Receiving thread acknowledgment (one line):</span>
+<span class="val">REC received — [adopt / evaluate / defer / decline]</span></div>
+    <p class="body" style="font-size:0.82rem">No sequential IDs. Date + subject in the header is sufficient. If a recommendation is important enough to reference later, the corpus holds it. The thread holds it. The subject line carries the meaning.</p>
+  </div>
+
+  <!-- AUTHORITY LEVELS -->
+  <div class="section">
+    <div class="sec-num">03 — Authority Levels</div>
+    <div class="sec-title">Four levels. Mark with the word.</div>
+    <p class="body">The level tells the receiving thread exactly how to process the signal. No codes, no numbers. The full word is instantly readable.</p>
+    <div class="level-grid">
+      <div class="level-card obs">
+        <div class="level-badge"><div class="level-badge-inner">Observation</div></div>
+        <div class="level-content">
+          <div class="level-title">I noticed this.</div>
+          <div class="level-quote">"No action implied."</div>
+          <div class="level-desc">Signal injection only. The receiving thread decides whether it matters. The seat is surfacing signal, not requesting change. Most cross-thread notes are this.</div>
+        </div>
+      </div>
+      <div class="level-card sug">
+        <div class="level-badge"><div class="level-badge-inner">Suggestion</div></div>
+        <div class="level-content">
+          <div class="level-title">This might help.</div>
+          <div class="level-quote">"Soft directional. Low pressure."</div>
+          <div class="level-desc">The seat has a hypothesis. No expectation of adoption. The receiving thread can ignore it without explanation.</div>
+        </div>
+      </div>
+      <div class="level-card rec">
+        <div class="level-badge"><div class="level-badge-inner">Recommendation</div></div>
+        <div class="level-content">
+          <div class="level-title">This should happen.</div>
+          <div class="level-quote">"The seat is staking judgment."</div>
+          <div class="level-desc">The receiving thread should engage — adopt, adapt, or explicitly decline with rationale. Silence on a Recommendation is a governance gap.</div>
+        </div>
+      </div>
+      <div class="level-card dir">
+        <div class="level-badge"><div class="level-badge-inner">Directive</div></div>
+        <div class="level-content">
+          <div class="level-title">Do this.</div>
+          <div class="level-quote">"Operator-only. Hard line."</div>
+          <div class="level-desc">Issued when the operator endorses a Recommendation and converts it to an executable order. Seats produce Observations, Suggestions, and Recommendations. The operator elevates to Directive.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROUTING -->
+  <div class="section">
+    <div class="sec-num">04 — Routing</div>
+    <div class="sec-title">Operator carries. Threads acknowledge.</div>
+    <p class="body">The operator is the router. The format makes the handoff explicit by declaring the destination thread in the header.</p>
+    <p class="body"><strong>Sending side:</strong> the seat writes the REC in its own thread. That is the seat's entire job. The seat produces the recommendation, not delivers it.</p>
+    <p class="body"><strong>Receiving side:</strong> when the operator drops a REC into a destination thread, the receiving seat acknowledges with one line:</p>
+    <div class="code-block"><span class="key">REC received</span> — <span class="val">adopt</span>
+<span class="key">REC received</span> — <span class="val">evaluate</span>
+<span class="key">REC received</span> — <span class="val">defer</span>
+<span class="key">REC received</span> — <span class="val">decline</span></div>
+    <p class="body">That is the full acknowledgment. Not a review. Not a discussion. Confirmation that the routing completed. <strong>Acknowledgment is required for Recommendations and Directives. Optional for Observations and Suggestions.</strong></p>
+    <p class="body">If the receiving thread never acknowledges a Recommendation, the REC is lost. That's the failure mode the acknowledgment prevents.</p>
+  </div>
+
+  <!-- BORDERS -->
+  <div class="section">
+    <div class="sec-num">05 — Borders</div>
+    <div class="sec-title">When a REC becomes something else.</div>
+    <table class="border-table">
+      <thead>
+        <tr>
+          <th>Format</th>
+          <th>Use when</th>
+          <th>Border rule</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>REC</td>
+          <td>Cross-thread signal. One thread should act.</td>
+          <td>Has a destination thread. Point-to-point.</td>
+        </tr>
+        <tr>
+          <td>MDN</td>
+          <td>Working memory for the operator. No destination.</td>
+          <td>No "To" field. RECs route. MDNs hold. An MDN can become a REC when ready to route.</td>
+        </tr>
+        <tr>
+          <td>ADR</td>
+          <td>Architecture change. Irreversible. Affects multiple products.</td>
+          <td>Does it change architecture or inform a decision within existing architecture? RECs inform. ADRs change.</td>
+        </tr>
+        <tr>
+          <td>Council Review</td>
+          <td>Needs multi-seat deliberation before action.</td>
+          <td>Does it need one thread to act, or the council to deliberate? RECs are point-to-point. Reviews are broadcast.</td>
+        </tr>
+        <tr>
+          <td>STD</td>
+          <td>Governs repeatable behavior across all threads permanently.</td>
+          <td>A REC can be the catalyst for a STD drafting session. It never becomes the STD itself.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- WORKED EXAMPLE -->
+  <div class="section">
+    <div class="sec-num">06 — Worked Example</div>
+    <div class="sec-title">What it looks like in practice.</div>
+    <div class="code-block"><span class="comment"># REC — Add LET function default to control description generator — 2026-03-24</span>
+<span class="key">From:</span>    <span class="val">Seat 1003 / Excelligence PM</span>
+<span class="key">To:</span>      <span class="val">AuditForge PM</span>
+<span class="key">Level:</span>   <span class="rec-c">Recommendation</span>
+
+<span class="val">When generating control descriptions that contain formulas, default
+to LET + dynamic arrays instead of nested IFs. Reduces ANT density
+and improves readability for non-technical reviewers. Connects to
+STD-EXCEL-001 §4.</span>
+
+<span class="comment">---</span>
+<span class="comment"># Receiving thread acknowledgment:</span>
+<span class="key">REC received</span> — <span class="val">evaluate — will address in next AuditForge build session</span></div>
+  </div>
+
+  <!-- THE ONE THING -->
+  <div class="section">
+    <div class="sec-num">07 — Core Protection</div>
+    <div class="sec-title">Don't lose signal at the seams.</div>
+    <div class="rule-block">
+      <div class="rule-label">What this standard protects</div>
+      <div class="rule-text">
+        Signal fidelity during cross-thread transfer. The failure mode: good insight produced in one thread, never arriving in the thread that needs it, dying in the operator's working memory between sessions.<br><br>
+        <strong>This is not a memory failure. It's a routing failure.</strong> The format makes the handoff explicit. The authority level makes the weight clear. The acknowledgment closes the loop. Those three things together prevent recommendation rot.
+      </div>
+    </div>
+  </div>
+
+  <!-- COUNCIL -->
+  <div class="section">
+    <div class="sec-num">08 — Council Record</div>
+    <div class="sec-title">Design Pass · 2026-03-24</div>
+    <p class="body" style="font-size:0.82rem;margin-bottom:16px">This was an exploratory design pass, not a ratification vote. All 9 seats responded. Consensus was clear enough to ship.</p>
+    <div style="margin:16px 0">
+      <div class="council-row"><span class="seat-id">1001</span><span class="seat-name">Archer Hawthorne</span><span class="verdict-design">DESIGN</span><span class="seat-note">MECE fields. Date-based ID. Hybrid Dex Jr.</span></div>
+      <div class="council-row"><span class="seat-id">1002</span><span class="seat-name">Marcus Caldwell</span><span class="verdict-design">DESIGN</span><span class="seat-note">Date+subject. No IDs. Routing failure, not memory.</span></div>
+      <div class="council-row"><span class="seat-id">1003</span><span class="seat-name">Elias Mercer</span><span class="verdict-design">DESIGN</span><span class="seat-note">MDN with a destination field. Nothing more.</span></div>
+      <div class="council-row"><span class="seat-id">1004</span><span class="seat-name">Max Sullivan</span><span class="verdict-design">DESIGN</span><span class="seat-note">ACK-NOTE / ACK-DO / ACK-QUE convention.</span></div>
+      <div class="council-row"><span class="seat-id">1005</span><span class="seat-name">Rowan Bennett</span><span class="verdict-design">DESIGN</span><span class="seat-note">Signal-to-action boundary is the core protection.</span></div>
+      <div class="council-row"><span class="seat-id">1006</span><span class="seat-name">Ava Sinclair</span><span class="verdict-design">DESIGN</span><span class="seat-note">Clarity of intent prevents ambiguity-driven misalignment.</span></div>
+      <div class="council-row"><span class="seat-id">1007</span><span class="seat-name">Leo Prescott</span><span class="verdict-design">DESIGN</span><span class="seat-note">Pneumatic tube. Operator governs. Swarm types.</span></div>
+      <div class="council-row"><span class="seat-id">1008</span><span class="seat-name">Marcus Grey</span><span class="verdict-design">DESIGN</span><span class="seat-note">DDL-REC-### preferred. Carry Forward line.</span></div>
+      <div class="council-row"><span class="seat-id">1009</span><span class="seat-name">Kai Langford</span><span class="verdict-design">DESIGN</span><span class="seat-note">No IDs. Recommendation rot is the failure mode.</span></div>
+    </div>
+    <p class="body" style="font-size:0.82rem">Key synthesis decisions: no sequential IDs (date+subject sufficient), no separate confidence/urgency fields (belong in body), Directive = operator-only hard line, one-line acknowledgment convention.</p>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="ver-footer">
+    <div class="ver-left">
+      STD-DDL-REC-001 · v1.0 · Ratified 2026-03-24<br>
+      Dropdown Logistics · Dave Kitchens · CPA<br>
+      Chaos → Structured → Automated
+    </div>
+    <div class="ver-right">
+      9/9 seats · Design pass<br>
+      The council advises.<br>
+      The operator decides.
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
