@@ -23,6 +23,14 @@
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.6;transform:scale(0.96)}}
 @keyframes tickerMove{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @keyframes nodeAppear{from{opacity:0;transform:scale(0.7)}to{opacity:1;transform:scale(1)}}
+@keyframes orb1{from{transform:rotate(0deg) translateX(125px) rotate(0deg)}to{transform:rotate(360deg) translateX(125px) rotate(-360deg)}}
+@keyframes orb2{from{transform:rotate(180deg) translateX(125px) rotate(-180deg)}to{transform:rotate(540deg) translateX(125px) rotate(-540deg)}}
+@keyframes orb3{from{transform:rotate(75deg) translateX(195px) rotate(-75deg)}to{transform:rotate(435deg) translateX(195px) rotate(-435deg)}}
+@keyframes orb4{from{transform:rotate(180deg) translateX(195px) rotate(-180deg)}to{transform:rotate(540deg) translateX(195px) rotate(-540deg)}}
+@keyframes orb5{from{transform:rotate(285deg) translateX(195px) rotate(-285deg)}to{transform:rotate(645deg) translateX(195px) rotate(-645deg)}}
+@keyframes orb6{from{transform:rotate(345deg) translateX(195px) rotate(-345deg)}to{transform:rotate(705deg) translateX(195px) rotate(-705deg)}}
+@keyframes orb7{from{transform:rotate(135deg) translateX(265px) rotate(-135deg)}to{transform:rotate(495deg) translateX(265px) rotate(-495deg)}}
+@keyframes orb8{from{transform:rotate(315deg) translateX(265px) rotate(-315deg)}to{transform:rotate(675deg) translateX(265px) rotate(-675deg)}}
 @keyframes stampGlow{0%,100%{filter:drop-shadow(0 0 8px rgba(178,53,49,0.3))}50%{filter:drop-shadow(0 0 20px rgba(178,53,49,0.6))}}
 
 html{scroll-behavior:smooth}
@@ -200,24 +208,26 @@ body::after{
   display:flex;flex-direction:column;
   align-items:center;justify-content:center;
   cursor:pointer;
-  transition:transform 0.2s,box-shadow 0.2s;
   text-decoration:none;
   z-index:5;
+  top:50%;left:50%;
+  margin-top:-36px;margin-left:-36px;
 }
-.orbital-node:hover{transform:scale(1.15)}
+.orbital-node:hover .node-inner{transform:scale(1.15)}
 .node-inner{
   width:64px;height:64px;
   border-radius:50%;
   background:var(--card);
   display:flex;align-items:center;justify-content:center;
   border:1.5px solid rgba(245,241,235,0.08);
-  transition:border-color 0.2s,box-shadow 0.2s;
+  transition:border-color 0.2s,box-shadow 0.2s,transform 0.2s;
   flex-direction:column;
   gap:2px;
 }
 .orbital-node:hover .node-inner{
   border-color:var(--node-color);
   box-shadow:0 0 20px rgba(var(--node-rgb),0.25);
+  transform:scale(1.15);
 }
 .node-label{
   position:absolute;
@@ -249,62 +259,46 @@ body::after{
 
 .node-auditforge{
   --node-color:#B23531;--node-rgb:178,53,49;
-  top:calc(50% - 125px - 32px);
-  left:calc(50% - 32px);
-  animation:nodeAppear 0.5s ease 0.6s both;
+  animation:nodeAppear 0.5s ease 0.6s both, orb1 20s linear 0.6s infinite;
 }
 .node-canonpress{
   --node-color:#B23531;--node-rgb:178,53,49;
-  top:calc(50% + 125px - 32px);
-  left:calc(50% - 32px);
-  animation:nodeAppear 0.5s ease 0.7s both;
+  animation:nodeAppear 0.5s ease 0.7s both, orb2 25s linear 0.7s infinite;
 }
 .node-da{
   --node-color:#22C55E;--node-rgb:34,197,94;
-  top:calc(50% - 32px);
-  left:calc(50% - 200px - 32px);
-  animation:nodeAppear 0.5s ease 0.8s both;
+  animation:nodeAppear 0.5s ease 0.8s both, orb3 30s linear 0.8s infinite;
 }
 .node-excelligence{
   --node-color:#D4A843;--node-rgb:212,168,67;
-  top:calc(50% - 32px);
-  left:calc(50% + 200px - 32px);
-  animation:nodeAppear 0.5s ease 0.9s both;
+  animation:nodeAppear 0.5s ease 0.9s both, orb4 22s linear 0.9s infinite;
 }
 .node-ledger{
   --node-color:#B23531;--node-rgb:178,53,49;
-  top:calc(50% - 141px - 32px);
-  left:calc(50% + 141px - 32px);
-  animation:nodeAppear 0.5s ease 1.0s both;
+  animation:nodeAppear 0.5s ease 1.0s both, orb5 27s linear 1.0s infinite;
 }
 .node-kv{
   --node-color:#2C7A7B;--node-rgb:44,122,123;
-  top:calc(50% + 141px - 32px);
-  left:calc(50% - 141px - 32px);
-  animation:nodeAppear 0.5s ease 1.1s both;
+  animation:nodeAppear 0.5s ease 1.1s both, orb6 35s linear 1.1s infinite;
 }
 .node-dexverse{
   --node-color:#8A6CC9;--node-rgb:138,108,201;
-  top:calc(50% - 186px - 32px);
-  left:calc(50% - 186px - 32px);
-  animation:nodeAppear 0.5s ease 1.2s both;
+  animation:nodeAppear 0.5s ease 1.2s both, orb7 18s linear 1.2s infinite;
 }
 .node-legacy{
   --node-color:#6B7B8D;--node-rgb:107,123,141;
-  top:calc(50% + 186px - 32px);
-  left:calc(50% + 186px - 32px);
-  animation:nodeAppear 0.5s ease 1.3s both;
+  animation:nodeAppear 0.5s ease 1.3s both, orb8 40s linear 1.3s infinite;
 }
 
-/* Label positions */
+/* Label positions — always above node */
 .node-auditforge .node-label{top:-18px;left:50%;transform:translateX(-50%)}
-.node-canonpress .node-label{bottom:-18px;left:50%;transform:translateX(-50%)}
-.node-da .node-label{top:50%;right:calc(100% + 6px);transform:translateY(-50%)}
-.node-excelligence .node-label{top:50%;left:calc(100% + 6px);transform:translateY(-50%)}
-.node-ledger .node-label{top:-18px;right:0}
-.node-kv .node-label{bottom:-18px;left:0}
-.node-dexverse .node-label{top:-18px;left:0}
-.node-legacy .node-label{bottom:-18px;right:0}
+.node-canonpress .node-label{top:-18px;left:50%;transform:translateX(-50%)}
+.node-da .node-label{top:-18px;left:50%;transform:translateX(-50%)}
+.node-excelligence .node-label{top:-18px;left:50%;transform:translateX(-50%)}
+.node-ledger .node-label{top:-18px;left:50%;transform:translateX(-50%)}
+.node-kv .node-label{top:-18px;left:50%;transform:translateX(-50%)}
+.node-dexverse .node-label{top:-18px;left:50%;transform:translateX(-50%)}
+.node-legacy .node-label{top:-18px;left:50%;transform:translateX(-50%)}
 
 /* CONNECTOR LINES */
 .connectors{
@@ -479,33 +473,6 @@ footer{
 </head>
 <body>
 
-<!-- TICKER -->
-<div class="ticker">
-  <div class="ticker-inner">
-    <span class="ticker-item">AUDITFORGE</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">BLINDSPOT</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">POSITIONBOOK</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">EXCELLIGENCE</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">LEDGER</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">CANONPRESS</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">DDL KNOWLEDGE VAULT</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">DEX JR.</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">ONE OPERATOR</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">CHAOS → STRUCTURED → AUTOMATED</span><span class="ticker-sep">·</span>
-    <!-- duplicate -->
-    <span class="ticker-item">AUDITFORGE</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">BLINDSPOT</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">POSITIONBOOK</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">EXCELLIGENCE</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">LEDGER</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">CANONPRESS</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">DDL KNOWLEDGE VAULT</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">DEX JR.</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">ONE OPERATOR</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">CHAOS → STRUCTURED → AUTOMATED</span><span class="ticker-sep">·</span>
-  </div>
-</div>
-
 <!-- HERO -->
 <div class="hero">
   <div class="hero-grid"></div>
@@ -528,18 +495,7 @@ footer{
     <div class="spin-ring-1"></div>
     <div class="spin-ring-2"></div>
 
-    <!-- Connector lines SVG -->
-    <svg class="connectors" viewBox="0 0 700 700">
-      <!-- Center to each node -->
-      <line x1="350" y1="350" x2="350" y2="190" stroke="#B23531" stroke-width="0.5"/>
-      <line x1="350" y1="350" x2="350" y2="510" stroke="#B23531" stroke-width="0.5"/>
-      <line x1="350" y1="350" x2="150" y2="350" stroke="#22C55E" stroke-width="0.5"/>
-      <line x1="350" y1="350" x2="550" y2="350" stroke="#D4A843" stroke-width="0.5"/>
-      <line x1="350" y1="350" x2="491" y2="209" stroke="#B23531" stroke-width="0.5"/>
-      <line x1="350" y1="350" x2="209" y2="491" stroke="#2C7A7B" stroke-width="0.5"/>
-      <line x1="350" y1="350" x2="164" y2="164" stroke="#8A6CC9" stroke-width="0.5"/>
-      <line x1="350" y1="350" x2="536" y2="536" stroke="#6B7B8D" stroke-width="0.5"/>
-    </svg>
+
 
     <!-- CENTER — DD Stamp -->
     <div class="stamp-center" onclick="window.location.href='/ddl'">
@@ -650,6 +606,33 @@ footer{
   <svg width="12" height="18" viewBox="0 0 12 18" fill="none"><rect x="1" y="1" width="10" height="16" rx="5" stroke="#6B7B8D" stroke-width="1.2"/><circle cx="6" cy="5" r="1.5" fill="#6B7B8D"><animate attributeName="cy" values="5;11;5" dur="2s" repeatCount="indefinite"/></circle></svg>
 </div>
 </div><!-- /hero -->
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">AUDITFORGE</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">BLINDSPOT</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">POSITIONBOOK</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">EXCELLIGENCE</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">LEDGER</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">CANONPRESS</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">DDL KNOWLEDGE VAULT</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">DEX JR.</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">ONE OPERATOR</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">CHAOS → STRUCTURED → AUTOMATED</span><span class="ticker-sep">·</span>
+    <!-- duplicate -->
+    <span class="ticker-item">AUDITFORGE</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">BLINDSPOT</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">POSITIONBOOK</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">EXCELLIGENCE</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">LEDGER</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">CANONPRESS</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">DDL KNOWLEDGE VAULT</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">DEX JR.</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">ONE OPERATOR</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">CHAOS → STRUCTURED → AUTOMATED</span><span class="ticker-sep">·</span>
+  </div>
+</div>
 
 <!-- PRODUCT GRID -->
 <div class="product-grid">
