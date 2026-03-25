@@ -19,6 +19,12 @@
 @keyframes orbitRev{from{transform:rotate(0deg)}to{transform:rotate(-360deg)}}
 @keyframes nodeIn{from{opacity:0;transform:scale(0.6)}to{opacity:1;transform:scale(1)}}
 @keyframes stampPulse{0%,100%{filter:drop-shadow(0 0 6px rgba(178,53,49,0.25))}50%{filter:drop-shadow(0 0 18px rgba(178,53,49,0.55))}}
+@keyframes orbit1{from{transform:rotate(0deg) translateX(110px) rotate(0deg)}to{transform:rotate(360deg) translateX(110px) rotate(-360deg)}}
+@keyframes orbit2{from{transform:rotate(60deg) translateX(160px) rotate(-60deg)}to{transform:rotate(420deg) translateX(160px) rotate(-420deg)}}
+@keyframes orbit3{from{transform:rotate(120deg) translateX(110px) rotate(-120deg)}to{transform:rotate(480deg) translateX(110px) rotate(-480deg)}}
+@keyframes orbit4{from{transform:rotate(180deg) translateX(160px) rotate(-180deg)}to{transform:rotate(540deg) translateX(160px) rotate(-540deg)}}
+@keyframes orbit5{from{transform:rotate(240deg) translateX(220px) rotate(-240deg)}to{transform:rotate(600deg) translateX(220px) rotate(-600deg)}}
+@keyframes orbit6{from{transform:rotate(300deg) translateX(220px) rotate(-300deg)}to{transform:rotate(660deg) translateX(220px) rotate(-660deg)}}
 @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 html{scroll-behavior:smooth}
@@ -62,30 +68,30 @@ nav{position:sticky;top:0;z-index:100;height:52px;display:flex;align-items:cente
 .gov-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:10;animation:stampPulse 4s ease-in-out infinite;cursor:default}
 
 /* NODES */
-.gov-node{position:absolute;width:68px;height:68px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;text-decoration:none;z-index:5;transition:transform 0.2s}
-.gov-node:hover{transform:scale(1.14)}
-.node-inner{width:60px;height:60px;border-radius:50%;background:var(--card);border:1.5px solid rgba(245,241,235,0.07);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2px;transition:border-color 0.2s,box-shadow 0.2s}
-.gov-node:hover .node-inner{border-color:var(--crimson);box-shadow:0 0 16px rgba(178,53,49,0.2)}
+.gov-node{position:absolute;width:68px;height:68px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;text-decoration:none;z-index:5;top:50%;left:50%;margin-top:-34px;margin-left:-34px;}
+.gov-node:hover .node-inner{transform:scale(1.14)}
+.node-inner{width:60px;height:60px;border-radius:50%;background:var(--card);border:1.5px solid rgba(245,241,235,0.07);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2px;transition:border-color 0.2s,box-shadow 0.2s,transform 0.2s}
+.gov-node:hover .node-inner{border-color:var(--crimson);box-shadow:0 0 16px rgba(178,53,49,0.2);transform:scale(1.14)}
 .node-abbr{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:0.7rem;color:var(--crimson);line-height:1}
 .node-dot{width:5px;height:5px;border-radius:50%;background:var(--crimson);margin-top:1px;opacity:0.7}
 .node-label{position:absolute;font-family:'JetBrains Mono',monospace;font-size:0.5rem;color:var(--steel);letter-spacing:0.06em;white-space:nowrap;pointer-events:none;transition:color 0.2s}
 .gov-node:hover .node-label{color:var(--crimson)}
 
 /* Node positions */
-.n-std{top:calc(50% - 110px - 34px);left:calc(50% - 34px);animation:nodeIn 0.4s ease 0.7s both}
-.n-pro{top:calc(50% - 34px);left:calc(50% + 160px - 34px);animation:nodeIn 0.4s ease 0.8s both}
-.n-cr{top:calc(50% + 110px - 34px);left:calc(50% - 34px);animation:nodeIn 0.4s ease 0.9s both}
-.n-adr{top:calc(50% - 34px);left:calc(50% - 160px - 34px);animation:nodeIn 0.4s ease 1.0s both}
-.n-canon{top:calc(50% - 113px - 34px);left:calc(50% + 113px - 34px);animation:nodeIn 0.4s ease 1.1s both}
-.n-prompt{top:calc(50% + 113px - 34px);left:calc(50% - 113px - 34px);animation:nodeIn 0.4s ease 1.2s both}
+.n-std{animation:nodeIn 0.4s ease 0.7s both, orbit1 18s linear 0.7s infinite}
+.n-pro{animation:nodeIn 0.4s ease 0.8s both, orbit2 24s linear 0.8s infinite}
+.n-cr{animation:nodeIn 0.4s ease 0.9s both, orbit3 20s linear 0.9s infinite}
+.n-adr{animation:nodeIn 0.4s ease 1.0s both, orbit4 28s linear 1.0s infinite}
+.n-canon{animation:nodeIn 0.4s ease 1.1s both, orbit5 22s linear 1.1s infinite}
+.n-prompt{animation:nodeIn 0.4s ease 1.2s both, orbit6 32s linear 1.2s infinite}
 
 /* Label positions */
-.n-std .node-label{top:-16px;left:50%;transform:translateX(-50%)}
-.n-pro .node-label{top:50%;left:calc(100% + 6px);transform:translateY(-50%)}
-.n-cr .node-label{bottom:-16px;left:50%;transform:translateX(-50%)}
-.n-adr .node-label{top:50%;right:calc(100% + 6px);transform:translateY(-50%)}
-.n-canon .node-label{top:-16px;right:0}
-.n-prompt .node-label{bottom:-16px;left:0}
+.n-std .node-label{top:-18px;left:50%;transform:translateX(-50%)}
+.n-pro .node-label{top:-18px;left:50%;transform:translateX(-50%)}
+.n-cr .node-label{top:-18px;left:50%;transform:translateX(-50%)}
+.n-adr .node-label{top:-18px;left:50%;transform:translateX(-50%)}
+.n-canon .node-label{top:-18px;left:50%;transform:translateX(-50%)}
+.n-prompt .node-label{top:-18px;left:50%;transform:translateX(-50%)}
 
 /* Connectors */
 .connectors{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;opacity:0.12}
@@ -187,15 +193,7 @@ footer{border-top:1px solid var(--border);padding:24px 48px;display:flex;justify
     <div class="spin1"></div>
     <div class="spin2"></div>
 
-    <!-- Connectors -->
-    <svg class="connectors" viewBox="0 0 620 620">
-      <line x1="310" y1="310" x2="310" y2="166" stroke="#B23531" stroke-width="0.5"/>
-      <line x1="310" y1="310" x2="470" y2="310" stroke="#B23531" stroke-width="0.5"/>
-      <line x1="310" y1="310" x2="310" y2="454" stroke="#B23531" stroke-width="0.5"/>
-      <line x1="310" y1="310" x2="150" y2="310" stroke="#B23531" stroke-width="0.5"/>
-      <line x1="310" y1="310" x2="423" y2="197" stroke="#B23531" stroke-width="0.5"/>
-      <line x1="310" y1="310" x2="197" y2="423" stroke="#B23531" stroke-width="0.5"/>
-    </svg>
+
 
     <!-- CENTER — DD Stamp -->
     <div class="gov-center">
