@@ -20,11 +20,11 @@
 @keyframes nodeIn{from{opacity:0;transform:scale(0.6)}to{opacity:1;transform:scale(1)}}
 @keyframes stampPulse{0%,100%{filter:drop-shadow(0 0 6px rgba(178,53,49,0.25))}50%{filter:drop-shadow(0 0 18px rgba(178,53,49,0.55))}}
 @keyframes orbit1{from{transform:rotate(0deg) translateX(110px) rotate(0deg)}to{transform:rotate(360deg) translateX(110px) rotate(-360deg)}}
-@keyframes orbit2{from{transform:rotate(60deg) translateX(160px) rotate(-60deg)}to{transform:rotate(420deg) translateX(160px) rotate(-420deg)}}
-@keyframes orbit3{from{transform:rotate(120deg) translateX(110px) rotate(-120deg)}to{transform:rotate(480deg) translateX(110px) rotate(-480deg)}}
-@keyframes orbit4{from{transform:rotate(180deg) translateX(160px) rotate(-180deg)}to{transform:rotate(540deg) translateX(160px) rotate(-540deg)}}
-@keyframes orbit5{from{transform:rotate(240deg) translateX(220px) rotate(-240deg)}to{transform:rotate(600deg) translateX(220px) rotate(-600deg)}}
-@keyframes orbit6{from{transform:rotate(300deg) translateX(220px) rotate(-300deg)}to{transform:rotate(660deg) translateX(220px) rotate(-660deg)}}
+@keyframes orbit2{from{transform:rotate(180deg) translateX(110px) rotate(-180deg)}to{transform:rotate(540deg) translateX(110px) rotate(-540deg)}}
+@keyframes orbit3{from{transform:rotate(60deg) translateX(175px) rotate(-60deg)}to{transform:rotate(420deg) translateX(175px) rotate(-420deg)}}
+@keyframes orbit4{from{transform:rotate(240deg) translateX(175px) rotate(-240deg)}to{transform:rotate(600deg) translateX(175px) rotate(-600deg)}}
+@keyframes orbit5{from{transform:rotate(120deg) translateX(245px) rotate(-120deg)}to{transform:rotate(480deg) translateX(245px) rotate(-480deg)}}
+@keyframes orbit6{from{transform:rotate(300deg) translateX(245px) rotate(-300deg)}to{transform:rotate(660deg) translateX(245px) rotate(-660deg)}}
 @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 html{scroll-behavior:smooth}
@@ -58,8 +58,8 @@ nav{position:sticky;top:0;z-index:100;height:52px;display:flex;align-items:cente
 .orbital{position:relative;width:620px;height:620px;flex-shrink:0;animation:fadeIn 0.8s ease 0.4s both}
 .orbit-ring{position:absolute;border-radius:50%;border:1px solid rgba(245,241,235,0.04);top:50%;left:50%;transform:translate(-50%,-50%)}
 .o1{width:220px;height:220px}
-.o2{width:360px;height:360px}
-.o3{width:500px;height:500px}
+.o2{width:350px;height:350px}
+.o3{width:490px;height:490px}
 .o4{width:610px;height:610px}
 .spin1{position:absolute;width:380px;height:380px;border-radius:50%;border:1px solid transparent;border-top:1px solid rgba(178,53,49,0.12);border-right:1px solid rgba(178,53,49,0.06);top:50%;left:50%;transform:translate(-50%,-50%);animation:orbitSlow 28s linear infinite;pointer-events:none}
 .spin2{position:absolute;width:520px;height:520px;border-radius:50%;border:1px solid transparent;border-bottom:1px solid rgba(178,53,49,0.08);border-left:1px solid rgba(178,53,49,0.04);top:50%;left:50%;transform:translate(-50%,-50%);animation:orbitRev 42s linear infinite;pointer-events:none}
