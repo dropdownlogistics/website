@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STD-DDL-LOG-001 — The Black Box Standard</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0D1B2A;--card:#10202F;--card2:#0B1825;
+  --cream:#F5F1EB;--steel:#6B7B8D;
+  --border:rgba(245,241,235,0.06);
+  --crimson:#B23531;--crimson-xs:rgba(178,53,49,0.08);
+  --gold:#D4A843;--gold-xs:rgba(212,168,67,0.08);
+  --green:#4A9E6B;--green-xs:rgba(74,158,107,0.08);
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+html{scroll-behavior:smooth}
+body{
+  background:var(--navy);color:var(--cream);
+  font-family:'Source Serif 4',Georgia,serif;
+  min-height:100vh;overflow-x:hidden;
+}
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:repeating-linear-gradient(0deg,transparent,transparent 31px,rgba(245,241,235,0.012) 31px,rgba(245,241,235,0.012) 32px);
+  pointer-events:none;z-index:0;
+}
+
+nav{
+  position:sticky;top:0;z-index:100;height:48px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 48px;
+  background:rgba(13,27,42,0.97);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+}
+.nav-back{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--steel);text-decoration:none;letter-spacing:0.06em;transition:color 0.2s}
+.nav-back:hover{color:var(--cream)}
+.nav-badge{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold);background:var(--gold-xs);border:1px solid rgba(212,168,67,0.2);padding:3px 10px;border-radius:100px;letter-spacing:0.06em}
+
+.doc{position:relative;z-index:1;max-width:700px;margin:0 auto;padding:72px 32px 96px}
+
+/* HEADER */
+.doc-header{margin-bottom:56px;padding-bottom:36px;border-bottom:1px solid var(--border);animation:fadeUp 0.5s ease 0.1s both}
+.doc-file{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--steel);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.doc-file::before{content:'';display:block;width:20px;height:1px;background:var(--gold)}
+.doc-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(1.8rem,3.5vw,2.8rem);letter-spacing:-0.04em;line-height:1.0;margin-bottom:6px}
+.doc-title span{color:var(--gold)}
+.doc-sub{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--steel);letter-spacing:0.06em;margin-bottom:20px}
+.stamps{display:flex;gap:8px;flex-wrap:wrap}
+.stamp{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;padding:3px 10px;border-radius:3px}
+.stamp-r{color:var(--crimson);background:var(--crimson-xs);border:1px solid rgba(178,53,49,0.2)}
+.stamp-d{color:var(--steel);background:rgba(107,123,141,0.08);border:1px solid rgba(107,123,141,0.15)}
+.stamp-g{color:var(--green);background:var(--green-xs);border:1px solid rgba(74,158,107,0.2)}
+.stamp-gold{color:var(--gold);background:var(--gold-xs);border:1px solid rgba(212,168,67,0.2)}
+
+/* META TABLE */
+.meta-table{width:100%;border-collapse:collapse;margin-bottom:32px;font-size:0.82rem}
+.meta-table td{padding:8px 0;border-bottom:1px solid var(--border);vertical-align:top}
+.meta-table tr:last-child td{border-bottom:none}
+.meta-key{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--steel);letter-spacing:0.08em;width:160px}
+.meta-val{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--cream)}
+
+/* SECTION */
+.section{margin-bottom:48px;animation:fadeUp 0.5s ease both}
+.section:nth-child(2){animation-delay:0.15s}
+.section:nth-child(3){animation-delay:0.2s}
+.section:nth-child(4){animation-delay:0.25s}
+.section:nth-child(5){animation-delay:0.3s}
+.section:nth-child(6){animation-delay:0.35s}
+.section:nth-child(7){animation-delay:0.4s}
+.section:nth-child(8){animation-delay:0.45s}
+.section:nth-child(9){animation-delay:0.5s}
+.section:nth-child(10){animation-delay:0.55s}
+.sec-num{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:4px}
+.sec-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1rem;letter-spacing:-0.01em;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.body{font-size:0.92rem;line-height:1.85;color:rgba(245,241,235,0.68);margin-bottom:12px}
+.body strong{color:var(--cream)}
+.sub-head{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:0.82rem;color:var(--cream);letter-spacing:0.02em;margin:20px 0 8px;text-transform:uppercase;letter-spacing:0.08em}
+
+/* GOV BOX */
+.gov-box{border-left:3px solid var(--crimson);background:var(--crimson-xs);padding:14px 18px;margin:16px 0;border-radius:0 4px 4px 0}
+.gov-box p{font-family:'Source Serif 4',serif;font-size:0.88rem;color:rgba(245,241,235,0.8);line-height:1.7;font-style:italic}
+
+/* NOTE BOX */
+.note-box{border-left:3px solid var(--gold);background:var(--gold-xs);padding:14px 18px;margin:16px 0;border-radius:0 4px 4px 0}
+.note-box p{font-family:'Source Serif 4',serif;font-size:0.85rem;color:rgba(245,241,235,0.75);line-height:1.65}
+.note-box .note-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px}
+
+/* CODE BLOCK */
+.code-block{background:var(--card2);border:1px solid var(--border);border-radius:6px;padding:16px 20px;margin:12px 0;overflow-x:auto}
+.code-block pre{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:rgba(74,158,107,0.9);line-height:1.7;white-space:pre}
+
+/* COLUMN TABLE */
+.col-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:0.82rem}
+.col-table th{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--steel);letter-spacing:0.1em;text-transform:uppercase;text-align:left;padding:0 12px 10px 0;border-bottom:1px solid var(--border)}
+.col-table td{padding:10px 12px 10px 0;border-bottom:1px solid rgba(245,241,235,0.04);vertical-align:top}
+.col-table tr:last-child td{border-bottom:none}
+.col-letter{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);font-weight:600}
+.col-name{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--crimson);font-weight:600}
+.col-source{font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(245,241,235,0.5)}
+.col-purpose{font-family:'Source Serif 4',serif;font-size:0.85rem;color:rgba(245,241,235,0.6);line-height:1.5}
+
+/* SCENARIO */
+.scenario{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:18px 20px;margin:14px 0}
+.scenario-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px}
+
+/* PHASE */
+.phase{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:18px 20px;margin:14px 0;border-left:3px solid}
+.phase.comfort{border-left-color:var(--steel)}
+.phase.reliance{border-left-color:var(--gold)}
+.phase.evidentiary{border-left-color:var(--green)}
+.phase-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px}
+.comfort .phase-label{color:var(--steel)}
+.reliance .phase-label{color:var(--gold)}
+.evidentiary .phase-label{color:var(--green)}
+.phase-body{font-family:'Source Serif 4',serif;font-size:0.88rem;color:rgba(245,241,235,0.72);line-height:1.65}
+
+/* CHANGE LOG */
+.change-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:0.82rem}
+.change-table th{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--steel);letter-spacing:0.1em;text-transform:uppercase;text-align:left;padding:0 12px 10px 0;border-bottom:1px solid var(--border)}
+.change-table td{padding:9px 12px 9px 0;border-bottom:1px solid rgba(245,241,235,0.04);vertical-align:top;font-size:0.82rem;color:rgba(245,241,235,0.65);line-height:1.5}
+.change-table tr:last-child td{border-bottom:none}
+.change-sec{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--crimson)}
+
+/* FOOTER */
+.doc-footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.footer-ddl{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--steel);letter-spacing:0.06em}
+.footer-ddl span{color:var(--gold)}
+
+@media(max-width:640px){
+  nav{padding:0 20px}
+  .doc{padding:48px 20px 72px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/governance" class="nav-back">&larr; Governance Hub</a>
+  <span class="nav-badge">STD-DDL-LOG-001 &middot; v0.2</span>
+</nav>
+
+<div class="doc">
+
+  <!-- HEADER -->
+  <div class="doc-header">
+    <div class="doc-file">DDL Standards &middot; Governance</div>
+    <h1 class="doc-title">STD-DDL-LOG-001<br><span>The Black Box Standard</span></h1>
+    <div class="doc-sub">Governed Audit Log for DDL Workbooks &middot; v0.2 &middot; 2026-03-28</div>
+    <div class="stamps">
+      <span class="stamp stamp-gold">Ratified</span>
+      <span class="stamp stamp-r">8 LOCK &middot; 1 REVISE</span>
+      <span class="stamp stamp-d">CR-DDL-AUDITLOG-002</span>
+      <span class="stamp stamp-g">AccidentalInsight</span>
+    </div>
+  </div>
+
+  <!-- META -->
+  <div class="section">
+    <div class="sec-num">Standard Metadata</div>
+    <div class="sec-title">Reference Information</div>
+    <table class="meta-table">
+      <tr><td class="meta-key">Standard ID</td><td class="meta-val">STD-DDL-LOG-001</td></tr>
+      <tr><td class="meta-key">Common Name</td><td class="meta-val">The Black Box Standard</td></tr>
+      <tr><td class="meta-key">Version</td><td class="meta-val">0.2</td></tr>
+      <tr><td class="meta-key">Status</td><td class="meta-val">Ratified &mdash; 8 LOCK / 1 REVISE</td></tr>
+      <tr><td class="meta-key">Date</td><td class="meta-val">2026-03-28</td></tr>
+      <tr><td class="meta-key">Author</td><td class="meta-val">Dave Kitchens &middot; Dropdown Logistics</td></tr>
+      <tr><td class="meta-key">Prior Reviews</td><td class="meta-val">CR-DDL-AUDITLOG-001 &middot; CR-DDL-AUDITLOG-002</td></tr>
+      <tr><td class="meta-key">Registry Entries</td><td class="meta-val">FRM-0031 (FORMULATEXT) &middot; PTN-0020 (Governed Audit Log)</td></tr>
+      <tr><td class="meta-key">Dependencies</td><td class="meta-val">STD-EXCEL-001 &middot; STD-EXCEL-002 &middot; FRM-0031</td></tr>
+      <tr><td class="meta-key">Origin</td><td class="meta-val">AccidentalInsight &mdash; GridTactics design session, 2026-03-28</td></tr>
+    </table>
+  </div>
+
+  <!-- CHANGE LOG -->
+  <div class="section">
+    <div class="sec-num">Version History</div>
+    <div class="sec-title">Changes v0.1 &rarr; v0.2</div>
+    <table class="change-table">
+      <thead><tr><th style="width:100px">Section</th><th style="width:200px">Change</th><th>Rationale</th></tr></thead>
+      <tbody>
+        <tr><td class="change-sec">&sect;1 Purpose</td><td>Softened &lsquo;automatic&rsquo; language</td><td>v0.1 overclaimed automation. Operator still declares run date, writes Event, enters Expected. Accurate: reduces dependence on memory.</td></tr>
+        <tr><td class="change-sec">&sect;4.2 Timestamp</td><td>Added Run_Date validation formula</td><td>Templates should fail fast on bad timestamp format.</td></tr>
+        <tr><td class="change-sec">&sect;6 Errors</td><td>Added Scenario 5: external data failure</td><td>Broken Power Query or linked CSV is a real production scenario.</td></tr>
+        <tr><td class="change-sec">&sect;6 Errors</td><td>Added Scenario 6: blank Run_Date</td><td>Stale or blank Run_Date silently corrupts the record.</td></tr>
+        <tr><td class="change-sec">&sect;8 Trust Arc</td><td>Snapshot behavior as Phase 2 requirement</td><td>Live references acceptable at comfort phase. Frozen snapshots required at reliance phase.</td></tr>
+        <tr><td class="change-sec">&sect;8 Trust Arc</td><td>Phase 3 gate added</td><td>Evidentiary phase needs declared conditions, not operator vibes.</td></tr>
+        <tr><td class="change-sec">&sect;10 Template</td><td>Protection guidance added</td><td>Template companion needs explicit protection settings.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- §1 PURPOSE -->
+  <div class="section">
+    <div class="sec-num">&sect;1</div>
+    <div class="sec-title">Purpose</div>
+    <div class="gov-box"><p>&ldquo;The difference between a workbook that produces a result and a workbook that can defend a result.&rdquo;</p></div>
+    <p class="body">A DDL workbook used in production must be able to defend its results &mdash; without relying on the operator&rsquo;s memory, without separate narrative documentation, and without macros.</p>
+    <p class="body">The Governed Audit Log reduces dependence on memory by capturing formula state, results, and timestamps at each production run. It does not eliminate operator involvement &mdash; the operator still declares the run date, describes the event, and enters expected values. <strong>The LOG automates the capture of formula provenance inside a governed run process.</strong></p>
+    <div class="note-box"><div class="note-label">v0.2 note</div><p>&lsquo;Automatic&rsquo; language softened from v0.1. The LOG reduces documentation burden. It does not remove the operator from the process.</p></div>
+  </div>
+
+  <!-- §2 APPLICABILITY -->
+  <div class="section">
+    <div class="sec-num">&sect;2</div>
+    <div class="sec-title">Applicability</div>
+    <div class="sub-head">Mandatory</div>
+    <p class="body">Applies to any workbook that meets one or more of the following conditions:</p>
+    <ul style="margin:8px 0 16px 20px;color:rgba(245,241,235,0.68);font-size:0.9rem;line-height:2">
+      <li>Used in a recurring production process</li>
+      <li>Used for commission calculations, reconciliations, or regulatory reporting</li>
+      <li>Shared externally or with downstream systems</li>
+      <li>Classified as Operational per STD-EXCEL-002</li>
+    </ul>
+    <div class="sub-head">Recommended (not required)</div>
+    <ul style="margin:8px 0 16px 20px;color:rgba(245,241,235,0.68);font-size:0.9rem;line-height:2">
+      <li>Analytical workbooks classified per STD-EXCEL-001</li>
+      <li>One-time exploratory analysis</li>
+      <li>Scratch or disposable workbooks</li>
+    </ul>
+    <div class="sub-head">Operator Declaration</div>
+    <p class="body">Every workbook governed by this standard must declare its classification in the README tab:</p>
+    <div class="code-block"><pre>Workbook Type:     Operational / Analytical
+STD-DDL-LOG-001:   Required / Recommended / Exempt
+Trust Phase:       Comfort / Reliance / Evidentiary</pre></div>
+  </div>
+
+  <!-- §3 LOG TAB -->
+  <div class="section">
+    <div class="sec-num">&sect;3</div>
+    <div class="sec-title">LOG Tab Requirements</div>
+    <div class="sub-head">3.1 Structure</div>
+    <ul style="margin:8px 0 16px 20px;color:rgba(245,241,235,0.68);font-size:0.9rem;line-height:2">
+      <li>A dedicated tab named <code style="font-family:JetBrains Mono,monospace;color:var(--crimson);font-size:0.85em">LOG</code></li>
+      <li>A single structured Excel Table named <code style="font-family:JetBrains Mono,monospace;color:var(--crimson);font-size:0.85em">tbl_Log</code></li>
+      <li>Protected: all columns locked except the active entry row</li>
+      <li>No merged cells anywhere in the LOG tab</li>
+      <li>No volatile functions anywhere in the LOG tab</li>
+    </ul>
+    <div class="sub-head">3.2 Required Columns &mdash; All Eight, Non-Negotiable</div>
+    <table class="col-table">
+      <thead><tr><th>Col</th><th>Name</th><th>Source</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td class="col-letter">A</td><td class="col-name">Run_Date</td><td class="col-source">=Config!Run_Date</td><td class="col-purpose">Frozen operator-declared run date</td></tr>
+        <tr><td class="col-letter">B</td><td class="col-name">Event</td><td class="col-source">Free text</td><td class="col-purpose">Human-readable description of what ran</td></tr>
+        <tr><td class="col-letter">C</td><td class="col-name">Target_Cell</td><td class="col-source">Text &mdash; A1-style ref</td><td class="col-purpose">Identifies the cell being documented</td></tr>
+        <tr><td class="col-letter">D</td><td class="col-name">Formula_Used</td><td class="col-source">=FORMULATEXT(ref)</td><td class="col-purpose">Formula as readable text</td></tr>
+        <tr><td class="col-letter">E</td><td class="col-name">Result</td><td class="col-source">=ref to Target_Cell</td><td class="col-purpose">Value the formula produced this run</td></tr>
+        <tr><td class="col-letter">F</td><td class="col-name">Expected</td><td class="col-source">Operator-entered</td><td class="col-purpose">Governed expected value. &lsquo;N/A&rsquo; if none</td></tr>
+        <tr><td class="col-letter">G</td><td class="col-name">Pass_Fail</td><td class="col-source">=IF(E=F,&ldquo;PASS&rdquo;&hellip;)</td><td class="col-purpose">Automated reconciliation check</td></tr>
+        <tr><td class="col-letter">H</td><td class="col-name">Notes</td><td class="col-source">Free text</td><td class="col-purpose">Context formulas cannot capture</td></tr>
+      </tbody>
+    </table>
+    <div class="sub-head">3.3 Column Order</div>
+    <p class="body">Columns must appear in the order defined above. Column order is a scanner-compatibility requirement. The Anti-Pattern Scanner reads Col D (Formula_Used) by position. Reordering columns breaks scanner output silently. Any columns added beyond H must be appended to the right and documented in the README.</p>
+  </div>
+
+  <!-- §4 TIMESTAMP -->
+  <div class="section">
+    <div class="sec-num">&sect;4</div>
+    <div class="sec-title">Timestamp Governance</div>
+    <div class="gov-box"><p>=NOW() and =TODAY() are explicitly banned as sole timestamp mechanisms in the LOG tab. Both are volatile &mdash; they recalculate on every workbook open, silently rewriting every historical timestamp. A log with volatile timestamps is not a log. It is a display.</p></div>
+    <div class="sub-head">4.2 Governed Method &mdash; Run_Date Named Range</div>
+    <div class="code-block"><pre>SETUP:
+  Config tab, cell B3 (or operator-designated cell)
+  Named range: Run_Date
+  Value: operator sets manually before each production run
+  Format: YYYY-MM-DD text (e.g. 2026-03-28)
+
+VALIDATION (add adjacent to Run_Date on Config tab):
+  =IF(AND(LEN(Run_Date)=10,
+          ISNUMBER(DATEVALUE(Run_Date))),
+       "OK", "FORMAT ERROR — use YYYY-MM-DD")
+
+USAGE IN LOG:
+  Col A formula: =Config!Run_Date
+  Result: all LOG rows for this run share the same
+  intentional, frozen, operator-declared timestamp.</pre></div>
+    <div class="note-box"><div class="note-label">Note</div><p>If Run_Date is blank or invalid, Col A returns an error. This is intentional &mdash; the LOG should not accept a run without a declared date. See &sect;6 Scenario 6.</p></div>
+    <div class="sub-head">4.3 Operator Ritual</div>
+    <p class="body">Before every production run: open Config tab &rarr; update Run_Date &rarr; confirm validation reads OK &rarr; proceed. This is a deliberate governance act. The operator is declaring: <strong>&ldquo;This run happened on this date.&rdquo;</strong> That declaration is itself audit evidence.</p>
+  </div>
+
+  <!-- §5 FORMULATEXT -->
+  <div class="section">
+    <div class="sec-num">&sect;5</div>
+    <div class="sec-title">FORMULATEXT Dependency</div>
+    <p class="body">FORMULATEXT requires Excel 2013 or later. This is the DDL governed baseline. Pre-2013 environments are out of scope for this standard.</p>
+    <div class="sub-head">Fallback for Legacy Environments</div>
+    <p class="body">If a workbook must operate in a pre-2013 environment: document the formula manually in Formula_Used as plain text, prefix with &ldquo;MANUAL: &rdquo;, note the environment limitation in Notes.</p>
+    <div class="gov-box"><p>Legacy fallback is a reduced-assurance exception path. Manual entries are not equivalent to governed automated capture and are not suitable for evidentiary-phase claims without explicit exception documentation.</p></div>
+  </div>
+
+  <!-- §6 ERROR HANDLING -->
+  <div class="section">
+    <div class="sec-num">&sect;6</div>
+    <div class="sec-title">Error Handling</div>
+    <p class="body">Six scenarios are explicitly defined. All other error conditions should be logged as-is with a note in the Notes column.</p>
+
+    <div class="scenario">
+      <div class="scenario-label">Scenario 1 &mdash; Target cell returns an Excel error</div>
+      <div class="code-block"><pre>Result:          Log the error value as-is (#N/A, #REF!, etc.)
+Pass_Fail:       FAIL (automatic)
+Notes:           "ERROR — investigate before relying on this run"
+Operator action: Do not distribute results until resolved</pre></div>
+    </div>
+
+    <div class="scenario">
+      <div class="scenario-label">Scenario 2 &mdash; Target cell contains a hardcode</div>
+      <div class="code-block"><pre>Formula_Used:    FORMULATEXT returns #N/A
+Log entry:       Record "HARDCODE DETECTED" in Formula_Used
+Pass_Fail:       FAIL — governance finding
+Notes:           "STD-EXCEL-001 violation — hardcode in production cell"
+Operator action: Replace hardcode before next production run</pre></div>
+    </div>
+
+    <div class="scenario">
+      <div class="scenario-label">Scenario 3 &mdash; Target cell is a spilled range</div>
+      <div class="code-block"><pre>Target_Cell:     Log the anchor cell only (e.g. D7)
+Formula_Used:    FORMULATEXT of the anchor cell
+Result:          Value of the anchor cell
+Notes:           "Spill range: D7# — [N] rows × [M] cols"
+Rationale:       The anchor formula governs the spill.</pre></div>
+    </div>
+
+    <div class="scenario">
+      <div class="scenario-label">Scenario 4 &mdash; Formula changes between runs</div>
+      <div class="code-block"><pre>No special handling required.
+Run_Date + FORMULATEXT captures formula state per run.
+Version drift is visible by comparing LOG rows across runs.
+This is the standard working as designed.</pre></div>
+    </div>
+
+    <div class="scenario">
+      <div class="scenario-label">Scenario 5 &mdash; External data source failure</div>
+      <div class="code-block"><pre>Applies to: broken Power Query, missing linked CSV,
+            failed external workbook link
+Result:          Log the error value returned by the target cell
+Pass_Fail:       FAIL
+Notes:           "EXTERNAL SOURCE FAILURE — [source name].
+                 Ref ticket: [ticket ID]"
+Operator action: Do not distribute. Restore source and re-run.</pre></div>
+    </div>
+
+    <div class="scenario">
+      <div class="scenario-label">Scenario 6 &mdash; Blank or invalid Run_Date</div>
+      <div class="code-block"><pre>Condition:       Config!Run_Date is blank, stale, or invalid format
+Col A:           Returns error or stale date
+Operator action: Stop. Do not proceed with the run.
+                 Update Run_Date. Confirm validation reads OK.
+                 Re-run from the beginning.
+Rationale:       A run without a declared date cannot be
+                 defended. The LOG row would be misleading.</pre></div>
+    </div>
+  </div>
+
+  <!-- §7 SCANNER -->
+  <div class="section">
+    <div class="sec-num">&sect;7</div>
+    <div class="sec-title">Scanner Compatibility</div>
+    <p class="body">The LOG tab must be designed for scanner compatibility from day one. The Anti-Pattern Scanner and future Excelligence tooling will read LOG tab output to detect formula drift and provenance gaps.</p>
+    <ul style="margin:8px 0 16px 20px;color:rgba(245,241,235,0.68);font-size:0.9rem;line-height:2">
+      <li>Column order fixed per &sect;3.2</li>
+      <li>No merged cells in the LOG tab</li>
+      <li>Structured table formatting (tbl_Log)</li>
+      <li>FORMULATEXT output in Col D &mdash; consistent, always</li>
+      <li>No volatile functions anywhere in the LOG tab</li>
+      <li>Any columns added beyond Col H must be appended to the right and documented</li>
+    </ul>
+    <div class="note-box"><div class="note-label">Future capability</div><p>When the scanner gains LOG-reading functionality it can detect version-to-version formula drift, anti-pattern introduction across runs, and formula provenance gaps. This capability is designed in from day one.</p></div>
+  </div>
+
+  <!-- §8 TRUST ARC -->
+  <div class="section">
+    <div class="sec-num">&sect;8</div>
+    <div class="sec-title">Trust-Building Arc</div>
+    <p class="body">This standard is experimental with guardrails. It ships as a comfort layer. Trust builds through sustained use. Phases describe the operator&rsquo;s relationship with the tool &mdash; they are not compliance tiers.</p>
+
+    <div class="phase comfort">
+      <div class="phase-label">Phase 1 &mdash; Comfort (v0.2 default)</div>
+      <div class="phase-body">Use the LOG tab. Watch it capture runs. Validate it against your own memory of what ran. Live references in Formula_Used and Result are acceptable at this phase. The LOG is a comfort layer.</div>
+    </div>
+
+    <div class="note-box"><div class="note-label">Phase 1 limitation</div><p>Snapshot behavior is not required at Phase 1. If a formula changes between runs, prior rows may reflect current state rather than historical state. This is a known limitation and is acceptable during the trust-building period.</p></div>
+
+    <div class="phase reliance">
+      <div class="phase-label">Phase 2 &mdash; Reliance</div>
+      <div class="phase-body">After sustained use across multiple production runs, begin treating LOG output as the authoritative record. Stop relying on memory. <strong>Snapshot behavior is required at Phase 2</strong> &mdash; after each run, Formula_Used (Col D) and Result (Col E) rows must be frozen as values before the workbook is closed.</div>
+    </div>
+
+    <div class="phase evidentiary">
+      <div class="phase-label">Phase 3 &mdash; Evidentiary</div>
+      <div class="phase-body">Present LOG output to external reviewers as formal documentation of formula provenance. Three gates must be declared before claiming evidentiary phase: (1) minimum 3 production runs with LOG active, (2) snapshot behavior in practice across all recent runs, (3) operator has manually reviewed at least one LOG entry against actual workbook output and confirmed accuracy.</div>
+    </div>
+
+    <p class="body" style="margin-top:16px">Phase progression is at operator discretion. Declare the phase in the README tab.</p>
+  </div>
+
+  <!-- §9 RELATIONSHIPS -->
+  <div class="section">
+    <div class="sec-num">&sect;9</div>
+    <div class="sec-title">Relationship to Existing Standards</div>
+    <table class="col-table">
+      <thead><tr><th style="width:160px">Standard / Entry</th><th>Relationship</th></tr></thead>
+      <tbody>
+        <tr><td class="col-name">STD-EXCEL-001</td><td class="col-purpose">The audit log is the enforcement layer for formula governance. STD-EXCEL-001 defines what good formulas look like. This standard proves that good formulas were actually used.</td></tr>
+        <tr><td class="col-name">STD-EXCEL-002</td><td class="col-purpose">Any workbook classified as Operational must have a LOG tab. The INPUT &rarr; LOGIC &rarr; OUTPUT architecture is made traceable by making LOGIC visible and timestamped.</td></tr>
+        <tr><td class="col-name">FRM-0031</td><td class="col-purpose">FORMULATEXT is the primary tool of the LOG tab. The LOG depends on FRM-0031 as its capture mechanism.</td></tr>
+        <tr><td class="col-name">PTN-0020</td><td class="col-purpose">PTN-0020 remains in the registry as the reference implementation. Pattern describes. This standard mandates.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- §10 REFERENCE IMPL -->
+  <div class="section">
+    <div class="sec-num">&sect;10</div>
+    <div class="sec-title">Reference Implementation</div>
+    <div class="code-block"><pre>Tab:          LOG
+Table:        tbl_Log
+Config:       Run_Date named range on Config tab
+Validation:   IFERROR format check adjacent to Run_Date
+Protection:   Sheet protection ON
+              All columns locked
+              Unlock only: active entry row (first empty row)
+              Workbook protection: structure locked
+Columns:      A–H per §3.2 in defined order
+Scanner cols: Any additions must be appended after H
+              Document in README: column name, purpose, added date</pre></div>
+    <p class="body">A canonical template workbook accompanies this standard. All new production workbooks should begin from the template. The template includes the LOG tab pre-configured, the Config tab with Run_Date named range and validation formula, and README tab with the operator declaration fields.</p>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="doc-footer">
+    <div class="footer-ddl"><span>Dropdown Logistics</span> &middot; Chaos &rarr; Structured &rarr; Automated</div>
+    <div class="footer-ddl">dropdownlogistics.com</div>
+  </div>
+
+</div>
+</body>
+</html>
