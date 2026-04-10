@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -252,7 +252,7 @@ body::after{
   margin-top:2px;
 }
 
-/* Node positions — 8 nodes on 3 rings */
+/* Node positions â€” 8 nodes on 3 rings */
 /* Ring 1 (inner, r=100): AuditForge, CanonPress */
 /* Ring 2 (mid, r=160): BlindSpot/D&A, Excelligence, Ledger, KV */
 /* Ring 3 (outer, r=220): DexVerse, Legacy */
@@ -290,7 +290,7 @@ body::after{
   animation:nodeAppear 0.5s ease 1.3s both, orb8 40s linear 1.3s infinite;
 }
 
-/* Label positions — always above node */
+/* Label positions â€” always above node */
 .node-auditforge .node-label{top:-18px;left:50%;transform:translateX(-50%)}
 .node-canonpress .node-label{top:-18px;left:50%;transform:translateX(-50%)}
 .node-da .node-label{top:-18px;left:50%;transform:translateX(-50%)}
@@ -308,7 +308,7 @@ body::after{
   opacity:0.15;
 }
 
-/* PRODUCT GRID — below orbital */
+/* PRODUCT GRID â€” below orbital */
 .product-grid{
   max-width:1100px;
   margin:0 auto;
@@ -469,6 +469,16 @@ footer{
   .orbital-system{width:300px;height:300px}
   .product-grid{grid-template-columns:1fr}
 }
+@media (max-width: 768px) {
+  .orbital-container {
+    transform: scale(0.55);
+    transform-origin: center top;
+  }
+  .orbital-hero {
+    overflow: hidden;
+    min-height: 420px;
+  }
+}
 </style>
 </head>
 <body>
@@ -479,9 +489,9 @@ footer{
   <div class="hero-glow"></div>
 
   <div class="hero-top">
-    <div class="hero-eyebrow">One operator · Eight products · One methodology</div>
+    <div class="hero-eyebrow">One operator Â· Eight products Â· One methodology</div>
     <h1 class="hero-title">Dropdown <span>Logistics</span></h1>
-    <div class="hero-sub">CottageHumble · Chaos → Structured → Automated</div>
+    <div class="hero-sub">CottageHumble Â· Chaos â†’ Structured â†’ Automated</div>
     <div class="hero-tagline">Humble surface. Cathedral underneath.</div>
   </div>
 
@@ -497,7 +507,7 @@ footer{
 
 
 
-    <!-- CENTER — DD Stamp -->
+    <!-- CENTER â€” DD Stamp -->
     <div class="stamp-center" onclick="window.location.href='/ddl'">
       <svg viewBox="0 0 140 140" width="90" height="90">
         <defs>
@@ -521,7 +531,7 @@ footer{
 
     <!-- NODE: AuditForge -->
     <a class="orbital-node node-auditforge" href="https://auditforge.dev" target="_blank"
-       data-tip="Governed audit documentation · auditforge.dev">
+       data-tip="Governed audit documentation Â· auditforge.dev">
       <div class="node-inner">
         <span class="node-abbr" style="color:#B23531">AF</span>
         <div class="node-dot" style="background:#B23531"></div>
@@ -531,7 +541,7 @@ footer{
 
     <!-- NODE: CanonPress -->
     <a class="orbital-node node-canonpress" href="/canonpress"
-       data-tip="Governed publication · 4 series">
+       data-tip="Governed publication Â· 4 series">
       <div class="node-inner">
         <span class="node-abbr" style="color:#B23531">CP</span>
         <div class="node-dot" style="background:#B23531"></div>
@@ -541,7 +551,7 @@ footer{
 
     <!-- NODE: D&A Analytics -->
     <a class="orbital-node node-da" href="https://blindspot.bet" target="_blank"
-       data-tip="BlindSpot + PositionBook · D&amp;A Analytics">
+       data-tip="BlindSpot + PositionBook Â· D&amp;A Analytics">
       <div class="node-inner">
         <span class="node-abbr" style="color:#22C55E">D&A</span>
         <div class="node-dot" style="background:#22C55E"></div>
@@ -551,7 +561,7 @@ footer{
 
     <!-- NODE: Excelligence -->
     <a class="orbital-node node-excelligence" href="https://excelligence.dev" target="_blank"
-       data-tip="Excel knowledge graph · excelligence.dev">
+       data-tip="Excel knowledge graph Â· excelligence.dev">
       <div class="node-inner">
         <span class="node-abbr" style="color:#D4A843">EX</span>
         <div class="node-dot" style="background:#D4A843"></div>
@@ -561,9 +571,9 @@ footer{
 
     <!-- NODE: Ledger -->
     <a class="orbital-node node-ledger" href="/ledger"
-       data-tip="Verified professional records · 5 verticals">
+       data-tip="Verified professional records Â· 5 verticals">
       <div class="node-inner">
-        <span class="node-abbr" style="color:#B23531;font-family:Georgia,serif;font-style:italic;font-size:1rem">ℒ</span>
+        <span class="node-abbr" style="color:#B23531;font-family:Georgia,serif;font-style:italic;font-size:1rem">â„’</span>
         <div class="node-dot" style="background:#B23531"></div>
       </div>
       <span class="node-label">Ledger</span>
@@ -571,7 +581,7 @@ footer{
 
     <!-- NODE: Knowledge Vault / Dex Jr. -->
     <a class="orbital-node node-kv" href="/dexverse/dex-jr"
-       data-tip="524K+ chunks · Dex Jr. · Seat 1010">
+       data-tip="524K+ chunks Â· Dex Jr. Â· Seat 1010">
       <div class="node-inner">
         <span class="node-abbr" style="color:#2C7A7B">KV</span>
         <div class="node-dot" style="background:#2C7A7B"></div>
@@ -581,7 +591,7 @@ footer{
 
     <!-- NODE: DexVerse -->
     <a class="orbital-node node-dexverse" href="/dexverse"
-       data-tip="AI council · DexVerse · Governance">
+       data-tip="AI council Â· DexVerse Â· Governance">
       <div class="node-inner">
         <span class="node-abbr" style="color:#8A6CC9">DV</span>
         <div class="node-dot" style="background:#8A6CC9"></div>
@@ -591,7 +601,7 @@ footer{
 
     <!-- NODE: Legacy -->
     <a class="orbital-node node-legacy" href="/legacy"
-       data-tip="The Bench · Dossiers · Memoir · Early work">
+       data-tip="The Bench Â· Dossiers Â· Memoir Â· Early work">
       <div class="node-inner">
         <span class="node-abbr" style="color:#6B7B8D">LG</span>
         <div class="node-dot" style="background:#6B7B8D"></div>
@@ -610,27 +620,27 @@ footer{
 <!-- TICKER -->
 <div class="ticker">
   <div class="ticker-inner">
-    <span class="ticker-item">AUDITFORGE</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">BLINDSPOT</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">POSITIONBOOK</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">EXCELLIGENCE</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">LEDGER</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">CANONPRESS</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">DDL KNOWLEDGE VAULT</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">DEX JR.</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">ONE OPERATOR</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">CHAOS → STRUCTURED → AUTOMATED</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">AUDITFORGE</span><span class="ticker-sep">Â·</span>
+    <span class="ticker-item">BLINDSPOT</span><span class="ticker-sep">Â·</span>
+    <span class="ticker-item">POSITIONBOOK</span><span class="ticker-sep">Â·</span>
+    <span class="ticker-item">EXCELLIGENCE</span><span class="ticker-sep">Â·</span>
+    <span class="ticker-item">LEDGER</span><span class="ticker-sep">Â·</span>
+    <span class="ticker-item">CANONPRESS</span><span class="ticker-sep">Â·</span>
+    <span class="ticker-item">DDL KNOWLEDGE VAULT</span><span class="ticker-sep">Â·</span>
+    <span class="ticker-item">DEX JR.</span><span class="ticker-sep">Â·</span>
+    <span class="ticker-item">ONE OPERATOR</span><span class="ticker-sep">Â·</span>
+    <span class="ticker-item">CHAOS â†’ STRUCTURED â†’ AUTOMATED</span><span class="ticker-sep">Â·</span>
     <!-- duplicate -->
-    <span class="ticker-item">AUDITFORGE</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">BLINDSPOT</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">POSITIONBOOK</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">EXCELLIGENCE</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">LEDGER</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">CANONPRESS</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">DDL KNOWLEDGE VAULT</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">DEX JR.</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">ONE OPERATOR</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">CHAOS → STRUCTURED → AUTOMATED</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">AUDITFORGE</span><span class="ticker-sep">Â·</span>
+    <span class="ticker-item">BLINDSPOT</span><span class="ticker-sep">Â·</span>
+    <span class="ticker-item">POSITIONBOOK</span><span class="ticker-sep">Â·</span>
+    <span class="ticker-item">EXCELLIGENCE</span><span class="ticker-sep">Â·</span>
+    <span class="ticker-item">LEDGER</span><span class="ticker-sep">Â·</span>
+    <span class="ticker-item">CANONPRESS</span><span class="ticker-sep">Â·</span>
+    <span class="ticker-item">DDL KNOWLEDGE VAULT</span><span class="ticker-sep">Â·</span>
+    <span class="ticker-item">DEX JR.</span><span class="ticker-sep">Â·</span>
+    <span class="ticker-item">ONE OPERATOR</span><span class="ticker-sep">Â·</span>
+    <span class="ticker-item">CHAOS â†’ STRUCTURED â†’ AUTOMATED</span><span class="ticker-sep">Â·</span>
   </div>
 </div>
 
@@ -713,7 +723,7 @@ footer{
       <div class="pc-name">Legacy</div>
       <span class="pc-status" style="color:#6B7B8D;background:rgba(107,123,141,0.1);border-color:rgba(107,123,141,0.2)">Archive</span>
     </div>
-    <div class="pc-url">The Bench · Dossiers · Memoir · Early work</div>
+    <div class="pc-url">The Bench Â· Dossiers Â· Memoir Â· Early work</div>
     <div class="pc-desc">Where it started. Still here.</div>
   </a>
 
@@ -722,18 +732,18 @@ footer{
 <!-- METHODOLOGY STRIP -->
 <div class="methodology">
   <span class="meth-item active">Chaos</span>
-  <span class="meth-arrow">→</span>
+  <span class="meth-arrow">â†’</span>
   <span class="meth-item active">Structured</span>
-  <span class="meth-arrow">→</span>
+  <span class="meth-arrow">â†’</span>
   <span class="meth-item active">Automated</span>
-  <span style="font-family:'JetBrains Mono',monospace;font-size:0.55rem;color:rgba(107,123,141,0.5);letter-spacing:0.08em;margin-left:24px">ONE OPERATOR · EIGHT PRODUCTS · CPA</span>
+  <span style="font-family:'JetBrains Mono',monospace;font-size:0.55rem;color:rgba(107,123,141,0.5);letter-spacing:0.08em;margin-left:24px">ONE OPERATOR Â· EIGHT PRODUCTS Â· CPA</span>
 </div>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-left">
-    Dropdown Logistics · Dave Kitchens · CPA<br>
-    Chaos → Structured → Automated · 2026
+    Dropdown Logistics Â· Dave Kitchens Â· CPA<br>
+    Chaos â†’ Structured â†’ Automated Â· 2026
   </div>
   <div class="footer-center">
     <a class="footer-link" href="/ddl">DDL</a>
@@ -776,3 +786,4 @@ nodes.forEach(node => {
 
 </body>
 </html>
+
