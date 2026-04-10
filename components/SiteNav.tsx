@@ -14,6 +14,7 @@ const PRODUCTS = [
 
 const DDL_LINKS = [
   { label: 'Governance', href: '/governance' },
+  { label: 'System Stack', href: '/system-stack' },
   { label: 'Charter', href: '/ddl/charter' },
   { label: 'DexVerse', href: '/dexverse' },
   { label: 'MDN Tool', href: '/tools/mdn' },
