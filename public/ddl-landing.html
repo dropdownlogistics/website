@@ -469,14 +469,18 @@ footer{
   .orbital-system{width:300px;height:300px}
   .product-grid{grid-template-columns:1fr}
 }
+/* Mobile: the orbit keyframes use fixed pixel translateX values (up to 265px
+   from center), so shrinking the container alone still clips outer nodes.
+   Scale the whole orbital so nodes move together with the visual, and
+   collapse the vertical whitespace the scale leaves behind.
+   Placed after the 560px rule so it overrides width/height there. */
 @media (max-width: 768px) {
-  .orbital-container {
+  .orbital-system {
+    width: 620px;
+    height: 620px;
     transform: scale(0.55);
-    transform-origin: center top;
-  }
-  .orbital-hero {
-    overflow: hidden;
-    min-height: 420px;
+    transform-origin: center center;
+    margin: -140px 0;
   }
 }
 </style>
