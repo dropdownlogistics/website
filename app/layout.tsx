@@ -11,8 +11,23 @@ const SearchProvider = dynamic(() => import('@/components/SearchProvider'), {
   ssr: false,
 });
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.dropdownlogistics.com'),
   title: 'Dropdown Logistics',
   description: 'Chaos → Structured → Automated. One-person ops studio.',
+  openGraph: {
+    title: 'Dropdown Logistics',
+    description: 'Humble surface. Cathedral underneath. One operator. Chaos → Structured → Automated.',
+    url: 'https://www.dropdownlogistics.com',
+    siteName: 'Dropdown Logistics',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Dropdown Logistics' }],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Dropdown Logistics',
+    description: 'Humble surface. Cathedral underneath.',
+    images: ['/og-image.png'],
+  },
 };
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
