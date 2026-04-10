@@ -174,14 +174,13 @@ export default function ExcelligenceLanding() {
         margin: "0 auto 56px",
         padding: "0 24px",
         display: "grid",
-        gridTemplateColumns: "repeat(4, 1fr)",
+        gridTemplateColumns: "repeat(3, 1fr)",
         gap: 12,
       }}>
         {[
-          { label: "Entries", value: 50 },
-          { label: "Edges", value: 118 },
-          { label: "Aliases", value: 148 },
-          { label: "Checks Passed", value: 574 },
+          { label: "Entries", value: 105 },
+          { label: "Edges", value: 228 },
+          { label: "Aliases", value: 224 },
         ].map((stat, i) => (
           <div key={i} style={{
             background: "rgba(178,53,49,0.04)",
@@ -235,7 +234,7 @@ export default function ExcelligenceLanding() {
           gap: 10,
         }}>
           {Object.entries(TYPE_COLORS).map(([code, color]) => {
-            const counts = { FRM: 17, PTN: 7, KEY: 4, CON: 5, ARC: 5, ANT: 6, PQ: 6 };
+            const counts = { FRM: 30, PTN: 19, KEY: 8, CON: 11, ARC: 11, ANT: 16, PQ: 10 };
             return (
               <div key={code} style={{
                 background: `${color}0A`,
@@ -287,10 +286,10 @@ export default function ExcelligenceLanding() {
 
         <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
           {[
-            { tier: "Beginner", count: 12, desc: "Foundation concepts. Where everyone starts." },
-            { tier: "Intermediate", count: 16, desc: "Comfortable daily use. The working layer." },
-            { tier: "Advanced", count: 17, desc: "Complex combinations and architecture." },
-            { tier: "Expert", count: 5, desc: "Institutional-grade patterns. Full Dave." },
+            { tier: "Beginner", count: 30, desc: "Foundation concepts. Where everyone starts." },
+            { tier: "Intermediate", count: 40, desc: "Comfortable daily use. The working layer." },
+            { tier: "Advanced", count: 29, desc: "Complex combinations and architecture." },
+            { tier: "Expert", count: 6, desc: "Institutional-grade patterns. Full Dave." },
           ].map((t, i) => (
             <div key={i} style={{
               display: "flex",
@@ -472,15 +471,15 @@ export default function ExcelligenceLanding() {
             },
             {
               icon: "🧭",
-              title: "Learning Tracks",
-              desc: "Curated paths through the graph for auditors, dashboard builders, and Power Query learners. The graph generates the curriculum.",
-              status: "Designed",
+              title: "/learn/ Wing",
+              desc: "A governed decomposition library with registry-linked entries. Six entries live: Hardcoded Values, Control Panel, LET, XLOOKUP, SUMIFS, LAMBDA. Four-tab format per entry. Live at excelligence.dev/learn.",
+              status: "Live",
             },
             {
               icon: "🤖",
-              title: "AI-Grounded Search",
-              desc: "Ask a question in plain language. A governed local LLM searches the registry and returns entries — not hallucinations.",
-              status: "In Development",
+              title: "Anti-Pattern Scanner",
+              desc: "Registry-driven anti-pattern detection. 16 ANT entries, ~$0.02/scan. No hardcoded rules — the registry is the rulebook. Live at excelligence.dev/scanner.",
+              status: "Live",
             },
             {
               icon: "📊",
@@ -499,6 +498,18 @@ export default function ExcelligenceLanding() {
               title: "Workbook Scanner",
               desc: "Upload a workbook. The system maps your formulas to the registry, detects anti-patterns, and suggests governed upgrades.",
               status: "Cathedral",
+            },
+            {
+              icon: "♟",
+              title: "GridTactics",
+              desc: "Formula chess. Declare a piece, solve the target cell, score based on what you used. Game B is the default — here's the target, get there however you want. Game A is Hard Mode — commit before you see the board. Live at excelligence.dev/gridtactics.",
+              status: "Live",
+            },
+            {
+              icon: "🃏",
+              title: "Formula Card",
+              desc: "A persistent player identity card showing tier mastery, favorite formula, and total sessions. Powered by Ledger. Your score becomes your credential.",
+              status: "Designed",
             },
           ].map((item, i) => (
             <div key={i} style={{
@@ -520,7 +531,8 @@ export default function ExcelligenceLanding() {
               <div style={{
                 fontFamily: "'JetBrains Mono', monospace",
                 fontSize: 9,
-                color: item.status === "In Development" ? "#C49A3C"
+                color: item.status === "Live" ? "#4A9E6B"
+                     : item.status === "In Development" ? "#C49A3C"
                      : item.status === "Designed" ? "#6B9DC2"
                      : item.status === "Cathedral" ? "#8a6cc9"
                      : "#5a5648",
@@ -573,7 +585,7 @@ export default function ExcelligenceLanding() {
           color: "#3a3830",
           marginTop: 12,
         }}>
-          50 entries · 118 edges · 7 types · 4 tiers · Interactive explorer with Path Finder
+          105 entries · 228 edges · 7 types · 4 tiers · Interactive explorer with Path Finder
         </p>
       </div>
 
@@ -601,7 +613,7 @@ export default function ExcelligenceLanding() {
           fontStyle: "italic",
           marginBottom: 16,
         }}>
-          Built by one person. Governed by a nine-model council. Validated by 574 checks.
+          Built by one person. Governed by a nine-model council.
         </div>
         <div style={{
           fontFamily: "'JetBrains Mono', monospace",
