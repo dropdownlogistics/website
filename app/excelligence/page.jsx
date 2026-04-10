@@ -551,33 +551,64 @@ export default function ExcelligenceLanding() {
         padding: "0 24px",
         textAlign: "center",
       }}>
-        <a
-          href="/excelligence/explorer"
-          style={{
-            display: "inline-block",
-            padding: "16px 48px",
-            background: "#B23531",
-            color: "#F5F1EB",
-            fontSize: 15,
-            fontWeight: 600,
-            fontFamily: "'Space Grotesk', sans-serif",
-            borderRadius: 8,
-            textDecoration: "none",
-            letterSpacing: 0.5,
-            transition: "all 0.2s",
-            border: "1px solid rgba(178,53,49,0.5)",
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = "#C94440";
-            e.currentTarget.style.transform = "translateY(-1px)";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = "#B23531";
-            e.currentTarget.style.transform = "translateY(0)";
-          }}
-        >
-          Enter the Graph →
-        </a>
+        <div style={{ display: "inline-flex", gap: 12, flexWrap: "wrap", justifyContent: "center" }}>
+          <a
+            href="/excelligence/explorer"
+            style={{
+              display: "inline-block",
+              padding: "16px 48px",
+              background: "#B23531",
+              color: "#F5F1EB",
+              fontSize: 15,
+              fontWeight: 600,
+              fontFamily: "'Space Grotesk', sans-serif",
+              borderRadius: 8,
+              textDecoration: "none",
+              letterSpacing: 0.5,
+              transition: "all 0.2s",
+              border: "1px solid rgba(178,53,49,0.5)",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "#C94440";
+              e.currentTarget.style.transform = "translateY(-1px)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "#B23531";
+              e.currentTarget.style.transform = "translateY(0)";
+            }}
+          >
+            Enter the Graph →
+          </a>
+          <a
+            href="https://excelligence.dev"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: "inline-block",
+              padding: "16px 32px",
+              background: "transparent",
+              color: "#F5F1EB",
+              fontSize: 15,
+              fontWeight: 600,
+              fontFamily: "'Space Grotesk', sans-serif",
+              borderRadius: 8,
+              textDecoration: "none",
+              letterSpacing: 0.5,
+              transition: "all 0.2s",
+              border: "1px solid rgba(178,53,49,0.5)",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "rgba(178,53,49,0.08)";
+              e.currentTarget.style.transform = "translateY(-1px)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "transparent";
+              e.currentTarget.style.transform = "translateY(0)";
+            }}
+          >
+            Visit excelligence.dev ↗
+          </a>
+        </div>
 
         <p style={{
           fontFamily: "'JetBrains Mono', monospace",
