@@ -61,22 +61,31 @@ const receipts = [
   { time: 'Day 2 · Afternoon', event: 'Global search Cmd+K. Searches controls, risks, processes simultaneously. Results grouped, text highlighted.' },
   { time: 'Day 2 · Evening', event: 'Analytics dashboard shipped. Council-ratified KPIs. Control health heatmap, workflow funnel, coverage rate.' },
   { time: 'Day 2 · Evening', event: 'auditforge.dev registered. Live on Vercel. Auto-deploy from GitHub. The product has a home.' },
+  { time: '', event: '', section: 'APRIL 11, 2026 — THE NEXT LAYER' },
+  { time: 'April 11 · Morning', event: 'Full codebase audit. Every bug found and fixed — auth middleware that had never run, regex validators broken since day one, mojibake in the schema, duplicate records in the database. Zero known bugs going into the next build.' },
+  { time: 'April 11 · Afternoon', event: 'Auditors roster shipped. 47 auditors across 10 teams, grouped by team, sorted by role. Basketball card modal with 8-axis SVG radar chart. \u2018How am I getting better?\u2019 framing. Hover tooltip with top strengths before you click.' },
+  { time: 'April 11 · Evening', event: 'Engagement Orbital shipped. 6-node SVG orbital showing team, controls, budget, timeline, and process areas for each engagement. Click any audit — see the full picture. Four-panel detail view: Team Roster, Controls in Scope, Engagement Details, Engagement Analytics.' },
+  { time: 'April 11 · Evening', event: '1,099 time entries seeded across 4 FY2025 engagements. Realistic hour distributions, 3-tier staffing model, natural variance. Time Analytics dashboard live: 7,777.9 total hours, 7,516.9 billable, by-auditor, by-component, by-engagement, monthly trend.' },
 ];
 
 const stats = [
-  { n: '15',  label: 'controls in live schema' },
-  { n: '14',  label: 'risks mapped' },
-  { n: '7',   label: 'processes structured' },
-  { n: '4',   label: 'document generators' },
-  { n: '<1s', label: 'per document' },
-  { n: '5+',  label: 'live UI views' },
-  { n: '2',   label: 'days' },
+  { n: '106',   label: 'controls' },
+  { n: '9',     label: 'process areas' },
+  { n: '17',    label: 'risks mapped' },
+  { n: '4',     label: 'document generators' },
+  { n: '47',    label: 'auditors' },
+  { n: '10',    label: 'teams' },
+  { n: '4',     label: 'FY2025 engagements' },
+  { n: '1,099', label: 'time entries' },
+  { n: '\u2713',label: 'live analytics dashboard' },
+  { n: '\u2713',label: 'engagement orbital' },
+  { n: '<1s',   label: 'per document' },
 ];
 
 const what = [
   {
     head: 'Define', color: C.teal,
-    lines: ['Star schema. Fact_Control at center.', '7 dimension tables. 3 bridge tables.', 'Effective dating on all relationships.', 'COSO 2013, SOX/PCAOB, COBIT 2019.'],
+    lines: ['Star schema. Fact_Control at center.', '106 controls \u00B7 9 process areas \u00B7 17 risks mapped.', '47 auditors with verified skill tokens.', '4 engagements with full team and scope management.', 'Effective dating on all relationships.', 'COSO 2013, SOX/PCAOB, COBIT 2019.'],
   },
   {
     head: 'Generate', color: C.copper,
@@ -160,10 +169,16 @@ export default function AuditForgeLanding() {
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
             {receipts.map((r, i) => (
-              <div key={i} style={{ display: 'grid', gridTemplateColumns: '140px 1fr', gap: 20, padding: '14px 0', borderBottom: i < receipts.length - 1 ? `1px solid ${C.border}` : 'none', alignItems: 'flex-start' }}>
-                <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.6rem', color: C.teal, paddingTop: 2, letterSpacing: '0.03em' }}>{r.time}</div>
-                <div style={{ fontFamily: "'Source Serif 4', serif", fontSize: '0.9rem', color: C.dim, lineHeight: 1.6 }}>{r.event}</div>
-              </div>
+              r.section ? (
+                <div key={i} style={{ paddingTop: 40, paddingBottom: 12, borderBottom: `1px solid ${C.border}` }}>
+                  <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.6rem', color: C.copper, letterSpacing: '0.15em' }}>{r.section}</div>
+                </div>
+              ) : (
+                <div key={i} style={{ display: 'grid', gridTemplateColumns: '140px 1fr', gap: 20, padding: '14px 0', borderBottom: i < receipts.length - 1 ? `1px solid ${C.border}` : 'none', alignItems: 'flex-start' }}>
+                  <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.6rem', color: C.teal, paddingTop: 2, letterSpacing: '0.03em' }}>{r.time}</div>
+                  <div style={{ fontFamily: "'Source Serif 4', serif", fontSize: '0.9rem', color: C.dim, lineHeight: 1.6 }}>{r.event}</div>
+                </div>
+              )
             ))}
           </div>
 
@@ -192,6 +207,36 @@ export default function AuditForgeLanding() {
               </div>
             </div>
           ))}
+        </div>
+      </div>
+
+      {/* THE OPERATING SYSTEM */}
+      <div style={{ background: C.card, borderTop: `1px solid ${C.border}`, borderBottom: `1px solid ${C.border}` }}>
+        <div style={{ maxWidth: 960, margin: '0 auto', padding: '64px 24px' }}>
+          <SLabel>THE OPERATING SYSTEM</SLabel>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 12, marginBottom: 40 }}>
+            {[
+              { label: 'Controls', desc: 'The universe of what gets audited', color: C.teal },
+              { label: 'Teams', desc: 'Who does the work, verified and profiled', color: C.copper },
+              { label: 'Time', desc: 'Hours tracked, billed, and analyzed', color: C.crimsonAF },
+              { label: 'Utilization', desc: 'Budget vs actual, billable percentage, capacity by engagement', color: C.teal },
+              { label: 'Capacity', desc: 'Coming next', color: C.steel },
+              { label: 'Revenue', desc: 'Coming next', color: C.steel },
+            ].map((item, i) => (
+              <div key={i} style={{ background: C.navy, border: `1px solid ${C.border}`, borderLeft: `2px solid ${item.color}`, borderRadius: 6, padding: '16px 20px' }}>
+                <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: '0.95rem', color: item.color, marginBottom: 6 }}>{item.label}</div>
+                <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.6rem', color: C.dim, lineHeight: 1.5 }}>{item.desc}</div>
+              </div>
+            ))}
+          </div>
+          <div style={{ borderLeft: `2px solid ${C.teal}`, paddingLeft: 24, maxWidth: 640 }}>
+            <div style={{ fontFamily: "'Source Serif 4', serif", fontSize: '1rem', color: C.dim, lineHeight: 1.8, marginBottom: 12 }}>
+              AuditForge started as a document generator. It became the operating system the document generator lives inside. The star schema holds all of it.
+            </div>
+            <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.7rem', color: C.copper, letterSpacing: '0.05em' }}>
+              The architecture does not change. The data does.
+            </div>
+          </div>
         </div>
       </div>
 
