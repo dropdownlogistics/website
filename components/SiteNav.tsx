@@ -10,6 +10,7 @@ const PRODUCTS = [
   { label: 'Excelligence', href: 'https://excelligence.dev', external: true, color: '#D4A843' },
   { label: 'CanonPress', href: '/canonpress', external: false, color: '#B23531' },
   { label: 'Knowledge Vault', href: '/knowledge-vault', external: false, color: '#2C7A7B' },
+  { label: 'WorkBench', href: '/workbench', external: false, color: '#B23531' },
 ];
 
 const DDL_LINKS = [
