@@ -1,0 +1,332 @@
+{
+  "_meta": {
+    "document": "brand-tokens.json",
+    "version": "1.0.0",
+    "date": "2026-03-15",
+    "operator": "Dave Kitchens",
+    "studio": "Dropdown Logistics",
+    "system": "CottageHumble",
+    "tagline": "Chaos → Structured → Automated",
+    "note": "This file is the canonical source of truth for all DDL brand tokens. No product code should hardcode a color that exists here. Reference this file."
+  },
+
+  "global": {
+    "backgrounds": {
+      "navy":  { "value": "#0D1B2A", "role": "Primary background. The floor. Never override." },
+      "card":  { "value": "#10202F", "role": "Card / surface. Slightly lighter than navy." },
+      "card2": { "value": "#0F1D2A", "role": "Alternative card. Between navy and card." }
+    },
+    "text": {
+      "cream": { "value": "#F5F1EB", "role": "Primary text. Warm white." },
+      "steel": { "value": "#6B7B8D", "role": "Secondary text. Muted labels." }
+    },
+    "borders": {
+      "border":    { "value": "rgba(245,241,235,0.07)", "role": "Standard border." },
+      "borderLt":  { "value": "rgba(245,241,235,0.12)", "role": "Light border. Elevated surfaces." }
+    },
+    "rules": [
+      "No white backgrounds. Ever.",
+      "No Inter. No system fonts. No Roboto.",
+      "Space Grotesk for all UI display.",
+      "JetBrains Mono for all data, code, IDs, timestamps.",
+      "Source Serif 4 for all long-form prose.",
+      "Dark mode is not a mode. It is the default."
+    ]
+  },
+
+  "products": {
+    "ddl": {
+      "name": "Dropdown Logistics",
+      "abbreviation": "DDL",
+      "monogram": "DD",
+      "accent": { "value": "#B23531", "name": "Crimson" },
+      "tagline": "Chaos → Structured → Automated",
+      "taglineSecondary": "Humble surface. Cathedral underneath.",
+      "receiptLine": "The cottage ships cathedrals.",
+      "url": "dropdownlogistics.com",
+      "mark": "DD stamp — crimson ring, cream DD, copper dots, cardinal marks",
+      "markStatus": "deployed-inline — extraction pending",
+      "ogStatus": "not-built"
+    },
+    "auditforge": {
+      "name": "AuditForge",
+      "abbreviation": "AF",
+      "monogram": "AF",
+      "accent": { "value": "#B23531", "name": "Crimson" },
+      "accentNote": "Shares DDL crimson intentionally. AuditForge is the flagship DDL product — it carries the bloodline color.",
+      "accentSecondary": { "value": "#C49A3C", "name": "Copper" },
+      "tagline": "The audit package generates itself.",
+      "taglineAlt": "System of Structure. Not execution.",
+      "receiptLine": "Governed Documentation · auditforge.dev",
+      "url": "auditforge.dev",
+      "mark": "AF stamp — crimson fill, cream AF monogram, copper dots at 9/3 o'clock",
+      "markStatus": "finalized",
+      "markSource": "AuditForge_LogoConcepts_v3.html — Concept A Variant 3",
+      "markCouncil": "CR-AUDITFORGE-001",
+      "ogStatus": "built-unverified"
+    },
+    "blindspot": {
+      "name": "BlindSpot",
+      "nameFull": "blindspot.bet",
+      "studio": "D&A Analytics",
+      "studioNote": "D = Dave, A = Alex, & = the collaboration. The ampersand is structural.",
+      "abbreviation": "BS",
+      "accentProduct": { "value": "#22C55E", "name": "Dave Green", "context": "Used inside the BlindSpot product UI, OrbitalHero, interactive elements." },
+      "accentStudio": { "value": "#C49A3C", "name": "Amber", "context": "Used when DDL site references BlindSpot from outside. D&A Analytics brand contexts." },
+      "accentSecondary": { "value": "#86EFAC", "name": "Alex Green", "context": "Secondary helix strand. Two cousins. Do not flatten to a single green." },
+      "backgroundOverride": { "value": "#0D2137", "name": "D&A Navy", "note": "Deeper than DDL navy #0D1B2A. The product is a data terminal, not a studio site. Do not normalize." },
+      "colorRule": "Green = you are inside the product. Amber = DDL is referencing the product from outside.",
+      "tagline": "signal → structure → edge",
+      "footerCanon": "built by two people who share actual DNA",
+      "url": "blindspot.bet",
+      "mark": "Helix mark — DNA double-helix, #22C55E + #86EFAC strands, #E2E8F0 rungs",
+      "markStatus": "finalized — documented exception to stamp system",
+      "markException": "BlindSpot is a consumer sports analytics product. The stamp reads institutional. The helix reads data/intelligence. Exception ratified by operator.",
+      "ogStatus": "live — reference implementation"
+    },
+    "knowledgeVault": {
+      "name": "DDL Knowledge Vault",
+      "abbreviation": "KV",
+      "monogram": "KV",
+      "accent": { "value": "#2C7A7B", "name": "Teal" },
+      "accentRamp": {
+        "light": "#3A9A9B",
+        "base":  "#2C7A7B",
+        "dark":  "#1D5455",
+        "xs":    "rgba(44,122,123,0.12)"
+      },
+      "tagline": "The corpus has a front door now.",
+      "url": "dropdownlogistics.github.io/knowledge-vault",
+      "stack": "Static HTML — GitHub Pages",
+      "ogStrategy": "Static PNG — no server-side rendering available",
+      "standard": "STD-VAULT-002",
+      "mark": "KV stamp seal — teal ring, cream KV monogram, dashed inner ring, cardinal marks",
+      "markStatus": "finalized",
+      "markSource": "DDL-KnowledgeVault-BrandKit-v1_0.html",
+      "ogStatus": "not-built — CRITICAL"
+    },
+    "dexJr": {
+      "name": "Dex Jr.",
+      "nameNote": "Always with the period after Jr. Never DexJr.",
+      "abbreviation": "DJ",
+      "monogram": "DJ",
+      "accent": { "value": "#8A6CC9", "name": "Violet" },
+      "accentRamp": {
+        "050": "#2A1F4A",
+        "100": "#3D2D6E",
+        "300": "#6450A0",
+        "500": "#8A6CC9",
+        "700": "#A98FE0"
+      },
+      "tagline": "The rig stays awake.",
+      "taglineProvenance": "Session 74 — observed organically, then ratified.",
+      "subTagline": "Local Intelligence · Governed Retrieval · Seat 1010",
+      "receiptLine": "Dex Jr. — Local Intelligence Engine · Seat 1010 · DexVerse",
+      "council": "Seat 1010",
+      "url": "dropdownlogistics.com/dexverse",
+      "mark": "Circuit node mark — concentric rings (corpus layers), cardinal traces (retrieval paths), center dot (model)",
+      "markStatus": "designed-inline — SVG export pending",
+      "markSource": "DexJr-BrandKit-v1_0.html",
+      "ogStatus": "not-built"
+    },
+    "dexverse": {
+      "name": "DexVerse",
+      "abbreviation": "DV",
+      "monogram": "DV",
+      "monogramStatus": "RATIFIED 2026-03-15",
+      "accent": { "value": "#8A6CC9", "name": "Violet" },
+      "accentNote": "Shares violet with Dex Jr. DexVerse is the wing; Dex Jr. is the infrastructure within it.",
+      "accentLocalNode": { "value": "#A98FE0", "name": "Violet Light", "use": "Dex Jr. / Seat 1010 distinction in all council visualizations" },
+      "tagline": "The AI has a methodology.",
+      "taglineStatus": "RATIFIED 2026-03-15 — PRO-BRANDING-001",
+      "taglineArcText": "THE AI HAS A METHODOLOGY",
+      "url": "dropdownlogistics.com/dexverse",
+      "mark": "Council Constellation — DV monogram, 10 seat dots on council ring (r=46), circuit traces, 4 rings total",
+      "markDescription": "Extends DDL stamp system with: council ring (r=46, 10 evenly-spaced seat dots at 36° intervals), corpus ring (r=34), cardinal circuit traces. Seat 1010 renders in violet-light #A98FE0 to distinguish local node. Cathedral work — do not simplify.",
+      "markStatus": "RATIFIED 2026-03-15",
+      "markSource": "DexVerse-BrandKit-v1_0.html",
+      "seatPositions": {
+        "1001": { "degrees": 0,   "coords": "70.0, 24.0" },
+        "1002": { "degrees": 36,  "coords": "97.0, 32.8" },
+        "1003": { "degrees": 72,  "coords": "113.7, 55.8" },
+        "1004": { "degrees": 108, "coords": "113.7, 84.2" },
+        "1005": { "degrees": 144, "coords": "97.0, 107.2" },
+        "1006": { "degrees": 180, "coords": "70.0, 116.0" },
+        "1007": { "degrees": 216, "coords": "43.0, 107.2" },
+        "1008": { "degrees": 252, "coords": "26.3, 84.2" },
+        "1009": { "degrees": 288, "coords": "26.3, 55.8" },
+        "1010": { "degrees": 324, "coords": "43.0, 32.8", "accent": "#A98FE0", "note": "Local node — violet-light" }
+      },
+      "ogStatus": "built — DexVerse-OG-Image.html"
+    },
+    "canonpress": {
+      "name": "CanonPress",
+      "abbreviation": "CP",
+      "monogramStatus": "proposed — not ratified",
+      "accent": { "value": "#B23531", "name": "Crimson", "note": "Inherited from DDL. CanonPress is a DDL publication — the bloodline color applies." },
+      "series": {
+        "converge":    { "accent": "#6B9DC2", "name": "Blue",    "tagline": "Where methodology meets output" },
+        "redline":     { "accent": "#B23531", "name": "Crimson", "tagline": "Hard decisions, documented" },
+        "deepcut":     { "accent": "#8A6CC9", "name": "Violet",  "tagline": "The work behind the work" },
+        "groundtruth": { "accent": "#C49A3C", "name": "Amber",   "tagline": "What the system actually knows" }
+      },
+      "taglineStatus": "NOT RATIFIED",
+      "url": "dropdownlogistics.com/canonpress",
+      "substack": "D.K. Hale — external, Substack controls branding",
+      "mark": "No stamp currently. Inherits DDL mark.",
+      "markStatus": "not-designed — low priority"
+    },
+    "theBench": {
+      "name": "The Bench",
+      "abbreviation": "TB",
+      "accent": { "value": "#6B9DC2", "name": "Blue" },
+      "taglineStatus": "NOT RATIFIED",
+      "taglineCandidates": [
+        "The tools, documented.",
+        "How the work gets done.",
+        "Software tips for people who build things."
+      ],
+      "url": "dropdownlogistics.com/bench",
+      "mark": "Inherits DDL stamp. No separate mark.",
+      "ogStatus": "inherits-ddl"
+    },
+    "excelligence": {
+      "name": "Excelligence",
+      "abbreviation": "EX",
+      "monogramStatus": "proposed — not ratified",
+      "accent": { "value": "#D4A843", "name": "Gold", "note": "Resolved 2026-03-15. Differentiated from D&A Amber #C49A3C. Gold reads Excel/spreadsheet/knowledge without conflicting with the analytics amber." },
+      "taglineCandidate": "Every Excel technique, governed.",
+      "url": "dropdownlogistics.com/excelligence",
+      "mark": "No stamp. Force-directed graph explorer IS the visual centerpiece.",
+      "ogStatus": "inherits-ddl"
+    },
+    "workbench": {
+      "name": "WorkBench",
+      "abbreviation": "WB",
+      "accent": { "value": "#B23531", "name": "Crimson", "context": "DDL voice on the DDL site (dropdownlogistics.com/workbench)." },
+      "accentStandalone": { "value": "#0EA5E9", "name": "WorkBench Light Sky", "context": "Standalone product surface at workbench-ddl.vercel.app." },
+      "card": "#10202f",
+      "background": "#0D1B2A",
+      "tagline": "You're not buying a suite. You're building a stack.",
+      "taglineAlt": "The modular business OS.",
+      "fonts": "Inherits DDL — Space Grotesk / JetBrains Mono / Source Serif 4.",
+      "mark": "WB monogram, stamp ring",
+      "markStatus": "designed",
+      "ogStatus": "built",
+      "ogFile": "og-workbench.svg",
+      "brandKitFile": "WorkBench-BrandKit-v1_0.html",
+      "standaloneUrl": "https://workbench-ddl.vercel.app",
+      "ddlWingUrl": "https://www.dropdownlogistics.com/workbench",
+      "modules": 17,
+      "modulesLive": 4,
+      "firstModule": "HR & People",
+      "substrate": "FactLayer — immutable event log + derived dimensions"
+    }
+  },
+
+  "typography": {
+    "display": {
+      "family": "Space Grotesk",
+      "weights": [400, 500, 600, 700],
+      "use": "Headlines, nav, labels, buttons, all UI text"
+    },
+    "data": {
+      "family": "JetBrains Mono",
+      "weights": [400, 500],
+      "use": "IDs, metadata, timestamps, code, mono labels, corpus counts"
+    },
+    "body": {
+      "family": "Source Serif 4",
+      "weights": [400, 600],
+      "italic": [400],
+      "use": "Long-form text, descriptions, memoir, prose"
+    },
+    "googleFontsUrl": "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap",
+    "forbidden": ["Inter", "Roboto", "-apple-system", "system-ui", "BlinkMacSystemFont"]
+  },
+
+  "marks": {
+    "stampAnatomy": {
+      "outerRing": "solid stroke, 2-3px, product accent color",
+      "innerRing": "dashed, 0.75px, product accent color, stroke-dasharray: 3 4",
+      "fill": "navy #0D1B2A",
+      "monogram": "2-letter, Space Grotesk 700, accent color",
+      "arcTextTop": "product name, JetBrains Mono, 6-8px, cream",
+      "arcTextBottom": "GOVERNED DOCUMENTATION or studio name",
+      "cardinalMarks": "4 tick marks N/S/E/W, 1.5px, accent color",
+      "copperDots": "at 9 o'clock and 3 o'clock, #C49A3C"
+    },
+    "reductionMark": "32px and below: monogram only, single outer ring, no arc text",
+    "exceptions": {
+      "blindspot": {
+        "mark": "Helix",
+        "rationale": "Consumer sports analytics product demands intelligence/data visual register, not institutional stamp.",
+        "status": "Ratified by operator. Documented exception."
+      }
+    }
+  },
+
+  "orbitalHero": {
+    "name": "OrbitalHero",
+    "namedIn": "SYNTH-DDL-001 — 2026-03-15",
+    "structure": {
+      "center": "Product stamp mark",
+      "arms": "5 for product pages, 8 for hub pages",
+      "nodes": "Filled dots, accent color, label cards with product accent border at 0.25 opacity",
+      "ring": "Rotating, CSS animation, 14-18s",
+      "receiptLine": "Always last. Always mono. Always subdued."
+    },
+    "animation": {
+      "0.0s": "Background fades in",
+      "0.2s": "Stamp appears (fadeUp)",
+      "0.9s": "Arms extend (staggered, 0.13s apart)",
+      "1.5s": "Node dots appear",
+      "2.2s": "Label cards fade in",
+      "3.2s": "Receipt line fades in"
+    },
+    "deployed": ["auditforge.dev/landing", "blindspot.bet"],
+    "pending": ["dropdownlogistics.com (8-arm hub)", "dropdownlogistics.com/dexverse (10-arm council)"]
+  },
+
+  "ogImages": {
+    "dimensions": "1200x630",
+    "template": {
+      "background": "#0D1B2A",
+      "stampPosition": "right, centered vertically",
+      "contentPosition": "left, vertically centered, max-width 480px",
+      "productName": "Space Grotesk 700, cream, 52px",
+      "tagline": "accent color, 24px",
+      "url": "steel, 16px, uppercase mono",
+      "bottomBar": "1px border-top, studio name left, methodology right"
+    },
+    "strategy": {
+      "nextjsVercel": "Dynamic via /api/og (edge runtime)",
+      "staticHtml": "Static PNG in /assets/og-image.png"
+    },
+    "status": {
+      "blindspot": "live — reference implementation",
+      "auditforge": "built — meta tags unverified",
+      "ddl": "not-built — CRITICAL",
+      "knowledgeVault": "not-built — CRITICAL",
+      "dexJr": "not-built"
+    }
+  },
+
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-03-15",
+      "changes": [
+        "Initial release — synthesized from BRAND-INV-001, BRAND-INTAKE-001, PRO-BRANDING-001",
+        "DDL monogram locked as DD (KnowledgeVaultPM confirmation — live in landing v4)",
+        "AuditForge tagline locked: 'The audit package generates itself.'",
+        "Excelligence accent resolved: Gold #D4A843 (differentiated from D&A Amber #C49A3C)",
+        "CanonPress accent: Crimson inherited from DDL (publication tied to studio)",
+        "CanonPress series colors assigned: Converge Blue, RedLine Crimson, DeepCut Violet, GroundTruth Amber",
+        "BlindSpot inside/outside color rule documented for first time",
+        "Violet ramp added for DexVerse/Dex Jr. (050 through 700)",
+        "DexVerse mark flagged as cathedral work — dedicated session required"
+      ]
+    }
+  ]
+}
