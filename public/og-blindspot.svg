@@ -1,0 +1,67 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>BlindSpot — D&amp;A Analytics</title>
+  <desc>BlindSpot open graph card — ROI / win rate / patterns</desc>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#0D1B2A"/>
+
+  <!-- Left accent bar -->
+  <rect x="0" y="0" width="4" height="630" fill="#4A9E6B"/>
+
+  <!-- Grid texture -->
+  <g stroke="rgba(245,241,235,0.04)" stroke-width="1">
+    <line x1="0" y1="210" x2="600" y2="210"/>
+    <line x1="0" y1="420" x2="600" y2="420"/>
+    <line x1="200" y1="0" x2="200" y2="630"/>
+    <line x1="400" y1="0" x2="400" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+  </g>
+
+  <!-- LEFT — BRAND -->
+  <text x="60" y="88" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#4A9E6B" letter-spacing="4">D&amp;A ANALYTICS</text>
+
+  <text x="56" y="220" font-family="Space Grotesk, sans-serif" font-size="96" font-weight="800" fill="#F5F1EB" letter-spacing="-2">BlindSpot</text>
+
+  <text x="60" y="278" font-family="Source Serif 4, serif" font-size="22" font-weight="300" fill="rgba(245,241,235,0.6)" font-style="italic">You're not losing. You're not seeing.</text>
+
+  <line x1="60" y1="320" x2="560" y2="320" stroke="rgba(245,241,235,0.1)" stroke-width="1"/>
+
+  <!-- Stats -->
+  <g font-family="JetBrains Mono, monospace">
+    <text x="60" y="380" font-size="32" font-weight="700" fill="#4A9E6B">+6.2%</text>
+    <text x="60" y="402" font-size="10" font-weight="600" fill="rgba(245,241,235,0.35)" letter-spacing="2">ROI</text>
+
+    <text x="200" y="380" font-size="32" font-weight="700" fill="#C49A3C">54.3%</text>
+    <text x="200" y="402" font-size="10" font-weight="600" fill="rgba(245,241,235,0.35)" letter-spacing="2">WIN RATE</text>
+
+    <text x="360" y="380" font-size="32" font-weight="700" fill="#6B9DC2">12</text>
+    <text x="360" y="402" font-size="10" font-weight="600" fill="rgba(245,241,235,0.35)" letter-spacing="2">PATTERNS</text>
+  </g>
+
+  <line x1="60" y1="430" x2="560" y2="430" stroke="rgba(245,241,235,0.06)" stroke-width="1"/>
+
+  <text x="60" y="475" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600" fill="rgba(245,241,235,0.3)" letter-spacing="2">signal → structure → edge</text>
+
+  <rect x="60" y="498" width="78" height="22" rx="3" fill="rgba(74,158,107,0.12)" stroke="rgba(74,158,107,0.35)"/>
+  <text x="99" y="513" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" fill="#4A9E6B" text-anchor="middle">FREE BETA</text>
+
+  <!-- RIGHT — Stat tiles stacked -->
+  <g>
+    <!-- Tile 1 ROI -->
+    <rect x="700" y="120" width="440" height="120" rx="6" fill="#10202f" stroke="rgba(74,158,107,0.3)"/>
+    <text x="724" y="156" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" fill="rgba(74,158,107,0.7)" letter-spacing="3">ROI · TRAILING 30D</text>
+    <text x="724" y="218" font-family="JetBrains Mono, monospace" font-size="56" font-weight="800" fill="#4A9E6B">+6.2%</text>
+
+    <!-- Tile 2 Win Rate -->
+    <rect x="700" y="255" width="440" height="120" rx="6" fill="#10202f" stroke="rgba(196,154,60,0.3)"/>
+    <text x="724" y="291" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" fill="rgba(196,154,60,0.7)" letter-spacing="3">WIN RATE</text>
+    <text x="724" y="353" font-family="JetBrains Mono, monospace" font-size="56" font-weight="800" fill="#C49A3C">54.3%</text>
+
+    <!-- Tile 3 Patterns -->
+    <rect x="700" y="390" width="440" height="120" rx="6" fill="#10202f" stroke="rgba(107,157,194,0.3)"/>
+    <text x="724" y="426" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" fill="rgba(107,157,194,0.7)" letter-spacing="3">PATTERNS DETECTED</text>
+    <text x="724" y="488" font-family="JetBrains Mono, monospace" font-size="56" font-weight="800" fill="#6B9DC2">12</text>
+  </g>
+
+  <text x="700" y="565" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" fill="rgba(245,241,235,0.35)" letter-spacing="2">BLINDSPOT · DROPDOWNLOGISTICS.COM/BLINDSPOT</text>
+</svg>

@@ -1,0 +1,103 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>WorkBench — Dropdown Logistics</title>
+  <desc>WorkBench open graph card — modular business OS</desc>
+
+  <rect width="1200" height="630" fill="#0D1B2A"/>
+  <rect x="0" y="0" width="4" height="630" fill="#B23531"/>
+
+  <g stroke="rgba(245,241,235,0.04)" stroke-width="1">
+    <line x1="0" y1="210" x2="600" y2="210"/>
+    <line x1="0" y1="420" x2="600" y2="420"/>
+    <line x1="200" y1="0" x2="200" y2="630"/>
+    <line x1="400" y1="0" x2="400" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+  </g>
+
+  <!-- LEFT -->
+  <text x="60" y="88" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#B23531" letter-spacing="4">DROPDOWN LOGISTICS</text>
+
+  <text x="56" y="200" font-family="Space Grotesk, sans-serif" font-size="92" font-weight="800" fill="#F5F1EB" letter-spacing="-2">Work</text>
+  <text x="56" y="290" font-family="Space Grotesk, sans-serif" font-size="92" font-weight="800" fill="#B23531" letter-spacing="-2">Bench</text>
+
+  <text x="60" y="348" font-family="Source Serif 4, serif" font-size="20" font-weight="300" fill="rgba(245,241,235,0.55)" font-style="italic">The modular business OS.</text>
+
+  <line x1="60" y1="380" x2="560" y2="380" stroke="rgba(245,241,235,0.1)" stroke-width="1"/>
+
+  <g font-family="JetBrains Mono, monospace">
+    <text x="60" y="430" font-size="32" font-weight="700" fill="#B23531">17</text>
+    <text x="60" y="452" font-size="10" font-weight="600" fill="rgba(245,241,235,0.35)" letter-spacing="2">MODULES</text>
+
+    <text x="200" y="430" font-size="32" font-weight="700" fill="#C49A3C">1</text>
+    <text x="200" y="452" font-size="10" font-weight="600" fill="rgba(245,241,235,0.35)" letter-spacing="2">SUBSTRATE</text>
+
+    <text x="320" y="430" font-size="20" font-weight="700" fill="#4A9E6B">HR &amp; PEOPLE</text>
+    <text x="320" y="452" font-size="10" font-weight="600" fill="rgba(245,241,235,0.35)" letter-spacing="2">FIRST RATIFIED</text>
+  </g>
+
+  <line x1="60" y1="478" x2="560" y2="478" stroke="rgba(245,241,235,0.06)" stroke-width="1"/>
+
+  <text x="60" y="520" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600" fill="rgba(245,241,235,0.3)" letter-spacing="2">Chaos → Structured → Automated</text>
+
+  <!-- RIGHT — 4×4 module grid -->
+  <g>
+    <!-- generate via list of tiles -->
+    <!-- Row 1 -->
+    <rect x="710" y="115" width="90" height="90" rx="4" fill="#10202f" stroke="rgba(74,158,107,0.5)"/>
+    <text x="755" y="160" font-family="JetBrains Mono, monospace" font-size="9" font-weight="700" fill="#4A9E6B" text-anchor="middle">HR</text>
+    <text x="755" y="174" font-family="JetBrains Mono, monospace" font-size="7" font-weight="700" fill="rgba(74,158,107,0.7)" text-anchor="middle">LIVE</text>
+
+    <rect x="810" y="115" width="90" height="90" rx="4" fill="#10202f" stroke="rgba(74,158,107,0.5)"/>
+    <text x="855" y="160" font-family="JetBrains Mono, monospace" font-size="9" font-weight="700" fill="#4A9E6B" text-anchor="middle">CTRLS</text>
+    <text x="855" y="174" font-family="JetBrains Mono, monospace" font-size="7" font-weight="700" fill="rgba(74,158,107,0.7)" text-anchor="middle">LIVE</text>
+
+    <rect x="910" y="115" width="90" height="90" rx="4" fill="#10202f" stroke="rgba(245,241,235,0.08)"/>
+    <text x="955" y="160" font-family="JetBrains Mono, monospace" font-size="9" font-weight="700" fill="rgba(245,241,235,0.3)" text-anchor="middle">FIN</text>
+
+    <rect x="1010" y="115" width="90" height="90" rx="4" fill="#10202f" stroke="rgba(245,241,235,0.08)"/>
+    <text x="1055" y="160" font-family="JetBrains Mono, monospace" font-size="9" font-weight="700" fill="rgba(245,241,235,0.3)" text-anchor="middle">SALES</text>
+
+    <!-- Row 2 -->
+    <rect x="710" y="215" width="90" height="90" rx="4" fill="#10202f" stroke="rgba(74,158,107,0.5)"/>
+    <text x="755" y="260" font-family="JetBrains Mono, monospace" font-size="9" font-weight="700" fill="#4A9E6B" text-anchor="middle">TIME</text>
+    <text x="755" y="274" font-family="JetBrains Mono, monospace" font-size="7" font-weight="700" fill="rgba(74,158,107,0.7)" text-anchor="middle">LIVE</text>
+
+    <rect x="810" y="215" width="90" height="90" rx="4" fill="#10202f" stroke="rgba(196,154,60,0.5)"/>
+    <text x="855" y="260" font-family="JetBrains Mono, monospace" font-size="9" font-weight="700" fill="#C49A3C" text-anchor="middle">TEAMS</text>
+    <text x="855" y="274" font-family="JetBrains Mono, monospace" font-size="7" font-weight="700" fill="rgba(196,154,60,0.7)" text-anchor="middle">TOUR</text>
+
+    <rect x="910" y="215" width="90" height="90" rx="4" fill="#10202f" stroke="rgba(245,241,235,0.08)"/>
+    <text x="955" y="260" font-family="JetBrains Mono, monospace" font-size="9" font-weight="700" fill="rgba(245,241,235,0.3)" text-anchor="middle">PROJ</text>
+
+    <rect x="1010" y="215" width="90" height="90" rx="4" fill="#10202f" stroke="rgba(245,241,235,0.08)"/>
+    <text x="1055" y="260" font-family="JetBrains Mono, monospace" font-size="9" font-weight="700" fill="rgba(245,241,235,0.3)" text-anchor="middle">CRM</text>
+
+    <!-- Row 3 -->
+    <rect x="710" y="315" width="90" height="90" rx="4" fill="#10202f" stroke="rgba(74,158,107,0.5)"/>
+    <text x="755" y="360" font-family="JetBrains Mono, monospace" font-size="9" font-weight="700" fill="#4A9E6B" text-anchor="middle">ANLY</text>
+    <text x="755" y="374" font-family="JetBrains Mono, monospace" font-size="7" font-weight="700" fill="rgba(74,158,107,0.7)" text-anchor="middle">LIVE</text>
+
+    <rect x="810" y="315" width="90" height="90" rx="4" fill="#10202f" stroke="rgba(245,241,235,0.08)"/>
+    <text x="855" y="360" font-family="JetBrains Mono, monospace" font-size="9" font-weight="700" fill="rgba(245,241,235,0.3)" text-anchor="middle">DOCS</text>
+
+    <rect x="910" y="315" width="90" height="90" rx="4" fill="#10202f" stroke="rgba(245,241,235,0.08)"/>
+    <text x="955" y="360" font-family="JetBrains Mono, monospace" font-size="9" font-weight="700" fill="rgba(245,241,235,0.3)" text-anchor="middle">OPS</text>
+
+    <rect x="1010" y="315" width="90" height="90" rx="4" fill="#10202f" stroke="rgba(245,241,235,0.08)"/>
+    <text x="1055" y="360" font-family="JetBrains Mono, monospace" font-size="9" font-weight="700" fill="rgba(245,241,235,0.3)" text-anchor="middle">BILL</text>
+
+    <!-- Row 4 -->
+    <rect x="710" y="415" width="90" height="90" rx="4" fill="#10202f" stroke="rgba(245,241,235,0.08)"/>
+    <text x="755" y="460" font-family="JetBrains Mono, monospace" font-size="9" font-weight="700" fill="rgba(245,241,235,0.3)" text-anchor="middle">PROC</text>
+
+    <rect x="810" y="415" width="90" height="90" rx="4" fill="#10202f" stroke="rgba(245,241,235,0.08)"/>
+    <text x="855" y="460" font-family="JetBrains Mono, monospace" font-size="9" font-weight="700" fill="rgba(245,241,235,0.3)" text-anchor="middle">VEND</text>
+
+    <rect x="910" y="415" width="90" height="90" rx="4" fill="#10202f" stroke="rgba(245,241,235,0.08)"/>
+    <text x="955" y="460" font-family="JetBrains Mono, monospace" font-size="9" font-weight="700" fill="rgba(245,241,235,0.3)" text-anchor="middle">ASSET</text>
+
+    <rect x="1010" y="415" width="90" height="90" rx="4" fill="#10202f" stroke="rgba(245,241,235,0.08)"/>
+    <text x="1055" y="460" font-family="JetBrains Mono, monospace" font-size="9" font-weight="700" fill="rgba(245,241,235,0.3)" text-anchor="middle">INV</text>
+  </g>
+
+  <text x="710" y="555" font-family="JetBrains Mono, monospace" font-size="10" font-weight="600" fill="rgba(245,241,235,0.3)" letter-spacing="2">17 MODULES · ONE SUBSTRATE</text>
+</svg>

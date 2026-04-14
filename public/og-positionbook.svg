@@ -1,0 +1,73 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>PositionBook — D&amp;A Analytics</title>
+  <desc>PositionBook open graph card — trade intelligence</desc>
+
+  <rect width="1200" height="630" fill="#0D1B2A"/>
+  <rect x="0" y="0" width="4" height="630" fill="#4A9E6B"/>
+
+  <g stroke="rgba(245,241,235,0.04)" stroke-width="1">
+    <line x1="0" y1="210" x2="600" y2="210"/>
+    <line x1="0" y1="420" x2="600" y2="420"/>
+    <line x1="200" y1="0" x2="200" y2="630"/>
+    <line x1="400" y1="0" x2="400" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+  </g>
+
+  <!-- LEFT -->
+  <text x="60" y="88" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#4A9E6B" letter-spacing="4">D&amp;A ANALYTICS</text>
+
+  <text x="56" y="220" font-family="Space Grotesk, sans-serif" font-size="84" font-weight="800" fill="#F5F1EB" letter-spacing="-2">PositionBook</text>
+
+  <text x="60" y="278" font-family="Source Serif 4, serif" font-size="22" font-weight="300" fill="rgba(245,241,235,0.6)" font-style="italic">You are not losing. You are not tracking.</text>
+
+  <line x1="60" y1="320" x2="560" y2="320" stroke="rgba(245,241,235,0.1)" stroke-width="1"/>
+
+  <g font-family="JetBrains Mono, monospace">
+    <text x="60" y="380" font-size="32" font-weight="700" fill="#4A9E6B">241</text>
+    <text x="60" y="402" font-size="10" font-weight="600" fill="rgba(245,241,235,0.35)" letter-spacing="2">TRADES</text>
+
+    <text x="200" y="380" font-size="32" font-weight="700" fill="#C49A3C">2.31R</text>
+    <text x="200" y="402" font-size="10" font-weight="600" fill="rgba(245,241,235,0.35)" letter-spacing="2">AVG</text>
+
+    <text x="360" y="380" font-size="32" font-weight="700" fill="#6B9DC2">100%</text>
+    <text x="360" y="402" font-size="10" font-weight="600" fill="rgba(245,241,235,0.35)" letter-spacing="2">EVIDENCE-BASED</text>
+  </g>
+
+  <line x1="60" y1="430" x2="560" y2="430" stroke="rgba(245,241,235,0.06)" stroke-width="1"/>
+
+  <text x="60" y="475" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600" fill="rgba(245,241,235,0.3)" letter-spacing="2">signal → structure → edge</text>
+
+  <rect x="60" y="498" width="92" height="22" rx="3" fill="rgba(74,158,107,0.12)" stroke="rgba(74,158,107,0.35)"/>
+  <text x="106" y="513" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" fill="#4A9E6B" text-anchor="middle">INVITE ONLY</text>
+
+  <!-- RIGHT — equity curve -->
+  <g>
+    <rect x="700" y="120" width="440" height="390" rx="6" fill="#10202f" stroke="rgba(74,158,107,0.25)"/>
+
+    <text x="724" y="156" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" fill="rgba(74,158,107,0.7)" letter-spacing="3">EQUITY CURVE · 241 TRADES</text>
+
+    <!-- y-axis grid -->
+    <g stroke="rgba(245,241,235,0.06)" stroke-width="1">
+      <line x1="724" y1="200" x2="1116" y2="200"/>
+      <line x1="724" y1="280" x2="1116" y2="280"/>
+      <line x1="724" y1="360" x2="1116" y2="360"/>
+      <line x1="724" y1="440" x2="1116" y2="440"/>
+    </g>
+
+    <!-- equity curve path: upward with variance -->
+    <polyline
+      points="724,440 754,432 784,425 814,438 844,420 874,408 904,415 934,395 964,378 994,385 1024,360 1054,335 1084,320 1116,290"
+      fill="none" stroke="#4A9E6B" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+
+    <!-- end node -->
+    <circle cx="1116" cy="290" r="5" fill="#4A9E6B"/>
+
+    <!-- baseline label -->
+    <text x="724" y="460" font-family="JetBrains Mono, monospace" font-size="9" font-weight="600" fill="rgba(245,241,235,0.3)" letter-spacing="1">START</text>
+    <text x="1116" y="460" font-family="JetBrains Mono, monospace" font-size="9" font-weight="600" fill="rgba(245,241,235,0.3)" letter-spacing="1" text-anchor="end">+557R</text>
+
+    <text x="724" y="490" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#F5F1EB">EVERY TRADE LOGGED · EVERY EXIT TAGGED</text>
+  </g>
+
+  <text x="700" y="565" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" fill="rgba(245,241,235,0.35)" letter-spacing="2">POSITIONBOOK · DROPDOWNLOGISTICS.COM/POSITIONBOOK</text>
+</svg>
