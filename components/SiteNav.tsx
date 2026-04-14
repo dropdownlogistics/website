@@ -4,10 +4,10 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 const PRODUCTS = [
-  { label: 'AuditForge', href: 'https://auditforge.dev', external: true, color: '#B23531' },
+  { label: 'AuditForge', href: '/auditforge', external: false, color: '#B23531' },
   { label: 'Ledger', href: '/ledger', external: false, color: '#C49A3C' },
-  { label: 'BlindSpot', href: 'https://blindspot.bet', external: true, color: '#22C55E' },
-  { label: 'Excelligence', href: 'https://excelligence.dev', external: true, color: '#D4A843' },
+  { label: 'BlindSpot', href: '/blindspot', external: false, color: '#22C55E' },
+  { label: 'Excelligence', href: '/excelligence', external: false, color: '#D4A843' },
   { label: 'CanonPress', href: '/canonpress', external: false, color: '#B23531' },
   { label: 'Knowledge Vault', href: '/knowledge-vault', external: false, color: '#2C7A7B' },
   { label: 'WorkBench', href: '/workbench', external: false, color: '#B23531' },
