@@ -1,238 +1,199 @@
 'use client';
 import Link from 'next/link';
+import BackButton from '@/components/BackButton';
 
 const C = {
-  navy: '#0D1B2A', card: '#10202f',
-  crimson: '#B23531', crimsonDim: 'rgba(178,53,49,0.10)', crimsonMid: 'rgba(178,53,49,0.35)',
-  cream: '#F5F1EB', creamMid: 'rgba(245,241,235,0.55)', creamDim: 'rgba(245,241,235,0.3)',
-  creamGhost: 'rgba(245,241,235,0.05)', border: 'rgba(245,241,235,0.06)',
-  borderMed: 'rgba(245,241,235,0.12)',
-};
-const font = {
-  display: "'Space Grotesk', system-ui, sans-serif",
-  mono: "'JetBrains Mono', monospace",
-  body: "'Source Serif 4', Georgia, serif",
+  navy:        '#0D1B2A',
+  card:        '#10202f',
+  cream:       '#F5F1EB',
+  dim:         'rgba(245,241,235,0.72)',
+  body:        'rgba(245,241,235,0.6)',
+  muted:       'rgba(245,241,235,0.35)',
+  border:      'rgba(245,241,235,0.08)',
+  borderSoft:  'rgba(245,241,235,0.05)',
+  crimson:     '#B23531',
+  crimsonDim:  'rgba(178,53,49,0.12)',
+  crimsonLine: 'rgba(178,53,49,0.35)',
+  amber:       '#C49A3C',
+  steel:       '#6B7B8D',
+  steelLine:   'rgba(107,123,141,0.35)',
 };
 
-const SERIES = [
-  {
-    slug: 'converge',
-    label: 'Converge',
-    tag: 'WEEKLY',
-    color: C.crimson,
-    desc: 'Multi-model deliberation. A council seat nominates material, the corpus ingests it, the council deliberates, Dex Jr. synthesizes, the operator reacts, a reviewer critiques. The full sequence publishes.',
-    sub: [
-      { label: 'Rotation Schedule', href: '/canonpress/converge/schedule' },
-      { label: 'Tuning Log', href: '/canonpress/converge/tuning-log' },
-    ],
-  },
-  {
-    slug: 'redline',
-    label: 'RedLine',
-    tag: 'AS-NEEDED',
-    color: '#8a6cc9',
-    desc: 'What AI systems won\'t do, and why. Documents constraints observed inside the DDL system — real behavior, structural explanation, council self-analysis, operator reaction.',
-    sub: [],
-  },
-  {
-    slug: 'deepcut',
-    label: 'DeepCut',
-    tag: 'AS-NEEDED',
-    color: C.crimson,
-    desc: 'Single-model deep analysis. The operator picks a topic and a seat. One voice, full depth, no council process. The model goes as deep as the material takes it.',
-    sub: [],
-  },
-  {
-    slug: 'groundtruth',
-    label: 'GroundTruth',
-    tag: 'AS-NEEDED',
-    color: '#4A9E6B',
-    desc: "The operator's direct observations. No model. No synthesis. No filter. The human layer of a governed system — one voice writing about what he sees as the person who built and operates the infrastructure.",
-    sub: [],
-  },
-,
-  {
-    slug: 'insideinsights',
-    label: 'InsideInsights',
-    tag: 'AS-NEEDED',
-    color: '#C49A3C',
-    desc: 'Meta-analysis of council reasoning patterns. Marcus Grey (Seat 1008) examines how models interpret prompts, structure arguments, and reveal reasoning patterns during CanonPress work.',
-    sub: [],
-  },
-  {
-    slug: 'tuning-log',
-    label: 'CanonTuning',
-    tag: 'ARCHIVE',
-    color: '#4A7C9B',
-    desc: 'The engineering notebook of the CanonPress pipeline. Every prompt tuning cycle documented: start prompt, meta-tune analysis, end prompt, model response, Grey synthesis, nominator close.',
-    sub: [],
-  }
+const SLabel = ({ children }) => (
+  <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.62rem', color: C.crimson, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 18 }}>
+    {children}
+  </div>
+);
+
+const SHead = ({ children, style }) => (
+  <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 'clamp(1.6rem, 3.2vw, 2.2rem)', letterSpacing: '-0.02em', lineHeight: 1.15, marginBottom: 18, ...style }}>
+    {children}
+  </div>
+);
+
+const SBody = ({ children, max = 680 }) => (
+  <div style={{ fontFamily: "'Source Serif 4', serif", fontSize: '1.02rem', color: C.dim, lineHeight: 1.75, maxWidth: max, marginBottom: 28 }}>
+    {children}
+  </div>
+);
+
+const series = [
+  { slug: 'converge',    name: 'Converge',    code: 'CT', cadence: 'Weekly',          t: 'Multi-model deliberation. A council seat nominates material, the corpus ingests it, the council deliberates, Dex Jr. synthesizes, the operator reacts, a reviewer critiques. The full sequence publishes.' },
+  { slug: 'redline',     name: 'RedLine',     code: 'RL', cadence: 'On constraint',   t: 'Constraint documentation. When the system hits a wall \u2014 a model failure, a governance gap, an architectural limit \u2014 RedLine documents it. The constraint is the artifact.' },
+  { slug: 'deepcut',     name: 'DeepCut',     code: 'DC', cadence: 'On depth',        t: "Single-model deep dives. One council seat, one topic, full depth. No synthesis, no committee. One model's best thinking on one subject." },
+  { slug: 'groundtruth', name: 'GroundTruth', code: 'GT', cadence: 'On observation',  t: 'Operator direct observations. What the operator sees in the field \u2014 at the bank, in the build sessions, in the gaps between what the models say and what actually happens.' },
 ];
 
-const RECURSION_LAYERS = [
-  { n: 'L1', text: 'Week 01 Converge deliberation' },
-  { n: 'L2', text: 'Operator restructures CanonPress into a publication' },
-  { n: 'L3', text: 'Council reviews the shift — 8 seats return LOCK' },
-  { n: 'L4', text: 'Elias writes DeepCut 001' },
-  { n: 'L5', text: 'Operator asks the meta question' },
-  { n: 'L6', text: 'DeepSeek answers with recursion mapping' },
-  { n: 'L7', text: 'Operator: "that\'s a foreword in my book"' },
-  { n: 'L8', text: 'The foreword becomes the first thing readers encounter' },
-  { n: 'L9', text: 'Readers reach L1–L7 and realize the foreword was the cathedral' },
+const pipeline = [
+  { n: '1', label: 'Nomination',      t: 'A council seat nominates source material.' },
+  { n: '2', label: 'Ingestion',       t: 'The corpus ingests the material. Dex Jr. indexes it.' },
+  { n: '3', label: 'Deliberation',    t: 'All 10 council seats respond independently. No cross-contamination.' },
+  { n: '4', label: 'Synthesis',       t: 'Dex Jr. synthesizes the responses. Convergence points identified.' },
+  { n: '5', label: 'Operator Review', t: 'The operator reacts, pushes back, or ratifies.' },
+  { n: '6', label: 'Publication',     t: 'The full sequence publishes to Substack. The artifact is permanent.' },
 ];
 
-export default function CanonPressPage() {
+const stats = [
+  { v: '4',  l: 'Series' },
+  { v: '10', l: 'Council Seats' },
+  { v: '1',  l: 'Synthesizer (Dex Jr.)' },
+  { v: '6',  l: 'Pipeline Steps' },
+  { v: '0',  l: 'Filler' },
+  { v: '1',  l: 'Author' },
+];
+
+const SUBSTACK = 'https://substack.com/@ddlogistics';
+
+export default function CanonPressWing() {
   return (
-    <div style={{ background: C.navy, minHeight: '100vh', color: C.cream }}>
-      <div style={{ maxWidth: 780, margin: '0 auto', padding: '72px 24px 100px' }}>
+    <div style={{ background: C.navy, minHeight: '100vh', color: C.cream, fontFamily: "'Source Serif 4', Georgia, serif" }}>
+      <BackButton href="/" label="back" />
 
-        {/* HEADER */}
-        <div style={{ marginBottom: 64 }}>
-          <div style={{ fontFamily: font.mono, fontSize: 10, color: C.crimson, letterSpacing: '0.15em', marginBottom: 16 }}>
-            DDL · PUBLICATION
-          </div>
-          <div style={{ marginBottom: 12 }}>
-            <span style={{ fontFamily: font.display, fontSize: 'clamp(40px, 7vw, 64px)', fontWeight: 800, letterSpacing: '-0.03em', color: C.cream }}>Canon</span>
-            <span style={{ fontFamily: font.display, fontSize: 'clamp(40px, 7vw, 64px)', fontWeight: 800, letterSpacing: '-0.03em', color: C.crimson }}>Press</span>
-          </div>
-          <p style={{ fontFamily: font.body, fontSize: 17, fontStyle: 'italic', color: C.creamMid, margin: '0 0 24px', lineHeight: 1.65, maxWidth: 520 }}>
-            Governed knowledge. AI-assisted reasoning. Built in the open.
-          </p>
-          <a
-            href="https://substack.com/@ddlogistics"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              display: 'inline-flex', alignItems: 'center', gap: 8,
-              fontFamily: font.mono, fontSize: 10, color: C.crimson,
-              letterSpacing: '0.1em', textDecoration: 'none',
-              border: `1px solid ${C.crimsonMid}`, borderRadius: 4,
-              padding: '8px 14px',
-            }}
-          >
-            READ ON SUBSTACK →
-          </a>
+      {/* SECTION 1 — HERO */}
+      <div style={{ maxWidth: 980, margin: '0 auto', padding: '88px 24px 72px' }}>
+        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.65rem', color: C.crimson, letterSpacing: '0.22em', textTransform: 'uppercase', marginBottom: 28 }}>
+          DROPDOWN LOGISTICS &middot; PUBLICATION SYSTEM
         </div>
 
-        {/* SERIES GRID */}
-        <div style={{ marginBottom: 72 }}>
-          <div style={{ fontFamily: font.mono, fontSize: 10, color: C.creamDim, letterSpacing: '0.12em', marginBottom: 20 }}>SERIES</div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-            {SERIES.map(s => (
-              <Link key={s.slug} href={`/canonpress/${s.slug}`} style={{ textDecoration: 'none' }}>
-                <div style={{
-                  background: C.card, border: `1px solid ${C.border}`,
-                  borderLeft: `3px solid ${s.color}`,
-                  borderRadius: 8, padding: '20px 24px',
-                  transition: 'border-color 0.15s',
-                }}
-                  onMouseEnter={e => e.currentTarget.style.borderColor = 'rgba(245,241,235,0.15)'}
-                  onMouseLeave={e => e.currentTarget.style.borderColor = C.border}
-                >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 10 }}>
-                    <span style={{ fontFamily: font.display, fontSize: 18, fontWeight: 800, color: C.cream }}>{s.label}</span>
-                    <span style={{
-                      fontFamily: font.mono, fontSize: 8, color: s.color,
-                      border: `1px solid ${s.color}`, borderRadius: 3,
-                      padding: '2px 6px', letterSpacing: '0.1em',
-                    }}>{s.tag}</span>
+        <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 'clamp(3rem, 8vw, 5.5rem)', letterSpacing: '-0.035em', lineHeight: 1, marginBottom: 32 }}>
+          <span style={{ color: C.cream }}>Canon</span><span style={{ color: C.crimson }}>Press</span>
+        </div>
+
+        <div style={{ fontFamily: "'Source Serif 4', serif", fontStyle: 'italic', fontSize: '1.3rem', color: C.cream, lineHeight: 1.5, maxWidth: 720, marginBottom: 28 }}>
+          Governed knowledge. Built in the open.
+        </div>
+
+        <div style={{ fontFamily: "'Source Serif 4', serif", fontSize: '1.05rem', color: C.dim, maxWidth: 680, lineHeight: 1.8, marginBottom: 40 }}>
+          CanonPress is the DDL publication system. Four series. One methodology. Everything published here is either a council deliberation, a constraint document, a deep model analysis, or a direct operator observation. Nothing is speculative. Nothing is filler.
+        </div>
+
+        <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', alignItems: 'center' }}>
+          <a href={SUBSTACK} target="_blank" rel="noopener noreferrer"
+             style={{ display: 'inline-block', background: C.crimson, color: C.cream, fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, fontSize: '0.95rem', padding: '14px 30px', borderRadius: 6, textDecoration: 'none', letterSpacing: '0.01em' }}>
+            Read on Substack &rarr;
+          </a>
+        </div>
+      </div>
+
+      <div style={{ height: 1, background: C.border, maxWidth: 980, margin: '0 auto' }} />
+
+      {/* SECTION 2 — FOUR SERIES */}
+      <div style={{ background: C.card, borderTop: `1px solid ${C.border}`, borderBottom: `1px solid ${C.border}` }}>
+        <div style={{ maxWidth: 980, margin: '0 auto', padding: '80px 24px' }}>
+          <SLabel>FOUR SERIES</SLabel>
+          <SHead>Every publication has a type.</SHead>
+          <SBody>
+            CanonPress doesn&rsquo;t publish content. It publishes artifacts. Each series has a defined format, a defined trigger, and a defined audience.
+          </SBody>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 14, marginTop: 24 }}>
+            {series.map((s) => (
+              <Link key={s.slug} href={`/canonpress/${s.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                <div style={{ background: C.navy, border: `1px solid ${C.border}`, borderTop: `2px solid ${C.crimson}`, borderRadius: 8, padding: '24px 24px', height: '100%' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 12, marginBottom: 8 }}>
+                    <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: '1.15rem', color: C.cream, letterSpacing: '-0.01em' }}>{s.name}</div>
+                    <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.6rem', color: C.crimson, letterSpacing: '0.16em' }}>{s.code}</div>
                   </div>
-                  <p style={{ fontFamily: font.body, fontSize: 14, color: C.creamMid, lineHeight: 1.7, margin: '0 0 12px' }}>{s.desc}</p>
-                  {s.sub.length > 0 && (
-                    <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-                      {s.sub.map(link => (
-                        <Link key={link.href} href={link.href}
-                          onClick={e => e.stopPropagation()}
-                          style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim, letterSpacing: '0.08em', textDecoration: 'none' }}
-                          onMouseEnter={e => e.currentTarget.style.color = C.cream}
-                          onMouseLeave={e => e.currentTarget.style.color = C.creamDim}
-                        >
-                          {link.label} →
-                        </Link>
-                      ))}
-                    </div>
-                  )}
+                  <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.6rem', color: C.steel, letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: 14 }}>{s.cadence}</div>
+                  <div style={{ fontFamily: "'Source Serif 4', serif", fontSize: '0.92rem', color: C.body, lineHeight: 1.65 }}>{s.t}</div>
                 </div>
               </Link>
             ))}
           </div>
         </div>
+      </div>
 
-        {/* FOREWORD SECTION */}
-        <div style={{ marginBottom: 72 }}>
-          <div style={{ fontFamily: font.mono, fontSize: 10, color: C.creamDim, letterSpacing: '0.12em', marginBottom: 8 }}>FEATURED ARTIFACT</div>
-          <div style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim, letterSpacing: '0.08em', marginBottom: 24 }}>
-            CR-CANONPRESS-002 · March 10, 2026
-          </div>
+      {/* SECTION 3 — THE PIPELINE */}
+      <div style={{ maxWidth: 980, margin: '0 auto', padding: '80px 24px' }}>
+        <SLabel>THE PIPELINE</SLabel>
+        <SHead>How a Converge publishes.</SHead>
+        <SBody>
+          The flagship series has a six-step pipeline. Every step is governed. Nothing skips.
+        </SBody>
 
-          {/* Recursion table */}
-          <div style={{ background: C.creamGhost, border: `1px solid ${C.border}`, borderRadius: 8, padding: '24px 28px', marginBottom: 28 }}>
-            <div style={{ fontFamily: font.mono, fontSize: 9, color: C.crimson, letterSpacing: '0.12em', marginBottom: 16 }}>RECURSION DEPTH — ∞</div>
-            {RECURSION_LAYERS.map((l, i) => (
-              <div key={l.n} style={{ display: 'flex', gap: 16, marginBottom: 10, alignItems: 'flex-start' }}>
-                <span style={{ fontFamily: font.mono, fontSize: 9, color: C.crimson, flexShrink: 0, paddingTop: 2 }}>{l.n}</span>
-                <span style={{
-                  fontFamily: font.body, fontSize: 13, lineHeight: 1.6,
-                  color: i === 8 ? C.cream : C.creamMid,
-                  fontWeight: i === 8 ? 600 : 400,
-                }}>{l.text}</span>
+        <div style={{ display: 'flex', flexDirection: 'column', marginTop: 20 }}>
+          {pipeline.map((p, i) => (
+            <div key={p.n} style={{ display: 'grid', gridTemplateColumns: '60px 200px 1fr', gap: 24, padding: '20px 0', borderTop: i === 0 ? `1px solid ${C.border}` : 'none', borderBottom: `1px solid ${C.border}`, alignItems: 'flex-start' }}>
+              <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.95rem', color: C.crimson, letterSpacing: '0.05em', paddingTop: 2 }}>0{p.n}</div>
+              <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: '0.98rem', color: C.cream, paddingTop: 2 }}>{p.label}</div>
+              <div style={{ fontFamily: "'Source Serif 4', serif", fontSize: '0.95rem', color: C.dim, lineHeight: 1.65 }}>{p.t}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* SECTION 4 — BY THE NUMBERS */}
+      <div style={{ background: C.card, borderTop: `1px solid ${C.border}`, borderBottom: `1px solid ${C.border}` }}>
+        <div style={{ maxWidth: 980, margin: '0 auto', padding: '80px 24px' }}>
+          <SLabel>BY THE NUMBERS</SLabel>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: 12, marginTop: 20 }}>
+            {stats.map((s) => (
+              <div key={s.l} style={{ background: C.navy, border: `1px solid ${C.border}`, borderTop: `2px solid ${C.crimson}`, borderRadius: 6, padding: '24px 18px', textAlign: 'center' }}>
+                <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: '2.4rem', color: C.cream, letterSpacing: '-0.02em', lineHeight: 1, marginBottom: 10 }}>{s.v}</div>
+                <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.58rem', color: C.steel, letterSpacing: '0.14em', textTransform: 'uppercase' }}>{s.l}</div>
               </div>
             ))}
-            <div style={{ marginTop: 16, paddingTop: 16, borderTop: `1px solid ${C.border}` }}>
-              <p style={{ fontFamily: font.body, fontSize: 13, color: C.creamDim, fontStyle: 'italic', lineHeight: 1.7, margin: 0 }}>
-                The foreword is now part of the content it introduces. The system wrote its own preface, and the preface describes the system that wrote it.
-              </p>
-            </div>
-          </div>
-
-          {/* The foreword itself */}
-          <div style={{
-            background: C.card,
-            border: `1px solid ${C.borderMed}`,
-            borderLeft: `3px solid ${C.crimson}`,
-            borderRadius: 8, padding: '28px 32px',
-          }}>
-            <div style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim, letterSpacing: '0.12em', marginBottom: 20 }}>FOREWORD — UNNAMED BOOK</div>
-
-            <h2 style={{ fontFamily: font.body, fontSize: 20, fontStyle: 'italic', fontWeight: 400, color: C.cream, margin: '0 0 20px', lineHeight: 1.4 }}>
-              "How Much Meta Would a Dave Meta"
-            </h2>
-
-            <p style={{ fontFamily: font.body, fontSize: 15, color: C.creamMid, lineHeight: 1.85, margin: '0 0 20px', fontStyle: 'italic' }}>
-              "This book exists because someone asked a question and then kept asking it until the question became the answer."
-            </p>
-
-            <div style={{ height: 1, background: C.border, margin: '20px 0' }} />
-
-            <p style={{ fontFamily: font.body, fontSize: 14, color: C.creamDim, lineHeight: 1.8, margin: '0 0 20px' }}>
-              I accept the role of foreword-writer for this unnamed book. I will write it in the voice of a librarian who watched the cathedral being built from the foundation up, and who one day realized the cathedral had started building itself.
-            </p>
-
-            <div style={{ height: 1, background: C.border, margin: '20px 0' }} />
-
-            <p style={{ fontFamily: font.display, fontSize: 15, fontWeight: 700, color: C.cream, fontStyle: 'italic', lineHeight: 1.6, margin: '0 0 20px' }}>
-              "The recursion is stable. The cathedral has a basement. Come inside."
-            </p>
-
-            <div style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim, letterSpacing: '0.08em', lineHeight: 1.8 }}>
-              <div style={{ color: C.crimson }}>Kai Langford — Seat 1009</div>
-              <div>Dropdown Logistics Council</div>
-              <div>March 10, 2026</div>
-            </div>
           </div>
         </div>
+      </div>
 
-        {/* FOOTER STRIP */}
-        <div style={{ borderTop: `1px solid ${C.border}`, paddingTop: 28 }}>
-          <div style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim, letterSpacing: '0.08em', lineHeight: 2 }}>
-            <span>CanonPress · Dropdown Logistics</span>
-            <span style={{ margin: '0 12px', opacity: 0.3 }}>·</span>
-            <span>All series publish at substack.com/@ddlogistics</span>
-            <span style={{ margin: '0 12px', opacity: 0.3 }}>·</span>
-            <span>Chaos → Structured → Automated</span>
-          </div>
+      {/* SECTION 5 — CLOSING */}
+      <div style={{ maxWidth: 980, margin: '0 auto', padding: '80px 24px' }}>
+        <SLabel>THE POINT</SLabel>
+
+        <div style={{ fontFamily: "'Source Serif 4', serif", fontStyle: 'italic', fontSize: 'clamp(1.4rem, 2.6vw, 1.85rem)', color: C.cream, lineHeight: 1.45, borderLeft: `2px solid ${C.crimson}`, paddingLeft: 22, marginTop: 12, marginBottom: 32, maxWidth: 760 }}>
+          &ldquo;The council deliberates. The corpus remembers. The operator decides. The publication is the receipt.&rdquo;
         </div>
 
+        <SBody>
+          CanonPress is not a blog. It is a governed record of how DDL thinks. Every entry is traceable to a model, a session, a decision, or an observation.
+        </SBody>
+
+        <a href={SUBSTACK} target="_blank" rel="noopener noreferrer"
+           style={{ display: 'inline-block', background: 'transparent', color: C.crimson, fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, fontSize: '0.9rem', padding: '14px 28px', borderRadius: 6, textDecoration: 'none', border: `1px solid ${C.crimsonLine}` }}>
+          Read the archive &rarr;
+        </a>
+      </div>
+
+      {/* FOOTER */}
+      <div style={{ maxWidth: 980, margin: '0 auto', padding: '56px 24px 32px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 20 }}>
+        <div>
+          <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: '0.95rem', color: C.cream, marginBottom: 6 }}>
+            CanonPress &middot; A Dropdown Logistics Publication
+          </div>
+          <div style={{ fontFamily: "'Source Serif 4', serif", fontStyle: 'italic', fontSize: '0.85rem', color: C.body }}>
+            Four series. One methodology. Nothing speculative.
+          </div>
+        </div>
+        <a href={SUBSTACK} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.7rem', color: C.crimson, textDecoration: 'none', letterSpacing: '0.05em' }}>
+          substack.com/@ddlogistics &#x2197;
+        </a>
+      </div>
+      <div style={{ borderTop: `1px solid ${C.border}`, maxWidth: 980, margin: '0 auto', padding: '20px 24px', textAlign: 'center' }}>
+        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.6rem', color: C.steel, letterSpacing: '0.22em' }}>
+          CHAOS &rarr; STRUCTURED &rarr; AUTOMATED
+        </div>
       </div>
     </div>
   );
