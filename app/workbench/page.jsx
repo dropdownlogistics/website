@@ -305,10 +305,16 @@ export default function WorkBenchWing() {
             ))}
           </div>
 
-          <a href={`${WB_URL}/modules/hr-people`} target="_blank" rel="noopener noreferrer"
-             style={{ display: 'inline-block', background: 'transparent', color: C.crimson, fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, fontSize: '0.9rem', padding: '12px 26px', borderRadius: 6, textDecoration: 'none', border: `1px solid ${C.crimsonLine}` }}>
-            See the full module tour &rarr;
-          </a>
+          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+            <a href={`${WB_URL}/modules/hr-people`} target="_blank" rel="noopener noreferrer"
+               style={{ display: 'inline-block', background: 'transparent', color: C.crimson, fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, fontSize: '0.9rem', padding: '12px 26px', borderRadius: 6, textDecoration: 'none', border: `1px solid ${C.crimsonLine}` }}>
+              See the full module tour &rarr;
+            </a>
+            <a href={`${WB_URL}/modules/hr-people#hero`} target="_blank" rel="noopener noreferrer"
+               style={{ display: 'inline-block', background: 'transparent', color: C.cream, fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, fontSize: '0.9rem', padding: '12px 26px', borderRadius: 6, textDecoration: 'none', border: `1px solid ${C.border}` }}>
+              See the module tour &rarr;
+            </a>
+          </div>
 
           <RefLine>Ratified: CR-WB-HRPEOPLE-001</RefLine>
         </div>
