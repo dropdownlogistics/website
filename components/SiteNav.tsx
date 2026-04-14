@@ -18,6 +18,8 @@ const DDL_LINKS = [
   { label: 'Governance', href: '/governance' },
   { label: 'System Stack', href: '/system-stack' },
   { label: 'Charter', href: '/ddl/charter' },
+  { label: 'Markers', href: '/markers' },
+  { label: 'Branding', href: '/branding' },
   { label: 'DexVerse', href: '/dexverse' },
   { label: 'MDN Tool', href: '/tools/mdn' },
   { label: 'Brand', href: '/brand' },
