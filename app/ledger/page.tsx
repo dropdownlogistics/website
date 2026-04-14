@@ -81,7 +81,7 @@ const verticals = [
 export default function LedgerWing() {
   return (
     <div style={{ background: C.navy, minHeight: '100vh', color: C.cream, fontFamily: "'Source Serif 4', Georgia, serif" }}>
-      <BackButton />
+      <BackButton href="/" label="back" />
 
       {/* SECTION 1 — HERO */}
       <div style={{ maxWidth: 980, margin: '0 auto', padding: '88px 24px 72px' }}>
