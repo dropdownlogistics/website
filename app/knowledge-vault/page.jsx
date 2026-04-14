@@ -27,9 +27,20 @@ const font = {
 };
 
 const STATS = [
-  { value: '540K+',    label: 'Chunks' },
-  { value: '9',        label: 'Collections' },
+  { value: '540K+',     label: 'Chunks' },
+  { value: '9',         label: 'Collections' },
+  { value: '44',        label: 'Vault Folders' },
   { value: 'Seat 1010', label: 'Dex Jr.' },
+];
+
+const NAV_CARDS = [
+  { n: '01', label: 'Corpus',    t: '518K+ chunks across 9 collections. Nightly auto-ingestion at 3am CT.' },
+  { n: '02', label: 'Council',   t: '10 seats. 9 cloud models. 1 local (qwen2.5-coder:7b, RTX 3070).' },
+  { n: '03', label: 'Method',    t: 'Chaos \u2192 Structured \u2192 Automated. The operating methodology.' },
+  { n: '04', label: 'Products',  t: 'AuditForge, Excelligence, BlindSpot, Ledger, WorkBench.' },
+  { n: '05', label: 'Commands',  t: 'The CLI surface for querying the vault.' },
+  { n: '06', label: 'Decisions', t: 'ADRs and operator rulings. The decision log.' },
+  { n: '07', label: 'Standards', t: '65 ratified standards across the DDL ecosystem.' },
 ];
 
 export default function KnowledgeVaultPage() {
@@ -121,7 +132,7 @@ export default function KnowledgeVaultPage() {
             lineHeight: 1.5,
           }}
         >
-          The corpus remembers everything.
+          The front door for DDL institutional memory.
         </p>
 
         <p
@@ -140,6 +151,84 @@ export default function KnowledgeVaultPage() {
         </p>
       </section>
 
+      {/* ============ CANON TERM ============ */}
+      <section
+        style={{
+          position: 'relative',
+          maxWidth: 820,
+          margin: '0 auto 56px',
+          padding: '0 24px',
+        }}
+      >
+        <div
+          style={{
+            background: `linear-gradient(135deg, ${C.tealSoft} 0%, transparent 60%)`,
+            border: `1px solid ${C.tealEdge}`,
+            borderLeft: `3px solid ${C.teal}`,
+            borderRadius: 10,
+            padding: '28px 28px 26px',
+          }}
+        >
+          <div
+            style={{
+              display: 'flex',
+              gap: 14,
+              alignItems: 'baseline',
+              flexWrap: 'wrap',
+              marginBottom: 12,
+            }}
+          >
+            <div
+              style={{
+                fontFamily: font.mono,
+                fontSize: 10,
+                letterSpacing: '0.22em',
+                textTransform: 'uppercase',
+                color: C.teal,
+              }}
+            >
+              Canon Term
+            </div>
+            <div
+              style={{
+                fontFamily: font.display,
+                fontWeight: 700,
+                fontSize: '1.15rem',
+                color: C.cream,
+                letterSpacing: '-0.01em',
+              }}
+            >
+              AccidentalIntelligence
+            </div>
+            <div
+              style={{
+                fontFamily: font.mono,
+                fontSize: 9,
+                color: C.steel,
+                letterSpacing: '0.1em',
+                marginLeft: 'auto',
+              }}
+            >
+              COINED 2026-03-15
+            </div>
+          </div>
+          <p
+            style={{
+              fontFamily: font.body,
+              fontSize: '0.98rem',
+              color: C.creamMid,
+              lineHeight: 1.7,
+              margin: 0,
+              fontStyle: 'italic',
+            }}
+          >
+            When a governed, hallucination-free system produces an output so
+            unexpected it reads as insight. Sibling to AccidentalInsight.
+            First observed in AuditForge live demo.
+          </p>
+        </div>
+      </section>
+
       {/* ============ STATS ============ */}
       <section
         style={{
@@ -148,7 +237,7 @@ export default function KnowledgeVaultPage() {
           margin: '0 auto 64px',
           padding: '0 24px',
           display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))',
           gap: 12,
         }}
       >
@@ -190,117 +279,88 @@ export default function KnowledgeVaultPage() {
         ))}
       </section>
 
-      {/* ============ TWO SECTIONS ============ */}
+      {/* ============ SEVEN NAV CARDS ============ */}
       <section
         style={{
           position: 'relative',
-          maxWidth: 820,
+          maxWidth: 960,
           margin: '0 auto 64px',
           padding: '0 24px',
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-          gap: 16,
         }}
       >
-        {/* What It Is */}
         <div
           style={{
-            background: C.card,
-            border: `1px solid ${C.border}`,
-            borderRadius: 10,
-            padding: '28px 28px 26px',
-            position: 'relative',
-            overflow: 'hidden',
+            fontFamily: font.mono,
+            fontSize: 10,
+            letterSpacing: '0.22em',
+            textTransform: 'uppercase',
+            color: C.teal,
+            marginBottom: 20,
           }}
         >
-          <div
-            aria-hidden
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              right: 0,
-              height: 2,
-              background: C.teal,
-              opacity: 0.6,
-            }}
-          />
-          <div
-            style={{
-              fontFamily: font.mono,
-              fontSize: 9,
-              letterSpacing: '0.22em',
-              textTransform: 'uppercase',
-              color: C.teal,
-              marginBottom: 14,
-            }}
-          >
-            What It Is
-          </div>
-          <p
-            style={{
-              fontFamily: font.body,
-              fontSize: '0.98rem',
-              color: C.creamMid,
-              lineHeight: 1.65,
-              margin: 0,
-            }}
-          >
-            Not a chatbot. A governed retrieval system built on the
-            operator&apos;s own output — canon documents, council reviews, code
-            artifacts, and archived threads. ChromaDB vector store. Nightly
-            auto-ingestion at 3am CT. GitHub-backed workflow.
-          </p>
+          THE VAULT
         </div>
-
-        {/* Dex Jr. */}
         <div
           style={{
-            background: C.card,
-            border: `1px solid ${C.border}`,
-            borderRadius: 10,
-            padding: '28px 28px 26px',
-            position: 'relative',
-            overflow: 'hidden',
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+            gap: 12,
           }}
         >
-          <div
-            aria-hidden
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              right: 0,
-              height: 2,
-              background: C.teal,
-              opacity: 0.6,
-            }}
-          />
-          <div
-            style={{
-              fontFamily: font.mono,
-              fontSize: 9,
-              letterSpacing: '0.22em',
-              textTransform: 'uppercase',
-              color: C.teal,
-              marginBottom: 14,
-            }}
-          >
-            Dex Jr.
-          </div>
-          <p
-            style={{
-              fontFamily: font.body,
-              fontSize: '0.98rem',
-              color: C.creamMid,
-              lineHeight: 1.65,
-              margin: 0,
-            }}
-          >
-            Local AI node running qwen2.5-coder:7b on RTX 3070. Seat 1010 in
-            the DDL council. Answers questions from the corpus through the
-            MindFrame interface. The rig stays awake.
-          </p>
+          {NAV_CARDS.map((card) => (
+            <div
+              key={card.n}
+              style={{
+                background: C.card,
+                border: `1px solid ${C.border}`,
+                borderLeft: `2px solid ${C.teal}`,
+                borderRadius: 8,
+                padding: '20px 22px',
+              }}
+            >
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'baseline',
+                  gap: 10,
+                  marginBottom: 10,
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: font.mono,
+                    fontSize: 11,
+                    color: C.teal,
+                    letterSpacing: '0.05em',
+                  }}
+                >
+                  {card.n}
+                </span>
+                <span
+                  style={{
+                    fontFamily: font.display,
+                    fontWeight: 700,
+                    fontSize: '1rem',
+                    color: C.cream,
+                    letterSpacing: '-0.01em',
+                  }}
+                >
+                  {card.label}
+                </span>
+              </div>
+              <p
+                style={{
+                  fontFamily: font.body,
+                  fontSize: '0.88rem',
+                  color: C.creamMid,
+                  lineHeight: 1.65,
+                  margin: 0,
+                }}
+              >
+                {card.t}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 
