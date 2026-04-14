@@ -181,6 +181,40 @@ export default function DexVerseWing() {
         </Link>
       </div>
 
+      {/* WHAT'S INSIDE */}
+      <div style={{ background: C.card, borderTop: `1px solid ${C.border}`, borderBottom: `1px solid ${C.border}` }}>
+        <div style={{ maxWidth: 980, margin: '0 auto', padding: '80px 24px' }}>
+          <SLabel>WHAT&rsquo;S INSIDE</SLabel>
+          <SHead>DexVerse sub-routes.</SHead>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 12, marginTop: 24 }}>
+            {[
+              { name: 'Dex Jr.',         href: '/dexverse/dex-jr',     t: 'Profile, commands, corpus state, Modelfile history, calibration records. Seat 1010 in full.' },
+              { name: 'Origin',          href: '/dexverse/origin',     t: 'How the system was built. Four eras from first prompt to governed infrastructure.' },
+              { name: 'NeuralHowlround', href: '/dexverse/howlround',  t: 'Canon term. Recursive prompting producing aesthetic depth without structural grounding.' },
+              { name: 'LOTR',            href: '/dexverse/lotr',       t: 'Council deep-dive. Narrative architecture through a DDL lens.' },
+              { name: 'Build Log',       href: '/dexverse/build-log',  t: 'What was built, when, and why. The rig stays awake.' },
+            ].map((s) => (
+              <Link key={s.href} href={s.href} style={{
+                display: 'block', background: C.navy, border: `1px solid ${C.border}`,
+                borderLeft: `2px solid ${C.violet}`, borderRadius: 6, padding: '20px 22px', textDecoration: 'none',
+                transition: 'background 0.15s',
+              }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = C.card; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = C.navy; }}
+              >
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12, marginBottom: 8 }}>
+                  <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: '1rem', color: C.cream, letterSpacing: '-0.01em' }}>{s.name}</div>
+                  <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.7rem', color: C.violet, letterSpacing: '0.05em' }}>&rarr;</div>
+                </div>
+                <div style={{ fontFamily: "'Source Serif 4', serif", fontSize: '0.85rem', color: C.body, lineHeight: 1.6, marginBottom: 8 }}>{s.t}</div>
+                <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.62rem', color: C.steel, letterSpacing: '0.06em' }}>{s.href}</div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+
       {/* FOOTER */}
       <div style={{ maxWidth: 980, margin: '0 auto', padding: '56px 24px 32px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 20 }}>
         <div>
