@@ -57,6 +57,21 @@ export default function BlindSpotHub() {
         </div>
       </div>
 
+      {/* WHY NOT A SPREADSHEET */}
+      <div style={{ maxWidth: 960, margin: '0 auto', padding: '0 24px 56px' }}>
+        <div style={{ background: 'var(--card)', border: '1px solid var(--border)', borderLeft: '2px solid var(--green)', borderRadius: 8, padding: '28px 28px' }}>
+          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.62rem', color: 'var(--green)', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 14 }}>
+            WHY NOT JUST A SPREADSHEET
+          </div>
+          <div style={{ fontFamily: "'Source Serif 4', serif", fontSize: '1.02rem', color: 'var(--dim)', lineHeight: 1.75, marginBottom: 18 }}>
+            A spreadsheet stores the data. It doesn&rsquo;t look at the data. You have to. After bet 200, you stop looking. After bet 500, you couldn&rsquo;t see the pattern even if you wanted to.
+          </div>
+          <div style={{ fontFamily: "'Source Serif 4', serif", fontSize: '1.02rem', color: 'var(--cream)', lineHeight: 1.75, fontStyle: 'italic' }}>
+            BlindSpot does the looking. It surfaces the patterns you stopped seeing &mdash; the late-night variance, the chase after a loss, the cash-outs that cost more than they saved. The spreadsheet was the entry fee. The pattern is the product.
+          </div>
+        </div>
+      </div>
+
       {/* STAT TILES */}
       <div style={{ maxWidth: 960, margin: '0 auto', padding: '0 24px 64px' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 12 }}>
@@ -136,6 +151,49 @@ export default function BlindSpotHub() {
 
       <div className="divider" />
 
+      {/* FREE BETA STRIP */}
+      <div style={{ maxWidth: 960, margin: '0 auto', padding: '56px 24px 0' }}>
+        <div style={{ background: 'var(--green-dim)', border: '1px solid var(--green-border)', borderRadius: 8, padding: '24px 28px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>
+          <div>
+            <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.62rem', color: 'var(--green)', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 8 }}>
+              FREE BETA &middot; FREE TIER FOR LIFE
+            </div>
+            <div style={{ fontFamily: "'Source Serif 4', serif", fontSize: '0.98rem', color: 'var(--cream)', lineHeight: 1.55, maxWidth: 580 }}>
+              Beta members keep the free tier forever &mdash; plus first look at the behavioral analytics layer. No credit card. No upgrade prompts.
+            </div>
+          </div>
+          <a href="https://blindspot.bet" target="_blank" rel="noopener noreferrer" style={{ background: 'var(--green)', color: 'var(--navy)', fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: '0.9rem', padding: '12px 26px', borderRadius: 6, whiteSpace: 'nowrap' }}>
+            Claim free tier &rarr;
+          </a>
+        </div>
+      </div>
+
+      {/* SISTER PRODUCT — POSITIONBOOK */}
+      <div style={{ maxWidth: 960, margin: '0 auto', padding: '40px 24px 0' }}>
+        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.62rem', color: 'var(--amber)', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 14 }}>
+          D&amp;A SISTER PRODUCT
+        </div>
+        <Link href="/positionbook" style={{
+          display: 'block', background: 'var(--card)', border: '1px solid var(--border)',
+          borderTop: '2px solid var(--green)', borderRadius: 8, padding: '24px 26px', textDecoration: 'none',
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 12, marginBottom: 10, flexWrap: 'wrap' }}>
+            <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: '1.15rem', color: 'var(--cream)' }}>
+              PositionBook
+            </div>
+            <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.55rem', color: 'var(--green)', letterSpacing: '0.16em' }}>
+              D&amp;A ANALYTICS &middot; INVITE ONLY
+            </div>
+          </div>
+          <div style={{ fontFamily: "'Source Serif 4', serif", fontSize: '0.92rem', color: 'var(--body)', lineHeight: 1.65, marginBottom: 12 }}>
+            Same structure, different market. PositionBook is BlindSpot&rsquo;s sibling for trading &mdash; every position logged, every exit tagged, every R-multiple visible. Built for the same reason: you can&rsquo;t fix what you can&rsquo;t see.
+          </div>
+          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.7rem', color: 'var(--green)', letterSpacing: '0.08em' }}>
+            See PositionBook &rarr;
+          </div>
+        </Link>
+      </div>
+
       {/* MORE FROM BLINDSPOT */}
       <div style={{ maxWidth: 960, margin: '0 auto', padding: '64px 24px 80px' }}>
         <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.62rem', color: 'var(--amber)', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 24 }}>
@@ -173,8 +231,11 @@ export default function BlindSpotHub() {
           <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: '0.9rem', color: 'var(--cream)', marginBottom: 4 }}>
             BlindSpot &middot; A D&amp;A Analytics Product &middot; Dropdown Logistics
           </div>
-          <div style={{ fontFamily: "'Source Serif 4', serif", fontStyle: 'italic', fontSize: '0.8rem', color: 'var(--body)' }}>
+          <div style={{ fontFamily: "'Source Serif 4', serif", fontStyle: 'italic', fontSize: '0.8rem', color: 'var(--body)', marginBottom: 4 }}>
             signal &rarr; structure &rarr; edge
+          </div>
+          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.62rem', color: 'var(--steel)', letterSpacing: '0.05em' }}>
+            built by two people who share actual DNA
           </div>
         </div>
         <a href="https://blindspot.bet" target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.7rem', color: 'var(--green)', letterSpacing: '0.05em' }}>
