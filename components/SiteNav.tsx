@@ -11,6 +11,7 @@ const PRODUCTS = [
   { label: 'CanonPress', href: '/canonpress', external: false, color: '#B23531' },
   { label: 'Knowledge Vault', href: '/knowledge-vault', external: false, color: '#2C7A7B' },
   { label: 'WorkBench', href: '/workbench', external: false, color: '#B23531' },
+  { label: 'PositionBook', href: '/positionbook', external: false, color: '#4A9E6B' },
 ];
 
 const DDL_LINKS = [
