@@ -113,7 +113,7 @@ export default function ExcelligenceLanding() {
           fontFamily: "'JetBrains Mono', monospace",
           fontSize: 10,
           letterSpacing: 3,
-          color: "#B23531",
+          color: "#D4A843",
           textTransform: "uppercase",
           marginBottom: 16,
         }}>
@@ -183,8 +183,8 @@ export default function ExcelligenceLanding() {
           { label: "Aliases", value: 224 },
         ].map((stat, i) => (
           <div key={i} style={{
-            background: "rgba(178,53,49,0.04)",
-            border: "1px solid rgba(178,53,49,0.12)",
+            background: "rgba(212,168,67,0.04)",
+            border: "1px solid rgba(212,168,67,0.12)",
             borderRadius: 8,
             padding: "18px 12px",
             textAlign: "center",
@@ -341,11 +341,11 @@ export default function ExcelligenceLanding() {
           fontFamily: "'JetBrains Mono', monospace",
           fontSize: 9,
           letterSpacing: 2.5,
-          color: "#B23531",
+          color: "#D4A843",
           textTransform: "uppercase",
           marginBottom: 20,
           paddingBottom: 8,
-          borderBottom: "1px solid rgba(178,53,49,0.12)",
+          borderBottom: "1px solid rgba(212,168,67,0.12)",
         }}>
           Seven Entry Types
         </div>
@@ -397,11 +397,11 @@ export default function ExcelligenceLanding() {
           fontFamily: "'JetBrains Mono', monospace",
           fontSize: 9,
           letterSpacing: 2.5,
-          color: "#B23531",
+          color: "#D4A843",
           textTransform: "uppercase",
           marginBottom: 20,
           paddingBottom: 8,
-          borderBottom: "1px solid rgba(178,53,49,0.12)",
+          borderBottom: "1px solid rgba(212,168,67,0.12)",
         }}>
           Four Skill Tiers
         </div>
@@ -453,11 +453,11 @@ export default function ExcelligenceLanding() {
           fontFamily: "'JetBrains Mono', monospace",
           fontSize: 9,
           letterSpacing: 2.5,
-          color: "#B23531",
+          color: "#D4A843",
           textTransform: "uppercase",
           marginBottom: 20,
           paddingBottom: 8,
-          borderBottom: "1px solid rgba(178,53,49,0.12)",
+          borderBottom: "1px solid rgba(212,168,67,0.12)",
         }}>
           Sample Learning Paths
         </div>
@@ -467,8 +467,8 @@ export default function ExcelligenceLanding() {
             <div
               key={pi}
               style={{
-                background: hoveredPath === pi ? "rgba(178,53,49,0.06)" : "rgba(255,255,255,0.015)",
-                border: "1px solid rgba(178,53,49,0.08)",
+                background: hoveredPath === pi ? "rgba(212,168,67,0.06)" : "rgba(255,255,255,0.015)",
+                border: "1px solid rgba(212,168,67,0.08)",
                 borderRadius: 10,
                 padding: "18px 20px",
                 cursor: "pointer",
@@ -532,7 +532,7 @@ export default function ExcelligenceLanding() {
           background: "rgba(255,255,255,0.015)",
           borderRadius: 10,
           padding: "28px 28px",
-          border: "1px solid rgba(178,53,49,0.06)",
+          border: "1px solid rgba(212,168,67,0.06)",
         }}>
           <div style={{
             fontFamily: "'Source Serif 4', serif",
@@ -570,11 +570,11 @@ export default function ExcelligenceLanding() {
           fontFamily: "'JetBrains Mono', monospace",
           fontSize: 9,
           letterSpacing: 2.5,
-          color: "#B23531",
+          color: "#D4A843",
           textTransform: "uppercase",
           marginBottom: 20,
           paddingBottom: 8,
-          borderBottom: "1px solid rgba(178,53,49,0.12)",
+          borderBottom: "1px solid rgba(212,168,67,0.12)",
         }}>
           Coming Soon — The Living Graph
         </div>
@@ -636,7 +636,7 @@ export default function ExcelligenceLanding() {
           ].map((item, i) => (
             <div key={i} style={{
               background: "rgba(255,255,255,0.015)",
-              border: "1px solid rgba(178,53,49,0.06)",
+              border: "1px solid rgba(212,168,67,0.06)",
               borderRadius: 10,
               padding: "18px 18px 14px",
             }}>
@@ -766,7 +766,7 @@ export default function ExcelligenceLanding() {
         margin: "48px auto 0",
         padding: "32px 24px 48px",
         textAlign: "center",
-        borderTop: "1px solid rgba(178,53,49,0.08)",
+        borderTop: "1px solid rgba(212,168,67,0.08)",
       }}>
         <div style={{
           fontFamily: "'Source Serif 4', serif",
