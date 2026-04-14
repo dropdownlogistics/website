@@ -81,7 +81,7 @@ export default function DeepCut0001() {
         <div style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 6, padding: '14px 18px', marginBottom: 48, display: 'flex', gap: 16, flexWrap: 'wrap', alignItems: 'center' }}>
           <span style={{ fontFamily: font.mono, fontSize: 9, color: C.muted, letterSpacing: '0.1em' }}>RELATED</span>
           {[
-            { id: 'CT-0001', label: 'Week 01 Tuning Log', href: '/canonpress/tuning-log' },
+            { id: 'CT-0001', label: 'Week 01 Tuning Log', href: '/canonpress/converge/tuning-log' },
             { id: 'RL-0001', label: 'RedLine 0001', href: '/canonpress/redline/rl-001' },
           ].map((r, i) => (
             <Link key={i} href={r.href} style={{ fontFamily: font.mono, fontSize: 10, color: C.violet, textDecoration: 'none', letterSpacing: '0.05em' }}>
