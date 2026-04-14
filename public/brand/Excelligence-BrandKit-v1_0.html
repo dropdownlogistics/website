@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Excelligence — Brand Kit v1.0</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0D1B2A;--card:#10202F;--card2:#0F1D2A;
+  --cream:#F5F1EB;--steel:#6B7B8D;
+  --border:rgba(245,241,235,0.07);--border-lt:rgba(245,241,235,0.12);
+  --accent:#D4A843; /* Excelligence Gold */
+  --accent-dim:rgba(212,168,67,0.12);
+  --accent-line:rgba(212,168,67,0.35);
+  --amber:#C49A3C;
+}
+body{background:var(--navy);color:var(--cream);font-family:'Source Serif 4',Georgia,serif;min-height:100vh;padding:60px 24px 80px}
+.page{max-width:1100px;margin:0 auto}
+.brand-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:72px;padding-bottom:40px;border-bottom:1px solid var(--border);flex-wrap:wrap;gap:24px}
+h1{font-family:'Space Grotesk',sans-serif;font-size:2.2rem;font-weight:700;letter-spacing:-0.025em;line-height:1.1;margin-bottom:8px}
+h1 span{color:var(--accent)}
+.brand-meta{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--steel);letter-spacing:.04em;line-height:1.9;text-align:right}
+.section{margin-bottom:72px}
+.section-label{font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px}
+.section-title{font-family:'Space Grotesk',sans-serif;font-size:1.25rem;font-weight:600;margin-bottom:8px;letter-spacing:-0.01em}
+.section-desc{font-size:.92rem;color:var(--steel);line-height:1.65;margin-bottom:32px;max-width:720px}
+.divider{width:100%;height:1px;background:var(--border);margin-bottom:72px}
+
+.stamp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2px;border-radius:8px;overflow:hidden;margin-bottom:24px}
+.stamp-cell{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:44px 24px 20px;min-height:260px;gap:16px}
+.stamp-cell-label{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--steel);letter-spacing:.06em;text-align:center}
+.on-navy{background:var(--navy)}.on-card{background:var(--card)}.on-dark{background:#060E17}
+
+.callout{background:linear-gradient(135deg,var(--accent-dim) 0%,transparent 60%);border:1px solid var(--accent-line);border-left:3px solid var(--accent);border-radius:10px;padding:24px 28px;margin-bottom:24px}
+.callout-label{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--accent);letter-spacing:.15em;text-transform:uppercase;margin-bottom:8px}
+.callout-body{font-family:'Source Serif 4',serif;font-size:1rem;line-height:1.7;color:var(--cream)}
+
+.swatch-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px}
+.swatch{border-radius:6px;overflow:hidden;border:1px solid var(--border);width:150px}
+.swatch-block{height:80px}
+.swatch-info{padding:10px 12px;background:var(--card)}
+.swatch-name{font-family:'Space Grotesk',sans-serif;font-size:.82rem;font-weight:600;margin-bottom:2px}
+.swatch-hex{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--steel)}
+.swatch-role{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--accent);margin-top:4px;text-transform:uppercase;letter-spacing:.06em}
+
+.type-sample{padding:28px 32px;background:var(--card);border:1px solid var(--border);border-radius:8px;margin-bottom:16px}
+.type-meta{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--accent);letter-spacing:.06em;margin-bottom:12px;text-transform:uppercase}
+.type-display{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:2rem;letter-spacing:-0.02em;line-height:1.1}
+.type-mono{font-family:'JetBrains Mono',monospace;font-size:.95rem;color:var(--cream);letter-spacing:.02em}
+.type-body{font-family:'Source Serif 4',serif;font-size:1rem;line-height:1.7;color:var(--cream);max-width:620px}
+
+.tagline-card{background:linear-gradient(135deg,var(--accent-dim) 0%,transparent 60%);border:1px solid var(--accent-line);border-left:3px solid var(--accent);border-radius:10px;padding:32px 36px}
+.tagline-display{font-family:'Source Serif 4',serif;font-style:italic;font-size:1.5rem;color:var(--cream);line-height:1.5;margin-bottom:10px}
+.tagline-alt{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--steel);letter-spacing:.05em}
+
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.info-card{background:var(--card);border:1px solid var(--border);border-left:2px solid var(--accent);border-radius:8px;padding:20px 22px}
+.info-head{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.95rem;color:var(--cream);margin-bottom:8px}
+.info-text{font-family:'Source Serif 4',serif;font-size:.88rem;color:var(--steel);line-height:1.6}
+
+.brand-footer{border-top:1px solid var(--border);padding-top:32px;font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--steel);letter-spacing:.12em;text-transform:uppercase;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="brand-header">
+    <div>
+      <h1>Excelligence <span>Brand Kit</span></h1>
+      <div class="brand-meta">Excel knowledge graph &middot; v1.0 &middot; 2026-04-13</div>
+    </div>
+    <div class="brand-meta">
+      Accent: Gold #D4A843<br>
+      Parent: Dropdown Logistics<br>
+      URL: excelligence.dev
+    </div>
+  </div>
+
+  <!-- GRAPH-AS-MARK RATIONALE -->
+  <div class="section">
+    <div class="section-label">The Mark — Exception</div>
+    <div class="section-title">No stamp. The graph is the mark.</div>
+    <div class="section-desc">Excelligence is a documented exception to the DDL stamp system. AuditForge has its AF seal. Knowledge Vault has its KV seal. Excelligence has a graph &mdash; 105+ governed entries connected by 200+ typed edges. The force-directed graph explorer is the identity. A stamp would compete with it. The EX monogram is available as a reduction mark only (favicon, 32px and below).</div>
+
+    <div class="callout">
+      <div class="callout-label">BRAND EXCEPTION &middot; Ratified</div>
+      <div class="callout-body">
+        The Excelligence graph IS the visual centerpiece. Any brand touchpoint larger than 32px should feature the graph (force-directed layout, gold nodes on navy) rather than a traditional stamp. The graph reads &ldquo;this is a living, governed structure&rdquo; at a glance &mdash; no mark can replicate that.
+      </div>
+    </div>
+
+    <div class="stamp-grid">
+      <div class="stamp-cell on-navy">
+        <svg width="180" height="180" viewBox="0 0 200 200">
+          <!-- Governing ring -->
+          <circle cx="100" cy="100" r="90" fill="none" stroke="#D4A843" stroke-width="0.5" stroke-dasharray="2 3" opacity="0.4"/>
+          <!-- Edges -->
+          <line x1="100" y1="100" x2="52" y2="58" stroke="#D4A843" stroke-width="0.6" opacity="0.5"/>
+          <line x1="100" y1="100" x2="148" y2="58" stroke="#D4A843" stroke-width="0.6" opacity="0.5"/>
+          <line x1="100" y1="100" x2="150" y2="110" stroke="#D4A843" stroke-width="0.6" opacity="0.5"/>
+          <line x1="100" y1="100" x2="52" y2="140" stroke="#D4A843" stroke-width="0.6" opacity="0.5"/>
+          <line x1="100" y1="100" x2="108" y2="155" stroke="#D4A843" stroke-width="0.6" opacity="0.5"/>
+          <line x1="52" y1="58" x2="148" y2="58" stroke="#D4A843" stroke-width="0.4" opacity="0.3"/>
+          <line x1="148" y1="58" x2="150" y2="110" stroke="#D4A843" stroke-width="0.4" opacity="0.3"/>
+          <line x1="150" y1="110" x2="108" y2="155" stroke="#D4A843" stroke-width="0.4" opacity="0.3"/>
+          <line x1="108" y1="155" x2="52" y2="140" stroke="#D4A843" stroke-width="0.4" opacity="0.3"/>
+          <line x1="52" y1="140" x2="52" y2="58" stroke="#D4A843" stroke-width="0.4" opacity="0.3"/>
+          <!-- Nodes -->
+          <circle cx="100" cy="100" r="7" fill="#D4A843"/>
+          <circle cx="52"  cy="58"  r="4.5" fill="#D4A843" opacity="0.85"/>
+          <circle cx="148" cy="58"  r="4.5" fill="#D4A843" opacity="0.85"/>
+          <circle cx="150" cy="110" r="4.5" fill="#D4A843" opacity="0.85"/>
+          <circle cx="52"  cy="140" r="4.5" fill="#D4A843" opacity="0.85"/>
+          <circle cx="108" cy="155" r="4.5" fill="#D4A843" opacity="0.85"/>
+        </svg>
+        <div class="stamp-cell-label">GRAPH AS MARK · 180px<br>Force-directed · gold on navy</div>
+      </div>
+      <div class="stamp-cell on-card">
+        <svg width="32" height="32" viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="90" fill="none" stroke="#D4A843" stroke-width="6"/>
+          <text x="100" y="124" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-weight="700" font-size="74" fill="#F5F1EB">EX</text>
+        </svg>
+        <div class="stamp-cell-label">REDUCTION MARK · 32px<br>Favicon only</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- PALETTE -->
+  <div class="section">
+    <div class="section-label">Color Tokens</div>
+    <div class="section-title">Gold, not amber.</div>
+    <div class="section-desc">Excelligence gold #D4A843 was resolved 2026-03-15 to differentiate from D&amp;A Analytics amber #C49A3C. Gold reads Excel / spreadsheet / knowledge. Amber reads analytics. They are close neighbors &mdash; never interchange them.</div>
+
+    <div class="swatch-row">
+      <div class="swatch"><div class="swatch-block" style="background:#0D1B2A"></div><div class="swatch-info"><div class="swatch-name">Navy</div><div class="swatch-hex">#0D1B2A</div><div class="swatch-role">Background</div></div></div>
+      <div class="swatch"><div class="swatch-block" style="background:#10202F"></div><div class="swatch-info"><div class="swatch-name">Card</div><div class="swatch-hex">#10202F</div><div class="swatch-role">Surface</div></div></div>
+      <div class="swatch"><div class="swatch-block" style="background:#F5F1EB"></div><div class="swatch-info"><div class="swatch-name">Cream</div><div class="swatch-hex">#F5F1EB</div><div class="swatch-role">Text</div></div></div>
+      <div class="swatch"><div class="swatch-block" style="background:#D4A843"></div><div class="swatch-info"><div class="swatch-name">Gold</div><div class="swatch-hex">#D4A843</div><div class="swatch-role">Accent</div></div></div>
+      <div class="swatch"><div class="swatch-block" style="background:#C49A3C"></div><div class="swatch-info"><div class="swatch-name">Amber</div><div class="swatch-hex">#C49A3C</div><div class="swatch-role">Not Excelligence</div></div></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- TYPOGRAPHY -->
+  <div class="section">
+    <div class="section-label">Typography</div>
+    <div class="section-title">Three fonts. Cathedral voice.</div>
+    <div class="section-desc">Space Grotesk for display, JetBrains Mono for entry IDs and edge counts, Source Serif 4 for prose. The registry is structured. The graph is structured. The type system must be too.</div>
+
+    <div class="type-sample">
+      <div class="type-meta">Space Grotesk · Display</div>
+      <div class="type-display">Excel knowledge, governed and graphed.</div>
+    </div>
+    <div class="type-sample">
+      <div class="type-meta">JetBrains Mono · Data</div>
+      <div class="type-mono">FRM-0001 · LEADS_TO · FRM-0002 · DEPENDS_ON · ARC-0003 · TIER 3</div>
+    </div>
+    <div class="type-sample">
+      <div class="type-meta">Source Serif 4 · Body</div>
+      <div class="type-body">Every existing Excel resource does flat lookup: name to definition. Excelligence maps name to intent to tier to progression to what breaks to what comes next. The graph structure is the difference.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- SCHEMA STATUS -->
+  <div class="section">
+    <div class="section-label">Schema Status</div>
+    <div class="section-title">v0.2 — Locked.</div>
+    <div class="section-desc">Every entry on Excelligence conforms to a ratified schema. 17 fields per entry. Every edge typed. The registry is governed like the Standards Registry.</div>
+
+    <div class="callout">
+      <div class="callout-label">SCHEMA LOCKED v0.2</div>
+      <div class="callout-body">
+        574 validation checks passed &middot; 9/9 council unanimous<br>
+        STD-EXCEL-001 (Analytical Workbook, 9 rules) &middot; STD-EXCEL-002 (Operational Workbook, 8 rules)
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- TAGLINE -->
+  <div class="section">
+    <div class="section-label">Tagline</div>
+    <div class="section-title">The cathedral line.</div>
+    <div class="section-desc">The primary tagline is the brand thesis in six words. Use the Rowan Bennett quote as a secondary &mdash; it&rsquo;s the canon pull quote from CR-EXCEL-001 and earns its place in hero moments.</div>
+
+    <div class="tagline-card">
+      <div class="tagline-display">&ldquo;Excel knowledge, governed and graphed.&rdquo;</div>
+      <div class="tagline-alt">CANON QUOTE: &ldquo;The graph is the cathedral.&rdquo; &mdash; Rowan Bennett &middot; Seat 1005 &middot; CR-EXCEL-001</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- OG + TONE -->
+  <div class="section">
+    <div class="section-label">OG Dimensions &amp; Tone</div>
+    <div class="section-title">Cathedral energy.</div>
+    <div class="section-desc">Excelligence is the deep, governed, structural one. Not a tutorial site. Not a tips blog. Tone is quiet authority &mdash; the way a cathedral doesn&rsquo;t have to say it&rsquo;s a cathedral.</div>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-head">OG Image</div>
+        <div class="info-text">1200&times;630px. Navy background. Graph fragment right-centered (not a stamp). Product name Space Grotesk 700 cream 52px. Tagline gold 24px. Source: <code>public/og-excelligence.png</code>.</div>
+      </div>
+      <div class="info-card">
+        <div class="info-head">Tone — Do</div>
+        <div class="info-text">Governed. Structured. Graphed. Typed. Deep. &ldquo;The registry is the rulebook.&rdquo; Let the graph speak &mdash; don&rsquo;t over-narrate.</div>
+      </div>
+      <div class="info-card">
+        <div class="info-head">Tone — Don&rsquo;t</div>
+        <div class="info-text">No &ldquo;Excel hacks.&rdquo; No &ldquo;one weird trick.&rdquo; No emoji-laden bullet lists of formulas. No tutorial framing. This is a reference cathedral, not a classroom.</div>
+      </div>
+      <div class="info-card">
+        <div class="info-head">Graph Rule</div>
+        <div class="info-text">Every visual &ge; 64px: show nodes and edges, not a monogram. Gold nodes on navy. LEADS_TO / DEPENDS_ON / PAIRS_WITH are the three typed edges &mdash; use the vocabulary.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="brand-footer">
+    <span>EXCELLIGENCE &middot; A DROPDOWN LOGISTICS PRODUCT</span>
+    <span>BRAND KIT v1.0 &middot; 2026-04-13</span>
+  </div>
+</div>
+</body>
+</html>

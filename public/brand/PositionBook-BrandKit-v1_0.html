@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PositionBook — Brand Kit v1.0</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0D1B2A;--card:#10202F;--card2:#0F1D2A;
+  --cream:#F5F1EB;--steel:#6B7B8D;
+  --border:rgba(245,241,235,0.07);--border-lt:rgba(245,241,235,0.12);
+  --accent:#4A9E6B; /* PositionBook Green (D&A family) */
+  --accent-dim:rgba(74,158,107,0.12);
+  --accent-line:rgba(74,158,107,0.35);
+}
+body{background:var(--navy);color:var(--cream);font-family:'Source Serif 4',Georgia,serif;min-height:100vh;padding:60px 24px 80px}
+.page{max-width:1100px;margin:0 auto}
+.brand-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:72px;padding-bottom:40px;border-bottom:1px solid var(--border);flex-wrap:wrap;gap:24px}
+h1{font-family:'Space Grotesk',sans-serif;font-size:2.2rem;font-weight:700;letter-spacing:-0.025em;line-height:1.1;margin-bottom:8px}
+h1 span{color:var(--accent)}
+.brand-meta{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--steel);letter-spacing:.04em;line-height:1.9;text-align:right}
+.section{margin-bottom:72px}
+.section-label{font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px}
+.section-title{font-family:'Space Grotesk',sans-serif;font-size:1.25rem;font-weight:600;margin-bottom:8px;letter-spacing:-0.01em}
+.section-desc{font-size:.92rem;color:var(--steel);line-height:1.65;margin-bottom:32px;max-width:680px}
+.divider{width:100%;height:1px;background:var(--border);margin-bottom:72px}
+
+.parent-badge{display:inline-flex;align-items:center;gap:10px;background:var(--accent-dim);border:1px solid var(--accent-line);border-radius:6px;padding:10px 16px;margin-bottom:24px;font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--accent);letter-spacing:.08em;text-transform:uppercase}
+
+.stamp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2px;border-radius:8px;overflow:hidden;margin-bottom:24px}
+.stamp-cell{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:44px 24px 20px;min-height:220px;gap:16px}
+.stamp-cell-label{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--steel);letter-spacing:.06em}
+.on-navy{background:var(--navy)}.on-card{background:var(--card)}.on-dark{background:#060E17}
+
+.swatch-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px}
+.swatch{border-radius:6px;overflow:hidden;border:1px solid var(--border);width:150px}
+.swatch-block{height:80px}
+.swatch-info{padding:10px 12px;background:var(--card)}
+.swatch-name{font-family:'Space Grotesk',sans-serif;font-size:.82rem;font-weight:600;margin-bottom:2px}
+.swatch-hex{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--steel)}
+.swatch-role{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--accent);margin-top:4px;text-transform:uppercase;letter-spacing:.06em}
+
+.type-sample{padding:28px 32px;background:var(--card);border:1px solid var(--border);border-radius:8px;margin-bottom:16px}
+.type-meta{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--accent);letter-spacing:.06em;margin-bottom:12px;text-transform:uppercase}
+.type-display{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:2rem;letter-spacing:-0.02em;line-height:1.1}
+.type-mono{font-family:'JetBrains Mono',monospace;font-size:.95rem;color:var(--cream);letter-spacing:.02em}
+.type-body{font-family:'Source Serif 4',serif;font-size:1rem;line-height:1.7;color:var(--cream);max-width:620px}
+
+.tagline-card{background:linear-gradient(135deg,var(--accent-dim) 0%,transparent 60%);border:1px solid var(--accent-line);border-left:3px solid var(--accent);border-radius:10px;padding:32px 36px}
+.tagline-display{font-family:'Source Serif 4',serif;font-style:italic;font-size:1.5rem;color:var(--cream);line-height:1.5;margin-bottom:10px}
+.tagline-alt{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--steel);letter-spacing:.05em}
+
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.info-card{background:var(--card);border:1px solid var(--border);border-left:2px solid var(--accent);border-radius:8px;padding:20px 22px}
+.info-head{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.95rem;color:var(--cream);margin-bottom:8px}
+.info-text{font-family:'Source Serif 4',serif;font-size:.88rem;color:var(--steel);line-height:1.6}
+
+.brand-footer{border-top:1px solid var(--border);padding-top:32px;font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--steel);letter-spacing:.12em;text-transform:uppercase;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="brand-header">
+    <div>
+      <h1>Position<span>Book</span> &mdash; Brand Kit</h1>
+      <div class="brand-meta">Trade intelligence &middot; v1.0 &middot; 2026-04-13</div>
+    </div>
+    <div class="brand-meta">
+      Accent: Green #4A9E6B<br>
+      Parent: D&amp;A Analytics<br>
+      URL: positionbook.vercel.app
+    </div>
+  </div>
+
+  <div class="parent-badge">
+    D&amp;A ANALYTICS &middot; Sibling to BlindSpot
+  </div>
+  <div class="section-desc" style="max-width:720px;margin-top:-12px">
+    PositionBook is the trading half of the D&amp;A Analytics family. BlindSpot (sports) and PositionBook (markets) share the same methodology &mdash; log everything, find the pattern, remove the blind spot &mdash; and the same color family. Green reads &ldquo;evidence-based, quantitative, calm.&rdquo;
+  </div>
+
+  <!-- MARK -->
+  <div class="section">
+    <div class="section-label">The Mark</div>
+    <div class="section-title">PB stamp — green ring, cream monogram</div>
+    <div class="section-desc">PositionBook uses the standard DDL stamp anatomy: green outer ring, dashed inner ring, cream PB monogram, cardinal ticks. BlindSpot&rsquo;s helix is the documented exception in the family; PositionBook is not &mdash; trade intelligence carries institutional weight.</div>
+
+    <div class="stamp-grid">
+      <div class="stamp-cell on-navy">
+        <svg width="140" height="140" viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="90" fill="none" stroke="#4A9E6B" stroke-width="2.5"/>
+          <circle cx="100" cy="100" r="80" fill="none" stroke="#4A9E6B" stroke-width="0.75" stroke-dasharray="3 4"/>
+          <circle cx="100" cy="100" r="75" fill="#0D1B2A"/>
+          <text x="100" y="118" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-weight="700" font-size="56" fill="#F5F1EB">PB</text>
+          <line x1="100" y1="14" x2="100" y2="24" stroke="#4A9E6B" stroke-width="1.5"/>
+          <line x1="100" y1="176" x2="100" y2="186" stroke="#4A9E6B" stroke-width="1.5"/>
+          <line x1="14" y1="100" x2="24" y2="100" stroke="#4A9E6B" stroke-width="1.5"/>
+          <line x1="176" y1="100" x2="186" y2="100" stroke="#4A9E6B" stroke-width="1.5"/>
+        </svg>
+        <div class="stamp-cell-label">ON NAVY · 140px</div>
+      </div>
+      <div class="stamp-cell on-card">
+        <svg width="80" height="80" viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="90" fill="none" stroke="#4A9E6B" stroke-width="3"/>
+          <circle cx="100" cy="100" r="80" fill="none" stroke="#4A9E6B" stroke-width="0.75" stroke-dasharray="3 4"/>
+          <circle cx="100" cy="100" r="75" fill="#10202F"/>
+          <text x="100" y="118" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-weight="700" font-size="56" fill="#F5F1EB">PB</text>
+        </svg>
+        <div class="stamp-cell-label">ON CARD · 80px</div>
+      </div>
+      <div class="stamp-cell on-navy">
+        <svg width="32" height="32" viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="90" fill="none" stroke="#4A9E6B" stroke-width="6"/>
+          <text x="100" y="124" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-weight="700" font-size="74" fill="#F5F1EB">PB</text>
+        </svg>
+        <div class="stamp-cell-label">REDUCTION · 32px</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- PALETTE -->
+  <div class="section">
+    <div class="section-label">Color Tokens</div>
+    <div class="section-title">Green that reads evidence-based.</div>
+    <div class="section-desc">PositionBook&rsquo;s green is not the consumer bright #22C55E of BlindSpot&rsquo;s product UI &mdash; it&rsquo;s #4A9E6B, muted, institutional, trading-desk green. Every surface is navy-first; green marks the live dataset.</div>
+
+    <div class="swatch-row">
+      <div class="swatch"><div class="swatch-block" style="background:#0D1B2A"></div><div class="swatch-info"><div class="swatch-name">Navy</div><div class="swatch-hex">#0D1B2A</div><div class="swatch-role">Background</div></div></div>
+      <div class="swatch"><div class="swatch-block" style="background:#10202F"></div><div class="swatch-info"><div class="swatch-name">Card</div><div class="swatch-hex">#10202F</div><div class="swatch-role">Surface</div></div></div>
+      <div class="swatch"><div class="swatch-block" style="background:#F5F1EB"></div><div class="swatch-info"><div class="swatch-name">Cream</div><div class="swatch-hex">#F5F1EB</div><div class="swatch-role">Text</div></div></div>
+      <div class="swatch"><div class="swatch-block" style="background:#4A9E6B"></div><div class="swatch-info"><div class="swatch-name">Dave Green</div><div class="swatch-hex">#4A9E6B</div><div class="swatch-role">Accent · Live</div></div></div>
+      <div class="swatch"><div class="swatch-block" style="background:#6B7B8D"></div><div class="swatch-info"><div class="swatch-name">Steel</div><div class="swatch-hex">#6B7B8D</div><div class="swatch-role">Muted</div></div></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- TYPOGRAPHY -->
+  <div class="section">
+    <div class="section-label">Typography</div>
+    <div class="section-title">Three fonts. Data voice.</div>
+    <div class="section-desc">Space Grotesk for display. JetBrains Mono for every number on the page &mdash; R-multiples, win rate, ticker symbols. Source Serif 4 for prose and the tagline.</div>
+
+    <div class="type-sample">
+      <div class="type-meta">Space Grotesk · Display</div>
+      <div class="type-display">Every trade. Every pattern.</div>
+    </div>
+    <div class="type-sample">
+      <div class="type-meta">JetBrains Mono · Data</div>
+      <div class="type-mono">WIN RATE 30.5% · AVG R 2.31 · 241 TRADES · SNDK +$266</div>
+    </div>
+    <div class="type-sample">
+      <div class="type-meta">Source Serif 4 · Body</div>
+      <div class="type-body">Most traders know their win rate. Nobody knows their late-session win rate on gap-up momentum plays after a two-loss streak. PositionBook does.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- TAGLINE -->
+  <div class="section">
+    <div class="section-label">Tagline</div>
+    <div class="section-title">Signal. Structure. Edge.</div>
+    <div class="section-desc">The primary tagline mirrors the D&amp;A family pattern established by BlindSpot (&ldquo;signal &rarr; structure &rarr; edge&rdquo;). The specific line below is the PositionBook voice.</div>
+
+    <div class="tagline-card">
+      <div class="tagline-display">&ldquo;You are not losing. You are not tracking.&rdquo;</div>
+      <div class="tagline-alt">FAMILY LINE: signal &rarr; structure &rarr; edge &middot; METHOD: log everything, find the pattern, remove the blind spot.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- OG + TONE -->
+  <div class="section">
+    <div class="section-label">OG Dimensions &amp; Tone</div>
+    <div class="section-title">Analytical. Sharp. Evidence-based.</div>
+    <div class="section-desc">PositionBook is not a hype product. It is not a signals-selling product. It is a logging layer and a pattern surface. The tone is calm and precise &mdash; the tone of someone reading a journal, not a tipster.</div>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-head">OG Image</div>
+        <div class="info-text">1200&times;630px. Navy background. PB stamp right-centered. Product name &ldquo;Position&rdquo; cream + &ldquo;Book&rdquo; green. Tagline green 24px. URL steel uppercase mono 16px. PNG pending generation.</div>
+      </div>
+      <div class="info-card">
+        <div class="info-head">Tone — Do</div>
+        <div class="info-text">Evidence. Pattern. Tracking. R-multiple. Expectancy. Drawdown. Never predict; describe what the log shows. Let the data carry the weight.</div>
+      </div>
+      <div class="info-card">
+        <div class="info-head">Tone — Don&rsquo;t</div>
+        <div class="info-text">No &ldquo;guru.&rdquo; No &ldquo;to the moon.&rdquo; No signal subscriptions. No dollar-bag emojis. No promises of returns. Not even a winking one.</div>
+      </div>
+      <div class="info-card">
+        <div class="info-head">D&amp;A Family Rule</div>
+        <div class="info-text">Green in the product UI. Amber if DDL is referencing PositionBook from outside. Do not flatten the two greens of BlindSpot &mdash; different product, different context.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="brand-footer">
+    <span>POSITIONBOOK &middot; A D&amp;A ANALYTICS PRODUCT &middot; DROPDOWN LOGISTICS</span>
+    <span>BRAND KIT v1.0 &middot; 2026-04-13</span>
+  </div>
+</div>
+</body>
+</html>
