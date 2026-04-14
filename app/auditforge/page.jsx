@@ -141,6 +141,9 @@ export default function AuditForgeLanding() {
           <a href="https://auditforge.dev" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', background: 'transparent', color: C.teal, fontFamily: "'Space Grotesk', sans-serif", fontWeight: 500, fontSize: '0.9rem', padding: '12px 28px', borderRadius: 6, textDecoration: 'none', border: `1px solid ${C.tealBorder}` }}>
             auditforge.dev &#x2197;
           </a>
+          <Link href="/auditforge/pricing" style={{ display: 'inline-block', background: 'transparent', color: C.crimsonAF, fontFamily: "'Space Grotesk', sans-serif", fontWeight: 500, fontSize: '0.9rem', padding: '12px 28px', borderRadius: 6, textDecoration: 'none', border: `1px solid rgba(155,17,30,0.35)` }}>
+            Pricing &rarr;
+          </Link>
         </div>
       </div>
 

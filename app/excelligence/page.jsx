@@ -730,6 +730,24 @@ export default function ExcelligenceLanding() {
           >
             View Radial Map ↗
           </a>
+          <a
+            href="/excelligence/pricing"
+            style={{
+              display: "inline-block",
+              padding: "16px 32px",
+              background: "transparent",
+              color: "#D4A843",
+              fontSize: 15,
+              fontWeight: 600,
+              fontFamily: "'Space Grotesk', sans-serif",
+              borderRadius: 8,
+              textDecoration: "none",
+              letterSpacing: 0.5,
+              border: "1px solid rgba(212,168,67,0.5)",
+            }}
+          >
+            Pricing →
+          </a>
         </div>
 
         <p style={{

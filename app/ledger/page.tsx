@@ -101,10 +101,15 @@ export default function LedgerWing() {
           Ledger is the verified credential layer for professional work. Every card is a receipt. Every receipt is governed. It&rsquo;s a receiptsume.
         </div>
 
-        <a href={LEDGER_URL} target="_blank" rel="noopener noreferrer"
-           style={{ display: 'inline-block', background: C.crimson, color: C.cream, fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, fontSize: '0.95rem', padding: '14px 30px', borderRadius: 6, textDecoration: 'none', letterSpacing: '0.01em' }}>
-          Visit Ledger &rarr;
-        </a>
+        <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', alignItems: 'center' }}>
+          <a href={LEDGER_URL} target="_blank" rel="noopener noreferrer"
+             style={{ display: 'inline-block', background: C.crimson, color: C.cream, fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, fontSize: '0.95rem', padding: '14px 30px', borderRadius: 6, textDecoration: 'none', letterSpacing: '0.01em' }}>
+            Visit Ledger &rarr;
+          </a>
+          <Link href="/ledger/pricing" style={{ display: 'inline-block', background: 'transparent', color: C.amber, fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, fontSize: '0.9rem', padding: '14px 26px', borderRadius: 6, textDecoration: 'none', border: `1px solid ${C.amberLine}` }}>
+            Pricing &rarr;
+          </Link>
+        </div>
       </div>
 
       <div style={{ height: 1, background: C.border, maxWidth: 980, margin: '0 auto' }} />

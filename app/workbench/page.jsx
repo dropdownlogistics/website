@@ -162,6 +162,9 @@ export default function WorkBenchWing() {
              style={{ display: 'inline-block', background: C.crimson, color: C.cream, fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, fontSize: '0.95rem', padding: '14px 30px', borderRadius: 6, textDecoration: 'none', letterSpacing: '0.01em' }}>
             Visit WorkBench &rarr;
           </a>
+          <Link href="/workbench/pricing" style={{ display: 'inline-block', background: 'transparent', color: C.crimson, fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, fontSize: '0.9rem', padding: '14px 26px', borderRadius: 6, textDecoration: 'none', border: `1px solid ${C.crimsonLine}` }}>
+            Pricing &rarr;
+          </Link>
           <a href="#sprint" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.75rem', color: C.cream, textDecoration: 'none', padding: '14px 20px', letterSpacing: '0.05em', opacity: 0.75 }}>
             Read the architectural sprint &darr;
           </a>
