@@ -139,7 +139,7 @@ export default function ExcelligenceLanding() {
           margin: "0 0 32px",
           lineHeight: 1.5,
         }}>
-          What I know about Excel, structured so others can learn it.
+          Excel knowledge, governed and graphed.
         </p>
 
         <p style={{
@@ -207,6 +207,128 @@ export default function ExcelligenceLanding() {
             }}>{stat.label}</div>
           </div>
         ))}
+      </div>
+
+      {/* === SCHEMA STATUS === */}
+      <div style={{
+        maxWidth: 800,
+        margin: "0 auto 56px",
+        padding: "0 24px",
+      }}>
+        <div style={{
+          background: "rgba(212,168,67,0.06)",
+          border: "1px solid rgba(212,168,67,0.3)",
+          borderLeft: "3px solid #D4A843",
+          borderRadius: 8,
+          padding: "18px 22px",
+          display: "flex",
+          alignItems: "center",
+          gap: 18,
+          flexWrap: "wrap",
+        }}>
+          <div style={{
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: 10,
+            letterSpacing: 2.5,
+            color: "#D4A843",
+            textTransform: "uppercase",
+            fontWeight: 600,
+          }}>
+            SCHEMA LOCKED v0.2
+          </div>
+          <div style={{
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: 11,
+            color: "#a09a8c",
+            letterSpacing: 0.5,
+          }}>
+            574 validation checks passed &middot; 9/9 council unanimous
+          </div>
+        </div>
+      </div>
+
+      {/* === THREE LAYERS === */}
+      <div style={{
+        maxWidth: 800,
+        margin: "0 auto 40px",
+        padding: "0 24px",
+      }}>
+        <div style={{
+          fontFamily: "'JetBrains Mono', monospace",
+          fontSize: 9,
+          letterSpacing: 2.5,
+          color: "#D4A843",
+          textTransform: "uppercase",
+          marginBottom: 20,
+          paddingBottom: 8,
+          borderBottom: "1px solid rgba(212,168,67,0.2)",
+        }}>
+          Three layers. One architecture.
+        </div>
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+          gap: 12,
+        }}>
+          {[
+            { n: "01", label: "Registry", t: "Every entry governed. 17 fields per entry. Type, tier, aliases, relationships, validation." },
+            { n: "02", label: "Graph",    t: "200 governed edges. LEADS_TO / DEPENDS_ON / PAIRS_WITH. The map between what you know and what comes next." },
+            { n: "03", label: "Standards", t: "STD-EXCEL-001 (Analytical Workbook, 9 rules) and STD-EXCEL-002 (Operational Workbook, 8 rules). The governed baseline." },
+          ].map((layer, i) => (
+            <div key={i} style={{
+              background: "rgba(255,255,255,0.015)",
+              border: "1px solid rgba(212,168,67,0.18)",
+              borderLeft: "2px solid #D4A843",
+              borderRadius: 8,
+              padding: "18px 20px",
+            }}>
+              <div style={{ display: "flex", alignItems: "baseline", gap: 10, marginBottom: 10 }}>
+                <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: "#D4A843" }}>{layer.n}</span>
+                <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 15, color: "#e8e4da" }}>{layer.label}</span>
+              </div>
+              <div style={{
+                fontFamily: "'Source Serif 4', serif",
+                fontSize: 12,
+                color: "#7a7668",
+                lineHeight: 1.6,
+              }}>{layer.t}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* === PULL QUOTE === */}
+      <div style={{
+        maxWidth: 800,
+        margin: "0 auto 56px",
+        padding: "0 24px",
+      }}>
+        <div style={{
+          borderLeft: "2px solid #D4A843",
+          paddingLeft: 22,
+          paddingTop: 4,
+          paddingBottom: 4,
+        }}>
+          <div style={{
+            fontFamily: "'Source Serif 4', serif",
+            fontStyle: "italic",
+            fontSize: 22,
+            color: "#F5F1EB",
+            lineHeight: 1.4,
+            marginBottom: 10,
+            letterSpacing: "-0.01em",
+          }}>
+            &ldquo;The graph is the cathedral.&rdquo;
+          </div>
+          <div style={{
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: 10,
+            color: "#D4A843",
+            letterSpacing: "0.1em",
+          }}>
+            ROWAN BENNETT &middot; SEAT 1005 &middot; CR-EXCEL-001
+          </div>
+        </div>
       </div>
 
       {/* === WHAT'S INSIDE === */}
@@ -595,10 +717,10 @@ export default function ExcelligenceLanding() {
               textDecoration: "none",
               letterSpacing: 0.5,
               transition: "all 0.2s",
-              border: "1px solid rgba(178,53,49,0.5)",
+              border: "1px solid rgba(212,168,67,0.5)",
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = "rgba(178,53,49,0.08)";
+              e.currentTarget.style.background = "rgba(212,168,67,0.08)";
               e.currentTarget.style.transform = "translateY(-1px)";
             }}
             onMouseLeave={(e) => {
@@ -606,7 +728,7 @@ export default function ExcelligenceLanding() {
               e.currentTarget.style.transform = "translateY(0)";
             }}
           >
-            Visit excelligence.dev ↗
+            View Radial Map ↗
           </a>
         </div>
 
