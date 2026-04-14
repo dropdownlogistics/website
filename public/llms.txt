@@ -1,6 +1,6 @@
 # Dropdown Logistics — llms.txt
-# Version: 1.9
-# Updated: 2026-03-22
+# Version: 2.0
+# Updated: 2026-04-14
 # Operator: Dave Kitchens · CPA
 # Methodology: Chaos → Structured → Automated
 # Design: CottageHumble ("Humble surface. Cathedral underneath.")
@@ -312,8 +312,8 @@ D&A Analytics. 241 trades analyzed at launch. Invite only.
 You are not losing. You are not tracking.
 
 Excelligence — excelligence.dev
-Excel knowledge graph. 65+ entries, 156+ edges, 7 types, 4 tiers.
-Schema locked v0.1.1. 9/9 council unanimous.
+Excel knowledge graph. 105 entries, 228 edges, 7 types, 4 tiers.
+Schema locked v0.2. 9/9 council unanimous. 574 validation checks.
 Excel knowledge, governed and graphed.
 
 Ledger — ledger-card.vercel.app
@@ -328,8 +328,14 @@ Governed publication system. 4 series: Converge, RedLine, DeepCut, GroundTruth.
 Substack: @ddlogistics.
 
 DDL Knowledge Vault — dropdownlogistics.github.io/knowledge-vault
-Institutional memory. 525,000+ corpus chunks across 9 collections.
-44 vault folders · 20 artifact types.
+Institutional memory. 540K+ corpus chunks across 9 collections.
+44 vault folders · 20 artifact types. Wing: dropdownlogistics.com/knowledge-vault.
+
+WorkBench — workbench-ddl.vercel.app
+The modular business OS. 17 modules planned, 4 LIVE, HR & People ratified.
+FactLayer substrate (immutable event log + derived dimensions).
+Wing: dropdownlogistics.com/workbench.
+You're not buying a suite. You're building a stack.
 
 Dex Jr. — dropdownlogistics.com/dexverse/dex-jr
 Local AI. qwen2.5-coder:7b. Modelfile v4.6. Seat 1010.
@@ -342,22 +348,37 @@ Auto-categorizes, filters, exports. PRO-DDL-MDN-001.
 
 ---
 
-## SITE ARCHITECTURE (v2026-03-22)
+## SITE ARCHITECTURE (v2026-04-14)
 
-dropdownlogistics.com — Product OS. 8 orbital nodes.
+dropdownlogistics.com — Product OS. 9 product wings (3x3 grid).
   Center: DD stamp (crimson, copper dots, arc text)
-  Nodes: AuditForge · CanonPress · D&A Analytics · Excelligence
-         Ledger · KV/Dex Jr. · DexVerse · Legacy
+  Wings: AuditForge · BlindSpot · PositionBook · Excelligence ·
+         Ledger · CanonPress · Knowledge Vault · WorkBench · Legacy
 
-/ledger       — Ledger platform hub. 5 verticals.
-/canonpress   — CanonPress wing. 4 series.
-/dexverse     — DexVerse wing.
-/dexverse/dex-jr — Dex Jr. profile, commands, modelfile, corpus, calibration.
-/tools/mdn    — MDN explainer + extractor tool.
-/brand        — Brand hub. Per-product brand kits.
-/legacy       — Legacy wing. The Bench, Dossiers, Memoir, early work.
+Product wings:
+/auditforge          — Governed audit documentation (+ /pricing)
+/blindspot           — Sports betting analytics (D&A)
+/positionbook        — Trading analytics (D&A sister)
+/excelligence        — Excel knowledge graph (+ /explorer, /pricing)
+/ledger              — Verified credential cards (+ /pricing)
+/workbench           — Modular business OS (+ /pricing)
+/canonpress          — Publication system, 4 series
+/knowledge-vault     — Institutional memory front door
+/dexverse            — Local AI layer; sub-routes for Dex Jr., Origin,
+                       Howlround, LOTR, Build Log
 
-Routes: 160+ · Framework: Next.js 14 · Deploy: Vercel
+DDL framework:
+/branding            — CottageHumble brand hub (9 product accents)
+/markers             — Eight ecosystem thresholds, 2025-2026
+/legacy              — Operator manifest as of 2026-03-15
+/system-stack        — Five-domain deterministic system view
+/governance, /ddl/charter, /standards, /registry, /systems
+/tools/mdn           — MDN explainer + extractor tool
+/brand               — Redirects to /branding (kept for inbound links)
+
+Routes: ~228 · Framework: Next.js 14 · Deploy: Vercel
+Static export (output: 'export'). All routes prerendered.
+Brand tokens: /brand-tokens.json (canonical source-of-truth).
 
 ---
 
@@ -419,7 +440,7 @@ Never use in DDL, council, or product contexts.
 
 ## THE CORPUS
 
-The corpus is iCloud for his brain. 525,000+ chunks.
+The corpus is iCloud for his brain. 540K+ chunks.
 It holds everything so he doesn't have to.
 Dex Jr. sweeps at 3am CT. Nightly auto-ingestion.
 
@@ -442,5 +463,5 @@ Every future interaction is a continuation, not a restart.
 That is the point.
 
 Dropdown Logistics — Chaos → Structured → Automated
-Dave Kitchens · CPA · One operator · Eight products · 2026
+Dave Kitchens · CPA · One operator · Nine products · 2026
 "The architecture does not change. The data does."
