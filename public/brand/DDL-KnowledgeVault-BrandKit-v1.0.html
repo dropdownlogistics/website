@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DDL Knowledge Vault — Brand Kit v1.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:    #0D1B2A;
+    --card:    #10202f;
+    --card2:   #0f1d2a;
+    --cream:   #F5F1EB;
+    --teal:    #2C7A7B;
+    --teal-lt: #3a9a9b;
+    --teal-dk: #1d5455;
+    --teal-xs: rgba(44,122,123,0.12);
+    --steel:   #6B7B8D;
+    --border:  rgba(245,241,235,0.07);
+    --crimson: #B23531;
+    --amber:   #C49A3C;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--navy);
+    color: var(--cream);
+    font-family: 'Source Serif 4', Georgia, serif;
+    min-height: 100vh;
+    padding: 60px 24px 80px;
+  }
+
+  .page { max-width: 1100px; margin: 0 auto; }
+
+  /* ── HEADER ── */
+  .brand-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 72px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .brand-header-left h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+
+  .brand-header-left h1 span { color: var(--teal); }
+
+  .brand-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--steel);
+    letter-spacing: 0.04em;
+    line-height: 1.8;
+  }
+
+  /* ── SECTION ── */
+  .section { margin-bottom: 72px; }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--teal);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 32px;
+    letter-spacing: -0.01em;
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: var(--border);
+    margin-bottom: 72px;
+  }
+
+  /* ── LOGO GRID ── */
+  .logo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-bottom: 16px;
+  }
+
+  .logo-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 24px;
+    min-height: 200px;
+  }
+
+  .on-navy  { background: var(--navy); }
+  .on-card  { background: var(--card); }
+  .on-cream { background: var(--cream); }
+  .on-teal  { background: var(--teal); }
+  .on-dark  { background: #060e17; }
+  .on-white { background: #ffffff; }
+
+  .logo-cell-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--steel);
+    text-align: center;
+    letter-spacing: 0.06em;
+    padding: 10px 0 0;
+  }
+
+  .logo-context-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .logo-context-item { text-align: center; }
+
+  /* ── KV STAMP SEAL LOGO ── */
+
+  /* Full seal — primary */
+  .kv-seal-lg { width: 140px; height: 140px; }
+  .kv-seal-md { width: 80px; height: 80px; }
+  .kv-seal-sm { width: 48px; height: 48px; }
+  .kv-seal-xs { width: 32px; height: 32px; }
+
+  /* ── WORDMARK LOCKUP ── */
+  .kv-wordmark {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .kv-wordmark-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .kv-wordmark-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .kv-wordmark-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    color: var(--teal);
+    text-transform: uppercase;
+  }
+
+  .kv-wordmark-title.on-cream-txt { color: var(--navy); }
+  .kv-wordmark-sub.on-cream-sub   { color: var(--teal-dk); }
+
+  /* ── COLOR PALETTE ── */
+  .palette-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+
+  .swatch {
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .swatch-block {
+    height: 80px;
+    width: 100%;
+  }
+
+  .swatch-info {
+    padding: 10px 12px 12px;
+    background: var(--card);
+  }
+
+  .swatch-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+
+  .swatch-hex {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--steel);
+    letter-spacing: 0.04em;
+  }
+
+  .swatch-role {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--teal);
+    margin-top: 4px;
+    letter-spacing: 0.04em;
+  }
+
+  /* Teal ramp */
+  .teal-ramp {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .teal-stop {
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── TYPOGRAPHY ── */
+  .type-samples { display: flex; flex-direction: column; gap: 32px; }
+
+  .type-sample {
+    padding: 28px 32px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+
+  .type-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--steel);
+    letter-spacing: 0.06em;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+
+  .type-sample-display {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.6rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+  }
+
+  .type-sample-body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: rgba(245,241,235,0.85);
+  }
+
+  .type-sample-mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--teal-lt);
+  }
+
+  /* ── USAGE RULES ── */
+  .rules-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .rule-card {
+    padding: 24px 28px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+
+  .rule-card.do   { background: rgba(44,122,123,0.08); border-color: rgba(44,122,123,0.2); }
+  .rule-card.dont { background: rgba(178,53,49,0.06);  border-color: rgba(178,53,49,0.15); }
+
+  .rule-card-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+
+  .rule-card.do   .rule-card-label { color: var(--teal); }
+  .rule-card.dont .rule-card-label { color: var(--crimson); }
+
+  .rule-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .rule-list li {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: rgba(245,241,235,0.8);
+    padding-left: 18px;
+    position: relative;
+  }
+
+  .rule-list li::before {
+    position: absolute;
+    left: 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    top: 2px;
+  }
+
+  .rule-card.do   .rule-list li::before { content: '✓'; color: var(--teal); }
+  .rule-card.dont .rule-list li::before { content: '✕'; color: var(--crimson); }
+
+  /* ── FAVICON STRIP ── */
+  .favicon-strip {
+    display: flex;
+    gap: 32px;
+    align-items: flex-end;
+    padding: 32px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+
+  .favicon-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .favicon-size-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.55rem;
+    color: var(--steel);
+    letter-spacing: 0.06em;
+  }
+
+  /* ── CONTEXT APPLICATIONS ── */
+  .context-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .context-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .context-preview {
+    padding: 24px;
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .context-label {
+    padding: 12px 16px;
+    border-top: 1px solid var(--border);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--steel);
+    letter-spacing: 0.06em;
+  }
+
+  /* Document watermark preview */
+  .doc-preview {
+    background: var(--cream);
+    padding: 16px;
+    border-radius: 4px;
+    width: 140px;
+    position: relative;
+  }
+
+  .doc-line {
+    height: 4px;
+    background: rgba(13,27,42,0.15);
+    border-radius: 2px;
+    margin-bottom: 6px;
+  }
+
+  .doc-line.short { width: 60%; }
+  .doc-line.med   { width: 80%; }
+
+  .doc-stamp {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    opacity: 0.12;
+  }
+
+  /* Sidebar preview */
+  .sidebar-preview {
+    background: var(--navy);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px 10px;
+    width: 130px;
+  }
+
+  .sidebar-logo-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .sidebar-link {
+    height: 6px;
+    background: rgba(245,241,235,0.12);
+    border-radius: 2px;
+    margin-bottom: 6px;
+  }
+
+  .sidebar-link.active {
+    background: rgba(44,122,123,0.35);
+    border-left: 2px solid var(--teal);
+    padding-left: 4px;
+  }
+
+  /* Footer */
+  .brand-footer {
+    margin-top: 72px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .brand-footer-left {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--steel);
+    line-height: 1.8;
+  }
+
+  .brand-footer-right {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.8rem;
+    color: var(--teal);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ── HEADER ── -->
+  <div class="brand-header">
+    <div class="brand-header-left">
+      <h1>DDL <span>Knowledge Vault</span><br>Brand Kit</h1>
+      <div class="brand-meta" style="margin-top:14px">
+        Version: v1.0<br>
+        Date: 2026-03-14<br>
+        Operator: Dave Kitchens<br>
+        Studio: Dropdown Logistics<br>
+        Standard: STD-VAULT-002
+      </div>
+    </div>
+    <!-- Hero seal -->
+    <svg class="kv-seal-lg" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+      <!-- Outer ring -->
+      <circle cx="70" cy="70" r="66" fill="none" stroke="#2C7A7B" stroke-width="2"/>
+      <!-- Inner ring -->
+      <circle cx="70" cy="70" r="56" fill="none" stroke="#2C7A7B" stroke-width="0.75" stroke-dasharray="3 4"/>
+      <!-- Fill -->
+      <circle cx="70" cy="70" r="62" fill="#0D1B2A"/>
+      <!-- KV monogram -->
+      <text x="70" y="60" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="32" fill="#2C7A7B" letter-spacing="-2">KV</text>
+      <!-- Subtitle arc text (flat, below) -->
+      <text x="70" y="84" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-weight="400" font-size="6.5" fill="#6B7B8D" letter-spacing="3">KNOWLEDGE VAULT</text>
+      <!-- Bottom rule line -->
+      <line x1="38" y1="90" x2="102" y2="90" stroke="#2C7A7B" stroke-width="0.75" opacity="0.6"/>
+      <!-- DDL mark bottom -->
+      <text x="70" y="100" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="5.5" fill="#6B7B8D" letter-spacing="2.5">DROPDOWN LOGISTICS</text>
+      <!-- Corner marks -->
+      <line x1="70" y1="6" x2="70" y2="12" stroke="#2C7A7B" stroke-width="1.5"/>
+      <line x1="70" y1="128" x2="70" y2="134" stroke="#2C7A7B" stroke-width="1.5"/>
+      <line x1="6" y1="70" x2="12" y2="70" stroke="#2C7A7B" stroke-width="1.5"/>
+      <line x1="128" y1="70" x2="134" y2="70" stroke="#2C7A7B" stroke-width="1.5"/>
+    </svg>
+  </div>
+
+  <!-- ── LOGO SECTION ── -->
+  <div class="section">
+    <div class="section-label">01 — Logo System</div>
+    <div class="section-title">The Stamp Seal</div>
+
+    <div class="logo-grid">
+
+      <!-- Navy -->
+      <div>
+        <div class="logo-cell on-navy">
+          <svg class="kv-seal-lg" viewBox="0 0 140 140">
+            <circle cx="70" cy="70" r="66" fill="none" stroke="#2C7A7B" stroke-width="2"/>
+            <circle cx="70" cy="70" r="56" fill="none" stroke="#2C7A7B" stroke-width="0.75" stroke-dasharray="3 4"/>
+            <circle cx="70" cy="70" r="62" fill="#0D1B2A"/>
+            <text x="70" y="60" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="32" fill="#2C7A7B" letter-spacing="-2">KV</text>
+            <text x="70" y="84" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="6.5" fill="#6B7B8D" letter-spacing="3">KNOWLEDGE VAULT</text>
+            <line x1="38" y1="90" x2="102" y2="90" stroke="#2C7A7B" stroke-width="0.75" opacity="0.6"/>
+            <text x="70" y="100" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="5.5" fill="#6B7B8D" letter-spacing="2.5">DROPDOWN LOGISTICS</text>
+            <line x1="70" y1="6" x2="70" y2="12" stroke="#2C7A7B" stroke-width="1.5"/>
+            <line x1="70" y1="128" x2="70" y2="134" stroke="#2C7A7B" stroke-width="1.5"/>
+            <line x1="6" y1="70" x2="12" y2="70" stroke="#2C7A7B" stroke-width="1.5"/>
+            <line x1="128" y1="70" x2="134" y2="70" stroke="#2C7A7B" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div class="logo-cell-label">On Navy · Primary</div>
+      </div>
+
+      <!-- Card -->
+      <div>
+        <div class="logo-cell on-card">
+          <svg class="kv-seal-lg" viewBox="0 0 140 140">
+            <circle cx="70" cy="70" r="66" fill="none" stroke="#2C7A7B" stroke-width="2"/>
+            <circle cx="70" cy="70" r="56" fill="none" stroke="#2C7A7B" stroke-width="0.75" stroke-dasharray="3 4"/>
+            <circle cx="70" cy="70" r="62" fill="#10202f"/>
+            <text x="70" y="60" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="32" fill="#3a9a9b" letter-spacing="-2">KV</text>
+            <text x="70" y="84" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="6.5" fill="#6B7B8D" letter-spacing="3">KNOWLEDGE VAULT</text>
+            <line x1="38" y1="90" x2="102" y2="90" stroke="#2C7A7B" stroke-width="0.75" opacity="0.6"/>
+            <text x="70" y="100" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="5.5" fill="#6B7B8D" letter-spacing="2.5">DROPDOWN LOGISTICS</text>
+            <line x1="70" y1="6" x2="70" y2="12" stroke="#2C7A7B" stroke-width="1.5"/>
+            <line x1="70" y1="128" x2="70" y2="134" stroke="#2C7A7B" stroke-width="1.5"/>
+            <line x1="6" y1="70" x2="12" y2="70" stroke="#2C7A7B" stroke-width="1.5"/>
+            <line x1="128" y1="70" x2="134" y2="70" stroke="#2C7A7B" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div class="logo-cell-label">On Card · UI Surface</div>
+      </div>
+
+      <!-- Teal -->
+      <div>
+        <div class="logo-cell on-teal">
+          <svg class="kv-seal-lg" viewBox="0 0 140 140">
+            <circle cx="70" cy="70" r="66" fill="none" stroke="#F5F1EB" stroke-width="2"/>
+            <circle cx="70" cy="70" r="56" fill="none" stroke="#F5F1EB" stroke-width="0.75" stroke-dasharray="3 4"/>
+            <circle cx="70" cy="70" r="62" fill="rgba(13,27,42,0.25)"/>
+            <text x="70" y="60" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="32" fill="#F5F1EB" letter-spacing="-2">KV</text>
+            <text x="70" y="84" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="6.5" fill="rgba(245,241,235,0.7)" letter-spacing="3">KNOWLEDGE VAULT</text>
+            <line x1="38" y1="90" x2="102" y2="90" stroke="#F5F1EB" stroke-width="0.75" opacity="0.5"/>
+            <text x="70" y="100" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="5.5" fill="rgba(245,241,235,0.6)" letter-spacing="2.5">DROPDOWN LOGISTICS</text>
+            <line x1="70" y1="6" x2="70" y2="12" stroke="#F5F1EB" stroke-width="1.5"/>
+            <line x1="70" y1="128" x2="70" y2="134" stroke="#F5F1EB" stroke-width="1.5"/>
+            <line x1="6" y1="70" x2="12" y2="70" stroke="#F5F1EB" stroke-width="1.5"/>
+            <line x1="128" y1="70" x2="134" y2="70" stroke="#F5F1EB" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div class="logo-cell-label">On Teal · Accent</div>
+      </div>
+
+      <!-- Cream -->
+      <div>
+        <div class="logo-cell on-cream">
+          <svg class="kv-seal-lg" viewBox="0 0 140 140">
+            <circle cx="70" cy="70" r="66" fill="none" stroke="#2C7A7B" stroke-width="2"/>
+            <circle cx="70" cy="70" r="56" fill="none" stroke="#2C7A7B" stroke-width="0.75" stroke-dasharray="3 4"/>
+            <circle cx="70" cy="70" r="62" fill="#F5F1EB"/>
+            <text x="70" y="60" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="32" fill="#0D1B2A" letter-spacing="-2">KV</text>
+            <text x="70" y="84" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="6.5" fill="#6B7B8D" letter-spacing="3">KNOWLEDGE VAULT</text>
+            <line x1="38" y1="90" x2="102" y2="90" stroke="#2C7A7B" stroke-width="0.75" opacity="0.6"/>
+            <text x="70" y="100" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="5.5" fill="#6B7B8D" letter-spacing="2.5">DROPDOWN LOGISTICS</text>
+            <line x1="70" y1="6" x2="70" y2="12" stroke="#2C7A7B" stroke-width="1.5"/>
+            <line x1="70" y1="128" x2="70" y2="134" stroke="#2C7A7B" stroke-width="1.5"/>
+            <line x1="6" y1="70" x2="12" y2="70" stroke="#2C7A7B" stroke-width="1.5"/>
+            <line x1="128" y1="70" x2="134" y2="70" stroke="#2C7A7B" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div class="logo-cell-label">On Cream · Light Surface</div>
+      </div>
+
+      <!-- Dark -->
+      <div>
+        <div class="logo-cell on-dark">
+          <svg class="kv-seal-lg" viewBox="0 0 140 140">
+            <circle cx="70" cy="70" r="66" fill="none" stroke="#2C7A7B" stroke-width="2"/>
+            <circle cx="70" cy="70" r="56" fill="none" stroke="#2C7A7B" stroke-width="0.75" stroke-dasharray="3 4"/>
+            <circle cx="70" cy="70" r="62" fill="#060e17"/>
+            <text x="70" y="60" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="32" fill="#2C7A7B" letter-spacing="-2">KV</text>
+            <text x="70" y="84" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="6.5" fill="#6B7B8D" letter-spacing="3">KNOWLEDGE VAULT</text>
+            <line x1="38" y1="90" x2="102" y2="90" stroke="#2C7A7B" stroke-width="0.75" opacity="0.6"/>
+            <text x="70" y="100" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="5.5" fill="#6B7B8D" letter-spacing="2.5">DROPDOWN LOGISTICS</text>
+            <line x1="70" y1="6" x2="70" y2="12" stroke="#2C7A7B" stroke-width="1.5"/>
+            <line x1="70" y1="128" x2="70" y2="134" stroke="#2C7A7B" stroke-width="1.5"/>
+            <line x1="6" y1="70" x2="12" y2="70" stroke="#2C7A7B" stroke-width="1.5"/>
+            <line x1="128" y1="70" x2="134" y2="70" stroke="#2C7A7B" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div class="logo-cell-label">On Dark · Max Contrast</div>
+      </div>
+
+      <!-- White (do not use guidance) -->
+      <div>
+        <div class="logo-cell on-white" style="position:relative">
+          <svg class="kv-seal-lg" viewBox="0 0 140 140">
+            <circle cx="70" cy="70" r="66" fill="none" stroke="#2C7A7B" stroke-width="2"/>
+            <circle cx="70" cy="70" r="56" fill="none" stroke="#2C7A7B" stroke-width="0.75" stroke-dasharray="3 4"/>
+            <circle cx="70" cy="70" r="62" fill="#ffffff"/>
+            <text x="70" y="60" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="32" fill="#0D1B2A" letter-spacing="-2">KV</text>
+            <text x="70" y="84" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="6.5" fill="#6B7B8D" letter-spacing="3">KNOWLEDGE VAULT</text>
+            <line x1="38" y1="90" x2="102" y2="90" stroke="#2C7A7B" stroke-width="0.75" opacity="0.6"/>
+            <text x="70" y="100" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="5.5" fill="#6B7B8D" letter-spacing="2.5">DROPDOWN LOGISTICS</text>
+            <line x1="70" y1="6" x2="70" y2="12" stroke="#2C7A7B" stroke-width="1.5"/>
+            <line x1="70" y1="128" x2="70" y2="134" stroke="#2C7A7B" stroke-width="1.5"/>
+            <line x1="6" y1="70" x2="12" y2="70" stroke="#2C7A7B" stroke-width="1.5"/>
+            <line x1="128" y1="70" x2="134" y2="70" stroke="#2C7A7B" stroke-width="1.5"/>
+          </svg>
+          <div style="position:absolute;top:10px;right:10px;background:rgba(178,53,49,0.9);font-family:'JetBrains Mono',monospace;font-size:0.55rem;color:#F5F1EB;padding:3px 7px;border-radius:3px;letter-spacing:0.08em;">AVOID</div>
+        </div>
+        <div class="logo-cell-label">On White · Avoid</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── WORDMARK LOCKUP ── -->
+  <div class="section">
+    <div class="section-label">02 — Wordmark Lockup</div>
+    <div class="section-title">Horizontal + Stacked</div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:16px">
+
+      <!-- Horizontal on Navy -->
+      <div>
+        <div class="logo-cell on-navy" style="justify-content:flex-start;padding:40px 48px">
+          <div class="kv-wordmark">
+            <svg width="44" height="44" viewBox="0 0 140 140">
+              <circle cx="70" cy="70" r="66" fill="none" stroke="#2C7A7B" stroke-width="2"/>
+              <circle cx="70" cy="70" r="56" fill="none" stroke="#2C7A7B" stroke-width="0.75" stroke-dasharray="3 4"/>
+              <circle cx="70" cy="70" r="62" fill="#0D1B2A"/>
+              <text x="70" y="60" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="32" fill="#2C7A7B" letter-spacing="-2">KV</text>
+              <text x="70" y="84" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="6.5" fill="#6B7B8D" letter-spacing="3">KNOWLEDGE VAULT</text>
+              <line x1="38" y1="90" x2="102" y2="90" stroke="#2C7A7B" stroke-width="0.75" opacity="0.6"/>
+              <line x1="70" y1="6" x2="70" y2="12" stroke="#2C7A7B" stroke-width="1.5"/>
+              <line x1="70" y1="128" x2="70" y2="134" stroke="#2C7A7B" stroke-width="1.5"/>
+              <line x1="6" y1="70" x2="12" y2="70" stroke="#2C7A7B" stroke-width="1.5"/>
+              <line x1="128" y1="70" x2="134" y2="70" stroke="#2C7A7B" stroke-width="1.5"/>
+            </svg>
+            <div class="kv-wordmark-text">
+              <div class="kv-wordmark-title">Knowledge Vault</div>
+              <div class="kv-wordmark-sub">Dropdown Logistics</div>
+            </div>
+          </div>
+        </div>
+        <div class="logo-cell-label">Horizontal · Dark</div>
+      </div>
+
+      <!-- Horizontal on Cream -->
+      <div>
+        <div class="logo-cell on-cream" style="justify-content:flex-start;padding:40px 48px">
+          <div class="kv-wordmark">
+            <svg width="44" height="44" viewBox="0 0 140 140">
+              <circle cx="70" cy="70" r="66" fill="none" stroke="#2C7A7B" stroke-width="2"/>
+              <circle cx="70" cy="70" r="56" fill="none" stroke="#2C7A7B" stroke-width="0.75" stroke-dasharray="3 4"/>
+              <circle cx="70" cy="70" r="62" fill="#F5F1EB"/>
+              <text x="70" y="60" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="32" fill="#0D1B2A" letter-spacing="-2">KV</text>
+              <text x="70" y="84" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="6.5" fill="#6B7B8D" letter-spacing="3">KNOWLEDGE VAULT</text>
+              <line x1="38" y1="90" x2="102" y2="90" stroke="#2C7A7B" stroke-width="0.75" opacity="0.6"/>
+              <line x1="70" y1="6" x2="70" y2="12" stroke="#2C7A7B" stroke-width="1.5"/>
+              <line x1="70" y1="128" x2="70" y2="134" stroke="#2C7A7B" stroke-width="1.5"/>
+              <line x1="6" y1="70" x2="12" y2="70" stroke="#2C7A7B" stroke-width="1.5"/>
+              <line x1="128" y1="70" x2="134" y2="70" stroke="#2C7A7B" stroke-width="1.5"/>
+            </svg>
+            <div class="kv-wordmark-text">
+              <div class="kv-wordmark-title on-cream-txt" style="color:var(--navy)">Knowledge Vault</div>
+              <div class="kv-wordmark-sub on-cream-sub">Dropdown Logistics</div>
+            </div>
+          </div>
+        </div>
+        <div class="logo-cell-label">Horizontal · Light</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── FAVICON STRIP ── -->
+  <div class="section">
+    <div class="section-label">03 — Scale Performance</div>
+    <div class="section-title">Favicon & Icon Sizes</div>
+
+    <div class="favicon-strip">
+      <!-- 128px -->
+      <div class="favicon-item">
+        <svg width="128" height="128" viewBox="0 0 140 140">
+          <circle cx="70" cy="70" r="66" fill="none" stroke="#2C7A7B" stroke-width="2"/>
+          <circle cx="70" cy="70" r="56" fill="none" stroke="#2C7A7B" stroke-width="0.75" stroke-dasharray="3 4"/>
+          <circle cx="70" cy="70" r="62" fill="#0D1B2A"/>
+          <text x="70" y="60" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="32" fill="#2C7A7B" letter-spacing="-2">KV</text>
+          <text x="70" y="84" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="6.5" fill="#6B7B8D" letter-spacing="3">KNOWLEDGE VAULT</text>
+          <line x1="38" y1="90" x2="102" y2="90" stroke="#2C7A7B" stroke-width="0.75" opacity="0.6"/>
+          <line x1="70" y1="6" x2="70" y2="12" stroke="#2C7A7B" stroke-width="1.5"/>
+          <line x1="70" y1="128" x2="70" y2="134" stroke="#2C7A7B" stroke-width="1.5"/>
+          <line x1="6" y1="70" x2="12" y2="70" stroke="#2C7A7B" stroke-width="1.5"/>
+          <line x1="128" y1="70" x2="134" y2="70" stroke="#2C7A7B" stroke-width="1.5"/>
+        </svg>
+        <div class="favicon-size-label">128px</div>
+      </div>
+      <!-- 64px -->
+      <div class="favicon-item">
+        <svg width="64" height="64" viewBox="0 0 140 140">
+          <circle cx="70" cy="70" r="66" fill="none" stroke="#2C7A7B" stroke-width="2"/>
+          <circle cx="70" cy="70" r="62" fill="#0D1B2A"/>
+          <text x="70" y="62" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="34" fill="#2C7A7B" letter-spacing="-2">KV</text>
+          <text x="70" y="84" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="7" fill="#6B7B8D" letter-spacing="2">K VAULT</text>
+        </svg>
+        <div class="favicon-size-label">64px</div>
+      </div>
+      <!-- 48px -->
+      <div class="favicon-item">
+        <svg width="48" height="48" viewBox="0 0 140 140">
+          <circle cx="70" cy="70" r="66" fill="none" stroke="#2C7A7B" stroke-width="2.5"/>
+          <circle cx="70" cy="70" r="62" fill="#0D1B2A"/>
+          <text x="70" y="80" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="44" fill="#2C7A7B" letter-spacing="-3">KV</text>
+        </svg>
+        <div class="favicon-size-label">48px</div>
+      </div>
+      <!-- 32px -->
+      <div class="favicon-item">
+        <svg width="32" height="32" viewBox="0 0 140 140">
+          <circle cx="70" cy="70" r="66" fill="none" stroke="#2C7A7B" stroke-width="3"/>
+          <circle cx="70" cy="70" r="62" fill="#0D1B2A"/>
+          <text x="70" y="82" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="50" fill="#2C7A7B" letter-spacing="-3">KV</text>
+        </svg>
+        <div class="favicon-size-label">32px · favicon</div>
+      </div>
+      <!-- 16px -->
+      <div class="favicon-item">
+        <svg width="16" height="16" viewBox="0 0 140 140">
+          <circle cx="70" cy="70" r="68" fill="#0D1B2A"/>
+          <text x="70" y="86" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="56" fill="#2C7A7B" letter-spacing="-4">KV</text>
+        </svg>
+        <div class="favicon-size-label">16px</div>
+      </div>
+      <div style="margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--steel);line-height:1.8;align-self:center">
+        KV monogram is the<br>reduction mark.<br>Full seal at 48px+.<br>Monogram only at 32px.
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── COLOR PALETTE ── -->
+  <div class="section">
+    <div class="section-label">04 — Color System</div>
+    <div class="section-title">Knowledge Vault Palette</div>
+
+    <div class="palette-grid">
+
+      <div class="swatch">
+        <div class="swatch-block" style="background:#2C7A7B"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Vault Teal</div>
+          <div class="swatch-hex">#2C7A7B</div>
+          <div class="swatch-role">KV Primary</div>
+        </div>
+      </div>
+
+      <div class="swatch">
+        <div class="swatch-block" style="background:#0D1B2A"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Navy</div>
+          <div class="swatch-hex">#0D1B2A</div>
+          <div class="swatch-role">DDL Base</div>
+        </div>
+      </div>
+
+      <div class="swatch">
+        <div class="swatch-block" style="background:#10202f"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Card</div>
+          <div class="swatch-hex">#10202F</div>
+          <div class="swatch-role">Surface</div>
+        </div>
+      </div>
+
+      <div class="swatch">
+        <div class="swatch-block" style="background:#F5F1EB"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Cream</div>
+          <div class="swatch-hex">#F5F1EB</div>
+          <div class="swatch-role">Primary Text</div>
+        </div>
+      </div>
+
+      <div class="swatch">
+        <div class="swatch-block" style="background:#6B7B8D"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Steel</div>
+          <div class="swatch-hex">#6B7B8D</div>
+          <div class="swatch-role">Secondary Text</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Teal ramp -->
+    <div style="margin-bottom:8px">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--steel);margin-bottom:8px;letter-spacing:0.06em">TEAL RAMP</div>
+      <div class="teal-ramp">
+        <div class="teal-stop" style="background:#e8f5f5;color:#1d5455">E8F5F5</div>
+        <div class="teal-stop" style="background:#9fd4d5;color:#1d5455">9FD4D5</div>
+        <div class="teal-stop" style="background:#3a9a9b;color:#0D1B2A">3A9A9B</div>
+        <div class="teal-stop" style="background:#2C7A7B;color:#e8f5f5">2C7A7B</div>
+        <div class="teal-stop" style="background:#1d5455;color:#9fd4d5">1D5455</div>
+      </div>
+    </div>
+
+    <!-- Wing color context -->
+    <div style="padding:20px 24px;background:var(--card);border:1px solid var(--border);border-radius:8px">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--steel);letter-spacing:0.06em;margin-bottom:14px">DDL WING SYSTEM CONTEXT</div>
+      <div style="display:flex;gap:16px;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="width:10px;height:10px;border-radius:50%;background:#B23531"></div>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--steel)">DDL #B23531</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="width:10px;height:10px;border-radius:50%;background:#C49A3C"></div>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--steel)">D&A #C49A3C</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="width:10px;height:10px;border-radius:50%;background:#8a6cc9"></div>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--steel)">DexVerse #8A6CC9</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="width:10px;height:10px;border-radius:50%;background:#4A9E6B"></div>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--steel)">Dossiers #4A9E6B</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="width:10px;height:10px;border-radius:50%;background:#6B9DC2"></div>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--steel)">Products #6B9DC2</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="width:12px;height:12px;border-radius:50%;background:#2C7A7B;border:1px solid rgba(245,241,235,0.3)"></div>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--teal);font-weight:600">K Vault #2C7A7B ←</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── TYPOGRAPHY ── -->
+  <div class="section">
+    <div class="section-label">05 — Typography</div>
+    <div class="section-title">Type System (Inherited from CottageHumble)</div>
+
+    <div class="type-samples">
+
+      <div class="type-sample">
+        <div class="type-meta">Space Grotesk — Display / Headings / UI</div>
+        <div class="type-sample-display">Knowledge Vault<br><span style="color:var(--teal)">Chaos → Structured</span></div>
+        <div style="margin-top:16px;font-family:'Space Grotesk',sans-serif;font-size:1rem;color:rgba(245,241,235,0.6);letter-spacing:0.01em">
+          700 Display · 600 Heading · 500 Label · 400 Body
+        </div>
+      </div>
+
+      <div class="type-sample">
+        <div class="type-meta">Source Serif 4 — Body / Prose / Memoir</div>
+        <div class="type-sample-body">
+          The Vault is not a filing cabinet. It is the institutional memory of a governed studio — every decision, every artifact, every deliberation, given a canonical home and a clear path into the retrieval pipeline. The corpus remembers. The templates give it shape.
+        </div>
+      </div>
+
+      <div class="type-sample">
+        <div class="type-meta">JetBrains Mono — Data / Code / Metadata</div>
+        <div class="type-sample-mono">
+          STD-VAULT-002 · v1.0 · 2026-03-14<br>
+          dex_canon: 226,123 chunks<br>
+          ddl_archive: 271,627 chunks<br>
+          Total corpus: 497,750 chunks<br>
+          Collection: KNOWLEDGE_VAULT · Class: CANON
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── CONTEXT APPLICATIONS ── -->
+  <div class="section">
+    <div class="section-label">06 — Context Applications</div>
+    <div class="section-title">How the Mark Appears in Use</div>
+
+    <div class="context-grid">
+
+      <!-- Document watermark -->
+      <div class="context-card">
+        <div class="context-preview" style="background:var(--card2)">
+          <div class="doc-preview">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:5px;color:rgba(13,27,42,0.4);margin-bottom:6px;letter-spacing:0.05em">STD-VAULT-002</div>
+            <div class="doc-line med"></div>
+            <div class="doc-line short"></div>
+            <div class="doc-line med"></div>
+            <div class="doc-line" style="width:45%"></div>
+            <div class="doc-line med" style="margin-top:8px"></div>
+            <div class="doc-line short"></div>
+            <div class="doc-line med"></div>
+            <div class="doc-stamp">
+              <svg width="36" height="36" viewBox="0 0 140 140">
+                <circle cx="70" cy="70" r="66" fill="none" stroke="#2C7A7B" stroke-width="3"/>
+                <circle cx="70" cy="70" r="62" fill="none"/>
+                <text x="70" y="80" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="50" fill="#2C7A7B" letter-spacing="-3">KV</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="context-label">Document watermark · STD- artifacts</div>
+      </div>
+
+      <!-- Sidebar nav -->
+      <div class="context-card">
+        <div class="context-preview" style="background:var(--card2)">
+          <div class="sidebar-preview">
+            <div class="sidebar-logo-row">
+              <svg width="22" height="22" viewBox="0 0 140 140">
+                <circle cx="70" cy="70" r="66" fill="none" stroke="#2C7A7B" stroke-width="3"/>
+                <circle cx="70" cy="70" r="62" fill="#0D1B2A"/>
+                <text x="70" y="82" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="50" fill="#2C7A7B" letter-spacing="-3">KV</text>
+              </svg>
+              <span style="font-family:'Space Grotesk',sans-serif;font-size:9px;font-weight:600;color:var(--cream)">K Vault</span>
+            </div>
+            <div class="sidebar-link active"></div>
+            <div class="sidebar-link"></div>
+            <div class="sidebar-link"></div>
+            <div class="sidebar-link"></div>
+            <div class="sidebar-link"></div>
+          </div>
+        </div>
+        <div class="context-label">Sidebar nav · UI application</div>
+      </div>
+
+      <!-- Canon badge -->
+      <div class="context-card">
+        <div class="context-preview" style="background:var(--card2);flex-direction:column;gap:12px">
+          <div style="display:flex;align-items:center;gap:8px;background:rgba(44,122,123,0.12);border:1px solid rgba(44,122,123,0.25);border-radius:4px;padding:6px 12px">
+            <svg width="14" height="14" viewBox="0 0 140 140">
+              <circle cx="70" cy="70" r="66" fill="none" stroke="#2C7A7B" stroke-width="4"/>
+              <circle cx="70" cy="70" r="62" fill="#0D1B2A"/>
+              <text x="70" y="82" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="52" fill="#2C7A7B" letter-spacing="-3">KV</text>
+            </svg>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--teal);letter-spacing:0.06em">CANON</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;background:rgba(44,122,123,0.06);border:1px solid rgba(44,122,123,0.12);border-radius:4px;padding:6px 12px">
+            <svg width="14" height="14" viewBox="0 0 140 140">
+              <circle cx="70" cy="70" r="66" fill="none" stroke="#6B7B8D" stroke-width="4"/>
+              <circle cx="70" cy="70" r="62" fill="#0D1B2A"/>
+              <text x="70" y="82" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="52" fill="#6B7B8D" letter-spacing="-3">KV</text>
+            </svg>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--steel);letter-spacing:0.06em">ARCHIVE</span>
+          </div>
+        </div>
+        <div class="context-label">Ingestion class badges · Canon / Archive</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── USAGE RULES ── -->
+  <div class="section">
+    <div class="section-label">07 — Usage Rules</div>
+    <div class="section-title">Do / Don't</div>
+
+    <div class="rules-grid">
+
+      <div class="rule-card do">
+        <div class="rule-card-label">Do</div>
+        <ul class="rule-list">
+          <li>Use the full seal at 48px and above</li>
+          <li>Use KV monogram-only at 32px and below</li>
+          <li>Use on navy, card, dark, cream, or teal backgrounds</li>
+          <li>Maintain the teal ring and cream/navy monogram contrast</li>
+          <li>Use the wordmark lockup for UI sidebars and headers</li>
+          <li>Use the canon/archive badge variants in the ingestion pipeline</li>
+          <li>Pair with Space Grotesk for all display and UI text</li>
+          <li>Use the steel (#6B7B8D) for all secondary metadata</li>
+        </ul>
+      </div>
+
+      <div class="rule-card dont">
+        <div class="rule-card-label">Don't</div>
+        <ul class="rule-list">
+          <li>Place on white backgrounds (CottageHumble: no white)</li>
+          <li>Use Inter, Roboto, or system fonts anywhere</li>
+          <li>Change the teal from #2C7A7B without ratification</li>
+          <li>Stretch or distort the seal proportions</li>
+          <li>Use the vault teal for DDL, D&A, DexVerse, or Dossier contexts</li>
+          <li>Add drop shadows, glows, or gradient overlays to the mark</li>
+          <li>Use the full seal below 48px — use the reduction mark instead</li>
+          <li>Place the mark on busy backgrounds without contrast clearance</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <div class="brand-footer">
+    <div class="brand-footer-left">
+      DDL Knowledge Vault Brand Kit · v1.0<br>
+      Date: 2026-03-14 · Operator: Dave Kitchens<br>
+      Standard: STD-VAULT-002 · Teal: #2C7A7B<br>
+      Dropdown Logistics — Chaos → Structured → Automated
+    </div>
+    <div class="brand-footer-right">The corpus has a front door now.</div>
+  </div>
+
+</div>
+</body>
+</html>

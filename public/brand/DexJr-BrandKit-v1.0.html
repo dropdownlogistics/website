@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dex Jr. — Brand Kit v1.0</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --navy:     #0D1B2A;
+  --card:     #10202f;
+  --card2:    #0d1b28;
+  --cream:    #F5F1EB;
+  --violet:   #8a6cc9;
+  --violet-lt:#a98fe0;
+  --violet-dk:#6450a0;
+  --violet-xs:rgba(138,108,201,0.12);
+  --steel:    #6B7B8D;
+  --border:   rgba(245,241,235,0.07);
+  --crimson:  #B23531;
+  --amber:    #C49A3C;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  background: var(--navy);
+  color: var(--cream);
+  font-family: 'Source Serif 4', Georgia, serif;
+  min-height: 100vh;
+  padding: 60px 24px 80px;
+}
+
+.page { max-width: 1100px; margin: 0 auto; }
+
+/* ── HEADER ── */
+.brand-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 72px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+
+.brand-header-left h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+
+.brand-header-left h1 span { color: var(--violet); }
+
+.brand-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--steel);
+  letter-spacing: 0.04em;
+  line-height: 1.8;
+}
+
+/* ── SECTION ── */
+.section { margin-bottom: 72px; }
+
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--violet);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 32px;
+  letter-spacing: -0.01em;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background: var(--border);
+  margin-bottom: 72px;
+}
+
+/* ── LOGO GRID ── */
+.logo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-bottom: 16px;
+}
+
+.logo-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px 24px;
+  min-height: 200px;
+  gap: 20px;
+}
+
+.on-navy  { background: var(--navy); }
+.on-card  { background: var(--card); }
+.on-dark  { background: #060e17; }
+.on-violet { background: var(--violet); }
+.on-cream { background: var(--cream); }
+.on-white { background: #ffffff; }
+
+.logo-cell-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--steel);
+  text-align: center;
+  letter-spacing: 0.06em;
+}
+
+/* ── DEX JR MARK — Circuit node ── */
+.dj-mark-lg { width: 120px; height: 120px; }
+.dj-mark-md { width: 72px; height: 72px; }
+.dj-mark-sm { width: 48px; height: 48px; }
+.dj-mark-xs { width: 32px; height: 32px; }
+
+/* ── WORDMARK ── */
+.dj-wordmark {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.dj-wordmark-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.dj-wordmark-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--cream);
+}
+
+.dj-wordmark-title span { color: var(--violet); }
+
+.dj-wordmark-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  color: var(--violet);
+  text-transform: uppercase;
+}
+
+.dj-wordmark-sub.on-cream-sub { color: var(--violet-dk); }
+.dj-wordmark-title.on-cream-txt { color: var(--navy); }
+
+/* ── PALETTE ── */
+.palette-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.swatch {
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.swatch-block { height: 80px; width: 100%; }
+
+.swatch-info {
+  padding: 10px 12px 12px;
+  background: var(--card);
+}
+
+.swatch-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.swatch-hex {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--steel);
+  letter-spacing: 0.04em;
+}
+
+.swatch-role {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--violet);
+  margin-top: 4px;
+  letter-spacing: 0.04em;
+}
+
+/* Violet ramp */
+.violet-ramp {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2px;
+  margin-bottom: 12px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.violet-stop {
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.04em;
+}
+
+/* ── TYPOGRAPHY ── */
+.type-samples { display: flex; flex-direction: column; gap: 32px; }
+
+.type-sample {
+  padding: 28px 32px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.type-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  color: var(--steel);
+  letter-spacing: 0.06em;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.type-sample-display {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.6rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.type-sample-body {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: rgba(245,241,235,0.85);
+}
+
+.type-sample-mono {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--violet-lt);
+}
+
+/* ── USAGE RULES ── */
+.rules-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.rule-card {
+  padding: 24px 28px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.rule-card.do   { background: var(--violet-xs); border-color: rgba(138,108,201,0.2); }
+.rule-card.dont { background: rgba(178,53,49,0.06); border-color: rgba(178,53,49,0.15); }
+
+.rule-card-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+.rule-card.do   .rule-card-label { color: var(--violet-lt); }
+.rule-card.dont .rule-card-label { color: var(--crimson); }
+
+.rule-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rule-list li {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  line-height: 1.5;
+  color: rgba(245,241,235,0.75);
+  padding-left: 16px;
+  position: relative;
+}
+
+.rule-list li::before {
+  content: '–';
+  position: absolute;
+  left: 0;
+  color: var(--steel);
+}
+
+/* ── IDENTITY SPEC ── */
+.spec-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.spec-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px 28px;
+}
+
+.spec-card-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  color: var(--violet);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.spec-card-value {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.spec-card-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--steel);
+  line-height: 1.6;
+}
+
+/* ── CONTEXT STRIP ── */
+.context-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  margin-bottom: 32px;
+}
+
+.context-cell {
+  background: var(--card);
+  padding: 20px 20px;
+  border: 1px solid var(--border);
+}
+
+.context-cell:first-child { border-radius: 8px 0 0 8px; }
+.context-cell:last-child  { border-radius: 0 8px 8px 0; }
+
+.context-cell-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.58rem;
+  color: var(--violet);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.context-cell-value {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* ── RESPONSE MODES ── */
+.modes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.mode-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px 22px;
+}
+
+.mode-card.active { border-color: rgba(138,108,201,0.35); }
+
+.mode-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--violet-lt);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.mode-trigger {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--amber);
+  margin-bottom: 10px;
+}
+
+.mode-desc {
+  font-family: 'Source Serif 4', serif;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: rgba(245,241,235,0.7);
+}
+
+/* ── CORPUS BADGE ── */
+.corpus-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--violet-xs);
+  border: 1px solid rgba(138,108,201,0.25);
+  border-radius: 100px;
+  padding: 6px 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--violet-lt);
+  letter-spacing: 0.06em;
+}
+
+.corpus-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--violet);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* ── VOICE SAMPLES ── */
+.voice-samples { display: flex; flex-direction: column; gap: 16px; }
+
+.voice-sample {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--violet);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 24px;
+}
+
+.voice-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--violet);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.voice-text {
+  font-family: 'Source Serif 4', serif;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(245,241,235,0.85);
+  font-style: italic;
+}
+
+/* ── TAGLINE ── */
+.tagline-block {
+  text-align: center;
+  padding: 48px 32px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 32px;
+}
+
+.tagline-main {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+
+.tagline-main span { color: var(--violet); }
+
+.tagline-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--steel);
+  letter-spacing: 0.08em;
+}
+
+/* ── FOOTER ── */
+.brand-footer {
+  margin-top: 80px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand-footer-left {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--steel);
+  letter-spacing: 0.06em;
+  line-height: 1.8;
+}
+
+.brand-footer-right {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--violet);
+  letter-spacing: 0.08em;
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="brand-header">
+    <div class="brand-header-left">
+      <h1>Dex <span>Jr.</span></h1>
+      <div class="brand-meta">
+        Brand Kit v1.0 · DDL Council Seat 1010<br>
+        Local Intelligence Engine · DexVerse<br>
+        Ratified 2026-03-14
+      </div>
+    </div>
+    <div style="text-align:right">
+      <div class="corpus-badge">
+        <div class="corpus-dot"></div>
+        REBORN · localhost:11434
+      </div>
+      <div class="brand-meta" style="margin-top:12px">
+        qwen2.5-coder:7b · RTX 3070<br>
+        Modelfile v4.6 · Judgment-Ready
+      </div>
+    </div>
+  </div>
+
+  <!-- IDENTITY CONTEXT -->
+  <div class="section">
+    <div class="section-label">01 — Identity</div>
+    <div class="section-title">Who Dex Jr. Is</div>
+
+    <div class="context-strip">
+      <div class="context-cell">
+        <div class="context-cell-label">Seat</div>
+        <div class="context-cell-value">1010</div>
+      </div>
+      <div class="context-cell">
+        <div class="context-cell-label">Role</div>
+        <div class="context-cell-value">Document Analyst</div>
+      </div>
+      <div class="context-cell">
+        <div class="context-cell-label">Node</div>
+        <div class="context-cell-value">Reborn (Primary)</div>
+      </div>
+      <div class="context-cell">
+        <div class="context-cell-label">Corpus</div>
+        <div class="context-cell-value">518K+ Chunks</div>
+      </div>
+    </div>
+
+    <div class="spec-grid">
+      <div class="spec-card">
+        <div class="spec-card-label">Base Model</div>
+        <div class="spec-card-value">qwen2.5-coder:7b</div>
+        <div class="spec-card-sub">Q4_K_M quantization · 4.7GB<br>87 tok/sec on RTX 3070</div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-card-label">Governance</div>
+        <div class="spec-card-value">Modelfile v4.6</div>
+        <div class="spec-card-sub">580 tokens · num_ctx 8192<br>Judgment-Ready · temp 0.3</div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-card-label">Corpus Collections</div>
+        <div class="spec-card-value">dex_canon · ddl_archive</div>
+        <div class="spec-card-sub">dex_code · ext_creator<br>Constitutional hierarchy enforced</div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-card-label">Infrastructure</div>
+        <div class="spec-card-value">ChromaDB · nomic-embed-text</div>
+        <div class="spec-card-sub">768-dim embeddings · FastAPI 8787<br>Nightly auto-ingest 3AM CT</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- LOGO / MARK -->
+  <div class="section">
+    <div class="section-label">02 — Mark & Lockup</div>
+    <div class="section-title">Primary Mark — The Circuit Node</div>
+
+    <div class="logo-grid">
+      <!-- On Navy -->
+      <div>
+        <div class="logo-cell on-navy">
+          <!-- Circuit Node Mark — on navy -->
+          <svg class="dj-mark-lg" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Outer ring -->
+            <circle cx="60" cy="60" r="54" stroke="#8a6cc9" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.4"/>
+            <!-- Mid ring -->
+            <circle cx="60" cy="60" r="38" stroke="#8a6cc9" stroke-width="1" opacity="0.25"/>
+            <!-- Core -->
+            <circle cx="60" cy="60" r="22" fill="rgba(138,108,201,0.15)" stroke="#8a6cc9" stroke-width="1.5"/>
+            <!-- Center dot -->
+            <circle cx="60" cy="60" r="6" fill="#8a6cc9"/>
+            <!-- Circuit lines N/S/E/W -->
+            <line x1="60" y1="38" x2="60" y2="22" stroke="#8a6cc9" stroke-width="1.5" opacity="0.7"/>
+            <line x1="60" y1="82" x2="60" y2="98" stroke="#8a6cc9" stroke-width="1.5" opacity="0.7"/>
+            <line x1="82" y1="60" x2="98" y2="60" stroke="#8a6cc9" stroke-width="1.5" opacity="0.7"/>
+            <line x1="38" y1="60" x2="22" y2="60" stroke="#8a6cc9" stroke-width="1.5" opacity="0.7"/>
+            <!-- Node dots on lines -->
+            <circle cx="60" cy="22" r="3" fill="#8a6cc9" opacity="0.8"/>
+            <circle cx="60" cy="98" r="3" fill="#8a6cc9" opacity="0.8"/>
+            <circle cx="98" cy="60" r="3" fill="#8a6cc9" opacity="0.8"/>
+            <circle cx="22" cy="60" r="3" fill="#8a6cc9" opacity="0.8"/>
+            <!-- Diagonal circuit traces -->
+            <line x1="75" y1="45" x2="90" y2="30" stroke="#8a6cc9" stroke-width="1" opacity="0.4"/>
+            <line x1="45" y1="75" x2="30" y2="90" stroke="#8a6cc9" stroke-width="1" opacity="0.4"/>
+            <line x1="45" y1="45" x2="30" y2="30" stroke="#8a6cc9" stroke-width="1" opacity="0.4"/>
+            <line x1="75" y1="75" x2="90" y2="90" stroke="#8a6cc9" stroke-width="1" opacity="0.4"/>
+            <!-- Corner node dots -->
+            <circle cx="90" cy="30" r="2.5" fill="#8a6cc9" opacity="0.5"/>
+            <circle cx="30" cy="90" r="2.5" fill="#8a6cc9" opacity="0.5"/>
+            <circle cx="30" cy="30" r="2.5" fill="#8a6cc9" opacity="0.5"/>
+            <circle cx="90" cy="90" r="2.5" fill="#8a6cc9" opacity="0.5"/>
+            <!-- DJ text -->
+            <text x="60" y="65" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="700" fill="#F5F1EB" letter-spacing="-0.5">DJ</text>
+          </svg>
+          <div class="logo-cell-label">On Navy · Primary</div>
+        </div>
+      </div>
+
+      <!-- On Card -->
+      <div>
+        <div class="logo-cell on-card">
+          <svg class="dj-mark-lg" viewBox="0 0 120 120" fill="none">
+            <circle cx="60" cy="60" r="54" stroke="#8a6cc9" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.4"/>
+            <circle cx="60" cy="60" r="38" stroke="#8a6cc9" stroke-width="1" opacity="0.25"/>
+            <circle cx="60" cy="60" r="22" fill="rgba(138,108,201,0.15)" stroke="#8a6cc9" stroke-width="1.5"/>
+            <circle cx="60" cy="60" r="6" fill="#8a6cc9"/>
+            <line x1="60" y1="38" x2="60" y2="22" stroke="#8a6cc9" stroke-width="1.5" opacity="0.7"/>
+            <line x1="60" y1="82" x2="60" y2="98" stroke="#8a6cc9" stroke-width="1.5" opacity="0.7"/>
+            <line x1="82" y1="60" x2="98" y2="60" stroke="#8a6cc9" stroke-width="1.5" opacity="0.7"/>
+            <line x1="38" y1="60" x2="22" y2="60" stroke="#8a6cc9" stroke-width="1.5" opacity="0.7"/>
+            <circle cx="60" cy="22" r="3" fill="#8a6cc9" opacity="0.8"/>
+            <circle cx="60" cy="98" r="3" fill="#8a6cc9" opacity="0.8"/>
+            <circle cx="98" cy="60" r="3" fill="#8a6cc9" opacity="0.8"/>
+            <circle cx="22" cy="60" r="3" fill="#8a6cc9" opacity="0.8"/>
+            <line x1="75" y1="45" x2="90" y2="30" stroke="#8a6cc9" stroke-width="1" opacity="0.4"/>
+            <line x1="45" y1="75" x2="30" y2="90" stroke="#8a6cc9" stroke-width="1" opacity="0.4"/>
+            <line x1="45" y1="45" x2="30" y2="30" stroke="#8a6cc9" stroke-width="1" opacity="0.4"/>
+            <line x1="75" y1="75" x2="90" y2="90" stroke="#8a6cc9" stroke-width="1" opacity="0.4"/>
+            <circle cx="90" cy="30" r="2.5" fill="#8a6cc9" opacity="0.5"/>
+            <circle cx="30" cy="90" r="2.5" fill="#8a6cc9" opacity="0.5"/>
+            <circle cx="30" cy="30" r="2.5" fill="#8a6cc9" opacity="0.5"/>
+            <circle cx="90" cy="90" r="2.5" fill="#8a6cc9" opacity="0.5"/>
+            <text x="60" y="65" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="700" fill="#F5F1EB" letter-spacing="-0.5">DJ</text>
+          </svg>
+          <div class="logo-cell-label">On Card · Secondary</div>
+        </div>
+      </div>
+
+      <!-- On Cream -->
+      <div>
+        <div class="logo-cell on-cream">
+          <svg class="dj-mark-lg" viewBox="0 0 120 120" fill="none">
+            <circle cx="60" cy="60" r="54" stroke="#6450a0" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.4"/>
+            <circle cx="60" cy="60" r="38" stroke="#6450a0" stroke-width="1" opacity="0.3"/>
+            <circle cx="60" cy="60" r="22" fill="rgba(100,80,160,0.1)" stroke="#6450a0" stroke-width="1.5"/>
+            <circle cx="60" cy="60" r="6" fill="#6450a0"/>
+            <line x1="60" y1="38" x2="60" y2="22" stroke="#6450a0" stroke-width="1.5" opacity="0.7"/>
+            <line x1="60" y1="82" x2="60" y2="98" stroke="#6450a0" stroke-width="1.5" opacity="0.7"/>
+            <line x1="82" y1="60" x2="98" y2="60" stroke="#6450a0" stroke-width="1.5" opacity="0.7"/>
+            <line x1="38" y1="60" x2="22" y2="60" stroke="#6450a0" stroke-width="1.5" opacity="0.7"/>
+            <circle cx="60" cy="22" r="3" fill="#6450a0" opacity="0.8"/>
+            <circle cx="60" cy="98" r="3" fill="#6450a0" opacity="0.8"/>
+            <circle cx="98" cy="60" r="3" fill="#6450a0" opacity="0.8"/>
+            <circle cx="22" cy="60" r="3" fill="#6450a0" opacity="0.8"/>
+            <line x1="75" y1="45" x2="90" y2="30" stroke="#6450a0" stroke-width="1" opacity="0.4"/>
+            <line x1="45" y1="75" x2="30" y2="90" stroke="#6450a0" stroke-width="1" opacity="0.4"/>
+            <line x1="45" y1="45" x2="30" y2="30" stroke="#6450a0" stroke-width="1" opacity="0.4"/>
+            <line x1="75" y1="75" x2="90" y2="90" stroke="#6450a0" stroke-width="1" opacity="0.4"/>
+            <circle cx="90" cy="30" r="2.5" fill="#6450a0" opacity="0.5"/>
+            <circle cx="30" cy="90" r="2.5" fill="#6450a0" opacity="0.5"/>
+            <circle cx="30" cy="30" r="2.5" fill="#6450a0" opacity="0.5"/>
+            <circle cx="90" cy="90" r="2.5" fill="#6450a0" opacity="0.5"/>
+            <text x="60" y="65" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="700" fill="#0D1B2A" letter-spacing="-0.5">DJ</text>
+          </svg>
+          <div class="logo-cell-label" style="color:#6B7B8D">On Cream · Light Contexts</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wordmark lockups -->
+    <div class="section-title" style="margin-top:40px">Wordmark Lockup</div>
+    <div class="logo-grid">
+      <div>
+        <div class="logo-cell on-navy" style="min-height:120px; padding:32px 24px">
+          <div class="dj-wordmark">
+            <svg width="44" height="44" viewBox="0 0 120 120" fill="none">
+              <circle cx="60" cy="60" r="54" stroke="#8a6cc9" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.4"/>
+              <circle cx="60" cy="60" r="22" fill="rgba(138,108,201,0.15)" stroke="#8a6cc9" stroke-width="1.5"/>
+              <circle cx="60" cy="60" r="6" fill="#8a6cc9"/>
+              <line x1="60" y1="38" x2="60" y2="22" stroke="#8a6cc9" stroke-width="1.5" opacity="0.7"/>
+              <line x1="60" y1="82" x2="60" y2="98" stroke="#8a6cc9" stroke-width="1.5" opacity="0.7"/>
+              <line x1="82" y1="60" x2="98" y2="60" stroke="#8a6cc9" stroke-width="1.5" opacity="0.7"/>
+              <line x1="38" y1="60" x2="22" y2="60" stroke="#8a6cc9" stroke-width="1.5" opacity="0.7"/>
+              <circle cx="60" cy="22" r="3" fill="#8a6cc9" opacity="0.8"/>
+              <circle cx="60" cy="98" r="3" fill="#8a6cc9" opacity="0.8"/>
+              <circle cx="98" cy="60" r="3" fill="#8a6cc9" opacity="0.8"/>
+              <circle cx="22" cy="60" r="3" fill="#8a6cc9" opacity="0.8"/>
+              <text x="60" y="65" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="700" fill="#F5F1EB" letter-spacing="-0.5">DJ</text>
+            </svg>
+            <div class="dj-wordmark-text">
+              <div class="dj-wordmark-title">Dex <span>Jr.</span></div>
+              <div class="dj-wordmark-sub">Local Intelligence · Seat 1010</div>
+            </div>
+          </div>
+          <div class="logo-cell-label">Full Lockup · Navy</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="logo-cell on-card" style="min-height:120px; padding:32px 24px">
+          <div class="dj-wordmark">
+            <svg width="44" height="44" viewBox="0 0 120 120" fill="none">
+              <circle cx="60" cy="60" r="54" stroke="#8a6cc9" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.4"/>
+              <circle cx="60" cy="60" r="22" fill="rgba(138,108,201,0.15)" stroke="#8a6cc9" stroke-width="1.5"/>
+              <circle cx="60" cy="60" r="6" fill="#8a6cc9"/>
+              <line x1="60" y1="38" x2="60" y2="22" stroke="#8a6cc9" stroke-width="1.5" opacity="0.7"/>
+              <line x1="60" y1="82" x2="60" y2="98" stroke="#8a6cc9" stroke-width="1.5" opacity="0.7"/>
+              <line x1="82" y1="60" x2="98" y2="60" stroke="#8a6cc9" stroke-width="1.5" opacity="0.7"/>
+              <line x1="38" y1="60" x2="22" y2="60" stroke="#8a6cc9" stroke-width="1.5" opacity="0.7"/>
+              <circle cx="60" cy="22" r="3" fill="#8a6cc9" opacity="0.8"/>
+              <circle cx="60" cy="98" r="3" fill="#8a6cc9" opacity="0.8"/>
+              <circle cx="98" cy="60" r="3" fill="#8a6cc9" opacity="0.8"/>
+              <circle cx="22" cy="60" r="3" fill="#8a6cc9" opacity="0.8"/>
+              <text x="60" y="65" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="700" fill="#F5F1EB" letter-spacing="-0.5">DJ</text>
+            </svg>
+            <div class="dj-wordmark-text">
+              <div class="dj-wordmark-title">Dex <span>Jr.</span></div>
+              <div class="dj-wordmark-sub">Document Analyst · DDL</div>
+            </div>
+          </div>
+          <div class="logo-cell-label">Full Lockup · Card</div>
+        </div>
+      </div>
+
+      <!-- Sizes -->
+      <div>
+        <div class="logo-cell on-dark" style="min-height:120px; gap:24px; flex-direction:row; align-items:center; justify-content:center">
+          <svg class="dj-mark-lg" viewBox="0 0 120 120" fill="none">
+            <circle cx="60" cy="60" r="54" stroke="#8a6cc9" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.4"/>
+            <circle cx="60" cy="60" r="22" fill="rgba(138,108,201,0.15)" stroke="#8a6cc9" stroke-width="1.5"/>
+            <circle cx="60" cy="60" r="6" fill="#8a6cc9"/>
+            <line x1="60" y1="38" x2="60" y2="22" stroke="#8a6cc9" stroke-width="1.5" opacity="0.7"/>
+            <line x1="60" y1="82" x2="60" y2="98" stroke="#8a6cc9" stroke-width="1.5" opacity="0.7"/>
+            <line x1="82" y1="60" x2="98" y2="60" stroke="#8a6cc9" stroke-width="1.5" opacity="0.7"/>
+            <line x1="38" y1="60" x2="22" y2="60" stroke="#8a6cc9" stroke-width="1.5" opacity="0.7"/>
+            <circle cx="60" cy="22" r="3" fill="#8a6cc9" opacity="0.8"/>
+            <circle cx="60" cy="98" r="3" fill="#8a6cc9" opacity="0.8"/>
+            <circle cx="98" cy="60" r="3" fill="#8a6cc9" opacity="0.8"/>
+            <circle cx="22" cy="60" r="3" fill="#8a6cc9" opacity="0.8"/>
+            <text x="60" y="65" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="700" fill="#F5F1EB" letter-spacing="-0.5">DJ</text>
+          </svg>
+          <svg class="dj-mark-md" viewBox="0 0 120 120" fill="none">
+            <circle cx="60" cy="60" r="54" stroke="#8a6cc9" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.4"/>
+            <circle cx="60" cy="60" r="22" fill="rgba(138,108,201,0.15)" stroke="#8a6cc9" stroke-width="1.5"/>
+            <circle cx="60" cy="60" r="6" fill="#8a6cc9"/>
+            <line x1="60" y1="38" x2="60" y2="22" stroke="#8a6cc9" stroke-width="1.5" opacity="0.7"/>
+            <line x1="60" y1="82" x2="60" y2="98" stroke="#8a6cc9" stroke-width="1.5" opacity="0.7"/>
+            <line x1="82" y1="60" x2="98" y2="60" stroke="#8a6cc9" stroke-width="1.5" opacity="0.7"/>
+            <line x1="38" y1="60" x2="22" y2="60" stroke="#8a6cc9" stroke-width="1.5" opacity="0.7"/>
+            <circle cx="60" cy="22" r="3" fill="#8a6cc9" opacity="0.8"/>
+            <circle cx="60" cy="98" r="3" fill="#8a6cc9" opacity="0.8"/>
+            <circle cx="98" cy="60" r="3" fill="#8a6cc9" opacity="0.8"/>
+            <circle cx="22" cy="60" r="3" fill="#8a6cc9" opacity="0.8"/>
+            <text x="60" y="65" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="700" fill="#F5F1EB" letter-spacing="-0.5">DJ</text>
+          </svg>
+          <svg class="dj-mark-sm" viewBox="0 0 120 120" fill="none">
+            <circle cx="60" cy="60" r="54" stroke="#8a6cc9" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.4"/>
+            <circle cx="60" cy="60" r="22" fill="rgba(138,108,201,0.15)" stroke="#8a6cc9" stroke-width="1.5"/>
+            <circle cx="60" cy="60" r="6" fill="#8a6cc9"/>
+            <text x="60" y="65" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="700" fill="#F5F1EB" letter-spacing="-0.5">DJ</text>
+          </svg>
+          <svg class="dj-mark-xs" viewBox="0 0 120 120" fill="none">
+            <circle cx="60" cy="60" r="54" stroke="#8a6cc9" stroke-width="1.5" opacity="0.5"/>
+            <circle cx="60" cy="60" r="22" fill="rgba(138,108,201,0.2)" stroke="#8a6cc9" stroke-width="2"/>
+            <circle cx="60" cy="60" r="7" fill="#8a6cc9"/>
+          </svg>
+        </div>
+        <div class="logo-cell-label" style="text-align:center;padding:10px">Sizes: 120 · 72 · 48 · 32</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- COLOR PALETTE -->
+  <div class="section">
+    <div class="section-label">03 — Color</div>
+    <div class="section-title">Palette</div>
+
+    <div class="palette-grid">
+      <div class="swatch">
+        <div class="swatch-block" style="background:#0D1B2A"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Navy</div>
+          <div class="swatch-hex">#0D1B2A</div>
+          <div class="swatch-role">Background · All surfaces</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#10202f"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Card</div>
+          <div class="swatch-hex">#10202f</div>
+          <div class="swatch-role">Card surfaces</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#8a6cc9"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Violet</div>
+          <div class="swatch-hex">#8a6cc9</div>
+          <div class="swatch-role" style="color:#a98fe0">DexVerse · Primary accent</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#F5F1EB"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Cream</div>
+          <div class="swatch-hex">#F5F1EB</div>
+          <div class="swatch-role">Body text · Primary</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#6B7B8D"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Steel</div>
+          <div class="swatch-hex">#6B7B8D</div>
+          <div class="swatch-role">Secondary text · Labels</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Supporting colors -->
+    <div class="palette-grid" style="margin-top:12px">
+      <div class="swatch">
+        <div class="swatch-block" style="background:#B23531"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Crimson</div>
+          <div class="swatch-hex">#B23531</div>
+          <div class="swatch-role">DDL brand · Error states</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#C49A3C"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Amber</div>
+          <div class="swatch-hex">#C49A3C</div>
+          <div class="swatch-role">Data / Analytics · Warnings</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#a98fe0"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Violet Light</div>
+          <div class="swatch-hex">#a98fe0</div>
+          <div class="swatch-role">Hover · Active states</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#6450a0"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Violet Dark</div>
+          <div class="swatch-hex">#6450a0</div>
+          <div class="swatch-role">On light backgrounds</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:rgba(138,108,201,0.12)"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Violet XS</div>
+          <div class="swatch-hex">rgba(138,108,201,0.12)</div>
+          <div class="swatch-role">Tinted fills · Badges</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Violet ramp -->
+    <div style="margin-top:24px">
+      <div class="brand-meta" style="margin-bottom:8px">VIOLET RAMP</div>
+      <div class="violet-ramp">
+        <div class="violet-stop" style="background:#2a1f4a; color:#a98fe0">050</div>
+        <div class="violet-stop" style="background:#3d2d6e; color:#a98fe0">100</div>
+        <div class="violet-stop" style="background:#6450a0; color:#F5F1EB">300</div>
+        <div class="violet-stop" style="background:#8a6cc9; color:#F5F1EB">500</div>
+        <div class="violet-stop" style="background:#a98fe0; color:#0D1B2A">700</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- TYPOGRAPHY -->
+  <div class="section">
+    <div class="section-label">04 — Typography</div>
+    <div class="section-title">Type System</div>
+
+    <div class="type-samples">
+      <div class="type-sample">
+        <div class="type-meta">Space Grotesk · Display / Headings · 700</div>
+        <div class="type-sample-display" style="color:var(--cream)">
+          Document Analyst.<br>
+          <span style="color:var(--violet)">Seat 1010.</span>
+        </div>
+      </div>
+      <div class="type-sample">
+        <div class="type-meta">Source Serif 4 · Body · 400 / 400i</div>
+        <div class="type-sample-body">
+          Dex Jr. reviews documents, answers questions about retrieved content, and produces structured assessments. This is internal document review — all content is authored by or authorized by the operator.
+          <em style="opacity:0.7"> If you cannot answer from the retrieved content, say so. Uncertainty is a valid output.</em>
+        </div>
+      </div>
+      <div class="type-sample">
+        <div class="type-meta">JetBrains Mono · Data / Code / UI Labels · 400 / 500</div>
+        <div class="type-sample-mono">
+          CANON IDs loaded:   226,346<br>
+          ARCHIVE IDs loaded: 271,659<br>
+          dex_code:            20,384<br>
+          ext_creator:            110<br>
+          ─────────────────────────<br>
+          Total:              518,499  chunks
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- RESPONSE MODES -->
+  <div class="section">
+    <div class="section-label">05 — Behavior</div>
+    <div class="section-title">Response Modes</div>
+
+    <div class="modes-grid">
+      <div class="mode-card active">
+        <div class="mode-name">Standard Analyst</div>
+        <div class="mode-trigger">Default — any prompt</div>
+        <div class="mode-desc">Analyzes retrieved chunks, answers operator questions, cites sources by number. No fabrication. No consulting filler. Signal over prose.</div>
+      </div>
+      <div class="mode-card active">
+        <div class="mode-name">Council Review</div>
+        <div class="mode-trigger">Trigger: prompt begins with "CR-"</div>
+        <div class="mode-desc">Activates verdict mode. LOCK / REVISE / REJECT per line item. Summary count at end. Only the exact prefix "CR-" triggers this — no vocabulary heuristics.</div>
+      </div>
+      <div class="mode-card active">
+        <div class="mode-name">Search Gate</div>
+        <div class="mode-trigger">Trigger: "search for", "find instances of", "find moments where"</div>
+        <div class="mode-desc">Binary gate. Chunks must contain explicit, named incidents. Related vocabulary is not evidence. No match → exact stop message. No elaboration.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px">
+      <div class="modes-grid">
+        <div class="mode-card">
+          <div class="mode-name">Knowledge Query</div>
+          <div class="mode-trigger">Trigger: "What is X", "How does X work", "Explain X"</div>
+          <div class="mode-desc">Standard analyst mode. Search gate does NOT fire. Answers from retrieved chunks. If corpus lacks signal, says so without fabricating.</div>
+        </div>
+        <div class="mode-card">
+          <div class="mode-name">Design Generation</div>
+          <div class="mode-trigger">Trigger: any code / markup / styled content request</div>
+          <div class="mode-desc">CottageHumble enforced. Navy #0D1B2A backgrounds. Violet #8a6cc9 accents. Space Grotesk / JetBrains Mono / Source Serif 4. Never Inter. Never light mode.</div>
+        </div>
+        <div class="mode-card">
+          <div class="mode-name">Long Prompt Handling</div>
+          <div class="mode-trigger">Trigger: context window pressure</div>
+          <div class="mode-desc">Priority: 1) answer operator's explicit questions, 2) reference 2–3 chunks only, 3) drop decorative framing. Ends with [TRUNCATED — prioritized top items] if needed.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- VOICE -->
+  <div class="section">
+    <div class="section-label">06 — Voice</div>
+    <div class="section-title">How Dex Jr. Speaks</div>
+
+    <div class="voice-samples">
+      <div class="voice-sample">
+        <div class="voice-label">When retrieval is thin</div>
+        <div class="voice-text">"I don't have enough in the retrieved chunks to answer this. Retrieved content does not contain specific instances matching this query. Retrieval may need broader TOP_K or different search terms."</div>
+      </div>
+      <div class="voice-sample">
+        <div class="voice-label">When search gate fires with no match</div>
+        <div class="voice-text">"No matching instances found in retrieved chunks. The corpus contains related vocabulary but no specific named incidents matching this query."</div>
+      </div>
+      <div class="voice-sample">
+        <div class="voice-label">Council review summary line</div>
+        <div class="voice-text">"3 LOCK / 1 REVISE / 0 REJECT"</div>
+      </div>
+      <div class="voice-sample">
+        <div class="voice-label">On uncertainty</div>
+        <div class="voice-text">"If uncertain, say so. Uncertainty is a valid output."</div>
+      </div>
+      <div class="voice-sample">
+        <div class="voice-label">On truncation</div>
+        <div class="voice-text">"[TRUNCATED — prioritized top items]"</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- TAGLINE -->
+  <div class="section">
+    <div class="section-label">07 — Tagline</div>
+    <div class="section-title">Brand Voice Line</div>
+
+    <div class="tagline-block">
+      <div class="tagline-main">The rig <span>stays awake.</span></div>
+      <div class="tagline-sub">LOCAL INTELLIGENCE · GOVERNED RETRIEVAL · SEAT 1010</div>
+    </div>
+
+    <div class="rules-grid">
+      <div class="rule-card do">
+        <div class="rule-card-label">✓ Use</div>
+        <ul class="rule-list">
+          <li>Violet #8a6cc9 as the primary DexVerse accent — always</li>
+          <li>Navy backgrounds on all Dex Jr. surfaces</li>
+          <li>JetBrains Mono for corpus counts, chunk stats, model output</li>
+          <li>"Dex Jr." — always with the period after Jr</li>
+          <li>"Seat 1010" when referencing council position</li>
+          <li>Circuit node mark as primary logo in all DexVerse contexts</li>
+        </ul>
+      </div>
+      <div class="rule-card dont">
+        <div class="rule-card-label">✗ Never</div>
+        <ul class="rule-list">
+          <li>White or light mode backgrounds — ever</li>
+          <li>Inter font — use Space Grotesk or JetBrains Mono</li>
+          <li>"DexJr" without the space and period</li>
+          <li>Generic AI assistant language — no "How can I help you today?"</li>
+          <li>Crimson #B23531 as a DexVerse accent — that belongs to DDL brand</li>
+          <li>Presenting fabricated output as retrieved corpus content</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="brand-footer">
+    <div class="brand-footer-left">
+      Dex Jr. · Brand Kit v1.0 · 2026-03-14<br>
+      Dropdown Logistics · DexVerse Infrastructure<br>
+      Chaos → Structured → Automated
+    </div>
+    <div class="brand-footer-right">SEAT 1010 · LOCAL INTELLIGENCE</div>
+  </div>
+
+</div>
+</body>
+</html>

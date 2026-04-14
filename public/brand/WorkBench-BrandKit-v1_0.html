@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WorkBench — Brand Kit v1.0</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  /* WorkBench palette */
+  --fog:     #F8FAFC;
+  --cloud:   #F1F5F9;
+  --mist:    #E2E8F0;
+  --slate:   #1E293B;
+  --iron:    #334155;
+  --steel:   #64748B;
+  --wire:    #94A3B8;
+  --sky:     #3B82F6;
+  --sky-lt:  #EFF6FF;
+  --sky-md:  #BFDBFE;
+  --green:   #4A9E6B;
+  --green-lt:#F0FDF4;
+  --amber:   #C49A3C;
+  --amber-lt:#FFFBEB;
+  --crimson: #B23531;
+  --border:  #E2E8F0;
+  --border-dk: rgba(30,41,59,0.08);
+  /* DDL dark surface for contrast demos */
+  --ddl-navy: #0D1B2A;
+  --ddl-card: #10202F;
+}
+
+body {
+  background: var(--fog);
+  color: var(--slate);
+  font-family: 'Inter', system-ui, sans-serif;
+  min-height: 100vh;
+  padding: 60px 24px 80px;
+}
+
+.page { max-width: 1100px; margin: 0 auto; }
+
+/* ── HEADER ── */
+.brand-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 72px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.brand-header-left h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  margin-bottom: 8px;
+  color: var(--slate);
+}
+.brand-header-left h1 span { color: var(--sky); }
+.brand-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--steel);
+  letter-spacing: 0.04em;
+  line-height: 1.9;
+}
+
+/* ── SECTIONS ── */
+.section { margin-bottom: 72px; }
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--sky);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+  color: var(--slate);
+}
+.section-desc {
+  font-size: 0.9rem;
+  color: var(--steel);
+  line-height: 1.6;
+  margin-bottom: 32px;
+  max-width: 640px;
+}
+.divider {
+  width: 100%;
+  height: 1px;
+  background: var(--border);
+  margin-bottom: 72px;
+}
+
+/* ── LOGO GRID ── */
+.logo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-bottom: 16px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.logo-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px 20px;
+  min-height: 200px;
+  gap: 16px;
+}
+.logo-cell-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.58rem;
+  color: var(--steel);
+  letter-spacing: 0.06em;
+}
+.on-fog    { background: var(--fog); }
+.on-cloud  { background: var(--cloud); }
+.on-white  { background: #ffffff; }
+.on-slate  { background: var(--slate); }
+.on-navy   { background: var(--ddl-navy); }
+.on-sky    { background: var(--sky); }
+
+/* ── MARK SIZES ── */
+.mark-lg { width: 120px; height: 120px; }
+.mark-md { width: 80px; height: 80px; }
+.mark-sm { width: 48px; height: 48px; }
+.mark-xs { width: 32px; height: 32px; }
+
+/* ── WORDMARK ── */
+.wordmark-block {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 24px;
+}
+.wordmark-text h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 1.6rem;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: 3px;
+}
+.wordmark-text .sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  color: var(--sky);
+  text-transform: uppercase;
+}
+
+/* ── PALETTE ── */
+.palette-section { margin-bottom: 48px; }
+.palette-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  color: var(--steel);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.swatch-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.swatch {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  width: 120px;
+}
+.swatch-block { height: 72px; }
+.swatch-info {
+  padding: 8px 10px 10px;
+  background: white;
+}
+.swatch-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  margin-bottom: 2px;
+  color: var(--slate);
+}
+.swatch-hex {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  color: var(--steel);
+}
+.swatch-role {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.57rem;
+  color: var(--sky);
+  margin-top: 3px;
+}
+
+/* ── TYPOGRAPHY ── */
+.type-specimen { margin-bottom: 40px; }
+.type-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  color: var(--wire);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.type-display {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 3rem;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: var(--slate);
+  margin-bottom: 12px;
+}
+.type-body {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--iron);
+  max-width: 540px;
+  margin-bottom: 12px;
+}
+.type-mono {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--sky);
+  letter-spacing: 0.04em;
+}
+
+/* ── MODULE CHIPS ── */
+.chip-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+  align-items: center;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  padding: 5px 12px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+.chip-live {
+  background: var(--green-lt);
+  color: var(--green);
+  border: 1px solid rgba(74,158,107,0.3);
+}
+.chip-soon {
+  background: var(--amber-lt);
+  color: var(--amber);
+  border: 1px solid rgba(196,154,60,0.3);
+}
+.chip-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* ── MODULE CARD EXAMPLE ── */
+.module-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.module-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  position: relative;
+}
+.module-card.selected {
+  border-color: var(--sky);
+  box-shadow: 0 0 0 3px var(--sky-lt);
+}
+.module-card-icon {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  display: block;
+}
+.module-card-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--slate);
+  margin-bottom: 4px;
+}
+.module-card-desc {
+  font-size: 0.75rem;
+  color: var(--steel);
+  line-height: 1.5;
+}
+.module-card-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+}
+
+/* ── USAGE BLOCKS ── */
+.usage-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  margin-bottom: 16px;
+}
+.usage-block {
+  padding: 32px;
+}
+.usage-block h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+.usage-block p {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  max-width: 340px;
+}
+.usage-block .mono-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+/* ── ANATOMY ── */
+.anatomy-block {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  padding: 32px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-top: 16px;
+}
+.anatomy-legend h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--slate);
+  margin-bottom: 16px;
+}
+.anatomy-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.anatomy-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+.anatomy-text {
+  font-size: 0.78rem;
+  color: var(--steel);
+  line-height: 1.4;
+}
+.anatomy-text strong {
+  display: block;
+  color: var(--slate);
+  font-weight: 600;
+  font-size: 0.78rem;
+  margin-bottom: 1px;
+}
+
+/* ── VOICE TABLE ── */
+.voice-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.voice-table th {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: var(--steel);
+  text-transform: uppercase;
+  text-align: left;
+  padding: 8px 16px;
+  background: var(--cloud);
+  border-bottom: 1px solid var(--border);
+}
+.voice-table td {
+  padding: 12px 16px;
+  font-size: 0.85rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--iron);
+  vertical-align: top;
+}
+.voice-table td:first-child {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--sky);
+  width: 160px;
+}
+.voice-table tr:last-child td { border-bottom: none; }
+
+/* ── DDL CONNECTION BAR ── */
+.ddl-bar {
+  background: var(--ddl-navy);
+  border-radius: 10px;
+  padding: 28px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 16px;
+}
+.ddl-bar-text {
+  color: rgba(245,241,235,0.6);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  max-width: 500px;
+}
+.ddl-bar-text strong {
+  color: #F5F1EB;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 4px;
+  font-size: 0.95rem;
+}
+
+/* ── FOOTER ── */
+.brand-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-top: 40px;
+  border-top: 1px solid var(--border);
+  margin-top: 40px;
+}
+.brand-footer-left {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--wire);
+  letter-spacing: 0.04em;
+  line-height: 1.8;
+}
+.brand-footer-right {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--sky);
+  letter-spacing: 0.06em;
+  text-align: right;
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ═══ HEADER ═══ -->
+  <div class="brand-header">
+    <div class="brand-header-left">
+      <h1>Work<span>Bench</span></h1>
+      <p class="brand-meta">
+        Brand Kit v1.0 · 2026-04-11<br>
+        Design System: WorkBench Light<br>
+        Parent Studio: Dropdown Logistics (DDL)<br>
+        Operator: Dave Kitchens · CPA
+      </p>
+    </div>
+    <!-- WorkBench mark in header: 3×2 modular grid -->
+    <svg viewBox="0 0 80 80" width="80" height="80">
+      <!-- Module grid: 3 cols × 2 rows, r6 rounded rects, 8px gap -->
+      <!-- Row 1 -->
+      <rect x="8"  y="8"  width="18" height="18" rx="4" fill="#3B82F6"/>
+      <rect x="31" y="8"  width="18" height="18" rx="4" fill="#3B82F6"/>
+      <rect x="54" y="8"  width="18" height="18" rx="4" fill="#3B82F6"/>
+      <!-- Row 2 -->
+      <rect x="8"  y="31" width="18" height="18" rx="4" fill="#3B82F6"/>
+      <rect x="31" y="31" width="18" height="18" rx="4" fill="none" stroke="#3B82F6" stroke-width="2"/>
+      <rect x="54" y="31" width="18" height="18" rx="4" fill="none" stroke="#3B82F6" stroke-width="2"/>
+      <!-- Bottom tag -->
+      <rect x="8" y="58" width="64" height="4" rx="2" fill="#E2E8F0"/>
+      <rect x="8" y="58" width="38" height="4" rx="2" fill="#3B82F6"/>
+    </svg>
+  </div>
+
+  <!-- ═══ 01 — PRIMARY MARK ═══ -->
+  <div class="section">
+    <div class="section-label">01 — Primary Mark</div>
+    <div class="section-title">The Module Grid</div>
+    <p class="section-desc">The WorkBench mark is a 3×2 grid of modules — some filled (active), some outlined (available). The asymmetry is intentional: you choose what you need. The bottom bar communicates progress and coverage. Scales from favicon to hero.</p>
+
+    <div class="logo-grid">
+      <!-- On Fog (primary) -->
+      <div class="logo-cell on-fog">
+        <svg viewBox="0 0 80 80" class="mark-lg">
+          <rect x="8"  y="8"  width="18" height="18" rx="4" fill="#3B82F6"/>
+          <rect x="31" y="8"  width="18" height="18" rx="4" fill="#3B82F6"/>
+          <rect x="54" y="8"  width="18" height="18" rx="4" fill="#3B82F6"/>
+          <rect x="8"  y="31" width="18" height="18" rx="4" fill="#3B82F6"/>
+          <rect x="31" y="31" width="18" height="18" rx="4" fill="none" stroke="#3B82F6" stroke-width="2"/>
+          <rect x="54" y="31" width="18" height="18" rx="4" fill="none" stroke="#3B82F6" stroke-width="2"/>
+          <rect x="8" y="58" width="64" height="4" rx="2" fill="#E2E8F0"/>
+          <rect x="8" y="58" width="38" height="4" rx="2" fill="#3B82F6"/>
+        </svg>
+        <div class="logo-cell-label">ON FOG · PRIMARY</div>
+      </div>
+      <!-- On White -->
+      <div class="logo-cell on-white">
+        <svg viewBox="0 0 80 80" class="mark-lg">
+          <rect x="8"  y="8"  width="18" height="18" rx="4" fill="#3B82F6"/>
+          <rect x="31" y="8"  width="18" height="18" rx="4" fill="#3B82F6"/>
+          <rect x="54" y="8"  width="18" height="18" rx="4" fill="#3B82F6"/>
+          <rect x="8"  y="31" width="18" height="18" rx="4" fill="#3B82F6"/>
+          <rect x="31" y="31" width="18" height="18" rx="4" fill="none" stroke="#3B82F6" stroke-width="2"/>
+          <rect x="54" y="31" width="18" height="18" rx="4" fill="none" stroke="#3B82F6" stroke-width="2"/>
+          <rect x="8" y="58" width="64" height="4" rx="2" fill="#E2E8F0"/>
+          <rect x="8" y="58" width="38" height="4" rx="2" fill="#3B82F6"/>
+        </svg>
+        <div class="logo-cell-label">ON WHITE</div>
+      </div>
+      <!-- On Slate (dark) -->
+      <div class="logo-cell on-slate">
+        <svg viewBox="0 0 80 80" class="mark-lg">
+          <rect x="8"  y="8"  width="18" height="18" rx="4" fill="#3B82F6"/>
+          <rect x="31" y="8"  width="18" height="18" rx="4" fill="#3B82F6"/>
+          <rect x="54" y="8"  width="18" height="18" rx="4" fill="#3B82F6"/>
+          <rect x="8"  y="31" width="18" height="18" rx="4" fill="#3B82F6"/>
+          <rect x="31" y="31" width="18" height="18" rx="4" fill="none" stroke="rgba(59,130,246,0.5)" stroke-width="2"/>
+          <rect x="54" y="31" width="18" height="18" rx="4" fill="none" stroke="rgba(59,130,246,0.5)" stroke-width="2"/>
+          <rect x="8" y="58" width="64" height="4" rx="2" fill="rgba(255,255,255,0.12)"/>
+          <rect x="8" y="58" width="38" height="4" rx="2" fill="#3B82F6"/>
+        </svg>
+        <div class="logo-cell-label" style="color:#94A3B8">ON SLATE</div>
+      </div>
+    </div>
+
+    <!-- Mark anatomy -->
+    <div class="anatomy-block">
+      <svg viewBox="0 0 80 80" width="100" height="100">
+        <rect x="8"  y="8"  width="18" height="18" rx="4" fill="#3B82F6"/>
+        <rect x="31" y="8"  width="18" height="18" rx="4" fill="#3B82F6"/>
+        <rect x="54" y="8"  width="18" height="18" rx="4" fill="#3B82F6"/>
+        <rect x="8"  y="31" width="18" height="18" rx="4" fill="#3B82F6"/>
+        <rect x="31" y="31" width="18" height="18" rx="4" fill="none" stroke="#3B82F6" stroke-width="2"/>
+        <rect x="54" y="31" width="18" height="18" rx="4" fill="none" stroke="#3B82F6" stroke-width="2"/>
+        <rect x="8" y="58" width="64" height="4" rx="2" fill="#E2E8F0"/>
+        <rect x="8" y="58" width="38" height="4" rx="2" fill="#3B82F6"/>
+      </svg>
+      <div class="anatomy-legend">
+        <h4>Mark Anatomy</h4>
+        <div class="anatomy-item">
+          <div class="anatomy-dot" style="background:#3B82F6"></div>
+          <div class="anatomy-text"><strong>Filled modules</strong>Active modules — selected, live, in use</div>
+        </div>
+        <div class="anatomy-item">
+          <div class="anatomy-dot" style="background:none; border:2px solid #3B82F6"></div>
+          <div class="anatomy-text"><strong>Outlined modules</strong>Available modules — not yet selected</div>
+        </div>
+        <div class="anatomy-item">
+          <div class="anatomy-dot" style="background: linear-gradient(to right, #3B82F6 60%, #E2E8F0 60%); border-radius:2px"></div>
+          <div class="anatomy-text"><strong>Progress bar</strong>Coverage indicator — filled = active modules ratio</div>
+        </div>
+        <div class="anatomy-item">
+          <div class="anatomy-dot" style="background:#1E293B"></div>
+          <div class="anatomy-text"><strong>Grid rhythm</strong>3×2 at base. Scales to 3×3 or 4×2 for feature variants</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 02 — WORDMARK ═══ -->
+  <div class="section">
+    <div class="section-label">02 — Wordmark</div>
+    <div class="section-title">WorkBench Lockup</div>
+    <p class="section-desc">Space Grotesk 700. Two capital letters fused: Work + Bench. No space. No hyphen. The "B" is sky blue — the only color break in the wordmark. The mark and wordmark lock horizontally with 14px gap.</p>
+
+    <div style="background:white; border:1px solid var(--border); border-radius:10px; margin-bottom:4px;">
+      <!-- Primary lockup on white -->
+      <div class="wordmark-block" style="padding:32px 32px 24px; border-bottom:1px solid var(--border);">
+        <svg viewBox="0 0 80 80" width="44" height="44">
+          <rect x="8"  y="8"  width="18" height="18" rx="4" fill="#3B82F6"/>
+          <rect x="31" y="8"  width="18" height="18" rx="4" fill="#3B82F6"/>
+          <rect x="54" y="8"  width="18" height="18" rx="4" fill="#3B82F6"/>
+          <rect x="8"  y="31" width="18" height="18" rx="4" fill="#3B82F6"/>
+          <rect x="31" y="31" width="18" height="18" rx="4" fill="none" stroke="#3B82F6" stroke-width="2"/>
+          <rect x="54" y="31" width="18" height="18" rx="4" fill="none" stroke="#3B82F6" stroke-width="2"/>
+          <rect x="8" y="58" width="64" height="4" rx="2" fill="#E2E8F0"/>
+          <rect x="8" y="58" width="38" height="4" rx="2" fill="#3B82F6"/>
+        </svg>
+        <div class="wordmark-text">
+          <h2 style="color:#1E293B;">Work<span style="color:#3B82F6">Bench</span></h2>
+          <div class="sub">Build your business stack</div>
+        </div>
+        <div style="margin-left:auto; font-family:'JetBrains Mono',monospace; font-size:0.6rem; color:#94A3B8;">ON WHITE · PRIMARY</div>
+      </div>
+      <!-- Compact lockup on fog -->
+      <div class="wordmark-block" style="padding:20px 32px; background:var(--fog);">
+        <svg viewBox="0 0 80 80" width="28" height="28">
+          <rect x="8"  y="8"  width="18" height="18" rx="4" fill="#3B82F6"/>
+          <rect x="31" y="8"  width="18" height="18" rx="4" fill="#3B82F6"/>
+          <rect x="54" y="8"  width="18" height="18" rx="4" fill="#3B82F6"/>
+          <rect x="8"  y="31" width="18" height="18" rx="4" fill="#3B82F6"/>
+          <rect x="31" y="31" width="18" height="18" rx="4" fill="none" stroke="#3B82F6" stroke-width="2"/>
+          <rect x="54" y="31" width="18" height="18" rx="4" fill="none" stroke="#3B82F6" stroke-width="2"/>
+          <rect x="8" y="58" width="64" height="4" rx="2" fill="#E2E8F0"/>
+          <rect x="8" y="58" width="38" height="4" rx="2" fill="#3B82F6"/>
+        </svg>
+        <h2 style="font-family:'Space Grotesk',sans-serif; font-size:1.1rem; font-weight:700; letter-spacing:-0.02em; color:#1E293B;">Work<span style="color:#3B82F6">Bench</span></h2>
+        <div style="margin-left:auto; font-family:'JetBrains Mono',monospace; font-size:0.6rem; color:#94A3B8;">NAV / APP HEADER</div>
+      </div>
+    </div>
+    <!-- Dark surface lockup -->
+    <div style="background:var(--ddl-navy); border-radius:10px; padding:32px; display:flex; align-items:center; gap:14px;">
+      <svg viewBox="0 0 80 80" width="44" height="44">
+        <rect x="8"  y="8"  width="18" height="18" rx="4" fill="#3B82F6"/>
+        <rect x="31" y="8"  width="18" height="18" rx="4" fill="#3B82F6"/>
+        <rect x="54" y="8"  width="18" height="18" rx="4" fill="#3B82F6"/>
+        <rect x="8"  y="31" width="18" height="18" rx="4" fill="#3B82F6"/>
+        <rect x="31" y="31" width="18" height="18" rx="4" fill="none" stroke="rgba(59,130,246,0.5)" stroke-width="2"/>
+        <rect x="54" y="31" width="18" height="18" rx="4" fill="none" stroke="rgba(59,130,246,0.5)" stroke-width="2"/>
+        <rect x="8" y="58" width="64" height="4" rx="2" fill="rgba(255,255,255,0.12)"/>
+        <rect x="8" y="58" width="38" height="4" rx="2" fill="#3B82F6"/>
+      </svg>
+      <div>
+        <h2 style="font-family:'Space Grotesk',sans-serif; font-size:1.6rem; font-weight:700; letter-spacing:-0.02em; color:#F8FAFC; margin-bottom:3px;">Work<span style="color:#3B82F6">Bench</span></h2>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:0.6rem; letter-spacing:0.14em; color:#64748B; text-transform:uppercase;">Build your business stack</div>
+      </div>
+      <div style="margin-left:auto; font-family:'JetBrains Mono',monospace; font-size:0.6rem; color:#64748B;">ON NAVY · AuditForge promo context</div>
+    </div>
+  </div>
+
+  <!-- ═══ 03 — COLOR PALETTE ═══ -->
+  <div class="section">
+    <div class="section-label">03 — Color Palette</div>
+    <div class="section-title">WorkBench Light</div>
+    <p class="section-desc">Light-mode native. Designed for small business owners who work in daylight, not data centers. Clean, approachable, and readable. DDL's CottageHumble tokens are preserved only where necessary — status indicators, DDL attribution, and AuditForge cross-links.</p>
+
+    <div class="palette-section">
+      <div class="palette-label">Surfaces</div>
+      <div class="swatch-row">
+        <div class="swatch">
+          <div class="swatch-block" style="background:#F8FAFC;border-bottom:1px solid #E2E8F0"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Fog</div>
+            <div class="swatch-hex">#F8FAFC</div>
+            <div class="swatch-role">Page background</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#F1F5F9;border-bottom:1px solid #E2E8F0"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Cloud</div>
+            <div class="swatch-hex">#F1F5F9</div>
+            <div class="swatch-role">Section backgrounds</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#FFFFFF;border-bottom:1px solid #E2E8F0"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">White</div>
+            <div class="swatch-hex">#FFFFFF</div>
+            <div class="swatch-role">Card surfaces</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#E2E8F0"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Mist</div>
+            <div class="swatch-hex">#E2E8F0</div>
+            <div class="swatch-role">Borders / dividers</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="palette-section">
+      <div class="palette-label">Text</div>
+      <div class="swatch-row">
+        <div class="swatch">
+          <div class="swatch-block" style="background:#1E293B"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Slate</div>
+            <div class="swatch-hex">#1E293B</div>
+            <div class="swatch-role">Headings / primary</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#334155"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Iron</div>
+            <div class="swatch-hex">#334155</div>
+            <div class="swatch-role">Body text</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#64748B"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Steel</div>
+            <div class="swatch-hex">#64748B</div>
+            <div class="swatch-role">Secondary / muted</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#94A3B8"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Wire</div>
+            <div class="swatch-hex">#94A3B8</div>
+            <div class="swatch-role">Placeholders / captions</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="palette-section">
+      <div class="palette-label">Brand + Status</div>
+      <div class="swatch-row">
+        <div class="swatch">
+          <div class="swatch-block" style="background:#3B82F6"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Sky</div>
+            <div class="swatch-hex">#3B82F6</div>
+            <div class="swatch-role">Primary accent</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#EFF6FF"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Sky Light</div>
+            <div class="swatch-hex">#EFF6FF</div>
+            <div class="swatch-role">Sky wash / hover</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#4A9E6B"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Green</div>
+            <div class="swatch-hex">#4A9E6B</div>
+            <div class="swatch-role">LIVE status</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#C49A3C"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Amber</div>
+            <div class="swatch-hex">#C49A3C</div>
+            <div class="swatch-role">COMING SOON status</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#B23531"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Crimson</div>
+            <div class="swatch-hex">#B23531</div>
+            <div class="swatch-role">DDL attribution only</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 04 — TYPOGRAPHY ═══ -->
+  <div class="section">
+    <div class="section-label">04 — Typography</div>
+    <div class="section-title">Type System</div>
+    <p class="section-desc">Three fonts. Each has a single job. Space Grotesk for brand moments and headings. Inter for everything a person reads. JetBrains Mono for every number, label, and data point.</p>
+
+    <div class="type-specimen">
+      <div class="type-label">Space Grotesk 700 — Display / Wordmark / Section Headers</div>
+      <div class="type-display">Your business.<br>Your modules.</div>
+    </div>
+    <div class="type-specimen">
+      <div class="type-label">Inter 400/500 — Body / UI / Descriptions</div>
+      <div class="type-body">WorkBench is a modular business operating system. Pick the tools your business actually needs. Leave the ones it doesn't. Everything runs on the same data layer — so the tools you choose talk to each other from day one.</div>
+    </div>
+    <div class="type-specimen">
+      <div class="type-label">JetBrains Mono — Labels / Data / Status / Metadata</div>
+      <div class="type-mono">47 users · 12 modules active · LIVE · 2026-04-11 · v1.0.0</div>
+    </div>
+  </div>
+
+  <!-- ═══ 05 — MODULE CHIPS ═══ -->
+  <div class="section">
+    <div class="section-label">05 — Status Chips</div>
+    <div class="section-title">Module Status Indicators</div>
+    <p class="section-desc">Two states: LIVE and COMING SOON. Both use the DDL status palette for consistency with AuditForge. JetBrains Mono 700, 10px, uppercase.</p>
+
+    <div style="background:white; border:1px solid var(--border); border-radius:10px; padding:32px; margin-bottom:16px;">
+      <div class="chip-row">
+        <div class="chip chip-live"><div class="chip-dot"></div>LIVE</div>
+        <div class="chip chip-soon">COMING SOON</div>
+        <span style="font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:var(--wire); margin-left:8px;">· module card badges</span>
+      </div>
+      <div class="chip-row" style="margin-top:16px;">
+        <div class="chip chip-live"><div class="chip-dot"></div>ACTIVE</div>
+        <div class="chip chip-soon">AVAILABLE</div>
+        <div class="chip" style="background:var(--cloud); color:var(--steel); border:1px solid var(--border);">DISABLED</div>
+        <span style="font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:var(--wire); margin-left:8px;">· selector variants</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 06 — MODULE CARD SYSTEM ═══ -->
+  <div class="section">
+    <div class="section-label">06 — Module Cards</div>
+    <div class="section-title">Pick and Choose Interface</div>
+    <p class="section-desc">The core UI pattern. Each module is a card. Selected modules get a sky border and a focus ring. Available (not selected) modules show a standard border. This pattern applies to both the marketing page and the in-app selector.</p>
+
+    <div class="module-card-grid">
+      <div class="module-card selected">
+        <div class="module-card-badge"><div class="chip chip-live" style="font-size:0.6rem; padding:3px 8px;"><div class="chip-dot"></div>LIVE</div></div>
+        <span class="module-card-icon" style="color:#3B82F6">▦</span>
+        <div class="module-card-name">Controls</div>
+        <div class="module-card-desc">Audit controls mapped to risks, frameworks, and assertions.</div>
+      </div>
+      <div class="module-card selected">
+        <div class="module-card-badge"><div class="chip chip-live" style="font-size:0.6rem; padding:3px 8px;"><div class="chip-dot"></div>LIVE</div></div>
+        <span class="module-card-icon" style="color:#3B82F6">◈</span>
+        <div class="module-card-name">Teams</div>
+        <div class="module-card-desc">Staff roster, skill tokens, and role management.</div>
+      </div>
+      <div class="module-card">
+        <div class="module-card-badge"><div class="chip chip-soon" style="font-size:0.6rem; padding:3px 8px;">COMING SOON</div></div>
+        <span class="module-card-icon" style="color:#C49A3C">⬡</span>
+        <div class="module-card-name">Capacity Planning</div>
+        <div class="module-card-desc">Who can do what, when — and what it costs.</div>
+      </div>
+    </div>
+    <p style="font-family:'JetBrains Mono',monospace; font-size:0.65rem; color:var(--wire); letter-spacing:0.06em;">Selected cards have sky border + sky-lt ring. Available cards have standard var(--border).</p>
+  </div>
+
+  <!-- ═══ 07 — USAGE EXAMPLES ═══ -->
+  <div class="section">
+    <div class="section-label">07 — Usage</div>
+    <div class="section-title">Surface Contexts</div>
+    <p class="section-desc">WorkBench is a light-mode product. The dark surface only appears when cross-linking into the DDL / AuditForge ecosystem.</p>
+
+    <div class="usage-row">
+      <!-- Light surface -->
+      <div class="usage-block" style="background:white;">
+        <div class="mono-tag" style="color:var(--sky);">PRIMARY SURFACE</div>
+        <h3 style="color:var(--slate);">Build the stack<br>your business needs.</h3>
+        <p style="color:var(--steel); margin-top:8px;">Pick what fits. Leave what doesn't. Everything connects on the same layer.</p>
+      </div>
+      <!-- Fog surface -->
+      <div class="usage-block" style="background:var(--fog);">
+        <div class="mono-tag" style="color:var(--sky);">FOG SURFACE</div>
+        <h3 style="color:var(--slate);">One layer.<br>Every module.</h3>
+        <p style="color:var(--steel); margin-top:8px;">The star schema doesn't change between domains. The data does.</p>
+      </div>
+    </div>
+    <!-- Dark cross-link surface -->
+    <div class="ddl-bar">
+      <div>
+        <svg viewBox="0 0 80 80" width="36" height="36">
+          <rect x="8"  y="8"  width="18" height="18" rx="4" fill="#3B82F6"/>
+          <rect x="31" y="8"  width="18" height="18" rx="4" fill="#3B82F6"/>
+          <rect x="54" y="8"  width="18" height="18" rx="4" fill="#3B82F6"/>
+          <rect x="8"  y="31" width="18" height="18" rx="4" fill="#3B82F6"/>
+          <rect x="31" y="31" width="18" height="18" rx="4" fill="none" stroke="rgba(59,130,246,0.4)" stroke-width="2"/>
+          <rect x="54" y="31" width="18" height="18" rx="4" fill="none" stroke="rgba(59,130,246,0.4)" stroke-width="2"/>
+          <rect x="8" y="58" width="64" height="4" rx="2" fill="rgba(255,255,255,0.1)"/>
+          <rect x="8" y="58" width="38" height="4" rx="2" fill="#3B82F6"/>
+        </svg>
+      </div>
+      <div class="ddl-bar-text">
+        <strong>WorkBench — coming from Dropdown Logistics</strong>
+        Built by the team that built AuditForge. Same governed methodology. Same star schema. Broader scope.
+      </div>
+      <div style="font-family:'JetBrains Mono',monospace; font-size:0.62rem; color:#3B82F6; letter-spacing:0.08em; white-space:nowrap; flex-shrink:0;">AuditForge.dev context ↗</div>
+    </div>
+  </div>
+
+  <!-- ═══ 08 — VOICE & COPY ═══ -->
+  <div class="section">
+    <div class="section-label">08 — Voice & Copy</div>
+    <div class="section-title">How WorkBench Speaks</div>
+    <p class="section-desc">Plain. Direct. Never feature-listy. WorkBench talks to a business owner who doesn't have time for software jargon. Short sentences. Present tense. Verbs over nouns.</p>
+
+    <table class="voice-table" style="background:white; border:1px solid var(--border); border-radius:10px; overflow:hidden; margin-bottom:16px;">
+      <tr>
+        <th>Pattern</th>
+        <th>Instead of</th>
+        <th>Use this</th>
+      </tr>
+      <tr>
+        <td>Headline</td>
+        <td style="color:var(--wire);">Comprehensive modular business management platform</td>
+        <td><strong>Build the stack your business actually needs.</strong></td>
+      </tr>
+      <tr>
+        <td>Module intro</td>
+        <td style="color:var(--wire);">Our Teams module leverages skill-based token architecture</td>
+        <td><strong>See who's on your team, what they're good at, and where they're needed.</strong></td>
+      </tr>
+      <tr>
+        <td>COMING SOON</td>
+        <td style="color:var(--wire);">This feature is currently under active development</td>
+        <td><strong>Coming soon. Building it now.</strong></td>
+      </tr>
+      <tr>
+        <td>CTA</td>
+        <td style="color:var(--wire);">Request a demo of our enterprise solution</td>
+        <td><strong>Start building →</strong></td>
+      </tr>
+      <tr>
+        <td>DDL attribution</td>
+        <td style="color:var(--wire);">WorkBench is a product of Dropdown Logistics LLC</td>
+        <td><strong>From the team that built AuditForge.</strong></td>
+      </tr>
+    </table>
+
+    <div style="background:var(--sky-lt); border:1px solid var(--sky-md); border-radius:10px; padding:24px 28px;">
+      <div style="font-family:'JetBrains Mono',monospace; font-size:0.65rem; color:var(--sky); letter-spacing:0.1em; margin-bottom:10px;">TAGLINE OPTIONS</div>
+      <div style="font-family:'Space Grotesk',sans-serif; font-size:1rem; color:var(--slate); line-height:2; font-weight:500;">
+        Your business. Your modules. Your system.<br>
+        Build the stack your business actually needs.<br>
+        Pick what fits. Leave what doesn't. Everything connects.<br>
+        One layer. Every module. Built to your shape.
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 09 — DDL FAMILY CONNECTION ═══ -->
+  <div class="section">
+    <div class="section-label">09 — DDL Family</div>
+    <div class="section-title">Product Relationship</div>
+    <p class="section-desc">WorkBench is a Dropdown Logistics product. It shares the star-schema architecture and the DDL methodology with AuditForge, but it speaks a different language to a different audience. AuditForge is for audit professionals. WorkBench is for everyone else.</p>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+      <!-- AuditForge -->
+      <div style="background:var(--ddl-navy); border-radius:10px; padding:24px 28px;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:0.6rem; color:#B23531; letter-spacing:0.12em; text-transform:uppercase; margin-bottom:8px;">AuditForge</div>
+        <div style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:700; color:#F5F1EB; margin-bottom:8px;">The Audit Firm Operating System</div>
+        <div style="font-size:0.78rem; color:#6B7B8D; line-height:1.5;">Dark. Governed. Structured. For audit professionals who need every control documented and every decision ratified.</div>
+        <div style="margin-top:16px; font-family:'JetBrains Mono',monospace; font-size:0.65rem; color:#C49A3C;">auditforge.dev</div>
+      </div>
+      <!-- WorkBench -->
+      <div style="background:white; border:2px solid var(--sky); border-radius:10px; padding:24px 28px;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:0.6rem; color:var(--sky); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:8px;">WorkBench</div>
+        <div style="font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:700; color:var(--slate); margin-bottom:8px;">Build Your Business Stack</div>
+        <div style="font-size:0.78rem; color:var(--steel); line-height:1.5;">Light. Modular. Approachable. For small business owners who want the right tools without the enterprise overhead.</div>
+        <div style="margin-top:16px; font-family:'JetBrains Mono',monospace; font-size:0.65rem; color:var(--sky);">workbench.ddl · coming soon</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ FOOTER ═══ -->
+  <div class="brand-footer">
+    <div class="brand-footer-left">
+      WorkBench Brand Kit v1.0 · 2026-04-11<br>
+      Dropdown Logistics · dropdownlogistics.com<br>
+      Operator: Dave Kitchens · CPA
+    </div>
+    <div class="brand-footer-right">
+      WORK<span style="color:var(--sky)">BENCH</span><br>
+      Build your business stack
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

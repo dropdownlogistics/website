@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>D&A Analytics — Brand Kit</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0D2137;
+  --surface:#0a1a2e;
+  --card:#0f2237;
+  --green:#22C55E;
+  --green-light:#86EFAC;
+  --neutral:#E2E8F0;
+  --text:#E2E8F0;
+  --text-mid:#6B8AA0;
+  --text-dim:#2A4A60;
+  --border:#1A3048;
+  --border-green:#22C55E30;
+  --red:#EF4444;
+  --crimson:#B23531;
+  --amber:#C49A3C;
+  --navy-ddl:#0D1B2A;
+  --cream:#F5F1EB;
+}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:48px 32px}
+.container{max-width:1100px;margin:0 auto}
+
+/* HEADER */
+.brand-header{margin-bottom:60px;padding-bottom:32px;border-bottom:1px solid var(--border)}
+.brand-header-top{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.helix-mark{width:48px;height:48px;background:var(--card);border-radius:10px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border-green)}
+.brand-title{font-size:2rem;font-weight:700;letter-spacing:-0.02em}
+.brand-title strong{color:var(--green)}
+.brand-meta{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-dim);letter-spacing:0.08em;margin-top:6px}
+.brand-tagline{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--green);letter-spacing:0.1em;margin-top:8px}
+
+/* SECTION */
+.section{margin-bottom:64px}
+.section-title{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--green);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:6px}
+.section-sub{font-size:1.3rem;font-weight:600;letter-spacing:-0.02em;margin-bottom:28px}
+
+/* COLOR GRID */
+.color-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+.color-swatch{border-radius:8px;overflow:hidden;border:1px solid var(--border)}
+.swatch-block{height:80px;width:100%}
+.swatch-info{background:var(--surface);padding:12px}
+.swatch-name{font-size:12px;font-weight:600;margin-bottom:2px}
+.swatch-hex{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-mid)}
+.swatch-role{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-dim);margin-top:3px;letter-spacing:0.05em;text-transform:uppercase}
+
+/* TYPOGRAPHY */
+.type-grid{display:flex;flex-direction:column;gap:20px}
+.type-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.type-sample{font-size:2rem;font-weight:700;letter-spacing:-0.02em}
+.type-meta{text-align:right}
+.type-name{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--green);font-weight:600}
+.type-desc{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-dim);margin-top:3px;letter-spacing:0.05em}
+.type-weights{display:flex;gap:8px;margin-top:6px;justify-content:flex-end}
+.weight-pill{font-family:'JetBrains Mono',monospace;font-size:9px;background:var(--card);border:1px solid var(--border);border-radius:4px;padding:2px 8px;color:var(--text-mid);letter-spacing:0.05em}
+
+/* LOGO VARIANTS */
+.logo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.logo-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:32px 24px;display:flex;flex-direction:column;align-items:center;gap:16px}
+.logo-card.dark-bg{background:var(--bg)}
+.logo-card.light-bg{background:var(--cream)}
+.logo-display{display:flex;align-items:center;gap:10px}
+.logo-mark-sm{width:32px;height:32px;background:var(--card);border-radius:7px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border-green)}
+.logo-mark-sm.light{background:var(--cream);border-color:var(--green)}
+.logo-wordmark{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:500;letter-spacing:0.05em}
+.logo-wordmark strong{color:var(--green)}
+.logo-wordmark.dark-text{color:var(--navy-ddl)}
+.logo-wordmark.dark-text strong{color:var(--green)}
+.logo-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.1em}
+.logo-label.dark-label{color:#6B8AA0}
+
+/* STACKED LOGO */
+.logo-stacked{display:flex;flex-direction:column;align-items:center;gap:8px}
+.logo-stacked .wordmark-large{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:500;letter-spacing:0.04em}
+.logo-stacked .wordmark-large strong{color:var(--green)}
+.logo-stacked .sub-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-mid);letter-spacing:0.12em}
+.logo-stacked .tagline-text{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-dim);letter-spacing:0.1em;margin-top:2px}
+
+/* VOICE / COPY */
+.voice-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.voice-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:24px}
+.voice-card h4{font-size:13px;font-weight:600;margin-bottom:12px;color:var(--green)}
+.voice-card ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.voice-card li{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-mid);padding-left:16px;position:relative;line-height:1.6}
+.voice-card li::before{content:'→';position:absolute;left:0;color:var(--green);font-size:10px}
+
+/* SAMPLE COPY */
+.copy-samples{display:flex;flex-direction:column;gap:12px}
+.copy-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:20px 24px;display:flex;justify-content:space-between;align-items:flex-start;gap:24px}
+.copy-text{font-size:15px;font-weight:500;line-height:1.4;letter-spacing:-0.01em;max-width:600px}
+.copy-text em{font-family:'Source Serif 4',serif;font-style:italic;color:var(--green);font-weight:400}
+.copy-context{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.1em;white-space:nowrap;margin-top:4px}
+
+/* UI COMPONENTS */
+.component-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.component-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:24px}
+.component-card h4{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.btn-p{background:var(--green);color:#0D2137;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:12px;letter-spacing:0.05em;text-transform:uppercase;padding:10px 24px;border-radius:6px;border:none;cursor:pointer}
+.btn-s{background:transparent;color:var(--text-mid);font-family:'JetBrains Mono',monospace;font-size:11px;padding:10px 20px;border-radius:6px;border:1px solid var(--border);cursor:pointer}
+.btn-ghost{background:transparent;color:var(--green);font-family:'JetBrains Mono',monospace;font-size:11px;padding:10px 20px;border-radius:6px;border:1px solid var(--border-green);cursor:pointer}
+.badge-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.badge{font-family:'JetBrains Mono',monospace;font-size:9px;padding:3px 10px;border-radius:12px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600}
+.badge-green{background:#0a2818;color:var(--green);border:1px solid var(--border-green)}
+.badge-light{background:#0a1e30;color:var(--green-light);border:1px solid #86EFAC30}
+.badge-neutral{background:var(--card);color:var(--text-mid);border:1px solid var(--border)}
+.badge-red{background:#2A0A0A;color:var(--red);border:1px solid #EF444430}
+.input-demo{width:100%;background:var(--card);border:1px solid var(--border);border-radius:6px;padding:10px 14px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text);outline:none}
+
+/* PARTNER LOCKUP */
+.partner-section{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:32px}
+.partner-row{display:flex;align-items:center;gap:32px;flex-wrap:wrap}
+.partner-divider{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-dim)}
+.ddl-mark{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--cream);letter-spacing:0.05em}
+.ddl-mark span{color:var(--amber)}
+
+/* DO/DONT */
+.rules-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.rules-card{background:var(--surface);border-radius:8px;padding:24px}
+.rules-card.do{border:1px solid #22C55E30}
+.rules-card.dont{border:1px solid #EF444430}
+.rules-card h4{font-size:12px;font-weight:700;margin-bottom:14px;letter-spacing:0.05em;text-transform:uppercase}
+.rules-card.do h4{color:var(--green)}
+.rules-card.dont h4{color:var(--red)}
+.rules-card ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.rules-card li{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-mid);padding-left:18px;position:relative;line-height:1.6}
+.rules-card.do li::before{content:'✓';position:absolute;left:0;color:var(--green)}
+.rules-card.dont li::before{content:'✗';position:absolute;left:0;color:var(--red)}
+
+/* FOOTER */
+.brand-footer{margin-top:80px;padding-top:24px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.brand-footer-left{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-dim)}
+.brand-footer-left strong{color:var(--green)}
+.brand-footer-right{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-dim)}
+
+@media(max-width:768px){
+  .logo-grid,.voice-grid,.component-grid,.rules-grid{grid-template-columns:1fr}
+  body{padding:32px 20px}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="brand-header">
+    <div class="brand-header-top">
+      <div class="helix-mark">
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+          <path d="M9 3C9 3 17 7 17 10.5C17 14 9 16 9 19.5C9 23 17 24 17 24" stroke="#22C55E" strokeWidth="2" strokeLinecap="round"/>
+          <path d="M17 3C17 3 9 7 9 10.5C9 14 17 16 17 19.5C17 23 9 24 9 24" stroke="#86EFAC" strokeWidth="2" strokeLinecap="round"/>
+          <line x1="10" y1="7.5" x2="16" y2="7.5" stroke="#E2E8F0" strokeWidth="1.4" strokeLinecap="round"/>
+          <line x1="10" y1="13" x2="16" y2="13" stroke="#E2E8F0" strokeWidth="1.4" strokeLinecap="round"/>
+          <line x1="10" y1="18.5" x2="16" y2="18.5" stroke="#E2E8F0" strokeWidth="1.4" strokeLinecap="round"/>
+        </svg>
+      </div>
+      <div>
+        <div class="brand-title"><strong>d&a</strong> analytics · blindspot.bet</div>
+        <div class="brand-tagline">signal → structure → edge</div>
+      </div>
+    </div>
+    <div class="brand-meta">BRAND KIT v1.0 · March 2026 · Dropdown Logistics · D.K. Hale</div>
+  </div>
+
+  <!-- COLORS -->
+  <div class="section">
+    <div class="section-title">Color System</div>
+    <div class="section-sub">Primary Palette</div>
+    <div class="color-grid">
+      <div class="color-swatch">
+        <div class="swatch-block" style="background:#22C55E"></div>
+        <div class="swatch-info"><div class="swatch-name">Dave Green</div><div class="swatch-hex">#22C55E</div><div class="swatch-role">Primary · d</div></div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-block" style="background:#86EFAC"></div>
+        <div class="swatch-info"><div class="swatch-name">Alex Green</div><div class="swatch-hex">#86EFAC</div><div class="swatch-role">Secondary · a</div></div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-block" style="background:#E2E8F0"></div>
+        <div class="swatch-info"><div class="swatch-name">Neutral</div><div class="swatch-hex">#E2E8F0</div><div class="swatch-role">Text · &amp;</div></div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-block" style="background:#0D2137"></div>
+        <div class="swatch-info"><div class="swatch-name">D&amp;A Navy</div><div class="swatch-hex">#0D2137</div><div class="swatch-role">Background</div></div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-block" style="background:#0a1a2e"></div>
+        <div class="swatch-info"><div class="swatch-name">Surface</div><div class="swatch-hex">#0a1a2e</div><div class="swatch-role">Cards / Panels</div></div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-block" style="background:#EF4444"></div>
+        <div class="swatch-info"><div class="swatch-name">Loss Red</div><div class="swatch-hex">#EF4444</div><div class="swatch-role">Negative / Down</div></div>
+      </div>
+    </div>
+
+    <div class="section-sub" style="margin-top:32px">DDL Studio Colors (for co-branded use)</div>
+    <div class="color-grid">
+      <div class="color-swatch">
+        <div class="swatch-block" style="background:#0D1B2A"></div>
+        <div class="swatch-info"><div class="swatch-name">DDL Navy</div><div class="swatch-hex">#0D1B2A</div><div class="swatch-role">CottageHumble BG</div></div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-block" style="background:#F5F1EB"></div>
+        <div class="swatch-info"><div class="swatch-name">Cream</div><div class="swatch-hex">#F5F1EB</div><div class="swatch-role">CottageHumble Text</div></div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-block" style="background:#B23531"></div>
+        <div class="swatch-info"><div class="swatch-name">Crimson</div><div class="swatch-hex">#B23531</div><div class="swatch-role">DDL Brand</div></div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-block" style="background:#C49A3C"></div>
+        <div class="swatch-info"><div class="swatch-name">Amber</div><div class="swatch-hex">#C49A3C</div><div class="swatch-role">D&amp;A Accent</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TYPOGRAPHY -->
+  <div class="section">
+    <div class="section-title">Typography</div>
+    <div class="section-sub">Type System</div>
+    <div class="type-grid">
+      <div class="type-card">
+        <div class="type-sample" style="font-family:'Space Grotesk',sans-serif">Signal → Structure</div>
+        <div class="type-meta">
+          <div class="type-name">Space Grotesk</div>
+          <div class="type-desc">DISPLAY / HEADINGS / UI</div>
+          <div class="type-weights">
+            <span class="weight-pill">400</span>
+            <span class="weight-pill">500</span>
+            <span class="weight-pill">600</span>
+            <span class="weight-pill">700</span>
+          </div>
+        </div>
+      </div>
+      <div class="type-card">
+        <div class="type-sample" style="font-family:'JetBrains Mono',monospace;font-size:1.4rem;font-weight:400;color:#6B8AA0">blindspot.bet · v1.0</div>
+        <div class="type-meta">
+          <div class="type-name">JetBrains Mono</div>
+          <div class="type-desc">DATA / LABELS / CODE / META</div>
+          <div class="type-weights">
+            <span class="weight-pill">300</span>
+            <span class="weight-pill">400</span>
+            <span class="weight-pill">500</span>
+            <span class="weight-pill">600</span>
+          </div>
+        </div>
+      </div>
+      <div class="type-card">
+        <div class="type-sample" style="font-family:'Source Serif 4',serif;font-style:italic;font-weight:400;color:#22C55E">not seeing.</div>
+        <div class="type-meta">
+          <div class="type-name">Source Serif 4</div>
+          <div class="type-desc">ITALIC ACCENTS / EDITORIAL</div>
+          <div class="type-weights">
+            <span class="weight-pill">400 italic</span>
+            <span class="weight-pill">600</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOGO VARIANTS -->
+  <div class="section">
+    <div class="section-title">Logo System</div>
+    <div class="section-sub">Helix Mark + Wordmark</div>
+    <div class="logo-grid">
+
+      <div class="logo-card">
+        <div class="logo-stacked">
+          <div class="helix-mark" style="width:56px;height:56px;border-radius:12px">
+            <svg width="30" height="30" viewBox="0 0 26 26" fill="none">
+              <path d="M9 3C9 3 17 7 17 10.5C17 14 9 16 9 19.5C9 23 17 24 17 24" stroke="#22C55E" strokeWidth="2" strokeLinecap="round"/>
+              <path d="M17 3C17 3 9 7 9 10.5C9 14 17 16 17 19.5C17 23 9 24 9 24" stroke="#86EFAC" strokeWidth="2" strokeLinecap="round"/>
+              <line x1="10" y1="7.5" x2="16" y2="7.5" stroke="#E2E8F0" strokeWidth="1.4" strokeLinecap="round"/>
+              <line x1="10" y1="13" x2="16" y2="13" stroke="#E2E8F0" strokeWidth="1.4" strokeLinecap="round"/>
+              <line x1="10" y1="18.5" x2="16" y2="18.5" stroke="#E2E8F0" strokeWidth="1.4" strokeLinecap="round"/>
+            </svg>
+          </div>
+          <div class="wordmark-large"><strong>d&a</strong> analytics</div>
+          <div class="sub-text">blindspot · betting</div>
+          <div class="tagline-text">signal → structure → edge</div>
+        </div>
+        <div class="logo-label">STACKED — DARK BG</div>
+      </div>
+
+      <div class="logo-card">
+        <div class="logo-display">
+          <div class="logo-mark-sm">
+            <svg width="18" height="18" viewBox="0 0 26 26" fill="none">
+              <path d="M9 3C9 3 17 7 17 10.5C17 14 9 16 9 19.5C9 23 17 24 17 24" stroke="#22C55E" strokeWidth="2.2" strokeLinecap="round"/>
+              <path d="M17 3C17 3 9 7 9 10.5C9 14 17 16 17 19.5C17 23 9 24 9 24" stroke="#86EFAC" strokeWidth="2.2" strokeLinecap="round"/>
+              <line x1="10" y1="7.5" x2="16" y2="7.5" stroke="#E2E8F0" strokeWidth="1.4" strokeLinecap="round"/>
+              <line x1="10" y1="13" x2="16" y2="13" stroke="#E2E8F0" strokeWidth="1.4" strokeLinecap="round"/>
+              <line x1="10" y1="18.5" x2="16" y2="18.5" stroke="#E2E8F0" strokeWidth="1.4" strokeLinecap="round"/>
+            </svg>
+          </div>
+          <div class="logo-wordmark"><strong>blindspot</strong>.bet</div>
+        </div>
+        <div class="logo-label">HORIZONTAL — DARK BG</div>
+      </div>
+
+      <div class="logo-card light-bg">
+        <div class="logo-display">
+          <div class="logo-mark-sm light">
+            <svg width="18" height="18" viewBox="0 0 26 26" fill="none">
+              <path d="M9 3C9 3 17 7 17 10.5C17 14 9 16 9 19.5C9 23 17 24 17 24" stroke="#22C55E" strokeWidth="2.2" strokeLinecap="round"/>
+              <path d="M17 3C17 3 9 7 9 10.5C9 14 17 16 17 19.5C17 23 9 24 9 24" stroke="#16A34A" strokeWidth="2.2" strokeLinecap="round"/>
+              <line x1="10" y1="7.5" x2="16" y2="7.5" stroke="#0D2137" strokeWidth="1.4" strokeLinecap="round"/>
+              <line x1="10" y1="13" x2="16" y2="13" stroke="#0D2137" strokeWidth="1.4" strokeLinecap="round"/>
+              <line x1="10" y1="18.5" x2="16" y2="18.5" stroke="#0D2137" strokeWidth="1.4" strokeLinecap="round"/>
+            </svg>
+          </div>
+          <div class="logo-wordmark dark-text"><strong>blindspot</strong>.bet</div>
+        </div>
+        <div class="logo-label dark-label">HORIZONTAL — LIGHT BG</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- VOICE -->
+  <div class="section">
+    <div class="section-title">Brand Voice</div>
+    <div class="section-sub">Tone & Copy Principles</div>
+    <div class="voice-grid">
+      <div class="voice-card">
+        <h4>What we sound like</h4>
+        <ul>
+          <li>Direct. No hedging. The data says what it says.</li>
+          <li>Analytical without being cold — we're on your side</li>
+          <li>Short sentences. Strong verbs. No filler.</li>
+          <li>Confident but not arrogant — the work proves it</li>
+          <li>We use "you" — this is personal finance, not a lecture</li>
+        </ul>
+      </div>
+      <div class="voice-card">
+        <h4>What we don't sound like</h4>
+        <ul>
+          <li>Hype-y or promotional — we're not selling dreams</li>
+          <li>Overly technical — the insight matters, not the math</li>
+          <li>Preachy about gambling — we're not your sponsor</li>
+          <li>Vague or hedged — "might" and "could" are weak</li>
+          <li>Generic SaaS — no "empower" or "unlock your potential"</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-sub" style="margin-top:32px">Sample Copy</div>
+    <div class="copy-samples">
+      <div class="copy-card">
+        <div class="copy-text">You&apos;re not losing. You&apos;re <em>not seeing.</em></div>
+        <div class="copy-context">Hero · Primary headline</div>
+      </div>
+      <div class="copy-card">
+        <div class="copy-text">The house doesn&apos;t have better odds. It has better data.</div>
+        <div class="copy-context">Hero · Sub-headline</div>
+      </div>
+      <div class="copy-card">
+        <div class="copy-text">-8.2% ROI after 11pm. That&apos;s your <em>blind spot.</em></div>
+        <div class="copy-context">Dashboard · Insight callout</div>
+      </div>
+      <div class="copy-card">
+        <div class="copy-text">built by two people who share actual DNA</div>
+        <div class="copy-context">Footer · Origin story</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- UI COMPONENTS -->
+  <div class="section">
+    <div class="section-title">UI Components</div>
+    <div class="section-sub">Core Elements</div>
+    <div class="component-grid">
+      <div class="component-card">
+        <h4>Buttons</h4>
+        <div class="btn-row">
+          <button class="btn-p">Join Waitlist</button>
+          <button class="btn-s">See How It Works →</button>
+          <button class="btn-ghost">Early Access</button>
+        </div>
+      </div>
+      <div class="component-card">
+        <h4>Badges</h4>
+        <div class="badge-row">
+          <span class="badge badge-green">Win</span>
+          <span class="badge badge-light">Open</span>
+          <span class="badge badge-neutral">Pending</span>
+          <span class="badge badge-red">Loss</span>
+          <span class="badge badge-green">Early Access</span>
+        </div>
+      </div>
+      <div class="component-card">
+        <h4>Input</h4>
+        <input class="input-demo" type="email" placeholder="your@email.com" readonly>
+      </div>
+      <div class="component-card">
+        <h4>Tagline Lockup</h4>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#22C55E;letter-spacing:0.1em">signal → structure → edge</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#2A4A60;margin-top:6px;letter-spacing:0.08em">d&a analytics · powered by blindspot</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PARTNER LOCKUP -->
+  <div class="section">
+    <div class="section-title">Partner Lockup</div>
+    <div class="section-sub">D&A + Dropdown Logistics</div>
+    <div class="partner-section">
+      <div class="partner-row">
+        <div class="logo-display">
+          <div class="logo-mark-sm">
+            <svg width="18" height="18" viewBox="0 0 26 26" fill="none">
+              <path d="M9 3C9 3 17 7 17 10.5C17 14 9 16 9 19.5C9 23 17 24 17 24" stroke="#22C55E" strokeWidth="2.2" strokeLinecap="round"/>
+              <path d="M17 3C17 3 9 7 9 10.5C9 14 17 16 17 19.5C17 23 9 24 9 24" stroke="#86EFAC" strokeWidth="2.2" strokeLinecap="round"/>
+              <line x1="10" y1="7.5" x2="16" y2="7.5" stroke="#E2E8F0" strokeWidth="1.4" strokeLinecap="round"/>
+              <line x1="10" y1="13" x2="16" y2="13" stroke="#E2E8F0" strokeWidth="1.4" strokeLinecap="round"/>
+              <line x1="10" y1="18.5" x2="16" y2="18.5" stroke="#E2E8F0" strokeWidth="1.4" strokeLinecap="round"/>
+            </svg>
+          </div>
+          <div class="logo-wordmark"><strong>blindspot</strong>.bet</div>
+        </div>
+        <div class="partner-divider">·</div>
+        <div class="ddl-mark">A <span>Dropdown Logistics</span> product</div>
+        <div class="partner-divider">·</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#2A4A60;letter-spacing:0.08em">dropdownlogistics.com</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DO / DON'T -->
+  <div class="section">
+    <div class="section-title">Brand Rules</div>
+    <div class="section-sub">Do / Don't</div>
+    <div class="rules-grid">
+      <div class="rules-card do">
+        <h4>Do</h4>
+        <ul>
+          <li>Use Dave Green (#22C55E) as the dominant accent</li>
+          <li>Pair Space Grotesk headlines with JetBrains Mono data</li>
+          <li>Use Source Serif 4 italic for key emotional phrases</li>
+          <li>Dark backgrounds only — #0D2137 or deeper</li>
+          <li>Keep copy direct, short, data-grounded</li>
+          <li>Reference the D&A tagline: signal → structure → edge</li>
+          <li>Credit Dropdown Logistics in the footer</li>
+        </ul>
+      </div>
+      <div class="rules-card dont">
+        <h4>Don't</h4>
+        <ul>
+          <li>Use white or light mode backgrounds</li>
+          <li>Use Inter, Roboto, or system fonts</li>
+          <li>Use gold/amber as the primary accent (that's DDL)</li>
+          <li>Use purple gradients or generic AI aesthetics</li>
+          <li>Write hype copy — no "unlock", "empower", "supercharge"</li>
+          <li>Promote gambling — we track, we don't encourage</li>
+          <li>Separate the helix mark from the D&A identity</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="brand-footer">
+    <div class="brand-footer-left"><strong>d&a analytics</strong> · blindspot.bet · Brand Kit v1.0</div>
+    <div class="brand-footer-right">Dropdown Logistics · March 2026 · D.K. Hale · CoherentVelocity</div>
+  </div>
+
+</div>
+</body>
+</html>

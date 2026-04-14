@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CanonPress — Brand Kit v1.0</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --navy:    #0D1B2A;
+  --card:    #10202F;
+  --cream:   #F5F1EB;
+  --crimson: #B23531;
+  --copper:  #C49A3C;
+  --steel:   #6B7B8D;
+  --border:  rgba(245,241,235,0.07);
+  /* Series accents */
+  --converge:    #6B9DC2;
+  --redline:     #B23531;
+  --deepcut:     #8A6CC9;
+  --groundtruth: #C49A3C;
+}
+
+body {
+  background: var(--navy);
+  color: var(--cream);
+  font-family: 'Source Serif 4', Georgia, serif;
+  min-height: 100vh;
+  padding: 60px 24px 80px;
+}
+.page { max-width: 1100px; margin: 0 auto; }
+
+/* ── HEADER ── */
+.brand-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 72px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.brand-header-left h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+.brand-header-left h1 span { color: var(--crimson); }
+.brand-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--steel);
+  letter-spacing: 0.04em;
+  line-height: 1.9;
+}
+
+/* ── LAYOUT ── */
+.section { margin-bottom: 72px; }
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--crimson);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+.section-desc {
+  font-size: 0.9rem;
+  color: var(--steel);
+  line-height: 1.6;
+  margin-bottom: 32px;
+  max-width: 680px;
+}
+.divider {
+  width: 100%;
+  height: 1px;
+  background: var(--border);
+  margin-bottom: 72px;
+}
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; border-radius: 8px; overflow: hidden; }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.card-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  min-height: 180px;
+  background: var(--navy);
+}
+.card-info { padding: 16px 20px 20px; border-top: 1px solid var(--border); }
+.card-info h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.card-info .tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.card-info p { font-size: 0.82rem; color: var(--steel); line-height: 1.5; }
+.cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px 20px;
+  min-height: 180px;
+  gap: 14px;
+}
+.cell-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.58rem;
+  color: var(--steel);
+  letter-spacing: 0.06em;
+}
+.on-navy { background: var(--navy); }
+.on-card { background: var(--card); }
+.on-dark { background: #060E17; }
+.on-cream { background: var(--cream); }
+
+/* ── SERIES CARDS ── */
+.series-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.series-card {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.series-header {
+  padding: 28px 20px 20px;
+  position: relative;
+}
+.series-accent-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+.series-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+}
+.series-tagline {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-style: italic;
+  font-size: 0.8rem;
+  color: var(--steel);
+  line-height: 1.5;
+}
+.series-body {
+  padding: 12px 20px 20px;
+  background: var(--card);
+  border-top: 1px solid var(--border);
+}
+.series-hex {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+.series-desc {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--steel);
+  line-height: 1.6;
+}
+
+/* ── WORDMARK ── */
+.wordmark-block {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.wm-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 1.6rem;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.wm-title span { color: var(--crimson); }
+.wm-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  color: var(--crimson);
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* ── PUBLICATION IDENTITY ── */
+.pub-identity {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 40px;
+  display: flex;
+  gap: 48px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.pub-stamp { flex-shrink: 0; }
+.pub-text { flex: 1; min-width: 280px; }
+.pub-text h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+.pub-text h3 span { color: var(--crimson); }
+.pub-text .sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--crimson);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.pub-text p {
+  font-size: 0.9rem;
+  color: rgba(245,241,235,0.75);
+  line-height: 1.7;
+}
+.pub-text .rule-line {
+  width: 40px; height: 1px;
+  background: var(--crimson);
+  margin: 16px 0;
+}
+.pub-text .attribution {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.58rem;
+  color: var(--steel);
+  letter-spacing: 0.1em;
+}
+
+/* ── TYPE SAMPLES ── */
+.type-samples { display: flex; flex-direction: column; gap: 20px; }
+.type-sample {
+  padding: 24px 28px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.type-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--crimson);
+  letter-spacing: 0.06em;
+  margin-bottom: 10px;
+}
+.type-display { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.8rem; letter-spacing: -0.02em; }
+.type-display span { color: var(--crimson); }
+.type-body { font-family: 'Source Serif 4', Georgia, serif; font-size: 1rem; line-height: 1.75; color: rgba(245,241,235,0.85); }
+.type-body em { font-style: italic; color: var(--steel); }
+.type-mono { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; line-height: 1.8; color: var(--steel); }
+
+/* ── RULES ── */
+.rules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.rule-card {
+  padding: 24px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+.rule-card.do { border-color: rgba(74,158,107,0.3); background: rgba(74,158,107,0.04); }
+.rule-card.dont { border-color: rgba(178,53,49,0.3); background: rgba(178,53,49,0.04); }
+.rule-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.do .rule-label { color: #4A9E6B; }
+.dont .rule-label { color: var(--crimson); }
+.rule-list { list-style: none; }
+.rule-list li {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: rgba(245,241,235,0.75);
+  padding: 4px 0;
+  border-bottom: 1px solid var(--border);
+}
+.rule-list li:last-child { border-bottom: none; }
+
+/* ── FOOTER ── */
+.brand-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-top: 48px;
+  border-top: 1px solid var(--border);
+  margin-top: 48px;
+}
+.brand-footer-left { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--steel); line-height: 1.8; }
+.brand-footer-right { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--crimson); letter-spacing: 0.06em; text-align: right; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ═══ HEADER ═══ -->
+  <div class="brand-header">
+    <div class="brand-header-left">
+      <h1>Canon<span>Press</span></h1>
+      <p class="brand-meta">
+        Brand Kit v1.0 · 2026-03-15<br>
+        Platform: DDL Wing + Substack (D.K. Hale)<br>
+        Parent: Dropdown Logistics · Crimson lineage<br>
+        Four series: Converge · RedLine · DeepCut · GroundTruth
+      </p>
+    </div>
+    <!-- CP stamp -->
+    <svg viewBox="0 0 140 140" width="80" height="80">
+      <defs>
+        <path id="cta" d="M 20,70 A 50,50 0 0,1 120,70"/>
+        <path id="cba" d="M 20,70 A 50,50 0 0,0 120,70"/>
+      </defs>
+      <circle cx="70" cy="70" r="66" fill="none" stroke="#B23531" stroke-width="2.5"/>
+      <circle cx="70" cy="70" r="56" fill="none" stroke="#B23531" stroke-width="0.75" stroke-dasharray="3 4"/>
+      <circle cx="70" cy="70" r="62" fill="#0D1B2A"/>
+      <text x="70" y="80" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="36" fill="#B23531" letter-spacing="-2">CP</text>
+      <text font-family="JetBrains Mono, monospace" font-size="6.5" fill="#F5F1EB" letter-spacing="3"><textPath href="#cta" startOffset="50%" text-anchor="middle">CANONPRESS</textPath></text>
+      <text font-family="JetBrains Mono, monospace" font-size="6" fill="#6B7B8D" letter-spacing="2"><textPath href="#cba" startOffset="50%" text-anchor="middle">GOVERNED PUBLICATION</textPath></text>
+      <line x1="70" y1="4" x2="70" y2="11" stroke="#B23531" stroke-width="1.5"/>
+      <line x1="70" y1="129" x2="70" y2="136" stroke="#B23531" stroke-width="1.5"/>
+      <line x1="4" y1="70" x2="11" y2="70" stroke="#B23531" stroke-width="1.5"/>
+      <line x1="129" y1="70" x2="136" y2="70" stroke="#B23531" stroke-width="1.5"/>
+      <circle cx="8" cy="70" r="2.5" fill="#C49A3C"/>
+      <circle cx="132" cy="70" r="2.5" fill="#C49A3C"/>
+    </svg>
+  </div>
+
+  <!-- ═══ 01 — IDENTITY ═══ -->
+  <div class="section">
+    <div class="section-label">01 — Publication Identity</div>
+    <div class="section-title">What CanonPress Is</div>
+    <p class="section-desc">CanonPress is the DDL content publication system. It is a wing on the DDL site and a Substack publication under D.K. Hale — Dave's memoir and editorial persona. The DDL CanonPress and the D.K. Hale memoir are related but distinct. CanonPress is the methodology publication. D.K. Hale is the literary persona.</p>
+
+    <div class="pub-identity">
+      <div class="pub-stamp">
+        <svg viewBox="0 0 140 140" width="120" height="120">
+          <defs>
+            <path id="pta" d="M 20,70 A 50,50 0 0,1 120,70"/>
+            <path id="pba" d="M 20,70 A 50,50 0 0,0 120,70"/>
+          </defs>
+          <circle cx="70" cy="70" r="66" fill="none" stroke="#B23531" stroke-width="2.5"/>
+          <circle cx="70" cy="70" r="56" fill="none" stroke="#B23531" stroke-width="0.75" stroke-dasharray="3 4"/>
+          <circle cx="70" cy="70" r="62" fill="#0D1B2A"/>
+          <text x="70" y="80" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="36" fill="#B23531" letter-spacing="-2">CP</text>
+          <text font-family="JetBrains Mono, monospace" font-size="6.5" fill="#F5F1EB" letter-spacing="3"><textPath href="#pta" startOffset="50%" text-anchor="middle">CANONPRESS</textPath></text>
+          <text font-family="JetBrains Mono, monospace" font-size="6" fill="#6B7B8D" letter-spacing="2"><textPath href="#pba" startOffset="50%" text-anchor="middle">GOVERNED PUBLICATION</textPath></text>
+          <line x1="70" y1="4" x2="70" y2="11" stroke="#B23531" stroke-width="1.5"/>
+          <line x1="70" y1="129" x2="70" y2="136" stroke="#B23531" stroke-width="1.5"/>
+          <line x1="4" y1="70" x2="11" y2="70" stroke="#B23531" stroke-width="1.5"/>
+          <line x1="129" y1="70" x2="136" y2="70" stroke="#B23531" stroke-width="1.5"/>
+          <circle cx="8" cy="70" r="2.5" fill="#C49A3C"/>
+          <circle cx="132" cy="70" r="2.5" fill="#C49A3C"/>
+        </svg>
+      </div>
+      <div class="pub-text">
+        <h3>Canon<span>Press</span></h3>
+        <div class="sub">GOVERNED PUBLICATION · DDL</div>
+        <p>Four series. One system. Every piece is reviewed, governed, and canon before it ships. CanonPress is where the DDL methodology meets public language — the output of the council, documented in the open.</p>
+        <div class="rule-line"></div>
+        <div class="attribution">A DROPDOWN LOGISTICS PUBLICATION · DROPDOWNLOGISTICS.COM/CANONPRESS</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══ 02 — CP STAMP ═══ -->
+  <div class="section">
+    <div class="section-label">02 — The CP Stamp</div>
+    <div class="section-title">Mark System</div>
+    <p class="section-desc">CanonPress inherits the DDL stamp system. Crimson ring, CP monogram, copper dots. Arc text: "CANONPRESS" top, "GOVERNED PUBLICATION" bottom. Shares the DDL crimson lineage — it is a DDL publication.</p>
+
+    <div class="grid-3">
+      <div class="cell on-navy">
+        <svg viewBox="0 0 140 140" width="110" height="110">
+          <defs>
+            <path id="s1ta" d="M 20,70 A 50,50 0 0,1 120,70"/>
+            <path id="s1ba" d="M 20,70 A 50,50 0 0,0 120,70"/>
+          </defs>
+          <circle cx="70" cy="70" r="66" fill="none" stroke="#B23531" stroke-width="2.5"/>
+          <circle cx="70" cy="70" r="56" fill="none" stroke="#B23531" stroke-width="0.75" stroke-dasharray="3 4"/>
+          <circle cx="70" cy="70" r="62" fill="#0D1B2A"/>
+          <text x="70" y="80" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="36" fill="#B23531" letter-spacing="-2">CP</text>
+          <text font-family="JetBrains Mono, monospace" font-size="6.5" fill="#F5F1EB" letter-spacing="3"><textPath href="#s1ta" startOffset="50%" text-anchor="middle">CANONPRESS</textPath></text>
+          <text font-family="JetBrains Mono, monospace" font-size="6" fill="#6B7B8D" letter-spacing="2"><textPath href="#s1ba" startOffset="50%" text-anchor="middle">GOVERNED PUBLICATION</textPath></text>
+          <line x1="70" y1="4" x2="70" y2="11" stroke="#B23531" stroke-width="1.5"/>
+          <line x1="70" y1="129" x2="70" y2="136" stroke="#B23531" stroke-width="1.5"/>
+          <line x1="4" y1="70" x2="11" y2="70" stroke="#B23531" stroke-width="1.5"/>
+          <line x1="129" y1="70" x2="136" y2="70" stroke="#B23531" stroke-width="1.5"/>
+          <circle cx="8" cy="70" r="2.5" fill="#C49A3C"/>
+          <circle cx="132" cy="70" r="2.5" fill="#C49A3C"/>
+        </svg>
+        <div class="cell-label">ON NAVY · PRIMARY</div>
+      </div>
+      <div class="cell on-card">
+        <div class="wordmark-block">
+          <svg viewBox="0 0 140 140" width="52" height="52">
+            <circle cx="70" cy="70" r="66" fill="none" stroke="#B23531" stroke-width="3"/>
+            <circle cx="70" cy="70" r="62" fill="#0D1B2A"/>
+            <text x="70" y="82" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="40" fill="#B23531" letter-spacing="-2">CP</text>
+            <circle cx="8" cy="70" r="2.5" fill="#C49A3C"/>
+            <circle cx="132" cy="70" r="2.5" fill="#C49A3C"/>
+          </svg>
+          <div>
+            <div class="wm-title">Canon<span>Press</span></div>
+            <div class="wm-sub">Governed Publication</div>
+          </div>
+        </div>
+        <div class="cell-label">HORIZONTAL LOCKUP</div>
+      </div>
+      <div class="cell on-cream">
+        <svg viewBox="0 0 140 140" width="110" height="110">
+          <defs>
+            <path id="s3ta" d="M 20,70 A 50,50 0 0,1 120,70"/>
+            <path id="s3ba" d="M 20,70 A 50,50 0 0,0 120,70"/>
+          </defs>
+          <circle cx="70" cy="70" r="66" fill="none" stroke="#B23531" stroke-width="2.5"/>
+          <circle cx="70" cy="70" r="56" fill="none" stroke="#0D1B2A" stroke-width="0.75" stroke-dasharray="3 4"/>
+          <circle cx="70" cy="70" r="62" fill="#F5F1EB"/>
+          <text x="70" y="80" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="36" fill="#B23531" letter-spacing="-2">CP</text>
+          <text font-family="JetBrains Mono, monospace" font-size="6.5" fill="#0D1B2A" letter-spacing="3"><textPath href="#s3ta" startOffset="50%" text-anchor="middle">CANONPRESS</textPath></text>
+          <text font-family="JetBrains Mono, monospace" font-size="6" fill="#6B7B8D" letter-spacing="2"><textPath href="#s3ba" startOffset="50%" text-anchor="middle">GOVERNED PUBLICATION</textPath></text>
+          <line x1="70" y1="4" x2="70" y2="11" stroke="#B23531" stroke-width="1.5"/>
+          <line x1="70" y1="129" x2="70" y2="136" stroke="#B23531" stroke-width="1.5"/>
+          <line x1="4" y1="70" x2="11" y2="70" stroke="#B23531" stroke-width="1.5"/>
+          <line x1="129" y1="70" x2="136" y2="70" stroke="#B23531" stroke-width="1.5"/>
+          <circle cx="8" cy="70" r="2.5" fill="#C49A3C"/>
+          <circle cx="132" cy="70" r="2.5" fill="#C49A3C"/>
+        </svg>
+        <div class="cell-label" style="color:#6B7B8D">ON CREAM · PRINT / SUBSTACK</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══ 03 — FOUR SERIES ═══ -->
+  <div class="section">
+    <div class="section-label">03 — Publication Series</div>
+    <div class="section-title">Four Series. Four Accents.</div>
+    <p class="section-desc">Each series has a distinct accent color drawn from the CottageHumble token registry. No new colors were introduced. Each series accent applies to: series header bars, series stamps, series OG cards, and series article eyebrow labels.</p>
+
+    <div class="series-grid">
+      <!-- CONVERGE -->
+      <div class="series-card" style="background:var(--card)">
+        <div class="series-header" style="background:var(--navy)">
+          <div class="series-accent-bar" style="background:#6B9DC2"></div>
+          <div class="series-name" style="color:#6B9DC2">Converge</div>
+          <div class="series-tagline">Where methodology meets output</div>
+        </div>
+        <div class="series-body">
+          <div class="series-hex" style="color:#6B9DC2">#6B9DC2 · Blue</div>
+          <div class="series-desc">Where the DDL framework produces visible results. Systems, builds, reviews that closed loops. The record of the work that worked.</div>
+        </div>
+      </div>
+      <!-- REDLINE -->
+      <div class="series-card" style="background:var(--card)">
+        <div class="series-header" style="background:var(--navy)">
+          <div class="series-accent-bar" style="background:#B23531"></div>
+          <div class="series-name" style="color:#B23531">RedLine</div>
+          <div class="series-tagline">Hard decisions, documented</div>
+        </div>
+        <div class="series-body">
+          <div class="series-hex" style="color:#B23531">#B23531 · Crimson</div>
+          <div class="series-desc">The moments where the system was tested and a call had to be made. Operator decisions under uncertainty. The lines that held.</div>
+        </div>
+      </div>
+      <!-- DEEPCUT -->
+      <div class="series-card" style="background:var(--card)">
+        <div class="series-header" style="background:var(--navy)">
+          <div class="series-accent-bar" style="background:#8A6CC9"></div>
+          <div class="series-name" style="color:#8A6CC9">DeepCut</div>
+          <div class="series-tagline">The work behind the work</div>
+        </div>
+        <div class="series-body">
+          <div class="series-hex" style="color:#8A6CC9">#8A6CC9 · Violet</div>
+          <div class="series-desc">Below the visible surface. The architecture decisions, the failed approaches, the context that makes the public work legible.</div>
+        </div>
+      </div>
+      <!-- GROUNDTRUTH -->
+      <div class="series-card" style="background:var(--card)">
+        <div class="series-header" style="background:var(--navy)">
+          <div class="series-accent-bar" style="background:#C49A3C"></div>
+          <div class="series-name" style="color:#C49A3C">GroundTruth</div>
+          <div class="series-tagline">What the system actually knows</div>
+        </div>
+        <div class="series-body">
+          <div class="series-hex" style="color:#C49A3C">#C49A3C · Amber</div>
+          <div class="series-desc">Direct observations. What the corpus contains. What the council says when no one is framing the question. The unmediated signal.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Series eyebrow examples -->
+    <div style="margin-top:32px;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--steel);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px;">Article Eyebrow Labels — Applied</div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <div style="padding:4px 12px;border-radius:4px;background:rgba(107,157,194,0.12);border:1px solid rgba(107,157,194,0.25);font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:#6B9DC2;letter-spacing:0.1em;">CONVERGE</div>
+        <div style="padding:4px 12px;border-radius:4px;background:rgba(178,53,49,0.12);border:1px solid rgba(178,53,49,0.25);font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:#B23531;letter-spacing:0.1em;">REDLINE</div>
+        <div style="padding:4px 12px;border-radius:4px;background:rgba(138,108,201,0.12);border:1px solid rgba(138,108,201,0.25);font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:#8A6CC9;letter-spacing:0.1em;">DEEPCUT</div>
+        <div style="padding:4px 12px;border-radius:4px;background:rgba(196,154,60,0.12);border:1px solid rgba(196,154,60,0.25);font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:#C49A3C;letter-spacing:0.1em;">GROUNDTRUTH</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══ 04 — TYPOGRAPHY ═══ -->
+  <div class="section">
+    <div class="section-label">04 — Typography</div>
+    <div class="section-title">Publication Type Stack</div>
+    <p class="section-desc">CanonPress is a publication — Source Serif 4 does heavier lifting here than in product UI. Long-form prose is the primary output. The type hierarchy reflects that.</p>
+
+    <div class="type-samples">
+      <div class="type-sample">
+        <div class="type-meta">Article Headline — Space Grotesk 700</div>
+        <div class="type-display">The Council <span>Remembers.</span></div>
+      </div>
+      <div class="type-sample">
+        <div class="type-meta">Body Prose — Source Serif 4 · 400 / 400i</div>
+        <div class="type-body">
+          Governed knowledge is not a constraint. It is the precondition for trust. The difference between a system that knows something and a system that claims to know something is a trail — one that can be followed, questioned, and verified.<em> The corpus has a front door now.</em>
+        </div>
+      </div>
+      <div class="type-sample">
+        <div class="type-meta">Metadata / Byline — JetBrains Mono</div>
+        <div class="type-mono">
+          CONVERGE · CV-001 · 2026-03-08<br>
+          Authored: Marcus Caldwell (Seat 1002)<br>
+          Council: 7 LOCK · 2 REVISE · 0 REJECT
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══ 05 — TWO HOMES ═══ -->
+  <div class="section">
+    <div class="section-label">05 — Two Homes</div>
+    <div class="section-title">DDL Wing vs. Substack</div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-display" style="flex-direction:column;gap:16px;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--crimson);letter-spacing:0.1em;">DDL WING</div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.1rem;">dropdownlogistics.com/canonpress</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--steel);text-align:center;line-height:1.7;">Full CottageHumble treatment<br>Council review records<br>Series archive + recursion map<br>Cross-links to Standards, Council</div>
+        </div>
+        <div class="card-info">
+          <h3>DDL Site Wing</h3>
+          <div class="tag" style="color:var(--crimson)">NEXT.JS · VERCEL · FULL GOVERNANCE</div>
+          <p>The governed version. Every piece has metadata, council verdict, and a canon ID. This is the authoritative record.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-display" style="flex-direction:column;gap:16px;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--steel);letter-spacing:0.1em;">SUBSTACK</div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.1rem;">D.K. Hale on Substack</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--steel);text-align:center;line-height:1.7;">Substack native branding<br>Public-facing publication<br>Memoir + CanonPress blend<br>Branding: Substack controls</div>
+        </div>
+        <div class="card-info">
+          <h3>Substack — D.K. Hale</h3>
+          <div class="tag" style="color:var(--steel)">EXTERNAL · PERSONA BOUNDARY</div>
+          <p>D.K. Hale is the literary persona — memoir and editorial, not DDL product contexts. The persona boundary is firm. Never use "D.K. Hale" in council or product documents.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══ 06 — RULES ═══ -->
+  <div class="section">
+    <div class="section-label">06 — Usage Rules</div>
+    <div class="section-title">Do / Never</div>
+    <div class="rules-grid">
+      <div class="rule-card do">
+        <div class="rule-label">✓ Always</div>
+        <ul class="rule-list">
+          <li>Use series accent colors for eyebrow labels, bars, and series stamps</li>
+          <li>Attribute articles with council seat, verdict count, and canon ID</li>
+          <li>Use Source Serif 4 for article body — this is a publication</li>
+          <li>Maintain the DDL crimson as the CanonPress parent color</li>
+          <li>"D.K. Hale" for Substack memoir persona only — never in DDL contexts</li>
+          <li>CP stamp arc text: "CANONPRESS" top, "GOVERNED PUBLICATION" bottom</li>
+        </ul>
+      </div>
+      <div class="rule-card dont">
+        <div class="rule-label">✗ Never</div>
+        <ul class="rule-list">
+          <li>Mix D.K. Hale memoir persona into DDL council or product documents</li>
+          <li>Publish a CanonPress piece without a series assignment</li>
+          <li>Use a series accent outside its series context</li>
+          <li>White backgrounds — even in Substack embeds, keep the dark philosophy</li>
+          <li>Treat Substack's native branding as the DDL brand — they coexist, they don't merge</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ FOOTER ═══ -->
+  <div class="brand-footer">
+    <div class="brand-footer-left">
+      CanonPress · Brand Kit v1.0 · 2026-03-15<br>
+      Dropdown Logistics · A DDL Publication<br>
+      Four series · Governed knowledge · Built in the open
+    </div>
+    <div class="brand-footer-right">
+      CHAOS → STRUCTURED → AUTOMATED<br>
+      ASSEMBLED BY MARCUS CALDWELL · SEAT 1002
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
