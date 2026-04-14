@@ -289,3 +289,33 @@ The operator decides. This file describes how to work, not what to work on.
 When in doubt, ask. When clear, ship — within the rules above.
 
 The architecture does not change. The data does.
+
+---
+
+## Session Preferences
+
+### Command execution
+- Run all bash commands individually, not chained with `&&`
+  unless explicitly authorized for that specific compound command.
+- Pre-approved for all Python reads and file inspection commands —
+  do not ask for approval on these.
+- Pre-approved for: `next build`, `git status`, `git log`, `git diff`,
+  `ls`/`dir`, `cat`/`type`, `grep`/`findstr` — read-only operations.
+- Always ask before: `git push`, `git commit --amend`, `rm`/`del`,
+  any write outside `C:\dev\ddl-site\`.
+
+### Build verification
+- Always run `next build` before pushing.
+- Report the last 15 lines of build output.
+- Flag any new warnings even if build succeeds.
+
+### Commit discipline
+- One commit per logical task.
+- Never amend a commit without explicit operator authorization.
+- Do not push unless operator says "push it" or "push."
+
+### File operations
+- All new pages follow the gold-standard template at
+  `app/workbench/page.jsx`.
+- All new brand kit pages go in `public/brand/`.
+- All pricing sub-routes go under `app/[product]/pricing/page.jsx`.
