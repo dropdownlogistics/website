@@ -63,7 +63,7 @@ const receipts = [
   { time: 'Day 2 · Evening', event: 'auditforge.dev registered. Live on Vercel. Auto-deploy from GitHub. The product has a home.' },
   { time: '', event: '', section: 'APRIL 11, 2026 — THE NEXT LAYER' },
   { time: 'April 11 · Morning', event: 'Full codebase audit. Every bug found and fixed — auth middleware that had never run, regex validators broken since day one, mojibake in the schema, duplicate records in the database. Zero known bugs going into the next build.' },
-  { time: 'April 11 · Afternoon', event: 'Auditors roster shipped. 47 auditors across 10 teams, grouped by team, sorted by role. Basketball card modal with 8-axis SVG radar chart. \u2018How am I getting better?\u2019 framing. Hover tooltip with top strengths before you click.' },
+  { time: 'April 11 · Afternoon', event: 'Auditors roster shipped. 45 auditors across 9 teams, grouped by team, sorted by role. Basketball card modal with 8-axis SVG radar chart. \u2018How am I getting better?\u2019 framing. Hover tooltip with top strengths before you click.' },
   { time: 'April 11 · Evening', event: 'Engagement Orbital shipped. 6-node SVG orbital showing team, controls, budget, timeline, and process areas for each engagement. Click any audit — see the full picture. Four-panel detail view: Team Roster, Controls in Scope, Engagement Details, Engagement Analytics.' },
   { time: 'April 11 · Evening', event: '1,099 time entries seeded across 4 FY2025 engagements. Realistic hour distributions, 3-tier staffing model, natural variance. Time Analytics dashboard live: 7,777.9 total hours, 7,516.9 billable, by-auditor, by-component, by-engagement, monthly trend.' },
 ];
@@ -73,13 +73,13 @@ const stats = [
   { n: '9',     label: 'process areas' },
   { n: '17',    label: 'risks mapped' },
   { n: '4',     label: 'document generators' },
-  { n: '47',    label: 'auditors' },
-  { n: '10',    label: 'teams' },
+  { n: '45',    label: 'auditors' },
+  { n: '9',     label: 'teams' },
   { n: '4',     label: 'FY2025 engagements' },
   { n: '1,099', label: 'time entries' },
   { n: '\u2713',label: 'live analytics dashboard' },
   { n: '\u2713',label: 'engagement orbital' },
-  { n: '<1s',   label: 'per document' },
+  { n: '<30s',  label: 'to package' },
 ];
 
 const what = [
@@ -89,7 +89,7 @@ const what = [
   },
   {
     head: 'Generate', color: C.copper,
-    lines: ['RCM, MCL, Walkthroughs, Audit Plan.', 'XLSX and DOCX. Under one second each.', 'DDL brand standards on every output.', 'Live cloud data. Full metadata stamps.'],
+    lines: ['RCM01 \u2014 Risk & Control Matrix.', 'MCL02 \u2014 Master Control Log.', 'WALK03 \u2014 Walkthrough Narratives.', 'PLAN04 \u2014 Audit Plan.', 'XLSX and DOCX. Under 30 seconds to package.'],
   },
   {
     head: 'Govern', color: C.crimsonAF,
@@ -116,12 +116,15 @@ export default function AuditForgeLanding() {
         </div>
 
         <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 'clamp(2rem, 5vw, 3.4rem)', letterSpacing: '-0.025em', lineHeight: 1.1, maxWidth: 720, marginBottom: 20 }}>
-          Governed audit documentation<br/>
-          <span style={{ color: C.teal }}>from structured data.</span>
+          The audit package <span style={{ color: C.teal }}>generates itself.</span>
         </div>
 
-        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.95rem', color: C.dim, marginBottom: 32, letterSpacing: '0.02em' }}>
-          Structured data in. Governed documents out.
+        <div style={{ fontFamily: "'Source Serif 4', serif", fontSize: '1.05rem', color: C.dim, maxWidth: 620, lineHeight: 1.75, marginBottom: 20 }}>
+          Produces governed audit deliverables &mdash; RCMs, MCLs, walkthroughs, and audit plans &mdash; in seconds from a live star schema.
+        </div>
+
+        <div style={{ fontFamily: "'Source Serif 4', serif", fontStyle: 'italic', fontSize: '0.95rem', color: C.cream, maxWidth: 620, lineHeight: 1.7, marginBottom: 32, borderLeft: `2px solid ${C.crimsonAF}`, paddingLeft: 16 }}>
+          One operator &middot; One council &middot; The audit package generates itself.
         </div>
 
         <div style={{ fontFamily: "'Source Serif 4', serif", fontSize: '1rem', color: C.dim, maxWidth: 560, lineHeight: 1.8, marginBottom: 40 }}>
@@ -205,6 +208,49 @@ export default function AuditForgeLanding() {
                   <div key={j} style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.7rem', color: C.dim, lineHeight: 1.5 }}>{line}</div>
                 ))}
               </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* CANON TERM */}
+      <div style={{ background: `linear-gradient(135deg, ${C.crimsonDim} 0%, transparent 60%)`, borderTop: `1px solid ${C.border}`, borderBottom: `1px solid ${C.border}` }}>
+        <div style={{ maxWidth: 960, margin: '0 auto', padding: '56px 24px', display: 'flex', gap: 32, alignItems: 'flex-start', flexWrap: 'wrap' }}>
+          <div style={{ minWidth: 220 }}>
+            <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.6rem', color: C.crimsonAF, letterSpacing: '0.2em', marginBottom: 8 }}>CANON TERM</div>
+            <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: '1.15rem', color: C.cream, letterSpacing: '-0.01em' }}>SystemOfStructure</div>
+          </div>
+          <div style={{ fontFamily: "'Source Serif 4', serif", fontStyle: 'italic', fontSize: '1.2rem', color: C.cream, lineHeight: 1.6, maxWidth: 560 }}>
+            Not execution. Not opinion. <span style={{ color: C.crimsonAF, fontStyle: 'normal', fontWeight: 700 }}>Structure.</span>
+          </div>
+        </div>
+      </div>
+
+      {/* THE FIRM */}
+      <div style={{ maxWidth: 960, margin: '0 auto', padding: '64px 24px' }}>
+        <SLabel>THE FIRM</SLabel>
+        <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: '1.5rem', letterSpacing: '-0.02em', marginBottom: 8 }}>
+          45 auditors. 9 teams.
+        </div>
+        <div style={{ fontFamily: "'Source Serif 4', serif", fontSize: '0.95rem', color: C.dim, maxWidth: 560, lineHeight: 1.75, marginBottom: 32 }}>
+          Ratified competency profile. One council seat per director. Every engagement is staffed from a governed roster.
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 10 }}>
+          {[
+            { seat: '1001', name: 'Archer Hawthorne' },
+            { seat: '1002', name: 'Marcus Caldwell' },
+            { seat: '1003', name: 'Elias Mercer' },
+            { seat: '1004', name: 'Max Sullivan' },
+            { seat: '1005', name: 'Rowan Bennett' },
+            { seat: '1006', name: 'Ava Sinclair' },
+            { seat: '1007', name: 'Leo Prescott' },
+            { seat: '1008', name: 'Marcus Grey' },
+            { seat: '1009', name: 'Kai Langford' },
+          ].map((d) => (
+            <div key={d.seat} style={{ background: C.card, border: `1px solid ${C.border}`, borderLeft: `2px solid ${C.crimsonAF}`, borderRadius: 6, padding: '14px 18px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12 }}>
+              <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, fontSize: '0.9rem', color: C.cream }}>{d.name}</span>
+              <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.58rem', color: C.crimsonAF, letterSpacing: '0.1em' }}>SEAT {d.seat}</span>
             </div>
           ))}
         </div>
