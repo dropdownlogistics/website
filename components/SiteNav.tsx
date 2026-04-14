@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 
 const PRODUCTS = [
   { label: 'AuditForge', href: 'https://auditforge.dev', external: true, color: '#B23531' },
-  { label: 'Ledger', href: '/ledger', external: false, color: '#B23531' },
+  { label: 'Ledger', href: '/ledger', external: false, color: '#C49A3C' },
   { label: 'BlindSpot', href: 'https://blindspot.bet', external: true, color: '#22C55E' },
   { label: 'Excelligence', href: 'https://excelligence.dev', external: true, color: '#D4A843' },
   { label: 'CanonPress', href: '/canonpress', external: false, color: '#B23531' },
