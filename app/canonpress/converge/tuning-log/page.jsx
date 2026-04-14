@@ -4,10 +4,9 @@ import { useState } from 'react';
 
 const C = {
   navy: '#0D1B2A', card: '#10202f',
-  crimson: '#B23531', crimsonDim: 'rgba(178,53,49,0.15)', crimsonMid: 'rgba(178,53,49,0.35)',
-  cream: '#F5F1EB', creamMid: 'rgba(245,241,235,0.55)', creamDim: 'rgba(245,241,235,0.3)',
-  creamGhost: 'rgba(245,241,235,0.06)', border: 'rgba(245,241,235,0.06)',
-  borderMed: 'rgba(245,241,235,0.1)', amber: '#C49A3C', violet: '#8a6cc9',
+  crimson: '#B23531', crimsonDim: 'rgba(178,53,49,0.15)', crimsonLine: 'rgba(178,53,49,0.35)',
+  cream: '#F5F1EB', dim: 'rgba(245,241,235,0.72)', body: 'rgba(245,241,235,0.6)',
+  borderSoft: 'rgba(245,241,235,0.05)', border: 'rgba(245,241,235,0.08)', amber: '#C49A3C', violet: '#8a6cc9',
 };
 const font = {
   display: "'Space Grotesk', system-ui, sans-serif",
@@ -53,8 +52,8 @@ function LogCard({ log }) {
   return (
     <div style={{
       background: C.card,
-      border: `1px solid ${log.status === 'COMPLETE' ? C.crimsonMid : C.border}`,
-      borderLeft: `3px solid ${log.status === 'COMPLETE' ? C.crimson : C.borderMed}`,
+      border: `1px solid ${log.status === 'COMPLETE' ? C.crimsonLine : C.border}`,
+      borderLeft: `3px solid ${log.status === 'COMPLETE' ? C.crimson : C.border}`,
       borderRadius: 8, overflow: 'hidden',
     }}>
       {/* HEADER — always visible */}
@@ -69,17 +68,17 @@ function LogCard({ log }) {
         <div style={{ flex: 1 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 10 }}>
             <span style={{ fontFamily: font.mono, fontSize: 11, color: C.crimson }}>WEEK {log.week}</span>
-            <span style={{ fontFamily: font.mono, fontSize: 9, color: C.crimson, border: `1px solid ${C.crimsonMid}`, borderRadius: 3, padding: '2px 8px' }}>{log.status}</span>
-            <span style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim }}>Published {log.publishTarget}</span>
+            <span style={{ fontFamily: font.mono, fontSize: 9, color: C.crimson, border: `1px solid ${C.crimsonLine}`, borderRadius: 3, padding: '2px 8px' }}>{log.status}</span>
+            <span style={{ fontFamily: font.mono, fontSize: 9, color: C.body }}>Published {log.publishTarget}</span>
           </div>
           <div style={{ fontFamily: font.body, fontSize: 14, color: C.cream, fontStyle: 'italic', marginBottom: 8 }}>{log.material}</div>
           <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap' }}>
-            <span style={{ fontFamily: font.mono, fontSize: 10, color: C.creamDim }}>{log.chunksIngested} chunks ingested</span>
-            <span style={{ fontFamily: font.mono, fontSize: 10, color: C.creamDim }}>{log.modelsResponded} models responded</span>
-            <span style={{ fontFamily: font.mono, fontSize: 10, color: C.creamDim }}>Tier: {log.tier}</span>
+            <span style={{ fontFamily: font.mono, fontSize: 10, color: C.body }}>{log.chunksIngested} chunks ingested</span>
+            <span style={{ fontFamily: font.mono, fontSize: 10, color: C.body }}>{log.modelsResponded} models responded</span>
+            <span style={{ fontFamily: font.mono, fontSize: 10, color: C.body }}>Tier: {log.tier}</span>
           </div>
         </div>
-        <span style={{ fontFamily: font.mono, fontSize: 14, color: C.creamDim, flexShrink: 0 }}>{open ? '▲' : '▼'}</span>
+        <span style={{ fontFamily: font.mono, fontSize: 14, color: C.body, flexShrink: 0 }}>{open ? '▲' : '▼'}</span>
       </button>
 
       {/* EXPANDED */}
@@ -93,21 +92,21 @@ function LogCard({ log }) {
               { label: 'REVIEWER', val: log.reviewer },
               { label: 'TUNING LOG / SYNTH', val: log.synthesisAuthor },
             ].map(r => (
-              <div key={r.label} style={{ background: C.creamGhost, borderRadius: 4, padding: '10px 14px' }}>
-                <div style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim, letterSpacing: '0.1em', marginBottom: 4 }}>{r.label}</div>
-                <div style={{ fontFamily: font.body, fontSize: 12, color: C.creamMid }}>{r.val}</div>
+              <div key={r.label} style={{ background: C.borderSoft, borderRadius: 4, padding: '10px 14px' }}>
+                <div style={{ fontFamily: font.mono, fontSize: 9, color: C.body, letterSpacing: '0.1em', marginBottom: 4 }}>{r.label}</div>
+                <div style={{ fontFamily: font.body, fontSize: 12, color: C.dim }}>{r.val}</div>
               </div>
             ))}
           </div>
 
           {/* DELIBERATION TOPIC */}
           <div style={{ marginBottom: 20 }}>
-            <div style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim, letterSpacing: '0.1em', marginBottom: 8 }}>DELIBERATION TOPIC</div>
+            <div style={{ fontFamily: font.mono, fontSize: 9, color: C.body, letterSpacing: '0.1em', marginBottom: 8 }}>DELIBERATION TOPIC</div>
             <blockquote style={{
               margin: 0, padding: '14px 18px',
               borderLeft: `2px solid ${C.crimson}`,
               background: C.crimsonDim, borderRadius: '0 4px 4px 0',
-              fontFamily: font.body, fontSize: 13, color: C.creamMid, fontStyle: 'italic', lineHeight: 1.7,
+              fontFamily: font.body, fontSize: 13, color: C.dim, fontStyle: 'italic', lineHeight: 1.7,
             }}>
               {log.deliberationTopic}
             </blockquote>
@@ -115,12 +114,12 @@ function LogCard({ log }) {
 
           {/* PROMPT FINDINGS */}
           <div style={{ marginBottom: 20 }}>
-            <div style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim, letterSpacing: '0.1em', marginBottom: 10 }}>PROMPT TUNING FINDINGS</div>
+            <div style={{ fontFamily: font.mono, fontSize: 9, color: C.body, letterSpacing: '0.1em', marginBottom: 10 }}>PROMPT TUNING FINDINGS</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {log.promptFindings.map((f, i) => (
                 <div key={i} style={{ display: 'flex', gap: 10 }}>
                   <span style={{ fontFamily: font.mono, fontSize: 9, color: C.crimson, flexShrink: 0, paddingTop: 3 }}>{String(i+1).padStart(2,'0')}</span>
-                  <span style={{ fontFamily: font.body, fontSize: 13, color: C.creamMid, lineHeight: 1.6 }}>{f}</span>
+                  <span style={{ fontFamily: font.body, fontSize: 13, color: C.dim, lineHeight: 1.6 }}>{f}</span>
                 </div>
               ))}
             </div>
@@ -128,24 +127,24 @@ function LogCard({ log }) {
 
           {/* DELIBERATION FINDINGS */}
           <div style={{ marginBottom: 20 }}>
-            <div style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim, letterSpacing: '0.1em', marginBottom: 10 }}>DELIBERATION FINDINGS</div>
+            <div style={{ fontFamily: font.mono, fontSize: 9, color: C.body, letterSpacing: '0.1em', marginBottom: 10 }}>DELIBERATION FINDINGS</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {log.deliberationFindings.map((f, i) => (
                 <div key={i} style={{ display: 'flex', gap: 10 }}>
                   <span style={{ fontFamily: font.mono, fontSize: 9, color: C.amber, flexShrink: 0, paddingTop: 3 }}>{String(i+1).padStart(2,'0')}</span>
-                  <span style={{ fontFamily: font.body, fontSize: 13, color: C.creamMid, lineHeight: 1.6 }}>{f}</span>
+                  <span style={{ fontFamily: font.body, fontSize: 13, color: C.dim, lineHeight: 1.6 }}>{f}</span>
                 </div>
               ))}
             </div>
           </div>
 
           {/* GREY VERDICT */}
-          <div style={{ background: C.crimsonDim, border: `1px solid ${C.crimsonMid}`, borderRadius: 6, padding: '16px 20px' }}>
+          <div style={{ background: C.crimsonDim, border: `1px solid ${C.crimsonLine}`, borderRadius: 6, padding: '16px 20px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-              <div style={{ fontFamily: font.mono, fontSize: 10, color: C.creamDim }}>Marcus Grey — Seat 1008</div>
-              <div style={{ fontFamily: font.mono, fontSize: 10, color: C.crimson, border: `1px solid ${C.crimsonMid}`, borderRadius: 3, padding: '2px 8px' }}>{log.greyVerdict}</div>
+              <div style={{ fontFamily: font.mono, fontSize: 10, color: C.body }}>Marcus Grey — Seat 1008</div>
+              <div style={{ fontFamily: font.mono, fontSize: 10, color: C.crimson, border: `1px solid ${C.crimsonLine}`, borderRadius: 3, padding: '2px 8px' }}>{log.greyVerdict}</div>
             </div>
-            <p style={{ fontFamily: font.body, fontSize: 13, color: C.creamMid, margin: 0, lineHeight: 1.6, fontStyle: 'italic' }}>{log.greyNote}</p>
+            <p style={{ fontFamily: font.body, fontSize: 13, color: C.dim, margin: 0, lineHeight: 1.6, fontStyle: 'italic' }}>{log.greyNote}</p>
           </div>
 
         </div>
@@ -166,7 +165,7 @@ export default function CanonPressTuningLog() {
           <h1 style={{ fontFamily: font.display, fontSize: 'clamp(28px, 5vw, 42px)', fontWeight: 800, margin: '0 0 12px', lineHeight: 1.1 }}>
             Prompt Tuning Log
           </h1>
-          <p style={{ fontFamily: font.body, fontSize: 15, color: C.creamMid, margin: 0, maxWidth: 580, lineHeight: 1.7 }}>
+          <p style={{ fontFamily: font.body, fontSize: 15, color: C.dim, margin: 0, maxWidth: 580, lineHeight: 1.7 }}>
             Every week, Marcus Grey (Seat 1008) analyzes the nomination prompt, the deliberation output, and what the council revealed about its own behavior. This is the construction log.
           </p>
         </div>
@@ -181,13 +180,13 @@ export default function CanonPressTuningLog() {
           ].map(c => (
             <div key={c.label} style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 6, padding: '14px 18px' }}>
               <div style={{ fontFamily: font.mono, fontSize: 9, color: C.crimson, letterSpacing: '0.1em', marginBottom: 6 }}>{c.label}</div>
-              <p style={{ fontFamily: font.body, fontSize: 12, color: C.creamMid, margin: 0, lineHeight: 1.6 }}>{c.desc}</p>
+              <p style={{ fontFamily: font.body, fontSize: 12, color: C.dim, margin: 0, lineHeight: 1.6 }}>{c.desc}</p>
             </div>
           ))}
         </div>
 
         {/* LOG CARDS */}
-        <div style={{ marginBottom: 16, fontFamily: font.mono, fontSize: 10, color: C.creamDim, letterSpacing: '0.12em' }}>
+        <div style={{ marginBottom: 16, fontFamily: font.mono, fontSize: 10, color: C.body, letterSpacing: '0.12em' }}>
           ALL WEEKS — {LOGS.length} LOGGED
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -195,8 +194,8 @@ export default function CanonPressTuningLog() {
         </div>
 
         <div style={{ marginTop: 48, paddingTop: 24, borderTop: `1px solid ${C.border}`, display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8 }}>
-          <div style={{ fontFamily: font.mono, fontSize: 10, color: C.creamDim }}>CanonPress · Tuning Log · Dropdown Logistics</div>
-          <div style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim }}>Chaos → Structured → Automated</div>
+          <div style={{ fontFamily: font.mono, fontSize: 10, color: C.body }}>CanonPress · Tuning Log · Dropdown Logistics</div>
+          <div style={{ fontFamily: font.mono, fontSize: 9, color: C.body }}>Chaos → Structured → Automated</div>
         </div>
 
       </div>

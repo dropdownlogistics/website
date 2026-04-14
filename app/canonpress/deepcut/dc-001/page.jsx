@@ -4,8 +4,8 @@ import BackButton from '@/components/BackButton';
 
 const C = {
   navy: '#0D1B2A', card: '#10202f',
-  cream: '#F5F1EB', dim: 'rgba(245,241,235,0.55)',
-  muted: 'rgba(245,241,235,0.3)', border: 'rgba(245,241,235,0.06)',
+  cream: '#F5F1EB', dim: 'rgba(245,241,235,0.72)',
+  muted: 'rgba(245,241,235,0.35)', border: 'rgba(245,241,235,0.08)',
   crimson: '#B23531', crimsonDim: 'rgba(178,53,49,0.1)',
   violet: '#8a6cc9', violetDim: 'rgba(138,108,201,0.12)',
   amber: '#C49A3C',

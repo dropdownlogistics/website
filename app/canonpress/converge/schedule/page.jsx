@@ -3,10 +3,9 @@ import BackButton from '@/components/BackButton';
 
 const C = {
   navy: '#0D1B2A', card: '#10202f',
-  crimson: '#B23531', crimsonDim: 'rgba(178,53,49,0.15)', crimsonMid: 'rgba(178,53,49,0.35)',
-  cream: '#F5F1EB', creamMid: 'rgba(245,241,235,0.55)', creamDim: 'rgba(245,241,235,0.3)',
-  creamGhost: 'rgba(245,241,235,0.06)', border: 'rgba(245,241,235,0.06)',
-  borderMed: 'rgba(245,241,235,0.1)',
+  crimson: '#B23531', crimsonDim: 'rgba(178,53,49,0.15)', crimsonLine: 'rgba(178,53,49,0.35)',
+  cream: '#F5F1EB', dim: 'rgba(245,241,235,0.72)', body: 'rgba(245,241,235,0.6)',
+  borderSoft: 'rgba(245,241,235,0.05)', border: 'rgba(245,241,235,0.08)',
   amber: '#C49A3C', violet: '#8a6cc9', green: '#4A9E6B', blue: '#6B9DC2',
 };
 const font = {
@@ -78,21 +77,21 @@ export default function CanonPressSchedule() {
           <h1 style={{ fontFamily: font.display, fontSize: 'clamp(28px, 5vw, 42px)', fontWeight: 800, margin: '0 0 12px', lineHeight: 1.1 }}>
             8-Week Schedule
           </h1>
-          <p style={{ fontFamily: font.body, fontSize: 15, color: C.creamMid, margin: 0, maxWidth: 580, lineHeight: 1.7 }}>
+          <p style={{ fontFamily: font.body, fontSize: 15, color: C.dim, margin: 0, maxWidth: 580, lineHeight: 1.7 }}>
             Nominators and reviewers rotate on an 8-week cycle. Fixed roles never rotate. Week 9+ repeats with domain variation.
           </p>
         </div>
 
         {/* FIXED ROLES */}
         <div style={{ marginBottom: 48 }}>
-          <div style={{ fontFamily: font.mono, fontSize: 10, color: C.creamDim, letterSpacing: '0.12em', marginBottom: 16 }}>FIXED ROLES — EVERY WEEK</div>
+          <div style={{ fontFamily: font.mono, fontSize: 10, color: C.body, letterSpacing: '0.12em', marginBottom: 16 }}>FIXED ROLES — EVERY WEEK</div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 12 }}>
             {FIXED.map(f => (
               <div key={f.seat} style={{ background: C.card, border: `1px solid ${C.border}`, borderTop: `2px solid ${f.color}`, borderRadius: 6, padding: '16px 20px' }}>
-                <div style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim, marginBottom: 6 }}>SEAT {f.seat}</div>
+                <div style={{ fontFamily: font.mono, fontSize: 9, color: C.body, marginBottom: 6 }}>SEAT {f.seat}</div>
                 <div style={{ fontFamily: font.display, fontSize: 14, fontWeight: 700, color: f.color, marginBottom: 4 }}>{f.name}</div>
-                <div style={{ fontFamily: font.mono, fontSize: 10, color: C.creamDim, letterSpacing: '0.08em', marginBottom: 10 }}>{f.role}</div>
-                <p style={{ fontFamily: font.body, fontSize: 12, color: C.creamMid, margin: 0, lineHeight: 1.6 }}>{f.rule}</p>
+                <div style={{ fontFamily: font.mono, fontSize: 10, color: C.body, letterSpacing: '0.08em', marginBottom: 10 }}>{f.role}</div>
+                <p style={{ fontFamily: font.body, fontSize: 12, color: C.dim, margin: 0, lineHeight: 1.6 }}>{f.rule}</p>
               </div>
             ))}
           </div>
@@ -100,34 +99,34 @@ export default function CanonPressSchedule() {
 
         {/* ROTATION */}
         <div style={{ marginBottom: 48 }}>
-          <div style={{ fontFamily: font.mono, fontSize: 10, color: C.creamDim, letterSpacing: '0.12em', marginBottom: 16 }}>ROTATION — 8-WEEK CYCLE</div>
+          <div style={{ fontFamily: font.mono, fontSize: 10, color: C.body, letterSpacing: '0.12em', marginBottom: 16 }}>ROTATION — 8-WEEK CYCLE</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             {ROTATION.map(w => (
               <div key={w.week} style={{
                 background: C.card,
-                border: `1px solid ${w.status === 'complete' ? C.crimsonMid : C.border}`,
-                borderLeft: `3px solid ${w.status === 'complete' ? C.crimson : C.borderMed}`,
+                border: `1px solid ${w.status === 'complete' ? C.crimsonLine : C.border}`,
+                borderLeft: `3px solid ${w.status === 'complete' ? C.crimson : C.border}`,
                 borderRadius: 6, padding: '18px 22px',
               }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 8, marginBottom: 14 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-                    <span style={{ fontFamily: font.mono, fontSize: 11, color: w.status === 'complete' ? C.crimson : C.creamDim }}>WK {w.week}</span>
+                    <span style={{ fontFamily: font.mono, fontSize: 11, color: w.status === 'complete' ? C.crimson : C.body }}>WK {w.week}</span>
                     {w.status === 'complete' && (
-                      <span style={{ fontFamily: font.mono, fontSize: 9, color: C.crimson, border: `1px solid ${C.crimsonMid}`, borderRadius: 3, padding: '2px 8px' }}>COMPLETE</span>
+                      <span style={{ fontFamily: font.mono, fontSize: 9, color: C.crimson, border: `1px solid ${C.crimsonLine}`, borderRadius: 3, padding: '2px 8px' }}>COMPLETE</span>
                     )}
                   </div>
-                  <span style={{ fontFamily: font.mono, fontSize: 10, color: C.creamDim }}>{w.publishDate}</span>
+                  <span style={{ fontFamily: font.mono, fontSize: 10, color: C.body }}>{w.publishDate}</span>
                 </div>
 
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
                   {/* NOMINATOR */}
                   <div>
-                    <div style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim, letterSpacing: '0.1em', marginBottom: 6 }}>NOMINATOR</div>
+                    <div style={{ fontFamily: font.mono, fontSize: 9, color: C.body, letterSpacing: '0.1em', marginBottom: 6 }}>NOMINATOR</div>
                     <div style={{ fontFamily: font.display, fontSize: 13, fontWeight: 700, color: SEAT_COLOR[w.nominator.seat], marginBottom: 3 }}>
                       {w.nominator.name}
                     </div>
-                    <div style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim, marginBottom: 6 }}>Seat {w.nominator.seat}</div>
-                    <div style={{ fontFamily: font.body, fontSize: 12, color: C.creamMid, lineHeight: 1.5 }}>{w.nominator.domain}</div>
+                    <div style={{ fontFamily: font.mono, fontSize: 9, color: C.body, marginBottom: 6 }}>Seat {w.nominator.seat}</div>
+                    <div style={{ fontFamily: font.body, fontSize: 12, color: C.dim, lineHeight: 1.5 }}>{w.nominator.domain}</div>
                     {w.nominator.note && (
                       <div style={{ fontFamily: font.mono, fontSize: 9, color: C.amber, marginTop: 6, lineHeight: 1.4 }}>{w.nominator.note}</div>
                     )}
@@ -135,12 +134,12 @@ export default function CanonPressSchedule() {
 
                   {/* REVIEWER */}
                   <div>
-                    <div style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim, letterSpacing: '0.1em', marginBottom: 6 }}>REVIEWER</div>
+                    <div style={{ fontFamily: font.mono, fontSize: 9, color: C.body, letterSpacing: '0.1em', marginBottom: 6 }}>REVIEWER</div>
                     <div style={{ fontFamily: font.display, fontSize: 13, fontWeight: 700, color: SEAT_COLOR[w.reviewer.seat], marginBottom: 3 }}>
                       {w.reviewer.name}
                     </div>
-                    <div style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim, marginBottom: 6 }}>Seat {w.reviewer.seat}</div>
-                    <div style={{ fontFamily: font.body, fontSize: 12, color: C.creamMid, lineHeight: 1.5 }}>Lens: {w.reviewer.lens}</div>
+                    <div style={{ fontFamily: font.mono, fontSize: 9, color: C.body, marginBottom: 6 }}>Seat {w.reviewer.seat}</div>
+                    <div style={{ fontFamily: font.body, fontSize: 12, color: C.dim, lineHeight: 1.5 }}>Lens: {w.reviewer.lens}</div>
                     {w.reviewer.note && (
                       <div style={{ fontFamily: font.mono, fontSize: 9, color: C.amber, marginTop: 6, lineHeight: 1.4 }}>{w.reviewer.note}</div>
                     )}
@@ -149,8 +148,8 @@ export default function CanonPressSchedule() {
 
                 {w.material && (
                   <div style={{ marginTop: 14, paddingTop: 12, borderTop: `1px solid ${C.border}` }}>
-                    <div style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim, letterSpacing: '0.1em', marginBottom: 4 }}>MATERIAL</div>
-                    <div style={{ fontFamily: font.body, fontSize: 12, fontStyle: 'italic', color: C.creamMid }}>{w.material}</div>
+                    <div style={{ fontFamily: font.mono, fontSize: 9, color: C.body, letterSpacing: '0.1em', marginBottom: 4 }}>MATERIAL</div>
+                    <div style={{ fontFamily: font.body, fontSize: 12, fontStyle: 'italic', color: C.dim }}>{w.material}</div>
                   </div>
                 )}
               </div>
@@ -160,7 +159,7 @@ export default function CanonPressSchedule() {
 
         {/* RULES */}
         <div style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 8, padding: '24px 28px' }}>
-          <div style={{ fontFamily: font.mono, fontSize: 10, color: C.creamDim, letterSpacing: '0.12em', marginBottom: 16 }}>ROTATION RULES</div>
+          <div style={{ fontFamily: font.mono, fontSize: 10, color: C.body, letterSpacing: '0.12em', marginBottom: 16 }}>ROTATION RULES</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             {[
               'Seat 1010 (Dex Jr.) held from rotation pending calibration.',
@@ -171,15 +170,15 @@ export default function CanonPressSchedule() {
             ].map((r, i) => (
               <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
                 <span style={{ fontFamily: font.mono, fontSize: 9, color: C.crimson, flexShrink: 0, paddingTop: 2 }}>{String(i+1).padStart(2,'0')}</span>
-                <span style={{ fontFamily: font.body, fontSize: 13, color: C.creamMid, lineHeight: 1.6 }}>{r}</span>
+                <span style={{ fontFamily: font.body, fontSize: 13, color: C.dim, lineHeight: 1.6 }}>{r}</span>
               </div>
             ))}
           </div>
         </div>
 
         <div style={{ marginTop: 40, paddingTop: 20, borderTop: `1px solid ${C.border}`, display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8 }}>
-          <div style={{ fontFamily: font.mono, fontSize: 10, color: C.creamDim }}>CanonPress · 8-Week Rotation · Dropdown Logistics</div>
-          <div style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim }}>Chaos → Structured → Automated</div>
+          <div style={{ fontFamily: font.mono, fontSize: 10, color: C.body }}>CanonPress · 8-Week Rotation · Dropdown Logistics</div>
+          <div style={{ fontFamily: font.mono, fontSize: 9, color: C.body }}>Chaos → Structured → Automated</div>
         </div>
 
       </div>

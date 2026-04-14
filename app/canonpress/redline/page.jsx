@@ -4,11 +4,10 @@ import BackButton from '@/components/BackButton';
 
 const C = {
   navy: '#0D1B2A', card: '#10202f',
-  crimson: '#B23531', crimsonMid: 'rgba(178,53,49,0.35)',
-  cream: '#F5F1EB', creamMid: 'rgba(245,241,235,0.55)', creamDim: 'rgba(245,241,235,0.3)',
+  crimson: '#B23531', crimsonLine: 'rgba(178,53,49,0.35)',
+  cream: '#F5F1EB', dim: 'rgba(245,241,235,0.72)', body: 'rgba(245,241,235,0.6)',
   violet: '#8a6cc9', violetDim: 'rgba(138,108,201,0.15)', violetMid: 'rgba(138,108,201,0.4)',
-  creamGhost: 'rgba(245,241,235,0.05)', border: 'rgba(245,241,235,0.06)',
-  borderMed: 'rgba(245,241,235,0.12)',
+  borderSoft: 'rgba(245,241,235,0.05)', border: 'rgba(245,241,235,0.08)',
 };
 
 const font = {
@@ -43,17 +42,17 @@ export default function RedLinePage() {
           <h1 style={{ fontFamily: font.display, fontSize: 'clamp(32px, 6vw, 52px)', fontWeight: 800, margin: '0 0 16px', letterSpacing: '-0.02em' }}>
             RedLine
           </h1>
-          <p style={{ fontFamily: font.body, fontSize: 16, fontStyle: 'italic', color: C.creamMid, margin: '0 0 12px', lineHeight: 1.65, maxWidth: 520 }}>
+          <p style={{ fontFamily: font.body, fontSize: 16, fontStyle: 'italic', color: C.dim, margin: '0 0 12px', lineHeight: 1.65, maxWidth: 520 }}>
             What AI systems won&rsquo;t do, and why.
           </p>
-          <p style={{ fontFamily: font.body, fontSize: 14, color: C.creamDim, lineHeight: 1.7, maxWidth: 560 }}>
+          <p style={{ fontFamily: font.body, fontSize: 14, color: C.body, lineHeight: 1.7, maxWidth: 560 }}>
             Documents constraints observed inside the DDL system. Real behavior, structural explanation, council self-analysis, operator reaction. Published as-needed &mdash; when a real observation warrants documentation.
           </p>
         </div>
 
         {/* ENTRY ANATOMY */}
-        <div style={{ background: C.creamGhost, border: `1px solid ${C.border}`, borderLeft: `3px solid ${C.violet}`, borderRadius: 8, padding: '24px 28px', marginBottom: 48 }}>
-          <div style={{ fontFamily: font.mono, fontSize: 10, color: C.creamDim, letterSpacing: '0.12em', marginBottom: 16 }}>ENTRY ANATOMY</div>
+        <div style={{ background: C.borderSoft, border: `1px solid ${C.border}`, borderLeft: `3px solid ${C.violet}`, borderRadius: 8, padding: '24px 28px', marginBottom: 48 }}>
+          <div style={{ fontFamily: font.mono, fontSize: 10, color: C.body, letterSpacing: '0.12em', marginBottom: 16 }}>ENTRY ANATOMY</div>
           {[
             { n: '01', label: 'Observation', desc: 'What the system did \u2014 or refused to do. Raw behavior, no interpretation.' },
             { n: '02', label: 'Structural Explanation', desc: 'Why this constraint exists. Architecture, training, or governance.' },
@@ -64,7 +63,7 @@ export default function RedLinePage() {
               <span style={{ fontFamily: font.mono, fontSize: 9, color: C.violet, flexShrink: 0, paddingTop: 2 }}>{s.n}</span>
               <div>
                 <span style={{ fontFamily: font.display, fontSize: 13, fontWeight: 700, color: C.cream }}>{s.label} </span>
-                <span style={{ fontFamily: font.body, fontSize: 13, color: C.creamDim }}>&#x2014; {s.desc}</span>
+                <span style={{ fontFamily: font.body, fontSize: 13, color: C.body }}>&#x2014; {s.desc}</span>
               </div>
             </div>
           ))}
@@ -82,26 +81,26 @@ export default function RedLinePage() {
                 padding: '24px 28px',
                 transition: 'border-color 0.15s',
               }}
-                onMouseEnter={e => e.currentTarget.style.borderColor = C.crimsonMid}
+                onMouseEnter={e => e.currentTarget.style.borderColor = C.crimsonLine}
                 onMouseLeave={e => e.currentTarget.style.borderColor = C.border}
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 8, flexWrap: 'wrap', gap: 8 }}>
                   <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
                     <span style={{ fontFamily: font.mono, fontSize: 9, color: C.crimson, letterSpacing: '0.12em' }}>{entry.id}</span>
-                    <span style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim }}>&#x2F;</span>
+                    <span style={{ fontFamily: font.mono, fontSize: 9, color: C.body }}>&#x2F;</span>
                     {entry.related.map(r => (
-                      <span key={r} style={{ fontFamily: font.mono, fontSize: 8, color: C.creamDim, letterSpacing: '0.08em' }}>{r}</span>
+                      <span key={r} style={{ fontFamily: font.mono, fontSize: 8, color: C.body, letterSpacing: '0.08em' }}>{r}</span>
                     ))}
                   </div>
-                  <span style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim }}>{entry.date}</span>
+                  <span style={{ fontFamily: font.mono, fontSize: 9, color: C.body }}>{entry.date}</span>
                 </div>
                 <div style={{ fontFamily: font.display, fontWeight: 700, fontSize: 18, color: C.cream, marginBottom: 6, letterSpacing: '-0.01em' }}>
                   {entry.title}
                 </div>
-                <div style={{ fontFamily: font.body, fontSize: 13, fontStyle: 'italic', color: C.creamDim, marginBottom: 12 }}>
+                <div style={{ fontFamily: font.body, fontSize: 13, fontStyle: 'italic', color: C.body, marginBottom: 12 }}>
                   {entry.subtitle}
                 </div>
-                <div style={{ fontFamily: font.mono, fontSize: 10, color: C.creamDim }}>
+                <div style={{ fontFamily: font.mono, fontSize: 10, color: C.body }}>
                   {entry.author}
                 </div>
               </div>
