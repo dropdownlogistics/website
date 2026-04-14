@@ -22,7 +22,6 @@ const DDL_LINKS = [
   { label: 'Branding', href: '/branding' },
   { label: 'DexVerse', href: '/dexverse' },
   { label: 'MDN Tool', href: '/tools/mdn' },
-  { label: 'Brand', href: '/brand' },
   { label: 'Legacy', href: '/legacy' },
   { label: 'llms.txt', href: '/llms.txt' },
 ];
