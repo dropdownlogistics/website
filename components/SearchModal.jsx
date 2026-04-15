@@ -3,9 +3,9 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ═══════════════════════════════════════════════════════
 // Config
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ═══════════════════════════════════════════════════════
 
 // Change this to your Cloudflare Tunnel URL when ready
 const API_URL = 'https://sciences-echo-tracked-rev.trycloudflare.com';
@@ -32,9 +32,9 @@ const font = {
   body: "'Source Serif 4', Georgia, serif",
 };
 
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ═══════════════════════════════════════════════════════
 // Static Route Index (fallback when API is offline)
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ═══════════════════════════════════════════════════════
 
 const ROUTES = [
   { path: '/ddl', title: 'DDL Hub', desc: 'Core methodology, charter, and governance', wing: 'DDL' },
@@ -72,9 +72,9 @@ const ROUTES = [
   { path: '/registry', title: 'Registry', desc: 'Full systems and standards registry', wing: 'DDL' },
 ];
 
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ═══════════════════════════════════════════════════════
 // Fuzzy match for static fallback
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ═══════════════════════════════════════════════════════
 
 function fuzzyMatch(query, routes) {
   const q = query.toLowerCase();
@@ -95,9 +95,9 @@ function fuzzyMatch(query, routes) {
     .slice(0, 8);
 }
 
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ═══════════════════════════════════════════════════════
 // Search Modal Component
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ═══════════════════════════════════════════════════════
 
 export default function SearchModal({ isOpen, onClose }) {
   const [query, setQuery] = useState('');
@@ -236,7 +236,7 @@ export default function SearchModal({ isOpen, onClose }) {
           borderBottom: `1px solid ${C.border}`,
         }}>
           <span style={{ fontFamily: font.mono, fontSize: 14, color: C.creamDim }}>
-            {mode === 'deep' ? 'ðŸ”¬' : '🔍'}
+            {mode === 'deep' ? '🔬' : '🔍'}
           </span>
           <input
             ref={inputRef}
@@ -366,8 +366,8 @@ export default function SearchModal({ isOpen, onClose }) {
             fontFamily: font.mono, fontSize: 9, color: C.creamDim,
             display: 'flex', gap: 12,
           }}>
-            <span>â†‘â†“ navigate</span>
-            <span>â†µ open</span>
+            <span>↑↓ navigate</span>
+            <span>↵ open</span>
             {apiOnline && <span>tab toggle deep search</span>}
           </div>
           <div style={{

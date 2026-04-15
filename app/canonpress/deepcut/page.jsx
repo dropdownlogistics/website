@@ -34,7 +34,7 @@ export default function DeepCutPage() {
         {/* HEADER */}
         <div style={{ marginBottom: 56 }}>
           <div style={{ fontFamily: font.mono, fontSize: 10, color: C.amber, letterSpacing: '0.15em', marginBottom: 16 }}>
-            CANONPRESS Â· SERIES
+            CANONPRESS · SERIES
           </div>
           <h1 style={{ fontFamily: font.display, fontSize: 'clamp(32px, 6vw, 52px)', fontWeight: 800, margin: '0 0 16px', letterSpacing: '-0.02em' }}>
             DeepCut
@@ -67,7 +67,7 @@ export default function DeepCutPage() {
             <div style={{ fontFamily: font.display, fontSize: 16, fontWeight: 700, color: C.cream, marginBottom: 6 }}>{DC001.title}</div>
             <div style={{ fontFamily: font.body, fontSize: 13, color: C.body, marginBottom: 12 }}>{DC001.topic}</div>
             <div style={{ fontFamily: font.mono, fontSize: 9, color: C.body }}>
-              <span style={{ color: C.amberMid }}>SEAT {DC001.seatNum}</span> â€” {DC001.seat}
+              <span style={{ color: C.amberMid }}>SEAT {DC001.seatNum}</span> — {DC001.seat}
             </div>
           </div>
           </Link>

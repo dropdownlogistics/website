@@ -124,7 +124,7 @@ export default function VehicleFuelDashboard() {
       {view === "dashboard" && (
         <div style={styles.section}>
           {/* KPIs */}
-          <div style={{ fontFamily:"'Space Grotesk', sans-serif", fontSize:11, color:"#8a9ab0", textTransform:"uppercase", letterSpacing:1.5, marginBottom:14 }}>Performance Summary · Nov 2025 â€“ Feb 2026</div>
+          <div style={{ fontFamily:"'Space Grotesk', sans-serif", fontSize:11, color:"#8a9ab0", textTransform:"uppercase", letterSpacing:1.5, marginBottom:14 }}>Performance Summary · Nov 2025 – Feb 2026</div>
           <div style={styles.kpiGrid}>
             <KPI label="Total Fill-Ups" value={enriched.length} unit="" />
             <KPI label="Total Gallons" value={fmt(totalGallons,3)} unit="gal" />
@@ -132,7 +132,7 @@ export default function VehicleFuelDashboard() {
             <KPI label="Avg Price/Gal" value={`$${fmt(avgPPG,3)}`} unit="" />
             <KPI label="Trip Miles Logged" value={fmt(totalMiles,1)} unit="mi" />
             <KPI label="Avg Trip MPG" value={fmt(avgMPG,2)} unit="mpg" sub={`Odo-verified: ${fmt(avgOdoMPG,2)} mpg`} />
-            <KPI label="MPG Range" value={`${fmt(minMPG,1)}â€“${fmt(maxMPG,1)}`} unit="mpg" />
+            <KPI label="MPG Range" value={`${fmt(minMPG,1)}–${fmt(maxMPG,1)}`} unit="mpg" />
             <KPI label="Odometer Span" value={odometerSpan.toLocaleString()} unit="mi" />
             <KPI label="Avg Fill Temp" value={fmt(avgTemp,1)} unit="°F" />
           </div>
@@ -148,7 +148,7 @@ export default function VehicleFuelDashboard() {
               </div>
             ))}
             <div style={{ display:"flex", gap:18, marginTop:14, paddingTop:12, borderTop:"1px solid #1e3448" }}>
-              {[["#4A9E6B","â‰¥ 25 mpg"],["#C49A3C","22â€“24 mpg"],["#B23531","< 22 mpg"]].map(([c,l]) => (
+              {[["#4A9E6B","≥ 25 mpg"],["#C49A3C","22–24 mpg"],["#B23531","< 22 mpg"]].map(([c,l]) => (
                 <div key={l} style={{ display:"flex", alignItems:"center", gap:6, fontFamily:"'Space Grotesk', sans-serif", fontSize:10, color:"#8a9ab0" }}>
                   <div style={{ width:8, height:8, borderRadius:2, background:c }} />{l}
                 </div>
@@ -160,11 +160,11 @@ export default function VehicleFuelDashboard() {
           <div style={{ background:"#10202f", border:"1px solid #1e3448", borderRadius:8, padding:"20px 22px" }}>
             <div style={{ fontSize:11, color:"#8a9ab0", textTransform:"uppercase", letterSpacing:1.5, marginBottom:14, fontFamily:"'Space Grotesk', sans-serif" }}>Analyst Flags</div>
             {[
-              { color:"#C49A3C", flag:"Winter MPG suppression confirmed — Dec/Jan tanks 2â€“5 mpg below Nov/Feb baseline" },
-              { color:"#C49A3C", flag:"Low avg speed correlates directly with MPG loss (F004: 20.6 mph â†’ 20.4 mpg)" },
+              { color:"#C49A3C", flag:"Winter MPG suppression confirmed — Dec/Jan tanks 2–5 mpg below Nov/Feb baseline" },
+              { color:"#C49A3C", flag:"Low avg speed correlates directly with MPG loss (F004: 20.6 mph → 20.4 mpg)" },
               { color:"#B23531", flag:"F007: Extreme cold (7°F) — lowest temp recorded. MPG held at 22.0, suspect mild suppression" },
               { color:"#4A9E6B", flag:"F005: Medium confidence — total cost obscured in source image. Flag for re-verification" },
-              { color:"#4A9E6B", flag:"Fill cadence stable: 13â€“16 days per tank across all 9 entries" },
+              { color:"#4A9E6B", flag:"Fill cadence stable: 13–16 days per tank across all 9 entries" },
             ].map((a,i) => (
               <div key={i} style={{ display:"flex", gap:10, alignItems:"flex-start", marginBottom:10 }}>
                 <div style={{ width:3, minHeight:16, borderRadius:2, background:a.color, marginTop:2 }} />
@@ -186,7 +186,7 @@ export default function VehicleFuelDashboard() {
                 </div>
                 <div style={{ display:"flex", gap:8, alignItems:"center" }}>
                   <span style={styles.badge(sel.confidence)}>{sel.confidence}</span>
-                  <button onClick={()=>setSelected(null)} style={{ background:"none", border:"1px solid #1e3448", borderRadius:5, color:"#8a9ab0", padding:"4px 10px", cursor:"pointer", fontSize:11 }}>âœ•</button>
+                  <button onClick={()=>setSelected(null)} style={{ background:"none", border:"1px solid #1e3448", borderRadius:5, color:"#8a9ab0", padding:"4px 10px", cursor:"pointer", fontSize:11 }}>✕</button>
                 </div>
               </div>
               <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill, minmax(140px, 1fr))", gap:16 }}>

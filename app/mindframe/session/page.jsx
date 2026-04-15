@@ -161,7 +161,7 @@ export default function MindFrameSession() {
               transition: 'all 0.2s',
             }}
           >
-            Begin Calibration â†’
+            Begin Calibration →
           </button>
           <div style={{
             fontFamily: font.mono, fontSize: 10, color: C.creamDim,
