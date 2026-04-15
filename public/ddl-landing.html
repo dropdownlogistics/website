@@ -31,6 +31,8 @@
 @keyframes orb6{from{transform:rotate(345deg) translateX(195px) rotate(-345deg)}to{transform:rotate(705deg) translateX(195px) rotate(-705deg)}}
 @keyframes orb7{from{transform:rotate(135deg) translateX(265px) rotate(-135deg)}to{transform:rotate(495deg) translateX(265px) rotate(-495deg)}}
 @keyframes orb8{from{transform:rotate(315deg) translateX(265px) rotate(-315deg)}to{transform:rotate(675deg) translateX(265px) rotate(-675deg)}}
+@keyframes orb9{from{transform:rotate(45deg) translateX(265px) rotate(-45deg)}to{transform:rotate(405deg) translateX(265px) rotate(-405deg)}}
+@keyframes orb10{from{transform:rotate(225deg) translateX(265px) rotate(-225deg)}to{transform:rotate(585deg) translateX(265px) rotate(-585deg)}}
 @keyframes stampGlow{0%,100%{filter:drop-shadow(0 0 8px rgba(178,53,49,0.3))}50%{filter:drop-shadow(0 0 20px rgba(178,53,49,0.6))}}
 
 html{scroll-behavior:smooth}
@@ -289,6 +291,14 @@ body::after{
   --node-color:#6B7B8D;--node-rgb:107,123,141;
   animation:nodeAppear 0.5s ease 1.3s both, orb8 40s linear 1.3s infinite;
 }
+.node-workbench{
+  --node-color:#B23531;--node-rgb:178,53,49;
+  animation:nodeAppear 0.5s ease 1.4s both, orb9 32s linear 1.4s infinite;
+}
+.node-positionbook{
+  --node-color:#4A9E6B;--node-rgb:74,158,107;
+  animation:nodeAppear 0.5s ease 1.5s both, orb10 28s linear 1.5s infinite;
+}
 
 /* Label positions — always above node */
 .node-auditforge .node-label{top:-18px;left:50%;transform:translateX(-50%)}
@@ -299,6 +309,8 @@ body::after{
 .node-kv .node-label{top:-18px;left:50%;transform:translateX(-50%)}
 .node-dexverse .node-label{top:-18px;left:50%;transform:translateX(-50%)}
 .node-legacy .node-label{top:-18px;left:50%;transform:translateX(-50%)}
+.node-workbench .node-label{top:-18px;left:50%;transform:translateX(-50%)}
+.node-positionbook .node-label{top:-18px;left:50%;transform:translateX(-50%)}
 
 /* CONNECTOR LINES */
 .connectors{
@@ -603,6 +615,26 @@ footer{
       <span class="node-label">DexVerse</span>
     </a>
 
+    <!-- NODE: WorkBench -->
+    <a class="orbital-node node-workbench" href="/workbench"
+       data-tip="Modular business OS · workbench-ddl.vercel.app">
+      <div class="node-inner">
+        <span class="node-abbr" style="color:#B23531">WB</span>
+        <div class="node-dot" style="background:#B23531"></div>
+      </div>
+      <span class="node-label">WorkBench</span>
+    </a>
+
+    <!-- NODE: PositionBook -->
+    <a class="orbital-node node-positionbook" href="/positionbook"
+       data-tip="Bet position tracker · positionbook.vercel.app">
+      <div class="node-inner">
+        <span class="node-abbr" style="color:#4A9E6B">PB</span>
+        <div class="node-dot" style="background:#4A9E6B"></div>
+      </div>
+      <span class="node-label">PositionBook</span>
+    </a>
+
     <!-- NODE: Legacy -->
     <a class="orbital-node node-legacy" href="/legacy"
        data-tip="The Bench · Dossiers · Memoir · Early work">
@@ -623,6 +655,7 @@ footer{
     <span class="ticker-item">AUDITFORGE</span><span class="ticker-sep">·</span>
     <span class="ticker-item">BLINDSPOT</span><span class="ticker-sep">·</span>
     <span class="ticker-item">POSITIONBOOK</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">WORKBENCH</span><span class="ticker-sep">·</span>
     <span class="ticker-item">EXCELLIGENCE</span><span class="ticker-sep">·</span>
     <span class="ticker-item">LEDGER</span><span class="ticker-sep">·</span>
     <span class="ticker-item">CANONPRESS</span><span class="ticker-sep">·</span>
@@ -634,6 +667,7 @@ footer{
     <span class="ticker-item">AUDITFORGE</span><span class="ticker-sep">·</span>
     <span class="ticker-item">BLINDSPOT</span><span class="ticker-sep">·</span>
     <span class="ticker-item">POSITIONBOOK</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">WORKBENCH</span><span class="ticker-sep">·</span>
     <span class="ticker-item">EXCELLIGENCE</span><span class="ticker-sep">·</span>
     <span class="ticker-item">LEDGER</span><span class="ticker-sep">·</span>
     <span class="ticker-item">CANONPRESS</span><span class="ticker-sep">·</span>
