@@ -15,6 +15,9 @@ const PRODUCTS = [
 ];
 
 const DDL_LINKS = [
+  { label: 'Studio', href: '/ddl' },
+  { label: 'Operator', href: '/ddl/operator' },
+  { label: 'Council', href: '/ddl/council' },
   { label: 'Governance', href: '/governance' },
   { label: 'System Stack', href: '/system-stack' },
   { label: 'Charter', href: '/ddl/charter' },
