@@ -28,6 +28,7 @@ const wings = [
       { href: '/ddl/site-growth', label: 'Site Growth' },
       { href: '/backend', label: 'BackEnd' },
       { href: '/brand', label: 'Brand Identity' },
+      { href: '/brand/admitone', label: 'AdmitOne Brand Kit' },
       { href: '/branding', label: 'CottageHumble Brand Hub' },
       { href: '/markers', label: 'Ecosystem Markers' },
       { href: '/legacy', label: 'Operator Manifest (Legacy)' },
