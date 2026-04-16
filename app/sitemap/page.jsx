@@ -23,7 +23,9 @@ const wings = [
     tagline: 'Governance, methodology, council, memoir.',
     routes: [
       { href: '/', label: 'Landing' },
-      { href: '/ddl', label: 'DDL Hub' },
+      { href: '/ddl', label: 'DDL Studio Hub' },
+      { href: '/ddl/operator', label: 'Operator Profile' },
+      { href: '/ddl/council', label: 'Council Hub' },
       { href: '/ddl/reference', label: 'Reference' },
       { href: '/ddl/site-growth', label: 'Site Growth' },
       { href: '/backend', label: 'BackEnd' },
