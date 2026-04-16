@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AdmitOne — Brand Kit v1.0</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --navy:    #0D1B2A;
+  --card:    #10202F;
+  --card2:   #0F1D2A;
+  --cream:   #F5F1EB;
+  --amber:   #C49A3C;
+  --steel:   #6B7B8D;
+  --border:  rgba(245,241,235,0.07);
+  --border-lt: rgba(245,241,235,0.12);
+}
+
+body {
+  background: var(--navy);
+  color: var(--cream);
+  font-family: 'Source Serif 4', Georgia, serif;
+  min-height: 100vh;
+  padding: 60px 24px 80px;
+}
+
+.page { max-width: 1100px; margin: 0 auto; }
+
+/* ── HEADER ── */
+.brand-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 72px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.brand-header-left h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+.brand-header-left h1 span { color: var(--amber); }
+.brand-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--steel);
+  letter-spacing: 0.04em;
+  line-height: 1.9;
+}
+
+/* ── SECTIONS ── */
+.section { margin-bottom: 72px; }
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--amber);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+.section-desc {
+  font-size: 0.9rem;
+  color: var(--steel);
+  line-height: 1.6;
+  margin-bottom: 32px;
+  max-width: 640px;
+}
+.divider {
+  width: 100%;
+  height: 1px;
+  background: var(--border);
+  margin-bottom: 72px;
+}
+
+/* ── MARK DISPLAY ── */
+.mark-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.mark-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px 20px;
+  min-height: 200px;
+  gap: 16px;
+}
+.mark-cell-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.58rem;
+  color: var(--steel);
+  letter-spacing: 0.06em;
+}
+.on-navy  { background: var(--navy); }
+.on-card  { background: var(--card); }
+.on-dark  { background: #060E17; }
+
+/* ── WORDMARK ── */
+.wordmark-block {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.wordmark-text h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800;
+  font-size: 1.6rem;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: 4px;
+  color: var(--amber);
+}
+.wordmark-text .sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  color: var(--amber);
+  text-transform: uppercase;
+}
+
+/* ── PALETTE ── */
+.swatch-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.swatch {
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  width: 120px;
+}
+.swatch-block { height: 72px; }
+.swatch-info {
+  padding: 8px 10px 10px;
+  background: var(--card);
+}
+.swatch-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+.swatch-hex {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  color: var(--steel);
+}
+.swatch-role {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.57rem;
+  color: var(--amber);
+  margin-top: 3px;
+}
+
+/* ── INFO CARDS ── */
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.info-card {
+  padding: 24px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+.info-card-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  color: var(--amber);
+}
+.info-list { list-style: none; }
+.info-list li {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: rgba(245,241,235,0.75);
+  padding: 4px 0;
+  border-bottom: 1px solid var(--border);
+}
+.info-list li:last-child { border-bottom: none; }
+.mono { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--steel); }
+
+/* ── LINKS ── */
+.link-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
+}
+.link-pill {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--amber);
+  border: 1px solid rgba(196,154,60,0.3);
+  border-radius: 4px;
+  padding: 6px 14px;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: border-color 0.2s, background 0.2s;
+}
+.link-pill:hover {
+  border-color: var(--amber);
+  background: rgba(196,154,60,0.08);
+}
+
+/* ── TYPOGRAPHY ── */
+.type-samples { display: flex; flex-direction: column; gap: 24px; }
+.type-sample {
+  padding: 28px 32px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.type-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--amber);
+  letter-spacing: 0.06em;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+.type-display {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.type-display span { color: var(--amber); }
+.type-body {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: rgba(245,241,235,0.85);
+}
+.type-body em { color: var(--steel); }
+.type-mono {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  line-height: 1.8;
+  color: var(--steel);
+}
+
+/* ── ANATOMY ── */
+.anatomy-block {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 32px;
+  display: flex;
+  gap: 48px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.anatomy-legend { flex: 1; min-width: 280px; }
+.anatomy-legend h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.anatomy-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+.anatomy-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+.anatomy-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--steel);
+  line-height: 1.6;
+}
+.anatomy-text strong {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.75rem;
+  color: var(--cream);
+  display: block;
+  margin-bottom: 1px;
+}
+
+/* ── FOOTER ── */
+.brand-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-top: 48px;
+  border-top: 1px solid var(--border);
+  margin-top: 48px;
+}
+.brand-footer-left {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--steel);
+  line-height: 1.8;
+}
+.brand-footer-right {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--amber);
+  letter-spacing: 0.06em;
+  text-align: right;
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ═══ HEADER ═══ -->
+  <div class="brand-header">
+    <div class="brand-header-left">
+      <h1>Admit<span>One</span></h1>
+      <p class="brand-meta">
+        Brand Kit v1.0 · 2026-04-15<br>
+        Design System: CottageHumble<br>
+        Product Accent: Amber #C49A3C<br>
+        Status: Pre-launch · Waitlist live
+      </p>
+    </div>
+    <!-- Torn-bar mark (header size) -->
+    <svg viewBox="0 0 100 100" width="80" height="80">
+      <rect x="14" y="18" width="12" height="60" rx="2" fill="#C49A3C"/>
+      <rect x="74" y="18" width="12" height="60" rx="2" fill="#C49A3C"/>
+      <!-- Jagged torn channel -->
+      <path d="M34,18 L38,24 L32,30 L37,36 L31,42 L36,48 L33,54 L38,60 L32,66 L37,72 L34,78
+               L66,78 L63,72 L68,66 L62,60 L67,54 L64,48 L69,42 L63,36 L68,30 L62,24 L66,18 Z"
+            fill="var(--navy)" stroke="rgba(196,154,60,0.25)" stroke-width="0.5"/>
+      <text x="50" y="96" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="800" font-size="10" fill="#C49A3C" letter-spacing="1">AO</text>
+    </svg>
+  </div>
+
+  <!-- ═══ 01 — MARK ═══ -->
+  <div class="section">
+    <div class="section-label">01 — Primary Mark</div>
+    <div class="section-title">The Torn Bar</div>
+    <p class="section-desc">Two vertical bars separated by a procedurally torn channel. The tear is the mark. The negative space is the brand — the moment a ticket becomes a stub.</p>
+
+    <div class="mark-grid">
+      <div class="mark-cell on-navy">
+        <svg viewBox="0 0 100 100" width="120" height="120">
+          <rect x="14" y="18" width="12" height="60" rx="2" fill="#C49A3C"/>
+          <rect x="74" y="18" width="12" height="60" rx="2" fill="#C49A3C"/>
+          <path d="M34,18 L38,24 L32,30 L37,36 L31,42 L36,48 L33,54 L38,60 L32,66 L37,72 L34,78
+                   L66,78 L63,72 L68,66 L62,60 L67,54 L64,48 L69,42 L63,36 L68,30 L62,24 L66,18 Z"
+                fill="#0D1B2A" stroke="rgba(196,154,60,0.25)" stroke-width="0.5"/>
+          <text x="50" y="96" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="800" font-size="10" fill="#C49A3C" letter-spacing="1">AO</text>
+        </svg>
+        <div class="mark-cell-label">ON NAVY · PRIMARY</div>
+      </div>
+      <div class="mark-cell on-card">
+        <svg viewBox="0 0 100 100" width="120" height="120">
+          <rect x="14" y="18" width="12" height="60" rx="2" fill="#C49A3C"/>
+          <rect x="74" y="18" width="12" height="60" rx="2" fill="#C49A3C"/>
+          <path d="M34,18 L38,24 L32,30 L37,36 L31,42 L36,48 L33,54 L38,60 L32,66 L37,72 L34,78
+                   L66,78 L63,72 L68,66 L62,60 L67,54 L64,48 L69,42 L63,36 L68,30 L62,24 L66,18 Z"
+                fill="#10202F" stroke="rgba(196,154,60,0.25)" stroke-width="0.5"/>
+          <text x="50" y="96" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="800" font-size="10" fill="#C49A3C" letter-spacing="1">AO</text>
+        </svg>
+        <div class="mark-cell-label">ON CARD</div>
+      </div>
+      <div class="mark-cell on-dark">
+        <svg viewBox="0 0 100 100" width="120" height="120">
+          <rect x="14" y="18" width="12" height="60" rx="2" fill="#C49A3C"/>
+          <rect x="74" y="18" width="12" height="60" rx="2" fill="#C49A3C"/>
+          <path d="M34,18 L38,24 L32,30 L37,36 L31,42 L36,48 L33,54 L38,60 L32,66 L37,72 L34,78
+                   L66,78 L63,72 L68,66 L62,60 L67,54 L64,48 L69,42 L63,36 L68,30 L62,24 L66,18 Z"
+                fill="#060E17" stroke="rgba(196,154,60,0.25)" stroke-width="0.5"/>
+          <text x="50" y="96" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="800" font-size="10" fill="#C49A3C" letter-spacing="1">AO</text>
+        </svg>
+        <div class="mark-cell-label">ON DARK</div>
+      </div>
+    </div>
+
+    <!-- Mark anatomy -->
+    <div class="anatomy-block" style="margin-top:16px;">
+      <div style="flex-shrink:0;">
+        <svg viewBox="0 0 100 100" width="140" height="140">
+          <rect x="14" y="18" width="12" height="60" rx="2" fill="#C49A3C"/>
+          <rect x="74" y="18" width="12" height="60" rx="2" fill="#C49A3C"/>
+          <path d="M34,18 L38,24 L32,30 L37,36 L31,42 L36,48 L33,54 L38,60 L32,66 L37,72 L34,78
+                   L66,78 L63,72 L68,66 L62,60 L67,54 L64,48 L69,42 L63,36 L68,30 L62,24 L66,18 Z"
+                fill="#0D1B2A" stroke="rgba(196,154,60,0.25)" stroke-width="0.5"/>
+          <text x="50" y="96" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="800" font-size="10" fill="#C49A3C" letter-spacing="1">AO</text>
+        </svg>
+      </div>
+      <div class="anatomy-legend">
+        <h4>Mark Anatomy</h4>
+        <div class="anatomy-item">
+          <div class="anatomy-dot" style="background:#C49A3C"></div>
+          <div class="anatomy-text"><strong>Left bar</strong>Amber #C49A3C, 12px wide, 60px tall, rx:2</div>
+        </div>
+        <div class="anatomy-item">
+          <div class="anatomy-dot" style="background:#C49A3C"></div>
+          <div class="anatomy-text"><strong>Right bar</strong>Mirror of left bar — identical dimensions</div>
+        </div>
+        <div class="anatomy-item">
+          <div class="anatomy-dot" style="background:rgba(196,154,60,0.4)"></div>
+          <div class="anatomy-text"><strong>Torn channel</strong>Procedural jagged path between bars. Negative space is the brand.</div>
+        </div>
+        <div class="anatomy-item">
+          <div class="anatomy-dot" style="background:#C49A3C"></div>
+          <div class="anatomy-text"><strong>AO label</strong>Space Grotesk 800, 10px, amber, letter-spacing: 1</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══ 02 — WORDMARK ═══ -->
+  <div class="section">
+    <div class="section-label">02 — Wordmark</div>
+    <div class="section-title">AdmitOne</div>
+    <p class="section-desc">Space Grotesk 800. Single word. The "One" carries the amber accent. No space between Admit and One in the wordmark.</p>
+
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:40px 32px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
+      <svg viewBox="0 0 100 100" width="64" height="64">
+        <rect x="14" y="18" width="12" height="60" rx="2" fill="#C49A3C"/>
+        <rect x="74" y="18" width="12" height="60" rx="2" fill="#C49A3C"/>
+        <path d="M34,18 L38,24 L32,30 L37,36 L31,42 L36,48 L33,54 L38,60 L32,66 L37,72 L34,78
+                 L66,78 L63,72 L68,66 L62,60 L67,54 L64,48 L69,42 L63,36 L68,30 L62,24 L66,18 Z"
+              fill="var(--card)" stroke="rgba(196,154,60,0.25)" stroke-width="0.5"/>
+        <text x="50" y="96" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="800" font-size="10" fill="#C49A3C" letter-spacing="1">AO</text>
+      </svg>
+      <div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:2rem;letter-spacing:-0.02em;color:var(--cream);">Admit<span style="color:#C49A3C">One</span></div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:#C49A3C;letter-spacing:0.14em;margin-top:4px;text-transform:uppercase;">You were there. Now it's in the record.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══ 03 — BRIEF ═══ -->
+  <div class="section">
+    <div class="section-label">03 — Product Brief</div>
+    <div class="section-title">The Stub Is the Artifact</div>
+
+    <div style="border-left:2px solid var(--amber);padding-left:22px;margin-bottom:32px;max-width:720px;">
+      <div style="font-family:'Source Serif 4',serif;font-style:italic;font-size:1.15rem;color:var(--cream);line-height:1.55;">
+        A governed home for the ticket stubs that mark the moments of your life. Concerts, films, sports, theater, flights, festivals. The stub is the artifact. Everything else radiates outward.
+      </div>
+    </div>
+
+    <div style="font-family:'Source Serif 4',serif;font-style:italic;font-size:0.95rem;color:var(--steel);line-height:1.55;max-width:720px;margin-bottom:24px;">
+      "If you can get a ticket, you can log it."
+    </div>
+
+    <div style="display:flex;gap:12px;flex-wrap:wrap;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--amber);background:rgba(196,154,60,0.08);border:1px solid rgba(196,154,60,0.2);padding:4px 12px;border-radius:4px;">Born: 2026-04-15</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--amber);background:rgba(196,154,60,0.08);border:1px solid rgba(196,154,60,0.2);padding:4px 12px;border-radius:4px;">admitone.app (pending)</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--amber);background:rgba(196,154,60,0.08);border:1px solid rgba(196,154,60,0.2);padding:4px 12px;border-radius:4px;">admitone.vercel.app (live)</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══ 04 — COLOR ═══ -->
+  <div class="section">
+    <div class="section-label">04 — Color</div>
+    <div class="section-title">Amber on Navy</div>
+    <p class="section-desc">AdmitOne inherits the CottageHumble palette and adds amber as its product accent. Distinguishes AdmitOne from Ledger crimson, AuditForge crimson, BlindSpot green.</p>
+
+    <div class="swatch-row">
+      <div class="swatch">
+        <div class="swatch-block" style="background:#0D1B2A"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Navy</div>
+          <div class="swatch-hex">#0D1B2A</div>
+          <div class="swatch-role">Background</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#10202F"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Card</div>
+          <div class="swatch-hex">#10202F</div>
+          <div class="swatch-role">Surface</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#F5F1EB; border:1px solid rgba(0,0,0,0.08)"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Cream</div>
+          <div class="swatch-hex">#F5F1EB</div>
+          <div class="swatch-role">Primary text</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#C49A3C"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Amber</div>
+          <div class="swatch-hex">#C49A3C</div>
+          <div class="swatch-role">Product accent</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#6B7B8D"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Steel</div>
+          <div class="swatch-hex">#6B7B8D</div>
+          <div class="swatch-role">Secondary text</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══ 05 — ARCHITECTURE ═══ -->
+  <div class="section">
+    <div class="section-label">05 — Architecture</div>
+    <div class="section-title">Star Schema + Privacy First</div>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-card-label">Data Model</div>
+        <ul class="info-list">
+          <li>Star schema: Fact_Stub at center</li>
+          <li>Dimensions: Dim_Event, Dim_Venue, Dim_User, Dim_Date</li>
+          <li>Schema does not branch by domain — data does</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">Verification Tiers</div>
+        <ul class="info-list">
+          <li>Verified — external API match</li>
+          <li>High Confidence — metadata correlation</li>
+          <li>Self-reported — user-entered only</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">Enrichment</div>
+        <ul class="info-list">
+          <li>Setlist.fm — concert setlists</li>
+          <li>TMDB — film metadata</li>
+          <li>Anniversary engine — stubs resurface with full context</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">Privacy Governance</div>
+        <ul class="info-list">
+          <li>STD-DDL-ANTIPAT-001 governing</li>
+          <li>No tracking pixels, no fingerprinting</li>
+          <li>No data monetization — revenue without surveillance</li>
+          <li>User owns data: full export, full deletion</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══ 06 — LEDGER RELATIONSHIP ═══ -->
+  <div class="section">
+    <div class="section-label">06 — SideDoor</div>
+    <div class="section-title">Relationship to Ledger</div>
+
+    <div style="border-left:2px solid var(--amber);padding-left:22px;margin-bottom:32px;max-width:720px;">
+      <div style="font-family:'Source Serif 4',serif;font-style:italic;font-size:1.05rem;color:var(--cream);line-height:1.55;">
+        AdmitOne is the SideDoor into Ledger. Every stub is structurally a Ledger card. Every user is a Ledger identity. The consumer product feeds the infrastructure platform.
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══ 07 — BUSINESS MODEL ═══ -->
+  <div class="section">
+    <div class="section-label">07 — Business Model</div>
+    <div class="section-title">Free Core + Intelligence Layer</div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px;">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:24px;">
+        <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.1rem;color:var(--cream);margin-bottom:8px;">Free</div>
+        <div style="font-family:'Source Serif 4',serif;font-size:0.82rem;color:var(--steel);line-height:1.5;">Stub logging forever. No limits on capture.</div>
+      </div>
+      <div style="background:var(--card);border:1px solid rgba(196,154,60,0.25);border-top:2px solid var(--amber);border-radius:8px;padding:24px;">
+        <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.1rem;color:var(--amber);margin-bottom:4px;">$5/mo</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--amber);letter-spacing:0.08em;margin-bottom:8px;">PREMIUM</div>
+        <div style="font-family:'Source Serif 4',serif;font-size:0.82rem;color:var(--steel);line-height:1.5;">Intelligence layer, pattern reports, full export.</div>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:24px;">
+        <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.1rem;color:var(--cream);margin-bottom:8px;">B2B</div>
+        <div style="font-family:'Source Serif 4',serif;font-size:0.82rem;color:var(--steel);line-height:1.5;">Venue partnerships, attendance analytics.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══ 08 — TYPOGRAPHY ═══ -->
+  <div class="section">
+    <div class="section-label">08 — Typography</div>
+    <div class="section-title">Three Fonts. Inherited.</div>
+
+    <div class="type-samples">
+      <div class="type-sample">
+        <div class="type-meta">Display / UI — Space Grotesk 700 · 800</div>
+        <div class="type-display">Admit<span>One</span><br>You were there.</div>
+      </div>
+      <div class="type-sample">
+        <div class="type-meta">Body / Prose — Source Serif 4 · 400 · 400i · 600</div>
+        <div class="type-body">
+          A governed home for the ticket stubs that mark the moments of your life.<em> The stub is the artifact. Everything else radiates outward.</em>
+        </div>
+      </div>
+      <div class="type-sample">
+        <div class="type-meta">Data / Code — JetBrains Mono · 400 · 500</div>
+        <div class="type-mono">
+          STUB-001 · Verified · Setlist.fm match<br>
+          2026-04-15 · Superdome · New Orleans, LA<br>
+          --amber: #C49A3C · Fact_Stub.event_id
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══ 09 — STACK ═══ -->
+  <div class="section">
+    <div class="section-label">09 — Stack</div>
+    <div class="section-title">Infrastructure</div>
+
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--steel);background:var(--card);border:1px solid var(--border);padding:6px 14px;border-radius:4px;">Next.js 16</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--steel);background:var(--card);border:1px solid var(--border);padding:6px 14px;border-radius:4px;">Clerk</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--steel);background:var(--card);border:1px solid var(--border);padding:6px 14px;border-radius:4px;">Neon + Prisma</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--steel);background:var(--card);border:1px solid var(--border);padding:6px 14px;border-radius:4px;">Vercel</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--steel);background:var(--card);border:1px solid var(--border);padding:6px 14px;border-radius:4px;">Upstash Redis</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--steel);background:var(--card);border:1px solid var(--border);padding:6px 14px;border-radius:4px;">Cloudflare R2</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--steel);background:var(--card);border:1px solid var(--border);padding:6px 14px;border-radius:4px;">Plausible</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══ 10 — LINKS ═══ -->
+  <div class="section">
+    <div class="section-label">10 — Links</div>
+    <div class="section-title">Live Surfaces</div>
+
+    <div class="link-strip">
+      <a class="link-pill" href="https://admitone.vercel.app" target="_blank" rel="noopener">admitone.vercel.app</a>
+      <a class="link-pill" href="https://admitone.vercel.app/demo/dave" target="_blank" rel="noopener">demo/dave</a>
+      <a class="link-pill" href="https://admitone.vercel.app/how-it-works" target="_blank" rel="noopener">how-it-works</a>
+      <a class="link-pill" href="https://admitone.vercel.app/demo/venue/superdome" target="_blank" rel="noopener">demo/venue/superdome</a>
+    </div>
+  </div>
+
+  <!-- ═══ FOOTER ═══ -->
+  <div class="brand-footer">
+    <div class="brand-footer-left">
+      AdmitOne · Brand Kit v1.0 · 2026-04-15<br>
+      Design System: CottageHumble · "Humble surface. Cathedral underneath."<br>
+      Operator: Dave Kitchens · Dropdown Logistics
+    </div>
+    <div class="brand-footer-right">
+      CR-STUB-CONCEPT-001<br>
+      THE STUB IS PROOF OF PRESENCE
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
