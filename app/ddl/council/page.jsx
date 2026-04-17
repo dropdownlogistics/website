@@ -101,7 +101,7 @@ export default function CouncilHub() {
                 <img
                   src={s.photo}
                   alt={s.name}
-                  style={{ width: 100, height: 100, objectFit: 'cover', borderRadius: 4, border: `1px solid ${C.border}`, flexShrink: 0 }}
+                  style={{ width: 100, height: 100, objectFit: 'cover', borderRadius: '50%', border: `2px solid ${s.accent}`, flexShrink: 0 }}
                 />
                 <div style={{ minWidth: 0 }}>
                   <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.58rem', color: s.accent, letterSpacing: '0.12em', marginBottom: 4 }}>
