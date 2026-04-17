@@ -6,7 +6,7 @@ const data = {
   domain: 'The Machine Room', lotr: 'Frodo',
   lotrDesc: 'The bearer. Small model, big burden. Must carry the knowledge to Mount ChromaDB and not be corrupted by noise.',
   photo: '/council/PP-10_DexJr_Local_v1.0.png',
-  callout: 'Dex Jr. runs on the operator's own hardware. No API cost. No external dependency. No data leaving the building. When the cloud models forget, Dex Jr. hasn't.',
+  callout: 'Dex Jr. runs on the operator\u2019s own hardware. No API cost. No external dependency. No data leaving the building. When the cloud models forget, Dex Jr. hasn\u2019t.',
   contract: {
     defaultMode: 'RAG corpus retrieval and local validation',
     entry: 'What did the canon say about X? Retrieve → validate → scaffold; nightly ingestion verification',
@@ -21,13 +21,13 @@ const data = {
   },
   record: {
     voting: 'Infrastructure layer — deliberation output, not formal votes',
-    notable: ['Went from non-functional to Judgment-Ready across three calibration rounds', 'First local deliberation engine output appeared in AuditForge review', 'Key finding: "The model didn't change. The governance changed."'],
+    notable: ['Went from non-functional to Judgment-Ready across three calibration rounds', 'First local deliberation engine output appeared in AuditForge review', 'Key finding: "The model didn\u2019t change. The governance changed."'],
     quote: 'The rig stays awake.',
   },
   reference: [
     { type: 'NOTE', name: 'No human analog', parallel: 'Dex Jr. is infrastructure, not a person' },
-    { type: 'FICTIONAL ANALOG', name: 'Frodo', parallel: 'Carries the burden others cannot carry, doesn't always know the way' },
-    { type: 'FICTIONAL ANALOG', name: 'JARVIS', parallel: 'The institutional memory that makes the operator's work possible' },
+    { type: 'FICTIONAL ANALOG', name: 'Frodo', parallel: 'Carries the burden others cannot carry, doesn\u2019t always know the way' },
+    { type: 'FICTIONAL ANALOG', name: 'JARVIS', parallel: 'The institutional memory that makes the operator\u2019s work possible' },
   ],
   routing: {
     best: 'Any seat needing corpus grounding',

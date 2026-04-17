@@ -9,7 +9,7 @@ const data = {
   contract: {
     defaultMode: 'Cross-seat synthesis and reframing',
     entry: 'After deliberation — synthesize what the council produced; boundary detection; long-arc perspective; PM coordination',
-    execution: 'Read all seats → identify convergence and divergence → reframe for operator → surface what wasn't said',
+    execution: 'Read all seats \u2192 identify convergence and divergence \u2192 reframe for operator \u2192 surface what wasn\u2019t said',
     output: 'Synthesis documents; architectural reframes; the missing sentence',
   },
   calibration: {

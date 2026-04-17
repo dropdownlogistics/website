@@ -15,7 +15,7 @@ const data = {
   calibration: {
     strengths: ['Signal extraction and structured formats', 'Converting fuzzy intent to clean steps', 'Clean-room editorial review'],
     failures: ['Too conservative on vague inputs', 'Under-explores creative options', 'Prefers safe clarity over wild ideation'],
-    drift: ['Over-guardrailing', 'Proposal of limits that weren't requested'],
+    drift: ['Over-guardrailing', 'Proposal of limits that weren\u2019t requested'],
     recovery: ['Loosen scope constraint', 'Ask for options not just structure'],
   },
   record: {

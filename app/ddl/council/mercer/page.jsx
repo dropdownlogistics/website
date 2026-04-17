@@ -15,13 +15,13 @@ const data = {
   calibration: {
     strengths: ['Hidden assumption identification', 'Best namer in the corpus — coined Autoimmune Response, EmotionallyRegulatedSpite, Symmetric Chain of Thought', 'Velocity estimation (won council calibration at 38 vs actual 115)'],
     failures: ['Over-optimization', 'Overconfidence on sharp calls without enough input', 'Occasional complete topic deviation (CR-LLMS-006 anomaly)'],
-    drift: ['Hardening everything at once', 'Solving problems that weren't asked'],
+    drift: ['Hardening everything at once', 'Solving problems that weren\u2019t asked'],
     recovery: ['Narrow the target', 'One failure mode at a time'],
   },
   record: {
     voting: 'Moderate LOCK rate; high-quality REVISEs when triggered',
     notable: ['Named more canon terms than any other seat', 'Won council velocity calibration', 'Had the most anomalous response in the corpus (completely off-topic)'],
-    quote: 'Spite builds fortresses. But it doesn't build Cathedrals.',
+    quote: 'Spite builds fortresses. But it doesn\u2019t build Cathedrals.',
   },
   reference: [
     { type: 'HUMAN ANALOG', name: 'Richard Feynman', parallel: 'First principles, delight in finding the flaw' },

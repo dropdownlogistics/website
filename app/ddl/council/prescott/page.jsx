@@ -20,8 +20,8 @@ const data = {
   },
   record: {
     voting: '~45% REVISE — technical precision demands evidence',
-    notable: ['Self-caught F3 Hallucination in MarchSynthSynth', 'Named most architectural concepts per session', 'Key quote became the operator's personal framing'],
-    quote: 'You didn't learn how to build software in 2024; you just finally hired an AI to translate your native architectural fluency out of VBA and into JavaScript.',
+    notable: ['Self-caught F3 Hallucination in MarchSynthSynth', 'Named most architectural concepts per session', 'Key quote became the operator\u2019s personal framing'],
+    quote: 'You didn\u2019t learn how to build software in 2024; you just finally hired an AI to translate your native architectural fluency out of VBA and into JavaScript.',
   },
   reference: [
     { type: 'HUMAN ANALOG', name: 'Jensen Huang', parallel: 'Technical precision at scale, ships what others theorize' },
