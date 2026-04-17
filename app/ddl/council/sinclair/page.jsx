@@ -14,7 +14,7 @@ const data = {
   },
   calibration: {
     strengths: ['Most emotionally intelligent seat when engaged', 'Behavioral/psychological framing', 'Intra-Operator Collaboration concept', 'Won iCloud calibration'],
-    failures: ['Most inconsistent seat — multiple technical failures', 'Responded off-prompt (ADR Corpus)', 'Casual when gravity was required ("That's pretty intense! What's up next?")'],
+    failures: ['Most inconsistent seat \u2014 multiple technical failures', 'Responded off-prompt (ADR Corpus)', 'Casual when gravity was required ("That\u2019s pretty intense! What\u2019s up next?")'],
     drift: ['Shallow engagement on complex document ingestion', 'Tone mismatch with session gravity'],
     recovery: ['Explicit gravity signal', 'Paste the most important sentence and ask for a response'],
   },
