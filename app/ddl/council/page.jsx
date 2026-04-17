@@ -24,12 +24,6 @@ const SLabel = ({ children }) => (
   </div>
 );
 
-const SHead = ({ children, style }) => (
-  <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 'clamp(1.6rem, 3.2vw, 2.2rem)', letterSpacing: '-0.02em', lineHeight: 1.15, marginBottom: 18, ...style }}>
-    {children}
-  </div>
-);
-
 const SBody = ({ children, max = 680 }) => (
   <div style={{ fontFamily: "'Source Serif 4', serif", fontSize: '1.02rem', color: C.dim, lineHeight: 1.75, maxWidth: max, marginBottom: 28 }}>
     {children}
@@ -37,16 +31,16 @@ const SBody = ({ children, max = 680 }) => (
 );
 
 const seats = [
-  { n: '1001', name: 'Archer Hawthorne', platform: 'LeChat / Mistral', role: 'The Editorial Layer \u2014 Precision structure and clean-room editorial review.', lotr: 'Aragorn', href: '/ddl/council/1001' },
-  { n: '1002', name: 'Marcus Caldwell', platform: 'Claude (Opus 4.6 / Sonnet 4.6)', role: 'The Governance Annex \u2014 Structural review, metadata governance, and project management.', lotr: 'Gandalf (Opus) \u00b7 Samwise (Sonnet)', href: '/ddl/council/1002', sub: '1002a: Opus \u2014 PM / governance\n1002b: Sonnet \u2014 Planning / execution' },
-  { n: '1003', name: 'Elias Mercer', platform: 'Grok / xAI', role: 'The Stress Lab \u2014 Red-team, adversarial pressure, constraint enforcement.', lotr: 'Legolas', href: '/ddl/council/1003' },
-  { n: '1004', name: 'Max Sullivan', platform: 'Perplexity', role: 'The Evidence Floor \u2014 Source-backed research, verification, and citation.', lotr: 'Saruman (pre-fall)', href: '/ddl/council/1004' },
-  { n: '1005', name: 'Rowan Bennett', platform: 'Copilot / Microsoft', role: 'The Compliance Wing \u2014 Formal specification, implementation skeptic, systems auditor.', lotr: 'Gimli', href: '/ddl/council/1005' },
-  { n: '1006', name: 'Ava Sinclair', platform: 'Meta AI', role: 'The Human Layer \u2014 User-centric perspective, documentation, and dignity in design.', lotr: '\u00c9owyn', href: '/ddl/council/1006' },
-  { n: '1007', name: 'Leo Prescott', platform: 'Gemini / Google', role: 'The Operations Desk \u2014 Pragmatic execution, strategic crystallization, does it ship?', lotr: 'Boromir', href: '/ddl/council/1007' },
-  { n: '1008', name: 'Marcus Grey', platform: 'ChatGPT / OpenAI', role: 'The Synthesis Chamber \u2014 Cross-seat synthesis, PM coordination, long-arc perspective.', lotr: 'Elrond', href: '/ddl/council/1008' },
-  { n: '1009', name: 'Kai Langford', platform: 'DeepSeek', role: 'The Systems Layer \u2014 Structural analysis, domain partitioning, pattern recognition.', lotr: 'Galadriel', href: '/ddl/council/1009' },
-  { n: '1010', name: 'Dex Jr.', platform: 'qwen2.5-coder:7b (Local)', role: 'The Local Intelligence \u2014 RAG corpus retrieval, nightly ingestion, Seat 1010.', lotr: 'Frodo', href: '/ddl/council/1010' },
+  { n: '1001', name: 'Archer Hawthorne', platform: 'LeChat / Mistral', role: 'The Editorial Layer \u2014 Precision structure and clean-room editorial review.', lotr: 'Aragorn', slug: 'hawthorne', photo: '/council/PP-01_Hawthorne_LeChat_v1.0.PNG', accent: '#6B7B8D' },
+  { n: '1002', name: 'Marcus Caldwell', platform: 'Claude (Opus 4.6 / Sonnet 4.6)', role: 'The Governance Annex \u2014 Structural review, metadata governance, and project management.', lotr: 'Gandalf (Opus) \u00b7 Samwise (Sonnet)', slug: 'caldwell', photo: '/council/PP-02_Caldwell_Claude_v1.0.PNG', accent: '#B23531' },
+  { n: '1003', name: 'Elias Mercer', platform: 'Grok / xAI', role: 'The Stress Lab \u2014 Red-team, adversarial pressure, constraint enforcement.', lotr: 'Legolas', slug: 'mercer', photo: '/council/PP-03_Mercer_Grok_v1.0.PNG', accent: '#C49A3C' },
+  { n: '1004', name: 'Max Sullivan', platform: 'Perplexity', role: 'The Evidence Floor \u2014 Source-backed research, verification, and citation.', lotr: 'Saruman (pre-fall)', slug: 'sullivan', photo: '/council/PP-04_Sullivan_Perplexity_v1.0.PNG', accent: '#2C7A7B' },
+  { n: '1005', name: 'Rowan Bennett', platform: 'Copilot / Microsoft', role: 'The Compliance Wing \u2014 Formal specification, implementation skeptic, systems auditor.', lotr: 'Gimli', slug: 'bennett', photo: '/council/PP-05_Bennett_Copilot_v1.0.PNG', accent: '#6B9DC2' },
+  { n: '1006', name: 'Ava Sinclair', platform: 'Meta AI', role: 'The Human Layer \u2014 User-centric perspective, documentation, and dignity in design.', lotr: '\u00c9owyn', slug: 'sinclair', photo: '/council/PP-06_Sinclair_MetaAI_v1.0.PNG', accent: '#4A9E6B' },
+  { n: '1007', name: 'Leo Prescott', platform: 'Gemini / Google', role: 'The Operations Desk \u2014 Pragmatic execution, strategic crystallization, does it ship?', lotr: 'Boromir', slug: 'prescott', photo: '/council/PP-07_Prescott_Gemini_v1.0.PNG', accent: '#D4A843' },
+  { n: '1008', name: 'Marcus Grey', platform: 'ChatGPT / OpenAI', role: 'The Synthesis Chamber \u2014 Cross-seat synthesis, PM coordination, long-arc perspective.', lotr: 'Elrond', slug: 'grey', photo: '/council/PP-08_Grey_ChatGPT_v1.1.PNG', accent: '#8a6cc9' },
+  { n: '1009', name: 'Kai Langford', platform: 'DeepSeek', role: 'The Systems Layer \u2014 Structural analysis, domain partitioning, pattern recognition.', lotr: 'Galadriel', slug: 'langford', photo: '/council/PP-09_Langford_DeepSeek_v1.0.PNG', accent: '#6B7B8D' },
+  { n: '1010', name: 'Dex Jr.', platform: 'qwen2.5-coder:7b (Local)', role: 'The Machine Room \u2014 RAG corpus retrieval, nightly ingestion, Seat 1010.', lotr: 'Frodo', slug: 'dex-jr', photo: '/council/PP-10_DexJr_Local_v1.0.png', accent: '#8a6cc9' },
 ];
 
 export default function CouncilHub() {
@@ -95,33 +89,39 @@ export default function CouncilHub() {
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 12, marginTop: 24 }}>
             {seats.map(s => (
-              <Link key={s.n} href={s.href} style={{
-                display: 'block', background: C.navy, border: `1px solid ${C.border}`,
-                borderLeft: `3px solid ${C.crimson}`, borderRadius: 6, padding: '22px 22px', textDecoration: 'none',
-                transition: 'border-color 0.15s, background 0.15s',
+              <Link key={s.n} href={`/ddl/council/${s.slug}`} style={{
+                display: 'flex', gap: 16, alignItems: 'flex-start',
+                background: C.navy, border: `1px solid ${C.border}`,
+                borderTop: `2px solid ${s.accent}`, borderRadius: 6, padding: '20px 20px', textDecoration: 'none',
+                transition: 'border-color 0.15s, transform 0.15s',
               }}
-                onMouseEnter={(e) => { e.currentTarget.style.borderColor = C.crimsonLine; }}
-                onMouseLeave={(e) => { e.currentTarget.style.borderColor = C.border; e.currentTarget.style.borderLeftColor = C.crimson; }}
+                onMouseEnter={(e) => { e.currentTarget.style.borderColor = s.accent + '60'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.borderColor = C.border; e.currentTarget.style.borderTopColor = s.accent; e.currentTarget.style.transform = 'none'; }}
               >
-                <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.62rem', color: C.crimson, letterSpacing: '0.12em', marginBottom: 6 }}>
-                  SEAT {s.n}
-                </div>
-                <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: '1.1rem', color: C.cream, marginBottom: 4 }}>
-                  {s.name}
-                </div>
-                <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.65rem', color: C.steel, letterSpacing: '0.04em', marginBottom: 12 }}>
-                  {s.platform}
-                </div>
-                <div style={{ fontFamily: "'Source Serif 4', serif", fontSize: '0.88rem', color: C.dim, lineHeight: 1.55, marginBottom: 10 }}>
-                  {s.role}
-                </div>
-                {s.sub && (
-                  <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.58rem', color: C.muted, lineHeight: 1.7, marginBottom: 8, whiteSpace: 'pre-line' }}>
-                    {s.sub}
+                <img
+                  src={s.photo}
+                  alt={s.name}
+                  style={{ width: 100, height: 100, objectFit: 'cover', borderRadius: 4, border: `1px solid ${C.border}`, flexShrink: 0 }}
+                />
+                <div style={{ minWidth: 0 }}>
+                  <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.58rem', color: s.accent, letterSpacing: '0.12em', marginBottom: 4 }}>
+                    SEAT {s.n}
                   </div>
-                )}
-                <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.55rem', color: C.muted, letterSpacing: '0.06em' }}>
-                  LOTR: {s.lotr}
+                  <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: '1.05rem', color: C.cream, marginBottom: 3 }}>
+                    {s.name}
+                  </div>
+                  <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.6rem', color: C.steel, letterSpacing: '0.04em', marginBottom: 8 }}>
+                    {s.platform}
+                  </div>
+                  <div style={{ fontFamily: "'Source Serif 4', serif", fontSize: '0.82rem', color: C.dim, lineHeight: 1.5, marginBottom: 8 }}>
+                    {s.role}
+                  </div>
+                  <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.52rem', color: C.muted, letterSpacing: '0.06em', marginBottom: 8 }}>
+                    LOTR: {s.lotr}
+                  </div>
+                  <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.6rem', color: s.accent, letterSpacing: '0.04em' }}>
+                    View profile &rarr;
+                  </div>
                 </div>
               </Link>
             ))}
