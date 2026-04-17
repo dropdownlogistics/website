@@ -66,7 +66,7 @@ export default function CouncilProfile({ data }) {
             <img
               src={photo}
               alt={name}
-              style={{ width: 280, height: 280, objectFit: 'cover', display: 'block', borderRadius: '50%', border: `2px solid ${accent}` }}
+              style={{ width: 280, height: 280, objectFit: 'cover', objectPosition: 'top', display: 'block', borderRadius: '50%', border: `2px solid ${accent}` }}
             />
           </div>
           <div>
