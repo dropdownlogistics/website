@@ -238,9 +238,14 @@ export default function BlindSpotHub() {
             built by two people who share actual DNA
           </div>
         </div>
-        <a href="https://blindspot.bet" target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.7rem', color: 'var(--green)', letterSpacing: '0.05em' }}>
-          blindspot.bet &#x2197;
-        </a>
+        <div style={{ display: 'flex', gap: 18, flexWrap: 'wrap', alignItems: 'center' }}>
+          <a href="https://blindspot.bet" target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.7rem', color: 'var(--green)', letterSpacing: '0.05em' }}>
+            blindspot.bet &#x2197;
+          </a>
+          <Link href="/brand/blindspot" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.7rem', color: 'var(--steel)', letterSpacing: '0.05em' }}>
+            Brand Kit &rarr;
+          </Link>
+        </div>
       </div>
     </>
   );

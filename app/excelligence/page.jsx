@@ -786,6 +786,17 @@ export default function ExcelligenceLanding() {
         }}>
           Built by one person. Governed by a nine-model council.
         </div>
+        <a href="/brand/excelligence" style={{
+          display: "inline-block",
+          fontFamily: "'JetBrains Mono', monospace",
+          fontSize: 10,
+          color: "#5a5648",
+          letterSpacing: "0.08em",
+          textDecoration: "none",
+          marginBottom: 16,
+        }}>
+          Brand Kit →
+        </a>
         <div style={{
           fontFamily: "'JetBrains Mono', monospace",
           fontSize: 9,

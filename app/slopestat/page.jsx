@@ -231,9 +231,14 @@ export default function SlopeStatWing() {
             Your rides. Your boards. Your card.
           </div>
         </div>
-        <a href={SS_URL} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.7rem', color: C.amber, textDecoration: 'none', letterSpacing: '0.05em' }}>
-          slopestat.vercel.app &#x2197;
-        </a>
+        <div style={{ display: 'flex', gap: 18, flexWrap: 'wrap', alignItems: 'center' }}>
+          <a href={SS_URL} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.7rem', color: C.amber, textDecoration: 'none', letterSpacing: '0.05em' }}>
+            slopestat.vercel.app &#x2197;
+          </a>
+          <Link href="/brand/slopestat" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.7rem', color: C.steel, textDecoration: 'none', letterSpacing: '0.05em' }}>
+            Brand Kit &rarr;
+          </Link>
+        </div>
       </div>
       <div style={{ borderTop: `1px solid ${C.border}`, maxWidth: 980, margin: '0 auto', padding: '20px 24px', textAlign: 'center' }}>
         <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.6rem', color: C.steel, letterSpacing: '0.22em' }}>

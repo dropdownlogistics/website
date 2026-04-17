@@ -192,6 +192,9 @@ export default function PositionBookWing() {
           <Link href="/positionbook" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.7rem', color: C.steel, textDecoration: 'none', letterSpacing: '0.05em' }}>
             /positionbook
           </Link>
+          <Link href="/brand/positionbook" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.7rem', color: C.steel, textDecoration: 'none', letterSpacing: '0.05em' }}>
+            Brand Kit &rarr;
+          </Link>
         </div>
       </div>
       <div style={{ maxWidth: 980, margin: '0 auto', padding: '0 24px 32px', textAlign: 'center' }}>

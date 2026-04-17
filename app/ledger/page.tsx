@@ -234,6 +234,9 @@ export default function LedgerWing() {
           <Link href="/ledger" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.7rem', color: C.steel, textDecoration: 'none', letterSpacing: '0.05em' }}>
             /ledger
           </Link>
+          <Link href="/brand/ledger" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.7rem', color: C.steel, textDecoration: 'none', letterSpacing: '0.05em' }}>
+            Brand Kit &rarr;
+          </Link>
         </div>
       </div>
       <div style={{ borderTop: `1px solid ${C.border}`, maxWidth: 980, margin: '0 auto', padding: '20px 24px', textAlign: 'center' }}>

@@ -404,6 +404,21 @@ export default function KnowledgeVaultPage() {
           Visit Knowledge Vault ↗
         </a>
 
+        <div style={{ marginTop: 18 }}>
+          <a
+            href="/brand/knowledge-vault"
+            style={{
+              fontFamily: font.mono,
+              fontSize: 10,
+              color: C.steel,
+              letterSpacing: '0.08em',
+              textDecoration: 'none',
+            }}
+          >
+            Brand Kit →
+          </a>
+        </div>
+
         <p
           style={{
             fontFamily: font.mono,
