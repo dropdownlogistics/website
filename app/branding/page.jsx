@@ -60,6 +60,7 @@ const kits = [
   { name: 'Knowledge Vault', color: '#2C7A7B', href: '/brand/knowledge-vault' },
   { name: 'PositionBook',    color: '#4A9E6B', href: '/brand/positionbook' },
   { name: 'AdmitOne',        color: '#C49A3C', href: '/brand/admitone' },
+  { name: 'SlopeStat',       color: '#C49A3C', href: '/brand/slopestat' },
 ];
 
 export default function BrandingHub() {
@@ -82,12 +83,12 @@ export default function BrandingHub() {
         </div>
 
         <div style={{ fontFamily: "'Source Serif 4', serif", fontSize: '1.05rem', color: C.dim, maxWidth: 680, lineHeight: 1.8, marginBottom: 40 }}>
-          One design system. Ten products. Every surface in the DDL ecosystem runs on the same token set &mdash; navy, cream, crimson, and one accent color per product. The architecture doesn&rsquo;t change. The brand data does.
+          One design system. Eleven products. Every surface in the DDL ecosystem runs on the same token set &mdash; navy, cream, crimson, and one accent color per product. The architecture doesn&rsquo;t change. The brand data does.
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 220px))', gap: 12 }}>
           <div style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 6, padding: '20px 22px' }}>
-            <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: '2rem', color: C.cream, lineHeight: 1, marginBottom: 8 }}>10</div>
+            <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: '2rem', color: C.cream, lineHeight: 1, marginBottom: 8 }}>11</div>
             <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.6rem', color: C.steel, letterSpacing: '0.14em', textTransform: 'uppercase' }}>Products</div>
           </div>
           <div style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 6, padding: '20px 22px' }}>
@@ -134,7 +135,7 @@ export default function BrandingHub() {
       {/* SECTION 3 — BRAND KITS */}
       <div style={{ maxWidth: 980, margin: '0 auto', padding: '80px 24px' }}>
         <SLabel>BRAND KITS</SLabel>
-        <SHead>Ten products. Ten accents.</SHead>
+        <SHead>Eleven products. Eleven accents.</SHead>
         <SBody>
           Each product inherits CottageHumble and adds one accent color. The kit documents the mark, the tokens, the tagline, and the tone.
         </SBody>
@@ -186,7 +187,7 @@ export default function BrandingHub() {
             CottageHumble &middot; Dropdown Logistics Design System
           </div>
           <div style={{ fontFamily: "'Source Serif 4', serif", fontStyle: 'italic', fontSize: '0.85rem', color: C.body }}>
-            One design system. Ten products. Humble surface. Cathedral underneath.
+            One design system. Eleven products. Humble surface. Cathedral underneath.
           </div>
         </div>
         <Link href="/brand-tokens.json" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.7rem', color: C.steel, textDecoration: 'none', letterSpacing: '0.05em' }}>

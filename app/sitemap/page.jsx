@@ -138,6 +138,7 @@ const wings = [
       { href: '/blindspot/backtest', label: 'Backtest' },
       { href: '/blindspot/llm', label: 'LLM Setup' },
       { href: '/positionbook', label: 'PositionBook \u2014 D&A Sister Product' },
+      { href: '/slopestat', label: 'SlopeStat \u2014 Rider Card' },
     ],
   },
   {

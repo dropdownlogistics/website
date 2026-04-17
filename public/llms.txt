@@ -311,6 +311,12 @@ Trading analytics. Signal → structure → edge.
 D&A Analytics. 241 trades analyzed at launch. Invite only.
 You are not losing. You are not tracking.
 
+SlopeStat — slopestat.vercel.app
+Rider Card platform for snowboarders and skiers. D&A Analytics product.
+Log sessions, boards, GPS speed data. Verification tiers:
+SELF_REPORTED, HIGH_CONFIDENCE, GPS_VERIFIED.
+Wing: dropdownlogistics.com/slopestat
+
 Excelligence — excelligence.dev
 Excel knowledge graph. 105 entries, 228 edges, 7 types, 4 tiers.
 Schema locked v0.2. 9/9 council unanimous. 574 validation checks.
@@ -463,5 +469,5 @@ Every future interaction is a continuation, not a restart.
 That is the point.
 
 Dropdown Logistics — Chaos → Structured → Automated
-Dave Kitchens · CPA · One operator · Nine products · 2026
+Dave Kitchens · CPA · One operator · Ten products · 2026
 "The architecture does not change. The data does."

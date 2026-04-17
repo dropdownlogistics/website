@@ -34,6 +34,7 @@
 @keyframes orb9{from{transform:rotate(45deg) translateX(265px) rotate(-45deg)}to{transform:rotate(405deg) translateX(265px) rotate(-405deg)}}
 @keyframes orb10{from{transform:rotate(225deg) translateX(265px) rotate(-225deg)}to{transform:rotate(585deg) translateX(265px) rotate(-585deg)}}
 @keyframes orb11{from{transform:rotate(150deg) translateX(195px) rotate(-150deg)}to{transform:rotate(510deg) translateX(195px) rotate(-510deg)}}
+@keyframes orb12{from{transform:rotate(90deg) translateX(265px) rotate(-90deg)}to{transform:rotate(450deg) translateX(265px) rotate(-450deg)}}
 @keyframes stampGlow{0%,100%{filter:drop-shadow(0 0 8px rgba(178,53,49,0.3))}50%{filter:drop-shadow(0 0 20px rgba(178,53,49,0.6))}}
 
 html{scroll-behavior:smooth}
@@ -304,6 +305,10 @@ body::after{
   --node-color:#C49A3C;--node-rgb:196,154,60;
   animation:nodeAppear 0.5s ease 1.6s both, orb11 36s linear 1.6s infinite;
 }
+.node-slopestat{
+  --node-color:#C49A3C;--node-rgb:196,154,60;
+  animation:nodeAppear 0.5s ease 1.7s both, orb12 33s linear 1.7s infinite;
+}
 
 /* Label positions — always above node */
 .node-auditforge .node-label{top:-18px;left:50%;transform:translateX(-50%)}
@@ -317,6 +322,7 @@ body::after{
 .node-workbench .node-label{top:-18px;left:50%;transform:translateX(-50%)}
 .node-positionbook .node-label{top:-18px;left:50%;transform:translateX(-50%)}
 .node-admitone .node-label{top:-18px;left:50%;transform:translateX(-50%)}
+.node-slopestat .node-label{top:-18px;left:50%;transform:translateX(-50%)}
 
 /* CONNECTOR LINES */
 .connectors{
@@ -651,6 +657,16 @@ footer{
       <span class="node-label">AdmitOne</span>
     </a>
 
+    <!-- NODE: SlopeStat -->
+    <a class="orbital-node node-slopestat" href="/slopestat"
+       data-tip="Rider Card · slopestat.vercel.app">
+      <div class="node-inner">
+        <span class="node-abbr" style="color:#C49A3C">SS</span>
+        <div class="node-dot" style="background:#C49A3C"></div>
+      </div>
+      <span class="node-label">SlopeStat</span>
+    </a>
+
     <!-- NODE: Legacy -->
     <a class="orbital-node node-legacy" href="/legacy"
        data-tip="The Bench · Dossiers · Memoir · Early work">
@@ -678,6 +694,7 @@ footer{
     <span class="ticker-item">DDL KNOWLEDGE VAULT</span><span class="ticker-sep">·</span>
     <span class="ticker-item">DEX JR.</span><span class="ticker-sep">·</span>
     <span class="ticker-item">ADMITONE</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">SLOPESTAT</span><span class="ticker-sep">·</span>
     <span class="ticker-item">ONE OPERATOR</span><span class="ticker-sep">·</span>
     <span class="ticker-item">CHAOS → STRUCTURED → AUTOMATED</span><span class="ticker-sep">·</span>
     <!-- duplicate -->
@@ -691,6 +708,7 @@ footer{
     <span class="ticker-item">DDL KNOWLEDGE VAULT</span><span class="ticker-sep">·</span>
     <span class="ticker-item">DEX JR.</span><span class="ticker-sep">·</span>
     <span class="ticker-item">ADMITONE</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">SLOPESTAT</span><span class="ticker-sep">·</span>
     <span class="ticker-item">ONE OPERATOR</span><span class="ticker-sep">·</span>
     <span class="ticker-item">CHAOS → STRUCTURED → AUTOMATED</span><span class="ticker-sep">·</span>
   </div>

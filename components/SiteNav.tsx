@@ -12,6 +12,7 @@ const PRODUCTS = [
   { label: 'Knowledge Vault', href: '/knowledge-vault', external: false, color: '#2C7A7B' },
   { label: 'WorkBench', href: '/workbench', external: false, color: '#B23531' },
   { label: 'PositionBook', href: '/positionbook', external: false, color: '#4A9E6B' },
+  { label: 'SlopeStat', href: '/slopestat', external: false, color: '#C49A3C' },
 ];
 
 const DDL_LINKS = [
