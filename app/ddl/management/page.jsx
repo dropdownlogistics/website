@@ -144,6 +144,40 @@ export default function ManagementHub() {
 
       <div style={{ height: 1, background: C.border, maxWidth: 980, margin: '0 auto' }} />
 
+      {/* THE OPERATOR SECTION */}
+      <div style={{ maxWidth: 980, margin: '0 auto', padding: '80px 24px' }}>
+        <SLabel>THE OPERATOR</SLabel>
+
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 32, alignItems: 'start' }}>
+          <div style={{ display: 'flex', gap: 28, alignItems: 'flex-start', flexWrap: 'wrap' }}>
+            <img
+              src="/offices/PP_1000_Dave_Kitchens_v1.0.jpg"
+              alt="Dave Kitchens"
+              style={{ width: 120, height: 120, objectFit: 'cover', objectPosition: 'top', borderRadius: '50%', border: `2px solid ${C.crimson}`, flexShrink: 0 }}
+            />
+            <div>
+              <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 'clamp(1.6rem, 3vw, 2.4rem)', letterSpacing: '-0.02em', color: C.cream, marginBottom: 14, lineHeight: 1.15 }}>
+                One person. Ten seats. Three offices.
+              </div>
+              <div style={{ fontFamily: "'Source Serif 4', serif", fontSize: '1rem', color: C.dim, lineHeight: 1.75, maxWidth: 520 }}>
+                Dave Kitchens is the sole architect of Dropdown Logistics &mdash; a CPA applying dimensional modeling and governed systems thinking across every domain he touches. The council and the offices exist because one person building alone still needs pressure-testing and execution capacity.
+              </div>
+            </div>
+          </div>
+          <Link href="/ddl/operator" style={{
+            display: 'inline-block', flexShrink: 0,
+            fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, fontSize: '0.9rem',
+            color: C.cream, padding: '14px 28px', borderRadius: 6, textDecoration: 'none',
+            border: `1px solid ${C.steelLine}`,
+            whiteSpace: 'nowrap',
+          }}>
+            Meet the operator &rarr;
+          </Link>
+        </div>
+      </div>
+
+      <div style={{ height: 1, background: C.border, maxWidth: 980, margin: '0 auto' }} />
+
       {/* THE COUNCIL SECTION */}
       <div style={{ background: C.card, borderTop: `1px solid ${C.border}`, borderBottom: `1px solid ${C.border}` }}>
         <div style={{ maxWidth: 980, margin: '0 auto', padding: '80px 24px' }}>
