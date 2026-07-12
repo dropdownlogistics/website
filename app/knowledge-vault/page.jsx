@@ -149,6 +149,10 @@ export default function KnowledgeVaultPage() {
           across 9 collections. When the operator forgets, Dex Jr. hasn&apos;t.
           That is the design. That is the point.
         </p>
+
+        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.62rem', color: '#4A5A6A', lineHeight: 1.7, maxWidth: 640, margin: '20px auto 0' }}>
+          <strong style={{ color: '#6B7B8D' }}>What it does:</strong> The index to [CHUNK COUNT]+ chunks of DDL institutional memory &mdash; 44 vault folders, 9 collections, searchable by Dex Jr. When the operator forgets, Dex Jr. hasn&apos;t. That is the design.
+        </div>
       </section>
 
       {/* ============ CANON TERM ============ */}

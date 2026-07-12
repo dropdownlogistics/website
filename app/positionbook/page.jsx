@@ -83,6 +83,10 @@ export default function PositionBookWing() {
           PositionBook logs every trade, surfaces every pattern, and shows you exactly where your edge is and where it is not. Signal. Structure. Edge.
         </div>
 
+        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.62rem', color: '#4A5A6A', lineHeight: 1.7, marginBottom: 28 }}>
+          <strong style={{ color: '#6B7B8D' }}>What it does:</strong> A trade journal for retail traders &mdash; position log, strategy breakdown, R-multiple performance across 241 trades analyzed. BlindSpot, but for markets.
+        </div>
+
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 12, marginBottom: 40 }}>
           {heroStats.map((s, i) => (
             <div key={i} style={{ background: C.card, border: `1px solid ${C.border}`, borderTop: `2px solid ${C.green}`, borderRadius: 8, padding: '22px 22px' }}>

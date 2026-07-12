@@ -131,6 +131,10 @@ export default function AuditForgeLanding() {
           AuditForge is a system of structure &mdash; not a system of execution. It defines what the control is. The auditor issues the opinion. AuditForge produces the evidence package. That line does not move.
         </div>
 
+        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.62rem', color: '#4A5A6A', lineHeight: 1.7, marginBottom: 28 }}>
+          <strong style={{ color: '#6B7B8D' }}>What it does:</strong> Structured data in, governed documents out &mdash; an internal audit workflow platform that started as a document generator and became the operating system the document generator lives inside. No AI required.
+        </div>
+
         <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
           <Link href="/auditforge/current" style={{ display: 'inline-block', background: C.teal, color: C.cream, fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, fontSize: '0.9rem', padding: '12px 28px', borderRadius: 6, textDecoration: 'none' }}>
             Current Build &#x2192;

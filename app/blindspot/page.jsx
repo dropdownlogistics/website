@@ -47,6 +47,10 @@ export default function BlindSpotHub() {
           blindspot.bet tracks every bet, surfaces every pattern, and shows you exactly where your edge is &mdash; and where it isn&rsquo;t. The house doesn&rsquo;t have better odds. It has better data.
         </div>
 
+        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.62rem', color: '#4A5A6A', lineHeight: 1.7, maxWidth: 620, marginBottom: 28 }}>
+          <strong style={{ color: '#6B7B8D' }}>What it does:</strong> A bet-tracking and tilt-detection tool for sports bettors. Logs your bets, surfaces behavioral patterns, reports true ROI. The spreadsheet was the entry fee. The pattern is the product.
+        </div>
+
         <div className="hero-ctas" style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
           <a href="https://blindspot.bet" target="_blank" rel="noopener noreferrer" style={{ background: 'var(--green)', color: 'var(--navy)', fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: '0.95rem', padding: '14px 30px', borderRadius: 6, display: 'inline-flex', alignItems: 'center', gap: 6 }}>
             Visit blindspot.bet &rarr;

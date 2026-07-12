@@ -101,6 +101,10 @@ export default function LedgerWing() {
           Ledger is the verified credential layer for professional work. Every card is a receipt. Every receipt is governed. It&rsquo;s a receiptsume.
         </div>
 
+        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.62rem', color: '#4A5A6A', lineHeight: 1.7, marginBottom: 28 }}>
+          <strong style={{ color: '#6B7B8D' }}>What it does:</strong> A verified work history card backed by AuditForge data. LinkedIn is self-reported. Ledger does not create the work. It surfaces it.
+        </div>
+
         <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', alignItems: 'center' }}>
           <a href={LEDGER_URL} target="_blank" rel="noopener noreferrer"
              style={{ display: 'inline-block', background: C.crimson, color: C.cream, fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, fontSize: '0.95rem', padding: '14px 30px', borderRadius: 6, textDecoration: 'none', letterSpacing: '0.01em' }}>

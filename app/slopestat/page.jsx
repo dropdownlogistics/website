@@ -114,6 +114,10 @@ export default function SlopeStatWing() {
           SlopeStat builds your Rider Card &mdash; a verified, shareable record of every session on the mountain. Log your boards, log your sessions, and let the card build itself.
         </div>
 
+        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.62rem', color: '#4A5A6A', lineHeight: 1.7, marginBottom: 28 }}>
+          <strong style={{ color: '#6B7B8D' }}>What it does:</strong> A ski and snowboard session tracker that builds a verifiable ride card from your quiver and session data &mdash; self-reported now, GPS-verified in V2.
+        </div>
+
         <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', alignItems: 'center', marginBottom: 48 }}>
           <a href={SS_SIGNUP} target="_blank" rel="noopener noreferrer"
              style={{ display: 'inline-block', background: C.amber, color: C.navy, fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: '0.95rem', padding: '14px 30px', borderRadius: 6, textDecoration: 'none', letterSpacing: '0.01em' }}>

@@ -166,6 +166,10 @@ export default function ExcelligenceLanding() {
           Excel knowledge actually connects — and shows you the
           governed path between where you are and where you want to be.
         </p>
+
+        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.62rem', color: '#4A5A6A', lineHeight: 1.7, maxWidth: 520, margin: '20px auto 0' }}>
+          <strong style={{ color: '#6B7B8D' }}>What it does:</strong> A knowledge graph of Excel concepts &mdash; not a glossary, not a tutorial. 105 entries, 228 edges, organized by how Excel knowledge actually connects.
+        </div>
       </div>
 
       {/* === STATS === */}

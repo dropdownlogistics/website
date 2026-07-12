@@ -157,6 +157,10 @@ export default function WorkBenchWing() {
           Seventeen modules planned. One reference implementation ratified. The same star schema discipline that built AuditForge now powers a horizontal operating system for small businesses. The architecture doesn&rsquo;t change. The data does.
         </div>
 
+        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.62rem', color: '#4A5A6A', lineHeight: 1.7, marginBottom: 28 }}>
+          <strong style={{ color: '#6B7B8D' }}>What it does:</strong> The platform layer underneath AuditForge and every other DDL product &mdash; a modular business operations system built on an immutable event log, with cross-module analytics structural from the start.
+        </div>
+
         <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', alignItems: 'center' }}>
           <a href={WB_URL} target="_blank" rel="noopener noreferrer"
              style={{ display: 'inline-block', background: C.crimson, color: C.cream, fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, fontSize: '0.95rem', padding: '14px 30px', borderRadius: 6, textDecoration: 'none', letterSpacing: '0.01em' }}>

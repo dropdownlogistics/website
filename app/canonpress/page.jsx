@@ -87,6 +87,10 @@ export default function CanonPressWing() {
           CanonPress is the DDL publication system. Four series. One methodology. Everything published here is either a council deliberation, a constraint document, a deep model analysis, or a direct operator observation. Nothing is speculative. Nothing is filler.
         </div>
 
+        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.62rem', color: '#4A5A6A', lineHeight: 1.7, marginBottom: 28 }}>
+          <strong style={{ color: '#6B7B8D' }}>What it does:</strong> A governed publication system with four artifact series and a six-step pipeline. Everything here is either a deliberation, a constraint document, a deep model analysis, or a field observation. Nothing is filler.
+        </div>
+
         <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', alignItems: 'center' }}>
           <a href={SUBSTACK} target="_blank" rel="noopener noreferrer"
              style={{ display: 'inline-block', background: C.crimson, color: C.cream, fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, fontSize: '0.95rem', padding: '14px 30px', borderRadius: 6, textDecoration: 'none', letterSpacing: '0.01em' }}>
