@@ -78,24 +78,124 @@ export default function ManagementHub() {
 
       {/* HERO */}
       <div style={{ maxWidth: 980, margin: '0 auto', padding: '88px 24px 72px' }}>
-        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.65rem', color: C.crimson, letterSpacing: '0.22em', textTransform: 'uppercase', marginBottom: 28 }}>
+
+        {/* Eyebrow */}
+        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.65rem', color: C.crimson, letterSpacing: '0.22em', textTransform: 'uppercase', marginBottom: 36 }}>
           DROPDOWN LOGISTICS &middot; MANAGEMENT
         </div>
 
-        <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 'clamp(2.4rem, 6vw, 4.5rem)', letterSpacing: '-0.035em', lineHeight: 1.05, marginBottom: 16 }}>
-          The council deliberates.<br />
-          The offices execute.
+        {/* Two-column: text left, orbital right */}
+        <div style={{ display: 'flex', gap: 56, alignItems: 'center', flexWrap: 'wrap', marginBottom: 64 }}>
+
+          {/* LEFT — text */}
+          <div style={{ flex: '1 1 260px' }}>
+            <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 'clamp(2.2rem, 5vw, 4rem)', letterSpacing: '-0.035em', lineHeight: 1.05, marginBottom: 16 }}>
+              The council deliberates.<br />
+              The offices execute.
+            </div>
+            <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 'clamp(1.5rem, 2.8vw, 2.2rem)', letterSpacing: '-0.02em', color: C.crimson, lineHeight: 1, marginBottom: 28 }}>
+              Dave decides.
+            </div>
+            <div style={{ fontFamily: "'Source Serif 4', serif", fontSize: '1rem', color: C.dim, lineHeight: 1.8 }}>
+              DDL runs two distinct kinds of AI-driven intelligence: a ten-seat advisory council that thinks, pressure-tests, and votes — and three operational offices that execute and verify within delegated authority. Neither kind outranks the other. The distinction is functional, not hierarchical.
+            </div>
+          </div>
+
+          {/* RIGHT — orbital (desktop) */}
+          <div className="orbital-system-wrap" style={{ flex: '0 0 440px' }}>
+            <div style={{ position: 'relative', width: 440, height: 440 }}>
+
+              {/* OUTER RING — 10 council seats — 364px diameter, CCW 70s */}
+              <div className="orbit-ring-outer" style={{
+                position: 'absolute', top: '50%', left: '50%',
+                width: 364, height: 364, marginTop: -182, marginLeft: -182,
+                borderRadius: '50%', border: `1px solid rgba(245,241,235,0.07)`,
+              }}>
+                {seats.map((s, i) => {
+                  const angle = (360 / seats.length) * i;
+                  const R = 182, half = 18;
+                  return (
+                    <div key={s.n} style={{ position: 'absolute', top: '50%', left: '50%', width: 0, height: 0, transform: `rotate(${angle}deg)` }}>
+                      <div style={{ position: 'absolute', top: -(R + half), left: -half, width: 36, textAlign: 'center' }}>
+                        {/* static cancel of arm angle, then animated counter-rotation */}
+                        <div style={{ transform: `rotate(${-angle}deg)` }}>
+                          <div className="orbit-counter-outer">
+                            <img src={s.photo} alt={s.name}
+                              style={{ width: 36, height: 36, borderRadius: '50%', objectFit: 'cover', objectPosition: 'top', border: `2px solid ${s.accent}`, display: 'block', margin: '0 auto' }}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* INNER RING — 3 offices — 220px diameter, CW 30s */}
+              <div className="orbit-ring-inner" style={{
+                position: 'absolute', top: '50%', left: '50%',
+                width: 220, height: 220, marginTop: -110, marginLeft: -110,
+                borderRadius: '50%', border: `1px solid rgba(245,241,235,0.12)`,
+              }}>
+                {offices.map((o, i) => {
+                  const angle = (360 / offices.length) * i;
+                  const R = 110, half = 26;
+                  return (
+                    <div key={o.slug} style={{ position: 'absolute', top: '50%', left: '50%', width: 0, height: 0, transform: `rotate(${angle}deg)` }}>
+                      <div style={{ position: 'absolute', top: -(R + half), left: -half, width: 52, textAlign: 'center' }}>
+                        <div style={{ transform: `rotate(${-angle}deg)` }}>
+                          <div className="orbit-counter-inner">
+                            <img src={o.photo} alt={o.name}
+                              style={{ width: 52, height: 52, borderRadius: '50%', objectFit: 'cover', objectPosition: 'top', border: `2px solid ${o.accent}`, display: 'block', margin: '0 auto' }}
+                            />
+                            <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.4rem', color: C.steel, marginTop: 3, letterSpacing: '0.04em', lineHeight: 1.2, whiteSpace: 'nowrap' }}>
+                              {o.name.split(' ')[0]}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* CENTER — Dave Kitchens, static */}
+              <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 4, textAlign: 'center' }}>
+                <img
+                  src="/offices/PP_1000_Dave_Kitchens_v1.0.jpg"
+                  alt="Dave Kitchens"
+                  style={{ width: 70, height: 70, borderRadius: '50%', objectFit: 'cover', objectPosition: 'top', border: `2px solid ${C.crimson}`, display: 'block', margin: '0 auto', boxShadow: '0 0 24px rgba(178,53,49,0.25)' }}
+                />
+                <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.38rem', color: C.crimson, letterSpacing: '0.1em', marginTop: 5, whiteSpace: 'nowrap', textTransform: 'uppercase' }}>
+                  Dave decides
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          {/* MOBILE FALLBACK — compact photo row, shown only on mobile */}
+          <div className="orbital-fallback" style={{ width: '100%' }}>
+            <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.52rem', color: C.steel, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 10 }}>
+              Offices &amp; Council
+            </div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, alignItems: 'center' }}>
+              {offices.map(o => (
+                <img key={o.slug} src={o.photo} alt={o.name}
+                  style={{ width: 38, height: 38, borderRadius: '50%', objectFit: 'cover', objectPosition: 'top', border: `2px solid ${o.accent}` }}
+                />
+              ))}
+              {seats.map(s => (
+                <img key={s.n} src={s.photo} alt={s.name}
+                  style={{ width: 32, height: 32, borderRadius: '50%', objectFit: 'cover', objectPosition: 'top', border: `1px solid ${s.accent}` }}
+                />
+              ))}
+            </div>
+          </div>
+
         </div>
 
-        <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 'clamp(1.6rem, 3vw, 2.4rem)', letterSpacing: '-0.02em', color: C.crimson, lineHeight: 1, marginBottom: 36 }}>
-          Dave decides.
-        </div>
-
-        <div style={{ fontFamily: "'Source Serif 4', serif", fontSize: '1.05rem', color: C.dim, maxWidth: 680, lineHeight: 1.8, marginBottom: 48 }}>
-          DDL runs two distinct kinds of AI-driven intelligence: a ten-seat advisory council that thinks, pressure-tests, and votes — and three operational offices that execute and verify within delegated authority. Neither kind outranks the other. The distinction is functional, not hierarchical.
-        </div>
-
-        {/* Org Diagram */}
+        {/* Org Diagram — unchanged */}
         <div style={{
           border: `1px solid ${C.border}`,
           borderRadius: 10,
@@ -329,14 +429,40 @@ export default function ManagementHub() {
         </div>
       </div>
 
-      <style>{`
+      <style suppressHydrationWarning>{`
+        @keyframes orbitSpin {
+          from { transform: rotate(0deg); }
+          to   { transform: rotate(360deg); }
+        }
+        @keyframes orbitCounterSpin {
+          from { transform: rotate(0deg); }
+          to   { transform: rotate(-360deg); }
+        }
+        /* Inner ring (offices) — CW 30s */
+        .orbit-ring-inner  { animation: orbitSpin        30s linear infinite; }
+        .orbit-counter-inner { animation: orbitCounterSpin 30s linear infinite; }
+        /* Outer ring (council) — CCW 70s */
+        .orbit-ring-outer  { animation: orbitCounterSpin 70s linear infinite; }
+        .orbit-counter-outer { animation: orbitSpin        70s linear infinite; }
+
+        .orbital-system-wrap { display: flex; justify-content: center; align-items: center; }
+        .orbital-fallback    { display: none; }
+
         @media (max-width: 700px) {
+          .orbital-system-wrap { display: none !important; }
+          .orbital-fallback    { display: block !important; }
           div[style*="grid-template-columns: 1fr auto"] {
             display: flex !important;
             flex-direction: column !important;
           }
           div[style*="grid-template-columns: 1fr 1fr"] {
             grid-template-columns: 1fr !important;
+          }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .orbit-ring-inner, .orbit-ring-outer,
+          .orbit-counter-inner, .orbit-counter-outer {
+            animation: none !important;
           }
         }
       `}</style>
