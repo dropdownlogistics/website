@@ -15,10 +15,16 @@ const PRODUCTS = [
   { label: 'SlopeStat', href: '/slopestat', external: false, color: '#C49A3C' },
 ];
 
+// PENDING: "About Us" is a placeholder label — operator to confirm final nav label before shipping
+const ABOUT_LABEL = 'About Us';
+
 const DDL_LINKS = [
   { label: 'Studio', href: '/ddl' },
-  { label: 'Operator', href: '/ddl/operator' },
-  { label: 'Council', href: '/ddl/council' },
+  { label: ABOUT_LABEL, href: '/ddl/management', isGroup: true, subItems: [
+    { label: 'Operator', href: '/ddl/operator' },
+    { label: 'Council', href: '/ddl/council' },
+    { label: 'Offices', href: '/ddl/offices' },
+  ]},
   { label: 'Governance', href: '/governance' },
   { label: 'System Stack', href: '/system-stack' },
   { label: 'Charter', href: '/ddl/charter' },
@@ -309,7 +315,22 @@ export default function SiteNav() {
             </button>
             {ddlOpen && (
               <div className="ddl-dropdown" style={{ left: 0 }}>
-                {DDL_LINKS.map(l => (
+                {DDL_LINKS.map(l => l.isGroup ? (
+                  <div key={l.href}>
+                    <Link href={l.href} className="ddl-dropdown-item" onClick={() => setDdlOpen(false)}
+                      style={{ fontWeight: 600, color: 'rgba(245,241,235,0.9)' }}>
+                      <div className="ddl-dropdown-dot" style={{ background: '#B23531' }}></div>
+                      {l.label}
+                    </Link>
+                    {l.subItems?.map(s => (
+                      <Link key={s.href} href={s.href} className="ddl-dropdown-item" onClick={() => setDdlOpen(false)}
+                        style={{ paddingLeft: 28 }}>
+                        <div style={{ width: 4, height: 4, borderRadius: '50%', background: 'rgba(245,241,235,0.35)', flexShrink: 0 }}></div>
+                        {s.label}
+                      </Link>
+                    ))}
+                  </div>
+                ) : (
                   <Link key={l.href} href={l.href} className="ddl-dropdown-item" onClick={() => setDdlOpen(false)}>
                     <div className="ddl-dropdown-dot" style={{ background: '#B23531' }}></div>
                     {l.label}
@@ -369,7 +390,22 @@ export default function SiteNav() {
             )
           ))}
           <div className="ddl-mob-section">DDL</div>
-          {DDL_LINKS.map(l => (
+          {DDL_LINKS.map(l => l.isGroup ? (
+            <div key={l.href}>
+              <Link href={l.href} className="ddl-mob-link" onClick={() => setMobileOpen(false)}
+                style={{ fontWeight: 600 }}>
+                <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#B23531', flexShrink: 0 }}></div>
+                {l.label}
+              </Link>
+              {l.subItems?.map(s => (
+                <Link key={s.href} href={s.href} className="ddl-mob-link" onClick={() => setMobileOpen(false)}
+                  style={{ paddingLeft: 22 }}>
+                  <div style={{ width: 4, height: 4, borderRadius: '50%', background: 'rgba(245,241,235,0.35)', flexShrink: 0 }}></div>
+                  {s.label}
+                </Link>
+              ))}
+            </div>
+          ) : (
             <Link key={l.href} href={l.href} className="ddl-mob-link" onClick={() => setMobileOpen(false)}>
               <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#B23531', flexShrink: 0 }}></div>
               {l.label}

@@ -59,6 +59,16 @@ const offices = [
     accent: C.blue,
     slug: 'sterling',
   },
+  {
+    name: 'Mara Voss',
+    title: 'Acceptance Test Officer',
+    lane: 'ACCEPTANCE-TEST AUTHORITY',
+    platform: 'Thread-Native · DDL HQ',
+    tagline: 'Test authority. Determines with evidence whether governed mechanisms do what they claim. "Not certified" is a test result — not a project stop.',
+    photo: '/offices/PP_2003_Mara_Voss_v1.0.PNG',
+    accent: '#4A9E6B',
+    slug: 'voss',
+  },
 ];
 
 export default function ManagementHub() {
@@ -82,7 +92,7 @@ export default function ManagementHub() {
         </div>
 
         <div style={{ fontFamily: "'Source Serif 4', serif", fontSize: '1.05rem', color: C.dim, maxWidth: 680, lineHeight: 1.8, marginBottom: 48 }}>
-          DDL runs two distinct kinds of AI-driven intelligence: a ten-seat advisory council that thinks, pressure-tests, and votes — and a pair of operational offices that execute within delegated authority. Neither kind outranks the other. The distinction is functional, not hierarchical.
+          DDL runs two distinct kinds of AI-driven intelligence: a ten-seat advisory council that thinks, pressure-tests, and votes — and three operational offices that execute and verify within delegated authority. Neither kind outranks the other. The distinction is functional, not hierarchical.
         </div>
 
         {/* Org Diagram */}
@@ -118,9 +128,9 @@ export default function ManagementHub() {
               <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.58rem', color: C.steel, letterSpacing: '0.14em', marginBottom: 16 }}>EXECUTION FUNCTION</div>
               <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: '1.05rem', color: C.cream, marginBottom: 6 }}>The Offices</div>
               <div style={{ fontFamily: "'Source Serif 4', serif", fontSize: '0.85rem', color: C.dim, lineHeight: 1.6, marginBottom: 16 }}>
-                Two offices. One capacity-unconstrained, one capability-reserved. Translates decisions into work. Does not ratify.
+                Three offices. Default execution, reserved execution, acceptance-test authority. Translates decisions into work. Verifies results. Does not ratify.
               </div>
-              <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.58rem', color: C.steel, letterSpacing: '0.1em' }}>2 OFFICES &middot; PEER RELATIONSHIP &middot; DELEGATED AUTHORITY</div>
+              <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.58rem', color: C.steel, letterSpacing: '0.1em' }}>3 OFFICES &middot; PEER RELATIONSHIP &middot; DELEGATED AUTHORITY</div>
             </div>
           </div>
           {/* Bright line footer */}
@@ -199,10 +209,10 @@ export default function ManagementHub() {
         <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 32, alignItems: 'start', marginBottom: 40 }}>
           <div>
             <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 'clamp(1.6rem, 3vw, 2.4rem)', letterSpacing: '-0.02em', color: C.cream, marginBottom: 14 }}>
-              Two offices. One default. One reserved.
+              Three offices. One default. One reserved. One test authority.
             </div>
             <div style={{ fontFamily: "'Source Serif 4', serif", fontSize: '1rem', color: C.dim, lineHeight: 1.75, maxWidth: 580 }}>
-              Dex Harrington runs unlimited — the default desk for anything ambiguous. Rhett Sterling runs capped — reserved for work that genuinely requires Claude-level capability. Peer offices, not a hierarchy. The distinction is economic, not status.
+              Dex Harrington runs unlimited — the default desk for anything ambiguous. Rhett Sterling runs capped — reserved for work that genuinely requires Claude-level capability. Mara Voss tests governed mechanisms for evidence-based pass/fail. Peer offices, not a hierarchy.
             </div>
           </div>
           <Link href="/ddl/offices" style={{
@@ -271,7 +281,7 @@ export default function ManagementHub() {
       <div style={{ borderTop: `1px solid ${C.border}`, maxWidth: 980, margin: '0 auto', padding: '56px 24px 32px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 20 }}>
         <div>
           <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: '0.95rem', color: C.cream, marginBottom: 6 }}>
-            DDL Management &middot; Ten seats + Two offices
+            DDL Management &middot; Ten seats + Three offices
           </div>
           <div style={{ fontFamily: "'Source Serif 4', serif", fontStyle: 'italic', fontSize: '0.85rem', color: C.body }}>
             Dropdown Logistics &middot; The council deliberates. The offices execute. Dave decides.

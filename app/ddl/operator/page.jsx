@@ -57,7 +57,7 @@ const principles = [
 export default function OperatorProfile() {
   return (
     <div style={{ background: C.navy, minHeight: '100vh', color: C.cream, fontFamily: "'Source Serif 4', Georgia, serif" }}>
-      <BackButton href="/ddl" label="ddl" />
+      <BackButton href="/ddl/management" label="management" />
 
       {/* SECTION 1 — HERO */}
       <div style={{ maxWidth: 980, margin: '0 auto', padding: '88px 24px 72px' }}>
@@ -65,20 +65,29 @@ export default function OperatorProfile() {
           DROPDOWN LOGISTICS &middot; OPERATOR
         </div>
 
-        <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 'clamp(3rem, 8vw, 5.5rem)', letterSpacing: '-0.035em', lineHeight: 1, marginBottom: 16 }}>
-          Dave Kitchens
-        </div>
+        <div style={{ display: 'flex', gap: 40, alignItems: 'flex-start', flexWrap: 'wrap' }}>
+          <img
+            src="/offices/PP_1000_Dave_Kitchens_v1.0.jpg"
+            alt="Dave Kitchens"
+            style={{ width: 160, height: 160, objectFit: 'cover', objectPosition: 'top', borderRadius: '50%', border: '3px solid #B23531', flexShrink: 0 }}
+          />
+          <div style={{ flex: 1, minWidth: 280 }}>
+            <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 'clamp(3rem, 8vw, 5.5rem)', letterSpacing: '-0.035em', lineHeight: 1, marginBottom: 16 }}>
+              Dave Kitchens
+            </div>
 
-        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.78rem', color: C.steel, letterSpacing: '0.06em', marginBottom: 28 }}>
-          CPA &middot; Commission Analyst II &middot; Studio Operator
-        </div>
+            <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.78rem', color: C.steel, letterSpacing: '0.06em', marginBottom: 28 }}>
+              CPA &middot; Commission Analyst II &middot; Studio Operator
+            </div>
 
-        <div style={{ fontFamily: "'Source Serif 4', serif", fontStyle: 'italic', fontSize: '1.3rem', color: C.cream, lineHeight: 1.5, maxWidth: 720, marginBottom: 28 }}>
-          The architecture doesn&rsquo;t change. The data does.
-        </div>
+            <div style={{ fontFamily: "'Source Serif 4', serif", fontStyle: 'italic', fontSize: '1.3rem', color: C.cream, lineHeight: 1.5, maxWidth: 720, marginBottom: 28 }}>
+              The architecture doesn&rsquo;t change. The data does.
+            </div>
 
-        <div style={{ fontFamily: "'Source Serif 4', serif", fontSize: '1.05rem', color: C.dim, maxWidth: 680, lineHeight: 1.8 }}>
-          Dave Kitchens is the operator and sole architect of Dropdown Logistics. A licensed CPA with ten years of internal audit experience, he applies dimensional modeling and governed systems thinking across every domain he touches &mdash; from incentive compensation analysis at a Fortune 500 bank to multi-product AI-governed software development.
+            <div style={{ fontFamily: "'Source Serif 4', serif", fontSize: '1.05rem', color: C.dim, maxWidth: 680, lineHeight: 1.8 }}>
+              Dave Kitchens is the operator and sole architect of Dropdown Logistics. A licensed CPA with ten years of internal audit experience, he applies dimensional modeling and governed systems thinking across every domain he touches &mdash; from incentive compensation analysis at a Fortune 500 bank to multi-product AI-governed software development.
+            </div>
+          </div>
         </div>
       </div>
 
@@ -127,8 +136,8 @@ export default function OperatorProfile() {
             Every product in the DDL ecosystem exists because the operator needed it and no adequate version existed. AuditForge for governed audit documentation. BlindSpot for pattern recognition in betting. WorkBench for modular business operations. The need comes first. The product follows.
           </SBody>
 
-          <Link href="/ddl/council" style={{ display: 'inline-block', background: 'transparent', color: C.cream, fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, fontSize: '0.9rem', padding: '14px 28px', borderRadius: 6, textDecoration: 'none', border: `1px solid ${C.steelLine}` }}>
-            View the council &rarr;
+          <Link href="/ddl/management" style={{ display: 'inline-block', background: 'transparent', color: C.cream, fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, fontSize: '0.9rem', padding: '14px 28px', borderRadius: 6, textDecoration: 'none', border: `1px solid ${C.steelLine}` }}>
+            View management &rarr;
           </Link>
         </div>
       </div>
