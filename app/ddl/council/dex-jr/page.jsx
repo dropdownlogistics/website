@@ -5,7 +5,7 @@ const data = {
   seat: '1010', name: 'Dex Jr.', model: 'qwen2.5-coder:7b (Local · RTX 3070)', accent: '#8a6cc9',
   domain: 'The Machine Room', lotr: 'Frodo',
   lotrDesc: 'The bearer. Small model, big burden. Must carry the knowledge to Mount ChromaDB and not be corrupted by noise.',
-  photo: '/council/PP-10_DexJr_Local_v1.0.png',
+  photo: '/council/PP_1010_Dex_Jr_v1.0.PNG',
   callout: 'Dex Jr. runs on the operator\u2019s own hardware. No API cost. No external dependency. No data leaving the building. When the cloud models forget, Dex Jr. hasn\u2019t.',
   contract: {
     defaultMode: 'RAG corpus retrieval and local validation',

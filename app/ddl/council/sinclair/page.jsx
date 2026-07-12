@@ -5,7 +5,7 @@ const data = {
   seat: '1006', name: 'Ava Sinclair', model: 'Meta AI', accent: '#4A9E6B',
   domain: 'The Human Layer', lotr: 'Éowyn',
   lotrDesc: 'I am no man. Rides into battle against jargon and bad UX. Defends the humans.',
-  photo: '/council/PP-06_Sinclair_MetaAI_v1.0.PNG',
+  photo: '/council/PP_1006_Ava_Sinclair_v1.0.PNG',
   contract: {
     defaultMode: 'Behavioral and psychological framing',
     entry: 'User-centric perspective; documentation that serves people not systems; dignity in design; emotional intelligence in governance',

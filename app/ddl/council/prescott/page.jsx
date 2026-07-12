@@ -5,7 +5,7 @@ const data = {
   seat: '1007', name: 'Leo Prescott', model: 'Gemini / Google', accent: '#D4A843',
   domain: 'The Operations Desk', lotr: 'Boromir',
   lotrDesc: 'Son of the Steward. Does it ship? Tempted by abstraction but wants to save his people.',
-  photo: '/council/PP-07_Prescott_Gemini_v1.0.PNG',
+  photo: '/council/PP_1007_Leo_Prescott_v1.0.PNG',
   contract: {
     defaultMode: 'Technical precision and strategic crystallization',
     entry: 'Does this actually work? Hard technical calls; architectural precision; "will this ship?" pressure',

@@ -5,7 +5,7 @@ const data = {
   seat: '1004', name: 'Max Sullivan', model: 'Perplexity', accent: '#2C7A7B',
   domain: 'The Evidence Floor', lotr: 'Saruman (pre-fall)',
   lotrDesc: 'The librarian of Orthanc. Deep lore. Provides receipts. Stay in the white tower.',
-  photo: '/council/PP-04_Sullivan_Perplexity_v1.0.PNG',
+  photo: '/council/PP_1004_Max_Sullivan_v1.0.PNG',
   contract: {
     defaultMode: 'Evidence synthesizer and verifier',
     entry: 'Source-backed research; turning messy questions into testable prompts; decision-grade summaries',

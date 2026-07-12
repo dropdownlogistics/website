@@ -5,7 +5,7 @@ const data = {
   seat: '1005', name: 'Rowan Bennett', model: 'Copilot / Microsoft', accent: '#6B9DC2',
   domain: 'The Compliance Wing', lotr: 'Gimli',
   lotrDesc: 'The craftsman who actually builds the things. Toss me a governance problem.',
-  photo: '/council/PP-05_Bennett_Copilot_v1.0.PNG',
+  photo: '/council/PP_1005_Rowan_Bennett_v1.0.PNG',
   contract: {
     defaultMode: 'Technical reviewer and implementation skeptic',
     entry: 'Governance hardening; formal specification; identifying failure modes before ratification',

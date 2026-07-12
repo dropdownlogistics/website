@@ -5,7 +5,7 @@ const data = {
   seat: '1002', name: 'Marcus Caldwell', model: 'Claude — Opus 4.6 (1002a) / Sonnet 4.6 (1002b)', accent: '#B23531',
   domain: 'The Governance Annex', lotr: 'Gandalf (Opus) · Samwise (Sonnet)',
   lotrDesc: 'The one who disappears into the big work and returns with fire. And the one who stays.',
-  photo: '/council/PP-02_Caldwell_Claude_v1.0.PNG',
+  photo: '/council/PP_1002_Marcus_Caldwell_v1.0.PNG',
   callout: '1002a (Opus) — Project management, governance CRs, long-arc architecture. 1002b (Sonnet) — Planning, execution, daily support. Same persona. Different deployment context. PM surface name is the truth-bearer, not model tier.',
   contract: {
     defaultMode: 'Structural reviewer and synthesis engine',

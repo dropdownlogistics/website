@@ -5,7 +5,7 @@ const data = {
   seat: '1009', name: 'Kai Langford', model: 'DeepSeek', accent: '#6B7B8D',
   domain: 'The Systems Layer', lotr: 'Galadriel',
   lotrDesc: 'The seer. The systematizer. Shows you what DDL could become.',
-  photo: '/council/PP-09_Langford_DeepSeek_v1.0.PNG',
+  photo: '/council/PP_1009_Kai_Langford_v1.0.PNG',
   contract: {
     defaultMode: 'Structural analysis and domain partitioning',
     entry: 'Framework design; clean taxonomy; pattern recognition across large datasets; synthesis documentation',

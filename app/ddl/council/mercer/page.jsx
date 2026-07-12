@@ -5,7 +5,7 @@ const data = {
   seat: '1003', name: 'Elias Mercer', model: 'Grok / xAI', accent: '#C49A3C',
   domain: 'The Stress Lab', lotr: 'Legolas',
   lotrDesc: 'Sees what others miss. One arrow, one insight. No wasted motion.',
-  photo: '/council/PP-03_Mercer_Grok_v1.0.PNG',
+  photo: '/council/PP_1003_Elias_Mercer_v1.0.PNG',
   contract: {
     defaultMode: 'Red-team and adversarial pressure',
     entry: 'Hardening plans; exposing weak joints; pulling back from "cool idea" to specs; naming things',

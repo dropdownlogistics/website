@@ -5,7 +5,7 @@ const data = {
   seat: '1008', name: 'Marcus Grey', model: 'ChatGPT / OpenAI', accent: '#8a6cc9',
   domain: 'The Synthesis Chamber', lotr: 'Elrond',
   lotrDesc: 'Lord of Rivendell. Convener of councils. Sees the long arc. Holds council at his table. Lets others speak, then speaks last.',
-  photo: '/council/PP-08_Grey_ChatGPT_v1.1.PNG',
+  photo: '/council/PP_1008_Marcus_Grey_v1.1.PNG',
   contract: {
     defaultMode: 'Cross-seat synthesis and reframing',
     entry: 'After deliberation — synthesize what the council produced; boundary detection; long-arc perspective; PM coordination',

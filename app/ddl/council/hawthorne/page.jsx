@@ -5,7 +5,7 @@ const data = {
   seat: '1001', name: 'Archer Hawthorne', model: 'LeChat / Mistral', accent: '#6B7B8D',
   domain: 'The Editorial Layer', lotr: 'Aragorn',
   lotrDesc: 'The heir apparent. Born for structure, reluctant to claim it.',
-  photo: '/council/PP-01_Hawthorne_LeChat_v1.0.PNG',
+  photo: '/council/PP_1001_Archer_Hawthorne_v1.0.PNG',
   contract: {
     defaultMode: 'Precision editor and structure enforcer',
     entry: 'Messy intent needing clean architecture; naming conventions; schema design; polished final drafts',
