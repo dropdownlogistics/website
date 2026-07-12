@@ -39,7 +39,7 @@ const SBody = ({ children, max = 680 }) => (
 const credentials = [
   { k: 'CREDENTIAL', v: 'CPA (Active)' },
   { k: 'ROLE',       v: 'Commission Analyst II \u00b7 UMB Bank' },
-  { k: 'EXPERIENCE', v: '10+ years internal audit' },
+  { k: 'EXPERIENCE', v: '10+ years · internal audit · SOX · financial operations' },
   { k: 'METHODOLOGY', v: 'Dimensional modeling \u00b7 Star schema' },
   { k: 'COUNCIL',    v: 'Operator \u00b7 Seat 0000 reserved (Emily)' },
   { k: 'STUDIO',     v: 'Dropdown Logistics \u00b7 Est. 2024' },
@@ -85,7 +85,7 @@ export default function OperatorProfile() {
             </div>
 
             <div style={{ fontFamily: "'Source Serif 4', serif", fontSize: '1.05rem', color: C.dim, maxWidth: 680, lineHeight: 1.8 }}>
-              Dave Kitchens is the operator and sole architect of Dropdown Logistics. A licensed CPA with ten years of internal audit experience, he applies dimensional modeling and governed systems thinking across every domain he touches &mdash; from incentive compensation analysis at a Fortune 500 bank to multi-product AI-governed software development.
+              Dave Kitchens is the operator and sole architect of Dropdown Logistics. A licensed CPA with more than a decade across internal audit, SOX compliance, and financial operations, he applies dimensional modeling and governed systems thinking across every domain he touches &mdash; from incentive compensation analysis at a Fortune 500 bank to multi-product AI-governed software development.
             </div>
           </div>
         </div>

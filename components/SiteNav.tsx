@@ -15,8 +15,7 @@ const PRODUCTS = [
   { label: 'SlopeStat', href: '/slopestat', external: false, color: '#C49A3C' },
 ];
 
-// PENDING: "About Us" is a placeholder label — operator to confirm final nav label before shipping
-const ABOUT_LABEL = 'About Us';
+const ABOUT_LABEL = 'Leadership';
 
 const DDL_LINKS = [
   { label: 'Studio', href: '/ddl' },
