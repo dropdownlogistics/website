@@ -34,7 +34,8 @@ const stats = [
   { n: '44+',  l: 'Governed systems',   color: C.cream },
   { n: '65+',  l: 'Published standards',color: C.cream },
   { n: '160+', l: 'Live routes',        color: C.cream },
-  { n: '566K+',l: 'Corpus chunks',      color: C.cream },
+  // CORPUS COUNT: 540K+ is a deliberately conservative placeholder pending full audit.
+  { n: '540K+',l: 'Corpus chunks',      color: C.cream },
 ];
 
 const SLabel = ({ children, color }) => (
@@ -256,7 +257,7 @@ export default function CatalogPage() {
                 <SLabel color={C.steelMuted}>Intelligence · retrieves</SLabel>
                 <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: '1rem', letterSpacing: '-0.01em', marginBottom: 6 }}>Dex Jr. · Seat 1010</div>
                 <div style={{ fontFamily: "'Source Serif 4', serif", fontSize: '0.85rem', color: C.steel, lineHeight: 1.6, marginBottom: 12 }}>
-                  Local RAG infrastructure powering the 10th council seat. ChromaDB + Ollama, running on an RTX 3070. 566K+ corpus chunks across four live collections. Every context reset costs the operator a full re-explanation. The corpus fixes that permanently. The only council member with access to the full governed archive.
+                  Local RAG infrastructure powering the 10th council seat. ChromaDB + Ollama, running on an RTX 3070. 540K+ corpus chunks across four live collections. Every context reset costs the operator a full re-explanation. The corpus fixes that permanently. The only council member with access to the full governed archive.
                 </div>
                 <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.6rem', color: C.steelMuted, lineHeight: 1.7 }}>
                   <strong style={{ color: C.steel }}>Status:</strong> Live · local only · no public URL<br />

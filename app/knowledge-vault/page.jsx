@@ -34,7 +34,8 @@ const STATS = [
 ];
 
 const NAV_CARDS = [
-  { n: '01', label: 'Corpus',    t: '518K+ chunks across 9 collections. Nightly auto-ingestion at 3am CT.' },
+  // CORPUS COUNT: 540K+ is a deliberately conservative placeholder pending full audit.
+  { n: '01', label: 'Corpus',    t: '540K+ chunks across 9 collections. Nightly auto-ingestion at 3am CT.' },
   { n: '02', label: 'Council',   t: '10 seats. 9 cloud models. 1 local (qwen2.5-coder:7b, RTX 3070).' },
   { n: '03', label: 'Method',    t: 'Chaos \u2192 Structured \u2192 Automated. The operating methodology.' },
   { n: '04', label: 'Products',  t: 'AuditForge, Excelligence, BlindSpot, Ledger, WorkBench.' },
@@ -151,7 +152,7 @@ export default function KnowledgeVaultPage() {
         </p>
 
         <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.62rem', color: '#4A5A6A', lineHeight: 1.7, maxWidth: 640, margin: '20px auto 0' }}>
-          <strong style={{ color: '#6B7B8D' }}>What it does:</strong> The index to [CHUNK COUNT]+ chunks of DDL institutional memory &mdash; 44 vault folders, 9 collections, searchable by Dex Jr. When the operator forgets, Dex Jr. hasn&apos;t. That is the design.
+          <strong style={{ color: '#6B7B8D' }}>What it does:</strong> The index to 540K+ chunks of DDL institutional memory &mdash; 44 vault folders, 9 collections, searchable by Dex Jr. When the operator forgets, Dex Jr. hasn&apos;t. That is the design.
         </div>
       </section>
 

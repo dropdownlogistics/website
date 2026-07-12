@@ -43,7 +43,10 @@ const credentials = [
   { k: 'METHODOLOGY', v: 'Dimensional modeling \u00b7 Star schema' },
   { k: 'COUNCIL',    v: 'Operator \u00b7 Seat 0000 reserved (Emily)' },
   { k: 'STUDIO',     v: 'Dropdown Logistics \u00b7 Est. 2024' },
-  { k: 'LOCAL AI',   v: 'Dex Jr. \u00b7 RTX 3070 \u00b7 566,804-chunk corpus' },
+  // CORPUS COUNT: 540K+ is a deliberately conservative placeholder (smallest of three
+  // figures seen across the site). Not a confirmed live count. Update when Dex Jr. is
+  // queried directly and a full corpus audit is run.
+  { k: 'LOCAL AI',   v: 'Dex Jr. \u00b7 RTX 3070 \u00b7 540K+-chunk corpus' },
   { k: 'DESIGN',     v: 'CottageHumble (\u201cHumble surface. Cathedral underneath.\u201d)' },
 ];
 
