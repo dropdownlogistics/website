@@ -44,3 +44,32 @@ FLAGS / OPEN ITEMS:
   - Office headshot binaries PP_2001 and PP_2002 are not reproducible from repo alone — external
     backup recommended.
 ---
+
+---
+DATE:    2026-07-12
+SESSION: SEO metadata layout rollout; layout.tsx pile confirmed resolved
+AGENT:   Claude Code (claude-sonnet-4-6)
+SCOPE:   app/ (85 layout.tsx files), .gitignore, .claude/launch.json
+
+COMMITS:
+  a163501  feat(seo): add per-route metadata layout files across all sections
+
+DONE:
+  - 85 Next.js layout.tsx files added, providing per-route title, description,
+    OG tags, and Twitter card metadata for every section of the site.
+  - .gitignore deduplicated (.vercel entry was doubled); .claude/settings.local.json
+    and .claude/worktrees/ exclusions added.
+  - .claude/launch.json added (npm run dev config, shareable across sessions).
+
+PILE CONFIRMATION (per 2026-07-12 reconciliation task):
+  Two separate sessions today saw what looked like the same untracked pile —
+  ~85-86 layout.tsx files plus a modified .gitignore. This commit (a163501)
+  is confirmed to be the resolution: 85 layout.tsx files + .gitignore fix +
+  .claude additions = 86+ total files. The pile was one event, not two. Any
+  session that flagged these files as still-pending should consider them
+  resolved as of a163501 (2026-07-12 19:56).
+
+FLAGS / OPEN ITEMS:
+  - Corpus count (540K+) placeholder from prior entry still pending Dex Jr.
+    count confirmation — inherited open item, not resolved this session.
+---
