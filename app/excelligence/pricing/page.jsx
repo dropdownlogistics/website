@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import BackButton from '@/components/BackButton';
+import { METRICS } from '@/lib/metrics';
 
 const C = {
   navy:      '#0D1B2A',
@@ -27,7 +28,7 @@ const SBody = ({ children, max = 680 }) => (
 
 const tiers = [
   { name: 'Explorer', tag: 'The full graph. One user.',
-    bullets: ['Full registry access (105 entries, 228 edges)','Learning paths and progression tracking','Anti-pattern scanner','GridTactics access'],
+    bullets: [`Full registry access (${METRICS.EXCEL_ENTRIES} entries, ${METRICS.EXCEL_EDGES} edges)`,'Learning paths and progression tracking','Anti-pattern scanner','GridTactics access'],
     ideal: 'Individual Excel practitioners' },
   { name: 'Team', tag: 'The graph. For your analysts.',
     bullets: ['Everything in Explorer','Up to 10 seats','Team progress dashboard','Shared learning path assignments','Aggregate skill gap analysis'],
@@ -50,7 +51,7 @@ export default function ExcelligencePricing() {
           The graph. <span style={{ color: C.gold }}>For your team.</span>
         </div>
         <div style={{ fontFamily: "'Source Serif 4', serif", fontStyle: 'italic', fontSize: '1.2rem', color: C.cream, lineHeight: 1.55, maxWidth: 680 }}>
-          105 entries. 228 edges. Governed and searchable.
+          {METRICS.EXCEL_ENTRIES} entries. {METRICS.EXCEL_EDGES} edges. Governed and searchable.
         </div>
       </div>
 

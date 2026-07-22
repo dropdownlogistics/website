@@ -1,6 +1,7 @@
 ﻿'use client'
 
 import { useState, useEffect, useRef } from "react";
+import { METRICS } from '@/lib/metrics';
 
 // ============================================================
 // ANIMATED COUNTER
@@ -168,7 +169,7 @@ export default function ExcelligenceLanding() {
         </p>
 
         <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.62rem', color: '#4A5A6A', lineHeight: 1.7, maxWidth: 520, margin: '20px auto 0' }}>
-          <strong style={{ color: '#6B7B8D' }}>What it does:</strong> A knowledge graph of Excel concepts &mdash; not a glossary, not a tutorial. 105 entries, 228 edges, organized by how Excel knowledge actually connects.
+          <strong style={{ color: '#6B7B8D' }}>What it does:</strong> A knowledge graph of Excel concepts &mdash; not a glossary, not a tutorial. {METRICS.EXCEL_ENTRIES} entries, {METRICS.EXCEL_EDGES} edges, organized by how Excel knowledge actually connects.
         </div>
       </div>
 
@@ -760,7 +761,7 @@ export default function ExcelligenceLanding() {
           color: "#3a3830",
           marginTop: 12,
         }}>
-          105 entries · 228 edges · 7 types · 4 tiers · Interactive explorer with Path Finder
+          {METRICS.EXCEL_ENTRIES} entries · {METRICS.EXCEL_EDGES} edges · {METRICS.EXCEL_TYPES} types · {METRICS.EXCEL_TIERS} tiers · Interactive explorer with Path Finder
         </p>
       </div>
 

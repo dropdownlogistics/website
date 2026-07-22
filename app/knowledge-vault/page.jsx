@@ -1,4 +1,5 @@
 'use client';
+import { METRICS } from '@/lib/metrics';
 
 // ============================================================
 // KNOWLEDGE VAULT — DDL wing page
@@ -27,15 +28,15 @@ const font = {
 };
 
 const STATS = [
-  { value: '540K+',     label: 'Chunks' },
-  { value: '9',         label: 'Collections' },
-  { value: '44',        label: 'Vault Folders' },
-  { value: 'Seat 1010', label: 'Dex Jr.' },
+  { value: METRICS.CORPUS_CHUNKS,                    label: 'Chunks' },
+  { value: String(METRICS.CORPUS_COLLECTIONS),       label: 'Collections' },
+  { value: String(METRICS.VAULT_FOLDERS),            label: 'Vault Folders' },
+  { value: 'Seat 1010',                              label: 'Dex Jr.' },
 ];
 
 const NAV_CARDS = [
   // CORPUS COUNT: 540K+ is a deliberately conservative placeholder pending full audit.
-  { n: '01', label: 'Corpus',    t: '540K+ chunks across 9 collections. Nightly auto-ingestion at 3am CT.' },
+  { n: '01', label: 'Corpus',    t: `${METRICS.CORPUS_CHUNKS} chunks across ${METRICS.CORPUS_COLLECTIONS} collections. Nightly auto-ingestion at 3am CT.` },
   { n: '02', label: 'Council',   t: '10 seats. 9 cloud models. 1 local (qwen2.5-coder:7b, RTX 3070).' },
   { n: '03', label: 'Method',    t: 'Chaos \u2192 Structured \u2192 Automated. The operating methodology.' },
   { n: '04', label: 'Products',  t: 'AuditForge, Excelligence, BlindSpot, Ledger, WorkBench.' },
@@ -146,13 +147,13 @@ export default function KnowledgeVaultPage() {
             margin: '0 auto',
           }}
         >
-          A governed retrieval system built on 540,000+ chunks of DDL output
-          across 9 collections. When the operator forgets, Dex Jr. hasn&apos;t.
+          A governed retrieval system built on {METRICS.CORPUS_CHUNKS} chunks of DDL output
+          across {METRICS.CORPUS_COLLECTIONS} collections. When the operator forgets, Dex Jr. hasn&apos;t.
           That is the design. That is the point.
         </p>
 
         <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.62rem', color: '#4A5A6A', lineHeight: 1.7, maxWidth: 640, margin: '20px auto 0' }}>
-          <strong style={{ color: '#6B7B8D' }}>What it does:</strong> The index to 540K+ chunks of DDL institutional memory &mdash; 44 vault folders, 9 collections, searchable by Dex Jr. When the operator forgets, Dex Jr. hasn&apos;t. That is the design.
+          <strong style={{ color: '#6B7B8D' }}>What it does:</strong> The index to {METRICS.CORPUS_CHUNKS} chunks of DDL institutional memory &mdash; {METRICS.VAULT_FOLDERS} vault folders, {METRICS.CORPUS_COLLECTIONS} collections, searchable by Dex Jr. When the operator forgets, Dex Jr. hasn&apos;t. That is the design.
         </div>
       </section>
 

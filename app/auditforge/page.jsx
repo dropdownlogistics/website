@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import BackButton from '@/components/BackButton';
+import { METRICS } from '@/lib/metrics';
 
 const C = {
   navy:       '#0D1B2A',
@@ -85,7 +86,7 @@ const stats = [
 const what = [
   {
     head: 'Define', color: C.teal,
-    lines: ['Star schema. Fact_Control at center.', '106 controls \u00B7 9 process areas \u00B7 17 risks mapped.', '47 auditors with verified skill tokens.', '4 engagements with full team and scope management.', 'Effective dating on all relationships.', 'COSO 2013, SOX/PCAOB, COBIT 2019.'],
+    lines: ['Star schema. Fact_Control at center.', `${METRICS.AF_CONTROLS} controls \u00B7 ${METRICS.AF_PROCESS_AREAS} process areas \u00B7 ${METRICS.AF_RISKS} risks mapped.`, `${METRICS.AF_AUDITORS} auditors with verified skill tokens.`, `${METRICS.AF_ENGAGEMENTS} engagements with full team and scope management.`, 'Effective dating on all relationships.', 'COSO 2013, SOX/PCAOB, COBIT 2019.'],
   },
   {
     head: 'Generate', color: C.copper,

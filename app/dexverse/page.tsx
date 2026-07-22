@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import BackButton from '@/components/BackButton';
+import { METRICS } from '@/lib/metrics';
 
 const C = {
   navy:        '#0D1B2A',
@@ -37,14 +38,14 @@ const SBody = ({ children, max = 680 }: { children: React.ReactNode; max?: numbe
 );
 
 const heroStats = [
-  { v: '540K+',     l: 'Corpus Chunks' },
-  { v: '9',         l: 'Collections' },
-  { v: 'RTX 3070',  l: 'The Rig' },
+  { v: METRICS.CORPUS_CHUNKS,                 l: 'Corpus Chunks' },
+  { v: String(METRICS.CORPUS_COLLECTIONS),    l: 'Collections' },
+  { v: 'RTX 3070',                            l: 'The Rig' },
 ];
 
 const dexCards = [
   { label: 'Model',   t: 'qwen2.5-coder:7b — Ollama-managed, context-optimized for code and structured data.' },
-  { label: 'Store',   t: 'ChromaDB — Vector database. 9 collections. 540K+ chunks. Cosine similarity retrieval.' },
+  { label: 'Store',   t: `ChromaDB — Vector database. ${METRICS.CORPUS_COLLECTIONS} collections. ${METRICS.CORPUS_CHUNKS} chunks. Cosine similarity retrieval.` },
   { label: 'Cadence', t: 'Nightly auto-ingestion at 3am CT. GitHub-backed workflow. The corpus stays current.' },
 ];
 
@@ -90,7 +91,7 @@ export default function DexVerseWing() {
         </div>
 
         <div style={{ fontFamily: "'Source Serif 4', serif", fontSize: '1.05rem', color: C.dim, maxWidth: 680, lineHeight: 1.8, marginBottom: 40 }}>
-          DexVerse is the local AI infrastructure underneath DDL. One rig. One model. 540K+ chunks of institutional memory. When the cloud models forget, Dex Jr. hasn&rsquo;t. That is the architecture. That is the point.
+          DexVerse is the local AI infrastructure underneath DDL. One rig. One model. {METRICS.CORPUS_CHUNKS} chunks of institutional memory. When the cloud models forget, Dex Jr. hasn&rsquo;t. That is the architecture. That is the point.
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 12 }}>

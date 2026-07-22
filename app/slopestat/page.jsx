@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import BackButton from '@/components/BackButton';
+import { METRICS } from '@/lib/metrics';
 
 const C = {
   navy:        '#0D1B2A',
@@ -43,7 +44,7 @@ const SBody = ({ children, max = 680 }) => (
 const heroStats = [
   { n: '3',        t: 'Verification Tiers' },
   { n: '4',        t: 'Boards (sample quiver)' },
-  { n: '64.9 mph', t: 'Peak Speed (sample)' },
+  { n: METRICS.SS_PEAK_SPEED, t: 'Peak Speed (sample)' },
 ];
 
 const steps = [
@@ -115,7 +116,7 @@ export default function SlopeStatWing() {
         </div>
 
         <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.62rem', color: '#4A5A6A', lineHeight: 1.7, marginBottom: 28 }}>
-          <strong style={{ color: '#6B7B8D' }}>What it does:</strong> A ski and snowboard session tracker that builds a verifiable ride card from your quiver and session data &mdash; self-reported now, GPS-verified in V2.
+          <strong style={{ color: '#6B7B8D' }}>What it does:</strong> A ski and snowboard session tracker that builds a verifiable rider card from your quiver and run data. Demo: Toddy K, Crystal Mountain, 64.9 mph peak, Jones quiver. Self-reported now, GPS-verified in V2.
         </div>
 
         <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', alignItems: 'center', marginBottom: 48 }}>

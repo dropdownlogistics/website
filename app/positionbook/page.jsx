@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import BackButton from '@/components/BackButton';
+import { METRICS } from '@/lib/metrics';
 
 const C = {
   navy:        '#0D1B2A',
@@ -44,9 +45,9 @@ const heroStats = [
 ];
 
 const tickerItems = [
-  'Win Rate 30.5%',
-  'Avg R 2.31',
-  '241 trades',
+  `Win Rate ${METRICS.PB_WIN_RATE}`,
+  `Avg R ${METRICS.PB_AVG_R}`,
+  `${METRICS.PB_TRADES} trades`,
   'Top ticker SNDK +$266',
   'Strategies: ORB / MA Bounce / Swing',
 ];
@@ -84,7 +85,7 @@ export default function PositionBookWing() {
         </div>
 
         <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.62rem', color: '#4A5A6A', lineHeight: 1.7, marginBottom: 28 }}>
-          <strong style={{ color: '#6B7B8D' }}>What it does:</strong> A trade journal for retail traders &mdash; position log, strategy breakdown, R-multiple performance across 241 trades analyzed. BlindSpot, but for markets.
+          <strong style={{ color: '#6B7B8D' }}>What it does:</strong> A trade journal for retail traders &mdash; position log, strategy breakdown, R-multiple performance across {METRICS.PB_TRADES} trades analyzed. BlindSpot, but for markets.
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 12, marginBottom: 40 }}>

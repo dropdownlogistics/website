@@ -2,6 +2,7 @@
 'use client';
 import Link from 'next/link';
 import BackButton from '@/components/BackButton';
+import { METRICS } from '@/lib/metrics';
 
 const C = {
   navy:        '#0D1B2A',
@@ -29,13 +30,13 @@ const C = {
 };
 
 const stats = [
-  { n: '10',   l: 'Products',           color: C.crimson },
-  { n: '5',    l: 'Families',           color: C.cream },
-  { n: '44+',  l: 'Governed systems',   color: C.cream },
-  { n: '65+',  l: 'Published standards',color: C.cream },
-  { n: '160+', l: 'Live routes',        color: C.cream },
-  // CORPUS COUNT: 540K+ is a deliberately conservative placeholder pending full audit.
-  { n: '540K+',l: 'Corpus chunks',      color: C.cream },
+  { n: String(METRICS.DDL_PRODUCTS),       l: 'Products',            color: C.crimson },
+  { n: String(METRICS.DDL_FAMILIES),       l: 'Families',            color: C.cream },
+  { n: METRICS.DDL_GOVERNED_SYSTEMS,       l: 'Governed systems',    color: C.cream },
+  { n: METRICS.DDL_STANDARDS,             l: 'Published standards',  color: C.cream },
+  { n: METRICS.DDL_ROUTES,               l: 'Live routes',           color: C.cream },
+  // CORPUS COUNT: conservative placeholder — update METRICS.CORPUS_CHUNKS when audit completes
+  { n: METRICS.CORPUS_CHUNKS,             l: 'Corpus chunks',        color: C.cream },
 ];
 
 const SLabel = ({ children, color }) => (
@@ -221,7 +222,7 @@ export default function CatalogPage() {
             <ProductName>AuditForge</ProductName>
             <ProductTagline>&ldquo;The audit package generates itself.&rdquo;</ProductTagline>
             <ProductWhy>Audit teams spend their expertise assembling documentation instead of performing audit work. The population, the controls, the walkthrough package — all of it gets generated. The auditor&rsquo;s job is the opinion.</ProductWhy>
-            <HonestLine><strong style={{ color: C.steel }}>What it does:</strong> 106 controls, 47 auditors, 4 document types (RCM, MCL, Walkthrough, Audit Plan), findings lifecycle, billing substrate. Full seed data visible on demo. Under 30 seconds from data to governed package.</HonestLine>
+            <HonestLine><strong style={{ color: C.steel }}>What it does:</strong> {METRICS.AF_CONTROLS} controls, {METRICS.AF_AUDITORS} auditors, {METRICS.AF_DOC_TYPES} document types (RCM, MCL, Walkthrough, Audit Plan), findings lifecycle, billing substrate. Full seed data visible on demo. Under 30 seconds from data to governed package.</HonestLine>
             <ProductLink href="https://auditforge.dev" label="auditforge.dev" />
           </div>
         </div>
@@ -257,7 +258,7 @@ export default function CatalogPage() {
                 <SLabel color={C.steelMuted}>Intelligence · retrieves</SLabel>
                 <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: '1rem', letterSpacing: '-0.01em', marginBottom: 6 }}>Dex Jr. · Seat 1010</div>
                 <div style={{ fontFamily: "'Source Serif 4', serif", fontSize: '0.85rem', color: C.steel, lineHeight: 1.6, marginBottom: 12 }}>
-                  Local RAG infrastructure powering the 10th council seat. ChromaDB + Ollama, running on an RTX 3070. 540K+ corpus chunks across four live collections. Every context reset costs the operator a full re-explanation. The corpus fixes that permanently. The only council member with access to the full governed archive.
+                  Local RAG infrastructure powering the 10th council seat. ChromaDB + Ollama, running on an RTX 3070. {METRICS.CORPUS_CHUNKS} corpus chunks across four live collections. Every context reset costs the operator a full re-explanation. The corpus fixes that permanently. The only council member with access to the full governed archive.
                 </div>
                 <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.6rem', color: C.steelMuted, lineHeight: 1.7 }}>
                   <strong style={{ color: C.steel }}>Status:</strong> Live · local only · no public URL<br />
@@ -293,7 +294,7 @@ export default function CatalogPage() {
               <ProductName>PositionBook</ProductName>
               <ProductTagline>&ldquo;You are not losing. You are not tracking.&rdquo;</ProductTagline>
               <ProductWhy>Most traders know their PnL. None of them know which setups produce it. PositionBook answers the question that brokerage statements can&rsquo;t: which of your behaviors actually make money.</ProductWhy>
-              <HonestLine><strong style={{ color: C.steel }}>What it does:</strong> Trade log, KPI dashboard (30.5% win rate, 2.31R avg), strategy breakdown, equity curve, Trade Card — shareable credential with public R/win rate, private PnL. 241 trades at launch are real data.</HonestLine>
+              <HonestLine><strong style={{ color: C.steel }}>What it does:</strong> Trade log, KPI dashboard ({METRICS.PB_WIN_RATE} win rate, {METRICS.PB_AVG_R} avg), strategy breakdown, equity curve, Trade Card — shareable credential with public R/win rate, private PnL. {METRICS.PB_TRADES} trades at launch are real data.</HonestLine>
               <ProductLink href="https://positionbook.vercel.app" label="positionbook.vercel.app" />
             </div>
 
@@ -304,7 +305,7 @@ export default function CatalogPage() {
               <ProductName>SlopeStat</ProductName>
               <ProductTagline>&ldquo;Your rides. Your boards. Your card.&rdquo;</ProductTagline>
               <ProductWhy>Your season disappears into memory. Speed, mountains, boards — none of it goes anywhere. SlopeStat builds a verified, portable record of every session before it&rsquo;s gone.</ProductWhy>
-              <HonestLine><strong style={{ color: C.steel }}>What it does:</strong> Quiver management, session logging, Rider Card at /rider/[id], OG image generation for social sharing, 3 verification tiers. Demo: Toddy K, Crystal Mountain, 64.9 mph peak, Jones quiver.</HonestLine>
+              <HonestLine><strong style={{ color: C.steel }}>What it does:</strong> Quiver management, session logging, Rider Card at /rider/[id], OG image generation for social sharing, 3 verification tiers. Demo: Toddy K, Crystal Mountain, {METRICS.SS_PEAK_SPEED} peak, Jones quiver.</HonestLine>
               <ProductLink href="https://slopestat.vercel.app" label="slopestat.vercel.app" />
             </div>
 
@@ -333,7 +334,7 @@ export default function CatalogPage() {
             <ProductName>Excelligence</ProductName>
             <ProductTagline>&ldquo;Excel knowledge, governed and graphed.&rdquo;</ProductTagline>
             <ProductWhy>Excel expertise lives in people&rsquo;s heads, not in systems. When they leave, it leaves with them. Excelligence structures that knowledge as a traversable graph — typed, tiered, connected by governed edges.</ProductWhy>
-            <HonestLine><strong style={{ color: C.steel }}>What it does:</strong> 65 entries, 156 edges, 7 entry types, 4 skill tiers, force-directed graph explorer, learning paths, CF Pattern Library, 2 institutional standards. The schema is the product — 9/9 unanimous LOCK is the credibility signal. Not a tutorial. Not a glossary. A knowledge graph.</HonestLine>
+            <HonestLine><strong style={{ color: C.steel }}>What it does:</strong> {METRICS.EXCEL_ENTRIES} entries, {METRICS.EXCEL_EDGES} edges, {METRICS.EXCEL_TYPES} entry types, {METRICS.EXCEL_TIERS} skill tiers, force-directed graph explorer, learning paths, CF Pattern Library, {METRICS.EXCEL_STANDARDS} institutional standards. The schema is the product — 9/9 unanimous LOCK is the credibility signal. Not a tutorial. Not a glossary. A knowledge graph.</HonestLine>
             <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.6rem', color: C.steelMuted, fontStyle: 'italic', marginBottom: 4 }}>
               &ldquo;The graph is the cathedral. Everything else is scaffolding.&rdquo; &mdash; Rowan Bennett, Seat 1005
             </div>
