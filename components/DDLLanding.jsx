@@ -63,10 +63,11 @@ const productHref = (p) => p.url || (p.pages && p.pages[0]) || "#";
 const CSS = `
 .ddl-frame { animation: ddl-spin 34s linear infinite; }
 .ddl-badge { animation: ddl-anti 34s linear infinite; }
+.ddl-badge-inner svg { fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 @keyframes ddl-spin { to { transform: rotate(360deg); } }
 @keyframes ddl-anti { to { transform: rotate(-360deg); } }
 .ddl-node:hover .ddl-badge-inner { box-shadow: 0 0 0 4px var(--nc); }
-.ddl-track { animation: ddl-slide 30s linear infinite; }
+.ddl-track { animation: ddl-slide 40s linear infinite; }
 @keyframes ddl-slide { to { transform: translateX(-100%); } }
 .ddl-wc { transition: background .2s, border-color .2s; }
 .ddl-wc:hover { background: ${C.cardHover}; }
