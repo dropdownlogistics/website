@@ -2,6 +2,7 @@
 
 import { useEffect, useState, CSSProperties } from 'react';
 import Link from 'next/link';
+import { PRODUCTS } from '@/lib/products';
 
 interface FadeInProps { children: React.ReactNode; delay?: number; style?: CSSProperties; }
 function FadeIn({ children, delay = 0, style = {} }: FadeInProps) {
@@ -18,6 +19,9 @@ interface Project {
   accent: string;
 }
 
+const _fl = PRODUCTS.find((p: any) => p.id === 'fleetline')!;
+const _hs = PRODUCTS.find((p: any) => p.id === 'healthstack')!;
+
 const PROJECTS: Project[] = [
   { slug: 'nomadic-notary', title: 'Nomadic Notary', type: 'Business-in-a-Box', desc: 'Mobile notary service — brand identity, service grid, pricing tiers, and go-to-market roadmap.', accent: '#1B4D3E' },
   { slug: 'sprinkles', title: 'Sprinkles & Co', type: 'Business-in-a-Box', desc: 'Custom cookie company — full brand system, product catalog, pricing engine, and launch plan.', accent: '#C17349' },
@@ -29,6 +33,8 @@ const PROJECTS: Project[] = [
   { slug: 'heartbeat', title: 'HeartBeat', type: 'Analytics Engine', desc: 'Organizational growth intelligence — mood pulse, team heatmap, burnout radar, and nudge effectiveness.', accent: '#FF6B8A' },
   { slug: 'payguard', title: 'PayGuard', type: 'Analytics Engine', desc: 'Benefits & payroll compliance — exception detection, vendor aging, deduction reconciliation.', accent: '#6C3B7C' },
   { slug: 'integrityos', title: 'IntegrityOS', type: 'Governance Architecture', desc: 'Healthcare payment governance — decision memory capture, override detection, and audit-ready lineage.', accent: '#9B1B3C' },
+  { slug: 'healthstack', title: _hs.name, type: 'Governance Architecture', desc: _hs.tagline, accent: (_hs.accent ?? '#0EA5E9') },
+  { slug: 'fleetline', title: _fl.name, type: 'Analytics Engine', desc: _fl.tagline, accent: (_fl.accent ?? '#F59E0B') },
 ];
 
 const TYPE_COLORS: Record<string, { color: string; bg: string }> = {
@@ -67,7 +73,7 @@ export default function ProjectsHub() {
             lineHeight: 1.6,
             maxWidth: 600,
           }}>
-            10 systems built across 10 domains. Same dimensional architecture. Same governance-grade methodology.
+            12 systems built across 12 domains. Same dimensional architecture. Same governance-grade methodology.
             Different data. The engine doesn&rsquo;t care.
           </p>
         </div>
@@ -174,7 +180,7 @@ export default function ProjectsHub() {
             color: 'rgba(245,241,235,0.2)',
             letterSpacing: '0.08em',
           }}>
-            10 projects · 4,148 lines · Same engine, different data · Built by DDL · 2026
+            12 projects · Same engine, different data · Built by DDL · 2026
           </p>
         </div>
       </FadeIn>
