@@ -501,7 +501,7 @@ export default function DDLLanding() {
               Cottage — Humble surface. Cathedral underneath.
             </div>
             <div style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim, opacity: 0.4 }}>
-              D.K. Hale · CPA · One-person operations studio · Est. 2024
+              <a href="https://davidkitchens.com" target="_blank" rel="noreferrer" style={{ color: "inherit", textDecoration: "none" }}>David Kitchens, CPA {'↗'}</a>{' · One-person operations studio · Est. 2024'}
             </div>
           </div>
         </div>

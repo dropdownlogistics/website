@@ -17,6 +17,9 @@ export default function LayoutFooter() {
         <span style={{ fontFamily: "'Source Serif 4', serif", fontSize: 12, fontStyle: 'italic', color: 'rgba(245,241,235,0.15)' }}>
           CottageHumble surface. Cathedral underneath.
         </span>
+        <a href="https://davidkitchens.com" target="_blank" rel="noreferrer" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, color: 'rgba(245,241,235,0.25)', textDecoration: 'none', letterSpacing: '0.08em', whiteSpace: 'nowrap' }}>
+          David Kitchens, CPA {'\u2197'}
+        </a>
         <a href="/sitemap" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, color: 'rgba(245,241,235,0.25)', textDecoration: 'none', letterSpacing: '0.08em', whiteSpace: 'nowrap' }}>
           All Routes {'\u2192'}
         </a>
