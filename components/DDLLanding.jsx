@@ -1,5 +1,7 @@
+'use client';
 import { useState } from "react";
 import WhatAreYouFeeling from "./WhatAreYouFeeling";
+import { WINGS, FOUNDATION, PRODUCTS, productsByWing } from "@/lib/products";
 
 // ═══════════════════════════════════════════════════════════
 // CottageHumble Tokens
@@ -10,25 +12,12 @@ const C = {
   card: "#10202f",
   cardHover: "#162538",
   crimson: "#B23531",
-  crimsonDim: "rgba(178,53,49,0.2)",
-  crimsonFaint: "rgba(178,53,49,0.08)",
   cream: "#F5F1EB",
   creamHigh: "rgba(245,241,235,0.85)",
   creamMid: "rgba(245,241,235,0.55)",
   creamDim: "rgba(245,241,235,0.3)",
-  creamGhost: "rgba(245,241,235,0.08)",
   border: "rgba(245,241,235,0.06)",
   borderMed: "rgba(245,241,235,0.1)",
-  green: "#4A9E6B",
-  greenDim: "rgba(74,158,107,0.15)",
-  amber: "#C49A3C",
-  amberDim: "rgba(196,154,60,0.15)",
-  blue: "#6B9DC2",
-  blueDim: "rgba(107,157,194,0.15)",
-  violet: "#8a6cc9",
-  violetDim: "rgba(138,108,201,0.15)",
-  ember: "#c98a4a",
-  emberDim: "rgba(201,138,74,0.15)",
 };
 
 const font = {
@@ -38,350 +27,260 @@ const font = {
 };
 
 // ═══════════════════════════════════════════════════════════
-// Wing Data
+// Wing marks (placeholder icons — real marks TBD)
 // ═══════════════════════════════════════════════════════════
-const wings = [
-  {
-    id: "ddl",
-    name: "DDL",
-    full: "Dropdown Logistics",
-    tagline: "The Governance Engine",
-    color: C.crimson,
-    accent: C.crimsonDim,
-    href: "/ddl",
-    description: "44 governed systems. 65 published standards. A methodology called Chaos → Structured → Automated, built by one operator with a CPA, a decade of internal audit, and a conviction that everything is a system if you look hard enough.",
-    sections: [
-      { label: "Council", desc: "Nine-model AI governance", href: "/council" },
-      { label: "Standards", desc: "65 published standards", href: "/standards" },
-      { label: "Systems", desc: "44 governed systems", href: "/systems" },
-      { label: "Registry", desc: "The canonical index", href: "/registry" },
-      { label: "Methodology", desc: "How it's built", href: "/methodology" },
-      { label: "Excelligence", desc: "Knowledge graph", href: "/excelligence" },
-      { label: "MindFrame", desc: "Persona calibration", href: "/mindframe" },
-      { label: "DexOS", desc: "Multi-model coordination", href: "/dexos" },
-      { label: "PSS", desc: "Prompt strategy system", href: "/framework/pss" },
-    ],
-    story: [
-      { label: "Memoir", desc: "Little to Know Experience", href: "/memoir" },
-      { label: "Forewords", desc: "Nine models, nine forewords", href: "/forewords" },
-      { label: "About", desc: "The operator", href: "/about" },
-    ],
-    stat: { number: "65", label: "standards", sub: "44 systems · 9 council models" },
-  },
-  {
-    id: "da",
-    name: "D&A",
-    full: "Data & Analytics",
-    tagline: "The Intelligence Surface",
-    color: C.amber,
-    accent: C.amberDim,
-    href: "/blindspot",
-    description: "Analytics engines for domains nobody thinks to measure. Trading strategies backtested against historical data. Steam libraries audited for value. D&D campaigns parsed by local LLMs. Apple Music predictions graded by adverse opinion. If it generates data, BlindSpot builds the dashboard.",
-    sections: [
-      { label: "BlindSpot", desc: "Product landing", href: "/blindspot" },
-      { label: "Trading", desc: "Strategy backtesting", href: "/blindspot/trading" },
-      { label: "Steam", desc: "Library analytics", href: "/blindspot/steam" },
-      { label: "Campaign", desc: "D&D intelligence", href: "/blindspot/campaign" },
-      { label: "LLM Guide", desc: "Local model setup", href: "/blindspot/llm" },
-      { label: "Grammarly", desc: "4.57M words analyzed", href: "/analytics/grammarly" },
-      { label: "Sonic Thread", desc: "Audio analytics", href: "/analytics/sonic-thread" },
-      { label: "Callback Engine", desc: "Pattern detection", href: "/analytics/callback-engine" },
-      { label: "Catnip Map", desc: "Behavioral analytics", href: "/analytics/catnip-map" },
-    ],
-    story: [
-      { label: "Recaps", desc: "Year-end signal reports", href: "/recaps" },
-      { label: "Apple Music", desc: "2025 deep dive", href: "/recaps/apple-music" },
-      { label: "Predictions", desc: "AI accuracy audit", href: "/recaps/predictions" },
-    ],
-    stat: { number: "5", label: "modules", sub: "7 dashboards · 3 recaps" },
-  },
-  {
-    id: "dexverse",
-    name: "DexVerse",
-    full: "The Lore Layer",
-    tagline: "The Archaeological Record",
-    color: C.violet,
-    accent: C.violetDim,
-    href: "/dexlore",
-    description: "Before the governance, before the standards, before the council — there were .txt files with emoji headers on GPT-3.5. Fifteen named companions across 56 threads. A family crest with seven iterations. A mythology that turned out to be a changelog. DexVerse is where the cathedral's foundation stones are visible.",
-    sections: [
-      { label: "DexLore", desc: "The origin archaeology", href: "/dexlore" },
-      { label: "Continuum", desc: "Interactive era timeline", href: "/dexlore/continuum" },
-      { label: "Companions", desc: "15 named entities", href: "/dexlore/council" },
-      { label: "Other Works", desc: "Product showcase", href: "/other-works" },
-    ],
-    story: [
-      { label: "Glossary", desc: "12 canon terms", href: "/knowledge/glossary" },
-      { label: "Template Palette", desc: "6 molds, 11 primitives", href: "/methodology/palette" },
-      { label: "Palette Narrative", desc: "Seeds to synthesis", href: "/methodology/palette/narrative" },
-    ],
-    stat: { number: "15", label: "companions", sub: "56 threads · 5 eras" },
-  },
-  {
-    id: "dossiers",
-    name: "Dossiers",
-    full: "CottageHumble RPG",
-    tagline: "The Character Archive",
-    color: C.green,
-    accent: C.greenDim,
-    href: "/dossiers",
-    description: "Every character gets a governed dossier. Stat blocks, narrative bios, campaign analytics, and lineage chronicles — across D&D 5e, Divinity: Original Sin 2, and Skyrim. Party registries track group composition. BlindSpot Campaign tracks the data behind the stories.",
-    sections: [
-      { label: "Feliciano", desc: "Dragonborn Paladin, D&D 5e", href: "/dossiers/feliciano" },
-      { label: "Hillie", desc: "Elf/Drow Warlock, D&D 5e", href: "/dossiers/hillie" },
-      { label: "Merrick", desc: "Elf Mage, Divinity OS2", href: "/dossiers/merrick" },
-      { label: "Xuth Jr", desc: "Argonian L56, Skyrim", href: "/dossiers/xuth-jr" },
-      { label: "Xuth III", desc: "Argonian reboot, Skyrim", href: "/dossiers/xuth-iii" },
-      { label: "Xuth Sr", desc: "Daedric ancestor, Skyrim", href: "/dossiers/xuth-sr" },
-      { label: "Ash, Snow & Steel", desc: "D&D party registry", href: "/dossiers/ash-snow-steel" },
-      { label: "Fort Joy", desc: "Divinity party registry", href: "/dossiers/fort-joy" },
-      { label: "Leafshadow Lineage", desc: "Three-gen chronicle", href: "/dossiers/leafshadow-lineage" },
-    ],
-    story: [
-      { label: "Campaign Analytics", desc: "BlindSpot RPG dashboard", href: "/dossiers/campaign-analytics" },
-      { label: "Hal Style Lock", desc: "Portrait governance", href: "/dossiers/hal-style-lock" },
-    ],
-    stat: { number: "14", label: "dossiers", sub: "3 games · 3 parties · 1 lineage" },
-  },
-];
+const WING_ICON = {
+  "professional-systems": (
+    <svg viewBox="0 0 22 22"><path d="M11 2 L19 5 V11 C19 16 15 19 11 20 C7 19 3 16 3 11 V5 Z" /><path d="M8 11 l2 2 l4 -4" /></svg>
+  ),
+  "knowledge-systems": (
+    <svg viewBox="0 0 22 22"><path d="M11 3 L20 7.5 L11 12 L2 7.5 Z" /><path d="M2 12 L11 16.5 L20 12" /></svg>
+  ),
+  "markets-wagers": (
+    <svg viewBox="0 0 22 22"><path d="M3 15 L8 10 L12 13 L19 5" /><path d="M14 5 H19 V10" /></svg>
+  ),
+  "personal-record": (
+    <svg viewBox="0 0 22 22"><rect x="3" y="5" width="16" height="12" rx="2" /><path d="M6.5 9 H11" /><path d="M6.5 12 H9" /><circle cx="15" cy="11" r="1.4" /></svg>
+  ),
+};
+
+const STATUS_COLOR = {
+  live: "#22C55E",
+  beta: "#6B9DC2",
+  invite: "#C49A3C",
+  waitlist: "#C49A3C",
+  "case-study": "#6B7B8D",
+  concept: "#6B7B8D",
+};
+const statusColor = (s) => STATUS_COLOR[s] || "#6B7B8D";
+
+const wingHref = (id) => `/wings/${id}`;
+const productHref = (p) => p.url || (p.pages && p.pages[0]) || "#";
 
 // ═══════════════════════════════════════════════════════════
-// Components
+// Scoped CSS — animations + hover (inline styles can't do @keyframes)
 // ═══════════════════════════════════════════════════════════
+const CSS = `
+.ddl-frame { animation: ddl-spin 34s linear infinite; }
+.ddl-badge { animation: ddl-anti 34s linear infinite; }
+@keyframes ddl-spin { to { transform: rotate(360deg); } }
+@keyframes ddl-anti { to { transform: rotate(-360deg); } }
+.ddl-node:hover .ddl-badge-inner { box-shadow: 0 0 0 4px var(--nc); }
+.ddl-track { animation: ddl-slide 30s linear infinite; }
+@keyframes ddl-slide { to { transform: translateX(-100%); } }
+.ddl-wc { transition: background .2s, border-color .2s; }
+.ddl-wc:hover { background: ${C.cardHover}; }
+.ddl-kid { transition: border-color .2s, background .2s; }
+.ddl-kid:hover { background: ${C.cardHover}; }
+.ddl-enter:hover { text-decoration: underline; }
+@media (prefers-reduced-motion: reduce) {
+  .ddl-frame, .ddl-badge, .ddl-track { animation: none; }
+}
+`;
 
-function WingCard({ wing, isExpanded, onToggle }) {
+// ═══════════════════════════════════════════════════════════
+// Orbital Hero — Option B (spinning frame · static arms · upright badges)
+// ═══════════════════════════════════════════════════════════
+function OrbitalHero() {
+  const [hovered, setHovered] = useState(null);
+  const arm = (i) => {
+    const deg = i * 90;
+    return { transform: `rotate(${deg}deg) translateY(-128px) rotate(${-deg}deg)` };
+  };
+  const active = WINGS.find((w) => w.id === hovered);
+
   return (
-    <div
-      style={{
-        background: C.card,
-        border: `1px solid ${isExpanded ? wing.color + "40" : C.border}`,
-        borderRadius: 7,
-        overflow: "hidden",
-        transition: "all 0.3s ease",
-      }}
-    >
-      {/* Header — always visible */}
-      <button
-        onClick={onToggle}
-        style={{
-          width: "100%",
-          padding: "28px 28px 24px",
-          background: "transparent",
-          border: "none",
-          cursor: "pointer",
-          textAlign: "left",
-          display: "flex",
-          flexDirection: "column",
-          gap: 12,
-        }}
-      >
-        {/* Top row: name + stat */}
-        <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", width: "100%" }}>
-          <div>
-            <div style={{ fontFamily: font.mono, fontSize: 10, color: wing.color, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 6 }}>
-              {wing.full}
-            </div>
-            <div style={{ fontFamily: font.display, fontSize: 28, fontWeight: 700, color: C.cream, lineHeight: 1.1, marginBottom: 4 }}>
-              {wing.name}
-            </div>
-            <div style={{ fontFamily: font.body, fontSize: 14, color: wing.color, fontStyle: "italic" }}>
-              {wing.tagline}
-            </div>
-          </div>
-          <div style={{ textAlign: "right", flexShrink: 0 }}>
-            <div style={{ fontFamily: font.mono, fontSize: 32, fontWeight: 700, color: wing.color, lineHeight: 1 }}>
-              {wing.stat.number}
-            </div>
-            <div style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim, letterSpacing: "0.08em" }}>
-              {wing.stat.label}
-            </div>
-            <div style={{ fontFamily: font.mono, fontSize: 8, color: C.creamDim, marginTop: 2, opacity: 0.6 }}>
-              {wing.stat.sub}
-            </div>
-          </div>
+    <div style={{ textAlign: "center", marginBottom: 40 }}>
+      <div style={{ position: "relative", width: 320, height: 320, margin: "0 auto 8px" }}>
+        <div style={{ position: "absolute", inset: 24, border: `1px dashed ${C.borderMed}`, borderRadius: "50%" }} />
+        <div className="ddl-frame" style={{ position: "absolute", inset: 0 }}>
+          {WINGS.map((w, i) => (
+            <a
+              key={w.id}
+              href={wingHref(w.id)}
+              className="ddl-node"
+              onMouseEnter={() => setHovered(w.id)}
+              onMouseLeave={() => setHovered(null)}
+              aria-label={w.name}
+              style={{ position: "absolute", top: "50%", left: "50%", width: 0, height: 0, ...arm(i) }}
+            >
+              <div
+                className="ddl-badge"
+                style={{ position: "absolute", margin: "-28px 0 0 -28px", width: 56, height: 56 }}
+              >
+                <div
+                  className="ddl-badge-inner"
+                  style={{
+                    "--nc": w.accent, width: 56, height: 56, borderRadius: "50%",
+                    background: C.card, border: `1.5px solid ${w.accent}`,
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    color: w.accent,
+                  }}
+                >
+                  <span style={{ width: 25, height: 25, display: "block" }}>
+                    {WING_ICON[w.id]}
+                  </span>
+                </div>
+              </div>
+            </a>
+          ))}
         </div>
+        <div style={{
+          position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)",
+          width: 76, height: 76, borderRadius: "50%", background: C.card, border: `2px solid ${C.crimson}`,
+          display: "flex", alignItems: "center", justifyContent: "center", zIndex: 4,
+          fontFamily: font.display, fontWeight: 700, fontSize: 23, color: C.cream,
+          boxShadow: "0 4px 20px rgba(0,0,0,0.45)",
+        }}>DD</div>
+      </div>
 
-        {/* Description */}
-        <p style={{ fontFamily: font.body, fontSize: 14, color: C.creamMid, lineHeight: 1.75, maxWidth: 600 }}>
-          {wing.description}
-        </p>
-
-        {/* Expand indicator */}
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <div style={{ height: 1, flex: 1, background: isExpanded ? wing.color + "30" : C.border, transition: "all 0.3s" }} />
-          <span style={{
-            fontFamily: font.mono, fontSize: 9, color: isExpanded ? wing.color : C.creamDim,
-            letterSpacing: "0.1em", transition: "all 0.3s",
-          }}>
-            {isExpanded ? "COLLAPSE" : "EXPLORE"}
-          </span>
-          <span style={{
-            fontFamily: font.mono, fontSize: 12, color: isExpanded ? wing.color : C.creamDim,
-            transform: isExpanded ? "rotate(90deg)" : "rotate(0deg)",
-            transition: "transform 0.2s", display: "inline-block",
-          }}>›</span>
-        </div>
-      </button>
-
-      {/* Expanded content */}
-      <div style={{
-        maxHeight: isExpanded ? 800 : 0,
-        opacity: isExpanded ? 1 : 0,
-        overflow: "hidden",
-        transition: "all 0.4s ease",
+      <h1 style={{ fontFamily: font.display, fontSize: 34, fontWeight: 700, color: C.cream, margin: "6px 0 6px" }}>
+        Dropdown Logistics
+      </h1>
+      <p style={{
+        fontFamily: font.body, fontStyle: "italic", fontSize: 16, minHeight: 46,
+        color: active ? active.accent : C.creamMid, lineHeight: 1.5, maxWidth: 520, margin: "0 auto",
+        transition: "color .2s",
       }}>
-        <div style={{ padding: "0 28px 28px" }}>
-          {/* Sections grid */}
-          <div style={{ marginBottom: 20 }}>
-            <div style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 10 }}>
-              Sections
-            </div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))", gap: 6 }}>
-              {wing.sections.map((s) => (
-                <a
-                  key={s.href}
-                  href={s.href}
-                  style={{
-                    display: "block",
-                    padding: "10px 14px",
-                    background: C.creamGhost,
-                    border: `1px solid ${C.border}`,
-                    borderRadius: 5,
-                    textDecoration: "none",
-                    transition: "all 0.15s",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = wing.color + "40";
-                    e.currentTarget.style.background = wing.accent;
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = C.border;
-                    e.currentTarget.style.background = C.creamGhost;
-                  }}
-                >
-                  <div style={{ fontFamily: font.mono, fontSize: 11, fontWeight: 600, color: C.cream, marginBottom: 2 }}>{s.label}</div>
-                  <div style={{ fontFamily: font.body, fontSize: 10, color: C.creamDim }}>{s.desc}</div>
-                </a>
-              ))}
-            </div>
-          </div>
+        {active ? <><strong>{active.name}.</strong> {active.belief}</> : "Four wings. One foundation. One cathedral."}
+      </p>
+      <div style={{ height: 2, width: 48, background: C.crimson, margin: "18px auto 0", opacity: 0.4 }} />
+    </div>
+  );
+}
 
-          {/* Story/companion routes */}
-          <div>
-            <div style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 10 }}>
-              {wing.id === "ddl" ? "Story" : wing.id === "da" ? "Signal Reports" : wing.id === "dossiers" ? "Tools" : "Reference"}
-            </div>
-            <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
-              {wing.story.map((s) => (
-                <a
-                  key={s.href}
-                  href={s.href}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 8,
-                    padding: "8px 14px",
-                    background: "transparent",
-                    border: `1px solid ${C.border}`,
-                    borderRadius: 5,
-                    textDecoration: "none",
-                    transition: "all 0.15s",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = wing.color + "30";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = C.border;
-                  }}
-                >
-                  <span style={{ fontFamily: font.mono, fontSize: 10, color: C.cream }}>{s.label}</span>
-                  <span style={{ fontFamily: font.body, fontSize: 10, color: C.creamDim }}>{s.desc}</span>
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* Enter wing CTA */}
-          <a
-            href={wing.href}
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 8,
-              marginTop: 20,
-              padding: "10px 20px",
-              background: wing.color + "18",
-              border: `1px solid ${wing.color}40`,
-              borderRadius: 5,
-              textDecoration: "none",
-              transition: "all 0.15s",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = wing.color + "30";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = wing.color + "18";
-            }}
-          >
-            <span style={{ fontFamily: font.mono, fontSize: 11, fontWeight: 600, color: wing.color, letterSpacing: "0.06em" }}>
-              Enter {wing.name}
-            </span>
-            <span style={{ fontFamily: font.mono, fontSize: 14, color: wing.color }}>→</span>
-          </a>
-        </div>
+// ═══════════════════════════════════════════════════════════
+// Ticker — product · status · live stat (from the registry + metrics)
+// ═══════════════════════════════════════════════════════════
+function Ticker() {
+  const items = PRODUCTS.filter((p) => p.publicationStatus === "verified");
+  const line = items.map((p, i) => (
+    <span key={p.id} style={{ marginRight: 4 }}>
+      <b style={{ color: C.cream, fontWeight: 600 }}>{p.name}</b>
+      <span style={{ opacity: 0.4 }}> · </span>
+      <span style={{ color: statusColor(p.status) }}>{p.status}</span>
+      {p.counts && p.counts[0] && (
+        <span style={{ opacity: 0.7 }}> · {p.counts[0].value} {p.counts[0].label}</span>
+      )}
+      {i < items.length - 1 && <span style={{ opacity: 0.25, margin: "0 10px" }}>—</span>}
+    </span>
+  ));
+  return (
+    <div style={{
+      borderTop: `1px solid ${C.border}`, borderBottom: `1px solid ${C.border}`,
+      background: C.navyDeep, overflow: "hidden", whiteSpace: "nowrap", padding: "9px 0", marginBottom: 40,
+    }}>
+      <div className="ddl-track" style={{
+        display: "inline-block", paddingLeft: "100%",
+        fontFamily: font.mono, fontSize: 11, letterSpacing: "0.05em", color: C.creamMid,
+      }}>
+        {line}{line}
       </div>
     </div>
   );
 }
 
 // ═══════════════════════════════════════════════════════════
-// Products Link Card (compact, not a full wing card)
+// Wing Card — registry-driven, expandable to product children
 // ═══════════════════════════════════════════════════════════
-
-function ProductsCard() {
+function WingCard({ wing, index, isExpanded, onToggle }) {
+  const kids = productsByWing(wing.id);
+  const num = String(index + 1).padStart(2, "0");
   return (
-    <a
-      href="/products/behavioral-intelligence"
-      style={{
-        display: "block",
-        background: C.card,
-        border: `1px solid ${C.border}`,
-        borderRadius: 7,
-        padding: "24px 28px",
-        textDecoration: "none",
-        transition: "all 0.2s ease",
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.borderColor = C.blue + "40";
-        e.currentTarget.style.background = C.cardHover;
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.borderColor = C.border;
-        e.currentTarget.style.background = C.card;
-      }}
-    >
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+    <div className="ddl-wc" style={{
+      background: C.card, border: `1px solid ${C.border}`, borderLeft: `3px solid ${wing.accent}`,
+      borderRadius: 8, padding: "15px 18px",
+    }}>
+      <div
+        onClick={onToggle}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && onToggle()}
+        style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12, cursor: "pointer" }}
+      >
         <div>
-          <div style={{ fontFamily: font.mono, fontSize: 10, color: C.blue, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 6 }}>
-            Products
+          <div style={{ fontFamily: font.mono, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: wing.accent }}>
+            Wing {num}
           </div>
-          <div style={{ fontFamily: font.display, fontSize: 20, fontWeight: 600, color: C.cream, marginBottom: 4 }}>
-            Behavioral Intelligence
+          <div style={{ fontFamily: font.display, fontSize: 19, fontWeight: 700, color: C.cream, marginTop: 3 }}>
+            {wing.name}
           </div>
-          <div style={{ fontFamily: font.body, fontSize: 13, color: C.creamMid, lineHeight: 1.6 }}>
-            What if the conversation itself was the product? A concept suite exploring AI-native behavioral analytics — from investor brief to origin story.
+          <div style={{ fontFamily: font.body, fontStyle: "italic", fontSize: 13, color: C.creamMid, marginTop: 5, maxWidth: "90%" }}>
+            {wing.belief}
           </div>
         </div>
-        <div style={{ flexShrink: 0, marginLeft: 24 }}>
-          <div style={{
-            width: 40, height: 40, borderRadius: 8,
-            background: C.blue + "18", border: `1px solid ${C.blue}30`,
-            display: "flex", alignItems: "center", justifyContent: "center",
-            fontFamily: font.mono, fontSize: 18, color: C.blue,
-          }}>→</div>
+        <div style={{ textAlign: "right", flexShrink: 0 }}>
+          <div style={{ fontFamily: font.mono, fontSize: 11, color: C.creamDim, whiteSpace: "nowrap" }}>
+            {kids.length} {kids.length === 1 ? "product" : "products"}
+          </div>
+          <div style={{ fontFamily: font.mono, fontSize: 11, color: wing.accent, marginTop: 4 }}>
+            {isExpanded ? "▾ collapse" : "▸ expand"}
+          </div>
         </div>
       </div>
-    </a>
+
+      {isExpanded && (
+        <div style={{ marginTop: 14, paddingTop: 12, borderTop: `1px solid ${C.border}` }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: 7 }}>
+            {kids.map((p) => {
+              const pending = p.publicationStatus !== "verified";
+              const inner = (
+                <>
+                  <div style={{ display: "flex", alignItems: "center", gap: 6, flexWrap: "wrap" }}>
+                    <span style={{ fontFamily: font.display, fontWeight: 600, fontSize: 13, color: C.cream }}>{p.name}</span>
+                    <span style={{
+                      fontFamily: font.mono, fontSize: 9, letterSpacing: "0.08em", textTransform: "uppercase",
+                      color: statusColor(p.status), padding: "1px 6px", borderRadius: 10,
+                      background: statusColor(p.status) + "1f",
+                    }}>{pending ? "coming soon" : p.status}</span>
+                  </div>
+                  {p.tagline && (
+                    <div style={{ fontFamily: font.body, fontSize: 11.5, color: C.creamMid, marginTop: 4, lineHeight: 1.5 }}>
+                      {p.tagline}
+                    </div>
+                  )}
+                </>
+              );
+              const boxStyle = {
+                display: "block", background: C.navyDeep, border: `1px solid ${C.border}`,
+                borderRadius: 6, padding: "9px 11px", textDecoration: "none",
+              };
+              return pending || productHref(p) === "#" ? (
+                <div className="ddl-kid" key={p.id} style={boxStyle}>{inner}</div>
+              ) : (
+                <a className="ddl-kid" key={p.id} href={productHref(p)} target={p.url ? "_blank" : undefined} rel={p.url ? "noreferrer" : undefined} style={boxStyle}>{inner}</a>
+              );
+            })}
+          </div>
+          <a className="ddl-enter" href={wingHref(wing.id)} style={{
+            display: "inline-block", marginTop: 12, fontFamily: font.mono, fontSize: 11,
+            letterSpacing: "0.05em", color: wing.accent, textDecoration: "none",
+          }}>
+            Enter {wing.name} →
+          </a>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════
+// Foundation strip
+// ═══════════════════════════════════════════════════════════
+function FoundationStrip() {
+  return (
+    <div style={{ margin: "12px 0 0", padding: "14px 18px", border: `1px dashed ${C.borderMed}`, borderRadius: 8 }}>
+      <div style={{ fontFamily: font.mono, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: C.creamDim, marginBottom: 8 }}>
+        The Foundation · the layer beneath the wings
+      </div>
+      <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
+        {FOUNDATION.map((f) => (
+          <div key={f.id} style={{ fontFamily: font.body, fontSize: 12.5, color: C.creamMid }}>
+            <strong style={{ color: C.cream }}>{f.name}</strong> — {f.belief}
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -393,74 +292,54 @@ export default function DDLLanding() {
 
   return (
     <div style={{ minHeight: "100vh", background: C.navy, color: C.cream }}>
+      <style dangerouslySetInnerHTML={{ __html: CSS }} />
       <div style={{ maxWidth: 800, margin: "0 auto", padding: "64px 24px 80px" }}>
 
-        {/* ——— HERO ——— */}
-        <div style={{ textAlign: "center", marginBottom: 64 }}>
-          {/* Logo mark */}
-          <img
-            src="/ddl-logo.png"
-            alt="Dropdown Logistics"
-            style={{
-              width: 120, height: "auto", borderRadius: "50%", margin: "0 auto 24px",
-              boxShadow: "0 4px 20px rgba(0,0,0,0.3)", background: "#10202f", border: "2px solid #B23531", padding: 12,
-              display: "block",
-            }}
-          />
-
-          <h1 style={{
-            fontFamily: font.display, fontSize: 36, fontWeight: 700,
-            color: C.cream, lineHeight: 1.15, marginBottom: 8,
-          }}>
-            Dropdown Logistics
-          </h1>
-
-          <p style={{
-            fontFamily: font.body, fontSize: 18, color: C.creamMid,
-            lineHeight: 1.7, maxWidth: 520, margin: "0 auto",
-            fontStyle: "italic",
-          }}>
-            Five wings. One cathedral.
-          </p>
-
-          <div style={{ height: 2, width: 48, background: C.crimson, margin: "24px auto 0", opacity: 0.4 }} />
-        </div>
+        <OrbitalHero />
+        <Ticker />
 
         {/* ——— METHODOLOGY LINE ——— */}
-        <div style={{
-          display: "flex", alignItems: "center", justifyContent: "center",
-          gap: 16, marginBottom: 48,
-        }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 16, marginBottom: 40 }}>
           {["Chaos", "Structured", "Automated"].map((phase, i) => (
             <div key={phase} style={{ display: "flex", alignItems: "center", gap: 16 }}>
-              <span style={{
-                fontFamily: font.mono, fontSize: 11, letterSpacing: "0.08em",
-                color: i === 0 ? C.creamDim : i === 1 ? C.creamMid : C.cream,
-              }}>
+              <span style={{ fontFamily: font.mono, fontSize: 11, letterSpacing: "0.08em", color: i === 0 ? C.creamDim : i === 1 ? C.creamMid : C.cream }}>
                 {phase}
               </span>
-              {i < 2 && (
-                <span style={{ fontFamily: font.mono, fontSize: 12, color: C.creamDim }}>→</span>
-              )}
+              {i < 2 && <span style={{ fontFamily: font.mono, fontSize: 12, color: C.creamDim }}>→</span>}
             </div>
           ))}
         </div>
 
         {/* ——— WING CARDS ——— */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-          {wings.map((wing) => (
+        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+          {WINGS.map((wing, i) => (
             <WingCard
               key={wing.id}
               wing={wing}
+              index={i}
               isExpanded={expanded === wing.id}
               onToggle={() => setExpanded(expanded === wing.id ? null : wing.id)}
             />
           ))}
         </div>
 
-        {/* ——— PRODUCTS LINK ——— */}
+        {/* ——— FOUNDATION ——— */}
+        <FoundationStrip />
+
+        {/* ——— STORY / LEGACY ——— */}
         <div style={{ marginTop: 12 }}>
-          <ProductsCard />
+          <a href="/legacy" style={{
+            display: "block", background: C.card, border: `1px solid ${C.border}`, borderRadius: 7,
+            padding: "16px 18px", textDecoration: "none",
+          }}>
+            <div style={{ fontFamily: font.mono, fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", color: C.creamDim, marginBottom: 4 }}>
+              Story · Legacy
+            </div>
+            <div style={{ fontFamily: font.body, fontSize: 13, color: C.creamMid, lineHeight: 1.6 }}>
+              Before the governance, before the standards — the DexVerse mythology, the origin
+              threads, and the early work. Where the cathedral&rsquo;s foundation stones are visible. →
+            </div>
+          </a>
         </div>
 
         {/* ——— DISCOVERY ——— */}
@@ -470,17 +349,14 @@ export default function DDLLanding() {
 
         {/* ——— BOTTOM STATS ——— */}
         <div style={{
-          display: "flex", justifyContent: "center", gap: 32,
-          marginTop: 48, padding: "20px 0",
-          borderTop: `1px solid ${C.border}`,
-          borderBottom: `1px solid ${C.border}`,
-          flexWrap: "wrap",
+          display: "flex", justifyContent: "center", gap: 32, marginTop: 48, padding: "20px 0",
+          borderTop: `1px solid ${C.border}`, borderBottom: `1px solid ${C.border}`, flexWrap: "wrap",
         }}>
           {[
-            { n: "44", l: "systems" },
-            { n: "65", l: "standards" },
+            { n: "44+", l: "systems" },
+            { n: "65+", l: "standards" },
             { n: "9", l: "council models" },
-            { n: "15", l: "companions" },
+            { n: "4", l: "wings" },
             { n: "110+", l: "routes" },
           ].map((s, i) => (
             <div key={i} style={{ textAlign: "center" }}>
@@ -492,19 +368,17 @@ export default function DDLLanding() {
 
         {/* ——— FOOTER ——— */}
         <div style={{ marginTop: 48 }}>
-          <div style={{
-            height: 2, borderRadius: 1, marginBottom: 14,
-            background: `linear-gradient(90deg, ${C.crimson}, ${C.amber}, ${C.blue}, ${C.violet}, ${C.green})`,
-          }} />
+          <div style={{ height: 2, borderRadius: 1, marginBottom: 14, background: `linear-gradient(90deg, ${C.crimson}, #C49A3C, #6B9DC2, #8a6cc9, #22C55E)` }} />
           <div style={{ textAlign: "center" }}>
             <div style={{ fontFamily: font.mono, fontSize: 10, color: C.creamDim, letterSpacing: "0.08em", marginBottom: 4 }}>
               Cottage — Humble surface. Cathedral underneath.
             </div>
             <div style={{ fontFamily: font.mono, fontSize: 9, color: C.creamDim, opacity: 0.4 }}>
-              <a href="https://davidkitchens.com" target="_blank" rel="noreferrer" style={{ color: "inherit", textDecoration: "none" }}>David Kitchens, CPA {'↗'}</a>{' · One-person operations studio · Est. 2024'}
+              <a href="https://davidkitchens.com" target="_blank" rel="noreferrer" style={{ color: "inherit", textDecoration: "none" }}>David Kitchens, CPA ↗</a>{" · One-person operations studio · Est. 2024"}
             </div>
           </div>
         </div>
+
       </div>
     </div>
   );
