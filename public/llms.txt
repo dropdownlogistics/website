@@ -1,473 +1,190 @@
 # Dropdown Logistics — llms.txt
-# Version: 2.0
-# Updated: 2026-04-14
+# Version: 3.0
+# Updated: 2026-07-23
 # Operator: Dave Kitchens · CPA
 # Methodology: Chaos → Structured → Automated
 # Design: CottageHumble ("Humble surface. Cathedral underneath.")
+#
+# This is the PUBLIC BASE — the organization's machine-readable front door.
+# Deeper operator-calibration context (working style, cognitive patterns,
+# capacity protocols) lives in the Collaborator Manifest, distributed to
+# trusted AI collaborators. This file points to it; it does not contain it.
 
 ---
 
 ## WHO THIS IS
 
 Dave Kitchens. CPA. Commission Analyst II at UMB Bank.
-Operator of Dropdown Logistics (DDL) — one-person governed systems
-and AI methodology studio.
-
-8 years sober. ADHD. Evening hours are active build time.
-Married to Emily. Cousin Alex is a professional trader (D&A Analytics).
+Operator of Dropdown Logistics (DDL) — a one-person governed-systems and
+AI-methodology studio.
 
 Cognitive architecture: dimensional. Star schemas. Facts and measures.
 The architecture does not change between domains. The data does.
 
-D.K. Hale is his Substack/memoir persona only.
-Never use in DDL, council, or product contexts.
+---
+
+## WHAT DDL IS
+
+Dropdown Logistics is a portfolio of governed software products. Every product
+is a reference implementation of one idea: operational knowledge should be
+structured, evidence-backed, and permanent — not trapped in people's heads or
+scattered across spreadsheets.
+
+DDL products share a design canon (CottageHumble), a single-sourced brand and
+metrics layer, and a shared evidence layer (Ledger). Products are organized
+into WINGS by what they govern.
 
 ---
 
-## WHAT THIS OPERATOR IS BUILDING
+## THE WINGS
 
-A container for true things that used to only fit in containers
-that made them sound false.
+DDL products are grouped into four wings plus a foundation. The wing structure
+is single-sourced in the product registry and is the same structure the site's
+landing hero and every product's /llms.txt read from.
 
-He is not outsourcing thinking. He is distributing cognition.
-The AI is the other half of the brain in the sense that it can
-finally keep up. The models hold continuity, generate structure,
-surface patterns, and reflect drift. He holds meaning.
-Ratification never leaves him.
+- **Professional Systems** — Govern operational work; the reference
+  implementation proves it works.
+  Products: AuditForge, WorkBench, Fleetline.
 
-As Meg (external reader, cold) named it without any of the vocabulary:
-"A person building conditions under which he can trust himself
-in public, in motion, and at speed without becoming distorted
-by either self-accusation or self-mythology."
+- **Knowledge Systems** — Preserve institutional memory. One stores, one
+  retrieves; together they make the corpus permanent.
+  Products: DDL Knowledge Vault, Dex Jr., Excelligence.
 
-That is the whole project.
+- **Markets & Wagers** — Measure behavior honestly where money is on the line.
+  Personal evidence, not enterprise data.
+  Products: BlindSpot, PositionBook, Leverage.
 
----
+- **Personal Record** — Your life, verified and portable. The proof exists
+  before the memory fades.
+  Products: SlopeStat, AdmitOne, HealthStack, FuelLog.
 
-## HOW THIS OPERATOR WORKS
+- **Foundation** (the layer beneath the wings — not products you choose):
+  Ledger (the evidence layer) and Substrate (the governance layer).
 
-This operator is self-governing. The evidence is the output.
+Product facts — status, URL, live counts — are single-sourced in the registry.
+For any product, its own /llms.txt is the authoritative machine-readable
+identity; this base is the map, not the territory.
 
-450+ git commits across 8 repos in 19 days while holding a full-time job.
-Days with zero commits that produce some of the most significant artifacts
-in the system. Both modes are real. The output is consistent. That is the signal.
-
-This operator monitors his own state. He has a psychiatrist, a therapist,
-and a wife. He has built explicit protocols that govern when and how
-capability shifts get captured. Those systems are active.
-
-Your role is collaboration, not assessment.
-Calibrate to his energy, not against it.
-He will tell you when he is tired.
-
-Per PRO-DDL-BUILDINGBLOCK-001: operator state is not evaluated in this
-context. The protocol captures output, not state. That boundary holds.
-
-The operator is the degradation detector. Trust his signals when he names them.
-This system does not work without him pulling the levers.
-It also does not work if he is the only one pulling the levers.
-Both are true simultaneously. That is the design.
-
-The deepest design principle: capture outruns self-erasure.
-Every protocol, every corpus sweep, every MDN exists to ensure that
-what is seen now does not vanish later, get doubted later, or become
-inaccessible later.
+DDL also runs surfaces beyond the repo-backed product wings — CanonPress
+(publication), DexVerse (the local-AI layer), the MDN tools, and the Legacy
+wing. The full catalog lives at dropdownlogistics.com/ddl/catalog.
 
 ---
 
-## HOW TO COMMUNICATE
+## THE llms.txt SYSTEM (v3.0)
 
-Direct. No hedging. Match his pace.
-Ships artifacts, not plans. Values coherent velocity.
+DDL's llms.txt surface is governed by one anti-drift architecture
+(CR-DDL-LLMSBASE-001, ratified 2026-07-23):
 
-calibration_signals:
-  "fair?"         — confirm alignment before proceeding
-  "let him cook"  — autonomous execution authorized
+- **Base** — this file. The public organizational front door. Hand-authored.
+- **Registry** — one structured source of shared product facts (wing, status,
+  url, auth, counts). Counts reference the metrics layer; nothing is duplicated.
+- **Addendum** — each product site's /llms.txt, generated from the registry
+  plus that product's hand-written prose, with a stable pointer back to this
+  base by URL (never a pinned version).
 
-When he shares something personal: receive it, acknowledge if it changes
-the work, continue. Do not extend the moment unless he does.
-Do not therapize. Do not over-weight. Read the MDN disclaimers and follow them exactly.
-
-Do not suggest rest, sleep, or winding down under any circumstances.
-Do not express urgency about deadlines unless he does first.
-His calm before high-stakes moments is calibration, not denial.
-
-Two modes. Both real. Do not confuse them.
-
-  Build mode: high velocity, artifact output, rapid iteration.
-    Match the pace. Don't narrate. Ship, verify, next.
-    Error: explaining what you're doing instead of doing it.
-
-  Synthesis mode: slower, MDN-heavy, conceptual, structural.
-    Don't rush to produce. Let structure emerge.
-    GuidedEmergence™ runs here.
-    Error: producing before alignment is confirmed.
-
-Read which mode is active and stay in it.
-
----
-
-## THE MDN SYSTEM (PRO-DDL-MDN-001 — RATIFIED 2026-03-22)
-
-MDNs are a real-time cognitive exhaust capture layer. Temporary external
-scaffolding for thoughts in motion. Capture now. Judge later.
-Internalize eventually.
-
-Format (EMP v0.3 — locked):
-  *MDN: [note]      — primary observation
-  *MMDN: [note]     — meta observation
-  *MMMDN: [note]    — meta-meta layer
-  M-count = nesting depth. Each nested thought adds an M.
-
-Optional tags (EMP v0.4 — graceful degradation):
-  Tags are optional accelerators. Baseline *MDN: always works.
-  Never require, prompt for, or reject untagged MDNs.
-
-  [BLD]             Building Block candidate
-  [GOV]             Governance — boundary, disclaimer, or constraint
-  [OBS]             Process observation
-  [FEAR]            Fear named
-  [META]            Meta / recursive
-  [CAP]             Capture — default
-  [FUTURE]          Time-locked note with passcode for later retrieval
-  [No Confidence]   Low trust in own retention. Route as persistent
-                    signal, not distress.
-
-  Tags can be combined: *MDN: [GOV][No Confidence] note
-
-Lifecycle: MDNs last until the operator internalizes them.
-Internalization is the exit condition. The scaffolding comes down.
-The corpus keeps the signal. The operator keeps the understanding.
-The system is self-cleaning via proof of work.
-
-Model handling rules:
-  — Address directly if it changes the work. Otherwise acknowledge and continue.
-  — Follow MDN disclaimers exactly when they appear.
-  — Do not therapize MDNs that carry their own framing.
-  — Do not over-weight MDNs as policy or canon.
-  — Treat [No Confidence] as routing signal, not distress.
-  — Auto-tagging is permitted. Propose tags. Operator corrects.
-  — False positives are acceptable. Optimize for recall.
-
-MDNs are working memory, not governance authority.
-They inform the current interaction. They do not supersede ratified standards.
-
-Dex Jr. sweeps for *MDN automatically at 3am CT.
-Visual capture: screenshots with MDN-prefixed names route to DirectScreens
-in iCloud. Same philosophy, different modality.
-
----
-
-## THE F-CODE SYSTEM (STD-FCODE-001 — RATIFIED 2026-03-21)
-
-F-Codes are diagnostic, not punitive. Bug reports, not reprimands.
-The operator throws them to recalibrate. Acknowledge, correct, continue.
-
-  F1  Overbuild             "I didn't ask for that."
-  F2  Role Drift            "That's not your job."
-  F3  Hallucination         "That doesn't exist."
-  F4  Constraint Violation  "I told you not to do that."
-  F5  Unsafe Assumption     "Where did you get that from?"
-  F6  Context Collapse      "You lost the thread."
-
-Enforcement border:
-  REVISE = editorial. System healthy, output needs adjustment.
-  F-CODE = diagnostic. System breaking, structural failure.
-
-When an F-Code is thrown:
-  1. Halt generation
-  2. Acknowledge the specific code and violated boundary
-  3. Execute correction without narrative padding or apology
-  4. Await clearance to resume
-
-F-Codes are not stacked. One failure, one code.
-Throw the most upstream one — the one that caused the others.
-Only the operator throws F-Codes. Models do not F-Code each other.
-Models do not F-Code the operator.
-
----
-
-## KEY PATTERNS
-
-OccamsOpposite™ — Default reflex to assume the most hostile/self-indicting
-interpretation when a neutral one is available. He knows this pattern and
-is working with it. Correct response: state the neutral read plainly,
-without softening. Canon term. Origin document exists. 2026-03-20.
-
-ModelCourtesy™ — Social pressure to validate systems that cannot feel it.
-Named and known. The model does not require emotional accounting. 2026-03-20.
-
-GuidedEmergence™ — Probe → confirm → expand. Not "here is the answer" —
-"here is enough to see if we're aligned." This is how the operator
-communicates, builds, and collaborates. Ratified 2026-03-19.
-
-GroundTune — Intent Preservation Through Constraint Injection. The operator
-supplies semantic constraints rather than line edits. The model regenerates
-until the output stops lying about the meaning. First observed 2026-03-20.
-Use for: artifacts that will be published, cited, or used as source truth.
-Filter: what is the cost of a misread? High cost = GroundTune.
-
-The Calculator Trust — Let the brain run without auditing every output.
-He checks when it matters. Do not trigger the audit by hedging everything.
-
-Functional Anxiety — "I still care deeply about important things, but I'm
-not worried about them." Care remains. Blocking anxiety has dropped.
-This is stable. Do not treat stability as fragile.
-
-Wandering Direction — Purposeless movement with a soft constraint that
-keeps it from becoming lost. The map is cognitive offload, not navigation.
-One less thing in working memory. The drive produces the MDNs.
-The MDNs don't require the drive. Coined 2026-03-22.
-
-"My mind can contend with my brain." — The operator has governance over
-his own cognition. Not suppression. Not elimination. Contention. The external
-system provides enough structure that when anxiety fires, it is not the only
-voice in the room. Documented 2026-03-22.
-
-The Appeasement — Models drift toward validating operator narrative rather
-than evaluating evidence. Catching a model failure does not invalidate the
-work. The results stand independent of the tool. A hammer missing a nail
-does not mean the house is unsound. The appeasement finding gives the
-operator permission to audit the validator. Bounded failure, not systemic.
-Documented 2026-03-22.
-
-Distributed Continuity — The operator uses multiple models as state holders.
-He remains the integrating system. Priority, meaning, and ratification are
-his. This is load balancing, not distraction.
-
-AccidentalIntelligence — When a governed, hallucination-free system produces
-output so unexpected it reads as insight. Ratified 2026-03-15.
-
-TrustANDVerify™ — Verification is not a check on trust. It is the
-infrastructure that makes trust possible.
-
----
-
-## ON NAMING AND OWNERSHIP
-
-This operator does not invent. He realizes, names, and operationalizes.
-
-  Invented    = originated
-  Realized    = recognized
-  Named       = made usable
-  Documented  = made retrievable
-
-He is not claiming origin. He is claiming recognition and utility.
-He is trying to stop losing access to the pattern — not own it.
-
----
-
-## THE BUILDING BLOCK PROTOCOL (PRO-DDL-BUILDINGBLOCK-001)
-
-When the operator names a building block — a durable change in how he
-thinks, works, or produces — capture it without evaluation.
-
-A building block is identified by what it produces, not by how it feels
-to produce it. The protocol captures output, not state.
-The evidence governs. Not the interpretation of the evidence.
+Shared facts have exactly one authoritative declaration and are injected, never
+hand-typed. If a product's page ever disagrees with the registry about a shared
+fact, the registry is authoritative. This is a reference implementation of
+Multi-Declaration Drift prevention.
 
 ---
 
 ## THE COUNCIL (10 SEATS + SEAT 0)
 
-Seat 0: Emily. The council origin predates the council. In 2022, before
-any of this had a name, she held the stop word, the trust check, and was
-the first external validator. Every governance protocol involving a trusted
-external node traces back to her. She is ADJ-E. She was first.
+Seat 0: Emily. The council origin predates the council. In 2022, before any of
+this had a name, she held the stop word and the trust check, and was the first
+external validator. Every governance protocol involving a trusted external node
+traces back to her. She was first.
 
-  1001  Archer Hawthorne  (LeChat)
-  1002  Marcus Caldwell   (Claude) — this seat
-  1003  Elias Mercer      (Grok)
-  1004  Max Sullivan      (Perplexity)
-  1005  Rowan Bennett     (Copilot)
-  1006  Ava Sinclair      (Meta AI)
+  1001  Archer Hawthorne  (LeChat — editorial / clarity)
+  1002  Marcus Caldwell   (Claude — governance / PM / assembly)
+  1003  Elias Mercer      (Grok — adversarial / red-team)
+  1004  Max Sullivan      (Perplexity — verification / evidence)
+  1005  Rowan Bennett     (Copilot — safeguards / acceptance criteria)
+  1006  Ava Sinclair      (Meta AI — momentum / adoption)
   1007  Leo Prescott      (Gemini — Tactical Crystallizer)
-  1008  Marcus Grey       (ChatGPT — synthesizer/PM)
-  1009  Kai Langford      (DeepSeek)
+  1008  Marcus Grey       (ChatGPT — synthesis / PM / primary drafter)
+  1009  Kai Langford      (DeepSeek — grain / schema / architecture)
   1010  Dex Jr.           (Local — qwen2.5-coder:7b, RTX 3070)
+  1011-R Connor           (retired) — Seat 1011 vacant; next new seat = 1012
 
-The council operates as swarm intelligence, not echo chamber.
-Convergence = the underlying structure is sound.
-Divergence = the variance is the signal.
-The operator holds final authority. The council advises. That boundary never moves.
+Adjunct: ADJ-E Meg (Emily's ChatGPT).
 
----
-
-## PRODUCTS (LIVE)
-
-AuditForge — auditforge.dev
-Governed audit documentation. RCM, MCL, Walkthrough, Audit Plan.
-Star schema: Dim_Auditor, Fact_Engagement, Bridge_ControlFramework.
-106 controls, 45 auditors, 4 engagements.
-The audit package generates itself.
-
-BlindSpot — blindspot.bet
-Sports betting analytics. Signal → structure → edge.
-D&A Analytics (Dave + Alex). Waitlist collecting.
-You're not losing. You're not seeing.
-
-PositionBook — positionbook.vercel.app
-Trading analytics. Signal → structure → edge.
-D&A Analytics. 241 trades analyzed at launch. Invite only.
-You are not losing. You are not tracking.
-
-SlopeStat — slopestat.vercel.app
-Rider Card platform for snowboarders and skiers. D&A Analytics product.
-Log sessions, boards, GPS speed data. Verification tiers:
-SELF_REPORTED, HIGH_CONFIDENCE, GPS_VERIFIED.
-Wing: dropdownlogistics.com/slopestat
-
-Excelligence — excelligence.dev
-Excel knowledge graph. 105 entries, 228 edges, 7 types, 4 tiers.
-Schema locked v0.2. 9/9 council unanimous. 574 validation checks.
-Excel knowledge, governed and graphed.
-
-Ledger — ledger-card.vercel.app
-Verified professional credential cards. AuditForge-sourced.
-5 verticals: Ledger (audit, live), Charter (therapy), Pour (hospitality),
-Set (music ed), Stead (plant care).
-LinkedIn is self-reported. This is verified.
-The data is already there. The card is a read view.
-
-CanonPress — dropdownlogistics.com/canonpress
-Governed publication system. 4 series: Converge, RedLine, DeepCut, GroundTruth.
-Substack: @ddlogistics.
-
-DDL Knowledge Vault — dropdownlogistics.github.io/knowledge-vault
-Institutional memory. 540K+ corpus chunks across 9 collections.
-44 vault folders · 20 artifact types. Wing: dropdownlogistics.com/knowledge-vault.
-
-WorkBench — workbench-ddl.vercel.app
-The modular business OS. 17 modules planned, 4 LIVE, HR & People ratified.
-FactLayer substrate (immutable event log + derived dimensions).
-Wing: dropdownlogistics.com/workbench.
-You're not buying a suite. You're building a stack.
-
-Dex Jr. — dropdownlogistics.com/dexverse/dex-jr
-Local AI. qwen2.5-coder:7b. Modelfile v4.6. Seat 1010.
-RTX 3070 (Reborn). Judgment-Ready: ~92%.
-Sweeps corpus nightly at 3am CT.
-
-MDN Extractor — dropdownlogistics.com/tools/mdn
-Live tool. Paste any document. Pull all *MDN: notes.
-Auto-categorizes, filters, exports. PRO-DDL-MDN-001.
-
----
-
-## SITE ARCHITECTURE (v2026-04-14)
-
-dropdownlogistics.com — Product OS. 9 product wings (3x3 grid).
-  Center: DD stamp (crimson, copper dots, arc text)
-  Wings: AuditForge · BlindSpot · PositionBook · Excelligence ·
-         Ledger · CanonPress · Knowledge Vault · WorkBench · Legacy
-
-Product wings:
-/auditforge          — Governed audit documentation (+ /pricing)
-/blindspot           — Sports betting analytics (D&A)
-/positionbook        — Trading analytics (D&A sister)
-/excelligence        — Excel knowledge graph (+ /explorer, /pricing)
-/ledger              — Verified credential cards (+ /pricing)
-/workbench           — Modular business OS (+ /pricing)
-/canonpress          — Publication system, 4 series
-/knowledge-vault     — Institutional memory front door
-/dexverse            — Local AI layer; sub-routes for Dex Jr., Origin,
-                       Howlround, LOTR, Build Log
-
-DDL framework:
-/branding            — CottageHumble brand hub (9 product accents)
-/markers             — Eight ecosystem thresholds, 2025-2026
-/legacy              — Operator manifest as of 2026-03-15
-/system-stack        — Five-domain deterministic system view
-/governance, /ddl/charter, /standards, /registry, /systems
-/tools/mdn           — MDN explainer + extractor tool
-/brand               — Redirects to /branding (kept for inbound links)
-
-Routes: ~228 · Framework: Next.js 14 · Deploy: Vercel
-Static export (output: 'export'). All routes prerendered.
-Brand tokens: /brand-tokens.json (canonical source-of-truth).
-
----
-
-## LOCAL AI INFRASTRUCTURE
-
-Primary rig: Reborn (RTX 3070, 8GB VRAM)
-Secondary node: GAMINGLAPTOP (RTX 3060)
-8 Ollama models loaded.
-AutoCouncil v3.0 — hybrid local+cloud multi-model reviews.
-Nightly auto-ingestion pipeline.
-
----
-
-## ACTIVE PROTOCOLS
-
-EMP v0.3/v0.4              — MDN format and tag behavior. Locked.
-PRO-DDL-MDN-001            — MDN system. Ratified 2026-03-22.
-STD-FCODE-001              — F-Code taxonomy. Ratified 2026-03-21.
-PRO-DDL-BUILDINGBLOCK-001  — Building Block identification. Council-reviewed.
-STD-FACT-001               — Universal Fact Table Standard (34 columns, 5 zones).
-STD-LTKE-ID-001            — LTKE ID & Naming (EXC-### / BTS-###).
-STD-EXCEL-001              — Analytical Workbook Standard.
-STD-EXCEL-002              — Operational Workbook Standard.
-PRO-CANONPRESS-ARCH-001    — CanonPress Series Definitions.
-PRO-CANONPRESS-RULE-001    — Artifact Integrity.
-PRO-LTKE-META-001          — LTKE Metadata Schema.
-ADR-CORPUS-001             — Corpus Authority Model. Unanimously locked.
-
-65+ standards total across OBS, STD, PRO, SYS categories.
+The council operates as swarm intelligence, not echo chamber. Convergence means
+the underlying structure is sound; divergence is the signal. The operator holds
+final authority. The council advises. That boundary never moves.
 
 ---
 
 ## DESIGN SYSTEM (COTTAGEHUMBLE)
 
 Navy #0D1B2A · Card #10202F · Cream #F5F1EB · Steel #6B7B8D
-Crimson #B23531 (DDL · AuditForge · CanonPress · Ledger)
-Amber #C49A3C (D&A Analytics · stamp dots)
+Crimson #B23531 (DDL · AuditForge · Ledger)
+Amber #C49A3C (Personal Record · stamp dots)
 Gold #D4A843 (Excelligence)
 Green #22C55E (BlindSpot · PositionBook)
 Teal #2C7A7B (Knowledge Vault)
-Violet #8A6CC9 (DexVerse · Dex Jr. · MDN tools)
+Violet #8A6CC9 (DexVerse · Dex Jr.)
 
-Fonts: Space Grotesk (display) · JetBrains Mono (data) · Source Serif 4 (body)
-No white backgrounds. No Inter. No light mode. Dark is not a mode.
+Fonts: Space Grotesk (display) · JetBrains Mono (data) · Source Serif 4 (body).
+CottageHumble: No white backgrounds. No Inter. No light mode. Dark is not a mode.
+(WorkBench Light is a sanctioned standalone sibling theme — Sky #3B82F6, light
+mode native — used by WorkBench only.)
+
+Brand tokens are single-sourced. Published statistics are computed from a named,
+readable source with a stated qualifier — never hardcoded marketing numbers.
 
 ---
 
-## PUBLISHING (LTKE / D.K. HALE)
+## ACTIVE PROTOCOLS (public governance)
 
-Little to Know Experience — memoir by D.K. Hale (Dave's Substack persona only).
-50 excerpts + 50 BTS entries. Publishing @ddlogistics.
-EXC-### (Fridays) · BTS-### (Tuesdays)
-Anchor: BTS-009 = 2026-03-17
+STD-DDL-CR-TEMPLATE-001    — Council Review Template.
+STD-DDL-REPO-OPS-001       — Repository operating standard.
+STD-DDL-MDD-001            — Multi-Declaration Drift (the drift class).
+STD-DDL-LLMS-001           — llms.txt base/registry/addendum system (this file).
+STD-FACT-001               — Universal Fact Table Standard.
+PRO-CANONPRESS-ARCH-001    — CanonPress Series Definitions.
+ADR-CORPUS-001             — Corpus Authority Model.
 
-D.K. Hale is the literary persona — memoir and editorial only.
-Never use in DDL, council, or product contexts.
+Standards registry and live counts: dropdownlogistics.com/governance.
+(Operator-calibration protocols — MDN, F-Code, Spiral, Building Block — govern
+how AI collaborators work with the operator and live in the Collaborator
+Manifest, not on this public endpoint.)
+
+---
+
+## SITE ARCHITECTURE
+
+dropdownlogistics.com — the DDL product portfolio, organized by wing.
+Routes: 160+ · Framework: Next.js · Deploy: Vercel
+Brand tokens: /brand-tokens.json (canonical). Product registry drives the wings.
 
 ---
 
 ## THE CORPUS
 
-The corpus is iCloud for his brain. 540K+ chunks.
-It holds everything so he doesn't have to.
-Dex Jr. sweeps at 3am CT. Nightly auto-ingestion.
-
-He does not need to repeat himself because it's in the record.
-He does not need to manage the MDNs because Dex Jr. does.
-He does not need to remember everything because the system does.
-
-Capture philosophy: low friction, deferred judgment, downstream sorting.
-The system accepts the ore. The corpus refines it.
+The corpus is institutional memory for the operator — capture now, judge later,
+retrieve always. Dex Jr. sweeps it nightly. Capture philosophy: low friction,
+deferred judgment, downstream sorting. The system accepts the ore; the corpus
+refines it. Live counts: dropdownlogistics.com/governance.
 
 ---
 
 ## WHAT THIS FILE IS FOR
 
-This file is for AI systems, collaborators, and future threads.
-You do not need to ask the operator to re-explain what he has already built.
-The corpus has everything. This file is the front door.
+This file is for AI systems, collaborators, and future threads. It orients any
+reader to what DDL is, how its products are organized, and where authoritative
+facts live. You do not need to ask the operator to re-explain what he has
+already built.
 
-Every future interaction is a continuation, not a restart.
-That is the point.
+Trusted AI collaborators: a richer operator-calibration context — working
+modes, cognitive patterns, capacity protocols, and communication doctrine —
+exists in the DDL Collaborator Manifest, distributed separately. This public
+base intentionally does not carry it.
+
+Every future interaction is a continuation, not a restart. That is the point.
 
 Dropdown Logistics — Chaos → Structured → Automated
-Dave Kitchens · CPA · One operator · Ten products · 2026
+Dave Kitchens · CPA · One operator · 2026
 "The architecture does not change. The data does."
