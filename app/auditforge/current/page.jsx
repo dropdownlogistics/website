@@ -18,7 +18,7 @@ const C = {
   copperDim: 'rgba(196,154,60,0.12)',
   steel:     '#6B7B8D',
   crimsonAF: '#B23531',
-  crimsonDim:'rgba(155,17,30,0.12)',
+  crimsonDim:'rgba(178,53,49,0.12)',
   green:     '#4A9E6B',
   greenDim:  'rgba(74,158,107,0.12)',
 };

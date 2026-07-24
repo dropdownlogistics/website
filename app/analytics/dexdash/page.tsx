@@ -279,8 +279,8 @@ export default function DexDashPage() {
   const [selected,setSelected] = useState<string|null>(null);
   const drillDown = (contact: string) => { setSelected(contact); setTab("contact"); };
 
-  return <div style={{fontFamily:"'Inter',-apple-system,sans-serif",background:"linear-gradient(180deg,#0d1117 0%,#161b22 50%,#0d1117 100%)",color:"#e6edf3",minHeight:"100vh",padding:"100px 24px 32px"}}>
-    <style>{`@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700;800&display=swap');`}</style>
+  return <div style={{fontFamily:"'Space Grotesk',sans-serif",background:"linear-gradient(180deg,#0d1117 0%,#161b22 50%,#0d1117 100%)",color:"#e6edf3",minHeight:"100vh",padding:"100px 24px 32px"}}>
+    <style>{`@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700;800&display=swap');`}</style>
     <div style={{maxWidth:1100,margin:"0 auto"}}>
       <div style={{marginBottom:32,display:"flex",alignItems:"flex-end",justifyContent:"space-between",flexWrap:"wrap",gap:16}}>
         <div>
