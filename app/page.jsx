@@ -1,8 +1,5 @@
-﻿export default function Home() {
-  return (
-    <iframe
-      src="/ddl-landing.html"
-      style={{ position:'fixed', top:0, left:0, width:'100%', height:'100%', border:'none' }}
-    />
-  )
+import DDLLanding from "@/components/DDLLanding";
+
+export default function Home() {
+  return <DDLLanding />;
 }
