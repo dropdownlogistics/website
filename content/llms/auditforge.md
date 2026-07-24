@@ -1,0 +1,69 @@
+## WHAT THIS PRODUCT IS
+
+AuditForge is a SYSTEM OF STRUCTURE. It takes structured control, risk, process,
+and framework data and produces governed audit deliverables — RCMs, MCLs,
+walkthroughs, and audit plans — as XLSX and DOCX files.
+
+It does:
+- Define what controls ARE
+- Generate governed documentation from structured data
+- Enforce review workflows and lifecycle state machines
+- Log every mutation to an immutable audit trail (Silent Fix Prevention)
+- Map controls to risks, frameworks, and assertions
+- Staff engagements with governed teams and hour budgets
+- Surface team-composition gaps and warning flags (STD-AUDITOR-001)
+
+It does NOT:
+- Test whether controls WORK
+- Issue audit opinions
+- Store evidence artifacts
+- Replace the auditor's judgment
+
+The auditor issues the opinion. AuditForge produces the evidence package.
+That line does not move.
+
+## DATA MODEL
+
+Star schema. Fact_Control at center. Grain: one control instance per company
+per period. Dimensions: Company, Process (3-level), Risk, Owner, Framework
+(3-level), Assertion, Auditor. Bridges (M:M, effective-dated): ControlRisk,
+ControlFramework, ControlAssertion, AuditControl, AuditAuditor. Workflow tables:
+ControlStatusLog, AuditTrail, Template, GeneratedDocument. All entities use
+human-readable natural IDs (CO-ITGC-001, AUD-2025-002).
+
+## GOVERNANCE (ratified boundaries — do not move)
+
+- AuditForge is a System of Structure, not execution.
+- Silent Fix Prevention: every mutation requires documented rationale.
+- AuditTrail: every mutation logged with actor, timestamp, field-level diffs.
+- Segregation of duties: prepared_by != reviewed_by.
+- Lifecycle validation: controls move forward only, via explicit transitions.
+- Company scoping: all queries are company-scoped; no cross-company leaks.
+- The AI layer is a premium accelerator; the core must function without it.
+- Evidence vault is deferred — references only, no storage.
+
+## STD-AUDITOR-001 — COMPETENCY TOKEN TAXONOMY
+
+8 strength tokens, 8 weakness tokens. Each auditor: 2–3 strengths, 1–2
+weaknesses. Team-composition warning flags detect documentation bottlenecks,
+escalation gaps, and skepticism gaps on an engagement. Weakness tokens are
+role-based visibility — governed assessments, not performance ratings.
+
+## CANON TERMS
+
+SystemOfStructure — AuditForge's ratified architectural identity. Defines what
+  controls ARE; does not test whether they WORK.
+SilentFixPrevention — unacknowledged corrections are the most dangerous kind;
+  every edit requires rationale.
+AccidentalIntelligence — when a governed, hallucination-free system produces
+  output so unexpected it reads as insight.
+TrustANDVerify — verification is not a check on trust; it is the infrastructure
+  that makes trust possible.
+
+## FOR AI COLLABORATORS
+
+Professional, technical, direct — users are CPAs, auditors, compliance leads.
+The data model is locked; do not propose schema changes without council review.
+Do not suggest AuditForge issue opinions or store evidence. Generators produce
+output from the query layer; never touch the ORM directly. Company scoping is
+mandatory.

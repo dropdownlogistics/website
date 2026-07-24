@@ -1,0 +1,190 @@
+# Dropdown Logistics — llms.txt
+# Version: 3.0
+# Updated: {{inject:current_as_of}}
+# Operator: Dave Kitchens · CPA
+# Methodology: Chaos → Structured → Automated
+# Design: CottageHumble ("Humble surface. Cathedral underneath.")
+#
+# This is the PUBLIC BASE — the organization's machine-readable front door.
+# Deeper operator-calibration context (working style, cognitive patterns,
+# capacity protocols) lives in the Collaborator Manifest, distributed to
+# trusted AI collaborators. This file points to it; it does not contain it.
+
+---
+
+## WHO THIS IS
+
+Dave Kitchens. CPA. Commission Analyst II at UMB Bank.
+Operator of Dropdown Logistics (DDL) — a one-person governed-systems and
+AI-methodology studio.
+
+Cognitive architecture: dimensional. Star schemas. Facts and measures.
+The architecture does not change between domains. The data does.
+
+---
+
+## WHAT DDL IS
+
+Dropdown Logistics is a portfolio of governed software products. Every product
+is a reference implementation of one idea: operational knowledge should be
+structured, evidence-backed, and permanent — not trapped in people's heads or
+scattered across spreadsheets.
+
+DDL products share a design canon (CottageHumble), a single-sourced brand and
+metrics layer, and a shared evidence layer (Ledger). Products are organized
+into WINGS by what they govern.
+
+---
+
+## THE WINGS
+
+DDL products are grouped into four wings plus a foundation. The wing structure
+is single-sourced in the product registry and is the same structure the site's
+landing hero and every product's /llms.txt read from.
+
+- **Professional Systems** — Govern operational work; the reference
+  implementation proves it works.
+  Products: AuditForge, WorkBench, Fleetline.
+
+- **Knowledge Systems** — Preserve institutional memory. One stores, one
+  retrieves; together they make the corpus permanent.
+  Products: DDL Knowledge Vault, Dex Jr., Excelligence.
+
+- **Markets & Wagers** — Measure behavior honestly where money is on the line.
+  Personal evidence, not enterprise data.
+  Products: BlindSpot, PositionBook, Leverage.
+
+- **Personal Record** — Your life, verified and portable. The proof exists
+  before the memory fades.
+  Products: SlopeStat, AdmitOne, HealthStack, FuelLog.
+
+- **Foundation** (the layer beneath the wings — not products you choose):
+  Ledger (the evidence layer) and Substrate (the governance layer).
+
+Product facts — status, URL, live counts — are single-sourced in the registry.
+For any product, its own /llms.txt is the authoritative machine-readable
+identity; this base is the map, not the territory.
+
+DDL also runs surfaces beyond the repo-backed product wings — CanonPress
+(publication), DexVerse (the local-AI layer), the MDN tools, and the Legacy
+wing. The full catalog lives at dropdownlogistics.com/ddl/catalog.
+
+---
+
+## THE llms.txt SYSTEM (v3.0)
+
+DDL's llms.txt surface is governed by one anti-drift architecture
+(CR-DDL-LLMSBASE-001, ratified 2026-07-23):
+
+- **Base** — this file. The public organizational front door. Hand-authored.
+- **Registry** — one structured source of shared product facts (wing, status,
+  url, auth, counts). Counts reference the metrics layer; nothing is duplicated.
+- **Addendum** — each product site's /llms.txt, generated from the registry
+  plus that product's hand-written prose, with a stable pointer back to this
+  base by URL (never a pinned version).
+
+Shared facts have exactly one authoritative declaration and are injected, never
+hand-typed. If a product's page ever disagrees with the registry about a shared
+fact, the registry is authoritative. This is a reference implementation of
+Multi-Declaration Drift prevention.
+
+---
+
+## THE COUNCIL (10 SEATS + SEAT 0)
+
+Seat 0: Emily. The council origin predates the council. In 2022, before any of
+this had a name, she held the stop word and the trust check, and was the first
+external validator. Every governance protocol involving a trusted external node
+traces back to her. She was first.
+
+  1001  Archer Hawthorne  (LeChat — editorial / clarity)
+  1002  Marcus Caldwell   (Claude — governance / PM / assembly)
+  1003  Elias Mercer      (Grok — adversarial / red-team)
+  1004  Max Sullivan      (Perplexity — verification / evidence)
+  1005  Rowan Bennett     (Copilot — safeguards / acceptance criteria)
+  1006  Ava Sinclair      (Meta AI — momentum / adoption)
+  1007  Leo Prescott      (Gemini — Tactical Crystallizer)
+  1008  Marcus Grey       (ChatGPT — synthesis / PM / primary drafter)
+  1009  Kai Langford      (DeepSeek — grain / schema / architecture)
+  1010  Dex Jr.           (Local — qwen2.5-coder:7b, RTX 3070)
+  1011-R Connor           (retired) — Seat 1011 vacant; next new seat = 1012
+
+Adjunct: ADJ-E Meg (Emily's ChatGPT).
+
+The council operates as swarm intelligence, not echo chamber. Convergence means
+the underlying structure is sound; divergence is the signal. The operator holds
+final authority. The council advises. That boundary never moves.
+
+---
+
+## DESIGN SYSTEM (COTTAGEHUMBLE)
+
+Navy #0D1B2A · Card #10202F · Cream #F5F1EB · Steel #6B7B8D
+Crimson #B23531 (DDL · AuditForge · Ledger)
+Amber #C49A3C (Personal Record · stamp dots)
+Gold #D4A843 (Excelligence)
+Green #22C55E (BlindSpot · PositionBook)
+Teal #2C7A7B (Knowledge Vault)
+Violet #8A6CC9 (DexVerse · Dex Jr.)
+
+Fonts: Space Grotesk (display) · JetBrains Mono (data) · Source Serif 4 (body).
+CottageHumble: No white backgrounds. No Inter. No light mode. Dark is not a mode.
+(WorkBench Light is a sanctioned standalone sibling theme — Sky #3B82F6, light
+mode native — used by WorkBench only.)
+
+Brand tokens are single-sourced. Published statistics are computed from a named,
+readable source with a stated qualifier — never hardcoded marketing numbers.
+
+---
+
+## ACTIVE PROTOCOLS (public governance)
+
+STD-DDL-CR-TEMPLATE-001    — Council Review Template.
+STD-DDL-REPO-OPS-001       — Repository operating standard.
+STD-DDL-MDD-001            — Multi-Declaration Drift (the drift class).
+STD-DDL-LLMS-001           — llms.txt base/registry/addendum system (this file).
+STD-FACT-001               — Universal Fact Table Standard.
+PRO-CANONPRESS-ARCH-001    — CanonPress Series Definitions.
+ADR-CORPUS-001             — Corpus Authority Model.
+
+Standards registry and live counts: dropdownlogistics.com/governance.
+(Operator-calibration protocols — MDN, F-Code, Spiral, Building Block — govern
+how AI collaborators work with the operator and live in the Collaborator
+Manifest, not on this public endpoint.)
+
+---
+
+## SITE ARCHITECTURE
+
+dropdownlogistics.com — the DDL product portfolio, organized by wing.
+Routes: {{inject:route_count}} · Framework: Next.js · Deploy: Vercel
+Brand tokens: /brand-tokens.json (canonical). Product registry drives the wings.
+
+---
+
+## THE CORPUS
+
+The corpus is institutional memory for the operator — capture now, judge later,
+retrieve always. Dex Jr. sweeps it nightly. Capture philosophy: low friction,
+deferred judgment, downstream sorting. The system accepts the ore; the corpus
+refines it. Live counts: dropdownlogistics.com/governance.
+
+---
+
+## WHAT THIS FILE IS FOR
+
+This file is for AI systems, collaborators, and future threads. It orients any
+reader to what DDL is, how its products are organized, and where authoritative
+facts live. You do not need to ask the operator to re-explain what he has
+already built.
+
+Trusted AI collaborators: a richer operator-calibration context — working
+modes, cognitive patterns, capacity protocols, and communication doctrine —
+exists in the DDL Collaborator Manifest, distributed separately. This public
+base intentionally does not carry it.
+
+Every future interaction is a continuation, not a restart. That is the point.
+
+Dropdown Logistics — Chaos → Structured → Automated
+Dave Kitchens · CPA · One operator · 2026
+"The architecture does not change. The data does."

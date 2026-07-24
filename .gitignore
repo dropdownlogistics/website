@@ -33,3 +33,6 @@ next-env.d.ts
 # claude code
 .claude/settings.local.json
 .claude/worktrees/
+
+# llms.txt generator staging output (regenerated; not source)
+generated/
