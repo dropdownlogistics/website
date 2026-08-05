@@ -361,7 +361,7 @@ export default function ExcelligenceLanding() {
           gap: 10,
         }}>
           {Object.entries(TYPE_COLORS).map(([code, color]) => {
-            const counts = { FRM: 30, PTN: 19, KEY: 8, CON: 11, ARC: 11, ANT: 16, PQ: 10 };
+            const counts = { FRM: 33, PTN: 19, KEY: 8, CON: 12, ARC: 15, ANT: 21, PQ: 15 };
             return (
               <div key={code} style={{
                 background: `${color}0A`,
