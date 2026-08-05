@@ -19,7 +19,7 @@ export default function Page() {
         <a href="/" style={{ fontFamily: font.mono, fontSize: 11, color: C.dim, textDecoration: 'none', letterSpacing: '0.06em' }}>← Dropdown Logistics</a>
 
         <h1 style={{ fontFamily: font.display, fontSize: 34, fontWeight: 700, color: C.cream, margin: '24px 0 6px', letterSpacing: '-0.02em' }}>Privacy Policy</h1>
-        <div style={{ fontFamily: font.mono, fontSize: 11, color: C.gold, letterSpacing: '0.08em', marginBottom: 8 }}>Dropdown Logistics · Last updated 24 July 2026</div>
+        <div style={{ fontFamily: font.mono, fontSize: 11, color: C.gold, letterSpacing: '0.08em', marginBottom: 8 }}>Dropdown Logistics · Last updated 4 August 2026</div>
         <div style={{ height: 2, width: 48, background: C.gold, opacity: 0.5, margin: '0 0 28px' }} />
 
         <p style={p}>This Privacy Policy describes how Dropdown Logistics (&ldquo;we,&rdquo; &ldquo;us&rdquo;) handles information in connection with our internal SMS notification service. Dropdown Logistics is a sole proprietorship operated by Dave Kitchens.</p>

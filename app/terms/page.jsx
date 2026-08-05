@@ -19,7 +19,7 @@ export default function Page() {
         <a href="/" style={{ fontFamily: font.mono, fontSize: 11, color: C.dim, textDecoration: 'none', letterSpacing: '0.06em' }}>← Dropdown Logistics</a>
 
         <h1 style={{ fontFamily: font.display, fontSize: 34, fontWeight: 700, color: C.cream, margin: '24px 0 6px', letterSpacing: '-0.02em' }}>SMS Terms &amp; Conditions</h1>
-        <div style={{ fontFamily: font.mono, fontSize: 11, color: C.gold, letterSpacing: '0.08em', marginBottom: 8 }}>Dropdown Logistics · Last updated 24 July 2026</div>
+        <div style={{ fontFamily: font.mono, fontSize: 11, color: C.gold, letterSpacing: '0.08em', marginBottom: 8 }}>Dropdown Logistics · Last updated 4 August 2026</div>
         <div style={{ height: 2, width: 48, background: C.gold, opacity: 0.5, margin: '0 0 28px' }} />
 
         <p style={p}>These Terms govern the Dropdown Logistics internal SMS notification program. Dropdown Logistics is a sole proprietorship operated by Dave Kitchens.</p>
@@ -28,7 +28,7 @@ export default function Page() {
         <p style={p}>When the business owner or an authorized staff member of Dropdown Logistics provides their mobile number and consents, we send them internal operational text messages — alerts that a task needs review or approval, and status confirmations. This is a private internal program; it is not offered to the public and numbers are never purchased or collected from the public.</p>
 
         <h2 style={h2}>Consent</h2>
-        <p style={p}>Recipients opt in verbally by providing their own mobile number during internal setup. By opting in, you agree to receive operational SMS messages from Dropdown Logistics at that number.</p>
+        <p style={p}>Recipients opt in via the <a href="/sms-consent/" style={{ color: C.gold }}>SMS opt-in form</a> at dropdownlogistics.com/sms-consent/ by entering their mobile number and checking the consent box. By opting in, you agree to receive operational SMS messages from Dropdown Logistics at that number.</p>
 
         <h2 style={h2}>Message frequency</h2>
         <p style={p}>Message frequency varies based on operational activity.</p>
