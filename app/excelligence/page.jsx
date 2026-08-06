@@ -277,7 +277,7 @@ export default function ExcelligenceLanding() {
         }}>
           {[
             { n: "01", label: "Registry", t: "Every entry governed. 17 fields per entry. Type, tier, aliases, relationships, validation." },
-            { n: "02", label: "Graph",    t: "200 governed edges. LEADS_TO / DEPENDS_ON / PAIRS_WITH. The map between what you know and what comes next." },
+            { n: "02", label: "Graph",    t: `${METRICS.EXCEL_EDGES} governed edges. LEADS_TO / DEPENDS_ON / PAIRS_WITH. The map between what you know and what comes next.` },
             { n: "03", label: "Standards", t: "STD-EXCEL-001 (Analytical Workbook, 9 rules) and STD-EXCEL-002 (Operational Workbook, 8 rules). The governed baseline." },
           ].map((layer, i) => (
             <div key={i} style={{
