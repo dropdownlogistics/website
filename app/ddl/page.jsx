@@ -7,6 +7,7 @@ import BackButton from '@/components/BackButton';
 const C = {
   navy:        '#0D1B2A',
   card:        '#10202f',
+  card2:       '#0F1D2A',
   cream:       '#F5F1EB',
   dim:         'rgba(245,241,235,0.72)',
   body:        'rgba(245,241,235,0.6)',
@@ -15,6 +16,7 @@ const C = {
   borderSoft:  'rgba(245,241,235,0.05)',
   crimson:     '#B23531',
   crimsonLine: 'rgba(178,53,49,0.35)',
+  copper:      '#C49A3C',
   steel:       '#6B7B8D',
   steelLine:   'rgba(107,123,141,0.35)',
 };
@@ -43,6 +45,11 @@ const RefLine = ({ children }) => (
   </div>
 );
 
+// As-of stamp for figures below — re-derived from personnel/ and canon at
+// the last build, not fetched live. See surface-web/work/DDL-WING-REDESIGN-001/
+// DESIGN_PLAN_v0.1.md §5.4 for why "fresh as of" rather than "live."
+const AS_OF = '2026-08-11';
+
 const steps = [
   { n: '01', label: 'Gather',    t: 'Collect raw inputs. No judgment. Just capture.' },
   { n: '02', label: 'Sort',      t: 'Group by domain, project, and intent.' },
@@ -54,23 +61,23 @@ const steps = [
   { n: '08', label: 'Preserve',  t: 'Archive versions, log changes, capture decisions. Make it easy to restart.' },
 ];
 
-const manifest = [
-  { k: 'OPERATOR',   v: 'Dave Kitchens, CPA' },
-  { k: 'STUDIO',     v: 'Dropdown Logistics' },
-  { k: 'METHOD',     v: 'Chaos \u2192 Structured \u2192 Automated' },
-  { k: 'CREDENTIAL', v: 'CPA \u00b7 Commission Analyst II' },
-  { k: 'COUNCIL',    v: '10 seats \u00b7 9 cloud + 1 local' },
-  { k: 'LOCAL AI',   v: 'Dex Jr. \u00b7 qwen2.5-coder:7b \u00b7 RTX 3070' },
-  { k: 'CORPUS',     v: '566,804 chunks \u00b7 ChromaDB \u00b7 4 collections' },
-  { k: 'DESIGN',     v: 'CottageHumble' },
-  { k: 'FOUNDED',    v: '2024' },
+const figures = [
+  { v: '32', l: 'Active people' },
+  { v: '12', l: 'Founded wings' },
+  { v: '44', l: 'Systems' },
+  { v: '65', l: 'Governed artifacts' },
+  { v: '73', l: 'Routes in wing' },
 ];
 
-const navCards = [
-  { label: 'Charter',    href: '/ddl/charter',  t: 'The foundational document. Identity, mission, tenets, scope. DDL v1.0.' },
-  { label: 'Operator',   href: '/ddl/operator',  t: 'The operator profile. Who built this, how it works, and why.' },
-  { label: 'Council',    href: '/ddl/council',   t: 'Ten seats. Nine cloud models, one local. The advisory architecture.' },
-  { label: 'Governance', href: '/governance',     t: 'Standards, protocols, observations. The ratified layer.' },
+const areas = [
+  { name: 'Charter',    href: '/ddl/charter',  note: 'Six ratified sections and the tenets in force.' },
+  { name: 'Council',    href: '/ddl/council',  note: 'Ten seats, their lanes, and the verdicts they render.' },
+  { name: 'Team',       href: '/ddl/team',      note: 'The people, by tier.', isNew: true },
+  { name: 'Governance', href: '/governance',    note: 'Standards, protocols, council reviews, audit program.' },
+  { name: 'Operator',   href: '/ddl/operator',  note: 'The method, the credential, the decisions.' },
+  { name: 'Knowledge Vault', href: 'https://dropdownlogistics.github.io/knowledge-vault/', note: 'The corpus.' },
+  { name: 'Brand identity', href: '/branding',  note: 'CottageHumble Brand Hub, AdmitOne Brand Kit.' },
+  { name: 'Projects',   href: '/ddl',           note: 'Drinks-O-System, Graceful Beauty, IntegrityOS, Nomadic Notary, Sprinkles & Co.' },
 ];
 
 export default function DDLStudioHub() {
@@ -79,7 +86,7 @@ export default function DDLStudioHub() {
       <BackButton />
 
       {/* SECTION 1 — HERO */}
-      <div style={{ maxWidth: 980, margin: '0 auto', padding: '88px 24px 72px' }}>
+      <div style={{ maxWidth: 980, margin: '0 auto', padding: '88px 24px 48px' }}>
         <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.65rem', color: C.crimson, letterSpacing: '0.22em', textTransform: 'uppercase', marginBottom: 28 }}>
           DROPDOWN LOGISTICS &middot; STUDIO
         </div>
@@ -92,86 +99,108 @@ export default function DDLStudioHub() {
           From scattered to structured.
         </div>
 
-        <div style={{ fontFamily: "'Source Serif 4', serif", fontSize: '1.05rem', color: C.dim, maxWidth: 680, lineHeight: 1.8, marginBottom: 40 }}>
-          DDL is a one-person governed systems studio. Everything built here runs on the same architecture &mdash; dimensional modeling, ratified standards, and a ten-seat AI council. The methodology is the product. The products are the proof.
+        <div style={{ fontFamily: "'Source Serif 4', serif", fontSize: '1.05rem', color: C.dim, maxWidth: 720, lineHeight: 1.8, marginBottom: 14 }}>
+          DDL is the methodology and governance layer the rest of the site is built on. Seventy-three of the two hundred routes on dropdownlogistics.com live in this wing &mdash; more than a third of everything published here.
+        </div>
+        <div style={{ fontFamily: "'Source Serif 4', serif", fontSize: '0.95rem', color: C.body, maxWidth: 720, lineHeight: 1.8, marginBottom: 40 }}>
+          What follows is not a founding snapshot. The figures below are re-derived from the org&rsquo;s own personnel and canon records at build time, and stamped with the moment they were captured.
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 200px))', gap: 12 }}>
-          {[
-            { v: '10', l: 'Council Seats' },
-            { v: '44', l: 'Systems' },
-            { v: '65', l: 'Standards' },
-          ].map(s => (
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: 12 }}>
+          {figures.map(s => (
             <div key={s.l} style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 6, padding: '20px 22px' }}>
-              <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: '2rem', color: C.cream, lineHeight: 1, marginBottom: 8 }}>{s.v}</div>
-              <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.6rem', color: C.steel, letterSpacing: '0.14em', textTransform: 'uppercase' }}>{s.l}</div>
+              <div style={{ fontFamily: "'JetBrains Mono', monospace", fontWeight: 500, fontSize: '2rem', color: C.cream, lineHeight: 1, marginBottom: 8 }}>{s.v}</div>
+              <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: '0.6rem', color: C.steel, letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: 4 }}>{s.l}</div>
+              <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.55rem', color: C.muted }}>as of {AS_OF}</div>
             </div>
           ))}
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 14, fontFamily: "'JetBrains Mono', monospace", fontSize: '0.62rem', color: C.steel }}>
+          <span style={{ width: 6, height: 6, borderRadius: '50%', background: C.crimson }} />
+          <span>Captured {AS_OF}</span>
+          <span style={{ color: C.muted }}>&middot;</span>
+          <span>Derived from personnel/ and canon at build time, regenerated on push to master. Fresh, not live.</span>
         </div>
       </div>
 
       <div style={{ height: 1, background: C.border, maxWidth: 980, margin: '0 auto' }} />
 
-      {/* SECTION 2 — THE METHODOLOGY */}
+      {/* SECTION 2 — THE WING IN FULL */}
       <div style={{ background: C.card, borderTop: `1px solid ${C.border}`, borderBottom: `1px solid ${C.border}` }}>
         <div style={{ maxWidth: 980, margin: '0 auto', padding: '80px 24px' }}>
-          <SLabel>CHAOS &rarr; STRUCTURED &rarr; AUTOMATED</SLabel>
-          <SHead>The build sequence.</SHead>
-          <SBody>
-            Every DDL project follows the same eight-step sequence. The domain changes. The sequence doesn&rsquo;t.
-          </SBody>
-
-          <div style={{ display: 'flex', flexDirection: 'column', marginTop: 20 }}>
-            {steps.map((s, i) => (
-              <div key={s.n} style={{ display: 'grid', gridTemplateColumns: '50px 140px 1fr', gap: 16, padding: '16px 0', borderTop: i === 0 ? `1px solid ${C.border}` : 'none', borderBottom: `1px solid ${C.border}`, alignItems: 'baseline' }}>
-                <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.7rem', color: C.crimson, letterSpacing: '0.05em' }}>{s.n}</div>
-                <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: '0.95rem', color: C.cream }}>{s.label}</div>
-                <div style={{ fontFamily: "'Source Serif 4', serif", fontSize: '0.93rem', color: C.dim, lineHeight: 1.6 }}>{s.t}</div>
-              </div>
-            ))}
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: 16, marginBottom: 8 }}>
+            <SHead style={{ marginBottom: 0 }}>The wing in full</SHead>
+            <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.7rem', color: C.steel }}>73 routes</span>
           </div>
-        </div>
-      </div>
+          <SBody max={720}>Eight areas, each a real destination with governed material behind it.</SBody>
 
-      {/* SECTION 3 — THE STUDIO */}
-      <div style={{ maxWidth: 980, margin: '0 auto', padding: '80px 24px' }}>
-        <SLabel>THE OPERATOR</SLabel>
-
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 32, marginTop: 12, alignItems: 'start' }}>
-          <div style={{ fontFamily: "'Source Serif 4', serif", fontStyle: 'italic', fontSize: 'clamp(1.4rem, 2.6vw, 1.85rem)', color: C.cream, lineHeight: 1.4, borderLeft: `2px solid ${C.crimson}`, paddingLeft: 22 }}>
-            &ldquo;Humble surface. Cathedral underneath.&rdquo;
-          </div>
-
-          <div style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 6, padding: '22px 24px' }}>
-            {manifest.map((row, i) => (
-              <div key={row.k} style={{ display: 'grid', gridTemplateColumns: '110px 1fr', gap: 16, padding: '10px 0', borderTop: i === 0 ? 'none' : `1px solid ${C.borderSoft}`, alignItems: 'baseline' }}>
-                <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.62rem', color: C.steel, letterSpacing: '0.14em' }}>{row.k}</div>
-                <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.78rem', color: C.cream, letterSpacing: '0.02em' }}>{row.v}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* SECTION 4 — NAVIGATION */}
-      <div style={{ background: C.card, borderTop: `1px solid ${C.border}`, borderBottom: `1px solid ${C.border}` }}>
-        <div style={{ maxWidth: 980, margin: '0 auto', padding: '80px 24px' }}>
-          <SLabel>WHAT&rsquo;S HERE</SLabel>
-
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 12, marginTop: 24 }}>
-            {navCards.map(c => (
-              <Link key={c.href} href={c.href} style={{
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 12 }}>
+            {areas.map(a => (
+              <Link key={a.name} href={a.href} style={{
                 display: 'block', background: C.navy, border: `1px solid ${C.border}`,
-                borderLeft: `3px solid ${C.crimson}`, borderRadius: 6, padding: '22px 22px', textDecoration: 'none',
+                borderRadius: 6, padding: '20px 20px', textDecoration: 'none',
                 transition: 'border-color 0.15s, background 0.15s',
               }}
-                onMouseEnter={(e) => { e.currentTarget.style.borderColor = C.crimsonLine; }}
-                onMouseLeave={(e) => { e.currentTarget.style.borderColor = C.border; e.currentTarget.style.borderLeftColor = C.crimson; }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = '#14293C'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = C.navy; }}
               >
-                <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: '1.05rem', color: C.crimson, marginBottom: 8 }}>{c.label}</div>
-                <div style={{ fontFamily: "'Source Serif 4', serif", fontSize: '0.9rem', color: C.body, lineHeight: 1.6 }}>{c.t}</div>
+                <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: '1rem', color: C.cream, marginBottom: 8 }}>{a.name}</div>
+                <div style={{ fontFamily: "'Source Serif 4', serif", fontSize: '0.85rem', color: C.body, lineHeight: 1.5, marginBottom: 10 }}>{a.note}</div>
+                <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.58rem', letterSpacing: '0.08em', color: a.isNew ? C.crimson : C.steel }}>
+                  {a.isNew ? 'NEW' : 'LIVE'}
+                </div>
               </Link>
             ))}
+          </div>
+        </div>
+      </div>
+
+      {/* SECTION 3 — THE METHOD */}
+      <div style={{ maxWidth: 980, margin: '0 auto', padding: '80px 24px' }}>
+        <SLabel>CHAOS &rarr; STRUCTURED &rarr; AUTOMATED</SLabel>
+        <SHead>The build sequence.</SHead>
+        <SBody>
+          Every DDL project follows the same eight-step sequence. The domain changes. The sequence doesn&rsquo;t.
+        </SBody>
+
+        <div style={{ display: 'flex', flexDirection: 'column', marginTop: 20 }}>
+          {steps.map((s, i) => (
+            <div key={s.n} style={{ display: 'grid', gridTemplateColumns: '50px 140px 1fr', gap: 16, padding: '16px 0', borderTop: i === 0 ? `1px solid ${C.border}` : 'none', borderBottom: `1px solid ${C.border}`, alignItems: 'baseline' }}>
+              <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.7rem', color: C.crimson, letterSpacing: '0.05em' }}>{s.n}</div>
+              <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: '0.95rem', color: C.cream }}>{s.label}</div>
+              <div style={{ fontFamily: "'Source Serif 4', serif", fontSize: '0.93rem', color: C.dim, lineHeight: 1.6 }}>{s.t}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* SECTION 4 — OPERATOR / GOVERNANCE */}
+      <div style={{ background: C.card, borderTop: `1px solid ${C.border}`, borderBottom: `1px solid ${C.border}` }}>
+        <div style={{ maxWidth: 980, margin: '0 auto', padding: '80px 24px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 40 }}>
+            <div>
+              <SLabel>OPERATOR</SLabel>
+              <SHead>Operator.</SHead>
+              <SBody max={460}>
+                Dave Kitchens, CPA. Runs the method, holds the credential, chairs the council. The council advises; the Operator decides.
+              </SBody>
+              <div style={{ display: 'grid', gridTemplateColumns: 'auto 1fr', gap: '10px 24px', fontFamily: "'JetBrains Mono', monospace", fontSize: '0.72rem' }}>
+                <span style={{ color: C.steel }}>METHOD</span><span>Dropdown Logistics</span>
+                <span style={{ color: C.steel }}>DESIGN SYSTEM</span><span>CottageHumble</span>
+                <span style={{ color: C.steel }}>STANDARD</span><span>STD-DDL-DESIGN-002</span>
+                <span style={{ color: C.steel }}>FOUNDED</span><span>2024</span>
+              </div>
+            </div>
+            <div style={{ borderLeft: `1px solid ${C.border}`, paddingLeft: 40 }}>
+              <SLabel>GOVERNANCE</SLabel>
+              <SHead>Governance.</SHead>
+              <SBody max={460}>
+                Sixty-five and counting governed artifacts &mdash; standards, protocols, and council reviews &mdash; behind an active audit program across nine process areas, ratified 2026-08-07.
+              </SBody>
+              <div style={{ fontFamily: "'Source Serif 4', serif", fontSize: '1.02rem', color: C.dim, lineHeight: 1.75, maxWidth: 460 }}>
+                Findings and reviews in progress stay internal. That the function exists, and what it covers, does not.
+              </div>
+            </div>
           </div>
         </div>
       </div>
