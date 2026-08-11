@@ -77,6 +77,24 @@ const PERSONNEL_REL = "personnel";
  * current. The two happened to hold identical exports, so nothing was
  * wrong that day — which is exactly the kind of luck that makes a latent
  * bug ship. Measure the thing rather than declaring a winner.
+ *
+ * DO NOT PORT THIS INTO BRIDGE. It is correct here and wrong there, and
+ * the difference is what the root IS, not how carefully it is chosen
+ * (Piers Frame / DDL-3012, 2026-08-11):
+ *
+ *   Here, the source is READ-ONLY and any current copy is as good as any
+ *   other. Freshness is the only thing that distinguishes candidates, so
+ *   picking the freshest is simply picking the best available read.
+ *
+ *   In Bridge, the resolved root is a shared WRITE TARGET — other seats
+ *   append to it. Choosing a "fresher" sibling would read a fork nobody
+ *   writes to, and would MASK the canonical checkout being behind instead
+ *   of surfacing it. Bridge's answer to staleness is the opposite of
+ *   silently reading around it: measure the exact root it reads from and
+ *   render BEHIND where a human can act on it.
+ *
+ * Same shape of question, opposite correct answer. Reading around
+ * staleness is only safe when nobody is writing to the thing you skipped.
  */
 function resolveOrgRoot() {
   const env = process.env[ORG_ROOT_ENV];
