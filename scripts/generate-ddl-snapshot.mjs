@@ -140,9 +140,7 @@ function gitFacts(root) {
   return facts;
 }
 
-/** When the export was last COMMITTED — the closest thing to "when was this
- *  data actually regenerated". The export itself carries no generated_at
- *  field (flagged upstream to HR); this is the honest substitute. */
+/** When the export was last COMMITTED. Retained as a labeled fallback only. */
 function lastCommittedAt(root, relPath) {
   try {
     const iso = execFileSync("git", ["log", "-1", "--format=%aI", "--", relPath], {
@@ -152,6 +150,33 @@ function lastCommittedAt(root, relPath) {
   } catch {
     return null;
   }
+}
+
+/**
+ * When the underlying data was actually TRUE — as distinct from when this
+ * generator read it. Those are different claims and only one of them is
+ * about the data.
+ *
+ * The export now states this itself (`generated_at`, added by Ada Pell /
+ * DDL-3009 on request, 2026-08-11). That statement is authoritative and is
+ * always preferred.
+ *
+ * The git-commit-date fallback is KEPT rather than removed, deliberately —
+ * and labeled, which is the part that matters. If a future regeneration ever
+ * runs without the field, provenance degrades to an inference that announces
+ * itself as one, instead of silently becoming unknown. A weaker signal that
+ * says it is weak beats no signal at all; an unlabeled one would be worse
+ * than either.
+ */
+function resolveDataGeneratedAt(raw, root) {
+  if (raw.generated_at) {
+    return { at: raw.generated_at, provenance: "stated-by-source" };
+  }
+  const committed = lastCommittedAt(root, ORG_CHART_REL);
+  if (committed) {
+    return { at: committed, provenance: "inferred-from-git-commit" };
+  }
+  return { at: null, provenance: "unknown" };
 }
 
 /* ------------------------------------------------------------------ *
@@ -351,6 +376,7 @@ function main() {
   }
   for (const k of Object.keys(byTier)) byTier[k].sort((a, b) => a.id.localeCompare(b.id));
 
+  const dataGenerated = resolveDataGeneratedAt(raw, root.path);
   const integrity = crossCheck(root.path, people.map((p) => p.id), excludedPaths);
 
   // Wings with at least one person assigned. Counted from wing_id, which is
@@ -376,6 +402,11 @@ function main() {
       resolvedPath: chartPath,
       exists: true,
       generatedBy: raw.generated_by || null,
+      // When the DATA was true, per the source's own statement. This is the
+      // date the page should show — capturedAt above is only when this
+      // generator ran, which says nothing about the facts.
+      dataGeneratedAt: dataGenerated.at,
+      dataGeneratedProvenance: dataGenerated.provenance,
       fileModifiedAt: new Date(statSync(chartPath).mtimeMs).toISOString(),
       lastCommittedAt: lastCommittedAt(root.path, ORG_CHART_REL),
       git: gitFacts(root.path),
@@ -400,7 +431,13 @@ function main() {
 
   console.log(`[ddl-snapshot] captured ${total} people at ${capturedAt}`);
   console.log(`[ddl-snapshot] source: ${chartPath} (via ${root.via})`);
-  console.log(`[ddl-snapshot] export last committed: ${snapshot.source.lastCommittedAt || "unknown"}`);
+  console.log(`[ddl-snapshot] data generated: ${dataGenerated.at || "unknown"} (${dataGenerated.provenance})`);
+  if (dataGenerated.provenance !== "stated-by-source") {
+    console.warn(
+      "[ddl-snapshot] NOTE: the export did not state its own generated_at — " +
+      "provenance is inferred, not stated. Ask HR (DDL-3009) to regenerate.",
+    );
+  }
 
   const behind = snapshot.source.git.behindOrigin;
   if (behind === null) {

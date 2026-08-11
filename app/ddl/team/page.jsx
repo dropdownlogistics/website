@@ -144,7 +144,12 @@ export default function TeamPage() {
   const ok = snapshot.available || snapshot.stale;
   const people = snapshot.people;
   const total = people ? people.total : null;
-  const capturedOn = (snapshot.stale ? snapshot.dataCapturedAt : snapshot.capturedAt || '').slice(0, 10);
+  // The date that matters is when the DATA was true — stated by the source
+  // itself — not when this build read it. Fall back to the read time only
+  // if the source didn't say.
+  const src = snapshot.source || {};
+  const trueOn = (src.dataGeneratedAt || (snapshot.stale ? snapshot.dataCapturedAt : snapshot.capturedAt) || '').slice(0, 10);
+  const stated = src.dataGeneratedProvenance === 'stated-by-source';
 
   return (
     <div style={{ background: C.navy, minHeight: '100vh', color: C.cream, fontFamily: "'Source Serif 4', Georgia, serif" }}>
@@ -234,7 +239,8 @@ export default function TeamPage() {
           <div style={{ background: C.card, padding: '24px 26px' }}>
             <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: '0.95rem', marginBottom: 10 }}>Where this comes from</div>
             <div style={{ fontFamily: "'Source Serif 4', serif", fontSize: '0.87rem', color: C.body, lineHeight: 1.55 }}>
-              Re-derived from <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.82rem', color: C.cream }}>personnel/*/employee.yaml</span> by way of HR&rsquo;s org-chart export, captured {capturedOn || 'unknown'}. The roster is a derived document and may legitimately lag the records; the records govern. Fresh as of capture &mdash; not live.
+              Re-derived from <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.82rem', color: C.cream }}>personnel/*/employee.yaml</span> by way of HR&rsquo;s org-chart export, which reports this data as true on <strong style={{ color: C.cream }}>{trueOn || 'an unstated date'}</strong>
+              {stated ? '' : ' (inferred from the record’s history, not stated by it)'}. The roster is a derived document and may legitimately lag the records; the records govern. Fresh as of that date &mdash; not live.
             </div>
           </div>
         </div>

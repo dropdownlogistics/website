@@ -54,7 +54,10 @@ const RefLine = ({ children }) => (
 // Each figure carries its own provenance, because a blanket "all of this is
 // re-derived" over numbers that are actually hand-carried is precisely the
 // overclaim this page was rebuilt to stop making.
-const CAPTURED_ON = (snapshot.capturedAt || '').slice(0, 10);
+// The date a derived figure carries is when its DATA was true (stated by the
+// source), not when the build read it. Those are different claims.
+const SRC = snapshot.source || {};
+const DERIVED_ON = (SRC.dataGeneratedAt || snapshot.capturedAt || '').slice(0, 10);
 const F = snapshot.figures || {};
 
 const figures = [
@@ -123,18 +126,18 @@ export default function DDLStudioHub() {
               <div style={{ fontFamily: "'JetBrains Mono', monospace", fontWeight: 500, fontSize: '2rem', color: C.cream, lineHeight: 1, marginBottom: 8 }}>{s.value}</div>
               <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: '0.6rem', color: C.steel, letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: 4 }}>{s.l}</div>
               <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.55rem', color: s.derived ? C.steel : C.muted }}>
-                {s.derived ? `derived · ${CAPTURED_ON}` : `stated · ${s.asOf || 'undated'}`}
+                {s.derived ? `derived · ${DERIVED_ON}` : `stated · ${s.asOf || 'undated'}`}
               </div>
             </div>
           ))}
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 14, fontFamily: "'JetBrains Mono', monospace", fontSize: '0.62rem', color: C.steel, flexWrap: 'wrap' }}>
           <span style={{ width: 6, height: 6, borderRadius: '50%', background: snapshot.available ? C.crimson : C.copper, flexShrink: 0 }} />
-          <span>Captured {CAPTURED_ON || 'unknown'}</span>
+          <span>True as of {DERIVED_ON || 'unknown'}</span>
           <span style={{ color: C.muted }}>&middot;</span>
           <span>
             {snapshot.available
-              ? 'Rebuilt from personnel/ and canon by a generator that reads the governed record. Fresh as of capture, not live.'
+              ? 'Rebuilt from personnel/ and canon by a generator that reads the governed record. The date is when the data was true, not when the page was built — fresh as of then, never live.'
               : 'Source unavailable at last build — figures shown are the last good capture, not current.'}
           </span>
         </div>
