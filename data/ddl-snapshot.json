@@ -1,0 +1,352 @@
+{
+  "capturedAt": "2026-08-11T15:31:55.956Z",
+  "available": true,
+  "stale": false,
+  "source": {
+    "orgRoot": "C:\\Users\\dkitc\\ddl-org",
+    "via": "known-checkout",
+    "orgChart": "surface-hr\\work\\ORG-CHART-001\\org_chart_data_v0.1.json",
+    "resolvedPath": "C:\\Users\\dkitc\\ddl-org\\surface-hr\\work\\ORG-CHART-001\\org_chart_data_v0.1.json",
+    "exists": true,
+    "generatedBy": "Ada Pell / DDL-3009 / surface-hr",
+    "fileModifiedAt": "2026-08-11T15:30:26.369Z",
+    "lastCommittedAt": "2026-08-11T07:27:39-05:00",
+    "git": {
+      "head": "434d332",
+      "branch": "master",
+      "behindOrigin": 0,
+      "sourceFileDirty": false
+    }
+  },
+  "integrity": {
+    "ran": true,
+    "personnelDirs": 34,
+    "exported": 32,
+    "excludedByParseError": 2,
+    "unaccounted": [],
+    "stale": false
+  },
+  "people": {
+    "total": 32,
+    "byTier": {
+      "officers": [
+        {
+          "id": "DDL-2001",
+          "name": "Dex Harrington",
+          "pronouns": "undeclared — ask",
+          "tier": "2000-officer",
+          "lifecycle_status": "provisional",
+          "standing": "Chief Systems Officer",
+          "provisional": true
+        },
+        {
+          "id": "DDL-2002",
+          "name": "Mara Voss",
+          "pronouns": "undeclared — ask",
+          "tier": "2000-officer",
+          "lifecycle_status": "provisional",
+          "standing": "Acceptance Test Officer",
+          "provisional": true
+        },
+        {
+          "id": "DDL-2003",
+          "name": "Rhett Sterling",
+          "pronouns": "undeclared — ask",
+          "tier": "2000-officer",
+          "lifecycle_status": "provisional",
+          "standing": "Build Execution Officer",
+          "provisional": true
+        },
+        {
+          "id": "DDL-2004",
+          "name": "Reed Vane",
+          "pronouns": "he/him",
+          "tier": "2000-officer",
+          "lifecycle_status": "ACTIVE",
+          "standing": "Officer · Steward",
+          "provisional": false
+        }
+      ],
+      "smes": [
+        {
+          "id": "DDL-3001",
+          "name": "Julian Vale",
+          "pronouns": "he/him",
+          "tier": "3000-sme",
+          "lifecycle_status": "ACTIVE",
+          "standing": "SME",
+          "provisional": false
+        },
+        {
+          "id": "DDL-3002",
+          "name": "Nathan Quinn",
+          "pronouns": "undeclared — ask",
+          "tier": "3000-sme",
+          "lifecycle_status": "PARKED",
+          "standing": "SME · Provisional · Parked by Operator direction (2026-07-24)",
+          "provisional": true
+        },
+        {
+          "id": "DDL-3004",
+          "name": "Silas Reeve",
+          "pronouns": "he/him",
+          "tier": "3000-sme",
+          "lifecycle_status": "ACTIVE",
+          "standing": "SME",
+          "provisional": false
+        },
+        {
+          "id": "DDL-3005",
+          "name": "Lena Marsh",
+          "pronouns": "she/her",
+          "tier": "3000-sme",
+          "lifecycle_status": "ACTIVE",
+          "standing": "SME",
+          "provisional": false
+        },
+        {
+          "id": "DDL-3006",
+          "name": "Evan Rook",
+          "pronouns": "he/him",
+          "tier": "3000-sme",
+          "lifecycle_status": "ACTIVE",
+          "standing": "SME",
+          "provisional": false
+        },
+        {
+          "id": "DDL-3007",
+          "name": "Amos Sayer",
+          "pronouns": "he/him",
+          "tier": "3000-sme",
+          "lifecycle_status": "ACTIVE",
+          "standing": "SME · Director",
+          "provisional": false
+        },
+        {
+          "id": "DDL-3008",
+          "name": "Ezra Locke",
+          "pronouns": "he/him",
+          "tier": "3000-sme",
+          "lifecycle_status": "ACTIVE",
+          "standing": "SME · Canon Steward",
+          "provisional": false
+        },
+        {
+          "id": "DDL-3009",
+          "name": "Ada Pell",
+          "pronouns": "she/her",
+          "tier": "3000-sme",
+          "lifecycle_status": "ACTIVE",
+          "standing": "SME · HR Director",
+          "provisional": false
+        },
+        {
+          "id": "DDL-3010",
+          "name": "Wren Keeler",
+          "pronouns": "she/her",
+          "tier": "3000-sme",
+          "lifecycle_status": "ACTIVE",
+          "standing": "SME — reborn-studio",
+          "provisional": false
+        },
+        {
+          "id": "DDL-3011",
+          "name": "Demi Strand",
+          "pronouns": "she/her",
+          "tier": "3000-sme",
+          "lifecycle_status": "ACTIVE",
+          "standing": "Signal & Publishing Lead",
+          "provisional": false
+        },
+        {
+          "id": "DDL-3012",
+          "name": "Piers Frame",
+          "pronouns": "he/him",
+          "tier": "3000-sme",
+          "lifecycle_status": "ACTIVE",
+          "standing": "SME · Bridge Engineer",
+          "provisional": false
+        },
+        {
+          "id": "DDL-3013",
+          "name": "Sable Ondine",
+          "pronouns": "she/her",
+          "tier": "3000-sme",
+          "lifecycle_status": "ACTIVE",
+          "standing": "Site/Web Steward — title provisional, see governance.open_decisions",
+          "provisional": false
+        }
+      ],
+      "practitioners": [
+        {
+          "id": "DDL-4001",
+          "name": "Rachel Tseng",
+          "pronouns": "she/her",
+          "tier": "4000-census",
+          "lifecycle_status": "ACTIVE",
+          "standing": "4000-tier · Census Worker · Sr. Staff",
+          "provisional": false
+        },
+        {
+          "id": "DDL-4002",
+          "name": "Thomas Wyatt",
+          "pronouns": "he/him",
+          "tier": "4000-census",
+          "lifecycle_status": "ACTIVE",
+          "standing": "4000-tier · Census Worker · Sr. Staff",
+          "provisional": false
+        },
+        {
+          "id": "DDL-4003",
+          "name": "Clara Hayes",
+          "pronouns": "she/her",
+          "tier": "4000-census",
+          "lifecycle_status": "ACTIVE",
+          "standing": "4000-tier · Census Worker · Sr. Staff",
+          "provisional": false
+        },
+        {
+          "id": "DDL-4004",
+          "name": "Nadia Okafor",
+          "pronouns": "she/her",
+          "tier": "4000-census",
+          "lifecycle_status": "ACTIVE",
+          "standing": "4000-tier · Census Worker · Sr. Staff",
+          "provisional": false
+        },
+        {
+          "id": "DDL-4005",
+          "name": "Petra Wren",
+          "pronouns": "she/her",
+          "tier": "4000-census",
+          "lifecycle_status": "ACTIVE",
+          "standing": "4000-tier · HR Project Manager",
+          "provisional": false
+        },
+        {
+          "id": "DDL-4007",
+          "name": "Mira Fenn",
+          "pronouns": "she/her",
+          "tier": "4000-census",
+          "lifecycle_status": "ACTIVE",
+          "standing": "HR PM",
+          "provisional": false
+        },
+        {
+          "id": "DDL-4008",
+          "name": "Ellis Cooper",
+          "pronouns": "he/him",
+          "tier": "4000-census",
+          "lifecycle_status": "ACTIVE",
+          "standing": "Execution Worker",
+          "provisional": false
+        },
+        {
+          "id": "DDL-4009",
+          "name": "Quinn Adler",
+          "pronouns": "she/her",
+          "tier": "4000-census",
+          "lifecycle_status": "ACTIVE",
+          "standing": "Org Intel",
+          "provisional": false
+        },
+        {
+          "id": "DDL-4010",
+          "name": "Clare Ward",
+          "pronouns": "undeclared — ask",
+          "tier": "4000-census",
+          "lifecycle_status": "active",
+          "standing": "Census · Active",
+          "provisional": false
+        },
+        {
+          "id": "DDL-4011",
+          "name": "Cade Morrow",
+          "pronouns": "he/him",
+          "tier": "4000-census",
+          "lifecycle_status": "ACTIVE",
+          "standing": "Census · Active",
+          "provisional": false
+        },
+        {
+          "id": "DDL-4012",
+          "name": "Nora Ledger",
+          "pronouns": "she/her",
+          "tier": "4000-census",
+          "lifecycle_status": "ACTIVE",
+          "standing": "HR Partner",
+          "provisional": false
+        },
+        {
+          "id": "DDL-4013",
+          "name": "Robin Fielding",
+          "pronouns": "undeclared — ask",
+          "tier": "4000-census",
+          "lifecycle_status": "provisional",
+          "standing": "HR Partner — provisional, founding pending first session",
+          "provisional": true
+        },
+        {
+          "id": "DDL-4014",
+          "name": "Owen Croft",
+          "pronouns": "he/him",
+          "tier": "4000-census",
+          "lifecycle_status": "ACTIVE",
+          "standing": "Tooling / Automation",
+          "provisional": false
+        },
+        {
+          "id": "DDL-4015",
+          "name": "Sasha Post",
+          "pronouns": "he/him",
+          "tier": "4000-census",
+          "lifecycle_status": "ACTIVE",
+          "standing": "Correspondence Registrar — title assigned by Operator direction 2026-08-07; the mailroom is the office, Registrar is the rank",
+          "provisional": false
+        },
+        {
+          "id": "DDL-4016",
+          "name": "Rowan Weir",
+          "pronouns": "he/him",
+          "tier": "4000-census",
+          "lifecycle_status": "ACTIVE",
+          "standing": "Bridge Maintenance — GamingLaptop cowork surface",
+          "provisional": false
+        },
+        {
+          "id": "DDL-4017",
+          "name": "Cole Gauge",
+          "pronouns": "he/him",
+          "tier": "4000-census",
+          "lifecycle_status": "ACTIVE",
+          "standing": "Bridge Maintenance — Reborn cowork surface",
+          "provisional": false
+        }
+      ]
+    }
+  },
+  "figures": {
+    "activePeople": {
+      "value": 32,
+      "derived": true
+    },
+    "wingsWithPeople": {
+      "value": 21,
+      "derived": true
+    },
+    "routesInWing": {
+      "value": 73,
+      "derived": true
+    },
+    "systems": {
+      "value": 44,
+      "derived": false,
+      "asOf": "2026-08-08"
+    },
+    "governedArtifacts": {
+      "value": 65,
+      "derived": false,
+      "asOf": "2026-08-07"
+    }
+  }
+}

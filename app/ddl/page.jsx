@@ -3,6 +3,7 @@
 'use client';
 import Link from 'next/link';
 import BackButton from '@/components/BackButton';
+import snapshot from '@/data/ddl-snapshot.json';
 
 const C = {
   navy:        '#0D1B2A',
@@ -45,10 +46,28 @@ const RefLine = ({ children }) => (
   </div>
 );
 
-// As-of stamp for figures below — re-derived from personnel/ and canon at
-// the last build, not fetched live. See surface-web/work/DDL-WING-REDESIGN-001/
-// DESIGN_PLAN_v0.1.md §5.4 for why "fresh as of" rather than "live."
-const AS_OF = '2026-08-11';
+// Figures come from data/ddl-snapshot.json (`npm run snapshot`), which
+// derives what it can from the org's own records and is explicit about what
+// it cannot. See surface-web/work/DDL-WING-REDESIGN-001/DESIGN_PLAN_v0.1.md
+// §5.4 for why the claim is "fresh as of" and never "live".
+//
+// Each figure carries its own provenance, because a blanket "all of this is
+// re-derived" over numbers that are actually hand-carried is precisely the
+// overclaim this page was rebuilt to stop making.
+const CAPTURED_ON = (snapshot.capturedAt || '').slice(0, 10);
+const F = snapshot.figures || {};
+
+const figures = [
+  { key: 'activePeople',    l: 'Active people' },
+  { key: 'wingsWithPeople', l: 'Wings with people' },
+  { key: 'systems',         l: 'Systems' },
+  { key: 'governedArtifacts', l: 'Governed artifacts' },
+  { key: 'routesInWing',    l: 'Routes in wing' },
+]
+  // A figure the generator could not derive and could not carry is omitted
+  // rather than rendered as a zero or an em-dash pretending to be a value.
+  .map(({ key, l }) => ({ l, ...(F[key] || {}) }))
+  .filter(f => f.value !== null && f.value !== undefined);
 
 const steps = [
   { n: '01', label: 'Gather',    t: 'Collect raw inputs. No judgment. Just capture.' },
@@ -59,14 +78,6 @@ const steps = [
   { n: '06', label: 'Automate',  t: 'Design for click once, update everywhere.' },
   { n: '07', label: 'Beautify',  t: 'Apply consistent formatting and branding. Make tools people actually use.' },
   { n: '08', label: 'Preserve',  t: 'Archive versions, log changes, capture decisions. Make it easy to restart.' },
-];
-
-const figures = [
-  { v: '32', l: 'Active people' },
-  { v: '12', l: 'Founded wings' },
-  { v: '44', l: 'Systems' },
-  { v: '65', l: 'Governed artifacts' },
-  { v: '73', l: 'Routes in wing' },
 ];
 
 const areas = [
@@ -103,23 +114,29 @@ export default function DDLStudioHub() {
           DDL is the methodology and governance layer the rest of the site is built on. Seventy-three of the two hundred routes on dropdownlogistics.com live in this wing &mdash; more than a third of everything published here.
         </div>
         <div style={{ fontFamily: "'Source Serif 4', serif", fontSize: '0.95rem', color: C.body, maxWidth: 720, lineHeight: 1.8, marginBottom: 40 }}>
-          What follows is not a founding snapshot. The figures below are re-derived from the org&rsquo;s own personnel and canon records at build time, and stamped with the moment they were captured.
+          What follows is not a founding snapshot. Figures marked <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.8rem', color: C.cream }}>derived</span> are rebuilt from the org&rsquo;s own personnel and canon records; the rest are carried by hand and say so. Each one is stamped with the moment it was captured.
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: 12 }}>
           {figures.map(s => (
             <div key={s.l} style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 6, padding: '20px 22px' }}>
-              <div style={{ fontFamily: "'JetBrains Mono', monospace", fontWeight: 500, fontSize: '2rem', color: C.cream, lineHeight: 1, marginBottom: 8 }}>{s.v}</div>
+              <div style={{ fontFamily: "'JetBrains Mono', monospace", fontWeight: 500, fontSize: '2rem', color: C.cream, lineHeight: 1, marginBottom: 8 }}>{s.value}</div>
               <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: '0.6rem', color: C.steel, letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: 4 }}>{s.l}</div>
-              <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.55rem', color: C.muted }}>as of {AS_OF}</div>
+              <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.55rem', color: s.derived ? C.steel : C.muted }}>
+                {s.derived ? `derived · ${CAPTURED_ON}` : `stated · ${s.asOf || 'undated'}`}
+              </div>
             </div>
           ))}
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 14, fontFamily: "'JetBrains Mono', monospace", fontSize: '0.62rem', color: C.steel }}>
-          <span style={{ width: 6, height: 6, borderRadius: '50%', background: C.crimson }} />
-          <span>Captured {AS_OF}</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 14, fontFamily: "'JetBrains Mono', monospace", fontSize: '0.62rem', color: C.steel, flexWrap: 'wrap' }}>
+          <span style={{ width: 6, height: 6, borderRadius: '50%', background: snapshot.available ? C.crimson : C.copper, flexShrink: 0 }} />
+          <span>Captured {CAPTURED_ON || 'unknown'}</span>
           <span style={{ color: C.muted }}>&middot;</span>
-          <span>Derived from personnel/ and canon at build time, regenerated on push to master. Fresh, not live.</span>
+          <span>
+            {snapshot.available
+              ? 'Rebuilt from personnel/ and canon by a generator that reads the governed record. Fresh as of capture, not live.'
+              : 'Source unavailable at last build — figures shown are the last good capture, not current.'}
+          </span>
         </div>
       </div>
 
