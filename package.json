@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "snapshot": "node scripts/generate-ddl-snapshot.mjs"
+    "snapshot": "node scripts/generate-ddl-snapshot.mjs",
+    "verify:routes": "node scripts/verify-product-routes.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^1.6.1",
