@@ -1,14 +1,16 @@
 'use client';
 import Link from 'next/link';
 import BackButton from '@/components/BackButton';
+import { C as PALETTE } from '@/lib/canonpress-palette';
 
+// Palette: one declaration for all of CanonPress.
 const C = {
-  navy: '#0D1B2A', card: '#10202f',
-  cream: '#F5F1EB', dim: 'rgba(245,241,235,0.72)',
-  muted: 'rgba(245,241,235,0.35)', border: 'rgba(245,241,235,0.08)',
-  crimson: '#B23531', crimsonDim: 'rgba(178,53,49,0.1)',
-  violet: '#8a6cc9', violetDim: 'rgba(138,108,201,0.1)',
-  amber: '#C49A3C',
+  ...PALETTE,
+  // UNRESOLVED (REPAINT-001 §3): this alpha differs across pages and has
+  // no majority. Kept at this page's existing value so the consolidation
+  // changes nothing visually. Resolving it is a design call, not a refactor.
+  crimsonDim: 'rgba(178,53,49,0.1)',
+  violetDim: 'rgba(138,108,201,0.1)',
 };
 
 const font = {

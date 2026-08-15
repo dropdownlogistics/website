@@ -1,22 +1,15 @@
 'use client';
 import Link from 'next/link';
 import BackButton from '@/components/BackButton';
+import { C as PALETTE } from '@/lib/canonpress-palette';
 
+// Palette: one declaration for all of CanonPress.
 const C = {
-  navy:        '#0D1B2A',
-  card:        '#10202f',
-  cream:       '#F5F1EB',
-  dim:         'rgba(245,241,235,0.72)',
-  body:        'rgba(245,241,235,0.6)',
-  muted:       'rgba(245,241,235,0.35)',
-  border:      'rgba(245,241,235,0.08)',
-  borderSoft:  'rgba(245,241,235,0.05)',
-  crimson:     '#B23531',
-  crimsonDim:  'rgba(178,53,49,0.12)',
-  crimsonLine: 'rgba(178,53,49,0.35)',
-  amber:       '#C49A3C',
-  steel:       '#6B7B8D',
-  steelLine:   'rgba(107,123,141,0.35)',
+  ...PALETTE,
+  // UNRESOLVED (REPAINT-001 §3): this alpha differs across pages and has
+  // no majority. Kept at this page's existing value so the consolidation
+  // changes nothing visually. Resolving it is a design call, not a refactor.
+  crimsonDim: 'rgba(178,53,49,0.12)',
 };
 
 const SLabel = ({ children }) => (
