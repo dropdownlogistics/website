@@ -15,7 +15,7 @@ const C = {
   ember: "#c98a4a", emberDim: "rgba(201,138,74,0.15)",
 };
 const font = {
-  display: "'Space Grotesk', system-ui, sans-serif",
+  display: "'Space Grotesk', sans-serif",
   mono: "'JetBrains Mono', monospace",
   body: "'Source Serif 4', Georgia, serif",
 };

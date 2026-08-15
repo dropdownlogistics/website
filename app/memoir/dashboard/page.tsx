@@ -33,7 +33,7 @@ const COLORS = {
   cream: '#F5F1EB',
   muted: '#8a9bb5',
   bg: '#0a1020',
-  gold: '#D4A842',
+  gold: '#D4A843',
   pink: '#E879A0',
   green: '#2D8F5E',
 };

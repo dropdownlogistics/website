@@ -22,7 +22,7 @@ const COLORS = {
   cream: '#e8e0d0', creamDim: '#b8b0a0',
   amber: '#d4913a', crimson: '#b23531', crimsonGlow: '#d94044',
   wine: '#97072f', green: '#2d8f5e', pink: '#e879a0',
-  slate: '#5a6a7e', gold: '#d4a842',
+  slate: '#5a6a7e', gold: '#d4a843',
 };
 
 const TONE_COLORS = { addiction: COLORS.amber, crisis: COLORS.crimsonGlow, recovery: COLORS.green, emily: COLORS.pink };

@@ -53,7 +53,7 @@ const C = {
   crimsonGlow: '#C41426',
   cream: '#F5F0E8',
   creamDim: '#E8E0D0',
-  gold: '#D4A842',
+  gold: '#D4A843',
   slate: '#8899AA',
   green: '#2D8F5E',
   blue: '#3B82F6',

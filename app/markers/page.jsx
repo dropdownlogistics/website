@@ -8,7 +8,7 @@ const C = {
   dim:         'rgba(245,241,235,0.72)',
   body:        'rgba(245,241,235,0.6)',
   muted:       'rgba(245,241,235,0.35)',
-  border:      'rgba(245,241,235,0.08)',
+  border:      'rgba(245,241,235,0.07)',
   borderSoft:  'rgba(245,241,235,0.05)',
   crimson:     '#B23531',
   steel:       '#6B7B8D',

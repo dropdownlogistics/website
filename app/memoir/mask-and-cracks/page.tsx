@@ -21,7 +21,7 @@ const COLORS = {
   cream: '#e8e0d0', creamDim: '#b8b0a0',
   amber: '#d4913a', bronze: '#a67c52', crimson: '#b23531',
   crimsonGlow: '#d94044', teal: '#4a9e8e', rust: '#c45d3e',
-  slate: '#5a6a7e', gold: '#d4a842',
+  slate: '#5a6a7e', gold: '#d4a843',
 };
 
 const TONE_COLORS = { glow: COLORS.amber, routine: COLORS.bronze, crack: COLORS.crimsonGlow };

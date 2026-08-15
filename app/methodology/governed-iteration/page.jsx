@@ -13,7 +13,7 @@ const C = {
   borderMed: 'rgba(232,230,227,0.12)',
 };
 const font = {
-  display: "'Space Grotesk', system-ui, sans-serif",
+  display: "'Space Grotesk', sans-serif",
   mono: "'JetBrains Mono', monospace",
   body: "'Source Serif 4', Georgia, serif",
 };

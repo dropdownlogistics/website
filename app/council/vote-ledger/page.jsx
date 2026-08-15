@@ -255,7 +255,7 @@ export default function CouncilVoteLedger() {
   }
 
   const S = {
-    root: { background: "#0a0e17", color: "#c8d6e5", minHeight: "100vh", fontFamily: "'Segoe UI', system-ui, sans-serif", padding: "0" },
+    root: { background: "#0a0e17", color: "#c8d6e5", minHeight: "100vh", fontFamily: "'Segoe UI', sans-serif", padding: "0" },
     header: { background: "linear-gradient(135deg, #0f1729 0%, #1a1f3a 100%)", borderBottom: "1px solid #1e293b", padding: "20px 28px", position: "sticky", top: 0, zIndex: 10 },
     title: { fontSize: "15px", fontWeight: 700, letterSpacing: "3px", textTransform: "uppercase", color: "#e2e8f0", margin: 0 },
     subtitle: { fontSize: "11px", color: "#64748b", letterSpacing: "1.5px", marginTop: "4px" },

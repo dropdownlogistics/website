@@ -16,7 +16,7 @@ const C = {
   teal: "#2DCFCF", tealDim: "rgba(45,207,207,0.15)",
   diamond: "#A5D8FF", diamondDim: "rgba(165,216,255,0.15)",
 };
-const font = { display: "'Space Grotesk', system-ui, sans-serif", mono: "'JetBrains Mono', monospace", body: "'Source Serif 4', Georgia, serif" };
+const font = { display: "'Space Grotesk', sans-serif", mono: "'JetBrains Mono', monospace", body: "'Source Serif 4', Georgia, serif" };
 
 const translations = {
   en: {

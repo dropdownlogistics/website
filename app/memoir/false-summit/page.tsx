@@ -197,7 +197,7 @@ function ExcerptCard({ e, index }: { e: ExcerptData; index: number }) {
 
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px", marginBottom: "4px" }}>
             <div style={{ background: "rgba(212,168,66,0.04)", border: "1px solid rgba(212,168,66,0.1)", borderRadius: "6px", padding: "12px 14px" }}>
-              <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "9px", letterSpacing: "2px", color: "#D4A842", textTransform: "uppercase", marginBottom: "6px" }}>What he told himself</p>
+              <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "9px", letterSpacing: "2px", color: "#D4A843", textTransform: "uppercase", marginBottom: "6px" }}>What he told himself</p>
               <p style={{ fontFamily: "'Source Serif 4', Georgia, serif", fontSize: "13px", color: "#A89B8C", lineHeight: 1.6, fontStyle: "italic" }}>&ldquo;{e.told}&rdquo;</p>
             </div>
             <div style={{ background: "rgba(155,17,30,0.04)", border: "1px solid rgba(155,17,30,0.1)", borderRadius: "6px", padding: "12px 14px" }}>

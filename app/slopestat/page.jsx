@@ -10,7 +10,7 @@ const C = {
   dim:         'rgba(245,241,235,0.72)',
   body:        'rgba(245,241,235,0.6)',
   muted:       'rgba(245,241,235,0.35)',
-  border:      'rgba(245,241,235,0.08)',
+  border:      'rgba(245,241,235,0.07)',
   amber:       '#C49A3C',
   amberDim:    'rgba(196,154,60,0.12)',
   amberLine:   'rgba(196,154,60,0.35)',

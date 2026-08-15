@@ -13,7 +13,7 @@ const C = {
   cream:   '#F5F1EB',
   dim:     'rgba(245,241,235,0.72)',
   body:    'rgba(245,241,235,0.6)',
-  border:  'rgba(245,241,235,0.08)',
+  border:  'rgba(245,241,235,0.07)',
   crimson: '#B23531',
   copper:  '#C49A3C',
   steel:   '#6B7B8D',

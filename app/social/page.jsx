@@ -10,7 +10,7 @@ const C = {
   green: "#4A9E6B", amber: "#C49A3C", blue: "#6B9DC2",
   violet: "#8a6cc9", rose: "#c94a6e", ember: "#c98a4a",
 };
-const font = { display: "'Space Grotesk', system-ui, sans-serif", mono: "'JetBrains Mono', monospace", body: "'Source Serif 4', Georgia, serif" };
+const font = { display: "'Space Grotesk', sans-serif", mono: "'JetBrains Mono', monospace", body: "'Source Serif 4', Georgia, serif" };
 
 const platforms = [
   {

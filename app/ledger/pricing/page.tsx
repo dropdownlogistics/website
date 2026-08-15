@@ -8,7 +8,7 @@ const C = {
   cream:     '#F5F1EB',
   dim:       'rgba(245,241,235,0.72)',
   body:      'rgba(245,241,235,0.6)',
-  border:    'rgba(245,241,235,0.08)',
+  border:    'rgba(245,241,235,0.07)',
   amber:     '#C49A3C',
   amberDim:  'rgba(196,154,60,0.12)',
   amberLine: 'rgba(196,154,60,0.35)',

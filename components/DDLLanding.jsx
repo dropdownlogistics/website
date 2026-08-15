@@ -21,7 +21,7 @@ const C = {
 };
 
 const font = {
-  display: "'Space Grotesk', system-ui, sans-serif",
+  display: "'Space Grotesk', sans-serif",
   mono: "'JetBrains Mono', monospace",
   body: "'Source Serif 4', Georgia, serif",
 };

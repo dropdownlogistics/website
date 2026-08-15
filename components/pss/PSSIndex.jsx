@@ -13,7 +13,7 @@ const C = {
   rose: "#c94a6e", roseDim: "rgba(201,74,110,0.15)",
   ember: "#c98a4a", emberDim: "rgba(201,138,74,0.15)",
 };
-const font = { display: "'Space Grotesk', system-ui, sans-serif", mono: "'JetBrains Mono', monospace", body: "'Source Serif 4', Georgia, serif" };
+const font = { display: "'Space Grotesk', sans-serif", mono: "'JetBrains Mono', monospace", body: "'Source Serif 4', Georgia, serif" };
 
 // ═══════════════════════════════════════════════════════════
 // Strategy Entries — Seeded from actual DDL work

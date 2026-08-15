@@ -7,7 +7,7 @@ const C = {
   border: "rgba(245,241,235,0.06)",
 };
 const font = {
-  display: "'Space Grotesk', system-ui, sans-serif",
+  display: "'Space Grotesk', sans-serif",
   mono: "'JetBrains Mono', monospace",
   body: "'Source Serif 4', Georgia, serif",
 };

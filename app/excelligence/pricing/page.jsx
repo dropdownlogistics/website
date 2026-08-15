@@ -9,7 +9,7 @@ const C = {
   cream:     '#F5F1EB',
   dim:       'rgba(245,241,235,0.72)',
   body:      'rgba(245,241,235,0.6)',
-  border:    'rgba(245,241,235,0.08)',
+  border:    'rgba(245,241,235,0.07)',
   gold:      '#D4A843',
   goldDim:   'rgba(212,168,67,0.12)',
   goldLine:  'rgba(212,168,67,0.35)',

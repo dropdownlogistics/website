@@ -28,7 +28,7 @@ interface LocationData {
 }
 
 const LOCATIONS: LocationData[] = [
-  { id: "campanile", excerpt: 11, title: "The Hill", place: "The Campanile, Mount Oread", city: "Lawrence, KS", spatial: "The tallest point in Kansas. Campus always slightly above you, always asking you to climb.", moment: "Graduation day. Walked through the Campanile with friends, started down the hill, felt the campus letting go. Ended at Louise\u2019s with $2.75 Boulevard Wheat schooners.", told: "I\u2019m pumped. I\u2019m ready.", truth: "I needed to grieve a chapter while it was still open.", witnesses: "Friends, family, the whole stadium", isolation: 0, isoLabel: "Fully social", color: "#D4A842", glow: "rgba(212,168,66,0.15)", icon: "\u25B2" },
+  { id: "campanile", excerpt: 11, title: "The Hill", place: "The Campanile, Mount Oread", city: "Lawrence, KS", spatial: "The tallest point in Kansas. Campus always slightly above you, always asking you to climb.", moment: "Graduation day. Walked through the Campanile with friends, started down the hill, felt the campus letting go. Ended at Louise\u2019s with $2.75 Boulevard Wheat schooners.", told: "I\u2019m pumped. I\u2019m ready.", truth: "I needed to grieve a chapter while it was still open.", witnesses: "Friends, family, the whole stadium", isolation: 0, isoLabel: "Fully social", color: "#D4A843", glow: "rgba(212,168,66,0.15)", icon: "\u25B2" },
   { id: "remington", excerpt: 12, title: "Tulsa", place: "The Remington Apartments", city: "Tulsa, OK", spatial: "Clean in that new-city way. Blank walls. That faint smell of someone else\u2019s paint.", moment: "Family convoy left. Silence showed up. Jeremy came down. Different kitchen, same routine. Drank and watched TV until work started. Woke up on concrete stairs outside the apartment, no keys.", told: "It\u2019s an extension of college. We\u2019re still free.", truth: "The specific silence after your family drives away. The room stops being a set. It becomes your life.", witnesses: "Roommate found him on the stairs", isolation: 1, isoLabel: "New city, old habits", color: "#C9A84C", glow: "rgba(201,168,76,0.12)", icon: "\u25FB" },
   { id: "jeremy", excerpt: 13, title: "The First Hiding", place: "Jeremy\u2019s Apartment, across from Memorial Stadium", city: "Lawrence, KS", spatial: "Below ground. Patio enclosed by earth. Stadium literally across the street.", moment: "Saturday morning. Only one awake. Poured drinks alone in the kitchen while everyone slept. Set a buzz before the game. Ended at hibachi, queasy from smells that usually felt alive. Monday alarm at 6:15 \u2014 first PTO day considered.", told: "I\u2019m managing the day. It\u2019s practical.", truth: "That was the first time it really looked like hiding, even if I didn\u2019t call it that.", witnesses: "Everyone asleep \u2014 first solo kitchen session", isolation: 3, isoLabel: "First hiding", color: "#C48B4C", glow: "rgba(196,139,76,0.12)", icon: "\u25E7" },
   { id: "liberty", excerpt: 14, title: "Liberty Tower, 13J", place: "Liberty Tower, 15th & Boulder, Unit 13J", city: "Tulsa, OK", spatial: "One bed, one bath, one giant sliding glass door. The balcony was where everything made sense.", moment: "First place that was truly his. Doorman, rooftop pool, balcony view. Adopted Cole the cat. The condo became pregame staging area \u2014 friends gathered here before going out.", told: "I\u2019ve arrived. Car and home without a cosigner. I have it together.", truth: "There\u2019s a line between freedom and danger you don\u2019t recognize until you\u2019ve crossed it. \u2018I can do whatever I want\u2019 starts to sound like permission.", witnesses: "Cole the cat. Always Cole.", isolation: 2, isoLabel: "Freedom as infrastructure", color: "#B89A5E", glow: "rgba(184,154,94,0.12)", icon: "\u25AE" },
@@ -152,7 +152,7 @@ function LocationCard({ loc, index }: { loc: LocationData; index: number }) {
 
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px", marginBottom: "20px" }}>
             <div style={{ background: "rgba(212,168,66,0.04)", border: "1px solid rgba(212,168,66,0.1)", borderRadius: "6px", padding: "14px 16px" }}>
-              <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "9px", letterSpacing: "2px", color: "#D4A842", textTransform: "uppercase", marginBottom: "8px" }}>What he told himself</p>
+              <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "9px", letterSpacing: "2px", color: "#D4A843", textTransform: "uppercase", marginBottom: "8px" }}>What he told himself</p>
               <p style={{ fontFamily: "'Source Serif 4', Georgia, serif", fontSize: "14px", color: "#C4B5A0", lineHeight: 1.6, fontStyle: "italic" }}>&ldquo;{loc.told}&rdquo;</p>
             </div>
             <div style={{ background: "rgba(155,17,30,0.04)", border: "1px solid rgba(155,17,30,0.1)", borderRadius: "6px", padding: "14px 16px" }}>
@@ -198,7 +198,7 @@ function IsolationArc() {
           <svg width="100%" height="80" viewBox="0 0 500 80" preserveAspectRatio="none">
             <defs>
               <linearGradient id="arcGrad" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stopColor="#D4A842" />
+                <stop offset="0%" stopColor="#D4A843" />
                 <stop offset="50%" stopColor="#A8845A" />
                 <stop offset="100%" stopColor="#9B111E" />
               </linearGradient>
@@ -265,13 +265,13 @@ export default function MapOf13JPage() {
             fontFamily: "'JetBrains Mono', monospace", fontSize: "11px", letterSpacing: "1px",
             color: "#6B5F52", textDecoration: "none", transition: "color 0.2s ease",
           }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = '#D4A842')}
+            onMouseEnter={(e) => (e.currentTarget.style.color = '#D4A843')}
             onMouseLeave={(e) => (e.currentTarget.style.color = '#6B5F52')}
           >&larr; MEMOIR</a>
         </div>
 
         <div style={{ textAlign: "center", maxWidth: "680px", position: "relative", animation: "fadeUp 1.2s cubic-bezier(0.16,1,0.3,1)" }}>
-          <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "10px", letterSpacing: "4px", color: "#D4A842", textTransform: "uppercase", marginBottom: "28px" }}>
+          <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "10px", letterSpacing: "4px", color: "#D4A843", textTransform: "uppercase", marginBottom: "28px" }}>
             Excerpts 11&ndash;20 &middot; The Functional Adult Illusion
           </p>
           <h1 style={{ fontFamily: "'Source Serif 4', Georgia, serif", fontSize: "clamp(36px, 7vw, 68px)", fontWeight: 400, color: "#F0E6D6", lineHeight: 1.1, marginBottom: "20px" }}>
@@ -282,7 +282,7 @@ export default function MapOf13JPage() {
             it gets lonelier. A geography of increasing isolation, from
             the Campanile to an impound lot no one can find.
           </p>
-          <div style={{ width: "50px", height: "1px", background: "#D4A842", margin: "40px auto 0", opacity: 0.5 }} />
+          <div style={{ width: "50px", height: "1px", background: "#D4A843", margin: "40px auto 0", opacity: 0.5 }} />
           <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "10px", color: "#4A4139", marginTop: "16px", letterSpacing: "1px" }}>
             For <em style={{ fontFamily: "'Source Serif 4', serif", color: "#6B5F52" }}>Little to Know Experience</em> by Dave Kitchens
           </p>
@@ -291,7 +291,7 @@ export default function MapOf13JPage() {
         <div style={{ position: "absolute", bottom: "40px", opacity: 0.3, animation: "bounce 2.5s ease-in-out infinite" }}>
           <svg width="16" height="24" viewBox="0 0 16 24" fill="none">
             <rect x="1" y="1" width="14" height="22" rx="7" stroke="#8A7D6E" strokeWidth="1.5"/>
-            <circle cx="8" cy="8" r="1.5" fill="#D4A842">
+            <circle cx="8" cy="8" r="1.5" fill="#D4A843">
               <animate attributeName="cy" values="7;15;7" dur="2.5s" repeatCount="indefinite"/>
               <animate attributeName="opacity" values="1;0.3;1" dur="2.5s" repeatCount="indefinite"/>
             </circle>

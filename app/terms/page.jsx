@@ -5,7 +5,7 @@ const C = {
   gold: '#C49A3C', dim: 'rgba(245,241,235,0.3)', border: 'rgba(245,241,235,0.1)',
 };
 const font = {
-  display: "'Space Grotesk', system-ui, sans-serif",
+  display: "'Space Grotesk', sans-serif",
   body: "'Source Serif 4', Georgia, serif",
   mono: "'JetBrains Mono', monospace",
 };
