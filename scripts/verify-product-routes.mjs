@@ -95,6 +95,12 @@ async function statusOf(url) {
  * Rule: if the route already begins with the url's path, it is origin-relative
  * (B). Otherwise it is relative to the product's own root (A and C).
  *
+ * SD-002 (2026-08-15): shape B has been normalized out of the registry — `dex`
+ * was its only user. The branch is KEPT as a defensive fallback rather than
+ * deleted: a checker that breaks the moment someone reintroduces an old shape
+ * is a checker that fails exactly when it is needed. It currently has no user,
+ * and that is stated here so nobody mistakes it for a live requirement.
+ *
  * Naive concatenation breaks B (doubles the path); naive origin-resolution
  * breaks C (lands on the GitHub Pages user root). Both were caught by running
  * this script rather than by reading it — first on B, then on C.
