@@ -483,6 +483,38 @@ function main() {
     }
   }
   if (routesInWing === null) console.warn("[ddl-snapshot] route count not derivable — figure marked unavailable");
+
+  /* ── FIGURE COVERAGE (STD-DDL-PROPERTY-001 §3.1) ──────────────────────
+   * This generator reported "captured N people" and said nothing about the
+   * figures it could NOT derive. The emitted JSON marks each one
+   * `derived: true|false` and the page renders that distinction — but a
+   * person running this script saw only the success line and could
+   * reasonably conclude everything was derived.
+   *
+   * Same blind spot the route verifier had (SD-003), in my own other tool,
+   * found by applying the standard to the thing that produced it. Reporting
+   * what was captured is not the same as reporting what was reachable.
+   * ------------------------------------------------------------------- */
+  const figs = Object.entries(snapshot.figures);
+  const derivedFigs = figs.filter(([, f]) => f.derived);
+  const statedFigs = figs.filter(([, f]) => !f.derived);
+
+  console.log(
+    `[ddl-snapshot] figure coverage: ${derivedFigs.length}/${figs.length} derived from a source; ` +
+    `${statedFigs.length} carried by hand`,
+  );
+
+  const DAY = 86400000;
+  const STALE_DAYS = 30;
+  for (const [name, f] of statedFigs) {
+    const ageDays = f.asOf ? Math.floor((Date.parse(capturedAt) - Date.parse(f.asOf)) / DAY) : null;
+    const age = ageDays === null ? "undated" : `${ageDays}d old`;
+    // A hand-carried number with no source to recount against is exactly the
+    // drift that produced DDL_ROUTES '160+' against a real 200 (SD-004).
+    // Naming it every run is cheap; discovering it later is not.
+    const flag = ageDays !== null && ageDays >= STALE_DAYS ? " ** STALE — recheck **" : "";
+    console.warn(`[ddl-snapshot]   STATED (not derived): ${name} = ${f.value} · as of ${f.asOf ?? "never"} (${age})${flag}`);
+  }
 }
 
 function write(snap) {
