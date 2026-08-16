@@ -65,6 +65,56 @@ const PAYLOAD = [
   { id: "slopestat",       url: "https://slopestat.vercel.app" },
 ];
 
+/**
+ * SD-017 — routes the registry never mentions.
+ *
+ * `pages` and `plannedPages` are checked in opposite directions and both checks
+ * are honest. Neither can see a route the registry never names. A source-level
+ * route discovery across all eight property repos on 2026-08-15 found
+ * **44 live public routes that no registry record declares**:
+ *
+ *   excelligence 11 · workbench 10 · blindspot 6 · ledger 6
+ *   auditforge    5 · admitone   3 · slopestat 2 · positionbook 1
+ *
+ * The registry declares 13 routes. The properties serve 57.
+ *
+ * The number was 46 for about ten minutes. The discovery script carried a
+ * hardcoded map of "what the registry declares" instead of reading
+ * lib/products.js, and that map said excelligence declared only '/'. It declares
+ * ['/', '/explorer', '/pricing']. **The promotion check below caught it on the
+ * first run** — which is the whole argument for writing the reverse check at the
+ * same time as the forward one, and the second time in this pass that asserting
+ * a source's contents rather than reading them produced a wrong number.
+ *
+ * So Excelligence is the counter-example, not the headline: it is the one
+ * property whose record was kept current as it shipped. Meanwhile three records
+ * carry `/pricing` in `plannedPages`, correctly flagged as intended-and-404.
+ * **The field tracking intent is well maintained across the estate; the one
+ * tracking shipped reality is maintained on exactly one property.**
+ *
+ * This is SD-003's lesson one level down, and it landed in this script: the
+ * previous version reported "16 claim(s) hold · PASS (partial)" — accurate about
+ * the 16 claims it knew of, silent about 44 public surfaces nobody audits.
+ *
+ * Recorded here rather than added to PRODUCTS because *which* of these belong in
+ * a public marketing registry is a content decision (`/demo/venue/superdome`
+ * probably does not). Keeping them here makes the gap visible without
+ * pre-empting that call.
+ */
+const KNOWN_LIVE_UNDECLARED = {
+  excelligence: ["/analytics", "/daily", "/formulalab", "/gridtactics", "/learn",
+                 "/og", "/paths", "/placement", "/radial", "/scanner", "/tools"],
+  workbench:    ["/ddl/commons", "/ddl/signal", "/modules", "/modules/controls-compliance",
+                 "/modules/ddl-roster", "/modules/findings-observations", "/modules/hr-people",
+                 "/modules/payroll", "/modules/risk-register", "/modules/time-attendance"],
+  blindspot:    ["/dashboard", "/glossary", "/governance", "/how-it-works", "/parlays", "/scope"],
+  ledger:       ["/", "/coming-soon", "/connect/demo", "/how-it-works", "/profile/dave", "/stack"],
+  auditforge:   ["/app", "/coming-soon", "/demo", "/import", "/workbench"],
+  admitone:     ["/demo/dave", "/demo/venue/superdome", "/how-it-works"],
+  slopestat:    ["/dashboard", "/demo/dave"],
+  positionbook: ["/dashboard"],
+};
+
 /** Returns the final status after redirects, or null if unreachable. */
 async function statusOf(url) {
   const ctl = new AbortController();
@@ -197,6 +247,40 @@ if (uncovered.length) {
     `[verify-routes] ${uncovered.length} payload propert${uncovered.length === 1 ? "y is" : "ies are"} outside this check entirely. ` +
     "Not a failure of the claims that were checked — a limit on what was checked. " +
     "Registering a property is what makes it auditable.",
+  );
+}
+
+/* ── UNDECLARED PUBLIC ROUTES (SD-017) ──────────────────────────────────── */
+
+const undeclaredTotal = Object.values(KNOWN_LIVE_UNDECLARED)
+  .reduce((n, rs) => n + rs.length, 0);
+const declaredTotal = PRODUCTS.reduce((n, p) => n + (p.pages?.length ?? 0), 0);
+
+console.log(
+  `[verify-routes] declared route claims: ${declaredTotal} · known live and NOT declared: ${undeclaredTotal}`,
+);
+
+// Promotion check, mirroring the plannedPages logic: if a record now declares a
+// route listed here, this entry is stale and should be dropped.
+for (const [id, routes] of Object.entries(KNOWN_LIVE_UNDECLARED)) {
+  const rec = PRODUCTS.find((p) => p.id === id);
+  const declared = new Set(rec?.pages ?? []);
+  const stillUndeclared = routes.filter((r) => !declared.has(r));
+  const nowDeclared = routes.filter((r) => declared.has(r));
+  for (const r of nowDeclared) {
+    console.log(`[verify-routes] RESOLVED: ${id} now declares ${r} — drop it from KNOWN_LIVE_UNDECLARED`);
+  }
+  if (stillUndeclared.length) {
+    console.warn(
+      `[verify-routes] UNDECLARED: ${id} serves ${stillUndeclared.length} public route(s) the registry does not name — ${stillUndeclared.join(", ")}`,
+    );
+  }
+}
+
+if (undeclaredTotal) {
+  console.warn(
+    `[verify-routes] ${undeclaredTotal} live public routes are outside every claim this script checks. ` +
+    "Not a false claim — an unmade one. A route nobody declares is a route nobody audits.",
   );
 }
 
