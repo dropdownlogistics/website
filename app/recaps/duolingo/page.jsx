@@ -7,7 +7,7 @@ const C = {
   crimson: "#B23531", crimsonDim: "rgba(178,53,49,0.2)",
   cream: "#F5F1EB", creamHigh: "rgba(245,241,235,0.85)", creamMid: "rgba(245,241,235,0.55)",
   creamDim: "rgba(245,241,235,0.3)", creamGhost: "rgba(245,241,235,0.08)",
-  border: "rgba(245,241,235,0.06)", borderMed: "rgba(245,241,235,0.1)",
+  border: "rgba(245,241,235,0.07)", borderMed: "rgba(245,241,235,0.1)",
   green: "#58CC02", greenDim: "rgba(88,204,2,0.15)",
   amber: "#FF9600", amberDim: "rgba(255,150,0,0.15)",
   blue: "#1CB0F6", blueDim: "rgba(28,176,246,0.15)",

@@ -8,7 +8,7 @@ const C = {
   green: '#4A9E6B', steel: '#4A7C9B', teal: '#2C7A7B',
   blue: '#6B9DC2', daGreen: '#22C55E',
   cream: '#F5F1EB', dim: 'rgba(245,241,235,0.55)',
-  muted: 'rgba(245,241,235,0.3)', border: 'rgba(245,241,235,0.06)',
+  muted: 'rgba(245,241,235,0.3)', border: 'rgba(245,241,235,0.07)',
 };
 
 const font = {

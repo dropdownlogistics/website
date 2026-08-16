@@ -5,7 +5,7 @@ const C = {
   navy: '#0D1B2A', card: '#10202f', cardDeep: '#0a1520',
   cream: '#F5F1EB', creamHigh: 'rgba(245,241,235,0.85)',
   creamMid: 'rgba(245,241,235,0.55)', creamDim: 'rgba(245,241,235,0.3)',
-  creamGhost: 'rgba(245,241,235,0.06)', border: 'rgba(245,241,235,0.06)',
+  creamGhost: 'rgba(245,241,235,0.06)', border: 'rgba(245,241,235,0.07)',
   borderMed: 'rgba(245,241,235,0.12)',
   crimson: '#B23531', crimsonDim: 'rgba(178,53,49,0.15)',
   amber: '#C49A3C', amberDim: 'rgba(196,154,60,0.15)',

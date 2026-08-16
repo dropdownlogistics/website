@@ -11,7 +11,7 @@ const C = {
   creamMid: 'rgba(245,241,235,0.55)',
   creamDim: 'rgba(245,241,235,0.35)',
   creamGhost: 'rgba(245,241,235,0.08)',
-  border: 'rgba(245,241,235,0.06)',
+  border: 'rgba(245,241,235,0.07)',
   borderMid: 'rgba(245,241,235,0.12)',
   violet: '#8a6cc9',
   violetDim: 'rgba(138,108,201,0.12)',

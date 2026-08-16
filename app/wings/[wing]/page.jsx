@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 const C = {
   navy: "#0D1B2A", navyDeep: "#070F1C", card: "#10202f", cream: "#F5F1EB",
   creamMid: "rgba(245,241,235,0.55)", creamDim: "rgba(245,241,235,0.3)",
-  border: "rgba(245,241,235,0.06)",
+  border: "rgba(245,241,235,0.07)",
 };
 const font = {
   display: "'Space Grotesk', sans-serif",

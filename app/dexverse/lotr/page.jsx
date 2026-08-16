@@ -8,7 +8,7 @@ const C = {
   violet: '#8a6cc9', violetDim: 'rgba(138,108,201,0.12)', violetMid: 'rgba(138,108,201,0.4)',
   amber: '#C49A3C', amberDim: 'rgba(196,154,60,0.12)', amberMid: 'rgba(196,154,60,0.4)',
   cream: '#F5F1EB', creamMid: 'rgba(245,241,235,0.55)', creamDim: 'rgba(245,241,235,0.3)',
-  creamGhost: 'rgba(245,241,235,0.05)', border: 'rgba(245,241,235,0.06)',
+  creamGhost: 'rgba(245,241,235,0.05)', border: 'rgba(245,241,235,0.07)',
   borderMed: 'rgba(245,241,235,0.12)', green: '#4A9E6B',
 };
 const font = {

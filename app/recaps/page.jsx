@@ -7,7 +7,7 @@ const C = {
   navy: '#0D1B2A', card: '#10202f',
   cream: '#F5F1EB', creamHigh: 'rgba(245,241,235,0.85)',
   creamMid: 'rgba(245,241,235,0.55)', creamDim: 'rgba(245,241,235,0.35)',
-  creamGhost: 'rgba(245,241,235,0.08)', border: 'rgba(245,241,235,0.06)',
+  creamGhost: 'rgba(245,241,235,0.08)', border: 'rgba(245,241,235,0.07)',
   amber: '#C49A3C', crimson: '#B23531', green: '#4A9E6B',
   violet: '#8a6cc9', blue: '#6B9DC2',
 };

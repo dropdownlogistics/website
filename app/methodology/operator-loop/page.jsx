@@ -6,7 +6,7 @@ const C = {
   navy: '#0D1B2A', card: '#10202f',
   crimson: '#B23531', crimsonDim: 'rgba(178,53,49,0.12)', crimsonMid: 'rgba(178,53,49,0.35)',
   cream: '#F5F1EB', creamMid: 'rgba(245,241,235,0.55)', creamDim: 'rgba(245,241,235,0.3)',
-  creamGhost: 'rgba(245,241,235,0.06)', border: 'rgba(245,241,235,0.06)',
+  creamGhost: 'rgba(245,241,235,0.06)', border: 'rgba(245,241,235,0.07)',
   borderMed: 'rgba(245,241,235,0.12)', amber: '#C49A3C',
 };
 const font = {

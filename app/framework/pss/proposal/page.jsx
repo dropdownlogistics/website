@@ -6,7 +6,7 @@ const C = {
   crimson: "#B23531", crimsonDim: "rgba(178,53,49,0.2)", crimsonFaint: "rgba(178,53,49,0.08)",
   cream: "#F5F1EB", creamHigh: "rgba(245,241,235,0.85)", creamMid: "rgba(245,241,235,0.55)",
   creamDim: "rgba(245,241,235,0.3)", creamGhost: "rgba(245,241,235,0.08)",
-  border: "rgba(245,241,235,0.06)", borderMed: "rgba(245,241,235,0.1)",
+  border: "rgba(245,241,235,0.07)", borderMed: "rgba(245,241,235,0.1)",
   green: "#4A9E6B", greenDim: "rgba(74,158,107,0.15)",
   amber: "#C49A3C", amberDim: "rgba(196,154,60,0.15)",
   blue: "#6B9DC2", blueDim: "rgba(107,157,194,0.15)",

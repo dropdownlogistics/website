@@ -14,7 +14,7 @@ export default function BlindSpotHub() {
           --amber:#C49A3C;--amber-dim:rgba(196,154,60,0.12);--amber-border:rgba(196,154,60,0.25);
           --red:#B23531;
           --steel:#6B7B8D;--slate:#4A5568;
-          --border:rgba(245,241,235,0.08);
+          --border:rgba(245,241,235,0.07);
         }
         body{font-family:'Source Serif 4',Georgia,serif;background:var(--navy);color:var(--cream);min-height:100vh}
         a{color:inherit;text-decoration:none}

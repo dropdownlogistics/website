@@ -9,7 +9,7 @@ const C = {
   dim:        'rgba(245,241,235,0.55)',
   muted:      'rgba(245,241,235,0.3)',
   ghost:      'rgba(245,241,235,0.06)',
-  border:     'rgba(245,241,235,0.06)',
+  border:     'rgba(245,241,235,0.07)',
   green:      '#4A9E6B',
   greenDim:   'rgba(74,158,107,0.12)',
   greenBorder:'rgba(74,158,107,0.25)',

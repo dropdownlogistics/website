@@ -2,7 +2,7 @@ export const metadata = { title: 'Privacy Policy | DDL' };
 
 const C = {
   navy: '#0D1B2A', cream: '#F5F1EB', creamMid: 'rgba(245,241,235,0.72)',
-  gold: '#C49A3C', dim: 'rgba(245,241,235,0.3)', border: 'rgba(245,241,235,0.1)',
+  gold: '#C49A3C', dim: 'rgba(245,241,235,0.3)', border: 'rgba(245,241,235,0.12)',
 };
 const font = {
   display: "'Space Grotesk', sans-serif",

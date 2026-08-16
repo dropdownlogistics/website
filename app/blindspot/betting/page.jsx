@@ -7,7 +7,7 @@ export default function BlindSpotBettingPage() {
           --navy:#0D1B2A;--card:#10202f;--cream:#F5F1EB;--crimson:#B23531;
           --amber:#C49A3C;--green:#22C55E;--green-light:#86EFAC;
           --steel:#6B7B8D;--slate:#4A5568;
-          --border:rgba(245,241,235,0.06);--border-amber:rgba(196,154,60,0.3);
+          --border:rgba(245,241,235,0.07);--border-amber:rgba(196,154,60,0.3);
         }
         body{font-family:'Space Grotesk',sans-serif;background:var(--navy);color:var(--cream);min-height:100vh}
         a{color:inherit;text-decoration:none}

@@ -16,7 +16,7 @@ const C = {
   creamHigh: "rgba(245,241,235,0.85)",
   creamMid: "rgba(245,241,235,0.55)",
   creamDim: "rgba(245,241,235,0.3)",
-  border: "rgba(245,241,235,0.06)",
+  border: "rgba(245,241,235,0.07)",
   borderMed: "rgba(245,241,235,0.1)",
 };
 

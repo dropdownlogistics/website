@@ -6,7 +6,7 @@ const C = {
   navy: '#0D1B2A', card: '#10202f',
   crimson: '#B23531', crimsonDim: 'rgba(178,53,49,0.2)',
   cream: '#F5F1EB', creamMid: 'rgba(245,241,235,0.55)', creamDim: 'rgba(245,241,235,0.3)',
-  creamGhost: 'rgba(245,241,235,0.06)', border: 'rgba(245,241,235,0.06)',
+  creamGhost: 'rgba(245,241,235,0.06)', border: 'rgba(245,241,235,0.07)',
   borderMed: 'rgba(245,241,235,0.1)',
   amber: '#C49A3C', green: '#4A9E6B', blue: '#6B9DC2', violet: '#8a6cc9',
 };
