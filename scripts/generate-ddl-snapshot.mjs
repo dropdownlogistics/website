@@ -517,7 +517,29 @@ function main() {
   }
 }
 
+/**
+ * `--check` — compute and report, write nothing.
+ *
+ * Added 2026-08-17 because `npm run verify` included this generator and so
+ * left `data/ddl-snapshot.json` modified on every run: `capturedAt` and the
+ * source repo's git head change each time by design.
+ *
+ * **A verification command that mutates tracked state is not a verification
+ * command.** It hands whoever ran it a dirty working tree they did not ask for,
+ * and — worse — makes "did anything change?" unanswerable, because the check
+ * itself is now one of the things that changed.
+ *
+ * Everything above this line still runs in check mode: the source is resolved,
+ * the records are read, integrity is reconciled and figure coverage is reported.
+ * Only the write is skipped. The reporting is the part verification needs.
+ */
+const CHECK_ONLY = process.argv.includes("--check");
+
 function write(snap) {
+  if (CHECK_ONLY) {
+    console.log(`[ddl-snapshot] --check: computed but not written (${outPath})`);
+    return;
+  }
   mkdirSync(dirname(outPath), { recursive: true });
   writeFileSync(outPath, JSON.stringify(snap, null, 2) + "\n", "utf8");
   console.log(outPath);

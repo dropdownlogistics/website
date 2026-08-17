@@ -57,14 +57,20 @@ const CHECKS = [
   {
     name: "snapshot",
     script: "scripts/generate-ddl-snapshot.mjs",
-    what: "org snapshot freshness, integrity and figure coverage",
+    // --check is load-bearing, not a nicety. Without it this generator rewrites
+    // data/ddl-snapshot.json on every run (capturedAt and the source repo's git
+    // head change by design), so `npm run verify` handed you a dirty working
+    // tree and made "did anything change?" unanswerable — the check would be
+    // one of the things that changed. A verification command must be read-only.
+    args: ["--check"],
+    what: "org snapshot freshness, integrity and figure coverage (read-only)",
   },
 ];
 
 /** Runs one check, capturing output. Never throws — a crashed check is a result. */
-function run(script) {
+function run(script, args = []) {
   return new Promise((resolve) => {
-    const child = spawn(process.execPath, [script], {
+    const child = spawn(process.execPath, [script, ...args], {
       stdio: ["ignore", "pipe", "pipe"],
       // The conformance tool taught this one: a tool that cannot render its own
       // output on the platform the org actually uses will not be run (STD §5.9).
@@ -110,7 +116,7 @@ console.log(`\n  DDL property verification — ${started}\n`);
 const results = [];
 for (const check of CHECKS) {
   process.stdout.write(`  ${check.name.padEnd(9)} running…`);
-  const r = await run(check.script);
+  const r = await run(check.script, check.args);
   const verdict = classify(r);
   results.push({ ...check, ...r, verdict });
   process.stdout.write(`\r  ${check.name.padEnd(9)} ${verdict.padEnd(12)} ${check.what}\n`);
