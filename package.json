@@ -9,7 +9,8 @@
     "lint": "next lint",
     "snapshot": "node scripts/generate-ddl-snapshot.mjs",
     "verify:routes": "node scripts/verify-product-routes.mjs",
-    "verify:metrics": "node scripts/verify-metrics-drift.mjs"
+    "verify:metrics": "node scripts/verify-metrics-drift.mjs",
+    "verify": "node scripts/verify-all.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^1.6.1",
