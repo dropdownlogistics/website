@@ -1,0 +1,32 @@
+{
+  "capturedAt": "2026-09-30T05:30:56.735Z",
+  "available": true,
+  "source": {
+    "via": "known-checkout",
+    "root": "C:\\Users\\dkitc\\ddl-org",
+    "behindOrigin": 1,
+    "tool": "surface-social/tools/canonpress.py"
+  },
+  "contract": "canonpress-renderable/1",
+  "withheldCount": 4,
+  "artifacts": [
+    {
+      "artifact_id": "DC-0001",
+      "series": "DEEPCUT",
+      "title": "CanonPress Restructuring Through Meadows' Leverage Points",
+      "author_claimed": "Elias Mercer / Seat 1003",
+      "authored_at": "2026-03",
+      "exposure_basis": "Already published. Live at dropdownlogistics.com/canonpress/deepcut/dc-001 since ~March 2026 under Operator authority. This record documents an existing public artifact; it does not authorise a new publication.",
+      "body_markdown": "# DC-0001 — CanonPress Restructuring Through Meadows' Leverage Points\n\n**This record is a schema test, not a migration.** The live artifact is still the\nhand-authored React page; nothing here changes what renders today. It exists to\nanswer one question: *can the proposed artifact schema represent something\nCanonPress has already published?*\n\nIt can, with one caveat recorded below.\n\n## Drift found while modeling it\n\nThe shipped artifact disagrees with itself about its own ID:\n\n- `layout.tsx` metadata: **`DC-001`** (three digits)\n- page body, rendered: **`DC-0001`** (four digits)\n- URL path: `/canonpress/deepcut/dc-001`\n- `PRO-CANONPRESS-ARCH-001 [A]`: `DC-XXXX` — four digits\n\n`artifact_id` above uses the canon-conformant four-digit form. The three-digit\nURL is preserved in `source` rather than reconciled, because the URL is live and\nrenaming it here would hide the drift rather than fix it.\n\n## Why this one was chosen for the test\n\nIt is the largest shipped artifact (12,413 bytes of JSX) and the output of\nCanonPress Week 01 — the March cycle whose tuning log records\n`status: COMPLETE`, nominated material *The Twelve Leverage Points to Intervene\nin a System* (Donella Meadows). If the schema could not hold this, it could not\nhold CanonPress's flagship work."
+    },
+    {
+      "artifact_id": "GT-002",
+      "series": "GROUNDTRUTH",
+      "title": "The Outfit Doesn't Kill the Idea",
+      "author_claimed": "D.K. Hale (Operator)",
+      "authored_at": "2026-03-10",
+      "exposure_basis": "Already published. Live at dropdownlogistics.com/canonpress/groundtruth/gt-002 since 2026-03-10 under Operator authority — GROUNDTRUTH is Operator-authored by definition. This record documents an existing public artifact; it authorises nothing new.",
+      "body_markdown": "# GT-002 — The Outfit Doesn't Kill the Idea\n\n*\"On almost discarding a real idea because of the skin someone else put on it.\"*\n\n**Deliberately modeled with its real three-digit ID, not canonicalised.**\n\n`PRO-CANONPRESS-ARCH-001 [A]` specifies `GT-XXXX` — four digits. This artifact\nships as `GT-002`. I could have written `GT-0002` here and produced a clean\nrecord; instead the record carries what is actually live, so\n`canonpress.py validate` reports the drift as a warning rather than the schema\nquietly absorbing it.\n\nThat is the whole reason this record exists in this form: **a validator that only\never sees conformant input has never been tested.** Modeling the non-conformant\nshipped artifact is what proves the check fires.\n\n## What this artifact is, for the reboot's purposes\n\nGROUNDTRUTH is defined in canon as *\"Operator observation. Direct account of\nlived experience... Capture raw signal before abstraction or interpretation\nlayers are applied.\"* This is that: a first-person account of nearly throwing\naway a good idea because of how it was packaged.\n\nIt matters to the reboot because it is the series with the **lowest** production\ncost — Operator-authored narrative, no council cycle, no synthesis — and it still\nonly produced two shipped artifacts. That is evidence the bottleneck is the\nhand-authored React page, not the editorial pipeline above it."
+    }
+  ]
+}

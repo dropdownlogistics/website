@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "snapshot": "node scripts/generate-ddl-snapshot.mjs",
+    "canonpress:snapshot": "node scripts/generate-canonpress-snapshot.mjs",
     "verify:routes": "node scripts/verify-product-routes.mjs",
     "verify:metrics": "node scripts/verify-metrics-drift.mjs",
     "verify": "node scripts/verify-all.mjs"
