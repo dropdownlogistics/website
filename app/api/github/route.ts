@@ -3,16 +3,15 @@ import { NextResponse } from 'next/server';
 const REPO = 'dropdownlogistics/website';
 
 export async function GET() {
+  // The repo is public, so no token is needed: GitHub allows 60 unauthenticated
+  // requests an hour per IP, and the 5-minute cache below stays well under that.
+  // A token is still used if one is set.
   const token = process.env.GITHUB_TOKEN;
-  if (!token) {
-    return NextResponse.json({ error: 'GITHUB_TOKEN not configured' }, { status: 500 });
-  }
-
-  const headers = {
-    Authorization: `token ${token}`,
+  const headers: Record<string, string> = {
     Accept: 'application/vnd.github+json',
     'X-GitHub-Api-Version': '2022-11-28',
   };
+  if (token) headers.Authorization = `token ${token}`;
 
   try {
     const [repoRes, commitsRes] = await Promise.all([
